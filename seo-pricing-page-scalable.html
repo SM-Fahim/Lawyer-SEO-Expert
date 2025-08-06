@@ -1,0 +1,2626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Law Firm Digital Marketing System - Scalable Growth, Guaranteed ROI | Lawyer SEO Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'cardo': ['Cardo', 'serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#f59e0b',
+                        accent: '#0f172a',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Working Tooltip with Explain Text */
+        .price-tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .explain-trigger {
+            color: #8b5cf6;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 2px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            background: none;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .explain-trigger:hover {
+            color: #7c3aed;
+            text-decoration-style: solid;
+        }
+
+        .tooltip-bubble {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b5cf6;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Arrow pointing down */
+        .tooltip-bubble::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px 8px 0 8px;
+            border-color: #8b5cf6 transparent transparent transparent;
+        }
+
+        /* Show tooltip on hover */
+        .price-tooltip-wrapper:hover .tooltip-bubble {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* Keep tooltip visible when hovering on it */
+        .tooltip-bubble:hover {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-balance-scale text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-accent">Lawyer SEO Expert</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Home</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-primary font-medium flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors">
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down text-base"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div class="p-6">
+                                <h3 class="text-lg font-bold text-accent mb-4">Our Services</h3>
+                                <div class="grid grid-cols-1 gap-3">
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors">
+                                            <i class="fas fa-search text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">SEO Services</div>
+                                            <div class="text-base text-gray-600">Comprehensive SEO optimization</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors">
+                                            <i class="fas fa-code text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Web Design</div>
+                                            <div class="text-base text-gray-600">Professional website development</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors">
+                                            <i class="fas fa-pen-fancy text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Content Writing</div>
+                                            <div class="text-base text-gray-600">Legal content creation</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors">
+                                            <i class="fas fa-link text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Link Building</div>
+                                            <div class="text-base text-gray-600">High-quality backlink acquisition</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Blog</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Contact</a>
+                </nav>
+
+                <!-- Contact & CTA -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button class="bg-gradient-to-r from-primary to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-blue-600 hover:to-primary transition-all duration-300 transform hover:scale-105 shadow-lg text-base">
+                        BOOK FREE CONSULTATION
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 h-[700px] flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center bg-success/10 text-success px-6 py-3 rounded-full text-base font-semibold">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Scalable Growth System • Guaranteed ROI
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-black text-accent leading-tight font-cardo max-w-6xl mx-auto">
+                            Complete Law Firm <span class="text-primary">Digital Marketing System</span>
+                        </h1>
+                        <p class="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-4xl mx-auto italic">
+                            "We don't just do SEO - we build complete digital marketing systems that transform law firms into market leaders. Our scalable approach lets you start with quick wins, reinvest from increased revenue, and systematically dominate your market."
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#phases" class="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-all transform hover:scale-105">
+                            <span>Explore Our 3-Phase System</span>
+                            <i class="fas fa-arrow-down ml-2"></i>
+                        </a>
+                        <a href="#custom-packages" class="border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all">
+                            <i class="fas fa-cog mr-2"></i>
+                            Build Custom Package
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 1: Foundation & Quick Wins Section -->
+    <section id="foundation-overview" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center bg-blue-50 text-blue-700 px-8 py-4 rounded-full text-lg font-semibold mb-4">
+                    <i class="fas fa-rocket mr-3"></i>
+                    Phase 1: Months 1-3
+                </div>
+                <h2 class="text-4xl font-bold text-accent mb-4">Foundation & Quick Wins</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+                    $1,500 - $5,000/month
+                    <span class="price-tooltip-wrapper">
+                        <span class="explain-trigger">Explain</span>
+                        <div class="tooltip-bubble">
+                            <strong>$1,500/month:</strong> Single location, 1-2 practice areas, low competition<br><br>
+                            <strong>$3,000/month:</strong> Multi-location or competitive market<br><br>
+                            <strong>$5,000/month:</strong> High competition market, large firms
+                        </div>
+                    </span>
+                </p>
+                <p class="text-lg text-gray-700 max-w-4xl mx-auto">Generate immediate visibility improvements and establish strong foundations for long-term growth. Designed to show measurable results within 60-90 days.</p>
+            </div>
+
+            <!-- What's Included Section -->
+            <div class="mb-16">
+                <div class="mb-4">
+                    <div class="inline-flex items-center bg-gray-50 text-gray-700 px-6 py-3 rounded-full text-base font-semibold mb-3">
+                        <i class="fas fa-list-check mr-2"></i>
+                        What's Included
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 border border-gray-200">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Feature Group 1: Immediate Impact -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-orange-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-rocket text-orange-600"></i>
+                                </div>
+                                Immediate Impact Setup
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Google Business Profile Optimization</div>
+                                        <div class="text-sm text-gray-600">Complete optimization for maximum local visibility</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Website Technical Audit & Critical Fixes</div>
+                                        <div class="text-sm text-gray-600">Site speed, mobile optimization, security, Core Web Vitals</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Homepage Redesign</div>
+                                        <div class="text-sm text-gray-600">Conversion-focused redesign of your most important page</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Core Service Pages Optimization</div>
+                                        <div class="text-sm text-gray-600">2-4 main practice area pages optimized for local search</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 2: Local Market -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-red-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-red-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-map-marker-alt text-red-600"></i>
+                                </div>
+                                Local Market Domination
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Local SEO Foundation</div>
+                                        <div class="text-sm text-gray-600">Citations, NAP consistency, local schema markup</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Google My Business Management</div>
+                                        <div class="text-sm text-gray-600">Daily posts, review monitoring, Q&A optimization</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Local Citation Building</div>
+                                        <div class="text-sm text-gray-600">15-25 high-impact local directories and citations</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Competitor Analysis</div>
+                                        <div class="text-sm text-gray-600">Complete local market analysis and opportunity identification</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 3: Content Foundation -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-purple-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-edit text-purple-600"></i>
+                                </div>
+                                Content Foundation
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-purple-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">SEO Content Strategy</div>
+                                        <div class="text-sm text-gray-600">6-month growth plan with keyword targets and content calendar</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-purple-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Expert Blog Posts</div>
+                                        <div class="text-sm text-gray-600">2-6 attorney-written articles monthly focused on your top services</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-purple-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">FAQ & Resource Pages</div>
+                                        <div class="text-sm text-gray-600">2-4 pages answering common client questions</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 4: Tracking -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-chart-bar text-green-600"></i>
+                                </div>
+                                Tracking & Optimization
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-green-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Analytics Setup</div>
+                                        <div class="text-sm text-gray-600">Google Analytics, Search Console, ranking tracking</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-green-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Monthly Reporting</div>
+                                        <div class="text-sm text-gray-600">Progress reports with lead attribution and ROI metrics</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-green-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Weekly Check-ins</div>
+                                        <div class="text-sm text-gray-600">Email updates and strategy adjustments</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target Audience & Investment -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <!-- Perfect For -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-blue-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-bullseye text-blue-600"></i>
+                        </div>
+                        Perfect For
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-blue-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Law firms wanting to test SEO effectiveness before major investment</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-blue-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Solo practitioners and small firms with limited initial budgets</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-blue-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Firms needing to see ROI before scaling up investment</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-blue-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">New firms needing essential digital presence quickly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Investment Range Factors -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-green-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-calculator text-green-600"></i>
+                        </div>
+                        Investment Range Factors
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold text-sm flex-shrink-0 mt-1">$1,500</div>
+                            <span class="text-gray-700">Single location, 1-2 practice areas, low competition market</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold text-sm flex-shrink-0 mt-1">$3,000</div>
+                            <span class="text-gray-700">Multi-location or competitive market, multiple practice areas</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold text-sm flex-shrink-0 mt-1">$5,000</div>
+                            <span class="text-gray-700">High competition market (major cities), large law firms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results & Guarantee -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Expected Results -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-primary">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-trophy text-primary"></i>
+                        </div>
+                        Expected Results by Month 3
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-primary mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">50-100% increase in Google Business Profile views and calls</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-primary mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">3-5 service pages ranking on page 1 for local keywords</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-primary mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">25-50% improvement in website conversion rate</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-primary mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">5-100 additional qualified leads monthly (practice area dependent)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guarantee -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-green-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-shield-alt text-green-600"></i>
+                        </div>
+                        Our Guarantee
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="text-gray-700">
+                            <p class="text-lg font-medium mb-2">If you don't get the ROI after Phase 1, we'll work for free until you do. If you make money, we make money.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">We consider the number of increased leads and market standard for ROI calculation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Phase 2: Scaling & Market Expansion Section -->
+    <section id="scaling-overview" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center bg-indigo-50 text-indigo-700 px-8 py-4 rounded-full text-lg font-semibold mb-4">
+                    <i class="fas fa-chart-line mr-3"></i>
+                    Phase 2: Months 4-9
+                </div>
+                <h2 class="text-4xl font-bold text-accent mb-4">Scaling & Market Expansion</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+                    $2,500 - $7,500/month
+                    <span class="price-tooltip-wrapper">
+                        <span class="explain-trigger">Explain</span>
+                        <div class="tooltip-bubble">
+                            <strong>$2,500/month:</strong> Continuing single location, moderate competition, need only a few extra features<br><br>
+                            <strong>$5,000/month:</strong> Multi-location expansion, competitive markets, need most new features<br><br>
+                            <strong>$7,500/month:</strong> Major metropolitan areas, high competition, multiple practice areas, need most/all new features
+                        </div>
+                    </span>
+                </p>
+                <p class="text-lg text-gray-700 max-w-4xl mx-auto">Scale successful elements from Phase 1, expand market reach, and build sustainable growth systems. Designed for firms ready to invest increased revenue from Phase 1 results.</p>
+            </div>
+
+            <!-- What's Included Section -->
+            <div class="mb-16">
+                <div class="mb-4">
+                    <div class="inline-flex items-center bg-gray-50 text-gray-700 px-6 py-3 rounded-full text-base font-semibold mb-3">
+                        <i class="fas fa-list-check mr-2"></i>
+                        What's Included
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-3xl p-8 border border-indigo-200">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Feature Group 1: Complete Digital Transformation -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-teal-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-teal-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-globe text-teal-600"></i>
+                                </div>
+                                Complete Digital Transformation
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-teal-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Full Website Redesign</div>
+                                        <div class="text-sm text-gray-600">Complete UX/UI overhaul for maximum conversions</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-teal-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Advanced Landing Pages</div>
+                                        <div class="text-sm text-gray-600">5-8 conversion-optimized pages for different practice areas</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-teal-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">A/B Testing Implementation</div>
+                                        <div class="text-sm text-gray-600">Systematic testing of headlines, forms, and calls-to-action</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-teal-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">User Experience Optimization</div>
+                                        <div class="text-sm text-gray-600">Heat mapping, user session analysis, conversion path optimization</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 2: Multi-Location & Service Expansion -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-cyan-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-cyan-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-expand-arrows-alt text-cyan-600"></i>
+                                </div>
+                                Multi-Location & Service Expansion
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Multiple Location Optimization</div>
+                                        <div class="text-sm text-gray-600">Up to 10 locations with individual GBP and landing pages</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Service Area Expansion</div>
+                                        <div class="text-sm text-gray-600">Target broader geographic regions and new practice areas</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Advanced Local SEO</div>
+                                        <div class="text-sm text-gray-600">Location-specific content, geo-targeted campaigns</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Citation Expansion</div>
+                                        <div class="text-sm text-gray-600">50-75 high-authority citations and directory listings</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 3: Content Marketing Engine -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-violet-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-violet-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-pen-nib text-violet-600"></i>
+                                </div>
+                                Content Marketing Engine
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-violet-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Increased Blog Production</div>
+                                        <div class="text-sm text-gray-600">4-12 expert articles monthly across multiple practice areas</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-violet-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Legal Guide Creation</div>
+                                        <div class="text-sm text-gray-600">Comprehensive guides for lead generation and authority</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-violet-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Press Release Campaign</div>
+                                        <div class="text-sm text-gray-600">Monthly press releases to high-authority publications</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-violet-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Video Content Integration</div>
+                                        <div class="text-sm text-gray-600">Optimization and strategy for video content marketing</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 4: Authority Building Campaign -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-pink-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-pink-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-link text-pink-600"></i>
+                                </div>
+                                Authority Building Campaign
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-pink-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Strategic Link Building</div>
+                                        <div class="text-sm text-gray-600">10-20 high-quality backlinks monthly ($20-$50/link quality)</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-pink-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Legal Directory Submissions</div>
+                                        <div class="text-sm text-gray-600">25-40 premium legal directories</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-pink-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Guest Posting Program</div>
+                                        <div class="text-sm text-gray-600">1-2 high-authority guest posts monthly</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-pink-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Brand Mention Monitoring</div>
+                                        <div class="text-sm text-gray-600">Track and capitalize on brand mentions</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 5: Lead Nurturing Systems -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-emerald-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-emerald-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-envelope text-emerald-600"></i>
+                                </div>
+                                Lead Nurturing Systems
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-emerald-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Email Marketing Setup</div>
+                                        <div class="text-sm text-gray-600">Newsletter design, automation sequences, lead nurturing</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-emerald-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">CRM Integration</div>
+                                        <div class="text-sm text-gray-600">Basic client management system integration</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-emerald-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Lead Scoring System</div>
+                                        <div class="text-sm text-gray-600">Prioritize and track high-value prospects</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-emerald-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Follow-up Automation</div>
+                                        <div class="text-sm text-gray-600">Automated sequences for different lead types</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 6: Advanced Analytics -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-amber-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-amber-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-analytics text-amber-600"></i>
+                                </div>
+                                Advanced Analytics
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Call Tracking Implementation</div>
+                                        <div class="text-sm text-gray-600">Track phone leads and ROI attribution</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Conversion Rate Optimization</div>
+                                        <div class="text-sm text-gray-600">Systematic improvement of lead generation forms</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Custom Dashboard</div>
+                                        <div class="text-sm text-gray-600">Real-time performance tracking and KPI monitoring</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Quarterly Strategy Sessions</div>
+                                        <div class="text-sm text-gray-600">In-depth analysis and strategy refinement</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target Audience & Investment -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <!-- Perfect For -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-indigo-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-indigo-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-bullseye text-indigo-600"></i>
+                        </div>
+                        Perfect For
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-indigo-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Firms that saw solid ROI from Phase 1 and want to scale</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-indigo-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Multi-location practices ready to dominate broader markets</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-indigo-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Firms wanting to expand into new practice areas or locations</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-indigo-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Practices ready to implement advanced conversion optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expected Results -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-emerald-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-emerald-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-trophy text-emerald-600"></i>
+                        </div>
+                        Expected Results by Month 9
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-emerald-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">100-200% increase in qualified leads compared to pre-Phase 1 baseline</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-emerald-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">5-10 practice area pages ranking in top 3 positions locally</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-emerald-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">50-100% improvement in website conversion rate from Phase 1</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-emerald-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">30-300 additional qualified leads monthly (practice area dependent)</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-emerald-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Strong foundation for advanced market domination</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 3: Market Domination & Premium Growth Section -->
+    <section id="domination-overview" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center bg-rose-50 text-rose-700 px-8 py-4 rounded-full text-lg font-semibold mb-4">
+                    <i class="fas fa-crown mr-3"></i>
+                    Phase 3: Months 10-24
+                </div>
+                <h2 class="text-4xl font-bold text-accent mb-4">Market Domination & Premium Growth</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
+                    $3,500 - $15,000+/month
+                    <span class="price-tooltip-wrapper">
+                        <span class="explain-trigger">Explain</span>
+                        <div class="tooltip-bubble">
+                            <strong>$3,500/month:</strong> Single location market leadership, moderate competition, need only a few extra features<br><br>
+                            <strong>$7,500/month:</strong> Multi-location dominance, competitive markets, need most new features<br><br>
+                            <strong>$15,000+/month:</strong> Statewide/regional dominance, maximum competition, premium services, need most/all new features
+                        </div>
+                    </span>
+                </p>
+                <p class="text-lg text-gray-700 max-w-4xl mx-auto">Achieve market leadership position with premium features, advanced systems, and comprehensive digital dominance. For firms ready to invest in becoming the #1 choice in their market.</p>
+            </div>
+
+            <!-- What's Included Section -->
+            <div class="mb-16">
+                <div class="mb-4">
+                    <div class="inline-flex items-center bg-gray-50 text-gray-700 px-6 py-3 rounded-full text-base font-semibold mb-3">
+                        <i class="fas fa-list-check mr-2"></i>
+                        What's Included
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-rose-50 to-orange-50 rounded-3xl p-8 border border-rose-200">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <!-- Feature Group 1: Premium Digital Assets -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-amber-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-amber-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-trophy text-amber-600"></i>
+                                </div>
+                                Premium Digital Assets
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Enterprise-Level Website</div>
+                                        <div class="text-sm text-gray-600">Premium design, advanced functionality, custom integrations</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Custom Mobile App Development</div>
+                                        <div class="text-sm text-gray-600">Client portal and communication app (if applicable)</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Advanced UX Research</div>
+                                        <div class="text-sm text-gray-600">User behavior analysis, custom conversion optimization</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-amber-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Brand Authority Development</div>
+                                        <div class="text-sm text-gray-600">Comprehensive reputation and thought leadership campaign</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 2: Comprehensive Market Coverage -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-rose-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-rose-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-bullseye text-rose-600"></i>
+                                </div>
+                                Comprehensive Market Coverage
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Unlimited Location Optimization</div>
+                                        <div class="text-sm text-gray-600">All firm locations with individual strategies</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Complete Service Area Domination</div>
+                                        <div class="text-sm text-gray-600">5+ practice areas with parallel optimization</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Statewide/Regional Targeting</div>
+                                        <div class="text-sm text-gray-600">Expand beyond local to regional or statewide coverage</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Competitive Displacement Strategy</div>
+                                        <div class="text-sm text-gray-600">Target competitors' keywords and market share</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 3: Authority Content Engine -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-orange-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-feather-alt text-orange-600"></i>
+                                </div>
+                                Authority Content Engine
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Premium Content Production</div>
+                                        <div class="text-sm text-gray-600">8-15 expert articles monthly with professional editing</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Thought Leadership Campaign</div>
+                                        <div class="text-sm text-gray-600">Industry publications, speaking opportunities, PR</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Legal Resource Library</div>
+                                        <div class="text-sm text-gray-600">Comprehensive guides, tools, and educational resources</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-orange-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Short-Form Video Production</div>
+                                        <div class="text-sm text-gray-600">2-4 professional video content pieces monthly</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 4: Premium Link Building -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-red-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-red-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-link text-red-600"></i>
+                                </div>
+                                Premium Link Building
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">High-Authority Backlinks</div>
+                                        <div class="text-sm text-gray-600">5-10 premium backlinks monthly ($200+ value each)</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Strategic PR Campaigns</div>
+                                        <div class="text-sm text-gray-600">Major publication features and industry recognition</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Professional Network Development</div>
+                                        <div class="text-sm text-gray-600">Legal industry connections and referral partnerships</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-red-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Link Acquisition Strategy</div>
+                                        <div class="text-sm text-gray-600">Custom outreach for highest-value link opportunities</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 5: Custom Business Systems -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-slate-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-slate-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-cogs text-slate-600"></i>
+                                </div>
+                                Custom Business Systems
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-slate-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Custom CRM Development</div>
+                                        <div class="text-sm text-gray-600">Tailored client management system for your firm</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-slate-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Case Management Integration</div>
+                                        <div class="text-sm text-gray-600">Connect marketing directly to case workflow</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-slate-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Advanced Client Portal</div>
+                                        <div class="text-sm text-gray-600">Secure communication and document sharing system</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-slate-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Marketing Automation Platform</div>
+                                        <div class="text-sm text-gray-600">Sophisticated lead nurturing and client communication</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 6: Social Media & Brand Management -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-sky-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-sky-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-hashtag text-sky-600"></i>
+                                </div>
+                                Social Media & Brand Management
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-sky-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Complete Social Media Management</div>
+                                        <div class="text-sm text-gray-600">Professional management of all social platforms</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-sky-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">LinkedIn Lead Generation</div>
+                                        <div class="text-sm text-gray-600">Advanced B2B networking and referral generation</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-sky-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Review Management System</div>
+                                        <div class="text-sm text-gray-600">Comprehensive reputation management and response</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-sky-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Social Media Advertising</div>
+                                        <div class="text-sm text-gray-600">Strategic paid social campaigns (ad spend separate)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 7: Team Training & Development -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-lime-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-lime-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-graduation-cap text-lime-600"></i>
+                                </div>
+                                Team Training & Development
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-lime-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">In-House Marketing Training</div>
+                                        <div class="text-sm text-gray-600">2-day intensive for your team</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-lime-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Content Creation Training</div>
+                                        <div class="text-sm text-gray-600">Train your team to create authority content</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-lime-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Client Communication Systems</div>
+                                        <div class="text-sm text-gray-600">Optimize internal processes for better client experience</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-lime-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Ongoing Consultation Access</div>
+                                        <div class="text-sm text-gray-600">Direct access to marketing strategists</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feature Group 8: Enterprise Analytics -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-fuchsia-400">
+                            <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                                <div class="bg-fuchsia-100 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-chart-pie text-fuchsia-600"></i>
+                                </div>
+                                Enterprise Analytics
+                            </h4>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-fuchsia-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Advanced Business Intelligence</div>
+                                        <div class="text-sm text-gray-600">Custom dashboards with predictive analytics</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-fuchsia-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">ROI Modeling & Forecasting</div>
+                                        <div class="text-sm text-gray-600">Predict marketing performance and business growth</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-fuchsia-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Competitive Intelligence</div>
+                                        <div class="text-sm text-gray-600">Ongoing monitoring of competitor strategies</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-fuchsia-600 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Performance Optimization</div>
+                                        <div class="text-sm text-gray-600">Continuous testing and improvement of all systems</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target Audience & Investment -->
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <!-- Perfect For -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-rose-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-rose-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-bullseye text-rose-600"></i>
+                        </div>
+                        Perfect For
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Firms that achieved strong ROI in Phases 1-2 and want market leadership</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Large practices ready for comprehensive digital transformation</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Firms wanting custom systems and premium services</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check text-rose-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Practices targeting statewide or regional dominance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expected Results -->
+                <div class="bg-white rounded-2xl p-6 shadow-md border-l-4 border-amber-400">
+                    <h4 class="text-xl font-bold text-accent mb-4 flex items-center">
+                        <div class="bg-amber-100 p-2 rounded-lg mr-3">
+                            <i class="fas fa-trophy text-amber-600"></i>
+                        </div>
+                        Expected Results by Month 24
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-amber-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">200-400% increase in qualified leads compared to pre-Phase 1 baseline</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-amber-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Market leadership position in primary practice areas</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-amber-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">50-500 additional qualified leads monthly (practice area dependent)</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-amber-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Reduced cost per case acquisition compared to paid advertising</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-chart-line text-amber-600 mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-700">Sustainable competitive advantage and brand recognition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Pricing Plans Section -->
+    <section id="pricing-plans" class="py-20 bg-gray-50">
+        <div class="max-w-8xl mx-auto px-8 sm:px-12 lg:px-16">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-4 font-cardo">Our 3-Phase Scalable Growth System</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">Start small, see results, reinvest from increased revenue, and systematically dominate your market. Each phase builds on the previous success.</p>
+                
+                <!-- Billing Toggle -->
+                <div class="inline-flex items-center bg-white rounded-lg p-1 border border-gray-200">
+                    <button id="monthly-btn" class="px-6 py-2 text-base font-medium bg-accent text-white rounded-md transition-all">Monthly</button>
+                    <button id="annually-btn" class="px-6 py-2 text-base font-medium text-gray-600 hover:text-accent transition-all">Annually</button>
+                </div>
+            </div>
+
+            <!-- Modern Pricing Cards -->
+            <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-6 mb-16 px-8">
+                <!-- Empty first column to align with feature column -->
+                <div class="relative"></div>
+                
+                <!-- Phase 1: Foundation -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-3xl opacity-50 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <div class="text-center space-y-4">
+                            <!-- Phase Badge -->
+                            <div class="inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-rocket mr-2 text-xs"></i>
+                                Phase 1: Months 1-3
+                            </div>
+                            
+                            <!-- Title -->
+                            <h3 class="text-xl font-bold text-accent leading-tight">
+                                Foundation &<br>Quick Wins
+                            </h3>
+                            
+                            <!-- Price -->
+                            <div class="py-4">
+                                <div class="text-3xl font-bold text-accent mb-1">
+                                    $1,500 - $5,000
+                                    <span class="price-tooltip-wrapper">
+                                        <span class="explain-trigger">Explain</span>
+                                        <div class="tooltip-bubble">
+                                            <strong>$1,500/month:</strong> Single location, 1-2 practice areas, low competition<br><br>
+                                            <strong>$3,000/month:</strong> Multi-location or competitive market<br><br>
+                                            <strong>$5,000/month:</strong> High competition market, large firms
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="text-gray-500 text-sm">per month</div>
+                            </div>
+                            
+                            <!-- CTA -->
+                            <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Start Phase 1
+                            </button>
+                            
+                            <!-- Key Feature -->
+                            <div class="text-xs text-gray-600 bg-gray-50 p-3 rounded-lg mt-4">
+                                <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                                Immediate visibility improvements
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: Scaling -->
+                <div class="group relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-green-100 to-blue-100 rounded-3xl opacity-50 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                        <div class="text-center space-y-4">
+                            <!-- Phase Badge -->
+                            <div class="inline-flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
+                                <i class="fas fa-chart-line mr-2 text-xs"></i>
+                                Phase 2: Months 4-9
+                            </div>
+                            
+                            <!-- Title -->
+                            <h3 class="text-xl font-bold text-accent leading-tight">
+                                Scaling & Market<br>Expansion
+                            </h3>
+                            
+                            <!-- Price -->
+                            <div class="py-4">
+                                <div class="text-3xl font-bold text-accent mb-1">$2,500 - $7,500</div>
+                                <div class="text-gray-500 text-sm">per month</div>
+                            </div>
+                            
+                            <!-- CTA -->
+                            <button class="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 px-6 rounded-xl font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Scale to Phase 2
+                            </button>
+                            
+                            <!-- Key Feature -->
+                            <div class="text-xs text-gray-600 bg-gray-50 p-3 rounded-lg mt-4">
+                                <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                                Multi-location dominance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Domination -->
+                <div class="group relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-3xl opacity-20 group-hover:opacity-30 transition duration-300"></div>
+                    <div class="relative bg-gradient-to-r from-primary to-blue-600 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        <div class="text-center space-y-4">
+                            <!-- Premium Badge -->
+                            <div class="inline-flex items-center bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm">
+                                <i class="fas fa-crown mr-2 text-xs"></i>
+                                Phase 3: Months 10-24
+                            </div>
+                            
+                            <!-- Title -->
+                            <h3 class="text-xl font-bold text-white leading-tight">
+                                Market Domination &<br>Premium Growth
+                            </h3>
+                            
+                            <!-- Price -->
+                            <div class="py-4">
+                                <div class="text-3xl font-bold text-white mb-1">$3,500 - $15,000+</div>
+                                <div class="text-blue-100 text-sm">per month</div>
+                            </div>
+                            
+                            <!-- CTA -->
+                            <button class="w-full bg-white text-primary py-3 px-6 rounded-xl font-medium hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                Dominate Market
+                            </button>
+                            
+                            <!-- Key Feature -->
+                            <div class="text-xs text-blue-100 bg-white/10 p-3 rounded-lg mt-4 backdrop-blur-sm">
+                                <i class="fas fa-check-circle text-blue-200 mr-1"></i>
+                                Statewide/regional leadership
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Comparison Table with Perfect Alignment -->
+            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden px-8">
+                <!-- Overview Header -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-200">
+                    <div class="font-bold text-accent text-xl">Overview</div>
+                    <div class="p-2"></div>
+                    <div class="p-2"></div>
+                    <div class="p-2"></div>
+                </div>
+
+                <!-- Always included feature -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-100 items-start">
+                    <div class="font-semibold text-accent relative">
+                        Always included feature
+                    </div>
+                    <div class="text-gray-600 text-base p-2 relative border-r border-gray-200">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                    </div>
+                    <div class="text-gray-600 text-base p-2 relative border-r border-gray-200">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                    </div>
+                    <div class="text-gray-600 text-base p-2 relative">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                    </div>
+                </div>
+
+                <!-- Number of products -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-100 items-center">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-accent">Number of products</span>
+                        <i class="fas fa-info-circle text-gray-400 text-base"></i>
+                    </div>
+                    <div class="text-gray-600 text-center p-2 border-r border-gray-200">1</div>
+                    <div class="text-gray-600 text-center p-2 border-r border-gray-200">1</div>
+                    <div class="text-gray-600 text-center p-2">3</div>
+                </div>
+
+                <!-- Number of transactions -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-100 items-center">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-accent">Number of transactions</span>
+                        <i class="fas fa-info-circle text-gray-400 text-base"></i>
+                    </div>
+                    <div class="text-gray-600 text-center p-2 border-r border-gray-200">30 monthly</div>
+                    <div class="text-gray-600 text-center p-2 border-r border-gray-200">Unlimited</div>
+                    <div class="text-gray-600 text-center p-2">Unlimited</div>
+                </div>
+
+                <!-- Other features header -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 bg-gray-50 border-b border-gray-200">
+                    <div class="font-bold text-accent text-xl">Other features</div>
+                    <div class="p-2"></div>
+                    <div class="p-2"></div>
+                    <div class="p-2"></div>
+                </div>
+
+                <!-- Basic feature -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-100 items-center">
+                    <div class="font-semibold text-accent">Basic feature</div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-check text-success text-lg"></i>
+                    </div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-check text-success text-lg"></i>
+                    </div>
+                    <div class="text-center p-2">
+                        <i class="fas fa-check text-success text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Enterprise feature -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6 border-b border-gray-100 items-center">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-accent">Enterprise feature</span>
+                        <i class="fas fa-info-circle text-gray-400 text-base"></i>
+                    </div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-times text-gray-400 text-lg"></i>
+                    </div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-times text-gray-400 text-lg"></i>
+                    </div>
+                    <div class="text-center p-2">
+                        <i class="fas fa-check text-success text-lg"></i>
+                    </div>
+                </div>
+
+                <!-- Optional feature -->
+                <div class="grid grid-cols-[1fr_1fr_1fr_1fr] gap-4 py-6">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-accent">Optional feature</span>
+                        <i class="fas fa-info-circle text-gray-400 text-base"></i>
+                    </div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-times text-gray-400 text-lg"></i>
+                    </div>
+                    <div class="text-center p-2 border-r border-gray-200">
+                        <i class="fas fa-times text-gray-400 text-lg"></i>
+                    </div>
+                    <div class="text-center p-2">
+                        <span class="bg-accent text-white px-3 py-1 rounded-full text-base font-medium">Add-on</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase System Overview -->
+    <section id="phases-overview" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-6 font-cardo">Our 3-Phase Scalable Growth System</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Start small, see results, reinvest from increased revenue, and systematically dominate your market. Each phase builds on the previous success.</p>
+            </div>
+
+            <!-- What Makes This Different -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-12 rounded-3xl shadow-lg mb-16">
+                <h3 class="text-3xl font-bold text-accent mb-8 text-center font-cardo">What Makes This Scalable Approach Different:</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-times text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-accent mb-2">Traditional Agencies</h4>
+                        <p class="text-gray-600 text-base">Require large upfront commitments with unclear results</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-success/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-success text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-accent mb-2">Our System</h4>
+                        <p class="text-gray-600 text-base">Starts with quick wins, proves ROI, then scales with your growth</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chart-line text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-accent mb-2">Each Phase</h4>
+                        <p class="text-gray-600 text-base">Designed to generate enough additional revenue to fund the next phase</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-secondary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hand-paper text-secondary text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-accent mb-2">You Control</h4>
+                        <p class="text-gray-600 text-base">The pace and investment level based on your results and comfort</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Journey -->
+    <section id="phase-journey" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-screen-xl mx-auto px-2 sm:px-3 lg:px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-black text-accent mb-4 font-cardo">Your Growth Journey</h2>
+                <p class="text-lg text-gray-600">Follow the path from foundation to market domination</p>
+            </div>
+
+            <!-- SEO Pricing Phases -->
+            <div class="w-full max-w-screen-2xl mx-auto">
+                <!-- Pricing Cards -->
+                <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- Phase 1: Foundation & Quick Wins -->
+                <div class="bg-white border-2 border-gray-200 rounded-3xl p-8 shadow-lg hover:border-blue-600 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-rocket text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-inter text-2xl font-bold text-accent mb-2">Phase 1: Foundation & Quick Wins</h3>
+                        <div class="font-inter text-4xl font-bold text-accent mb-2">
+                            $1,500 <span class="text-lg text-gray-500 font-normal">- $5,000</span>
+                        </div>
+                        <p class="font-inter text-gray-600 mb-2">Months 1-3 • Generate immediate results</p>
+                        <p class="font-inter text-base text-gray-600">Generate immediate visibility improvements and establish strong foundations for long-term growth. Designed to show measurable results within 60-90 days.</p>
+                    </div>
+                    
+                    <!-- Perfect For -->
+                    <div class="mb-6">
+                        <h4 class="font-inter text-lg font-bold text-accent mb-3">✨ Perfect For:</h4>
+                        <ul class="font-inter space-y-2 text-base text-gray-700">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Law firms wanting to test SEO effectiveness before major investment</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Solo practitioners and small firms with limited initial budgets</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Firms needing to see ROI before scaling up investment</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>New firms needing essential digital presence quickly</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="mb-6">
+                        <h4 class="font-inter text-lg font-bold text-accent mb-3">🚀 What's Included:</h4>
+                        <div class="space-y-4">
+                            <!-- Immediate Impact Setup -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-primary mb-2">Immediate Impact Setup</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Google Business Profile Optimization</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Website Technical Audit & Fixes</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Homepage Redesign</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Core Service Pages Optimization</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Local Market Domination -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-primary mb-2">Local Market Domination</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Local SEO Foundation</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Google My Business Management</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Local Citation Building (15-25)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Competitor Analysis</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Content Foundation -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-primary mb-2">Content Foundation</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>SEO Content Strategy (6-month plan)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Expert Blog Posts (2-6 monthly)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expected Results -->
+                    <div class="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
+                        <h5 class="font-inter text-lg font-bold text-accent mb-3 text-center">Expected Results by Month 3</h5>
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div>
+                                <div class="text-lg font-black text-primary mb-1">50-100%</div>
+                                <p class="text-base text-gray-600">GBP views increase</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-primary mb-1">3-5</div>
+                                <p class="text-base text-gray-600">Page 1 rankings</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-primary mb-1">25-50%</div>
+                                <p class="text-base text-gray-600">Conversion boost</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-primary mb-1">5-100</div>
+                                <p class="text-base text-gray-600">Monthly leads</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Factors -->
+                    <div class="mb-6">
+                        <h5 class="font-inter text-lg font-bold text-accent mb-3">💰 Investment Factors:</h5>
+                        <div class="space-y-2">
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold text-base">$1,500</div>
+                                <p class="text-base text-gray-600">Single location, low competition</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-bold text-base">$3,000</div>
+                                <p class="text-base text-gray-600">Multi-location, moderate competition</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-bold text-base">$5,000</div>
+                                <p class="text-base text-gray-600">Major cities, high competition</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guarantee -->
+                    <div class="mb-6 bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                            <h5 class="font-inter text-lg font-bold text-accent">Our Phase 1 Guarantee</h5>
+                        </div>
+                        <p class="text-base text-gray-700">If you don't get the ROI after Phase 1, we'll work for free until you do. If you make money, we make money.</p>
+                    </div>
+                    
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition-colors duration-300">
+                        <i class="fas fa-rocket mr-2"></i>Start Phase 1 Today
+                    </button>
+                </div>
+
+                <!-- Phase 2: Scaling & Market Expansion - Featured -->
+                <div class="relative bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 shadow-2xl text-white transform scale-105">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-secondary text-accent px-6 py-2 rounded-full text-base font-bold">
+                        MOST POPULAR
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-inter text-2xl font-bold mb-2">Phase 2: Scaling & Market Expansion</h3>
+                        <div class="font-inter text-4xl font-bold mb-2">
+                            $2,500 <span class="text-lg text-white/80 font-normal">- $7,500</span>
+                        </div>
+                        <p class="font-inter text-white/90 mb-2">Months 4-9 • Scale successful elements</p>
+                        <p class="font-inter text-base text-white/80">Scale successful elements from Phase 1, expand market reach, and build sustainable growth systems. Designed for firms ready to invest increased revenue from Phase 1 results.</p>
+                    </div>
+                    
+                    <!-- Perfect For -->
+                    <div class="mb-6">
+                        <p class="font-inter text-lg text-white/80 font-semibold mb-3">✨ Perfect For:</p>
+                        <ul class="font-inter space-y-2 text-base text-white/95">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-white mt-1 text-base"></i>
+                                <span>Firms that saw solid ROI from Phase 1 and want to scale</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-white mt-1 text-base"></i>
+                                <span>Multi-location practices ready to dominate broader markets</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-white mt-1 text-base"></i>
+                                <span>Firms wanting to expand into new practice areas or locations</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-white mt-1 text-base"></i>
+                                <span>Practices ready to implement advanced conversion optimization</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="mb-6">
+                        <p class="font-inter text-lg text-white/80 font-semibold mb-3">🚀 Everything from Phase 1 PLUS:</p>
+                        <div class="space-y-4">
+                            <!-- Digital Transformation -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-secondary mb-2">Digital Transformation</h5>
+                                <ul class="font-inter space-y-1 text-base text-white/90">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Full Website Redesign</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Advanced Landing Pages (5-8)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>A/B Testing Implementation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Multi-Location Expansion -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-secondary mb-2">Multi-Location Expansion</h5>
+                                <ul class="font-inter space-y-1 text-base text-white/90">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Multiple Location Optimization (up to 10)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Service Area Expansion</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Advanced Local SEO</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Citation Expansion (50-75)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Content Marketing Engine -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-secondary mb-2">Content Marketing Engine</h5>
+                                <ul class="font-inter space-y-1 text-base text-white/90">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Increased Blog Production (4-12 monthly)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Legal Guide Creation</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Press Release Campaign</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Video Content Integration</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Authority Building -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-secondary mb-2">Authority Building</h5>
+                                <ul class="font-inter space-y-1 text-base text-white/90">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Strategic Link Building (10-20 monthly)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Legal Directory Submissions (25-40)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Guest Posting Program (1-2 monthly)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Brand Mention Monitoring</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Lead Nurturing Systems -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-secondary mb-2">Lead Nurturing Systems</h5>
+                                <ul class="font-inter space-y-1 text-base text-white/90">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Email Marketing Setup</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>CRM Integration</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Lead Scoring System</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-white mt-1" style="font-size: 8px;"></i>
+                                        <span>Follow-up Automation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expected Results -->
+                    <div class="mb-6 bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20">
+                        <h5 class="font-inter text-base font-bold text-white mb-3 text-center">Expected Results by Month 9</h5>
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div>
+                                <div class="text-lg font-black text-secondary mb-1">100-200%</div>
+                                <p class="text-base text-white/80">Leads vs pre-Phase 1</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-secondary mb-1">5-10</div>
+                                <p class="text-base text-white/80">Top 3 rankings</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-secondary mb-1">50-100%</div>
+                                <p class="text-base text-white/80">Conversion boost</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-secondary mb-1">30-300</div>
+                                <p class="text-base text-white/80">Monthly leads</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Factors -->
+                    <div class="mb-6">
+                        <h5 class="font-inter text-base font-bold text-white mb-3">💰 Investment Factors:</h5>
+                        <div class="space-y-2">
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-white/20 text-white px-2 py-1 rounded-full font-bold text-base">$2,500</div>
+                                <p class="text-base text-white/80">Single location, moderate competition</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-secondary/20 text-secondary px-2 py-1 rounded-full font-bold text-base">$5,000</div>
+                                <p class="text-base text-white/80">Multi-location expansion, competitive markets</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-white/30 text-white px-2 py-1 rounded-full font-bold text-base">$7,500</div>
+                                <p class="text-base text-white/80">Major metros, high competition, all features</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-white text-primary py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-chart-line mr-2"></i>Scale with Phase 2
+                    </button>
+                </div>
+
+                <!-- Phase 3: Market Domination -->
+                <div class="bg-white border-2 border-gray-200 rounded-3xl p-8 shadow-lg hover:border-purple-600 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-crown text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-inter text-2xl font-bold text-accent mb-2">Phase 3: Market Domination</h3>
+                        <div class="font-inter text-3xl font-bold text-accent mb-2">
+                            Premium Investment
+                        </div>
+                        <p class="font-inter text-gray-600 mb-2">Months 10-24 • Achieve market leadership</p>
+                        <p class="font-inter text-base text-gray-600">Achieve market leadership position with premium features, advanced systems, and comprehensive digital dominance. For firms ready to invest in becoming the #1 choice in their market.</p>
+                    </div>
+                    
+                    <!-- Perfect For -->
+                    <div class="mb-6">
+                        <h4 class="font-inter text-lg font-bold text-accent mb-3">🚀 Perfect For:</h4>
+                        <ul class="font-inter space-y-2 text-base text-gray-700">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Firms with significant ROI from Phase 1 & 2 ready for market leadership</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Large practices wanting to dominate multiple locations/regions</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Established firms ready to become the premier choice in their market</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-500 mt-1 text-base"></i>
+                                <span>Practices seeking enterprise-level systems and premium positioning</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="mb-6">
+                        <h4 class="font-inter text-lg font-bold text-accent mb-3">🚀 Everything from Phase 1 & 2 PLUS:</h4>
+                        <div class="space-y-4">
+                            <!-- Premium Digital Assets -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-purple-600 mb-2">Premium Digital Assets</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Enterprise-Level Website</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Custom Mobile App Development</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Advanced UX Research</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Brand Authority Development</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Market Coverage -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-purple-600 mb-2">Market Coverage</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Unlimited Location Optimization</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Complete Service Area Domination (5+)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Statewide/Regional Targeting</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Competitive Displacement Strategy</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Authority Content Engine -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-purple-600 mb-2">Authority Content Engine</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Premium Content Production (8-15 monthly)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Thought Leadership Campaign</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Legal Resource Library</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Video Production (2-4 monthly)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Premium Link Building & Analytics -->
+                            <div>
+                                <h5 class="font-inter text-base font-bold text-purple-600 mb-2">Premium Link Building & Analytics</h5>
+                                <ul class="font-inter space-y-1 text-base text-gray-600">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>High-Authority Backlinks (5-10 monthly)</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Strategic PR Campaigns</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Professional Network Development</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-green-500 mt-1" style="font-size: 8px;"></i>
+                                        <span>Advanced Analytics & Reporting</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expected Results -->
+                    <div class="mb-6 bg-gradient-to-r from-purple-50 to-violet-50 p-4 rounded-lg">
+                        <h5 class="font-inter text-lg font-bold text-accent mb-3 text-center">Expected Results by Month 24</h5>
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div>
+                                <div class="text-lg font-black text-purple-600 mb-1">200-400%</div>
+                                <p class="text-base text-gray-600">Leads vs pre-Phase 1</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-purple-600 mb-1">Market Leader</div>
+                                <p class="text-base text-gray-600">Position achieved</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-purple-600 mb-1">50-500</div>
+                                <p class="text-base text-gray-600">Monthly leads</p>
+                            </div>
+                            <div>
+                                <div class="text-lg font-black text-purple-600 mb-1">Sustainable</div>
+                                <p class="text-base text-gray-600">Advantage</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Factors -->
+                    <div class="mb-6">
+                        <h5 class="font-inter text-lg font-bold text-accent mb-3">💰 Investment Factors:</h5>
+                        <div class="space-y-2">
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-bold text-base">$3,500</div>
+                                <p class="text-base text-gray-600">Single location market leadership</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-bold text-base">$7,500</div>
+                                <p class="text-base text-gray-600">Multi-location dominance</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <div class="bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-bold text-base">$15,000+</div>
+                                <p class="text-base text-gray-600">Statewide/regional dominance</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-xl font-semibold transition-colors duration-300">
+                        <i class="fas fa-crown mr-2"></i>Get Custom Quote
+                    </button>
+                </div>
+                </div>
+            </div>            </div>
+        </div>
+    </section>
+
+    <!-- Custom Packages Section -->
+    <section id="custom-packages" class="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-6 font-cardo">Custom Fixed-Price Packages Available</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Perfect for firms wanting predictable costs and custom service combinations</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-r from-primary to-blue-600 text-white p-8">
+                    <h3 class="text-3xl font-bold font-cardo text-center flex items-center justify-center">
+                        <i class="fas fa-palette mr-4"></i>
+                        Build Your Custom Growth Plan
+                    </h3>
+                </div>
+                
+                <div class="p-12">
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <!-- How It Works -->
+                        <div>
+                            <h4 class="text-2xl font-bold text-accent mb-6 font-cardo">How It Works:</h4>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-base flex-shrink-0 mt-1">1</div>
+                                    <div>
+                                        <h5 class="font-bold text-accent mb-2">Strategy Consultation (30+30 minutes)</h5>
+                                        <p class="text-gray-600">Analyze your market, competition, and growth goals</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-secondary text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-base flex-shrink-0 mt-1">2</div>
+                                    <div>
+                                        <h5 class="font-bold text-accent mb-2">Custom Proposal (3-5 days)</h5>
+                                        <p class="text-gray-600">Fixed-price package with specific services and timeline</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-success text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-base flex-shrink-0 mt-1">3</div>
+                                    <div>
+                                        <h5 class="font-bold text-accent mb-2">Flexible Implementation</h5>
+                                        <p class="text-gray-600">Choose services from any phase based on your priorities</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-base flex-shrink-0 mt-1">4</div>
+                                    <div>
+                                        <h5 class="font-bold text-accent mb-2">Guaranteed Results</h5>
+                                        <p class="text-gray-600">Same ROI guarantees apply to custom packages</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Benefits -->
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl">
+                            <h4 class="text-2xl font-bold text-accent mb-6 font-cardo">Custom Package Benefits:</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Mix and match services from all phases</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Fixed pricing for predictable budgeting</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Tailored to your specific market and goals</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Same guarantees and support</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Flexible timeline based on your needs</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <i class="fas fa-check text-success"></i>
+                                    <span class="text-gray-700">Priority support and consultation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-12">
+                        <button class="bg-gradient-to-r from-primary to-blue-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:from-blue-600 hover:to-primary transition-all transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
+                            Schedule Custom Package Consultation
+                        </button>
+                        <p class="text-base text-gray-500 mt-4">This consultation alone is worth $1,000 - we're offering it complimentary</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Case Studies: SEO vs PPC Comparison -->
+    <section id="case-studies" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-6 font-cardo">To Get The Same Cost Per Lead as SEO in Google Ads, You Need To Spend 10X</h2>
+                <p class="text-xl text-gray-600">The exact reason why small firms lose money in Google Ads.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 mb-16">
+                <!-- Case Study 1 -->
+                <div class="bg-gradient-to-br from-red-50 to-orange-100 rounded-3xl shadow-xl overflow-hidden">
+                    <div class="p-8">
+                        <div class="text-center mb-8">
+                            <img class="w-full h-64 object-cover rounded-2xl shadow-lg" src="./images/reddit-marketing-spend-100k.png" alt="Denver PI Firm spending $100k monthly on marketing" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold text-accent mb-4 font-cardo">Case Study #1 - Denver PI Firm</h3>
+                            <div class="space-y-6">
+                                <div class="bg-white p-6 rounded-2xl shadow-md">
+                                    <div class="text-4xl font-black text-red-600 mb-2">$100,000</div>
+                                    <p class="text-gray-600 font-semibold">Monthly Marketing Spend</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-xl shadow-md text-center">
+                                        <div class="text-2xl font-bold text-accent">30-40</div>
+                                        <p class="text-base text-gray-600">Clients Signed Monthly</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-xl shadow-md text-center">
+                                        <div class="text-2xl font-bold text-red-600">$2,500-$3,300</div>
+                                        <p class="text-base text-gray-600">Cost Per Case</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-3xl shadow-xl overflow-hidden">
+                    <div class="p-8">
+                        <div class="text-center mb-8">
+                            <img class="w-full h-64 object-cover rounded-2xl shadow-lg" src="./images/reddit-marketing-spend-9k.png" alt="North Carolina PI Firm spending $9k monthly on marketing" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold text-accent mb-4 font-cardo">Case Study #2 - North Carolina PI Firm</h3>
+                            <div class="space-y-6">
+                                <div class="bg-white p-6 rounded-2xl shadow-md">
+                                    <div class="text-4xl font-black text-orange-600 mb-2">$9,000</div>
+                                    <p class="text-gray-600 font-semibold">Monthly Marketing Spend</p>
+                                    <p class="text-base text-gray-500 mt-1">(Aiming for $20,000/month)</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white p-4 rounded-xl shadow-md text-center">
+                                        <div class="text-2xl font-bold text-accent">1-2</div>
+                                        <p class="text-base text-gray-600">Additional Cases Monthly</p>
+                                        <p class="text-base text-gray-500">(3 months in)</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-xl shadow-md text-center">
+                                        <div class="text-2xl font-bold text-orange-600">$4,500-$9,000</div>
+                                        <p class="text-base text-gray-600">Cost Per Case</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO vs PPC Comparison -->
+            <div class="bg-gradient-to-r from-success/10 to-green-100 p-12 rounded-3xl shadow-xl border border-success/20">
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold text-accent mb-8 font-cardo">Our SEO vs. Their PPC</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-credit-card text-red-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-red-600 mb-2">PPC Reality</h4>
+                            <p class="text-gray-600 text-base">Spend $9K-$100K monthly on ads that stop the moment you stop paying</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-success/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-success text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-success mb-2">SEO Value</h4>
+                            <p class="text-gray-600 text-base">Builds lasting value that compounds month after month</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-dollar-sign text-primary text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-primary mb-2">Our Results</h4>
+                            <p class="text-gray-600 text-base">Typically achieving $1,500-$2,500 per case with lasting results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantees Section -->
+    <section id="guarantees" class="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-6 font-cardo">Our Guarantees</h2>
+                <p class="text-xl text-gray-600">We stand behind our work with industry-leading guarantees</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Money-Back Guarantee -->
+                <div class="bg-white rounded-3xl shadow-xl p-10 text-center">
+                    <div class="bg-success text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-money-back text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent mb-4 font-cardo">Money-Back Guarantee</h3>
+                    <p class="text-gray-600 leading-relaxed">If you're not satisfied with our work within the first 30 days of any phase, you can request a refund. The conditions for refund should be discussed before starting the project.</p>
+                </div>
+
+                <!-- Phase Flexibility Guarantee -->
+                <div class="bg-white rounded-3xl shadow-xl p-10 text-center">
+                    <div class="bg-primary text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-exchange-alt text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-accent mb-4 font-cardo">Phase Flexibility Guarantee</h3>
+                    <p class="text-gray-600 leading-relaxed">Not ready for the next phase? You can pause, adjust, or modify your plan based on results and budget without penalty. Complete control over your growth journey.</p>
+                </div>
+            </div>
+
+            <!-- Additional Benefits -->
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-email text-primary text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-accent mb-2">Weekly Communication</h4>
+                    <p class="text-gray-600 text-base">Email updates, monthly detailed reports, quarterly strategy sessions</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-sliders-h text-secondary text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-accent mb-2">Complete Flexibility</h4>
+                    <p class="text-gray-600 text-base">Scale up, pause, or adjust phases based on your results and business needs</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <i class="fas fa-users text-success text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-accent mb-2">Limited Availability</h4>
+                    <p class="text-gray-600 text-base">We only work with 5 new law firms per quarter to ensure exceptional results</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black text-accent mb-6 font-cardo">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600">Get answers to common questions about our scalable approach</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full p-6 text-left flex items-center justify-between hover:bg-white/50 transition-colors">
+                        <h3 class="text-lg font-bold text-accent pr-8">Why should I choose the phased approach over traditional packages?</h3>
+                        <i class="fas fa-chevron-down text-primary transform transition-transform" id="faq-1-icon"></i>
+                    </button>
+                    <div id="faq-1-content" class="hidden px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">Our phased approach eliminates the risk of large upfront investments with uncertain returns. You start with proven quick wins, see results, then reinvest increased revenue into scaling. Most clients find Phase 1 generates enough additional revenue to comfortably fund Phase 2.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full p-6 text-left flex items-center justify-between hover:bg-white/50 transition-colors">
+                        <h3 class="text-lg font-bold text-accent pr-8">What if I want to skip Phase 1 and go straight to Phase 2 or 3?</h3>
+                        <i class="fas fa-chevron-down text-primary transform transition-transform" id="faq-2-icon"></i>
+                    </button>
+                    <div id="faq-2-content" class="hidden px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">While possible, we strongly recommend the phased approach because Phase 1 establishes crucial foundations that make Phases 2-3 more effective. However, we can customize a plan that accelerates through phases based on your current digital presence and budget.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full p-6 text-left flex items-center justify-between hover:bg-white/50 transition-colors">
+                        <h3 class="text-lg font-bold text-accent pr-8">Can I pause between phases or adjust the timeline?</h3>
+                        <i class="fas fa-chevron-down text-primary transform transition-transform" id="faq-3-icon"></i>
+                    </button>
+                    <div id="faq-3-content" class="hidden px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">Absolutely. Our system is designed for flexibility. You can pause between phases, adjust timelines, or modify services based on your results, seasonal business patterns, or budget considerations.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full p-6 text-left flex items-center justify-between hover:bg-white/50 transition-colors">
+                        <h3 class="text-lg font-bold text-accent pr-8">How do you determine pricing within each phase's range?</h3>
+                        <i class="fas fa-chevron-down text-primary transform transition-transform" id="faq-4-icon"></i>
+                    </button>
+                    <div id="faq-4-content" class="hidden px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">Pricing depends on market competition, number of locations, practice areas, and specific services selected. During consultation, we analyze your situation and provide exact pricing based on your market dynamics and growth goals.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl shadow-lg overflow-hidden">
+                    <button onclick="toggleFaq(5)" class="w-full p-6 text-left flex items-center justify-between hover:bg-white/50 transition-colors">
+                        <h3 class="text-lg font-bold text-accent pr-8">What happens if I don't see the expected results in Phase 1?</h3>
+                        <i class="fas fa-chevron-down text-primary transform transition-transform" id="faq-5-icon"></i>
+                    </button>
+                    <div id="faq-5-content" class="hidden px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">Our guarantee covers this. If you don't see positive ROI within 6 months, we continue working for free until you do. Additionally, we provide monthly reports showing progress and make strategy adjustments as needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="final-cta" class="py-20 bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-12">
+                <div class="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-full text-base font-bold mb-8 animate-pulse">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    LIMITED AVAILABILITY: Only 5 New Clients This Quarter
+                </div>
+                <h2 class="text-4xl lg:text-6xl font-black text-white mb-8 font-cardo leading-tight">
+                    Ready to Start Your Scalable Growth Journey?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">Don't compete on price. Dominate on results. Start small. Scale smart.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm p-12 rounded-3xl border border-white/20 mb-12">
+                <h3 class="text-2xl font-bold text-white mb-6">Start with Phase 1 - Foundation & Quick Wins</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-black text-secondary mb-2">$1,500-$5,000</div>
+                        <p class="text-gray-300 text-base">Monthly Investment</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-success mb-2">60-90 Days</div>
+                        <p class="text-gray-300 text-base">See Results</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-black text-white mb-2">30-Day</div>
+                        <p class="text-gray-300 text-base">Money-Back Guarantee</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-12">
+                <button class="bg-gradient-to-r from-secondary to-yellow-500 text-white px-8 py-6 rounded-2xl font-bold text-lg hover:from-yellow-500 hover:to-secondary transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-calendar-alt text-xl mr-3"></i>
+                    <span>Book Your Strategy Call</span>
+                </button>
+                <button class="bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-6 rounded-2xl font-bold text-lg hover:from-blue-600 hover:to-primary transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-phone text-xl mr-3"></i>
+                    <span>Call Now: (555) 123-4567</span>
+                </button>
+            </div>
+
+            <div class="border-t border-white/20 pt-8">
+                <p class="text-lg text-secondary font-bold mb-4">📈 This consultation alone is worth $1,000</p>
+                <p class="text-gray-300">We're offering it complimentary because we're confident you'll see the value in our scalable approach.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-balance-scale text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-accent">Lawyer SEO Expert</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex flex-wrap justify-center space-x-8 text-base">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">About</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Services</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Pricing</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Blog</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Contact</a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
+                        <i class="fab fa-linkedin text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300">
+                        <i class="fab fa-facebook text-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-pink-600 hover:text-white transition-all duration-300">
+                        <i class="fab fa-instagram text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-gray-500 text-base">&copy; 2025 LawyerSEOExpert.com. All rights reserved.</p>
+                <div class="flex space-x-6 text-base">
+                    <a href="#" class="text-gray-500 hover:text-primary transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-primary transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Widget -->
+    <div id="whatsapp-widget" class="fixed bottom-6 right-6 z-50">
+        <button class="bg-green-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 flex items-center justify-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </button>
+        <div class="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl p-3 whitespace-nowrap transform scale-0 origin-bottom-right transition-transform duration-300" id="whatsapp-tooltip">
+            <div class="text-base text-gray-700 font-medium">Need Help? Chat with us</div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ functionality
+        function toggleFaq(faqNumber) {
+            const content = document.getElementById(`faq-${faqNumber}-content`);
+            const icon = document.getElementById(`faq-${faqNumber}-icon`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // WhatsApp widget hover effect
+        const whatsappWidget = document.getElementById('whatsapp-widget');
+        const whatsappTooltip = document.getElementById('whatsapp-tooltip');
+
+        whatsappWidget.addEventListener('mouseenter', function() {
+            whatsappTooltip.classList.remove('scale-0');
+            whatsappTooltip.classList.add('scale-100');
+        });
+
+        whatsappWidget.addEventListener('mouseleave', function() {
+            whatsappTooltip.classList.remove('scale-100');
+            whatsappTooltip.classList.add('scale-0');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                // Add mobile menu functionality here if needed
+            });
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe phase sections for animations
+        document.querySelectorAll('[id^="phase-"][id$="-section"]').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
