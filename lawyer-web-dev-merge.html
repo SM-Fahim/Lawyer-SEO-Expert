@@ -296,15 +296,23 @@
     <!-- Hero Section -->
     <section id="hero" class="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
         <div class="absolute inset-0 opacity-30">
-            <div class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
-            <div class="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full filter blur-3xl float-animation" style="animation-delay: 1.5s;"></div>
+            <div class="absolute top-10 left-4 w-32 h-32 lg:top-20 lg:left-10 lg:w-64 lg:h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
+            <div class="absolute bottom-10 right-4 w-40 h-40 lg:bottom-20 lg:right-10 lg:w-80 lg:h-80 bg-blue-500/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 lg:w-96 lg:h-96 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-full filter blur-3xl float-animation" style="animation-delay: 1.5s;"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8 lg:py-16 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 <!-- Left Column from lawyer-web-design-agency.html -->
-                <div class="animate-on-scroll animate-slide-left">
+                <div class="animate-on-scroll animate-slide-left lg:mx-0" style="margin-left: 2.5%; margin-right: 2.5%;">
+                    <style>
+                        @media (min-width: 1024px) {
+                            .animate-on-scroll.animate-slide-left {
+                                margin-left: 0 !important;
+                                margin-right: 0 !important;
+                            }
+                        }
+                    </style>
                     <h1 class="font-playfair text-5xl md:text-7xl font-bold text-accent leading-tight mb-6">
                         Award-Winning Web Development for 
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Lawyers</span>
@@ -312,7 +320,7 @@
                     <p class="font-inter text-xl text-gray-600 mb-8 leading-relaxed">
                         Where Legal Expertise Meets Design Excellence. We create visually stunning, conversion-optimized websites that make law firms stand out in crowded markets.
                     </p>
-                    <div class="mb-8">
+                    <div class="mb-8 text-center lg:text-left">
                         <button class="bg-gradient-to-r from-primary to-blue-600 px-8 py-4 rounded-lg text-white font-semibold hover:scale-105 transform transition-all duration-300 shadow-2xl">
                             <i class="fas fa-gift mr-2"></i>
                             Get A Free Landing Page Redesign
@@ -347,51 +355,87 @@
                     <!-- Animated hero showcasing 3-4 stunning law firm websites in a dynamic carousel -->
                     <div class="relative">
                         <!-- Main Desktop Mockup -->
-                        <div class="device-mockup bg-gray-900 rounded-t-2xl p-3 shadow-2xl">
-                            <div class="flex space-x-2 mb-3">
-                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <div class="device-mockup bg-gray-900 rounded-t-lg lg:rounded-t-2xl p-0.5 lg:p-3 shadow-2xl">
+                            <div class="flex space-x-0.5 lg:space-x-2 mb-0.5 lg:mb-3 px-1 lg:px-0 pt-1 lg:pt-0">
+                                <div class="w-1.5 h-1.5 lg:w-3 lg:h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-1.5 h-1.5 lg:w-3 lg:h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-1.5 h-1.5 lg:w-3 lg:h-3 bg-green-500 rounded-full"></div>
                             </div>
-                            <div class="bg-white rounded-t-xl overflow-hidden shadow-2xl">
-                                <img class="w-full h-96 object-cover object-top transition-all duration-500 hover:scale-105" src="./images/26.png" alt="Ultra-modern law firm website homepage with award-winning design, featuring sophisticated blue and gold color palette, elegant serif typography for headlines, clean sans-serif for body text, strategic whitespace creating premium feel, professional legal imagery with scales of justice subtly integrated, hero section with compelling call-to-action, navigation with hover effects, testimonial carousel, practice areas grid with custom icons, contact form with modern UI elements, footer with social media integration, overall composition following golden ratio principles, shot in 4K resolution with perfect pixel density, professional web design screenshot style" />
+                            <div class="bg-white rounded-t-md lg:rounded-t-xl overflow-hidden shadow-2xl">
+                                <img class="w-full h-64 lg:h-96 object-cover object-top transition-all duration-500 hover:scale-105" src="./images/26.png" alt="Ultra-modern law firm website homepage with award-winning design, featuring sophisticated blue and gold color palette, elegant serif typography for headlines, clean sans-serif for body text, strategic whitespace creating premium feel, professional legal imagery with scales of justice subtly integrated, hero section with compelling call-to-action, navigation with hover effects, testimonial carousel, practice areas grid with custom icons, contact form with modern UI elements, footer with social media integration, overall composition following golden ratio principles, shot in 4K resolution with perfect pixel density, professional web design screenshot style" />
                             </div>
                         </div>
                         
                         <!-- Floating Mobile Mockup -->
-                        <div class="absolute -bottom-8 -right-8 mobile-mockup">
-                            <div class="w-48 bg-gray-900 rounded-3xl p-2 shadow-2xl">
-                                <div class="bg-white rounded-2xl overflow-hidden">
-                                    <AI-IMAGE class="w-full h-80 object-cover" src="Mobile-responsive law firm website interface showcasing award-winning mobile design, optimized for touch interactions, large readable typography, thumb-friendly navigation buttons, streamlined contact forms, progressive disclosure of information, quick access to phone and email, location integration, practice area icons optimized for mobile, testimonials carousel adapted for mobile swipe, call-to-action buttons prominently placed, loading speed optimized graphics, accessibility features, modern mobile UI/UX design principles, shot on iPhone 15 Pro Max display, ultra-crisp mobile interface screenshot" />
+                        <div class="absolute -bottom-2 -right-1 lg:-bottom-8 lg:-right-8 mobile-mockup">
+                            <div class="w-28 lg:w-48 bg-gray-900 rounded-xl lg:rounded-3xl p-0.5 lg:p-2 shadow-2xl">
+                                <div class="bg-white rounded-lg lg:rounded-2xl overflow-hidden">
+                                    <AI-IMAGE class="w-full h-40 lg:h-80 object-cover" src="Mobile-responsive law firm website interface showcasing award-winning mobile design, optimized for touch interactions, large readable typography, thumb-friendly navigation buttons, streamlined contact forms, progressive disclosure of information, quick access to phone and email, location integration, practice area icons optimized for mobile, testimonials carousel adapted for mobile swipe, call-to-action buttons prominently placed, loading speed optimized graphics, accessibility features, modern mobile UI/UX design principles, shot on iPhone 15 Pro Max display, ultra-crisp mobile interface screenshot" />
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Interactive device mockups showing responsive design transitions -->
-                        <div class="absolute -top-8 -left-8 opacity-90">
-                            <div class="w-32 bg-gray-900 rounded-2xl p-2 shadow-xl float-animation">
-                                <div class="bg-white rounded-xl overflow-hidden">
-                                    <AI-IMAGE class="w-full h-24 object-cover" src="Tablet view of legal website showing responsive design adaptation, clean layout optimization for tablet screen size, touch-friendly interface elements, landscape and portrait orientation support, intuitive navigation for tablet users, professional legal content presentation, modern design aesthetics maintained across device sizes, high-resolution tablet display rendering" />
+                        <div class="absolute -top-2 -left-1 lg:-top-8 lg:-left-8 opacity-90">
+                            <div class="w-20 lg:w-32 bg-gray-900 rounded-lg lg:rounded-2xl p-0.5 lg:p-2 shadow-xl float-animation">
+                                <div class="bg-white rounded-md lg:rounded-xl overflow-hidden">
+                                    <AI-IMAGE class="w-full h-12 lg:h-24 object-cover" src="Tablet view of legal website showing responsive design adaptation, clean layout optimization for tablet screen size, touch-friendly interface elements, landscape and portrait orientation support, intuitive navigation for tablet users, professional legal content presentation, modern design aesthetics maintained across device sizes, high-resolution tablet display rendering" />
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Subtle parallax scrolling effect with legal-themed geometric patterns -->
                         <div class="absolute inset-0 pointer-events-none">
-                            <div class="absolute top-10 right-10 w-20 h-20 border-2 border-purple-500/30 rotate-45 float-animation"></div>
-                            <div class="absolute bottom-20 left-10 w-16 h-16 bg-emerald-500/20 rounded-full float-animation" style="animation-delay: 2s;"></div>
-                            <div class="absolute top-1/2 right-20 w-12 h-12 border-2 border-amber-500/30 rounded-full float-animation" style="animation-delay: 4s;"></div>
+                            <div class="absolute top-4 right-4 w-12 h-12 lg:top-10 lg:right-10 lg:w-20 lg:h-20 border-2 border-purple-500/30 rotate-45 float-animation"></div>
+                            <div class="absolute bottom-12 left-4 w-8 h-8 lg:bottom-20 lg:left-10 lg:w-16 lg:h-16 bg-emerald-500/20 rounded-full float-animation" style="animation-delay: 2s;"></div>
+                            <div class="absolute top-1/2 right-8 w-6 h-6 lg:right-20 lg:w-12 lg:h-12 border-2 border-amber-500/30 rounded-full float-animation" style="animation-delay: 4s;"></div>
                         </div>
                     </div>
                     
                     <!-- Floating Design Elements -->
-                    <div class="absolute -top-6 -left-6 bg-gradient-to-br from-primary to-blue-600 rounded-xl p-4 shadow-lg float-animation">
-                        <i class="fas fa-palette text-2xl text-white"></i>
+                    <div class="absolute top-2 left-2 lg:-top-6 lg:-left-6 bg-gradient-to-br from-primary to-blue-600 rounded-lg lg:rounded-xl p-2 lg:p-4 shadow-lg float-animation">
+                        <i class="fas fa-palette text-lg lg:text-2xl text-white"></i>
                     </div>
-                    <div class="absolute -bottom-6 -right-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-4 shadow-lg float-animation" style="animation-delay: 2s;">
-                        <i class="fas fa-code text-2xl text-white"></i>
+                    <div class="absolute bottom-2 right-2 lg:-bottom-6 lg:-right-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg lg:rounded-xl p-2 lg:p-4 shadow-lg float-animation" style="animation-delay: 2s;">
+                        <i class="fas fa-code text-lg lg:text-2xl text-white"></i>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VSL Section -->
+    <section id="vsl-section" class="py-24 bg-gradient-to-br from-blue-800 via-primary to-blue-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                <i class="fas fa-play text-white mr-2"></i>
+                <span class="font-inter text-sm font-medium text-blue-100">Legal Design Method</span>
+            </div>
+            
+            <h2 class="font-playfair text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
+                Our Legal Website Design System <span class="text-blue-200">Explained</span>
+            </h2>
+            <p class="font-inter text-xl text-blue-100 max-w-3xl mx-auto mb-12">
+                Watch how we transform law firms through strategic web design that converts visitors into clients and drives measurable growth.
+            </p>
+            
+            <!-- YouTube Video Container with Glass Effect -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-2 sm:p-4 lg:p-8 mb-8">
+                <div class="aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/20 relative w-full">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/20 to-blue-400/20 rounded-xl"></div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vZE0j_WCRvI" 
+                            title="Legal Website Design Success Stories" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen class="relative z-10 rounded-xl w-full h-full"></iframe>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#custom-packages" class="bg-gradient-to-r from-white/20 to-blue-400/30 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-inter font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/30 hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                    <i class="fas fa-calendar"></i>
+                    <span>Book A Free Design Consultation</span>
+                </a>
             </div>
         </div>
     </section>
@@ -445,7 +489,7 @@
             </div>
 
             <!-- Before/After Section -->
-            <div class="bg-white rounded-3xl p-12 shadow-xl">
+            <div class="bg-white rounded-3xl p-4 sm:p-6 lg:p-12 shadow-xl">
                 <div class="text-center mb-12">
                     <h3 class="font-playfair text-3xl font-bold text-accent mb-4">Design Transformation in Action</h3>
                     <p class="font-inter text-gray-600 max-w-2xl mx-auto">See how strategic design thinking transforms ordinary law firm websites into powerful client acquisition tools.</p>
@@ -454,8 +498,8 @@
                 <!-- Case 1 -->
                 <div class="mb-16">
                     <p class="font-inter text-center text-gray-600 mb-8">Criminal Defense Law Firm - Complete Brand & Web Redesign</p>
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="relative">
+                    <div class="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
+                        <div class="relative mb-6 lg:mb-0">
                             <div class="absolute -top-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold z-10">BEFORE</div>
                             <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
                                 <img class="w-full h-80 object-cover object-top" src="./images/27.png" alt="Before redesign - outdated law firm website design" />
@@ -474,8 +518,8 @@
                 <!-- Case 2 -->
                 <div class="mb-16">
                     <p class="font-inter text-center text-gray-600 mb-8">Personal Injury Firm - Modern Visual Identity & User Experience</p>
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="relative">
+                    <div class="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
+                        <div class="relative mb-6 lg:mb-0">
                             <div class="absolute -top-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold z-10">BEFORE</div>
                             <div class="bg-white rounded-xl overflow-hidden shadow-2xl">
                                 <img class="w-full h-80 object-cover object-top" src="./images/29.png" alt="Before redesign - outdated personal injury firm website design" />
@@ -494,8 +538,8 @@
                 <!-- Case 3 -->
                 <div class="mb-12">
                     <p class="font-inter text-center text-gray-600 mb-8">Corporate Law Practice - Premium Brand Positioning & Digital Presence</p>
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <div class="relative">
+                    <div class="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-center">
+                        <div class="relative mb-6 lg:mb-0">
                             <div class="absolute -top-4 -left-4 bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-bold z-10">BEFORE</div>
                             <div class="bg-gray-100 rounded-xl p-6 border-2 border-dashed border-gray-300">
                                 <div class="space-y-4">
@@ -985,13 +1029,13 @@
             </div>
 
             <!-- Main Temperature Scale -->
-            <div class="bg-white rounded-3xl p-12 shadow-xl border border-white/20 mb-16">
+            <div class="bg-white rounded-3xl p-4 sm:p-6 lg:p-12 shadow-xl border border-white/20 mb-16">
                 <div class="relative">
                     <!-- Large Temperature Scale -->
                     <div class="h-16 rounded-full bg-gradient-to-r from-blue-600 via-green-500 via-yellow-500 to-red-600 mb-8 shadow-lg"></div>
                     
                     <!-- Scale Labels -->
-                    <div class="grid grid-cols-4 gap-8 text-center mb-12">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 text-center mb-12">
                         <div class="space-y-2">
                             <div class="font-inter text-2xl font-bold text-blue-600">COOL</div>
                             <div class="text-lg font-semibold text-gray-700">Professional • Corporate</div>
@@ -1176,7 +1220,7 @@
     <section class="py-24 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mb-20 animate-on-scroll animate-fade-up">
-                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-12 border border-white/20">
+                <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-4 sm:p-6 lg:p-12 border border-white/20">
                     <div class="text-center mb-12">
                         <h3 class="font-playfair text-4xl font-bold mb-6">Readability Impact Analysis</h3>
                         <p class="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -1186,7 +1230,7 @@
                     
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <!-- Poor Readability Example -->
-                        <div class="bg-white rounded-2xl p-8">
+                        <div class="bg-white rounded-2xl p-4 sm:p-6 lg:p-8">
                             <div class="text-center mb-6">
                                 <div class="inline-flex items-center space-x-2 px-4 py-2 bg-red-100 rounded-full">
                                     <i class="fas fa-times text-red-600"></i>
@@ -1234,7 +1278,7 @@
                         </div>
                         
                         <!-- Excellent Readability Example -->
-                        <div class="bg-white rounded-2xl p-8">
+                        <div class="bg-white rounded-2xl p-4 sm:p-6 lg:p-8">
                             <div class="text-center mb-6">
                                 <div class="inline-flex items-center space-x-2 px-4 py-2 bg-green-100 rounded-full">
                                     <i class="fas fa-check text-green-600"></i>
@@ -1502,7 +1546,7 @@
             <div class="absolute bottom-20 right-1/4 w-40 h-40 bg-blue-500/10 rounded-full"></div>
         </div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative z-10 max-w-7xl mx-auto pl-2 pr-6 sm:pl-4 sm:pr-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="font-playfair text-4xl lg:text-5xl font-bold leading-tight mb-6">
                     Ready to Elevate Your 
@@ -1516,7 +1560,7 @@
             <div class="grid lg:grid-cols-2 gap-16 items-start">
                 <!-- Left Content -->
                 <div>
-                    <h3 class="font-inter text-3xl font-bold mb-8">Your Creative Journey Begins Here</h3>
+                    <h3 class="font-inter text-3xl font-bold mb-8 text-center" style="padding-left: 2.5%; padding-right: 2.5%;">Your Creative Journey Begins Here</h3>
                     
                     <div class="space-y-6 mb-12">
                         <div class="flex items-start space-x-4">
