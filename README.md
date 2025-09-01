@@ -3,5 +3,6 @@ Find Images [Here](https://drive.google.com/drive/folders/19L6tRee9WRWCqu88I4xo8
 Image folder updated on August 5, 2025.
 
 
-**Incomplete pages:**
-- None
+**Publish as theme (low value pages, might change frequently):**
+- Criminal defense SEO
+- Personal Injury SEO
