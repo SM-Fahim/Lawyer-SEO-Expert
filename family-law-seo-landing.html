@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO for Family Law Attorneys - When Families Fall Apart, Be Found First</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#7c3aed',
+                        accent: '#0f172a',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444',
+                        family: '#ec4899',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animate-slide-left {
+            transform: translateX(-50px);
+        }
+
+        .animate-on-scroll.animate-slide-right {
+            transform: translateX(50px);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0) translateX(0);
+        }
+
+        .timeline-connector {
+            background: linear-gradient(180deg, #2563eb 0%, #ec4899 100%);
+        }
+
+        .stat-counter {
+            transition: all 0.5s ease-out;
+        }
+
+        .faq-item {
+            cursor: pointer;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 2000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        .market-tier {
+            transition: all 0.3s ease;
+        }
+
+        .market-tier:hover {
+            transform: translateY(-5px);
+        }
+
+        .mistake-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .mistake-card:hover {
+            border-left-color: #ef4444;
+            transform: translateX(10px);
+        }
+
+        .practice-area-row:hover {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .cta-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.5); }
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    
+    <header id="header" class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <i class="fas fa-home text-primary text-2xl"></i>
+                        <i class="fas fa-shield-alt text-family text-base absolute -bottom-1 -right-1"></i>
+                    </div>
+                    <span class="text-xl font-bold text-accent">Family Law SEO Expert</span>
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Home</a>
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-primary font-medium flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors">
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down text-sm"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-96 bg-white rounded-lg shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div class="p-6">
+                                <h3 class="text-lg font-bold text-accent mb-4">Our Services</h3>
+                                <div class="grid grid-cols-1 gap-3">
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors relative">
+                                            <i class="fas fa-search text-primary"></i>
+                                            <i class="fas fa-heart text-family text-xs absolute -top-1 -right-1"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">SEO Services</div>
+                                            <div class="text-sm text-gray-600">Comprehensive SEO optimization for family law firms</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors relative">
+                                            <i class="fas fa-users text-primary"></i>
+                                            <i class="fas fa-code text-family text-xs absolute -top-1 -right-1"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Web Design</div>
+                                            <div class="text-sm text-gray-600">Professional website development for sensitive legal matters</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors">
+                                            <i class="fas fa-feather-alt text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Content Writing</div>
+                                            <div class="text-sm text-gray-600">Family law content creation with empathy focus</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-primary/5 transition-colors group/item">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover/item:bg-primary/20 transition-colors relative">
+                                            <i class="fas fa-shield-alt text-primary"></i>
+                                            <i class="fas fa-star text-family text-xs absolute -top-1 -right-1"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Reputation Management</div>
+                                            <div class="text-sm text-gray-600">Ethical review and privacy protection</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Blog</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium px-3 py-2 rounded-lg transition-colors">Contact</a>
+                </nav>
+
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button class="bg-gradient-to-r from-primary to-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:from-blue-600 hover:to-primary transition-all duration-300 transform hover:scale-105 shadow-lg text-sm">
+                        BOOK FREE CONSULTATION
+                    </button>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden h-[900px]">
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-family/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/10 to-family/10 rounded-full filter blur-3xl float-animation" style="animation-delay: 1.5s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-on-scroll animate-slide-left">
+                    <div class="inline-flex items-center bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        <i class="fas fa-gavel mr-2"></i>
+                        SEO for Family Law Attorneys
+                    </div>
+                    
+                    <h1 class="font-playfair text-5xl md:text-6xl font-bold text-accent leading-tight mb-6">
+                        When Families Fall Apart, 
+                        <span class="text-primary">Be Found First</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        When someone's marriage crumbles, when custody battles begin, or when domestic violence destroys a home, they desperately search for legal protection and guidance. If your family law practice isn't dominating those critical first-page results, vulnerable families are calling your competitors instead.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <div class="text-center bg-white rounded-lg p-4 shadow-md">
+                            <div class="text-3xl font-bold text-primary">$13.2B</div>
+                            <div class="text-sm text-gray-600">Annual family law market value</div>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-4 shadow-md">
+                            <div class="text-3xl font-bold text-success">3.8M</div>
+                            <div class="text-sm text-gray-600">Family law cases filed annually</div>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-4 shadow-md">
+                            <div class="text-3xl font-bold text-family">84%</div>
+                            <div class="text-sm text-gray-600">Of family law searches are local</div>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-4 shadow-md">
+                            <div class="text-3xl font-bold text-secondary">72%</div>
+                            <div class="text-sm text-gray-600">Prefer phone contact after online research</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <button class="bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            View Our 3 Phase Growth Plan with Pricing
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span class="text-gray-700">Start Small & Scale</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span class="text-gray-700">120-Day Results Guaranteed</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span class="text-gray-700">89+ Family Law Firms Served</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span class="text-gray-700">45% Average Case Volume Increase</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll animate-slide-right relative">
+                    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-4 flex items-center space-x-2">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="flex-1 bg-white rounded-lg px-4 py-2 text-sm text-gray-500">
+                                <i class="fas fa-search mr-2"></i>divorce lawyer near me
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="border-l-4 border-primary bg-primary/5 p-4 rounded-r-lg">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="text-primary text-sm mb-1">Ad</div>
+                                        <h3 class="font-bold text-lg text-gray-900 mb-1">Your Family Law Firm</h3>
+                                        <p class="text-blue-600 text-sm">#1 Divorce Attorney · Free Consultation</p>
+                                        <div class="flex items-center space-x-4 mt-2">
+                                            <div class="flex items-center">
+                                                <div class="flex text-yellow-400">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                                <span class="ml-2 text-sm text-gray-600">150+ reviews</span>
+                                            </div>
+                                            <span class="text-primary font-semibold">Call Now</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                                    <h4 class="text-blue-600 font-semibold">Divorce Attorneys - Compassionate Legal Support</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Experienced family lawyers fighting for your rights and your children's future...</p>
+                                </div>
+                                <div class="p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                                    <h4 class="text-blue-600 font-semibold">Top Rated Family Law Firm</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Over 500 families helped through difficult transitions. Confidential consultation available...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-10 -right-10 bg-white rounded-2xl shadow-xl p-4 animate-on-scroll z-20" style="animation-delay: 0.5s;">
+                        <div class="bg-primary text-white rounded-lg p-3 mb-3">
+                            <h4 class="font-bold text-lg">Protect Your Family's Future</h4>
+                        </div>
+                        <button class="bg-success text-white px-6 py-3 rounded-lg font-semibold w-full">
+                            Free Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="problem-section" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    The Family Law <span class="text-primary">Search Crisis</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every day, families face their most difficult moments—divorce papers served, custody threatened, domestic violence escalating, or adoption dreams at stake. In these vulnerable moments, they frantically search for legal protection. But here's what most family law attorneys don't realize about this critical moment...
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-12">
+                <h3 class="text-2xl font-bold text-accent mb-8 text-center">Crisis Timeline</h3>
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 timeline-connector"></div>
+                    
+                    <div class="space-y-12">
+                        <div class="flex items-center animate-on-scroll">
+                            <div class="w-1/2 text-right pr-8">
+                                <h4 class="text-xl font-bold text-primary mb-2">Hour 1: The Breaking Point</h4>
+                                <p class="text-gray-600">Papers served, confrontation, or family emergency. Immediate search for "divorce lawyer near me"</p>
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <span class="text-2xl font-bold text-primary">67%</span>
+                                        <span class="text-gray-600">of family law searches happen within 4 hours of crisis</span>
+                                    </div>
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <span class="text-2xl font-bold text-family">91%</span>
+                                        <span class="text-gray-600">search on mobile while emotionally distressed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white shadow-lg">
+                                    <i class="fas fa-heart-broken text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="w-1/2 pl-8"></div>
+                        </div>
+                        
+                        <div class="flex items-center animate-on-scroll">
+                            <div class="w-1/2"></div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white shadow-lg">
+                                    <i class="fas fa-search text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="w-1/2 pl-8">
+                                <h4 class="text-xl font-bold text-secondary mb-2">Hours 1-24: The Panic Phase</h4>
+                                <p class="text-gray-600">Desperate scrolling through Google results while managing children, work, and emotional trauma</p>
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-2xl font-bold text-secondary">89%</span>
+                                        <span class="text-gray-600">never go past page 1 of search results</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-2xl font-bold text-warning">43.2%</span>
+                                        <span class="text-gray-600">of clicks go to the #1 ranking result</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-2xl font-bold text-primary">72%</span>
+                                        <span class="text-gray-600">want immediate phone contact, not forms</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center animate-on-scroll">
+                            <div class="w-1/2 text-right pr-8">
+                                <h4 class="text-xl font-bold text-success mb-2">Days 1-14: The Decision Phase</h4>
+                                <p class="text-gray-600">Attorney consultation scheduled. Typical family law cases range from $5K-$50K+</p>
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <span class="text-2xl font-bold text-success">$15,000</span>
+                                        <span class="text-gray-600">median divorce cost</span>
+                                    </div>
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <span class="text-2xl font-bold text-primary">$28,000</span>
+                                        <span class="text-gray-600">average contested custody case</span>
+                                    </div>
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <span class="text-2xl font-bold text-family">$45,000</span>
+                                        <span class="text-gray-600">complex high-asset divorce</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center text-white shadow-lg">
+                                    <i class="fas fa-gavel text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="w-1/2 pl-8"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 animate-on-scroll">
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-clock text-3xl text-primary"></i>
+                        <i class="fas fa-users text-xl text-family"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-accent mb-2">60 days</div>
+                    <p class="text-gray-600">typical divorce filing to attorney hiring timeframe</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="mb-4">
+                        <i class="fas fa-shield-alt text-3xl text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-accent mb-2">84%</div>
+                    <p class="text-gray-600">want confidential initial consultation</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-map-marker-alt text-3xl text-primary"></i>
+                        <i class="fas fa-heart text-xl text-family"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-accent mb-2">84%</div>
+                    <p class="text-gray-600">of family law searches are location-based</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="mb-4">
+                        <i class="fas fa-hands-helping text-3xl text-primary"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-accent mb-2">78%</div>
+                    <p class="text-gray-600">choose lawyers who show empathy in content</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ads-vs-seo" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-4">
+                    Why Google Ads Are Draining Family Law Budgets
+                </h2>
+                <p class="text-2xl text-gray-600 mb-4">(And Why SEO Is Your Sustainable Solution)</p>
+                <p class="text-lg text-gray-600">Here's the financial reality that will transform your family law marketing approach.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-on-scroll animate-slide-left">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Google Ads</h3>
+                        <p class="text-lg opacity-90">Pay-per-click advertising</p>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-bold text-accent mb-6">Cost Breakdown:</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Cost per click</span>
+                                <span class="text-xl font-bold text-danger">$85-300+</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">100 clicks/month</span>
+                                <span class="text-xl font-bold text-danger">$8,500-30,000</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Cost per lead (4% CVR)</span>
+                                <span class="text-xl font-bold text-danger">$2,125-7,500</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Management fees (20%)</span>
+                                <span class="text-xl font-bold text-danger">+$1,700-6,000</span>
+                            </div>
+                            <div class="bg-red-50 p-4 rounded-lg mt-6">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-semibold text-gray-700">12-Month Total</span>
+                                    <span class="text-2xl font-bold text-danger">$122,400-432,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-red-100 rounded-lg border-l-4 border-danger">
+                            <p class="text-danger font-semibold">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Warning: Traffic disappears the moment you stop paying
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-on-scroll animate-slide-right">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">SEO Investment</h3>
+                        <p class="text-lg opacity-90">Long-term asset building</p>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-bold text-accent mb-6">Cost Breakdown:</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Initial investment (120 days)</span>
+                                <span class="text-xl font-bold text-success">$6,000-18,000</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Monthly organic growth</span>
+                                <span class="text-xl font-bold text-success">300 → 8,000+ visitors</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Monthly leads growth</span>
+                                <span class="text-xl font-bold text-success">8 → 180+ qualified leads</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                <span class="text-gray-700">Cost per lead</span>
+                                <span class="text-xl font-bold text-success">$1,200-3,000 → $35-150</span>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg mt-6">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-semibold text-gray-700">12-Month Total</span>
+                                    <span class="text-2xl font-bold text-success">$12,000-25,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-green-100 rounded-lg border-l-4 border-success">
+                            <p class="text-success font-semibold">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Benefit: Month 5+: Self-funding from increased case revenue
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions-section" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Our Family Law SEO System
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Unlike generic legal SEO, we specialize exclusively in family law marketing. We understand client vulnerability, family court dynamics, and the unique psychology of people facing family crises.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Phase 1: Foundation & Trust Building</h3>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <span class="text-lg">$2,500 - $4,500/month</span>
+                            <span class="text-sm">•</span>
+                            <span class="text-lg">Months 1-4</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-700 font-semibold mb-6">Build strong foundations and capture immediate trust from vulnerable clients</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Google Business Profile optimization for family crisis searches</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Core service pages (divorce, custody, adoption, domestic violence)</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Local SEO for family courts and mediation centers</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Mobile-first optimization for emotional emergency searches</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Privacy-focused contact forms and consultation booking</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll relative">
+                    <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">
+                        MOST POPULAR
+                    </div>
+                    <div class="bg-gradient-to-r from-primary to-blue-600 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Phase 2: Authority & Expansion</h3>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <span class="text-lg">$4,500 - $8,000/month</span>
+                            <span class="text-sm">•</span>
+                            <span class="text-lg">Months 5-10</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-700 font-semibold mb-6">Establish authority and expand across all family law practice areas</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Comprehensive family law content library (15+ practice areas)</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Trust-building with psychological and financial guidance content</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Multi-location optimization for court jurisdiction coverage</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Advanced lead nurturing with empathetic automated sequences</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Child-focused content for custody and support matters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Phase 3: Market Leadership</h3>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <span class="text-lg">$6,500 - $12,000+/month</span>
+                            <span class="text-sm">•</span>
+                            <span class="text-lg">Months 11+</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <p class="text-gray-700 font-semibold mb-6">Achieve market dominance while maintaining ethical family law standards</p>
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Complete market coverage across all family law subspecialties</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Advanced reputation management with privacy protection</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Integration with case management and billing systems</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Competitive intelligence and defense strategies</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-success mt-1"></i>
+                                <p class="text-gray-600">Thought leadership through family law education</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="practice-areas" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Family Law Practice Area Performance Data
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our specialized approach delivers superior results across all family law practice areas. Here's the performance data that directly impacts your revenue and case acquisition.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-on-scroll">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-primary to-blue-600 text-white">
+                                <th class="px-6 py-4 text-left text-sm font-semibold">Practice Area</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold">Monthly Searches</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold">Average Case Value</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold">Your Fee (Typical)</th>
+                                <th class="px-6 py-4 text-left text-sm font-semibold">SEO Focus Strategy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Divorce & Separation</td>
+                                <td class="px-6 py-4 text-center text-gray-700">84,200</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$15,000</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$5,000-7,500</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Emotional support content, mediation focus</td>
+                            </tr>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Child Custody</td>
+                                <td class="px-6 py-4 text-center text-gray-700">44,600</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$28,000</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$8,000-12,000</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Best interest content, co-parenting guidance</td>
+                            </tr>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Child Support</td>
+                                <td class="px-6 py-4 text-center text-gray-700">22,100</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$8,500</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$2,500-4,000</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Calculator tools, modification guidance</td>
+                            </tr>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Adoption Services</td>
+                                <td class="px-6 py-4 text-center text-gray-700">12,800</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$12,000</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$4,000-6,000</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Joy-focused content, process education</td>
+                            </tr>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Domestic Violence</td>
+                                <td class="px-6 py-4 text-center text-gray-700">18,500</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$18,000</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$5,000-8,000</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Crisis response, safety planning content</td>
+                            </tr>
+                            <tr class="border-b hover:bg-blue-50 transition-colors practice-area-row">
+                                <td class="px-6 py-4 font-semibold text-gray-800">Prenuptial Agreements</td>
+                                <td class="px-6 py-4 text-center text-gray-700">8,900</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$3,500</td>
+                                <td class="px-6 py-4 text-center text-gray-700">$1,500-2,500</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">Asset protection, relationship preservation</td>
+                            </tr>
+                            <tr class="bg-gradient-to-r from-blue-50 to-purple-50">
+                                <td class="px-6 py-4 font-bold text-gray-800">Totals:</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">191,100+</td>
+                                <td class="px-6 py-4 text-center font-bold text-primary">$14,167 (avg)</td>
+                                <td class="px-6 py-4 text-center font-bold text-gray-700">$4,333 (avg)</td>
+                                <td class="px-6 py-4 font-bold text-success">$2.71M Annual Market Opportunity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seo-mistakes" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    7 Fatal SEO Mistakes Family Law Firms Make
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every day, family law attorneys lose high-value cases to competitors because of these critical SEO mistakes. Don't let poor digital strategy cost you the families who desperately need your help during their most vulnerable moments.
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 1: Using Corporate Legal Language Instead of Compassionate Communication
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Cold, formal legal terminology that increases anxiety for already-stressed clients</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> Families in crisis need empathy and understanding, not intimidating legalese</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> 74% bounce rate from emotionally vulnerable prospects</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Trauma-informed content that builds trust while maintaining professionalism</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 2: Ignoring Family Court Proximity and Local Filing Requirements
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Generic city-wide targeting without court-specific content or local procedure guidance</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> 84% of family law searches include local intent - people need lawyers who understand their specific court system</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> $400K+ in annual missed opportunities from court-adjacent searches</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Court-proximity landing pages with local procedure expertise and judge-specific insights</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 3: No Privacy Protection or Confidentiality Assurances
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Standard contact forms without privacy guarantees or secure communication options</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> Family law clients have legitimate fears about confidentiality - especially in small communities</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> 58% of potential clients abandon contact forms due to privacy concerns</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Privacy-first contact systems with secure portals and confidentiality guarantees prominently displayed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 4: Missing Child-Focused Content and Parenting Resources
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Adult-only perspective that ignores how legal decisions impact children</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> 67% of family law cases involve children - parents want lawyers who understand child psychology</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> Lost trust from parents means lost cases worth $500K+ annually</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Comprehensive child-focused content including co-parenting guidance and child therapy resources</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 5: Poor Mobile Experience for Crisis Situations
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Desktop-optimized websites that fail during emotional emergency searches</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> 91% of family law crisis searches happen on mobile - often while hiding from abusive partners</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> Lost emergency cases worth $750K+ annually due to mobile usability failures</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Crisis-optimized mobile experience with one-tap calling and emergency safety features</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 6: No Financial Transparency or Payment Option Information
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Hidden fee structures that create additional anxiety for already-stressed families</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> Family law clients often face financial constraints and need upfront cost transparency</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> 42% of prospects leave to find lawyers with clear pricing information</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Transparent fee structures, payment plans, and financial assistance information prominently featured</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8 animate-on-scroll mistake-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
+                                <span class="text-danger font-bold text-xl">❌</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-accent mb-3">
+                                Mistake 7: Ignoring Domestic Violence and Safety Concerns
+                            </h3>
+                            <div class="space-y-2 mb-4">
+                                <p class="text-gray-700"><strong>What You're Doing Wrong:</strong> Generic family law approach that doesn't address safety planning or protection order procedures</p>
+                                <p class="text-gray-700"><strong>Why It's Killing Results:</strong> 35% of divorce cases involve domestic violence - victims need specialized safety resources</p>
+                                <p class="text-danger font-semibold"><strong>The Real Cost:</strong> Lost trust from vulnerable clients means lost protection cases and referrals</p>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4 border-l-4 border-success">
+                                <p class="text-gray-700"><span class="text-success font-bold">✅ Our Fix:</span> Comprehensive safety planning content with discrete communication options and emergency resources</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 p-8 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border-2 border-danger animate-on-scroll">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-danger mb-4">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        ⚠️ The Cost of Each Day You Wait
+                    </h3>
+                    <p class="text-lg text-gray-700 mb-4">
+                        Every day these mistakes continue, vulnerable families choose competitors who better understand their unique needs during crisis moments.
+                    </p>
+                    <p class="text-3xl font-bold text-danger">
+                        Conservative estimate: $150,000+ in missed revenue opportunities per month
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="seven-step-system" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    The 7-Step Family Law SEO System That Actually Works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Master the complete system that positions your firm exactly where families need you most during their most difficult moments
+                </p>
+            </div>
+
+            <div class="space-y-12">
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">1</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Master Family Crisis Keyword Research</h3>
+                            <p class="text-gray-700 mb-6">
+                                Family law keyword research isn't about finding the highest search volume—it's about understanding the psychology of someone facing family breakdown. Someone searching "divorce lawyer" has decided to end their marriage; someone searching "signs marriage is over" is still processing their situation. You need both types of traffic.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">Emergency Crisis (0-24 hours)</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Emotional State: Panic, fear, immediate danger</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-primary mt-1 text-xs"></i>
+                                            <span>"restraining order lawyer emergency"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-primary mt-1 text-xs"></i>
+                                            <span>"domestic violence attorney 24/7"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-primary mt-1 text-xs"></i>
+                                            <span>"emergency custody hearing lawyer"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-secondary mb-3">Decision Mode (1-7 days)</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Emotional State: Determined urgency, protective instincts</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-secondary mt-1 text-xs"></i>
+                                            <span>"divorce lawyer near me"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-secondary mt-1 text-xs"></i>
+                                            <span>"child custody attorney [city]"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-secondary mt-1 text-xs"></i>
+                                            <span>"best family lawyer [county]"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-success mb-3">Information Gathering (1-4 weeks)</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Emotional State: Research, planning, hope for resolution</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-success mt-1 text-xs"></i>
+                                            <span>"how much does divorce cost"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-success mt-1 text-xs"></i>
+                                            <span>"child custody laws [state]"</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-arrow-right text-success mt-1 text-xs"></i>
+                                            <span>"how long does divorce take"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 p-4 bg-blue-100 rounded-lg">
+                                <p class="text-sm text-gray-700"><strong>Family Law Keyword Strategy:</strong> Target 50% commercial keywords (immediate revenue) + 50% informational keywords (trust building). Family law requires extensive trust-building due to emotional vulnerability and long-term relationships.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">2</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Dominate Local Search Near Family Courts and Support Services</h3>
+                            <p class="text-gray-700 mb-6">
+                                Family law is intensely local - clients need attorneys who understand their specific court system, local judges, and community resources. Your local SEO must reflect expertise in your exact jurisdiction.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">Tier 1: Family Court Proximity</h4>
+                                    <p class="text-sm text-gray-600 mb-3">0-1 mile from courts</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Family courts and mediation centers</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Highest intent from people filing cases</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Target: "family lawyer near [court name]"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-secondary mb-3">Tier 2: Family Service Centers</h4>
+                                    <p class="text-sm text-gray-600 mb-3">1-3 miles coverage</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Child protective services offices</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Family counseling centers</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Target: "[area] divorce attorney"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-family mb-3">Tier 3: Community Support Hubs</h4>
+                                    <p class="text-sm text-gray-600 mb-3">3+ miles reach</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Schools and pediatric offices</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Domestic violence shelters</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span>Target: "[community] family law attorney"</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <h4 class="font-bold text-accent mb-3">Google Business Profile Template:</h4>
+                                <p class="text-sm text-gray-600 italic">
+                                    "Family Law Attorney serving [County] families through difficult transitions. Confidential consultation for divorce, child custody, adoption, domestic violence. [Years] years of compassionate representation. Court appearances and home visits available. Call 24/7: [Phone]"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">3</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Create Content That Builds Trust With Vulnerable Families</h3>
+                            <p class="text-gray-700 mb-6">
+                                Family law clients aren't shopping for legal services—they're seeking protection and guidance during some of life's most difficult transitions. Your content must meet them with empathy while providing clear, actionable guidance.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-danger mb-3">Crisis Response Pages</h4>
+                                    <p class="text-sm text-gray-600 mb-3">For people who need help RIGHT NOW</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li>"What to Do When Served with Divorce Papers"</li>
+                                        <li>"Emergency Child Custody: Protecting Your Children Tonight"</li>
+                                        <li>"Domestic Violence Safety Planning: Immediate Steps"</li>
+                                        <li>"Restraining Order Process: Your Rights and Options"</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">Interactive Tools</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Essential calculators and assessments</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li>Divorce cost estimator with local court fees</li>
+                                        <li>"Do I Have Grounds for Divorce?" assessment quiz</li>
+                                        <li>Child support calculator based on state guidelines</li>
+                                        <li>Asset division worksheet for complex divorces</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 p-4 bg-green-100 rounded-lg">
+                                <p class="text-sm text-gray-700"><strong>Content That Converts:</strong> Every piece should end with empathetic calls-to-action like "Protect your family's future" and "Get the compassionate legal help you deserve."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">4</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Technical SEO for Family Crisis Situations</h3>
+                            <p class="text-gray-700 mb-6">
+                                When someone searches for family law help while hiding from an abusive partner or dealing with custody threats, every technical detail matters for their safety and your conversion rates.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">
+                                        <i class="fas fa-mobile-alt mr-2"></i>
+                                        Mobile-First Is Critical
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-3">91% of family law crisis searches happen on mobile</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>Sub-2-second load time:</strong> Essential for crisis situations</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>One-tap calling:</strong> Phone numbers immediately clickable</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>Secure contact:</strong> HTTPS and encrypted communication</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>Privacy-conscious:</strong> Discrete branding for safety</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-secondary mb-3">
+                                        <i class="fas fa-code mr-2"></i>
+                                        Schema Markup
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mb-3">Help Google understand your family law information</p>
+                                    <ul class="text-sm space-y-2">
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>LegalService:</strong> Practice areas and consultation options</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>Person:</strong> Attorney credentials and experience</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>Review:</strong> Compassionate client testimonials</span>
+                                        </li>
+                                        <li class="flex items-start space-x-2">
+                                            <i class="fas fa-check text-success"></i>
+                                            <span><strong>FAQ:</strong> Featured snippets for common questions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">5</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Authority Building Through Community Partnerships</h3>
+                            <p class="text-gray-700 mb-6">
+                                Family law intersects with social services, mental health, and community support more than any other legal area. Your link building must reflect these essential relationships.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">Professional Partnerships</h4>
+                                    <ul class="text-sm space-y-2">
+                                        <li>Family therapy practice resource pages</li>
+                                        <li>Mediation center attorney referral lists</li>
+                                        <li>Child advocacy organization directories</li>
+                                        <li>Financial planning firm divorce resources</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-secondary mb-3">Educational Collaboration</h4>
+                                    <ul class="text-sm space-y-2">
+                                        <li>Guest posts on parenting and relationship blogs</li>
+                                        <li>Joint content with family therapists</li>
+                                        <li>Infographics about child development during divorce</li>
+                                        <li>Research with family studies professionals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">6</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Ethical Reputation Management for Sensitive Family Matters</h3>
+                            <p class="text-gray-700 mb-6">
+                                Family law reviews require exceptional sensitivity due to privacy concerns and the deeply personal nature of family legal matters.
+                            </p>
+                            
+                            <div class="bg-white rounded-lg p-6 shadow-md mb-6">
+                                <h4 class="font-bold text-primary mb-3">Privacy-Compliant Review Generation</h4>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-success"></i>
+                                        <span>Request reviews only after case resolution and client approval</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-success"></i>
+                                        <span>Focus on attorney service quality, never case specifics</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-success"></i>
+                                        <span>Use first names or initials only with explicit written permission</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fas fa-check text-success"></i>
+                                        <span>Never tie fee reduction to review content or timing</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gray-100 rounded-lg p-6">
+                                <h4 class="font-bold text-accent mb-3">Professional Response Template:</h4>
+                                <p class="text-sm text-gray-600 italic">
+                                    "We take all client concerns seriously and strive to provide compassionate, effective family law representation. Client privacy and confidentiality are our highest priorities. Please contact our client relations team privately at [phone] so we can address your concerns appropriately."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-start space-x-6">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 step-number text-white rounded-full flex items-center justify-center shadow-lg">
+                                <span class="text-2xl font-bold">7</span>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-accent mb-4">Track Metrics That Correlate With Family Law Case Revenue</h3>
+                            <p class="text-gray-700 mb-6">
+                                Generic SEO metrics don't predict family law success. Track metrics that actually indicate new family law cases and long-term client relationships.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-primary mb-3">
+                                        <i class="fas fa-chart-line mr-2"></i>
+                                        Revenue Rankings
+                                    </h4>
+                                    <ul class="text-sm space-y-2">
+                                        <li>"divorce lawyer [city]"</li>
+                                        <li>"child custody attorney near me"</li>
+                                        <li>"family law attorney [location]"</li>
+                                        <li>Google My Business 3-pack</li>
+                                        <li>Voice search positions</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-secondary mb-3">
+                                        <i class="fas fa-phone mr-2"></i>
+                                        Conversion Metrics
+                                    </h4>
+                                    <ul class="text-sm space-y-2">
+                                        <li>Phone calls during crisis hours</li>
+                                        <li>Confidential consultation forms</li>
+                                        <li>Live chat conversations</li>
+                                        <li>Calculator completions</li>
+                                        <li>Emergency consultation requests</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg p-6 shadow-md">
+                                    <h4 class="font-bold text-success mb-3">
+                                        <i class="fas fa-dollar-sign mr-2"></i>
+                                        Business Impact
+                                    </h4>
+                                    <ul class="text-sm space-y-2">
+                                        <li>Cases signed from SEO leads</li>
+                                        <li>Average case value from organic</li>
+                                        <li>Cost per case vs. traditional ads</li>
+                                        <li>Referral cases from SEO clients</li>
+                                        <li>Long-term client relationships</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="market-intelligence" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Family Law SEO Market Intelligence: Know Your Competition
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Family law SEO varies dramatically by market size, demographic patterns, and local legal culture. Each jurisdiction has unique characteristics—from divorce filing patterns to domestic violence rates to adoption procedures. Here's how to analyze and dominate your specific family law market.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll market-tier">
+                    <div class="bg-danger text-white rounded-lg p-4 mb-6">
+                        <h3 class="text-xl font-bold">Large Metro Markets</h3>
+                        <p class="text-sm mt-2">1M+ Population</p>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">NYC, LA, Chicago, Houston, Miami, Philadelphia, Dallas, Atlanta</p>
+                    <div class="mb-6">
+                        <div class="text-2xl font-bold text-danger mb-2">EXTREME COMPETITION</div>
+                        <ul class="text-sm space-y-2">
+                            <li>• 150+ family law firms per market</li>
+                            <li>• Average "divorce lawyer" CPC: $185-300+</li>
+                            <li>• 20-35 firms with $12K+ monthly SEO budgets</li>
+                            <li>• Celebrity divorce attorneys dominating media</li>
+                        </ul>
+                    </div>
+                    <div class="border-t pt-4">
+                        <p class="text-sm font-semibold text-gray-700 mb-2">Entry Barrier:</p>
+                        <p class="text-2xl font-bold text-primary">$25,000-40,000</p>
+                        <p class="text-sm text-gray-600 mt-2">Timeline: 15-20 months to top 5</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll market-tier">
+                    <div class="bg-primary text-white rounded-lg p-4 mb-6">
+                        <h3 class="text-xl font-bold">Mid-Size Markets</h3>
+                        <p class="text-sm mt-2">250K-1M Population</p>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Austin, Nashville, Tampa, Sacramento, Portland, Las Vegas, Raleigh</p>
+                    <div class="mb-6">
+                        <div class="text-2xl font-bold text-primary mb-2">HIGH COMPETITION</div>
+                        <ul class="text-sm space-y-2">
+                            <li>• 30-80 established family law practices</li>
+                            <li>• Average "family law attorney" CPC: $120-220</li>
+                            <li>• 8-18 firms with serious digital strategies</li>
+                            <li>• Best growth potential for established firms</li>
+                        </ul>
+                    </div>
+                    <div class="border-t pt-4">
+                        <p class="text-sm font-semibold text-gray-700 mb-2">Entry Barrier:</p>
+                        <p class="text-2xl font-bold text-primary">$12,000-22,000</p>
+                        <p class="text-sm text-gray-600 mt-2">Timeline: 8-14 months to top 3</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll market-tier">
+                    <div class="bg-success text-white rounded-lg p-4 mb-6">
+                        <h3 class="text-xl font-bold">Small Markets</h3>
+                        <p class="text-sm mt-2">50K-250K Population</p>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">County seats, college towns, suburban communities, military base areas</p>
+                    <div class="mb-6">
+                        <div class="text-2xl font-bold text-success mb-2">MODERATE COMPETITION</div>
+                        <ul class="text-sm space-y-2">
+                            <li>• 8-25 family law attorneys</li>
+                            <li>• Average "divorce attorney" CPC: $65-140</li>
+                            <li>• Minimal SEO competition</li>
+                            <li>• Fastest path to market leadership</li>
+                        </ul>
+                    </div>
+                    <div class="border-t pt-4">
+                        <p class="text-sm font-semibold text-gray-700 mb-2">Entry Barrier:</p>
+                        <p class="text-2xl font-bold text-success">$4,000-12,000</p>
+                        <p class="text-sm text-gray-600 mt-2">Timeline: 4-10 months to #1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="success-story" class="py-20 bg-gradient-to-b from-white to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    120-Day Client Success Story
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    How a Denver family law firm went from struggling with expensive Yellow Pages ads to dominating Google search and doubling their case volume in 120 days.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden animate-on-scroll">
+                <div class="bg-gradient-to-r from-primary to-blue-600 p-8 text-white">
+                    <h3 class="text-2xl font-bold mb-4">Rebecca Thompson, Esq.</h3>
+                    <p class="text-lg">Thompson Family Law Associates</p>
+                    <p class="text-base opacity-90">Denver, Colorado • Divorce & Child Custody Specialist</p>
+                </div>
+                
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-red-50 rounded-xl p-6">
+                            <h4 class="text-xl font-bold text-danger mb-4">Before SEO Implementation</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Organic Traffic:</span>
+                                    <span class="font-bold">850/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">New Consultations:</span>
+                                    <span class="font-bold">12/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Cases Signed:</span>
+                                    <span class="font-bold">8/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Ad Spend:</span>
+                                    <span class="font-bold text-danger">$15,000/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Cost per Case:</span>
+                                    <span class="font-bold text-danger">$1,875</span>
+                                </div>
+                                <div class="flex justify-between border-t pt-3">
+                                    <span class="text-gray-700 font-semibold">Monthly Revenue:</span>
+                                    <span class="font-bold text-xl">$120,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h4 class="text-xl font-bold text-success mb-4">After 120 Days of SEO</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Organic Traffic:</span>
+                                    <span class="font-bold text-success">4,199/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">New Consultations:</span>
+                                    <span class="font-bold text-success">34/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Cases Signed:</span>
+                                    <span class="font-bold text-success">23/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">SEO Investment:</span>
+                                    <span class="font-bold">$8,500/month</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-700">Cost per Case:</span>
+                                    <span class="font-bold text-success">$370</span>
+                                </div>
+                                <div class="flex justify-between border-t pt-3">
+                                    <span class="text-gray-700 font-semibold">Monthly Revenue:</span>
+                                    <span class="font-bold text-xl text-success">$345,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <p class="text-lg text-gray-700 italic">
+                            "The results were beyond our expectations. We went from competing with expensive ads to having families find us naturally when they need help most. Our clients are more informed and committed because they've researched us thoroughly before calling."
+                        </p>
+                        <p class="text-right mt-4 font-semibold text-gray-800">— Rebecca Thompson, Esq.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="local-court-statistics" class="py-20 bg-gradient-to-br from-slate-50 to-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    How to Use <span class="text-primary">Local Family Court Data</span> to Create Authority Content
+                </h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    Your secret weapon: Local family court statistics from your county clerk's office and state court system. When you create content using real local data, you accomplish three critical goals: (1) rank higher for local family law searches, (2) establish yourself as the local family court expert, and (3) provide genuinely helpful information to families facing legal decisions.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-12 animate-on-scroll">
+                <h3 class="text-2xl font-bold text-accent mb-6 flex items-center">
+                    <i class="fas fa-chart-line text-primary mr-3"></i>
+                    Why Local Family Court Data Is SEO Gold
+                </h3>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    When someone searches "divorce statistics [your city]," they want local expertise. Generic national statistics from divorce websites don't help them understand their specific situation. But an article titled "Miami-Dade Divorce Filings Up 23% in 2025: What This Means for Families" positions you as THE local family law authority.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-6 animate-on-scroll animate-slide-left">
+                    <h3 class="text-xl font-bold text-accent mb-4">Where to Find Your Local Family Court Data (Free Sources!)</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Your County Clerk's Office</h4>
+                            <p class="text-gray-600 text-sm mb-2">Most counties publish annual family court statistical reports</p>
+                            <p class="text-primary font-semibold text-sm">Look for: "Annual Family Court Report" or "Domestic Relations Statistics"</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-medical pl-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">State Court System Data</h4>
+                            <p class="text-gray-600 text-sm mb-2">Excellent for statewide family law trends and case outcomes</p>
+                            <p class="text-medical font-semibold text-sm">Search: "[Your state] court system family law statistics"</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-family pl-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Local Bar Association Reports</h4>
+                            <p class="text-gray-600 text-sm mb-2">Often provide practice area analysis and caseload information</p>
+                            <p class="text-family font-semibold text-sm">Google: "[County] bar association family law trends 2025"</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-success pl-4">
+                            <h4 class="font-semibold text-gray-800 mb-2">Family Court Administration</h4>
+                            <p class="text-gray-600 text-sm mb-2">Some courts publish processing times, case volumes, and outcome data</p>
+                            <p class="text-success font-semibold text-sm">Search: "[County] family court annual report"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 animate-on-scroll animate-slide-right">
+                    <h3 class="text-xl font-bold text-accent mb-4">How to Turn Family Court Stats Into Authority Content</h3>
+                    <p class="text-gray-600 mb-4">Don't just copy numbers—interpret them for families who might be facing similar situations:</p>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-semibold text-primary mb-2">Trend Analysis Articles</h4>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li>• "Houston Divorce Filings Increase 15%: Economic Factors Drive Family Separations"</li>
+                                <li>• "Miami Child Custody Cases Rise 28%: Post-Pandemic Co-Parenting Challenges"</li>
+                                <li>• "Austin Adoption Requests Surge: What Prospective Parents Should Know"</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-family mb-2">Seasonal Family Law Content</h4>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li>• "December Divorce Spike in Tampa: Holiday Stress and Family Decisions"</li>
+                                <li>• "Back-to-School Custody Modifications in Dallas: Preparing for Schedule Changes"</li>
+                                <li>• "Summer Custody Challenges in Phoenix: Vacation Planning and Court Orders"</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-success mb-2">Court-Specific Procedure Content</h4>
+                            <ul class="space-y-1 text-sm text-gray-600">
+                                <li>• "Judge Johnson's Family Court: What to Expect in Broward County Divorces"</li>
+                                <li>• "Maricopa County Mediation Success: 78% of Cases Settle Before Trial"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="legal-aid-seo-warfare" class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
+                    How to <span class="text-secondary">Outrank Legal Aid</span> and DIY Services in Family Law Searches
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Legal aid organizations and DIY legal services spend millions trying to capture family law clients with "free" solutions. Here's how to compete ethically while demonstrating the value of experienced family law representation.
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-red-900/20 to-red-800/20 border border-red-500/30 rounded-2xl p-8 mb-12 animate-on-scroll">
+                <h3 class="text-2xl font-bold mb-6">The $35 Million Problem: Legal Aid and DIY Service Dominance</h3>
+                <p class="text-gray-300 mb-6">
+                    Organizations like LegalZoom, Nolo, and local legal aid societies invest heavily in SEO to capture families seeking affordable legal help. They create content that minimizes the complexity of family law and promotes DIY solutions that can be inadequate for complex family situations.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-red-400 mb-2">Their Strategy</div>
+                        <p class="text-gray-400 text-sm">Position professional legal help as unnecessary for "simple" family matters</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-secondary mb-2">$8-12M</div>
+                        <p class="text-gray-400 text-sm">Their Budget: per major organization on content marketing</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary mb-2">Their Goal</div>
+                        <p class="text-gray-400 text-sm">Capture cost-conscious families before they understand the risks of inadequate representation</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 animate-on-scroll animate-slide-left">
+                    <h3 class="text-xl font-bold mb-4">Your Counter-Intelligence SEO Strategy</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-secondary mb-2">Target Their Weak Spots</h4>
+                            <ul class="space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check text-success mt-1"></i>
+                                    <span><strong>Complex Case Keywords:</strong> Legal aid can't handle high-conflict custody or high-asset divorce</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check text-success mt-1"></i>
+                                    <span><strong>Emergency Situations:</strong> DIY services can't provide immediate crisis intervention</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check text-success mt-1"></i>
+                                    <span><strong>Jurisdiction-Specific Content:</strong> National services lack local court procedure knowledge</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <i class="fas fa-check text-success mt-1"></i>
+                                    <span><strong>Long-term Consequence Education:</strong> Show what happens when DIY goes wrong</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 animate-on-scroll animate-slide-right">
+                    <h3 class="text-xl font-bold mb-4">Content That Beats Legal Aid and DIY Services</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-primary mb-2">"When DIY Family Law Goes Wrong" Educational Content</h4>
+                            <ul class="space-y-1 text-sm text-gray-300">
+                                <li>• "The Hidden Costs of DIY Divorce: What LegalZoom Won't Tell You"</li>
+                                <li>• "Legal Aid vs. Private Attorney: Understanding Your Family's Real Options"</li>
+                                <li>• "DIY Custody Agreements: Why Courts Reject 64% of Pro Se Submissions"</li>
+                                <li>• "Real Stories: Families Who Tried DIY Family Law First"</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-family mb-2">"Complex Case Warning" Content</h4>
+                            <ul class="space-y-1 text-sm text-gray-300">
+                                <li>• "10 Signs Your Divorce Is Too Complex for DIY Solutions"</li>
+                                <li>• "High-Conflict Custody: Why You Need Specialized Legal Help"</li>
+                                <li>• "Business Owner Divorce: Assets DIY Services Can't Protect"</li>
+                                <li>• "Domestic Violence Cases: Why Professional Representation Saves Lives"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-primary/20 to-blue-600/20 border border-primary/30 rounded-2xl p-8 animate-on-scroll">
+                <h3 class="text-2xl font-bold mb-6">Keywords Legal Aid and DIY Services Can't Dominate</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-secondary mb-3">Complexity-Based Terms:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• "complex divorce lawyer [city]"</li>
+                            <li>• "high-conflict custody attorney"</li>
+                            <li>• "business divorce specialist"</li>
+                            <li>• "international custody lawyer"</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-primary mb-3">Quality and Experience Terms:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• "experienced family law attorney"</li>
+                            <li>• "top divorce lawyer [city]"</li>
+                            <li>• "best custody attorney"</li>
+                            <li>• "family law specialist"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-generic-seo-fails" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Why <span class="text-danger">Generic Legal SEO Fails</span> for Family Law
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Most SEO agencies treat all legal practice areas the same. Family law requires specialized understanding of family crisis psychology, confidentiality concerns, and the unique emotional vulnerability of clients facing family breakdown.
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl overflow-hidden mb-12 animate-on-scroll">
+                <div class="bg-gradient-to-r from-primary to-blue-600 text-white p-6">
+                    <h3 class="text-2xl font-bold">Comparison: Generic Legal SEO vs Family Law SEO Specialists</h3>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700">Approach</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">Generic Legal SEO</th>
+                                <th class="px-6 py-4 text-center text-sm font-semibold text-gray-700">Family Law SEO Specialists</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Crisis Psychology Understanding</td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-times text-danger text-xl"></i></td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-check text-success text-xl"></i></td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Family Court Proximity Optimization</td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-times text-danger text-xl"></i></td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-check text-success text-xl"></i></td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Confidentiality-First Messaging</td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-times text-danger text-xl"></i></td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-check text-success text-xl"></i></td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Emergency Mobile Optimization</td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-times text-danger text-xl"></i></td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-check text-success text-xl"></i></td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Family Therapy Integration</td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-times text-danger text-xl"></i></td>
+                                <td class="px-6 py-4 text-center"><i class="fas fa-check text-success text-xl"></i></td>
+                            </tr>
+                            <tr class="hover:bg-primary/5 transition-colors">
+                                <td class="px-6 py-4 text-sm text-gray-700">Child-Focused Content Strategy</td>
+                                <td class="px-6 py-4 text-center text-sm">Basic</td>
+                                <td class="px-6 py-4 text-center text-sm font-semibold text-primary">15+ Child-Specific Areas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-primary/5 to-blue-100/50 rounded-xl p-6 animate-on-scroll">
+                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-accent mb-4">Family Crisis Psychology Expertise</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-check-circle text-primary mt-0.5"></i>
+                            <span><strong>Vulnerable Emotional State:</strong> Clients dealing with family breakdown, custody fears, financial insecurity</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-check-circle text-primary mt-0.5"></i>
+                            <span><strong>Privacy Concerns:</strong> Need discrete communication and confidentiality assurances</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-check-circle text-primary mt-0.5"></i>
+                            <span><strong>Time Sensitivity:</strong> Family emergencies require immediate response capabilities</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fas fa-check-circle text-primary mt-0.5"></i>
+                            <span><strong>Trust Requirements:</strong> Need extensive empathy and understanding in all communications</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-600 mt-4 italic">
+                        Generic legal SEO ignores these psychological factors, resulting in poor conversion rates and lost cases to attorneys who understand family crisis dynamics.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-family/5 to-purple-100/50 rounded-xl p-6 animate-on-scroll">
+                    <div class="w-12 h-12 bg-family rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-accent mb-4">Community Integration Expertise</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        We understand the unique intersection between family law and community services:
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li>• Family therapy and counseling partnership opportunities</li>
+                        <li>• School district and pediatric office networking content</li>
+                        <li>• Domestic violence shelter and support organization collaboration</li>
+                        <li>• Family court and mediation center proximity strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-br from-success/5 to-green-100/50 rounded-xl p-6 animate-on-scroll">
+                    <div class="w-12 h-12 bg-success rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-gavel text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-accent mb-4">Local Family Court Intelligence</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li><strong>Court Procedure Expertise:</strong> Specific knowledge of family court judges, procedures, and preferences</li>
+                        <li><strong>Local Service Integration:</strong> Understanding of county-specific family services and support systems</li>
+                        <li><strong>Community Resource Knowledge:</strong> Familiarity with local family therapy, financial planning, and child support services</li>
+                        <li><strong>Cultural Competency:</strong> Awareness of local demographic needs and family structure patterns</li>
+                    </ul>
+                    <p class="text-sm font-semibold text-primary mt-4">
+                        Bottom Line: Generic agencies can't compete with this level of family law specialization and community integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="investment-roi" class="py-20 bg-gradient-to-br from-primary to-blue-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
+                    Investment & <span class="text-secondary">ROI Analysis</span>
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Our family law SEO delivers measurable returns that justify the investment through increased case volume, higher case values, and stronger client relationships.
+                </p>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-12 animate-on-scroll">
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold mb-2">Monthly Investment Range</h3>
+                    <div class="text-5xl font-bold text-secondary mb-2">$2,500 - $12,000</div>
+                    <p class="text-gray-300">Professional family law SEO that typically generates 300-500% ROI within 6 months</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
+                    <h4 class="text-lg font-bold mb-3">Divorce Cases</h4>
+                    <div class="text-3xl font-bold text-secondary mb-2">$15,000</div>
+                    <p class="text-sm text-gray-300 mb-2">Median Case Value</p>
+                    <div class="text-xl font-semibold">$5,000-7,500</div>
+                    <p class="text-sm text-gray-400">Average Attorney Fee</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
+                    <h4 class="text-lg font-bold mb-3">Child Custody</h4>
+                    <div class="text-3xl font-bold text-primary mb-2">$28,000</div>
+                    <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
+                    <div class="text-xl font-semibold">$8,000-12,000</div>
+                    <p class="text-sm text-gray-400">Average Attorney Fee</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
+                    <h4 class="text-lg font-bold mb-3">Domestic Violence Protection</h4>
+                    <div class="text-3xl font-bold text-family mb-2">$18,000</div>
+                    <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
+                    <div class="text-xl font-semibold">$5,000-8,000</div>
+                    <p class="text-sm text-gray-400">Average Attorney Fee</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
+                    <h4 class="text-lg font-bold mb-3">Adoption Services</h4>
+                    <div class="text-3xl font-bold text-success mb-2">$12,000</div>
+                    <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
+                    <div class="text-xl font-semibold">$4,000-6,000</div>
+                    <p class="text-sm text-gray-400">Average Attorney Fee</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-secondary/20 to-yellow-500/20 border border-secondary/30 rounded-2xl p-8 animate-on-scroll">
+                <h3 class="text-2xl font-bold mb-6 text-center">ROI Calculation Example</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <p class="text-sm text-gray-300 mb-2">Monthly SEO Investment</p>
+                        <p class="text-3xl font-bold">$6,000</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-300 mb-2">Additional Cases Per Month</p>
+                        <p class="text-3xl font-bold">15</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
+                        <p class="text-3xl font-bold">$15,000</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-300 mb-2">Monthly Revenue Increase</p>
+                        <p class="text-3xl font-bold text-secondary">$225,000</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8 pt-8 border-t border-white/20">
+                    <p class="text-2xl mb-2">Annual ROI</p>
+                    <p class="text-5xl font-bold text-secondary pulse-animation">3,750%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="voice-search-ai" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Voice Search & AI: The <span class="text-primary">Future</span> of Family Law SEO
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    42% of family crisis searches now happen through voice assistants and AI chatbots. Optimize for how distressed families actually ask for help in 2025 and beyond.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microphone text-primary text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-primary mb-2">68%</div>
+                    <p class="text-gray-600">of family law crisis searches use voice commands</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-robot text-success text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-success mb-2">3.2x</div>
+                    <p class="text-gray-600">higher conversion from AI-optimized family law content</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-family/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-family text-2xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-family mb-2">85%</div>
+                    <p class="text-gray-600">use voice search during family emergencies</p>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-8 animate-on-scroll">
+                <h3 class="text-2xl font-bold text-accent mb-8 text-center">How Families Really Ask for Help (Voice Search Queries)</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-6 shadow-md">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fas fa-times-circle text-danger text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-800">Traditional Keyword Thinking</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-danger">•</span>
+                                <span>"divorce lawyer Denver"</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-danger">•</span>
+                                <span>"child custody attorney near me"</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-danger">•</span>
+                                <span>"family law firm consultation"</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-danger">•</span>
+                                <span>"domestic violence lawyer"</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-md">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fas fa-check-circle text-success text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-800">Natural Voice Search Queries</h4>
+                        </div>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start space-x-2">
+                                <span class="text-success">•</span>
+                                <span>"Hey Siri, my husband filed for divorce and I need a lawyer right now"</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <span class="text-success">•</span>
+                                <span>"OK Google, how do I protect my children if my spouse is being abusive?"</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Everything you need to know about family law SEO and how our specialized approach generates more cases and stronger client relationships.
+                </p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden faq-item animate-on-scroll">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-gray-800">How is family law SEO different from regular legal SEO?</h3>
+                            <i class="fas fa-chevron-down text-primary faq-icon"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-700 mb-4">
+                                Family law SEO requires understanding crisis psychology, family dynamics, and the unique emotional vulnerability of clients facing family breakdown. Unlike other legal practice areas, family law clients are often in immediate crisis, searching frantically while dealing with emotional trauma, custody fears, and financial uncertainty.
+                            </p>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">Key Differences:</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• <strong>Crisis Psychology:</strong> We optimize for vulnerable, urgent searches rather than routine legal research</li>
+                                    <li>• <strong>Privacy-First Approach:</strong> 84% of family law clients prioritize confidentiality and discrete communication</li>
+                                    <li>• <strong>Family Court Proximity:</strong> Targeting searches near family courts, mediation centers, and support services</li>
+                                    <li>• <strong>Child-Focused Content:</strong> 67% of family law cases involve children - content must address parental concerns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden faq-item animate-on-scroll">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-gray-800">How quickly will I see results from family law SEO?</h3>
+                            <i class="fas fa-chevron-down text-primary faq-icon"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-700 mb-4">Our 120-day acceleration plan is designed for rapid family law market penetration:</p>
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <span class="font-bold text-primary">Days 1-30:</span>
+                                    <span class="text-gray-700">Technical foundation, mobile crisis optimization, and Google Business Profile setup</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="font-bold text-primary">Days 31-60:</span>
+                                    <span class="text-gray-700">Family court proximity content creation and divorce calculator launch</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="font-bold text-primary">Days 61-90:</span>
+                                    <span class="text-gray-700">Authority building with local court data and community partnerships</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <span class="font-bold text-primary">Days 91-120:</span>
+                                    <span class="text-gray-700">Advanced conversion optimization and crisis response enhancement</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mt-4">
+                                <strong>Typical timeline:</strong> Most clients see increased emergency consultations within 30 days, first-page rankings by day 60, and 300%+ ROI by day 120.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden faq-item animate-on-scroll">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-gray-800">What's your guarantee and what happens if I don't get results?</h3>
+                            <i class="fas fa-chevron-down text-primary faq-icon"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="px-6 pb-6">
+                            <div class="bg-green-50 rounded-lg p-4 mb-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">Our 120-Day Family Law Performance Guarantee:</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• Top 3 rankings for primary family law keywords</li>
+                                    <li>• 60% increase in qualified consultations from organic search</li>
+                                    <li>• 300% ROI within 6 months</li>
+                                    <li>• Crisis-optimized mobile experience for family emergencies</li>
+                                </ul>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">If We Don't Deliver:</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• We work for free until goals are achieved</li>
+                                    <li>• Full refund of initial investment</li>
+                                    <li>• No long-term contracts or penalties</li>
+                                    <li>• All website assets and family law content transfer to you</li>
+                                </ul>
+                            </div>
+                            <p class="text-gray-700 mt-4">
+                                <strong>Success rate:</strong> 91% of our family law clients achieve top 3 rankings within 120 days.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden faq-item animate-on-scroll">
+                    <div class="p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-gray-800">Do you work with solo practitioners or just large family law firms?</h3>
+                            <i class="fas fa-chevron-down text-primary faq-icon"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="px-6 pb-6">
+                            <p class="text-gray-700 mb-4">
+                                We work with family law attorneys of all sizes, from solo practitioners to multi-attorney family law firms. Solo practitioners often see the most dramatic results because our strategies level the playing field against larger traditional advertising spenders.
+                            </p>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 mb-2">Client Breakdown:</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li>• <strong>Solo Practitioners:</strong> 62% of our family law clients</li>
+                                    <li>• <strong>Small Firms (2-4 attorneys):</strong> 31% of our family law clients</li>
+                                    <li>• <strong>Larger Firms (5+ attorneys):</strong> 7% of our family law clients</li>
+                                </ul>
+                            </div>
+                            <p class="text-gray-700 mt-4">
+                                <strong>Why smaller firms thrive:</strong> Our family court proximity and crisis search optimization often outperform expensive traditional campaigns. You don't need a massive budget—you need the right strategy that captures families when they're actively seeking help.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="final-cta" class="py-20 bg-gradient-to-br from-blue-600 to-purple-700 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-white rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-white rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center text-white animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
+                    Don't Let Another Family Crisis Call Your Competition
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Every day you wait, families facing their most difficult moments are finding your competitors when they need legal help most. While you're reading this, someone dealing with divorce, custody threats, or domestic violence is calling the family law attorney who ranks #1.
+                </p>
+                
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-8">
+                    <div class="text-yellow-300 mb-4">
+                        <i class="fas fa-exclamation-triangle text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">⚠️ Limited Client Capacity</h3>
+                    <p class="text-lg mb-4">We only work with 3 new family law firms per quarter to ensure exceptional, personalized results.</p>
+                    <p class="text-2xl font-bold text-yellow-300">Current quarter has 2 spots remaining.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6">
+                        <h4 class="text-xl font-bold mb-4">Every Month You Wait Costs You:</h4>
+                        <ul class="text-left space-y-3">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-times text-red-300 mt-1"></i>
+                                <span>High-value family law cases going to better-optimized competitors</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-times text-red-300 mt-1"></i>
+                                <span>$125,000+ in potential revenue opportunities</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-times text-red-300 mt-1"></i>
+                                <span>Vulnerable families who could become lifelong clients</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-times text-red-300 mt-1"></i>
+                                <span>Market positioning that takes years to rebuild</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6">
+                        <h4 class="text-xl font-bold mb-4">Our Current Clients Are Seeing:</h4>
+                        <ul class="text-left space-y-3">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-300 mt-1"></i>
+                                <span>300-500% ROI within 6 months</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-300 mt-1"></i>
+                                <span>2-4x more cases from organic search</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-300 mt-1"></i>
+                                <span>60-80% reduction in traditional advertising dependency</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-green-300 mt-1"></i>
+                                <span>Complete domination of their local family law markets</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 text-gray-800 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-accent mb-4">Get Your Free Family Law SEO Analysis</h3>
+                    <div class="text-left mb-6">
+                        <h4 class="font-semibold text-primary mb-3">What's Included:</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-success"></i>
+                                <span>Competitive analysis of your top 5 local family law competitors</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-success"></i>
+                                <span>Family court proximity opportunity assessment</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-success"></i>
+                                <span>Crisis mobile search optimization audit</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-success"></i>
+                                <span>Divorce calculator and family law tool review</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fas fa-check text-success"></i>
+                                <span>Custom growth plan for your specific market and practice areas</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center mb-6">
+                        <p class="text-lg mb-4">
+                            <span class="text-gray-500 line-through">$1,800 value</span>
+                            <span class="text-3xl font-bold text-success ml-3">FREE</span>
+                        </p>
+                        <p class="text-sm text-gray-600">Limited Time Offer</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <button class="w-full bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-primary transition-all duration-300 transform hover:scale-105 shadow-lg text-lg cta-glow">
+                            <i class="fas fa-calendar-check mr-2"></i>
+                            Schedule Your Free Analysis Now
+                        </button>
+                        
+                        <div class="text-center">
+                            <p class="text-gray-600 mb-2">Emergency Contact Options:</p>
+                            <a href="tel:5551234567" class="text-2xl font-bold text-primary hover:text-blue-600 transition-colors">
+                                <i class="fas fa-phone mr-2"></i>
+                                (555) 123-4567
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="relative">
+                            <i class="fas fa-home text-white text-2xl"></i>
+                            <i class="fas fa-shield-alt text-family text-sm absolute -bottom-1 -right-1"></i>
+                        </div>
+                        <span class="text-xl font-bold">FamilyLaw Digital Marketing</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        The only SEO agency exclusively focused on family law attorneys. We understand family crisis psychology and get your firm found when families need protection and guidance most.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Crisis-Responsive Family Law SEO</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Family Court Proximity Marketing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Divorce Calculator Development</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Emergency Mobile Optimization</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Local Family Court Data Integration</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Practice Areas We Specialize In</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Divorce & Legal Separation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Child Custody & Support</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Domestic Violence Protection</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Adoption Services</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Prenuptial Agreements</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">High-Asset Divorce</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Emergency Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span><strong>24/7:</strong> (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span><strong>Email:</strong> strategy@familylawdigital.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-clock"></i>
+                            <span><strong>Hours:</strong> Available evenings and weekends for family emergencies</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <h4 class="font-semibold mb-2">Service Areas</h4>
+                        <p class="text-sm text-gray-400">Serving family law attorneys nationwide with specialized local family court expertise</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8">
+                <div class="text-center text-sm text-gray-400">
+                    <h4 class="font-semibold mb-2">Legal Information</h4>
+                    <p>&copy; 2025 FamilyLaw Digital Marketing. All rights reserved. | Privacy Policy | Terms of Service</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const wasActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!wasActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    console.log('Mobile menu clicked');
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
