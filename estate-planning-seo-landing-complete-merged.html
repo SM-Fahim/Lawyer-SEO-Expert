@@ -116,8 +116,275 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Disable horizontal animations on mobile */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px) !important;
+        transition: all 0.8s ease-out;
+    }
+    
+    .animate-on-scroll.animate-slide-left {
+        transform: translateY(30px) !important; /* No translateX on mobile */
+    }
+    
+    .animate-on-scroll.animate-slide-right {
+        transform: translateY(30px) !important; /* No translateX on mobile */
+    }
+    
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0) translateX(0) !important;
+    }
+    
+    /* Fix padding and margins */
+    .max-w-7xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Ensure all sections respect viewport width */
+    section, div[class*="container"], div[class*="wrapper"] {
+        max-width: 100vw !important;
+    }
+    
+    /* Fix buttons that overflow */
+    button {
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+    
+    /* Make tables scrollable */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    table {
+        min-width: 100%;
+    }
+    
+    /* Prevent any element from causing overflow */
+    * {
+        max-width: 100vw !important;
+    }
+    
+    /* Fix specific hero section elements */
+    #hero .space-y-8, #hero .grid .space-y-8 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Fix floating animations on mobile */
+    .float-animation {
+        animation: none !important; /* Disable float animation on mobile */
+    }
+    
     .timeline-line::before {
         left: 20px;
+    }
+    
+    /* Crisis Timeline Mobile Fixes */
+    .timeline-connector {
+        display: none !important; /* Hide timeline connector on mobile */
+    }
+    
+    /* Fix timeline circles positioning on mobile */
+    .crisis-timeline-circle {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        margin: 0 auto 1rem auto !important;
+        display: flex !important;
+        order: -1 !important; /* Move icon above content */
+    }
+    
+    /* Make timeline items stack properly on mobile */
+    .crisis-timeline-item {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .crisis-timeline-content {
+        order: 2 !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: center !important;
+    }
+    
+    /* Fix statistics layout on mobile */
+    .crisis-stat-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        space-y: 0.25rem;
+    }
+    
+    .crisis-stat-row .justify-start {
+        justify-content: flex-start !important;
+    }
+    
+    .crisis-stat-row .lg\:justify-end {
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+    
+    /* Better mobile spacing for crisis cards */
+    .crisis-timeline-card {
+        margin-bottom: 2rem !important;
+        padding: 1.5rem !important;
+    }
+    
+    /* Stack statistics vertically on mobile with better spacing */
+    .crisis-stats-container .space-y-2 > div {
+        margin-bottom: 1rem !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .crisis-stats-container .space-y-2 > div:last-child {
+        border-bottom: none;
+    }
+    
+    /* Hero section mobile fixes */
+    #hero {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 1rem 0 !important;
+    }
+    
+    #hero > div {
+        padding: 1rem 0 !important;
+    }
+    
+    /* Reduce hero section min-height on mobile */
+    #hero.min-h-\[56rem\] {
+        min-height: auto !important;
+    }
+    
+    /* Pricing Phase Cards Mobile Fixes */
+    .pricing-phase-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 1rem !important;
+    }
+    
+    .pricing-phase-content {
+        text-align: left !important;
+    }
+    
+    .pricing-phase-price {
+        text-align: left !important;
+        margin-top: 1rem !important;
+    }
+    
+    /* Make pricing text more readable on mobile */
+    .pricing-phase-title {
+        font-size: 1.5rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .pricing-phase-price-amount {
+        font-size: 1.75rem !important;
+    }
+    
+    /* Better mobile grid for features */
+    .pricing-features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Step 1 - Move number above heading on mobile */
+    .step-container {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    .step-number-mobile {
+        margin-bottom: 1rem !important;
+        align-self: center !important;
+    }
+    
+    .step-content-mobile {
+        text-align: left !important;
+        width: 100% !important;
+    }
+    
+    /* Reduce font size for comparison card numbers on mobile */
+    .comparison-card-number {
+        font-size: 1rem !important; /* Reduce from text-xl (1.25rem) to text-base (1rem) */
+        line-height: 1.4 !important;
+    }
+    
+    /* Make comparison cards more mobile friendly */
+    .comparison-card-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 0.25rem !important;
+    }
+    
+    .comparison-card-label {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Service Tier Cards Mobile Fixes */
+    .service-tier-card {
+        padding: 1.5rem !important;
+    }
+    
+    .service-tier-header {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .service-tier-icon {
+        margin-right: 0 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .service-tier-title {
+        text-align: center !important;
+        font-size: 1.5rem !important;
+    }
+    
+    .service-tier-pricing-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 0.5rem !important;
+        padding: 1rem 0 !important;
+        border-bottom: 1px solid #e5e7eb !important;
+    }
+    
+    .service-tier-pricing-row:last-child {
+        border-bottom: none !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .service-tier-label {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .service-tier-amount {
+        font-size: 1.125rem !important; /* Reduce from text-2xl */
     }
 }
 
@@ -289,9 +556,9 @@ body {
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden h-[56rem]">
+    <section id="hero" class="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden min-h-[56rem] py-8">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
                     <div class="inline-flex items-center space-x-2 bg-estate/10 px-4 py-2 rounded-full">
@@ -418,21 +685,21 @@ body {
                     
                     <div class="space-y-12">
                         <!-- Life Event Trigger -->
-                        <div class="relative flex flex-col lg:flex-row items-center">
-                            <div class="lg:w-1/2 lg:pr-12 lg:text-right">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                        <div class="relative flex flex-col lg:flex-row items-center crisis-timeline-item">
+                            <div class="lg:w-1/2 lg:pr-12 lg:text-right crisis-timeline-content">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 crisis-timeline-card">
                                     <h4 class="text-xl font-bold text-primary mb-3">Life Event Trigger: The Wake-Up Call</h4>
                                     <p class="text-gray-700 mb-4">Death of loved one, new baby, or health scare forces confrontation with mortality</p>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                    <div class="space-y-2 crisis-stats-container">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-danger">41%</span>
                                             <span class="text-sm text-gray-600">of people created wills after COVID-19 affected loved ones severely</span>
                                         </div>
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-warning">34%</span>
                                             <span class="text-sm text-gray-600">cite having children as main estate planning motivation</span>
                                         </div>
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-sm text-gray-600">Death anxiety affects</span>
                                             <span class="text-2xl font-bold text-primary">85%</span>
                                             <span class="text-sm text-gray-600">of adults but only 25% under 35 have wills</span>
@@ -440,32 +707,32 @@ body {
                                     </div>
                                 </div>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl crisis-timeline-circle">
                                 <i class="fas fa-exclamation-triangle"></i>
                             </div>
                             <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0"></div>
                         </div>
 
                         <!-- Hours 1-48 -->
-                        <div class="relative flex flex-col lg:flex-row items-center">
+                        <div class="relative flex flex-col lg:flex-row items-center crisis-timeline-item">
                             <div class="lg:w-1/2 lg:pr-12 order-2 lg:order-1 mt-8 lg:mt-0"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-warning rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-warning rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl crisis-timeline-circle">
                                 <i class="fas fa-search"></i>
                             </div>
-                            <div class="lg:w-1/2 lg:pl-12 order-1 lg:order-2">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                            <div class="lg:w-1/2 lg:pl-12 order-1 lg:order-2 crisis-timeline-content">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 crisis-timeline-card">
                                     <h4 class="text-xl font-bold text-warning mb-3">Hours 1-48: The Emotional Search</h4>
                                     <p class="text-gray-700 mb-4">Emotional googling while dealing with grief, fear, or overwhelming responsibility</p>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center space-x-2">
+                                    <div class="space-y-2 crisis-stats-container">
+                                        <div class="flex items-center space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-primary">78%</span>
                                             <span class="text-sm text-gray-600">search "estate planning attorney near me" within 2 days of trigger event</span>
                                         </div>
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex items-center space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-danger">91%</span>
                                             <span class="text-sm text-gray-600">never go past page 1 of search results</span>
                                         </div>
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex items-center space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-warning">68%</span>
                                             <span class="text-sm text-gray-600">compare 3-5 attorneys before choosing</span>
                                         </div>
@@ -475,29 +742,29 @@ body {
                         </div>
 
                         <!-- Weeks 1-4 -->
-                        <div class="relative flex flex-col lg:flex-row items-center">
-                            <div class="lg:w-1/2 lg:pr-12 lg:text-right">
-                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                        <div class="relative flex flex-col lg:flex-row items-center crisis-timeline-item">
+                            <div class="lg:w-1/2 lg:pr-12 lg:text-right crisis-timeline-content">
+                                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 crisis-timeline-card">
                                     <h4 class="text-xl font-bold text-success mb-3">Weeks 1-4: The Decision Phase</h4>
                                     <p class="text-gray-700 mb-4">Attorney consultations while managing complex emotions and family dynamics</p>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                    <div class="space-y-2 crisis-stats-container">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-sm text-gray-600">Average consultation delay:</span>
                                             <span class="text-2xl font-bold text-primary">3.2 weeks</span>
                                             <span class="text-sm text-gray-600">from initial search</span>
                                         </div>
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-success">$2,000-$5,000</span>
                                             <span class="text-sm text-gray-600">typical comprehensive estate plan cost</span>
                                         </div>
-                                        <div class="flex items-center justify-start lg:justify-end space-x-2">
+                                        <div class="flex items-center justify-start lg:justify-end space-x-2 crisis-stat-row">
                                             <span class="text-2xl font-bold text-danger">40%</span>
                                             <span class="text-sm text-gray-600">worry about family conflicts after death</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-success rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl">
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 bg-success rounded-full flex items-center justify-center text-white font-bold z-10 shadow-xl crisis-timeline-circle">
                                 <i class="fas fa-handshake"></i>
                             </div>
                             <div class="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0"></div>
@@ -771,19 +1038,19 @@ body {
                 <!-- Phase 1 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">Phase 1: Foundation & Trust Building</h3>
+                        <div class="flex justify-between items-start pricing-phase-header">
+                            <div class="pricing-phase-content">
+                                <h3 class="text-2xl font-bold mb-2 pricing-phase-title">Phase 1: Foundation & Trust Building</h3>
                                 <p class="opacity-90">Build credibility and capture families during life-changing moments</p>
                             </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold">$2,500 - $4,500/month</div>
+                            <div class="text-right pricing-phase-price">
+                                <div class="text-2xl font-bold pricing-phase-price-amount">$2,500 - $4,500/month</div>
                                 <div class="text-sm opacity-90">Months 1-3</div>
                             </div>
                         </div>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pricing-features-grid">
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-check-circle text-success mt-1"></i>
                                 <span class="text-gray-700">Google Business Profile optimization for life event searches</span>
@@ -814,19 +1081,19 @@ body {
                         POPULAR
                     </div>
                     <div class="bg-gradient-to-r from-primary to-blue-600 p-6 text-white">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">Phase 2: Authority & Referral Network Expansion</h3>
+                        <div class="flex justify-between items-start pricing-phase-header">
+                            <div class="pricing-phase-content">
+                                <h3 class="text-2xl font-bold mb-2 pricing-phase-title">Phase 2: Authority & Referral Network Expansion</h3>
                                 <p class="opacity-90">Scale successful content and build market authority across all estate planning services</p>
                             </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold">$4,000 - $8,000/month</div>
+                            <div class="text-right pricing-phase-price">
+                                <div class="text-2xl font-bold pricing-phase-price-amount">$4,000 - $8,000/month</div>
                                 <div class="text-sm opacity-90">Months 4-9</div>
                             </div>
                         </div>
                     </div>
                     <div class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pricing-features-grid">
                             <div class="flex items-start space-x-3">
                                 <i class="fas fa-check-circle text-success mt-1"></i>
                                 <span class="text-gray-700">Comprehensive estate planning content library (20+ scenarios and family situations)</span>
@@ -854,13 +1121,13 @@ body {
                 <!-- Phase 3 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     <div class="bg-gradient-to-r from-estate to-green-700 p-6 text-white">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">Phase 3: Market Leadership & Legacy Building</h3>
+                        <div class="flex justify-between items-start pricing-phase-header">
+                            <div class="pricing-phase-content">
+                                <h3 class="text-2xl font-bold mb-2 pricing-phase-title">Phase 3: Market Leadership & Legacy Building</h3>
                                 <p class="opacity-90">Dominate all estate planning searches and become the go-to authority</p>
                             </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold">$6,000 - $12,000+/month</div>
+                            <div class="text-right pricing-phase-price">
+                                <div class="text-2xl font-bold pricing-phase-price-amount">$6,000 - $12,000+/month</div>
                                 <div class="text-sm opacity-90">Months 10+</div>
                             </div>
                         </div>
@@ -1277,11 +1544,11 @@ body {
             <!-- Step 1 -->
             <div class="mb-16">
                 <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                    <div class="flex items-start space-x-6">
-                        <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                    <div class="flex items-start space-x-6 step-container">
+                        <div class="step-number w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0 step-number-mobile">
                             1
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 step-content-mobile">
                             <h3 class="text-2xl font-bold text-primary mb-4">Master Life Event-Driven Keyword Research</h3>
                             <p class="text-gray-700 mb-6 leading-relaxed">
                                 Estate planning keyword research isn't about finding the highest search volume—it's about understanding the psychology of someone confronting mortality and family protection needs. Someone searching "estate planning attorney" has overcome significant psychological barriers; someone searching "do I need a will" is still processing their mortality. You need both.
@@ -2065,29 +2332,29 @@ body {
                         Before SEO Implementation
                     </h3>
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center py-2 border-b border-red-200">
-                            <span class="text-gray-700 font-medium">Organic Traffic</span>
-                            <span class="text-xl font-bold text-red-600">800/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-red-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Organic Traffic</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">800/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-red-200">
-                            <span class="text-gray-700 font-medium">New Consultations</span>
-                            <span class="text-xl font-bold text-red-600">5/month from organic</span>
+                        <div class="flex justify-between items-center py-2 border-b border-red-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">New Consultations</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">5/month from organic</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-red-200">
-                            <span class="text-gray-700 font-medium">Clients Signed</span>
-                            <span class="text-xl font-bold text-red-600">4/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-red-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Clients Signed</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">4/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-red-200">
-                            <span class="text-gray-700 font-medium">Print Ad Spend</span>
-                            <span class="text-xl font-bold text-red-600">$15,000/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-red-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Print Ad Spend</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">$15,000/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-red-200">
-                            <span class="text-gray-700 font-medium">Cost per Client</span>
-                            <span class="text-xl font-bold text-red-600">$3,750</span>
+                        <div class="flex justify-between items-center py-2 border-b border-red-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Cost per Client</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">$3,750</span>
                         </div>
-                        <div class="flex justify-between items-center py-2">
-                            <span class="text-gray-700 font-medium">Monthly Revenue</span>
-                            <span class="text-xl font-bold text-red-600">$48,000</span>
+                        <div class="flex justify-between items-center py-2 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Monthly Revenue</span>
+                            <span class="text-xl font-bold text-red-600 comparison-card-number">$48,000</span>
                         </div>
                     </div>
                 </div>
@@ -2099,29 +2366,29 @@ body {
                         After 120 Days of SEO
                     </h3>
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center py-2 border-b border-green-200">
-                            <span class="text-gray-700 font-medium">Organic Traffic</span>
-                            <span class="text-xl font-bold text-green-600">5,800/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Organic Traffic</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">5,800/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-green-200">
-                            <span class="text-gray-700 font-medium">New Consultations</span>
-                            <span class="text-xl font-bold text-green-600">28/month from organic</span>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">New Consultations</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">28/month from organic</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-green-200">
-                            <span class="text-gray-700 font-medium">Clients Signed</span>
-                            <span class="text-xl font-bold text-green-600">20/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Clients Signed</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">20/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-green-200">
-                            <span class="text-gray-700 font-medium">SEO Investment</span>
-                            <span class="text-xl font-bold text-green-600">$8,500/month</span>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">SEO Investment</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">$8,500/month</span>
                         </div>
-                        <div class="flex justify-between items-center py-2 border-b border-green-200">
-                            <span class="text-gray-700 font-medium">Cost per Client</span>
-                            <span class="text-xl font-bold text-green-600">$425</span>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Cost per Client</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">$425</span>
                         </div>
-                        <div class="flex justify-between items-center py-2">
-                            <span class="text-gray-700 font-medium">Monthly Revenue</span>
-                            <span class="text-xl font-bold text-green-600">$192,000</span>
+                        <div class="flex justify-between items-center py-2 comparison-card-row">
+                            <span class="text-gray-700 font-medium comparison-card-label">Monthly Revenue</span>
+                            <span class="text-xl font-bold text-green-600 comparison-card-number">$192,000</span>
                         </div>
                     </div>
                 </div>
@@ -2170,61 +2437,61 @@ body {
                 <h3 class="text-3xl font-bold text-center mb-12 text-accent">Average Client Values and ROI Potential</h3>
                 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div id="basic-estate-tier" class="value-card rounded-2xl p-8 hover-lift">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-primary rounded-full p-3 mr-4">
+                    <div id="basic-estate-tier" class="value-card rounded-2xl p-8 hover-lift service-tier-card">
+                        <div class="flex items-center mb-4 service-tier-header">
+                            <div class="bg-primary rounded-full p-3 mr-4 service-tier-icon">
                                 <i class="fas fa-file-alt text-white text-2xl"></i>
                             </div>
-                            <h4 class="text-2xl font-bold text-accent">Basic Estate Planning</h4>
+                            <h4 class="text-2xl font-bold text-accent service-tier-title">Basic Estate Planning</h4>
                         </div>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Average Attorney Fees:</span>
-                                <span class="text-2xl font-bold text-primary">$1,200-$3,000</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Average Attorney Fees:</span>
+                                <span class="text-2xl font-bold text-primary service-tier-amount">$1,200-$3,000</span>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Client Lifetime Value:</span>
-                                <span class="text-2xl font-bold text-success">$5,000-$15,000</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Client Lifetime Value:</span>
+                                <span class="text-2xl font-bold text-success service-tier-amount">$5,000-$15,000</span>
                             </div>
                             <p class="text-sm text-gray-600 mt-2">(including updates and family referrals)</p>
                         </div>
                     </div>
 
-                    <div id="trust-creation-tier" class="value-card rounded-2xl p-8 hover-lift">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-primary rounded-full p-3 mr-4">
+                    <div id="trust-creation-tier" class="value-card rounded-2xl p-8 hover-lift service-tier-card">
+                        <div class="flex items-center mb-4 service-tier-header">
+                            <div class="bg-primary rounded-full p-3 mr-4 service-tier-icon">
                                 <i class="fas fa-shield-alt text-white text-2xl"></i>
                             </div>
-                            <h4 class="text-2xl font-bold text-accent">Trust Creation & Administration</h4>
+                            <h4 class="text-2xl font-bold text-accent service-tier-title">Trust Creation & Administration</h4>
                         </div>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Average Attorney Fees:</span>
-                                <span class="text-2xl font-bold text-primary">$2,500-$7,500</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Average Attorney Fees:</span>
+                                <span class="text-2xl font-bold text-primary service-tier-amount">$2,500-$7,500</span>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Client Lifetime Value:</span>
-                                <span class="text-2xl font-bold text-success">$15,000-$35,000</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Client Lifetime Value:</span>
+                                <span class="text-2xl font-bold text-success service-tier-amount">$15,000-$35,000</span>
                             </div>
                             <p class="text-sm text-gray-600 mt-2">(ongoing administration and family expansion)</p>
                         </div>
                     </div>
 
-                    <div id="business-succession-tier" class="premium-card rounded-2xl p-8 hover-lift">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-highlight rounded-full p-3 mr-4">
+                    <div id="business-succession-tier" class="premium-card rounded-2xl p-8 hover-lift service-tier-card">
+                        <div class="flex items-center mb-4 service-tier-header">
+                            <div class="bg-highlight rounded-full p-3 mr-4 service-tier-icon">
                                 <i class="fas fa-building text-white text-2xl"></i>
                             </div>
-                            <h4 class="text-2xl font-bold text-accent">Business Succession Planning</h4>
+                            <h4 class="text-2xl font-bold text-accent service-tier-title">Business Succession Planning</h4>
                         </div>
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Average Attorney Fees:</span>
-                                <span class="text-2xl font-bold text-primary">$7,500-$25,000+</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Average Attorney Fees:</span>
+                                <span class="text-2xl font-bold text-primary service-tier-amount">$7,500-$25,000+</span>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-600 font-medium">Client Lifetime Value:</span>
-                                <span class="text-2xl font-bold text-success">$50,000-$150,000+</span>
+                            <div class="flex justify-between items-center service-tier-pricing-row">
+                                <span class="text-gray-600 font-medium service-tier-label">Client Lifetime Value:</span>
+                                <span class="text-2xl font-bold text-success service-tier-amount">$50,000-$150,000+</span>
                             </div>
                             <p class="text-sm text-gray-600 mt-2">(multi-year engagements and family planning)</p>
                         </div>

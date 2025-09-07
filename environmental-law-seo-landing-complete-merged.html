@@ -149,12 +149,189 @@
     0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
     50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
 }
+
+/* Mobile Fixes for Viewport Overflow */
+@media (max-width: 768px) {
+    /* CRITICAL FIX: Disable slide animations that push content outside viewport */
+    .animate-on-scroll.animate-slide-left,
+    .animate-on-scroll.animate-slide-right,
+    .animate-slide-left,
+    .animate-slide-right {
+        animation: none !important;
+        transform: translateY(50px) !important;
+    }
+    
+    /* Override visible state to not use translateX */
+    .animate-on-scroll.visible.animate-slide-left,
+    .animate-on-scroll.visible.animate-slide-right {
+        transform: translateY(0) !important;
+    }
+    
+    /* NUCLEAR OPTION: Force ALL table containers to behave correctly */
+    .overflow-x-auto {
+        overflow-x: scroll !important;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        display: block !important;
+        margin-left: calc(-50vw + 50%) !important;
+        margin-right: calc(-50vw + 50%) !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Tables inside overflow containers - force proper sizing */
+    .overflow-x-auto table {
+        width: auto !important;
+        min-width: 700px !important;
+        max-width: none !important;
+        display: table !important;
+        margin: 0 auto !important;
+        table-layout: auto !important;
+    }
+    
+    /* CRITICAL: Override parent card containers */
+    /* Removed rule that forced cards to full width - let container padding work */
+    
+    /* Force table to NOT use w-full class behavior */
+    .overflow-x-auto table.w-full {
+        width: auto !important;
+    }
+    
+    /* Add visual scrollbar indicators */
+    .overflow-x-auto::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .overflow-x-auto::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    
+    /* Hide decorative floating elements that extend beyond viewport */
+    .float-animation {
+        display: none !important;
+    }
+    
+    /* Fix dropdown menu width */
+    .absolute.w-96 {
+        width: 90% !important;
+        max-width: 24rem !important;
+    }
+    
+    /* Ensure all sections don't overflow */
+    section {
+        overflow-x: hidden;
+    }
+    
+    /* Reduce excessive padding on mobile - removed to allow responsive classes to work */
+    /* .p-8 {
+        padding: 1rem !important;
+    } */
+    
+    /* Force mobile responsive padding to work properly */
+    @media (max-width: 639px) {
+        .p-8.max-sm\:p-4 {
+            padding: 0.75rem !important;
+        }
+        .grid.max-sm\:gap-3 {
+            gap: 0.75rem !important;
+        }
+    }
+    
+    .px-8 {
+        padding-left: 2vw !important;
+        padding-right: 2vw !important;
+    }
+    
+    /* CRITICAL: Fix viewport precision issues */
+    html {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    
+    body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure all containers stay within viewport with safe margins */
+    .max-w-7xl,
+    .max-w-6xl,
+    .max-w-5xl,
+    .max-w-4xl {
+        max-width: calc(100vw - 4vw) !important;
+        padding-left: 2vw !important;
+        padding-right: 2vw !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Force all sections to respect viewport */
+    section {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* CRITICAL: Fix hero section height and reduce blank space on mobile */
+    #hero {
+        height: auto !important;
+        min-height: 85vh !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Reduce spacing in hero grid layout */
+    #hero .grid.grid-cols-1.lg\\:grid-cols-2 {
+        gap: 2rem !important;
+    }
+    
+    /* Optimize hero column spacing */
+    #hero .py-20 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Fix any other sections with fixed heights that might cut content */
+    section[class*="h-["] {
+        height: auto !important;
+        min-height: auto !important;
+    }
+    
+    /* Fix header overflow */
+    #header {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Fix hover animations that can cause overflow */
+    .data-card:hover,
+    .mistake-card:hover {
+        transform: none !important;
+    }
+    
+    /* Disable horizontal transform animations on mobile */
+    .agency-keyword:hover,
+    .market-tier:hover {
+        transform: translateY(0) !important;
+    }
+}
     </style>
 </head>
 <body class="font-inter bg-white">
     <!-- Header: Header Section -->
     <header id="header" class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
                     <div class="flex items-center">
@@ -234,14 +411,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-br from-green-50 via-emerald-50 to-slate-50 overflow-hidden h-[900px]">
+    <section id="hero" class="relative bg-gradient-to-br from-green-50 via-emerald-50 to-slate-50 overflow-hidden h-[1100px]">
         <div class="absolute inset-0 opacity-30">
             <div class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
             <div class="absolute bottom-20 right-10 w-80 h-80 bg-secondary/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/10 to-environmental/10 rounded-full filter blur-3xl float-animation" style="animation-delay: 1.5s;"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8 py-20 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="animate-on-scroll animate-slide-left">
                     <div class="inline-flex items-center bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -250,9 +427,8 @@
                     </div>
                     
                     <h1 class="font-playfair text-5xl md:text-6xl font-bold text-accent leading-tight mb-6">
-                        When Environmental Crises 
-                        <span class="text-primary">Strike</span>, 
-                        Be Found First
+                        When Environmental Crises Strike,
+                        <span class="text-primary">Be Found First</span> 
                     </h1>
                     
                     <p class="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -278,10 +454,10 @@
                         </div>
                     </div>
                     
-                    <div class="mb-8">
+                    <div class="mb-8 max-sm:text-center">
                         <button class="bg-gradient-to-r from-primary to-environmental text-white px-8 py-4 rounded-lg font-semibold hover:from-environmental hover:to-primary transition-all duration-300 transform hover:scale-105 shadow-lg">
                             <i class="fas fa-chart-line mr-2"></i>
-                            View Our 3 Phase Environmental SEO Plan with Pricing
+                            Get Your Free SEO Analysis
                         </button>
                     </div>
                     
@@ -305,7 +481,7 @@
                     </div>
                 </div>
                 
-                <div class="animate-on-scroll animate-slide-right relative">
+                <div class="animate-on-scroll animate-slide-right relative flex items-start justify-center h-full">
                     <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
                         <div class="bg-gradient-to-r from-gray-50 to-gray-100 p-4 flex items-center space-x-2">
                             <div class="flex space-x-2">
@@ -321,7 +497,7 @@
                         <div class="p-6 space-y-4">
                             <div class="bg-gradient-to-r from-primary/10 to-environmental/10 p-4 rounded-lg border-l-4 border-primary">
                                 <div class="flex items-start space-x-3">
-                                    <div class="text-yellow-500 text-sm mt-1">Ad</div>
+                                    <div class="text-yellow-500 text-sm mt-1">#1</div>
                                     <div class="flex-1">
                                         <h3 class="text-lg font-bold text-primary hover:underline cursor-pointer">Your Environmental Law Firm</h3>
                                         <p class="text-sm text-gray-600 mt-1">#1 Environmental Attorney · Free Consultation</p>
@@ -365,74 +541,119 @@
 
     <!-- Problem Section -->
     <section id="problem" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="font-playfair text-5xl font-bold text-accent mb-6">The Environmental Compliance Crisis</h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <h2 class="font-playfair text-5xl font-bold text-accent mb-6 max-sm:text-3xl max-sm:mb-4">The Environmental Compliance Crisis</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto max-sm:max-w-none max-sm:mx-0 leading-relaxed max-sm:max-w-none max-sm:mx-0">
                     Every day, thousands of businesses face unexpected environmental violations that threaten their very existence. In that vulnerable moment of regulatory crisis and potential criminal liability, they desperately search for specialized legal help. But here's what most environmental attorneys don't realize about this critical moment...
                 </p>
             </div>
 
             <div class="space-y-12">
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 animate-on-scroll">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div class="relative">
-                            <div class="absolute left-8 top-0 bottom-0 w-1 timeline-connector"></div>
-                            <div class="relative z-10 bg-white rounded-xl p-6 shadow-lg border border-gray-200">
-                                <div class="absolute -left-3 top-8 w-6 h-6 bg-primary rounded-full border-4 border-white"></div>
-                                <div class="flex items-center mb-4">
-                                    <span class="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Day 1: The Violation Discovery</span>
-                                </div>
-                                <p class="text-gray-700 mb-4">EPA inspection reveals violations. Business leadership discovers potential criminal liability</p>
-                                <div class="space-y-3">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-danger">78%</div>
-                                        <div class="text-sm text-gray-600">of businesses search for environmental attorneys within 48 hours of violation notice</div>
+                <div class="relative bg-gradient-to-br from-gray-50 via-green-50/30 to-emerald-50 rounded-3xl p-12 animate-on-scroll overflow-hidden max-sm:p-3 max-sm:rounded-xl">
+                    <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-warning to-danger"></div>
+                    
+                    <div class="relative">
+                        <div class="hidden lg:block absolute top-32 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
+                            <div class="flex items-center justify-between">
+                                <div class="w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg z-10"></div>
+                                <div class="flex-1 h-1 bg-gradient-to-r from-primary to-warning mx-4"></div>
+                                <div class="w-6 h-6 bg-warning rounded-full border-4 border-white shadow-lg z-10"></div>
+                                <div class="flex-1 h-1 bg-gradient-to-r from-warning to-danger mx-4"></div>
+                                <div class="w-6 h-6 bg-danger rounded-full border-4 border-white shadow-lg z-10"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-12 pt-8 max-sm:gap-2 max-sm:pt-4">
+                            <div class="relative group max-sm:mb-2">
+                                <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform max-sm:hidden"></div>
+                                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-primary/10 group-hover:shadow-2xl transition-all transform group-hover:-translate-y-1 max-sm:p-3 max-sm:shadow-lg max-sm:rounded-lg">
+                                    <div class="absolute -top-4 left-8 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg max-sm:w-6 max-sm:h-6 max-sm:-top-3 max-sm:left-3 max-sm:text-xs">1</div>
+                                    
+                                    <div class="mb-6 max-sm:mb-3">
+                                        <div class="inline-flex items-center bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-sm max-sm:px-3 max-sm:py-1 max-sm:text-xs max-sm:mb-2">
+                                            <i class="fas fa-search mr-2 max-sm:mr-1"></i>
+                                            <span class="max-sm:hidden">Day 1: The Violation Discovery</span>
+                                            <span class="sm:hidden">Day 1: Violation</span>
+                                        </div>
+                                        <p class="text-gray-700 text-base leading-relaxed max-sm:text-sm max-sm:leading-normal">EPA inspection reveals violations. Business leadership discovers potential criminal liability</p>
                                     </div>
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-warning">91%</div>
-                                        <div class="text-sm text-gray-600">search on mobile devices during business hours from corporate offices</div>
+                                    
+                                    <div class="space-y-4 max-sm:space-y-2">
+                                        <div class="bg-gradient-to-r from-red-50 to-red-100/50 rounded-xl p-4 border-l-4 border-danger max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-4xl font-black text-danger max-sm:text-2xl">78%</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">of businesses search for environmental attorneys within 48 hours</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gradient-to-r from-yellow-50 to-yellow-100/50 rounded-xl p-4 border-l-4 border-warning max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-4xl font-black text-warning max-sm:text-2xl">91%</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">search on mobile during business hours</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="relative">
-                            <div class="absolute left-8 top-0 bottom-0 w-1 timeline-connector"></div>
-                            <div class="relative z-10 bg-white rounded-xl p-6 shadow-lg border border-gray-200">
-                                <div class="absolute -left-3 top-8 w-6 h-6 bg-warning rounded-full border-4 border-white"></div>
-                                <div class="flex items-center mb-4">
-                                    <span class="text-sm font-bold text-warning bg-warning/10 px-3 py-1 rounded-full">Days 1-7: The Urgent Response</span>
-                                </div>
-                                <p class="text-gray-700 mb-4">Notice of Violation received with 30-day response deadline while facing operational shutdown</p>
-                                <div class="space-y-3">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-primary">87%</div>
-                                        <div class="text-sm text-gray-600">never research past the first page of search results</div>
+                            
+                            <div class="relative group max-sm:mb-2">
+                                <div class="absolute inset-0 bg-gradient-to-br from-warning/20 to-warning/5 rounded-2xl transform -rotate-1 group-hover:-rotate-2 transition-transform max-sm:hidden"></div>
+                                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-warning/10 group-hover:shadow-2xl transition-all transform group-hover:-translate-y-1 max-sm:p-3 max-sm:shadow-lg max-sm:rounded-lg">
+                                    <div class="absolute -top-4 left-8 w-8 h-8 bg-warning rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg max-sm:w-6 max-sm:h-6 max-sm:-top-3 max-sm:left-3 max-sm:text-xs">2</div>
+                                    
+                                    <div class="mb-6">
+                                        <div class="inline-flex items-center bg-gradient-to-r from-warning to-warning/80 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-sm max-sm:px-3 max-sm:py-1 max-sm:text-xs max-sm:mb-2">
+                                            <i class="fas fa-clock mr-2 max-sm:mr-1"></i>
+                                            <span class="max-sm:hidden">Days 1-7: The Urgent Response</span>
+                                            <span class="sm:hidden">Days 1-7: Urgent</span>
+                                        </div>
+                                        <p class="text-gray-700 text-base leading-relaxed">Notice of Violation received with 30-day response deadline while facing operational shutdown</p>
                                     </div>
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-secondary">45.2%</div>
-                                        <div class="text-sm text-gray-600">of clicks go to the #1 ranking environmental law firm</div>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="bg-gradient-to-r from-green-50 to-green-100/50 rounded-xl p-4 border-l-4 border-primary max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-4xl font-black text-primary max-sm:text-2xl">87%</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">never research past the first page of search results</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gradient-to-r from-emerald-50 to-emerald-100/50 rounded-xl p-4 border-l-4 border-secondary max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-4xl font-black text-secondary max-sm:text-2xl">45.2%</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">of clicks go to the #1 ranking environmental law firm</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="relative">
-                            <div class="relative z-10 bg-white rounded-xl p-6 shadow-lg border border-gray-200">
-                                <div class="absolute -left-3 top-8 w-6 h-6 bg-danger rounded-full border-4 border-white"></div>
-                                <div class="flex items-center mb-4">
-                                    <span class="text-sm font-bold text-danger bg-danger/10 px-3 py-1 rounded-full">Days 7-30: The Legal Decision</span>
-                                </div>
-                                <p class="text-gray-700 mb-4">Attorney consultation scheduled. Average penalty exposure ranges from $57K-$460K per violation</p>
-                                <div class="space-y-3">
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-danger">$93,750</div>
-                                        <div class="text-sm text-gray-600">average Clean Air Act penalty</div>
+                            
+                            <div class="relative group max-sm:mb-2">
+                                <div class="absolute inset-0 bg-gradient-to-br from-danger/20 to-danger/5 rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform max-sm:hidden"></div>
+                                <div class="relative bg-white rounded-2xl p-8 shadow-xl border border-danger/10 group-hover:shadow-2xl transition-all transform group-hover:-translate-y-1 max-sm:p-3 max-sm:shadow-lg max-sm:rounded-lg">
+                                    <div class="absolute -top-4 left-8 w-8 h-8 bg-danger rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg max-sm:w-6 max-sm:h-6 max-sm:-top-3 max-sm:left-3 max-sm:text-xs">3</div>
+                                    
+                                    <div class="mb-6">
+                                        <div class="inline-flex items-center bg-gradient-to-r from-danger to-danger/80 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-sm max-sm:px-3 max-sm:py-1 max-sm:text-xs max-sm:mb-2">
+                                            <i class="fas fa-gavel mr-2 max-sm:mr-1"></i>
+                                            <span class="max-sm:hidden">Days 7-30: The Legal Decision</span>
+                                            <span class="sm:hidden">Days 7-30: Legal</span>
+                                        </div>
+                                        <p class="text-gray-700 text-base leading-relaxed">Attorney consultation scheduled. Average penalty exposure ranges from $57K-$460K per violation</p>
                                     </div>
-                                    <div class="flex items-center space-x-2">
-                                        <div class="text-3xl font-bold text-danger">$460,926</div>
-                                        <div class="text-sm text-gray-600">maximum penalty per violation</div>
+                                    
+                                    <div class="space-y-4 max-sm:space-y-2">
+                                        <div class="bg-gradient-to-r from-red-50 to-red-100/50 rounded-xl p-4 border-l-4 border-danger max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-3xl font-black text-danger max-sm:text-2xl">$93,750</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">average Clean Air Act penalty</div>
+                                            </div>
+                                        </div>
+                                        <div class="bg-gradient-to-r from-red-50 to-red-100/50 rounded-xl p-4 border-l-4 border-danger max-sm:p-2 max-sm:rounded-lg max-sm:border-l-2">
+                                            <div class="flex items-baseline space-x-3 max-sm:space-x-2">
+                                                <div class="text-3xl font-black text-danger max-sm:text-2xl">$460,926</div>
+                                                <div class="text-sm text-gray-700 leading-tight max-sm:text-xs">maximum penalty per violation</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -479,48 +700,48 @@
 
     <!-- Google Ads vs SEO Section -->
     <section id="google-ads-vs-seo" class="py-24 bg-gradient-to-br from-slate-50 to-green-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-5xl font-bold text-accent mb-4">Why Google Ads Are Bankrupting Environmental Law Firms</h2>
                 <p class="text-2xl text-gray-700 font-semibold mb-6">(And Why SEO Is Your Lifeline)</p>
                 <p class="text-xl text-gray-600">Here's the math that will shock you about environmental law advertising costs.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-on-scroll">
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-red-200">
-                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6">
-                        <h3 class="text-2xl font-bold text-white flex items-center">
-                            <i class="fas fa-dollar-sign mr-3"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-sm:gap-4 animate-on-scroll">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-red-200 max-sm:rounded-xl max-sm:shadow-lg">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 max-sm:p-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center max-sm:text-xl max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                            <i class="fas fa-dollar-sign mr-3 max-sm:mr-0 max-sm:mb-1"></i>
                             Google Ads
                         </h3>
-                        <p class="text-red-100 mt-2">Pay-per-click advertising</p>
+                        <p class="text-red-100 mt-2 max-sm:text-sm max-sm:mt-1">Pay-per-click advertising</p>
                     </div>
-                    <div class="p-8">
-                        <h4 class="font-semibold text-gray-800 mb-4">Cost Breakdown:</h4>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Cost per click:</span>
-                                <span class="font-bold text-red-600">$50-200+</span>
+                    <div class="p-8 max-sm:p-4">
+                        <h4 class="font-semibold text-gray-800 mb-4 max-sm:text-sm max-sm:mb-3">Cost Breakdown:</h4>
+                        <ul class="space-y-3 mb-6 max-sm:space-y-2 max-sm:mb-4">
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Cost per click:</span>
+                                <span class="font-bold text-red-600 max-sm:text-lg">$50-200+</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">100 clicks/month:</span>
-                                <span class="font-bold text-red-600">$5,000-20,000</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">100 clicks/month:</span>
+                                <span class="font-bold text-red-600 max-sm:text-lg">$5,000-20,000</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Cost per lead (4% CVR):</span>
-                                <span class="font-bold text-red-600">$1,250-5,000</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Cost per lead (4% CVR):</span>
+                                <span class="font-bold text-red-600 max-sm:text-lg">$1,250-5,000</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Management fees (20%):</span>
-                                <span class="font-bold text-red-600">+$1,000-4,000</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Management fees (20%):</span>
+                                <span class="font-bold text-red-600 max-sm:text-lg">+$1,000-4,000</span>
                             </li>
-                            <li class="border-t pt-3 flex justify-between items-center">
-                                <span class="text-gray-800 font-semibold">12-Month Total:</span>
-                                <span class="font-bold text-2xl text-red-600">$72,000-288,000</span>
+                            <li class="border-t pt-3 flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:pt-2">
+                                <span class="text-gray-800 font-semibold max-sm:text-sm">12-Month Total:</span>
+                                <span class="font-bold text-2xl text-red-600 max-sm:text-xl">$72,000-288,000</span>
                             </li>
                         </ul>
-                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-                            <p class="text-red-800 font-semibold">
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded max-sm:p-3 max-sm:rounded-lg">
+                            <p class="text-red-800 font-semibold max-sm:text-sm">
                                 <i class="fas fa-exclamation-triangle mr-2"></i>
                                 Warning: Traffic stops the moment you stop paying
                             </p>
@@ -528,40 +749,40 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-green-300">
-                    <div class="bg-gradient-to-r from-primary to-environmental p-6">
-                        <h3 class="text-2xl font-bold text-white flex items-center">
-                            <i class="fas fa-chart-line mr-3"></i>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-green-300 max-sm:rounded-xl max-sm:shadow-lg">
+                    <div class="bg-gradient-to-r from-primary to-environmental p-6 max-sm:p-4">
+                        <h3 class="text-2xl font-bold text-white flex items-center max-sm:text-xl max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                            <i class="fas fa-chart-line mr-3 max-sm:mr-0 max-sm:mb-1"></i>
                             SEO Investment
                         </h3>
-                        <p class="text-green-100 mt-2">Long-term asset building</p>
+                        <p class="text-green-100 mt-2 max-sm:text-sm max-sm:mt-1">Long-term asset building</p>
                     </div>
-                    <div class="p-8">
-                        <h4 class="font-semibold text-gray-800 mb-4">Cost Breakdown:</h4>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Initial investment (90 days):</span>
-                                <span class="font-bold text-green-600">$9,000-25,000</span>
+                    <div class="p-8 max-sm:p-4">
+                        <h4 class="font-semibold text-gray-800 mb-4 max-sm:text-sm max-sm:mb-3">Cost Breakdown:</h4>
+                        <ul class="space-y-3 mb-6 max-sm:space-y-2 max-sm:mb-4">
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Initial investment (90 days):</span>
+                                <span class="font-bold text-green-600 max-sm:text-lg">$9,000-25,000</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Monthly organic growth:</span>
-                                <span class="font-bold text-green-600">200 → 8,000+ visitors</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Monthly organic growth:</span>
+                                <span class="font-bold text-green-600 max-sm:text-lg">200 → 8,000+ visitors</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Monthly leads growth:</span>
-                                <span class="font-bold text-green-600">5 → 150+ qualified leads</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Monthly leads growth:</span>
+                                <span class="font-bold text-green-600 max-sm:text-lg">5 → 150+ qualified leads</span>
                             </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-gray-600">Cost per lead:</span>
-                                <span class="font-bold text-green-600">$1,800-5,000 → $60-200</span>
+                            <li class="flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1">
+                                <span class="text-gray-600 max-sm:text-sm">Cost per lead:</span>
+                                <span class="font-bold text-green-600 max-sm:text-lg">$1,800-5,000 → $60-200</span>
                             </li>
-                            <li class="border-t pt-3 flex justify-between items-center">
-                                <span class="text-gray-800 font-semibold">12-Month Total:</span>
-                                <span class="font-bold text-2xl text-green-600">$15,000-35,000</span>
+                            <li class="border-t pt-3 flex justify-between items-center max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:pt-2">
+                                <span class="text-gray-800 font-semibold max-sm:text-sm">12-Month Total:</span>
+                                <span class="font-bold text-2xl text-green-600 max-sm:text-xl">$15,000-35,000</span>
                             </li>
                         </ul>
-                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
-                            <p class="text-green-800 font-semibold">
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded max-sm:p-3 max-sm:rounded-lg">
+                            <p class="text-green-800 font-semibold max-sm:text-sm">
                                 <i class="fas fa-check-circle mr-2"></i>
                                 Benefit: Month 4+: Reinvest from increased case revenue
                             </p>
@@ -574,7 +795,7 @@
 
     <!-- Solutions Section -->
     <section id="solutions" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-5xl font-bold text-accent mb-6">Our Environmental Law SEO System</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -591,11 +812,11 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-4 mb-4">
-                                <h3 class="text-2xl font-bold text-accent">Phase 1: Foundation & Compliance Optimization</h3>
-                                <div class="flex items-center gap-4">
-                                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">$3,000 - $5,000/month</span>
-                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold">Months 1-3</span>
+                            <div class="flex flex-wrap items-center gap-4 mb-4 max-sm:flex-col max-sm:items-start max-sm:gap-3">
+                                <h3 class="text-2xl font-bold text-accent max-sm:text-xl">Phase 1: Foundation & Compliance Optimization</h3>
+                                <div class="flex items-center gap-4 max-sm:flex-col max-sm:items-start max-sm:gap-2">
+                                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">$3,000 - $5,000/month</span>
+                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">Months 1-3</span>
                                 </div>
                             </div>
                             <p class="text-gray-700 mb-6 text-lg">Build strong foundations and capture immediate regulatory opportunities</p>
@@ -632,11 +853,11 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-4 mb-4">
-                                <h3 class="text-2xl font-bold text-accent">Phase 2: Authority & Expansion</h3>
-                                <div class="flex items-center gap-4">
-                                    <span class="bg-environmental/10 text-environmental px-3 py-1 rounded-full text-sm font-semibold">$5,000 - $8,000/month</span>
-                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold">Months 4-9</span>
+                            <div class="flex flex-wrap items-center gap-4 mb-4 max-sm:flex-col max-sm:items-start max-sm:gap-3">
+                                <h3 class="text-2xl font-bold text-accent max-sm:text-xl">Phase 2: Authority & Expansion</h3>
+                                <div class="flex items-center gap-4 max-sm:flex-col max-sm:items-start max-sm:gap-2">
+                                    <span class="bg-environmental/10 text-environmental px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">$5,000 - $8,000/month</span>
+                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">Months 4-9</span>
                                 </div>
                             </div>
                             <p class="text-gray-700 mb-6 text-lg">Scale successful strategies and expand regulatory expertise visibility</p>
@@ -670,11 +891,11 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <div class="flex flex-wrap items-center gap-4 mb-4">
-                                <h3 class="text-2xl font-bold text-accent">Phase 3: Market Domination</h3>
-                                <div class="flex items-center gap-4">
-                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold">$8,000 - $15,000+/month</span>
-                                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">Months 10+</span>
+                            <div class="flex flex-wrap items-center gap-4 mb-4 max-sm:flex-col max-sm:items-start max-sm:gap-3">
+                                <h3 class="text-2xl font-bold text-accent max-sm:text-xl">Phase 3: Market Domination</h3>
+                                <div class="flex items-center gap-4 max-sm:flex-col max-sm:items-start max-sm:gap-2">
+                                    <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">$8,000 - $15,000+/month</span>
+                                    <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold max-sm:px-2 max-sm:py-1 max-sm:text-xs">Months 10+</span>
                                 </div>
                             </div>
                             <p class="text-gray-700 mb-6 text-lg">Achieve market leadership and maximize environmental law case values</p>
@@ -705,7 +926,7 @@
 
     <!-- Practice Area Performance Data Section -->
     <section id="practice-area-performance" class="py-24 bg-gradient-to-br from-slate-50 to-green-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-5xl font-bold text-accent mb-6">Practice Area Performance Data</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -798,7 +1019,7 @@
 
     <!-- Fatal SEO Mistakes Section -->
     <section id="fatal-mistakes" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-5xl font-bold text-accent mb-6">7 Fatal SEO Mistakes Environmental Law Firms Make</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -807,15 +1028,15 @@
             </div>
 
             <div class="space-y-6 animate-on-scroll">
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">1</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">1</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Ignoring Regulatory Crisis Response and Emergency Search Optimization</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Ignoring Regulatory Crisis Response and Emergency Search Optimization</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Generic environmental law content without crisis response protocols</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> 83% of environmental crisis searches happen within 24 hours of incident</p>
@@ -826,15 +1047,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">2</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">2</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Complex Technical Jargon Instead of Business-Focused Language</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Complex Technical Jargon Instead of Business-Focused Language</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Optimizing for "CERCLA liability" instead of "Superfund cleanup costs"</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> Environmental managers search using operational terms, not legal jargon</p>
@@ -845,15 +1066,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">3</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">3</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Poor Mobile Optimization for Environmental Crisis Searches</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Poor Mobile Optimization for Environmental Crisis Searches</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Slow-loading websites that exceed 3-second mobile load times</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> 68% of environmental legal searches happen on mobile during crises</p>
@@ -864,15 +1085,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">4</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">4</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Missing Authority Demonstration for High-Stakes Environmental Matters</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Missing Authority Demonstration for High-Stakes Environmental Matters</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> No showcase of environmental case results or regulatory expertise</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> Businesses need proof of success before hiring for multi-million dollar liabilities</p>
@@ -883,15 +1104,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">5</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">5</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Weak Local SEO for State Environmental Compliance Issues</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Weak Local SEO for State Environmental Compliance Issues</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Missing location-specific environmental compliance content</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> Environmental violations are regulated by state agencies plus federal EPA</p>
@@ -902,15 +1123,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">6</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">6</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Outdated Regulatory Content and Compliance Information</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Outdated Regulatory Content and Compliance Information</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Publishing content without updating for changing EPA regulations</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> Environmental regulations change frequently; outdated content demonstrates incompetence</p>
@@ -921,15 +1142,15 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center">
-                                <span class="text-danger font-bold text-xl">7</span>
+                <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mistake-card hover:shadow-xl max-sm:p-4">
+                    <div class="flex items-start space-x-4 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3">
+                        <div class="flex-shrink-0 max-sm:self-start">
+                            <div class="w-12 h-12 bg-danger/10 rounded-full flex items-center justify-center max-sm:w-10 max-sm:h-10">
+                                <span class="text-danger font-bold text-xl max-sm:text-lg">7</span>
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-danger mb-2">❌ Missing High-Value Corporate Environmental Client Targeting</h3>
+                            <h3 class="text-xl font-bold text-danger mb-2 max-sm:text-lg max-sm:mb-3">❌ Missing High-Value Corporate Environmental Client Targeting</h3>
                             <div class="space-y-2 text-gray-700">
                                 <p><span class="font-semibold">What You're Doing Wrong:</span> Generic content not addressing Fortune 500 environmental compliance needs</p>
                                 <p><span class="font-semibold">Why It's Killing Results:</span> Corporate environmental matters require sophisticated legal expertise demonstration</p>
@@ -940,11 +1161,14 @@
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-8 border-2 border-danger/20 mt-8">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-8 border-2 border-danger/20 mt-8 max-sm:p-5 max-sm:rounded-lg">
                     <div class="text-center">
-                        <h3 class="text-2xl font-bold text-danger mb-4">⚠️ The Cost of Each Day You Wait</h3>
-                        <p class="text-lg text-gray-700 mb-4">Every day these mistakes continue, you lose potential environmental cases to competitors who understand environmental law digital marketing.</p>
-                        <p class="text-3xl font-bold text-danger">Conservative estimate: $250,000+ in missed revenue opportunities per month</p>
+                        <h3 class="text-2xl font-bold text-danger mb-4 max-sm:text-xl max-sm:mb-3">⚠️ The Cost of Each Day You Wait</h3>
+                        <p class="text-lg text-gray-700 mb-4 max-sm:text-base max-sm:mb-4 max-sm:leading-relaxed">Every day these mistakes continue, you lose potential environmental cases to competitors who understand environmental law digital marketing.</p>
+                        <div class="max-sm:space-y-2">
+                            <p class="text-base font-semibold text-danger max-sm:text-sm">Conservative estimate:</p>
+                            <p class="text-3xl font-bold text-danger max-sm:text-2xl max-sm:leading-tight">$250,000+ in missed revenue opportunities per month</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -953,7 +1177,7 @@
 
     <!-- 7-Step Environmental Law SEO System Section -->
     <section id="seo-system" class="py-24 bg-gradient-to-br from-slate-50 to-green-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-5xl font-bold text-accent mb-6">The 7-Step Environmental Law SEO System That Actually Works</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -962,13 +1186,13 @@
             </div>
 
             <div class="space-y-12">
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             1
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 1: Master Environmental-Specific Keyword Research</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 1: Master Environmental-Specific Keyword Research</h3>
                             <p class="text-gray-700 mb-6">
                                 Environmental law keyword research isn't about finding the highest search volume—it's about understanding the psychology of someone facing regulatory violations, environmental crises, and compliance deadlines. Someone searching "environmental lawyer" has already decided they need legal help; someone searching "EPA violation response" is still processing their compliance crisis. You need both.
                             </p>
@@ -1098,13 +1322,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             2
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 2: Dominate Local Search Near Industrial Areas and Environmental Hotspots</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 2: Dominate Local Search Near Industrial Areas and Environmental Hotspots</h3>
                             <p class="text-gray-700 mb-6">
                                 Environmental law is hyper-local by regulatory necessity. Clients need someone who understands their local environmental agencies, knows the industrial landscape of their area, and can meet them at manufacturing facilities or EPA regional offices. Your local SEO must reflect this industrial reality.
                             </p>
@@ -1209,12 +1433,12 @@
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-    <div class="flex items-start space-x-4 mb-6">
-        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
             3
         </div>
         <div class="flex-1">
-            <h3 class="text-2xl font-bold text-accent mb-4">Step 3: Create Content That Builds Trust With Compliance-Focused Clients</h3>
+            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 3: Create Content That Builds Trust With Compliance-Focused Clients</h3>
             <p class="text-gray-700 mb-6">
                 Environmental law clients aren't shopping for legal services—they're seeking expert guidance during regulatory crises and compliance challenges. Your content must meet them with expertise while providing clear regulatory guidance.
             </p>
@@ -1283,13 +1507,13 @@
     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             4
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 4: Technical SEO for Regulatory Crisis Situations</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 4: Technical SEO for Regulatory Crisis Situations</h3>
                             <p class="text-gray-700 mb-6">
                                 When someone searches for an environmental lawyer from their manufacturing facility during an EPA inspection, or while dealing with regulatory enforcement, every second of load time matters. Technical issues that might be minor for other businesses can be catastrophic for environmental law firms.
                             </p>
@@ -1379,13 +1603,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             5
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 5: Authority Building Through Strategic Regulatory Partnerships</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 5: Authority Building Through Strategic Regulatory Partnerships</h3>
                             <p class="text-gray-700 mb-6">
                                 Environmental law intersects with regulatory agencies and environmental consulting more than any other legal area. Your link building and authority development must reflect these unique regulatory relationships.
                             </p>
@@ -1442,13 +1666,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             6
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 6: Ethical Review Management for Complex Environmental Cases</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 6: Ethical Review Management for Complex Environmental Cases</h3>
                             <p class="text-gray-700 mb-6">
                                 Environmental law reviews require special handling due to client confidentiality and the sensitive nature of regulatory violations and environmental compliance issues.
                             </p>
@@ -1500,13 +1724,13 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-                    <div class="flex items-start space-x-4 mb-6">
-                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll max-sm:p-4">
+                    <div class="flex items-start space-x-4 mb-6 max-sm:flex-col max-sm:space-x-0 max-sm:space-y-3 max-sm:mb-4">
+                        <div class="w-12 h-12 step-number rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0 max-sm:w-10 max-sm:h-10 max-sm:self-start">
                             7
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Step 7: Track Metrics That Correlate With Environmental Case Revenue</h3>
+                            <h3 class="text-2xl font-bold text-accent mb-4 max-sm:text-xl max-sm:mb-3">Step 7: Track Metrics That Correlate With Environmental Case Revenue</h3>
                             <p class="text-gray-700 mb-6">
                                 Generic SEO metrics don't tell the whole story for environmental law firms. Track metrics that actually predict new environmental cases and regulatory work revenue.
                             </p>
@@ -1673,12 +1897,12 @@
 
     <!-- Local Environmental Data Authority Section -->
     <section id="local-environmental-data" class="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
                     How to Use Local Environmental Data to Create <span class="text-primary">Authority Content</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto max-sm:max-w-none max-sm:mx-0">
                     <span class="font-semibold">Your secret weapon:</span> Local environmental data from EPA enforcement databases, state environmental agencies, and industrial monitoring reports. When you create content using real local environmental statistics, you accomplish three things: (1) rank higher for local searches, (2) establish yourself as the local environmental expert, and (3) provide genuinely valuable information to your business community.
                 </p>
             </div>
@@ -1694,43 +1918,51 @@
                         <h4 class="text-xl font-bold text-accent mb-4">Where to Find Your Local Environmental Data (Free Sources!)</h4>
                         
                         <div class="space-y-6">
-                            <div class="data-card bg-white rounded-lg p-4 shadow-md">
-                                <h5 class="font-semibold text-primary mb-2">EPA Enforcement and Compliance History Online (ECHO)</h5>
-                                <p class="text-gray-600 text-base mb-2">Most comprehensive source for local environmental violations</p>
-                                <div class="flex items-center text-base text-gray-500">
-                                    <i class="fas fa-search mr-2 text-primary"></i>
-                                    <span class="font-semibold">Look for:</span>
-                                    <span class="ml-2">"Facility Detail Report" and "State Summary" data</span>
+                            <div class="data-card bg-white rounded-lg p-4 shadow-md max-sm:p-3">
+                                <h5 class="font-semibold text-primary mb-2 max-sm:text-sm max-sm:mb-1">EPA Enforcement and Compliance History Online (ECHO)</h5>
+                                <p class="text-gray-600 text-base mb-2 max-sm:text-sm max-sm:mb-2">Most comprehensive source for local environmental violations</p>
+                                <div class="flex items-center text-base text-gray-500 max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:text-sm">
+                                    <div class="flex items-center max-sm:w-full">
+                                        <i class="fas fa-search mr-2 text-primary max-sm:mr-1"></i>
+                                        <span class="font-semibold">Look for:</span>
+                                    </div>
+                                    <span class="ml-2 max-sm:ml-0 max-sm:pl-4">"Facility Detail Report" and "State Summary" data</span>
                                 </div>
                             </div>
 
-                            <div class="data-card bg-white rounded-lg p-4 shadow-md">
-                                <h5 class="font-semibold text-primary mb-2">State Environmental Agency Databases</h5>
-                                <p class="text-gray-600 text-base mb-2">Great for state-specific violations and permits</p>
-                                <div class="flex items-center text-base text-gray-500">
-                                    <i class="fas fa-search mr-2 text-primary"></i>
-                                    <span class="font-semibold">Search:</span>
-                                    <span class="ml-2">"[Your state] environmental violations database"</span>
+                            <div class="data-card bg-white rounded-lg p-4 shadow-md max-sm:p-3">
+                                <h5 class="font-semibold text-primary mb-2 max-sm:text-sm max-sm:mb-1">State Environmental Agency Databases</h5>
+                                <p class="text-gray-600 text-base mb-2 max-sm:text-sm max-sm:mb-2">Great for state-specific violations and permits</p>
+                                <div class="flex items-center text-base text-gray-500 max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:text-sm">
+                                    <div class="flex items-center max-sm:w-full">
+                                        <i class="fas fa-search mr-2 text-primary max-sm:mr-1"></i>
+                                        <span class="font-semibold">Search:</span>
+                                    </div>
+                                    <span class="ml-2 max-sm:ml-0 max-sm:pl-4">"[Your state] environmental violations database"</span>
                                 </div>
                             </div>
 
-                            <div class="data-card bg-white rounded-lg p-4 shadow-md">
-                                <h5 class="font-semibold text-primary mb-2">Local Air Quality Management Districts</h5>
-                                <p class="text-gray-600 text-base mb-2">Often provide detailed emission and violation data</p>
-                                <div class="flex items-center text-base text-gray-500">
-                                    <i class="fas fa-search mr-2 text-primary"></i>
-                                    <span class="font-semibold">Google:</span>
-                                    <span class="ml-2">"[Your region] air quality violations 2025"</span>
+                            <div class="data-card bg-white rounded-lg p-4 shadow-md max-sm:p-3">
+                                <h5 class="font-semibold text-primary mb-2 max-sm:text-sm max-sm:mb-1">Local Air Quality Management Districts</h5>
+                                <p class="text-gray-600 text-base mb-2 max-sm:text-sm max-sm:mb-2">Often provide detailed emission and violation data</p>
+                                <div class="flex items-center text-base text-gray-500 max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:text-sm">
+                                    <div class="flex items-center max-sm:w-full">
+                                        <i class="fas fa-search mr-2 text-primary max-sm:mr-1"></i>
+                                        <span class="font-semibold">Google:</span>
+                                    </div>
+                                    <span class="ml-2 max-sm:ml-0 max-sm:pl-4">"[Your region] air quality violations 2025"</span>
                                 </div>
                             </div>
 
-                            <div class="data-card bg-white rounded-lg p-4 shadow-md">
-                                <h5 class="font-semibold text-primary mb-2">EPA Superfund Site Database</h5>
-                                <p class="text-gray-600 text-base mb-2">Track cleanup progress and responsible parties</p>
-                                <div class="flex items-center text-base text-gray-500">
-                                    <i class="fas fa-search mr-2 text-primary"></i>
-                                    <span class="font-semibold">Search:</span>
-                                    <span class="ml-2">"EPA Superfund sites [your area]"</span>
+                            <div class="data-card bg-white rounded-lg p-4 shadow-md max-sm:p-3">
+                                <h5 class="font-semibold text-primary mb-2 max-sm:text-sm max-sm:mb-1">EPA Superfund Site Database</h5>
+                                <p class="text-gray-600 text-base mb-2 max-sm:text-sm max-sm:mb-2">Track cleanup progress and responsible parties</p>
+                                <div class="flex items-center text-base text-gray-500 max-sm:flex-col max-sm:items-start max-sm:space-y-1 max-sm:text-sm">
+                                    <div class="flex items-center max-sm:w-full">
+                                        <i class="fas fa-search mr-2 text-primary max-sm:mr-1"></i>
+                                        <span class="font-semibold">Search:</span>
+                                    </div>
+                                    <span class="ml-2 max-sm:ml-0 max-sm:pl-4">"EPA Superfund sites [your area]"</span>
                                 </div>
                             </div>
                         </div>
@@ -1800,37 +2032,63 @@
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl p-8">
-                    <h4 class="text-2xl font-bold text-accent mb-6">Step-by-Step: Turn Local Data Into a Ranking Article</h4>
+                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 max-sm:p-4">
+                    <div class="text-center mb-12">
+                        <h4 class="text-3xl font-bold text-accent mb-4">Step-by-Step: Turn Local Data Into a Ranking Article</h4>
+                        <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                    </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white rounded-lg p-6 shadow-md">
-                            <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">1</div>
-                            <h5 class="font-semibold text-accent mb-2">Find the Data</h5>
-                            <p class="text-base text-gray-600">EPA ECHO Database: "Clean Water Act violations increased 31% in [your metro area] in 2025"</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">1</div>
+                                <h5 class="text-lg font-bold text-accent">Find the Data</h5>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <p class="text-gray-700 font-medium mb-1">EPA ECHO Database:</p>
+                                <p class="text-blue-700 font-semibold text-sm">"Clean Water Act violations increased 31% in [your metro area] in 2025"</p>
+                            </div>
                         </div>
-
-                        <div class="bg-white rounded-lg p-6 shadow-md">
-                            <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">2</div>
-                            <h5 class="font-semibold text-accent mb-2">Create the Title</h5>
-                            <p class="text-base text-gray-600">"Water Discharge Violations Up 31% in [Metro Area]: Industries at Risk and Compliance Steps"</p>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">2</div>
+                                <h5 class="text-lg font-bold text-accent">Create the Title</h5>
+                            </div>
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <p class="text-green-700 font-semibold text-sm">"Water Discharge Violations Up 31% in [Metro Area]: Industries at Risk and Compliance Steps"</p>
+                            </div>
                         </div>
-
-                        <div class="bg-white rounded-lg p-6 shadow-md">
-                            <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">3</div>
-                            <h5 class="font-semibold text-accent mb-2">Add Expert Analysis</h5>
-                            <p class="text-base text-gray-600">Explain WHY violations increased (new regulations, increased enforcement, industrial growth) and what it means for local businesses</p>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-yellow-500 hover:shadow-xl transition-shadow">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">3</div>
+                                <h5 class="text-lg font-bold text-accent">Add Expert Analysis</h5>
+                            </div>
+                            <div class="bg-yellow-50 rounded-lg p-4">
+                                <p class="text-gray-700 text-sm">Explain <span class="font-bold text-yellow-700">WHY</span> violations increased (new regulations, increased enforcement, industrial growth) and what it means for local businesses</p>
+                            </div>
                         </div>
-
-                        <div class="bg-white rounded-lg p-6 shadow-md">
-                            <div class="step-number w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mb-4">4</div>
-                            <h5 class="font-semibold text-accent mb-2">SEO Result</h5>
-                            <p class="text-base text-gray-600">This article will rank for "[metro area] environmental violations," "water discharge compliance [city]," "[region] EPA enforcement data," and dozens of related local environmental searches. Plus, local business publications might cite it as a source!</p>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">4</div>
+                                <h5 class="text-lg font-bold text-accent">SEO Result</h5>
+                            </div>
+                            <div class="bg-red-50 rounded-lg p-4">
+                                <p class="text-gray-700 text-sm mb-2">This article will rank for:</p>
+                                <ul class="space-y-1 text-xs text-gray-600">
+                                    <li>"[metro area] environmental violations"</li>
+                                    <li>"water discharge compliance [city]"</li>
+                                    <li>"[region] EPA enforcement data"</li>
+                                </ul>
+                                <p class="text-gray-500 text-xs mt-2 italic">Plus, local business publications might cite it as a source!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-12 bg-white rounded-xl shadow-xl p-8 border-l-4 border-primary">
+                <div class="mt-12 bg-white rounded-xl shadow-xl p-6 border-l-4 border-primary max-sm:p-4">
                     <h4 class="text-2xl font-bold text-accent mb-6">The "Annual Environmental Compliance Trends" Authority Strategy</h4>
                     <p class="text-gray-600 text-lg mb-6">Here's how to become the go-to environmental expert in your region:</p>
                     
@@ -1892,7 +2150,7 @@
 
     <!-- Regulatory Agency SEO Optimization Section -->
     <section id="regulatory-agency-seo" class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
                     How to Optimize for <span class="text-primary">EPA and Regulatory Agency</span> Searches
@@ -1981,7 +2239,7 @@
 
     <!-- Why Generic Legal SEO Fails Section -->
     <section id="why-generic-seo-fails" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
                     Why Generic Legal SEO <span class="text-danger">Fails</span> for Environmental Law
@@ -2007,46 +2265,46 @@
                             <tr class="border-b border-gray-100">
                                 <td class="py-4 px-6 text-gray-600">Regulatory Compliance Understanding</td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-danger">❌</span>
+                                    <span class="text-lg text-danger">❌</span>
                                 </td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-primary">✅</span>
+                                    <span class="text-lg text-primary">✅</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100 bg-gray-50">
                                 <td class="py-4 px-6 text-gray-600">Industrial Client Psychology</td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-danger">❌</span>
+                                    <span class="text-lg text-danger">❌</span>
                                 </td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-primary">✅</span>
+                                    <span class="text-lg text-primary">✅</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100">
                                 <td class="py-4 px-6 text-gray-600">EPA Relationship Navigation</td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-danger">❌</span>
+                                    <span class="text-lg text-danger">❌</span>
                                 </td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-primary">✅</span>
+                                    <span class="text-lg text-primary">✅</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100 bg-gray-50">
                                 <td class="py-4 px-6 text-gray-600">Crisis Response Optimization</td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-danger">❌</span>
+                                    <span class="text-lg text-danger">❌</span>
                                 </td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-primary">✅</span>
+                                    <span class="text-lg text-primary">✅</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100">
                                 <td class="py-4 px-6 text-gray-600">Technical Expertise Integration</td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-danger">❌</span>
+                                    <span class="text-lg text-danger">❌</span>
                                 </td>
                                 <td class="text-center py-4 px-6">
-                                    <span class="text-3xl text-primary">✅</span>
+                                    <span class="text-lg text-primary">✅</span>
                                 </td>
                             </tr>
                             <tr class="border-b border-gray-100 bg-gray-50">
@@ -2176,78 +2434,80 @@
         </div>
 
         <div class="bg-white rounded-2xl shadow-xl p-8 animate-on-scroll">
-            <div class="flex items-center mb-8">
-                <AI-IMAGE class="w-24 h-24 rounded-full mr-6" src="professional female lawyer in office, environmental law books background" />
-                <div>
-                    <h3 class="text-2xl font-bold text-accent">Sarah Chen, Esq.</h3>
-                    <p class="text-gray-600">Chen Environmental Law Group</p>
+            <div class="flex flex-col md:flex-row items-start md:items-center mb-8 space-y-4 md:space-y-0 md:space-x-6">
+                <div class="flex-shrink-0">
+                    <AI-IMAGE class="w-24 h-24 rounded-full" src="professional female lawyer in office, environmental law books background" />
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="text-2xl font-bold text-accent mb-2">Sarah Chen, Esq.</h3>
+                    <p class="text-gray-600 mb-1">Chen Environmental Law Group</p>
                     <p class="text-sm text-gray-500">Denver, Colorado • Environmental Compliance & CERCLA Defense</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6">
-                    <h4 class="text-lg font-bold text-danger mb-4">Before SEO Implementation</h4>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Organic Traffic:</span>
-                            <span class="font-bold text-danger">800/month</span>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8 max-sm:gap-4">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 max-sm:p-3">
+                    <h4 class="text-lg font-bold text-danger mb-4 max-sm:text-base max-sm:mb-3">Before SEO Implementation</h4>
+                    <ul class="space-y-3 max-sm:space-y-2">
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Organic Traffic:</span>
+                            <span class="font-bold text-danger max-sm:text-base">800/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">New Consultations:</span>
-                            <span class="font-bold text-danger">5/month from organic</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">New Consultations:</span>
+                            <span class="font-bold text-danger max-sm:text-base">5/month from organic</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Cases Signed:</span>
-                            <span class="font-bold text-danger">4/month</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Cases Signed:</span>
+                            <span class="font-bold text-danger max-sm:text-base">4/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Trade Publication Spend:</span>
-                            <span class="font-bold text-danger">$25,000/month</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Trade Publication Spend:</span>
+                            <span class="font-bold text-danger max-sm:text-base">$25,000/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Cost per Case:</span>
-                            <span class="font-bold text-danger">$6,250</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Cost per Case:</span>
+                            <span class="font-bold text-danger max-sm:text-base">$6,250</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Monthly Revenue:</span>
-                            <span class="font-bold text-danger">$275,000</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Monthly Revenue:</span>
+                            <span class="font-bold text-danger max-sm:text-base">$275,000</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6">
-                    <h4 class="text-lg font-bold text-primary mb-4">After 120 Days of SEO</h4>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Organic Traffic:</span>
-                            <span class="font-bold text-primary">4,200/month</span>
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 max-sm:p-3">
+                    <h4 class="text-lg font-bold text-primary mb-4 max-sm:text-base max-sm:mb-3">After 120 Days of SEO</h4>
+                    <ul class="space-y-3 max-sm:space-y-2">
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Organic Traffic:</span>
+                            <span class="font-bold text-primary max-sm:text-base">4,200/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">New Consultations:</span>
-                            <span class="font-bold text-primary">32/month from organic</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">New Consultations:</span>
+                            <span class="font-bold text-primary max-sm:text-base">32/month from organic</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Cases Signed:</span>
-                            <span class="font-bold text-primary">19/month</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Cases Signed:</span>
+                            <span class="font-bold text-primary max-sm:text-base">19/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">SEO Investment:</span>
-                            <span class="font-bold text-primary">$12,000/month</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">SEO Investment:</span>
+                            <span class="font-bold text-primary max-sm:text-base">$12,000/month</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Cost per Case:</span>
-                            <span class="font-bold text-primary">$632</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Cost per Case:</span>
+                            <span class="font-bold text-primary max-sm:text-base">$632</span>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="text-gray-600">Monthly Revenue:</span>
-                            <span class="font-bold text-primary">$1,240,000</span>
+                        <li class="flex justify-between max-sm:flex-col max-sm:space-y-1">
+                            <span class="text-gray-600 max-sm:text-sm">Monthly Revenue:</span>
+                            <span class="font-bold text-primary max-sm:text-base">$1,240,000</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 mb-8">
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 mb-8 max-sm:p-3">
                 <h4 class="text-lg font-bold text-accent mb-4">The Transformation Strategy</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -2283,7 +2543,7 @@
 
     <!-- Investment & ROI Analysis Section -->
     <section id="investment-roi" class="py-20 bg-gradient-to-b from-white to-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
                     Investment & <span class="text-primary">ROI Analysis</span>
@@ -2361,7 +2621,7 @@
 
     <!-- Voice Search & AI Optimization Section -->
     <section id="voice-search-ai" class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
                     Voice Search & AI: The <span class="text-primary">Future</span> of Environmental Law SEO
@@ -2472,7 +2732,7 @@
 
     <!-- FAQ Section -->
     <section id="faq" class="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-[2vw] sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold text-accent mb-6">
                     Frequently Asked <span class="text-primary">Questions</span>
@@ -2482,7 +2742,7 @@
                 </p>
             </div>
 
-            <div class="max-w-4xl mx-auto">
+            <div class="max-w-4xl mx-auto max-sm:max-w-none max-sm:mx-0">
                 <div class="space-y-6">
                     <div class="faq-item bg-white rounded-xl shadow-lg p-6 animate-on-scroll">
                         <div class="flex justify-between items-start">
@@ -3063,6 +3323,8 @@ document.addEventListener('DOMContentLoaded', function() {
     counters.forEach(counter => {
         counterObserver.observe(counter);
     });
+
+
 });
     </script>
 </body>

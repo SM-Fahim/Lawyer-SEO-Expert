@@ -32,6 +32,193 @@
     </script>
     
     <style>
+        /* Prevent horizontal overflow on mobile */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+            
+            /* Disable horizontal animations on mobile */
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px) !important;
+                transition: all 0.8s ease-out;
+            }
+            
+            .animate-on-scroll.animate-slide-left {
+                transform: translateY(30px) !important; /* No translateX on mobile */
+            }
+            
+            .animate-on-scroll.animate-slide-right {
+                transform: translateY(30px) !important; /* No translateX on mobile */
+            }
+            
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0) translateX(0) !important;
+            }
+            
+            /* Fix padding and margins */
+            .container, .max-w-7xl {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Ensure all sections respect viewport width */
+            section, div[class*="container"], div[class*="wrapper"] {
+                max-width: 100vw !important;
+            }
+            
+            /* Fix buttons that overflow */
+            button {
+                max-width: 100%;
+                word-wrap: break-word;
+            }
+            
+            /* Fix text that might overflow */
+            h1, h2, h3, h4, h5, h6, p, span, div {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            
+            /* Prevent any element from causing overflow */
+            * {
+                max-width: 100vw !important;
+            }
+            
+            /* Mobile Timeline Optimizations */
+            .timeline-connector {
+                left: 1rem !important;
+                transform: none !important;
+                width: 4px !important;
+            }
+            
+            /* Mobile timeline items - stack vertically */
+            .timeline-item {
+                display: block !important;
+                padding-left: 5rem !important;
+                position: relative;
+            }
+            
+            .timeline-item .w-1\/2 {
+                width: 100% !important;
+                text-align: left !important;
+                padding: 0 !important;
+            }
+            
+            .timeline-item .timeline-icon {
+                position: absolute !important;
+                left: -1rem !important;
+                top: 0 !important;
+                transform: none !important;
+            }
+            
+            /* Hide empty timeline spacers on mobile */
+            .timeline-item .w-1\/2:empty {
+                display: none !important;
+            }
+            
+            /* Fix stat alignment on mobile */
+            .timeline-item .flex.justify-end {
+                justify-content: flex-start !important;
+            }
+            
+            /* Reduce font size for amounts in Google Ads vs SEO sections */
+            #ads-vs-seo .text-xl.font-bold.text-danger,
+            #ads-vs-seo .text-xl.font-bold.text-success {
+                font-size: 1.125rem !important; /* 18px instead of 20px */
+            }
+            
+            #ads-vs-seo .text-2xl.font-bold.text-danger,
+            #ads-vs-seo .text-2xl.font-bold.text-success {
+                font-size: 1.125rem !important; /* 18px instead of 24px */
+            }
+            
+            /* Hide cross icons in SEO mistakes section on mobile to save space */
+            #seo-mistakes .flex-shrink-0 {
+                display: none !important;
+            }
+            
+            /* Move step numbers above headings in 7-step section on mobile */
+            #seven-step-system .flex.items-start {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            
+            #seven-step-system .flex-shrink-0 {
+                margin-bottom: 1rem !important;
+            }
+            
+            #seven-step-system .flex-1 {
+                text-align: left !important;
+            }
+            
+            /* Reduce padding in content sections on mobile for better text space */
+            .rounded-2xl.p-8,
+            .rounded-xl.p-8 {
+                padding: 1rem !important; /* Reduce from 2rem (p-8) to 1rem (p-4) */
+            }
+            
+            /* Reduce padding for 7-step section cards */
+            #seven-step-system .rounded-2xl.p-8,
+            #seven-step-system .bg-white.rounded-lg.p-6 {
+                padding: 0.75rem !important; /* Balanced padding reduction */
+            }
+            
+            /* Remove flex layout from list items to make them inline like the working example */
+            #seven-step-system li.flex.items-start.space-x-2 {
+                display: block !important; /* Remove flex layout */
+                text-align: left !important; /* Align list items to the left */
+            }
+            
+            /* Ensure all list content is left-aligned on mobile */
+            #seven-step-system ul {
+                text-align: left !important;
+            }
+            
+            /* Increase font size to 16px in 7-step section */
+            #seven-step-system .text-sm,
+            #seven-step-system p.text-sm,
+            #seven-step-system ul.text-sm,
+            #seven-step-system li,
+            #seven-step-system span {
+                font-size: 1rem !important; /* 16px */
+                line-height: 1.5rem !important;
+            }
+            
+            /* Reduce font size of large amounts on mobile - only for stat numbers */
+            .text-2xl.font-bold.text-primary,
+            .text-2xl.font-bold.text-success,
+            .text-2xl.font-bold.text-family,
+            .text-2xl.font-bold.text-secondary,
+            .text-3xl.font-bold.text-primary,
+            .text-3xl.font-bold.text-success,
+            .text-3xl.font-bold.text-family,
+            .text-3xl.font-bold.text-secondary {
+                font-size: 1.25rem !important; /* text-xl equivalent - only for colored stat numbers */
+                line-height: 1.75rem !important;
+            }
+            
+            
+            /* Ensure timeline stats wrap better on mobile */
+            .timeline-item .space-y-2 > div {
+                flex-wrap: wrap !important;
+                gap: 0.25rem !important;
+            }
+            
+            /* Fix MOST POPULAR badge overflow on mobile */
+            .absolute.top-4.right-4 {
+                top: 0.5rem !important;
+                right: 0.5rem !important;
+                font-size: 0.75rem !important; /* text-xs */
+                padding: 0.25rem 0.5rem !important; /* px-2 py-1 */
+                line-height: 1rem !important;
+            }
+        }
+
         .float-animation {
             animation: float 6s ease-in-out infinite;
         }
@@ -48,23 +235,25 @@
             50% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
+        @media (min-width: 769px) {
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease-out;
+            }
 
-        .animate-on-scroll.animate-slide-left {
-            transform: translateX(-50px);
-        }
+            .animate-on-scroll.animate-slide-left {
+                transform: translateX(-50px);
+            }
 
-        .animate-on-scroll.animate-slide-right {
-            transform: translateX(50px);
-        }
+            .animate-on-scroll.animate-slide-right {
+                transform: translateX(50px);
+            }
 
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0) translateX(0);
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0) translateX(0);
+            }
         }
 
         .timeline-connector {
@@ -134,7 +323,7 @@
         }
     </style>
 </head>
-<body class="font-inter bg-white">
+<body class="font-inter bg-white overflow-x-hidden">
     
     <header id="header" class="bg-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -219,14 +408,14 @@
         </div>
     </header>
 
-    <section id="hero" class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden h-[900px]">
+    <section id="hero" class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden min-h-[900px] lg:h-auto py-12 lg:py-20">
         <div class="absolute inset-0 opacity-30">
             <div class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
             <div class="absolute bottom-20 right-10 w-80 h-80 bg-family/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/10 to-family/10 rounded-full filter blur-3xl float-animation" style="animation-delay: 1.5s;"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="animate-on-scroll animate-slide-left">
                     <div class="inline-flex items-center bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -338,7 +527,7 @@
                         </div>
                     </div>
                     
-                    <div class="absolute -bottom-10 -right-10 bg-white rounded-2xl shadow-xl p-4 animate-on-scroll z-20" style="animation-delay: 0.5s;">
+                    <div class="absolute -bottom-10 -right-10 bg-white rounded-2xl shadow-xl p-4 animate-on-scroll z-20 hidden lg:block" style="animation-delay: 0.5s;">
                         <div class="bg-primary text-white rounded-lg p-3 mb-3">
                             <h4 class="font-bold text-lg">Protect Your Family's Future</h4>
                         </div>
@@ -363,14 +552,15 @@
             </div>
             
             <div class="bg-white rounded-2xl shadow-xl p-8 mb-12">
-                <h3 class="text-2xl font-bold text-accent mb-8 text-center">Crisis Timeline</h3>
+                <h3 class="text-3xl md:text-3xl font-bold text-accent mb-8 text-center">Crisis Timeline</h3>
                 <div class="relative">
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 timeline-connector"></div>
+                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 timeline-connector"></div>
+                    <div class="md:hidden absolute left-8 top-0 h-full w-1 timeline-connector"></div>
                     
                     <div class="space-y-12">
-                        <div class="flex items-center animate-on-scroll">
+                        <div class="timeline-item flex items-center animate-on-scroll">
                             <div class="w-1/2 text-right pr-8">
-                                <h4 class="text-xl font-bold text-primary mb-2">Hour 1: The Breaking Point</h4>
+                                <h4 class="text-2xl font-bold text-primary mb-2">Hour 1: The Breaking Point</h4>
                                 <p class="text-gray-600">Papers served, confrontation, or family emergency. Immediate search for "divorce lawyer near me"</p>
                                 <div class="mt-4 space-y-2">
                                     <div class="flex justify-end items-center space-x-2">
@@ -383,7 +573,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="relative z-10">
+                            <div class="timeline-icon relative z-10">
                                 <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white shadow-lg">
                                     <i class="fas fa-heart-broken text-2xl"></i>
                                 </div>
@@ -391,15 +581,15 @@
                             <div class="w-1/2 pl-8"></div>
                         </div>
                         
-                        <div class="flex items-center animate-on-scroll">
+                        <div class="timeline-item flex items-center animate-on-scroll">
                             <div class="w-1/2"></div>
-                            <div class="relative z-10">
+                            <div class="timeline-icon relative z-10">
                                 <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white shadow-lg">
                                     <i class="fas fa-search text-2xl"></i>
                                 </div>
                             </div>
                             <div class="w-1/2 pl-8">
-                                <h4 class="text-xl font-bold text-secondary mb-2">Hours 1-24: The Panic Phase</h4>
+                                <h4 class="text-2xl font-bold text-secondary mb-2">Hours 1-24: The Panic Phase</h4>
                                 <p class="text-gray-600">Desperate scrolling through Google results while managing children, work, and emotional trauma</p>
                                 <div class="mt-4 space-y-2">
                                     <div class="flex items-center space-x-2">
@@ -418,9 +608,9 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center animate-on-scroll">
+                        <div class="timeline-item flex items-center animate-on-scroll">
                             <div class="w-1/2 text-right pr-8">
-                                <h4 class="text-xl font-bold text-success mb-2">Days 1-14: The Decision Phase</h4>
+                                <h4 class="text-2xl font-bold text-success mb-2">Days 1-14: The Decision Phase</h4>
                                 <p class="text-gray-600">Attorney consultation scheduled. Typical family law cases range from $5K-$50K+</p>
                                 <div class="mt-4 space-y-2">
                                     <div class="flex justify-end items-center space-x-2">
@@ -437,7 +627,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="relative z-10">
+                            <div class="timeline-icon relative z-10">
                                 <div class="w-16 h-16 bg-success rounded-full flex items-center justify-center text-white shadow-lg">
                                     <i class="fas fa-gavel text-2xl"></i>
                                 </div>
@@ -499,11 +689,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-on-scroll animate-slide-left">
                     <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">Google Ads</h3>
+                        <h3 class="text-3xl md:text-3xl font-bold mb-2">Google Ads</h3>
                         <p class="text-lg opacity-90">Pay-per-click advertising</p>
                     </div>
                     <div class="p-8">
-                        <h4 class="text-xl font-bold text-accent mb-6">Cost Breakdown:</h4>
+                        <h4 class="text-2xl font-bold text-accent mb-6">Cost Breakdown:</h4>
                         <div class="space-y-4">
                             <div class="flex justify-between items-center pb-3 border-b border-gray-200">
                                 <span class="text-gray-700">Cost per click</span>
@@ -539,11 +729,11 @@
                 
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden animate-on-scroll animate-slide-right">
                     <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">SEO Investment</h3>
+                        <h3 class="text-3xl md:text-3xl font-bold mb-2">SEO Investment</h3>
                         <p class="text-lg opacity-90">Long-term asset building</p>
                     </div>
                     <div class="p-8">
-                        <h4 class="text-xl font-bold text-accent mb-6">Cost Breakdown:</h4>
+                        <h4 class="text-2xl font-bold text-accent mb-6">Cost Breakdown:</h4>
                         <div class="space-y-4">
                             <div class="flex justify-between items-center pb-3 border-b border-gray-200">
                                 <span class="text-gray-700">Initial investment (120 days)</span>
@@ -594,7 +784,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll">
                     <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">Phase 1: Foundation & Trust Building</h3>
+                        <h3 class="text-3xl md:text-2xl font-bold mb-2">Phase 1: Foundation & Trust Building</h3>
                         <div class="flex items-center space-x-2 mt-2">
                             <span class="text-lg">$2,500 - $4,500/month</span>
                             <span class="text-sm">•</span>
@@ -629,11 +819,11 @@
                 </div>
                 
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll relative">
-                    <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">
+                    <div class="absolute right-2 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold z-20">
                         MOST POPULAR
                     </div>
                     <div class="bg-gradient-to-r from-primary to-blue-600 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">Phase 2: Authority & Expansion</h3>
+                        <h3 class="text-3xl md:text-2xl font-bold mb-2">Phase 2: Authority & Expansion</h3>
                         <div class="flex items-center space-x-2 mt-2">
                             <span class="text-lg">$4,500 - $8,000/month</span>
                             <span class="text-sm">•</span>
@@ -669,11 +859,11 @@
                 
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow animate-on-scroll">
                     <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">Phase 3: Market Leadership</h3>
+                        <h3 class="text-3xl md:text-2xl font-bold mb-2">Phase 3: Market Leadership</h3>
                         <div class="flex items-center space-x-2 mt-2">
                             <span class="text-lg">$6,500 - $12,000+/month</span>
                             <span class="text-sm">•</span>
-                            <span class="text-lg">Months 11+</span>
+                            <span class="text-lg whitespace-nowrap">Months 11+</span>
                         </div>
                     </div>
                     <div class="p-8">
@@ -962,7 +1152,7 @@
             
             <div class="mt-12 p-8 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border-2 border-danger animate-on-scroll">
                 <div class="text-center">
-                    <h3 class="text-2xl font-bold text-danger mb-4">
+                    <h3 class="text-3xl md:text-3xl font-bold text-danger mb-4">
                         <i class="fas fa-exclamation-triangle mr-2"></i>
                         ⚠️ The Cost of Each Day You Wait
                     </h3>
@@ -997,7 +1187,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Master Family Crisis Keyword Research</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Master Family Crisis Keyword Research</h3>
                             <p class="text-gray-700 mb-6">
                                 Family law keyword research isn't about finding the highest search volume—it's about understanding the psychology of someone facing family breakdown. Someone searching "divorce lawyer" has decided to end their marriage; someone searching "signs marriage is over" is still processing their situation. You need both types of traffic.
                             </p>
@@ -1007,7 +1197,7 @@
                                     <h4 class="font-bold text-primary mb-3">Emergency Crisis (0-24 hours)</h4>
                                     <p class="text-sm text-gray-600 mb-3">Emotional State: Panic, fear, immediate danger</p>
                                     <ul class="text-sm space-y-2">
-                                        <li class="flex items-start space-x-2">
+                                        <li>
                                             <i class="fas fa-arrow-right text-primary mt-1 text-xs"></i>
                                             <span>"restraining order lawyer emergency"</span>
                                         </li>
@@ -1076,7 +1266,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Dominate Local Search Near Family Courts and Support Services</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Dominate Local Search Near Family Courts and Support Services</h3>
                             <p class="text-gray-700 mb-6">
                                 Family law is intensely local - clients need attorneys who understand their specific court system, local judges, and community resources. Your local SEO must reflect expertise in your exact jurisdiction.
                             </p>
@@ -1158,7 +1348,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Create Content That Builds Trust With Vulnerable Families</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Create Content That Builds Trust With Vulnerable Families</h3>
                             <p class="text-gray-700 mb-6">
                                 Family law clients aren't shopping for legal services—they're seeking protection and guidance during some of life's most difficult transitions. Your content must meet them with empathy while providing clear, actionable guidance.
                             </p>
@@ -1202,7 +1392,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Technical SEO for Family Crisis Situations</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Technical SEO for Family Crisis Situations</h3>
                             <p class="text-gray-700 mb-6">
                                 When someone searches for family law help while hiding from an abusive partner or dealing with custody threats, every technical detail matters for their safety and your conversion rates.
                             </p>
@@ -1272,7 +1462,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Authority Building Through Community Partnerships</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Authority Building Through Community Partnerships</h3>
                             <p class="text-gray-700 mb-6">
                                 Family law intersects with social services, mental health, and community support more than any other legal area. Your link building must reflect these essential relationships.
                             </p>
@@ -1310,7 +1500,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Ethical Reputation Management for Sensitive Family Matters</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Ethical Reputation Management for Sensitive Family Matters</h3>
                             <p class="text-gray-700 mb-6">
                                 Family law reviews require exceptional sensitivity due to privacy concerns and the deeply personal nature of family legal matters.
                             </p>
@@ -1355,7 +1545,7 @@
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-accent mb-4">Track Metrics That Correlate With Family Law Case Revenue</h3>
+                            <h3 class="text-3xl md:text-3xl font-bold text-accent mb-4">Track Metrics That Correlate With Family Law Case Revenue</h3>
                             <p class="text-gray-700 mb-6">
                                 Generic SEO metrics don't predict family law success. Track metrics that actually indicate new family law cases and long-term client relationships.
                             </p>
@@ -1504,7 +1694,7 @@
             
             <div class="bg-white rounded-2xl shadow-2xl overflow-hidden animate-on-scroll">
                 <div class="bg-gradient-to-r from-primary to-blue-600 p-8 text-white">
-                    <h3 class="text-2xl font-bold mb-4">Rebecca Thompson, Esq.</h3>
+                    <h3 class="text-3xl font-bold mb-4">Rebecca Thompson, Esq.</h3>
                     <p class="text-lg">Thompson Family Law Associates</p>
                     <p class="text-base opacity-90">Denver, Colorado • Divorce & Child Custody Specialist</p>
                 </div>
@@ -1512,7 +1702,7 @@
                 <div class="p-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                         <div class="bg-red-50 rounded-xl p-6">
-                            <h4 class="text-xl font-bold text-danger mb-4">Before SEO Implementation</h4>
+                            <h4 class="text-2xl font-bold text-danger mb-4">Before SEO Implementation</h4>
                             <div class="space-y-3">
                                 <div class="flex justify-between">
                                     <span class="text-gray-700">Organic Traffic:</span>
@@ -1542,7 +1732,7 @@
                         </div>
                         
                         <div class="bg-green-50 rounded-xl p-6">
-                            <h4 class="text-xl font-bold text-success mb-4">After 120 Days of SEO</h4>
+                            <h4 class="text-2xl font-bold text-success mb-4">After 120 Days of SEO</h4>
                             <div class="space-y-3">
                                 <div class="flex justify-between">
                                     <span class="text-gray-700">Organic Traffic:</span>
@@ -1595,7 +1785,7 @@
             </div>
             
             <div class="bg-white rounded-2xl shadow-xl p-8 mb-12 animate-on-scroll">
-                <h3 class="text-2xl font-bold text-accent mb-6 flex items-center">
+                <h3 class="text-3xl font-bold text-accent mb-6 flex items-center">
                     <i class="fas fa-chart-line text-primary mr-3"></i>
                     Why Local Family Court Data Is SEO Gold
                 </h3>
@@ -1683,7 +1873,7 @@
             </div>
             
             <div class="bg-gradient-to-br from-red-900/20 to-red-800/20 border border-red-500/30 rounded-2xl p-8 mb-12 animate-on-scroll">
-                <h3 class="text-2xl font-bold mb-6">The $35 Million Problem: Legal Aid and DIY Service Dominance</h3>
+                <h3 class="text-3xl font-bold mb-6">The $35 Million Problem: Legal Aid and DIY Service Dominance</h3>
                 <p class="text-gray-300 mb-6">
                     Organizations like LegalZoom, Nolo, and local legal aid societies invest heavily in SEO to capture families seeking affordable legal help. They create content that minimizes the complexity of family law and promotes DIY solutions that can be inadequate for complex family situations.
                 </p>
@@ -1761,7 +1951,7 @@
             </div>
             
             <div class="bg-gradient-to-r from-primary/20 to-blue-600/20 border border-primary/30 rounded-2xl p-8 animate-on-scroll">
-                <h3 class="text-2xl font-bold mb-6">Keywords Legal Aid and DIY Services Can't Dominate</h3>
+                <h3 class="text-3xl font-bold mb-6">Keywords Legal Aid and DIY Services Can't Dominate</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -1801,7 +1991,7 @@
             
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl overflow-hidden mb-12 animate-on-scroll">
                 <div class="bg-gradient-to-r from-primary to-blue-600 text-white p-6">
-                    <h3 class="text-2xl font-bold">Comparison: Generic Legal SEO vs Family Law SEO Specialists</h3>
+                    <h3 class="text-3xl font-bold">Comparison: Generic Legal SEO vs Family Law SEO Specialists</h3>
                 </div>
                 
                 <div class="overflow-x-auto">
@@ -1917,7 +2107,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
-                    Investment & <span class="text-secondary">ROI Analysis</span>
+                    Investment & <span class="text-yellow-300">ROI Analysis</span>
                 </h2>
                 <p class="text-xl text-gray-200 max-w-3xl mx-auto">
                     Our family law SEO delivers measurable returns that justify the investment through increased case volume, higher case values, and stronger client relationships.
@@ -1927,7 +2117,7 @@
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-12 animate-on-scroll">
                 <div class="text-center mb-8">
                     <h3 class="text-3xl font-bold mb-2">Monthly Investment Range</h3>
-                    <div class="text-5xl font-bold text-secondary mb-2">$2,500 - $12,000</div>
+                    <div class="text-5xl font-bold text-yellow-300 mb-2">$2,500 - $12,000</div>
                     <p class="text-gray-300">Professional family law SEO that typically generates 300-500% ROI within 6 months</p>
                 </div>
             </div>
@@ -1935,7 +2125,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
                     <h4 class="text-lg font-bold mb-3">Divorce Cases</h4>
-                    <div class="text-3xl font-bold text-secondary mb-2">$15,000</div>
+                    <div class="text-3xl font-bold text-yellow-300 mb-2">$15,000</div>
                     <p class="text-sm text-gray-300 mb-2">Median Case Value</p>
                     <div class="text-xl font-semibold">$5,000-7,500</div>
                     <p class="text-sm text-gray-400">Average Attorney Fee</p>
@@ -1943,7 +2133,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
                     <h4 class="text-lg font-bold mb-3">Child Custody</h4>
-                    <div class="text-3xl font-bold text-primary mb-2">$28,000</div>
+                    <div class="text-3xl font-bold text-yellow-300 mb-2">$28,000</div>
                     <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
                     <div class="text-xl font-semibold">$8,000-12,000</div>
                     <p class="text-sm text-gray-400">Average Attorney Fee</p>
@@ -1951,7 +2141,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
                     <h4 class="text-lg font-bold mb-3">Domestic Violence Protection</h4>
-                    <div class="text-3xl font-bold text-family mb-2">$18,000</div>
+                    <div class="text-3xl font-bold text-yellow-300 mb-2">$18,000</div>
                     <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
                     <div class="text-xl font-semibold">$5,000-8,000</div>
                     <p class="text-sm text-gray-400">Average Attorney Fee</p>
@@ -1959,7 +2149,7 @@
                 
                 <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center animate-on-scroll">
                     <h4 class="text-lg font-bold mb-3">Adoption Services</h4>
-                    <div class="text-3xl font-bold text-success mb-2">$12,000</div>
+                    <div class="text-3xl font-bold text-yellow-300 mb-2">$12,000</div>
                     <p class="text-sm text-gray-300 mb-2">Average Case Value</p>
                     <div class="text-xl font-semibold">$4,000-6,000</div>
                     <p class="text-sm text-gray-400">Average Attorney Fee</p>
@@ -1967,7 +2157,7 @@
             </div>
             
             <div class="bg-gradient-to-r from-secondary/20 to-yellow-500/20 border border-secondary/30 rounded-2xl p-8 animate-on-scroll">
-                <h3 class="text-2xl font-bold mb-6 text-center">ROI Calculation Example</h3>
+                <h3 class="text-3xl font-bold mb-6 text-center">ROI Calculation Example</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
                     <div>
@@ -1984,13 +2174,13 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-300 mb-2">Monthly Revenue Increase</p>
-                        <p class="text-3xl font-bold text-secondary">$225,000</p>
+                        <p class="text-3xl font-bold text-yellow-300">$225,000</p>
                     </div>
                 </div>
                 
                 <div class="text-center mt-8 pt-8 border-t border-white/20">
                     <p class="text-2xl mb-2">Annual ROI</p>
-                    <p class="text-5xl font-bold text-secondary pulse-animation">3,750%</p>
+                    <p class="text-5xl font-bold text-yellow-300 pulse-animation">3,750%</p>
                 </div>
             </div>
         </div>
@@ -2034,7 +2224,7 @@
             </div>
             
             <div class="bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-8 animate-on-scroll">
-                <h3 class="text-2xl font-bold text-accent mb-8 text-center">How Families Really Ask for Help (Voice Search Queries)</h3>
+                <h3 class="text-3xl font-bold text-accent mb-8 text-center">How Families Really Ask for Help (Voice Search Queries)</h3>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div class="bg-white rounded-xl p-6 shadow-md">
@@ -2238,14 +2428,14 @@
                     <div class="text-yellow-300 mb-4">
                         <i class="fas fa-exclamation-triangle text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">⚠️ Limited Client Capacity</h3>
+                    <h3 class="text-3xl font-bold mb-4">⚠️ Limited Client Capacity</h3>
                     <p class="text-lg mb-4">We only work with 3 new family law firms per quarter to ensure exceptional, personalized results.</p>
                     <p class="text-2xl font-bold text-yellow-300">Current quarter has 2 spots remaining.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                     <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-                        <h4 class="text-xl font-bold mb-4">Every Month You Wait Costs You:</h4>
+                        <h4 class="text-2xl font-bold mb-4">Every Month You Wait Costs You:</h4>
                         <ul class="text-left space-y-3">
                             <li class="flex items-start space-x-2">
                                 <i class="fas fa-times text-red-300 mt-1"></i>
@@ -2267,7 +2457,7 @@
                     </div>
                     
                     <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-                        <h4 class="text-xl font-bold mb-4">Our Current Clients Are Seeing:</h4>
+                        <h4 class="text-2xl font-bold mb-4">Our Current Clients Are Seeing:</h4>
                         <ul class="text-left space-y-3">
                             <li class="flex items-start space-x-2">
                                 <i class="fas fa-check text-green-300 mt-1"></i>
@@ -2290,7 +2480,7 @@
                 </div>
                 
                 <div class="bg-white rounded-2xl p-8 text-gray-800 max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold text-accent mb-4">Get Your Free Family Law SEO Analysis</h3>
+                    <h3 class="text-3xl font-bold text-accent mb-4">Get Your Free Family Law SEO Analysis</h3>
                     <div class="text-left mb-6">
                         <h4 class="font-semibold text-primary mb-3">What's Included:</h4>
                         <ul class="space-y-2 text-sm">

@@ -44,6 +44,79 @@
     </script>
     
     <style>
+        /* Prevent horizontal overflow on mobile */
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+            
+            /* Disable horizontal animations on mobile */
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px) !important;
+                transition: all 0.8s ease-out;
+            }
+            
+            .animate-on-scroll.animate-slide-left {
+                transform: translateY(30px) !important; /* No translateX on mobile */
+            }
+            
+            .animate-on-scroll.animate-slide-right {
+                transform: translateY(30px) !important; /* No translateX on mobile */
+            }
+            
+            .animate-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0) translateX(0) !important;
+            }
+            
+            /* Fix padding and margins */
+            .max-w-7xl {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            /* Ensure all sections respect viewport width */
+            section, div[class*="container"], div[class*="wrapper"] {
+                max-width: 100vw !important;
+            }
+            
+            /* Fix buttons that overflow */
+            button {
+                max-width: 100%;
+                word-wrap: break-word;
+            }
+            
+            /* Make tables scrollable */
+            .table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-left: -1rem;
+                margin-right: -1rem;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            table {
+                min-width: 100%;
+            }
+            
+            /* Prevent any element from causing overflow */
+            * {
+                max-width: 100vw !important;
+            }
+            
+            /* Fix specific problematic elements */
+            #hero-content, #hero-badge, #hero-title, #hero-description,
+            #hero-stats, #hero-cta, #hero-features,
+            #google-ads-card, .ads-cost-item, .ads-warning {
+                max-width: 100% !important;
+                overflow-wrap: break-word !important;
+            }
+        }
+
+        /* Desktop animations (unchanged) */
         .float-animation {
             animation: float 6s ease-in-out infinite;
         }
@@ -258,7 +331,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-br from-blue-50 via-green-50 to-slate-50 overflow-hidden min-h-screen lg:h-[900px]">
+    <section id="hero" class="relative bg-gradient-to-br from-blue-50 via-green-50 to-slate-50 overflow-hidden min-h-screen pb-16 lg:pb-20">
         <div class="absolute inset-0 opacity-30">
             <div class="absolute top-20 left-10 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl float-animation"></div>
             <div class="absolute bottom-20 right-10 w-80 h-80 bg-secondary/20 rounded-full filter blur-3xl float-animation" style="animation-delay: 3s;"></div>
@@ -378,7 +451,7 @@
                         </div>
                     </div>
                     
-                    <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2 lg:-right-10 lg:left-auto lg:transform-none bg-white rounded-2xl shadow-xl p-4 animate-on-scroll z-20 hidden lg:block" style="animation-delay: 0.5s;">
+                    <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 lg:-right-10 lg:left-auto lg:transform-none bg-white rounded-2xl shadow-xl p-4 animate-on-scroll z-20 hidden lg:block" style="animation-delay: 0.5s;">
                         <div class="bg-primary text-white rounded-lg p-3 mb-3">
                             <h4 class="font-bold text-lg">Families Deserve to Stay Together</h4>
                         </div>
