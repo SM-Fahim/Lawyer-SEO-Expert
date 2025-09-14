@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Can't Track AI Like Traditional Search. Here's What to Do Instead.</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'ibm': ['IBM Plex Sans', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'ahrefs-orange': '#FF6B35',
+                        'ahrefs-blue': '#3B82F6',
+                        'ahrefs-blue-dark': '#1E40AF',
+                        'ahrefs-teal': '#0891B2',
+                        'toc-bg': '#F9FAFB',
+                        'text-primary': '#111827',
+                        'text-secondary': '#6B7280',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+
+        #progress-bar {
+            transition: width 0.3s ease;
+        }
+
+        .h2-link-icon {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        h2:hover .h2-link-icon {
+            opacity: 1;
+        }
+
+        .copy-tooltip {
+            animation: fadeInOut 1.5s ease;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+        }
+
+        .toc-item {
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .toc-item:hover {
+            border-left-color: #3B82F6;
+            padding-left: 12px;
+        }
+
+        .toc-item.active {
+            color: #054ADA;
+            background-color: #F0F4FD;
+            border-left-color: #054ADA;
+            padding-left: 12px;
+            margin-right: -17px;
+            padding-right: 17px;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .custom-underline {
+            text-decoration: none;
+            border-bottom: 0.5px solid white;
+            padding-bottom: 3px;
+        }
+
+        /* DEBUG: Visual padding/margin indicators */
+        .debug-spacing * {
+            position: relative !important;
+        }
+
+        /* Main container px-6 = 24px */
+        .debug-spacing #main-content::before {
+            content: 'px-6 (24px)';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 100px;
+            background: rgba(255, 0, 0, 0.3);
+            color: red;
+            font-size: 10px;
+            writing-mode: vertical-rl;
+            z-index: 1000;
+        }
+
+        .debug-spacing #main-content::after {
+            content: 'px-6 (24px)';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 100px;
+            background: rgba(255, 0, 0, 0.3);
+            color: red;
+            font-size: 10px;
+            writing-mode: vertical-rl;
+            z-index: 1000;
+        }
+
+        /* Left sidebar TOC px-4 = 16px */
+        .debug-spacing #toc::before {
+            content: 'px-4 (16px)';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 50px;
+            background: rgba(0, 255, 0, 0.3);
+            color: green;
+            font-size: 10px;
+            writing-mode: vertical-rl;
+            z-index: 1001;
+        }
+
+        .debug-spacing #toc::after {
+            content: 'px-4 (16px)';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 16px;
+            height: 50px;
+            background: rgba(0, 255, 0, 0.3);
+            color: green;
+            font-size: 10px;
+            writing-mode: vertical-rl;
+            z-index: 1001;
+        }
+
+        /* Gap-8 = 32px between columns */
+        .debug-spacing .grid > *:not(:last-child)::after {
+            content: 'gap-8 (32px)';
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            width: 32px;
+            height: 30px;
+            background: rgba(0, 0, 255, 0.3);
+            color: blue;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+        }
+
+        /* Article content - show any padding */
+        .debug-spacing #article-content {
+            outline: 2px dashed orange;
+        }
+
+        /* Author card p-6 = 24px */
+        .debug-spacing #author-card::before {
+            content: 'p-6 (24px all sides)';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 24px;
+            background: rgba(255, 165, 0, 0.3);
+            color: orange;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1003;
+        }
+
+        /* Max-width constraint on left sidebar */
+        .debug-spacing #left-sidebar > div {
+            outline: 2px solid purple;
+        }
+
+        .debug-spacing #left-sidebar > div::before {
+            content: 'max-w-[280px]';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            background: purple;
+            color: white;
+            font-size: 10px;
+            padding: 2px 4px;
+            z-index: 1004;
+        }
+
+        /* Show unused space in left sidebar (col-span-3 but constrained to 280px) */
+        .debug-spacing #left-sidebar::after {
+            content: 'Unused space (col-span-3 minus 280px max-width)';
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: calc(100% - 280px);
+            height: 60px;
+            background: rgba(255, 255, 0, 0.3);
+            color: #996600;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1005;
+            border: 2px dashed #996600;
+        }
+
+        /* Show grid column boundaries */
+        .debug-spacing #left-sidebar {
+            outline: 3px solid cyan;
+        }
+
+        .debug-spacing #right-sidebar {
+            outline: 3px solid magenta;
+        }
+
+        .debug-spacing #left-sidebar::before {
+            content: 'Left Sidebar (lg:col-span-3 = 25%)';
+            position: absolute;
+            top: -30px;
+            left: 0;
+            background: cyan;
+            color: black;
+            font-size: 10px;
+            padding: 2px 4px;
+            z-index: 1006;
+        }
+
+        .debug-spacing #right-sidebar::before {
+            content: 'Right Sidebar (lg:col-span-3 = 25%)';
+            position: absolute;
+            top: -30px;
+            right: 0;
+            background: magenta;
+            color: white;
+            font-size: 10px;
+            padding: 2px 4px;
+            z-index: 1006;
+        }
+    </style>
+</head>
+<body class="bg-white font-ibm text-text-primary">
+
+    <div id="progress-bar" class="fixed top-0 left-0 h-[3px] bg-ahrefs-orange z-50 w-0"></div>
+
+    <header id="header" class="bg-white border-b border-gray-200 sticky top-[3px] z-40">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold">
+                        <span class="text-ahrefs-orange">a</span><span class="text-ahrefs-blue">hrefs</span>
+                        <span class="text-gray-400 font-normal">blog</span>
+                    </a>
+                </div>
+
+                <nav class="hidden lg:flex items-center space-x-6">
+                    <div class="relative group">
+                        <button class="flex items-center text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">
+                            Marketing <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">AI Search</a>
+                    <div class="relative group">
+                        <button class="flex items-center text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">
+                            SEO <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">Data & Studies</a>
+                    <a href="#" class="text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">Product</a>
+                    <div class="relative group">
+                        <button class="flex items-center text-gray-700 hover:text-ahrefs-blue transition text-sm font-medium">
+                            Guides <i class="fas fa-star text-yellow-400 ml-1 text-xs"></i> <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                    </div>
+                    <button class="text-gray-500 hover:text-gray-700 transition">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="bg-ahrefs-blue text-white px-5 py-2 rounded-md hover:bg-ahrefs-blue-dark transition text-sm font-medium flex items-center">
+                        <i class="far fa-envelope mr-2"></i> Subscribe
+                    </button>
+                </nav>
+
+                <button class="lg:hidden text-ahrefs-blue">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="bg-[#054ADA] py-8 md:py-12">
+        <div class="max-w-[800px] mx-auto px-6 text-center">
+            <div class="inline-flex items-center px-4 py-2 mb-6">
+                <div class="bg-white/15 backdrop-blur-lg border border-white/30 rounded-full px-4 py-2 shadow-lg shadow-black/10">
+                    <span class="text-white text-sm font-bold uppercase tracking-wider">AI SEARCH</span>
+                </div>
+            </div>
+
+            <h1 class="text-white font-playfair font-bold text-[38px] md:text-[50px] leading-[1.1] mb-6">
+                You Can't Track AI Like Traditional Search. Here's What to Do Instead.
+            </h1>
+
+            <div class="flex items-center justify-center text-white text-base mt-6 space-x-2">
+                <span>By <a href="#" class="text-white hover:text-white/80 underline underline-offset-2 decoration-1">Louise Linehan</a></span>
+                <span class="text-white/60">•</span>
+                <span class="flex items-center">
+                    <i class="fas fa-check-circle mr-1 text-xs"></i>Reviewed by <a href="#" class="text-white hover:text-white/80 underline underline-offset-2 decoration-1 ml-1">Ryan Law</a>
+                </span>
+            </div>
+
+            <div class="flex items-center justify-center text-white text-sm md:text-base mt-4 space-x-4">
+                <span>September 12, 2025</span>
+                <span class="text-white/60">•</span>
+                <span>11 min read</span>
+            </div>
+        </div>
+    </section>
+
+    <main id="main-content" class="max-w-[1400px] mx-auto px-4 lg:px-6 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <aside id="left-sidebar" class="hidden lg:block lg:col-span-3">
+                <div class="lg:sticky lg:top-20 lg:max-w-[280px]">
+                    <div id="toc" class="px-4 py-6 border-r border-gray-200">
+                        <h3 class="font-inter font-bold text-base mb-4 text-text-primary">Contents</h3>
+                        <nav class="space-y-1">
+                            <a href="#section-why" class="toc-item active block text-sm pl-2 py-2">
+                                Why you can't track AI like traditional search
+                            </a>
+                            <a href="#section-1" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-2 py-1">
+                                What to do instead
+                            </a>
+                            <a href="#section-1-sub" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                1. Aggregate AI answers to find out your actual visibility
+                            </a>
+                            <a href="#section-2" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                2. See how your AI visibility ties to other channels
+                            </a>
+                            <a href="#section-3" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                3. Track your AI Share of Voice in your market
+                            </a>
+                            <a href="#section-4" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                4. Work out your relative ownership of topics
+                            </a>
+                            <a href="#section-5" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                5. Learn a lot about your brand positioning
+                            </a>
+                            <a href="#section-6" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-6 py-1">
+                                6. Stay visible
+                            </a>
+                            <a href="#section-micro" class="toc-item block text-sm text-gray-600 hover:text-ahrefs-blue pl-2 py-2 mt-3">
+                                Micro and macro AI tracking: You need both views
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </aside>
+
+            <article id="article-content" class="lg:col-span-6">
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Traditional search tracking is built on a simple promise: type a query, get a result, and track your ranking. AI doesn't work that way.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Assistants like ChatGPT, Gemini, and Perplexity don't show fixed results—they generate answers that vary with every run, every model, and every user.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    "AI rank tracking" is a misnomer—you can't track AI like you do traditional search.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    But that doesn't mean you shouldn't track it at all.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-8">
+                    You just need to adjust the questions you're asking, and the way you measure your brand's visibility.
+                </p>
+
+                <h2 id="section-why" class="font-inter font-bold text-[38px] md:text-[50px] leading-[1.1] text-text-primary mt-12 mb-8 relative group">
+                    Why you can't track AI like traditional search
+                    <button onclick="copyH2Link('section-why')" class="h2-link-icon absolute -left-8 top-1/2 -translate-y-1/2 text-ahrefs-orange hover:text-ahrefs-orange/80">
+                        <i class="fas fa-link text-xl"></i>
+                    </button>
+                </h2>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    In SEO rank tracking, you can rely on stable, repeatable rules:
+                </p>
+
+                <ul class="space-y-3 mb-8 pl-6">
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Deterministic results:</strong> The same query generally returns similar SERPs for everyone.
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Fixed positions:</strong> You can measure exact ranks (#1, #5, #20).
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Known volumes:</strong> You know how popular each keyword is, so you know what to prioritize.
+                    </li>
+                </ul>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    AI breaks all three.
+                </p>
+
+                <ul class="space-y-3 mb-8 pl-6">
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Probabilistic answers:</strong> The same prompt can return different brands, sources, and advice each time.
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>No fixed positions:</strong> Responses are fluid paragraphs, not ranked lists.
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Unknown volumes:</strong> AI platforms rarely share query data.
+                    </li>
+                </ul>
+
+                <blockquote class="bg-blue-50 border-l-4 border-ahrefs-blue p-6 my-8 relative">
+                    <div class="flex items-start">
+                        <i class="fas fa-quote-left text-2xl text-ahrefs-blue mr-4 mt-1 opacity-60"></i>
+                        <div>
+                            <p class="text-[18px] leading-[29px] text-text-primary mb-2">
+                                <strong class="text-ahrefs-blue">Key insight:</strong> Traditional SEO tracking gives you precision. AI tracking gives you patterns. Both matter, but they answer different questions.
+                            </p>
+                            <footer class="text-sm text-gray-600">
+                                <cite>— AI Search Tracking Best Practices</cite>
+                            </footer>
+                        </div>
+                    </div>
+                </blockquote>
+
+                <h2 id="section-1" class="font-inter font-bold text-[38px] md:text-[50px] leading-[1.1] text-text-primary mt-12 mb-8 relative group">
+                    What to do instead
+                    <button onclick="copyH2Link('section-1')" class="h2-link-icon absolute -left-8 top-1/2 -translate-y-1/2 text-ahrefs-orange hover:text-ahrefs-orange/80">
+                        <i class="fas fa-link text-xl"></i>
+                    </button>
+                </h2>
+
+                <h3 id="section-1-sub" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    1. Aggregate AI answers to find out your actual visibility
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Instead of tracking individual rankings, track how often your brand appears across multiple AI responses.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Run the same query 100 times across different AI models. If your brand appears in 30% of responses, that's your visibility score for that query.
+                </p>
+
+                <div class="my-8">
+                    <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                        <h4 class="text-center text-lg font-semibold text-gray-800 mb-6">Individual vs Aggregate Prompt Tracking</h4>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Individual Tracking -->
+                            <div class="text-center">
+                                <h5 class="text-base font-semibold text-gray-700 mb-4">Individual prompt tracking</h5>
+                                <div class="relative bg-white border border-gray-200 rounded-lg p-4 h-48">
+                                    <div class="absolute top-2 left-2 text-xs text-gray-500">100%</div>
+                                    <div class="absolute bottom-12 left-2 text-xs text-gray-500">0%</div>
+                                    <div class="h-full flex items-end justify-center">
+                                        <div class="flex items-end space-x-4 h-full">
+                                            <div class="relative">
+                                                <div class="w-8 bg-red-500 h-20"></div>
+                                                <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">Day 5</span>
+                                                <i class="fas fa-times absolute -top-4 left-1/2 transform -translate-x-1/2 text-red-500"></i>
+                                            </div>
+                                            <div class="relative">
+                                                <div class="w-8 bg-gray-200 h-4"></div>
+                                                <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">Day 15</span>
+                                                <i class="fas fa-times absolute -top-4 left-1/2 transform -translate-x-1/2 text-red-300"></i>
+                                            </div>
+                                            <div class="relative">
+                                                <div class="w-8 bg-gray-200 h-8"></div>
+                                                <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500">Day 30</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-600">Sporadic data</div>
+                                </div>
+                            </div>
+
+                            <!-- Aggregate Tracking -->
+                            <div class="text-center">
+                                <h5 class="text-base font-semibold text-gray-700 mb-4">Aggregate prompt tracking</h5>
+                                <div class="relative bg-white border border-gray-200 rounded-lg p-4 h-48">
+                                    <div class="absolute top-2 left-2 text-xs text-gray-500">100%</div>
+                                    <div class="absolute bottom-12 left-2 text-xs text-gray-500">0%</div>
+                                    <div class="h-full flex items-end justify-center">
+                                        <div class="relative w-full h-full">
+                                            <svg class="w-full h-full" viewBox="0 0 200 100">
+                                                <path d="M 20 80 Q 100 70 180 40" stroke="#22c55e" stroke-width="2" fill="none"/>
+                                                <circle cx="180" cy="40" r="3" fill="#22c55e"/>
+                                                <text x="185" y="40" class="text-xs fill-green-600 font-semibold">60%</text>
+                                                <text x="25" y="95" class="text-xs fill-gray-500">Day 5</text>
+                                                <text x="95" y="95" class="text-xs fill-gray-500">Day 15</text>
+                                                <text x="170" y="95" class="text-xs fill-gray-500">Day 30</text>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-medium text-gray-600">Consistent analysis</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center mt-3 italic">Figure 1: Individual tracking shows sporadic, unreliable data while aggregate tracking reveals consistent patterns and actionable insights.</p>
+                </div>
+
+                <h3 id="section-2" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    2. See how your AI visibility ties to other channels
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    AI visibility doesn't exist in a vacuum. Track how it correlates with:
+                </p>
+
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li class="text-[18px] leading-[29px] text-text-primary">Organic search rankings</li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">Brand search volume</li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">Social media mentions</li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">Direct traffic patterns</li>
+                </ul>
+
+                <h3 id="section-3" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    3. Track your AI Share of Voice in your market
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Share of Voice (SOV) matters more than individual rankings. If there are 10 brands in your space and you appear in 40% of AI responses while competitors average 6%, you're winning—even without a "#1 ranking."
+                </p>
+
+                <div class="my-8 text-center">
+                    <img src="images/dashboard.png" alt="AI visibility dashboard showing share of voice metrics across different queries and competitors" class="w-full max-w-2xl mx-auto rounded-lg border border-gray-200 shadow-sm">
+                    <p class="text-sm text-gray-600 mt-3 italic max-w-2xl mx-auto">Figure 2: An AI visibility dashboard displaying share of voice analysis, competitor comparisons, and query performance metrics to track brand visibility across AI platforms.</p>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 my-8">
+                    <h4 class="font-inter font-semibold text-lg mb-3">How to calculate AI Share of Voice:</h4>
+                    <ol class="list-decimal pl-6 space-y-2">
+                        <li class="text-text-primary">Define your key queries (product searches, problem searches, comparison searches)</li>
+                        <li class="text-text-primary">Run each query multiple times across AI platforms</li>
+                        <li class="text-text-primary">Count brand mentions for you and competitors</li>
+                        <li class="text-text-primary">Calculate percentage share</li>
+                    </ol>
+                </div>
+
+                <h3 id="section-4" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    4. Work out your relative ownership of topics
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    AI systems associate brands with topics. Understanding which topics you "own" in AI responses helps you identify strengths and gaps.
+                </p>
+
+                <div class="my-8">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse bg-white border border-gray-200 rounded-lg">
+                            <caption class="caption-top text-left font-semibold text-gray-800 mb-3 px-1">Table 1: AI Platform Visibility Comparison by Topic</caption>
+                            <thead>
+                                <tr class="bg-gray-50 border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 font-inter font-semibold text-gray-800">Topic</th>
+                                    <th class="text-left py-3 px-4 font-inter font-semibold text-gray-800">ChatGPT (%)</th>
+                                    <th class="text-left py-3 px-4 font-inter font-semibold text-gray-800">Claude (%)</th>
+                                    <th class="text-left py-3 px-4 font-inter font-semibold text-gray-800">Perplexity (%)</th>
+                                    <th class="text-left py-3 px-4 font-inter font-semibold text-gray-800">Average</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100">
+                                    <td class="py-3 px-4 font-medium text-gray-900">SEO Strategy</td>
+                                    <td class="py-3 px-4 text-gray-700">45</td>
+                                    <td class="py-3 px-4 text-gray-700">52</td>
+                                    <td class="py-3 px-4 text-gray-700">38</td>
+                                    <td class="py-3 px-4 font-semibold text-green-600">45%</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 bg-gray-25">
+                                    <td class="py-3 px-4 font-medium text-gray-900">Content Marketing</td>
+                                    <td class="py-3 px-4 text-gray-700">32</td>
+                                    <td class="py-3 px-4 text-gray-700">28</td>
+                                    <td class="py-3 px-4 text-gray-700">41</td>
+                                    <td class="py-3 px-4 font-semibold text-blue-600">34%</td>
+                                </tr>
+                                <tr class="border-b border-gray-100">
+                                    <td class="py-3 px-4 font-medium text-gray-900">Link Building</td>
+                                    <td class="py-3 px-4 text-gray-700">18</td>
+                                    <td class="py-3 px-4 text-gray-700">15</td>
+                                    <td class="py-3 px-4 text-gray-700">22</td>
+                                    <td class="py-3 px-4 font-semibold text-orange-600">18%</td>
+                                </tr>
+                                <tr class="border-b border-gray-100 bg-gray-25">
+                                    <td class="py-3 px-4 font-medium text-gray-900">Technical SEO</td>
+                                    <td class="py-3 px-4 text-gray-700">8</td>
+                                    <td class="py-3 px-4 text-gray-700">12</td>
+                                    <td class="py-3 px-4 text-gray-700">6</td>
+                                    <td class="py-3 px-4 font-semibold text-red-600">9%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3 italic">Data shows visibility percentage across different AI platforms for topic-based queries. Higher percentages indicate stronger topic ownership.</p>
+                </div>
+
+                <h3 id="section-5" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    5. Learn a lot about your brand positioning
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    How AI describes your brand reveals how the internet collectively sees you. This is invaluable for understanding your actual market position versus your intended position.
+                </p>
+
+                <div class="my-6 flex flex-wrap gap-3">
+                    <a href="#" class="inline-flex items-center bg-[#054ADA] text-white px-6 py-3 rounded-md font-inter font-medium text-sm hover:bg-[#043BB8] transition-colors">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Start Brand Analysis
+                    </a>
+                    <a href="#" class="inline-flex items-center bg-gray-100 text-gray-700 px-6 py-3 rounded-md font-inter font-medium text-sm hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Template
+                    </a>
+                </div>
+
+                <h3 id="section-6" class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    6. Stay visible
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    The goal isn't to rank #1 (that doesn't exist in AI). The goal is consistent visibility across the queries that matter to your business.
+                </p>
+
+                <h2 id="section-micro" class="font-inter font-bold text-[38px] md:text-[50px] leading-[1.1] text-text-primary mt-12 mb-8 relative group">
+                    <span class="inline-flex items-center">
+                        Micro and macro AI tracking: You need both views
+                    </span>
+                    <button onclick="copyH2Link('section-micro')" class="h2-link-icon absolute -left-8 top-1/2 -translate-y-1/2 text-ahrefs-orange hover:text-ahrefs-orange/80">
+                        <i class="fas fa-link text-xl"></i>
+                    </button>
+                </h2>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    In a perfect world, tracking AI visibility on a micro and macro level isn't an either-or choice.
+                </p>
+
+                <h3 class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    Micro tracking for high-stakes AI prompts
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    Micro tracking is about zooming in on the handful of queries that really matter to your business.
+                </p>
+
+                <div class="my-8 text-center">
+                    <img src="images/keywords.png" alt="High-value keyword analysis showing query importance and business impact metrics for AI tracking" class="w-full max-w-lg mx-auto rounded-lg border border-gray-200 shadow-sm">
+                    <p class="text-sm text-gray-600 mt-3 italic max-w-lg mx-auto">Figure 3: Keyword analysis dashboard highlighting high-value queries that matter most for business growth and should be prioritized in AI tracking efforts.</p>
+                </div>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    These might include:
+                </p>
+
+                <ul class="list-disc pl-6 space-y-2 mb-8">
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Branded prompts:</strong> e.g., "What is [Brand] known for?"
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Purchase-intent prompts:</strong> e.g., "Best [product category] for [use case]"
+                    </li>
+                    <li class="text-[18px] leading-[29px] text-text-primary">
+                        <strong>Comparison prompts:</strong> e.g., "[Your brand] vs [Competitor]"
+                    </li>
+                </ul>
+
+                <div class="bg-orange-50 border-l-4 border-ahrefs-orange p-6 my-8">
+                    <h4 class="font-inter font-semibold text-lg mb-2">Takeaway</h4>
+                    <p class="text-text-primary">
+                        That means being named in AI answers is no longer optional.
+                    </p>
+                    <p class="text-text-primary mt-2">
+                        AI assistants are already part of the discovery journey.
+                    </p>
+                    <p class="text-text-primary mt-2">
+                        People turn to ChatGPT, Gemini, and Copilot for product recommendations, not just quick facts.
+                    </p>
+                    <p class="text-text-primary mt-2">
+                        If your brand isn't in those answers, you're invisible at the exact moment decisions are made.
+                    </p>
+                    <p class="text-text-primary mt-2">
+                        That's why tracking AI visibility matters.
+                    </p>
+                    <p class="text-text-primary mt-2">
+                        Even if the data is noisy, it shows whether you're part of the conversation—or whether competitors are taking the spotlight.
+                    </p>
+                </div>
+
+                <h3 class="font-playfair font-normal text-[32px] md:text-[38px] leading-[1.1] text-text-primary mt-8 mb-6">
+                    Final thoughts
+                </h3>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    No, you'll never track AI interactions in the same way you track traditional searches.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    But that's not the point.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    AI search tracking is a compass—it will show if you're headed in the right direction.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-6">
+                    The real risk is ignoring your AI visibility while competitors build presence in the space.
+                </p>
+
+                <p class="text-[18px] leading-[29px] text-text-primary mb-8">
+                    Start now, treat the data as directional, and use it to shape your content, PR, and positioning.
+                </p>
+
+                <!-- Author bio within article -->
+                <div class="bg-gray-100 rounded-lg p-8 mt-16">
+                    <div class="flex flex-col md:flex-row items-center md:items-center space-y-6 md:space-y-0 md:space-x-6">
+                        <img src="./images/transparent.png"
+                             alt="S. M. Fahim"
+                             class="w-48 h-48 rounded-lg object-cover flex-shrink-0">
+                        <div class="flex-1">
+                            <div class="text-sm text-gray-500 mb-2">Article by</div>
+                            <h2 class="font-inter font-bold text-2xl mb-3 text-gray-900">S. M. Fahim</h2>
+                            <p class="text-gray-600 mb-4 text-[15px] leading-[24px]">
+                                Fahim is a prominent SEO expert and entrepreneur who runs Lawyer SEO Expert, an SEO agency specializing in law firms, and WP SEO GEEKS, which serves enterprise businesses with SEO and custom web development. With 6+ years in the industry, Fahim has generated $36M+ in yearly revenue for clients, ranked 50+ businesses on Google, and delivered 200+ websites.
+                            </p>
+                            <a href="https://www.linkedin.com/in/sm-fahim/" class="text-gray-400 hover:text-ahrefs-blue transition inline-block">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+
+            <aside id="right-sidebar" class="lg:col-span-3">
+                <!-- Non-sticky author bio -->
+                <div id="author-card" class="hidden lg:block bg-white rounded-lg p-6 text-center mb-6">
+                    <img src="./images/transparent.png"
+                         alt="Louise Linehan"
+                         class="w-24 h-24 rounded-full mx-auto mb-4">
+                    <h3 class="font-inter font-bold text-lg mb-1">S. M. Fahim</h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        Fahim is a prominent SEO expert and entrepreneur who runs Lawyer SEO Expert, an SEO agency specializing in law firms, and WP SEO GEEKS, which serves enterprise businesses with SEO and custom web development. With 6+ years in the industry, Fahim has generated $36M+ in yearly revenue for clients, ranked 50+ businesses on Google, and delivered 200+ websites.
+                    </p>
+                    <a href="https://www.linkedin.com/in/sm-fahim/" class="text-gray-400 hover:text-ahrefs-blue transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+
+                <!-- Sticky services card -->
+                <div class="lg:sticky lg:top-24">
+                    <div id="services-card" class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-lg p-6 shadow-sm">
+                        <div class="flex items-start mb-4">
+                            <div>
+                                <h3 class="font-inter font-bold text-lg text-gray-900 mb-1">AI Will Takeover Your Firm Soon, Unless...</h3>
+                                <p class="text-sm text-gray-600 mb-3">AI won't replace law firms, but it will award those (by recommending) who know how to beat the algorithm, and those who utilize AI for higher efficiency.</p>
+                                <p class="text-sm text-gray-600 mb-4">That's what we do for law firms. Our core services are:</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mb-5">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-sm text-gray-700">Hi-Fi Website Design & Development</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-sm text-gray-700">SEO & AI Marketing Services</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-sm text-gray-700">Custom Client & File Management Systems</span>
+                            </div>
+                        </div>
+
+                        <a href="#" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 px-4 rounded-md font-medium text-base transition-colors duration-200">
+                            <i class="far fa-calendar-alt mr-2"></i>
+                            Book a Strategy Call
+                        </a>
+
+                        <p class="text-xs text-gray-500 text-center mt-2">30-Minute Free Consultation • Pick My Brain</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+
+    <section id="keep-learning" class="py-16">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <h2 class="font-inter font-bold text-3xl text-center mb-12">Keep Learning</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <AI-IMAGE class="w-full h-48 object-cover" src="modern office workspace with laptop showing SEO analytics dashboard" />
+                    <div class="p-6">
+                        <div class="text-xs text-ahrefs-blue font-semibold uppercase mb-2">SEO</div>
+                        <h3 class="font-inter font-bold text-lg mb-2">10 SEO Trends to Watch in 2025</h3>
+                        <p class="text-sm text-gray-600 mb-3">Stay ahead of the curve with these emerging SEO trends that will shape the industry.</p>
+                        <div class="text-sm text-gray-500">8 min read</div>
+                    </div>
+                </article>
+                <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <AI-IMAGE class="w-full h-48 object-cover" src="AI robot hand touching digital screen with data visualization" />
+                    <div class="p-6">
+                        <div class="text-xs text-ahrefs-blue font-semibold uppercase mb-2">AI SEARCH</div>
+                        <h3 class="font-inter font-bold text-lg mb-2">How AI is Changing Search Forever</h3>
+                        <p class="text-sm text-gray-600 mb-3">Understanding the fundamental shifts in how people find information online.</p>
+                        <div class="text-sm text-gray-500">12 min read</div>
+                    </div>
+                </article>
+                <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                    <AI-IMAGE class="w-full h-48 object-cover" src="content marketing strategy planning board with sticky notes" />
+                    <div class="p-6">
+                        <div class="text-xs text-ahrefs-blue font-semibold uppercase mb-2">CONTENT</div>
+                        <h3 class="font-inter font-bold text-lg mb-2">Content Strategy for AI-First World</h3>
+                        <p class="text-sm text-gray-600 mb-3">Adapt your content strategy to succeed in an AI-dominated search landscape.</p>
+                        <div class="text-sm text-gray-500">10 min read</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">
+                        <span class="text-ahrefs-orange">a</span><span class="text-white">hrefs</span>
+                    </div>
+                    <p class="text-sm">The industry's favorite SEO tool.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Academy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Our data</a></li>
+                        <li><a href="#" class="hover:text-white transition">SEO tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Help center</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact us</a></li>
+                        <li><a href="#" class="hover:text-white transition">System status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p>&copy; 2024 Ahrefs Pte Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progress-bar').style.width = scrollPercent + '%';
+
+            const sections = document.querySelectorAll('h2[id], h3[id]');
+            const tocLinks = document.querySelectorAll('.toc-item');
+
+            let currentSection = '';
+            const scrollPosition = window.scrollY + 200; // Offset for better detection
+
+            // Find the current section based on scroll position
+            for (let i = 0; i < sections.length; i++) {
+                const section = sections[i];
+                const sectionTop = section.offsetTop;
+                const nextSection = sections[i + 1];
+                const sectionBottom = nextSection ? nextSection.offsetTop : document.body.scrollHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    currentSection = section.id;
+                    break;
+                }
+            }
+
+            // If no section is found (at the top), use the first section
+            if (!currentSection && sections.length > 0) {
+                currentSection = sections[0].id;
+            }
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        function copyH2Link(sectionId) {
+            const url = window.location.origin + window.location.pathname + '#' + sectionId;
+            const button = document.querySelector(`#${sectionId} .h2-link-icon`);
+
+            navigator.clipboard.writeText(url).then(() => {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'copy-tooltip absolute -top-8 left-0 bg-gray-900 text-white text-xs px-2 py-1 rounded';
+                tooltip.textContent = 'Copy link';
+                button.appendChild(tooltip);
+
+                setTimeout(() => {
+                    tooltip.remove();
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>
