@@ -6,3 +6,9 @@ Image folder updated on August 5, 2025.
 **Publish as theme (low value pages, might change frequently):**
 - Criminal defense SEO
 - Personal Injury SEO
+
+
+## Video Reviews
+
+- [Full Site Review]([url](https://recordings.lawyerseoexpert.com/recordings/FPCxxIryVU1ck832EXah))
+- [Blog Template Guideline]([url](https://recordings.lawyerseoexpert.com/recordings/BX8NLy4MB3Vvyu0Tcvgy))
