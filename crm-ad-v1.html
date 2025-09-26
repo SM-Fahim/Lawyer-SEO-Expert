@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Law Firm Client Management System - Stop Adapting to Generic Software</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Calendly widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#2c3e5a',
+                        purple: '#8B5CF6',
+                        gold: '#fbbf24',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .countdown-box {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .bonus-number {
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        .faq-item {
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-navy text-white">
+
+    <!-- Hero Section -->
+    <div id="hero-section" class="bg-gradient-to-b from-navy to-gray-900 min-h-[800px] py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Top Badge -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center bg-white text-gray-800 px-3 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg">
+                    <span class="w-2 h-2 bg-red-500 rounded-full mr-2 sm:mr-3 animate-pulse"></span>
+                    <span class="text-red-500 font-semibold text-[10px] sm:text-xs uppercase tracking-wider mr-2 sm:mr-3">LIVE</span>
+                    <span class="font-semibold text-[10px] sm:text-sm uppercase tracking-wide">ONE-TIME PAYMENT</span>
+                    <span class="mx-1 sm:mx-2 text-gray-400">|</span>
+                    <span class="font-semibold text-[10px] sm:text-sm uppercase tracking-wide">OWN FOREVER</span>
+                </div>
+            </div>
+
+            <!-- Two Column Layout -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Column - Content -->
+                <div class="space-y-8">
+                    <div>
+                        <h1 class="text-4xl sm:text-5xl font-bold leading-[1.1] mb-6">
+                            They Built Generic Software for "Any" Law Firm. <span class="text-gold">We Build for YOUR Law Firm.</span>
+                        </h1>
+
+                        <p class="text-xl text-gray-200 mb-4 leading-relaxed">
+                            Get a Custom Client & File Management System Built to Automate YOUR Exact Processes (Not Generic Software That Forces You to Adapt)
+                        </p>
+
+                        <p class="text-lg text-gray-300">
+                            Automate intake. Organize documents. Track cases. All on YOUR servers. Unlimited Access. Zero monthly fees.
+                        </p>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="space-y-6">
+                        <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/fahim-sm/quick-chat'});return false;" class="bg-purple hover:bg-purple-700 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-bold transition-all transform hover:scale-105 shadow-2xl w-full sm:w-auto">
+                            Request Your Free Sample Design
+                        </button>
+
+                        <div class="space-y-2">
+                            <p class="text-gray-400 italic text-base">
+                                Limited to 3 firms per month
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Video -->
+                <div class="relative">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl border border-purple/20 bg-black/50">
+                        <iframe
+                            src="https://www.youtube.com/embed/vZE0j_WCRvI"
+                            title="Custom Law Firm Management System Demo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            class="w-full aspect-video">
+                        </iframe>
+                    </div>
+
+                    <!-- Video Caption -->
+                    <div class="mt-6 text-center">
+                        <p class="text-xl font-semibold text-white mb-2">
+                            See a Real Custom System We Built
+                        </p>
+                        <p class="text-lg text-gray-300">
+                            This Could Be Yours in 4-8 Weeks
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <div class="bg-gray-900 py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                Why Generic Software <span class="text-red-500">Fails Law Firms</span> (Yes... Including Yours)
+            </h2>
+
+            <div class="bg-navy/50 rounded-lg p-0 sm:p-8 mb-8">
+                <div class="flex flex-col md:flex-row items-center gap-0 sm:gap-8">
+                    <div class="w-full md:w-1/2">
+                        <img class="w-full rounded-t-lg sm:rounded-lg" src="./images/17.png" alt="Frustrated lawyer trying to fit complex workflow into rigid software box" />
+                    </div>
+                    <div class="p-8 sm:p-0 md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">You're forced to:</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Upload confidential client docs to THEIR servers
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Pay $150+/month per user FOREVER
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Adapt YOUR proven process to THEIR system
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Wait months for "feature requests" that never come
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-red-900/20 border-2 border-red-500 rounded-lg p-0 sm:p-8">
+                <div class="flex flex-col md:flex-row items-center gap-0 sm:gap-8">
+                    <div class="p-8 sm:p-0 md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-6 text-red-400">Meanwhile, you're still:</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Emailing 70-page PDFs back and forth
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Chasing missing documents
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Re-entering data from scanned forms
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-3">•</span>
+                                Wasting time on unqualified leads
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img class="w-full rounded-b-lg sm:rounded-lg" src="./images/39.png" alt="Overwhelmed law office staff drowning in paperwork piles, scanning documents, typing data manually, stressed with mountains of PDF files and email attachments" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div class="bg-navy py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                One Portal. Unlimited Users. <span class="text-gold">Every Process Automated.</span>
+            </h2>
+            <p class="text-xl text-center mb-6">
+                <strong>From lead intake to case completion - we build the entire system YOUR way.</strong>
+            </p>
+            <p class="text-lg text-center mb-12 text-gray-300">
+                See 9 examples from systems we've built for other firms:
+            </p>
+        </div>
+    </div>
+
+    <!-- Example Features -->
+    <div class="bg-gray-900 py-16">
+        <div class="max-w-5xl mx-auto px-4">
+
+            <!-- Feature 1 -->
+            <div class="mb-16">
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="bonus-number">#1</div>
+                    <h3 class="text-2xl md:text-3xl font-bold">Stop Wasting Time on Unqualified Leads</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 flex-1 flex flex-col">
+                            <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                            <p class="text-lg">
+                                You send intake PDFs to every lead.<br>
+                                They fill it out (or don't).<br>
+                                You review it to see if they qualify.<br>
+                                Wasted hours on people with no case.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-900/20 border border-green-500 rounded-lg p-6 flex-1 flex flex-col">
+                            <h4 class="text-xl font-bold text-green-400 mb-4">What We Built for a Bankruptcy Firm:</h4>
+                            <p class="text-lg mb-4">Digital qualification form that checks:</p>
+                            <ul class="space-y-2">
+                                <li>• Income vs. debt thresholds</li>
+                                <li>• Asset exemption limits</li>
+                                <li>• Previous filing history</li>
+                                <li>• Chapter 7 vs. Chapter 13 eligibility</li>
+                            </ul>
+                            <p class="text-lg mt-4">
+                                Lead fills it out. You check the summary in 10 seconds to decide if they qualify.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 rounded-lg overflow-hidden min-h-[400px] md:h-full">
+                        <img class="w-full h-full object-cover object-top" src="images/CRM/1.1.png" alt="Interactive qualification form with instant results" />
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="mb-16">
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="bonus-number">#2</div>
+                    <h3 class="text-2xl md:text-3xl font-bold">Goodbye 70-Page PDFs</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <div class="flex flex-col gap-6">
+                        <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 flex-1 flex flex-col">
+                            <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                            <p class="text-lg">
+                                Client prints 70-page form. Fills by hand. Scans it back.<br>
+                                Pages missing. Handwriting illegible. Information incomplete.<br>
+                                You call them. Again.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-900/20 border border-green-500 rounded-lg p-6 flex-1 flex flex-col">
+                            <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                            <p class="text-lg mb-4">Digital forms with guided steps and progress bar.</p>
+                            <ul class="space-y-2">
+                                <li>• Conditional logic (only shows relevant sections)</li>
+                                <li>• Auto-saves progress. Continue anytime</li>
+                                <li>• Can't submit with missing info</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900 rounded-lg overflow-hidden min-h-[400px] md:h-full">
+                        <img class="w-full h-full object-cover object-top" src="images/CRM/2.1.png" alt="Clean form interface" />
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="mb-16">
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="bonus-number">#3</div>
+                    <h3 class="text-2xl md:text-3xl font-bold">Documents on YOUR Servers, YOUR Computers</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Mobile Layout -->
+                    <div class="md:hidden">
+                        <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                            <p class="text-lg">
+                                Client docs scattered across Dropbox, email, local drives.<br>
+                                Security risk with third-party storage.<br>
+                                No organization. Constant document requests.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-900/20 border border-green-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                            <p class="text-lg mb-4">Two-way document sync system:</p>
+                            <ul class="space-y-2">
+                                <li>• Clients upload to web portal, organized in folders</li>
+                                <li>• Files instantly appear on your PC</li>
+                                <li>• Each client = one local folder</li>
+                                <li>• Edit locally, syncs to portal</li>
+                                <li>• No third-party servers ever</li>
+                            </ul>
+                        </div>
+
+                        <!-- First Image on Mobile -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden mb-6">
+                            <img class="w-full object-cover object-top" src="images/CRM/3.1.png" alt="Local folder structure synced with portal" />
+                        </div>
+
+                        <div class="bg-blue-900/20 border border-blue-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-xl font-bold text-blue-400 mb-4">How It Works:</h4>
+                            <p class="text-lg">
+                                Open "C:\ClientFiles\Johnson, Robert"<br>
+                                See all their documents organized.<br>
+                                Add a file? Client sees it instantly.<br>
+                                Delete something? Gone from portal too.
+                            </p>
+                        </div>
+
+                        <!-- Second Image on Mobile -->
+                        <div class="bg-gray-900 rounded-lg overflow-hidden">
+                            <img class="w-full object-cover object-top" src="images/CRM/4.1.png" alt="Document sync interface" />
+                        </div>
+                    </div>
+
+                    <!-- Desktop Layout (unchanged) -->
+                    <div class="hidden md:block">
+                        <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                            <p class="text-lg">
+                                Client docs scattered across Dropbox, email, local drives.<br>
+                                Security risk with third-party storage.<br>
+                                No organization. Constant document requests.
+                            </p>
+                        </div>
+
+                        <div class="bg-green-900/20 border border-green-500 rounded-lg p-6 mb-6">
+                            <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                            <p class="text-lg mb-4">Two-way document sync system:</p>
+                            <ul class="space-y-2">
+                                <li>• Clients upload to web portal, organized in folders</li>
+                                <li>• Files instantly appear on your PC</li>
+                                <li>• Each client = one local folder</li>
+                                <li>• Edit locally, syncs to portal</li>
+                                <li>• No third-party servers ever</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-blue-900/20 border border-blue-500 rounded-lg p-6">
+                            <h4 class="text-xl font-bold text-blue-400 mb-4">How It Works:</h4>
+                            <p class="text-lg">
+                                Open "C:\ClientFiles\Johnson, Robert"<br>
+                                See all their documents organized.<br>
+                                Add a file? Client sees it instantly.<br>
+                                Delete something? Gone from portal too.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex flex-col gap-4 h-full">
+                        <div class="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                            <img class="w-full h-full object-cover object-top" src="images/CRM/3.1.png" alt="Local folder structure synced with portal" />
+                        </div>
+                        <div class="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                            <img class="w-full h-full object-cover object-top" src="images/CRM/4.1.png" alt="Document sync interface" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 4 - Four Dashboards -->
+            <div class="mb-16">
+                <div class="flex items-start gap-4 mb-8">
+                    <div class="bonus-number">#4</div>
+                    <h3 class="text-2xl md:text-3xl font-bold">Four Dashboards. Perfect Control.</h3>
+                </div>
+                <p class="text-xl text-center mb-8 text-gold">Every User Gets Their Own Command Center</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Lead Dashboard -->
+                    <div class="bg-navy/50 rounded-lg p-0 sm:p-6 overflow-hidden">
+                        <h4 class="text-xl font-bold mb-4 flex items-center px-6 pt-6 sm:px-0 sm:pt-0">
+                            <i class="fas fa-user-clock text-blue-400 mr-3"></i>
+                            Lead Dashboard
+                        </h4>
+                        <img class="w-full h-auto object-contain sm:rounded mb-4" src="images/CRM/7.1.png" alt="Lead portal with application status" />
+                        <div class="px-6 pb-6 sm:px-0 sm:pb-0">
+                            <p class="font-bold mb-2 text-lg">What leads see:</p>
+                            <ul class="space-y-1 text-base">
+                                <li>• Start/continue their application</li>
+                                <li>• Check qualification status</li>
+                                <li>• Book consultation slots</li>
+                                <li>• Download resources for their situation</li>
+                                <li>• View relevant FAQs</li>
+                            </ul>
+                            <p class="text-base italic text-gray-400 mt-3">No access to client areas. No confusion.</p>
+                        </div>
+                    </div>
+
+                    <!-- Client Dashboard -->
+                    <div class="bg-navy/50 rounded-lg p-0 sm:p-6 overflow-hidden">
+                        <h4 class="text-xl font-bold mb-4 flex items-center px-6 pt-6 sm:px-0 sm:pt-0">
+                            <i class="fas fa-user-shield text-green-400 mr-3"></i>
+                            Client Dashboard
+                        </h4>
+                        <img class="w-full h-auto object-contain sm:rounded mb-4" src="images/CRM/6.1.png" alt="Client portal with case overview" />
+                        <div class="px-6 pb-6 sm:px-0 sm:pb-0">
+                            <p class="font-bold mb-2 text-lg">What clients see:</p>
+                            <ul class="space-y-1 text-base">
+                                <li>• Upload documents to specific folders</li>
+                                <li>• Complete assigned forms</li>
+                                <li>• Track case progress in real-time</li>
+                                <li>• Schedule appointments</li>
+                                <li>• Access their complete file history</li>
+                            </ul>
+                            <p class="text-base italic text-gray-400 mt-3">Their case. Their documents. Always accessible.</p>
+                        </div>
+                    </div>
+
+                    <!-- Attorney Dashboard -->
+                    <div class="bg-navy/50 rounded-lg p-0 sm:p-6 overflow-hidden">
+                        <h4 class="text-xl font-bold mb-4 flex items-center px-6 pt-6 sm:px-0 sm:pt-0">
+                            <i class="fas fa-balance-scale text-purple mr-3"></i>
+                            Attorney Dashboard
+                        </h4>
+                        <img class="w-full h-auto object-contain sm:rounded mb-4" src="images/CRM/8.png" alt="Attorney view with assigned cases" />
+                        <div class="px-6 pb-6 sm:px-0 sm:pb-0">
+                            <p class="font-bold mb-2 text-lg">What attorneys see:</p>
+                            <ul class="space-y-1 text-base">
+                                <li>• Only their assigned cases</li>
+                                <li>• Client documents and forms</li>
+                                <li>• Case notes and status updates</li>
+                                <li>• Deadline tracking</li>
+                                <li>• Communication history</li>
+                            </ul>
+                            <p class="text-base italic text-gray-400 mt-3">Focus on their clients. Nothing else.</p>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard -->
+                    <div class="bg-navy/50 rounded-lg p-0 sm:p-6 overflow-hidden">
+                        <h4 class="text-xl font-bold mb-4 flex items-center px-6 pt-6 sm:px-0 sm:pt-0">
+                            <i class="fas fa-user-cog text-red-400 mr-3"></i>
+                            Admin Dashboard
+                        </h4>
+                        <img class="w-full h-auto object-contain sm:rounded mb-4" src="images/CRM/9.1.png" alt="Admin dashboard with complete oversight" />
+                        <div class="px-6 pb-6 sm:px-0 sm:pb-0">
+                            <p class="font-bold mb-2 text-lg">What admins control:</p>
+                            <ul class="space-y-1 text-base">
+                                <li>• All leads, clients, and attorneys</li>
+                                <li>• Assign cases to team members</li>
+                                <li>• View any document or form</li>
+                                <li>• Track firm-wide metrics</li>
+                                <li>• Manage system settings</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+             <!-- Feature 5 -->
+             <div class="mb-16">
+                 <div class="flex items-start gap-4 mb-8">
+                     <div class="bonus-number">#5</div>
+                     <h3 class="text-2xl md:text-3xl font-bold">Total User Control</h3>
+                 </div>
+ 
+                 <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                     <div>
+                         <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 mb-6">
+                             <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                             <p class="text-lg">
+                                 Adding new staff means new logins everywhere.<br>
+                                 Someone leaves? Manual access removal.<br>
+                                 Wrong permissions? Data exposure risk.
+                             </p>
+                         </div>
+ 
+                         <div class="bg-green-900/20 border border-green-500 rounded-lg p-6">
+                             <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                             <p class="text-lg mb-4">Central user management panel:</p>
+                             <ul class="space-y-2">
+                                 <li>• Add attorneys/staff in seconds</li>
+                                 <li>• Set granular permissions</li>
+                                 <li>• Bulk assign/reassign cases</li>
+                                 <li>• Instant access removal</li>
+                                 <li>• Activity audit trails</li>
+                             </ul>
+                         </div>
+                     </div>
+ 
+                     <div class="bg-gray-900 rounded-lg overflow-hidden h-full">
+                         <img class="w-full h-full object-cover object-top" src="images/CRM/9.png" alt="User management interface" />
+                     </div>
+                 </div>
+             </div>
+ 
+             <!-- Feature 6 -->
+             <div class="mb-16">
+                 <div class="flex items-start gap-4 mb-8">
+                     <div class="bonus-number">#6</div>
+                     <h3 class="text-2xl md:text-3xl font-bold">Your Forms, Your Rules</h3>
+                 </div>
+ 
+                 <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                     <div>
+                         <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 mb-6">
+                             <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                             <p class="text-lg">
+                                 Your intake process changes.<br>
+                                 But your forms are hardcoded.<br>
+                                 Developer charges $1000 for updates.
+                             </p>
+                         </div>
+ 
+                         <div class="bg-green-900/20 border border-green-500 rounded-lg p-6">
+                             <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                             <p class="text-lg mb-4">Form management system:</p>
+                             <ul class="space-y-2">
+                                 <li>• Drag-drop form builder</li>
+                                 <li>• Add/remove fields anytime</li>
+                                 <li>• Conditional logic editor</li>
+                                 <li>• Save form templates</li>
+                                 <li>• Version control</li>
+                             </ul>
+                         </div>
+                     </div>
+ 
+                     <div class="bg-gray-900 rounded-lg overflow-hidden h-full">
+                         <img class="w-full h-full object-cover object-top" src="images/CRM/11.png" alt="Form builder interface" />
+                     </div>
+                 </div>
+             </div>
+ 
+             <!-- Feature 7 -->
+             <div class="mb-16">
+                 <div class="flex items-start gap-4 mb-8">
+                     <div class="bonus-number">#7</div>
+                     <h3 class="text-2xl md:text-3xl font-bold">Smart Folder System</h3>
+                 </div>
+ 
+                 <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                     <div>
+                         <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 mb-6">
+                             <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                             <p class="text-lg">
+                                 "Where do I upload my W2?"<br>
+                                 "Which folder for medical records?"<br>
+                                 Different clients. Different organization.
+                             </p>
+                         </div>
+ 
+                         <div class="bg-green-900/20 border border-green-500 rounded-lg p-6">
+                             <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                             <p class="text-lg mb-4">Dynamic folder management:</p>
+                             <ul class="space-y-2">
+                                 <li>• Create predefined default folders</li>
+                                 <li>• Clients create on-demand folders</li>
+                                 <li>• Organize folders, add notes</li>
+                                 <li>• Sync with local drives</li>
+                             </ul>
+                         </div>
+                     </div>
+ 
+                     <div class="bg-gray-900 rounded-lg overflow-hidden h-full">
+                         <img class="w-full h-full object-cover object-top md:object-right-top" src="images/CRM/12.png" alt="Folder structure management" />
+                     </div>
+                 </div>
+             </div>
+ 
+             <!-- Feature 8 -->
+             <div class="mb-16">
+                 <div class="flex items-start gap-4 mb-8">
+                     <div class="bonus-number">#8</div>
+                     <h3 class="text-2xl md:text-3xl font-bold">Knowledge That Scales</h3>
+                 </div>
+ 
+                 <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                     <div class="flex flex-col gap-6">
+                         <div class="bg-red-900/20 border border-red-500 rounded-lg p-6 flex-1 flex flex-col">
+                             <h4 class="text-xl font-bold text-red-400 mb-4">The Problem:</h4>
+                             <p class="text-lg">
+                                 Same questions. Different clients.<br>
+                                 Writing FAQs over and over.<br>
+                                 Resources scattered everywhere.
+                             </p>
+                         </div>
+
+                         <div class="bg-green-900/20 border border-green-500 rounded-lg p-6 flex-1 flex flex-col">
+                             <h4 class="text-xl font-bold text-green-400 mb-4">What We Built:</h4>
+                             <p class="text-lg mb-4">Resource management center:</p>
+                             <ul class="space-y-2">
+                                 <li>• Create FAQs by user level</li>
+                                 <li>• Upload guides and templates</li>
+                                 <li>• Update everywhere at once</li>
+                             </ul>
+                         </div>
+                     </div>
+
+                     <div class="bg-gray-900 rounded-lg overflow-hidden min-h-[400px] md:h-full">
+                         <img class="w-full h-full object-cover object-top" src="images/CRM/13.png" alt="FAQ and resource manager" />
+                     </div>
+                 </div>
+             </div>
+ 
+         </div>
+     </div>
+ 
+     <!-- Bonuses Section -->
+     <div class="bg-navy py-16">
+         <div class="max-w-5xl mx-auto px-4">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                 Plus, you'll also get these bonuses...
+             </h2>
+ 
+             <!-- Bonus 1 -->
+             <div class="bg-navy/50 border-2 border-purple rounded-lg p-6 sm:p-8 mb-6">
+                 <div>
+                     <h3 class="text-2xl font-bold mb-4"><span class="bg-purple text-white px-3 py-1 rounded-lg mr-2">Bonus #1</span> We Automate ANY Process</h3>
+                         <p class="text-xl mb-2"><strong>Your firm has unique workflows.</strong></p>
+                         <p class="text-lg mb-2">Describe it. We build it.</p>
+                         <p class="text-lg italic text-gray-300">If it's repetitive, we automate it.</p>
+                 </div>
+             </div>
+ 
+             <!-- Bonus 2 -->
+             <div class="bg-navy/50 border-2 border-purple rounded-lg p-6 sm:p-8">
+                 <div>
+                     <h3 class="text-2xl font-bold mb-4"><span class="bg-purple text-white px-3 py-1 rounded-lg mr-2">Bonus #2</span> Complete Ownership</h3>
+                         <p class="text-xl mb-2"><strong>No subscriptions. No licenses.</strong></p>
+                         <p class="text-lg">You own the system.</p>
+                         <p class="text-lg mt-2">
+                             Change it anytime.<br>
+                             Move it anywhere.<br>
+                             Your system. Your rules.
+                         </p>
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+     <!-- Testimonial Section -->
+     <div class="bg-gray-900 py-16">
+         <div class="max-w-5xl mx-auto px-4">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                 REAL FIRM TRANSFORMATION
+             </h2>
+ 
+             <div class="bg-navy/50 rounded-lg p-4 sm:p-8">
+                 <div class="flex flex-col md:flex-row items-center gap-4 sm:gap-8">
+                     <div class="md:w-1/3">
+                         <img class="w-40 sm:w-48 h-40 sm:h-48 rounded-full mx-auto object-cover" src="./images/42.png" alt="Professional female lawyer Sarah Mitchell in office" />
+                         <h3 class="text-xl font-bold text-center mt-4">Sarah Mitchell</h3>
+                         <p class="text-center text-gray-400">Mitchell & Associates</p>
+                     </div>
+ 
+                     <div class="w-full md:w-2/3">
+                         <h3 class="text-3xl font-bold mb-4 text-gold">"We got our evenings back."</h3>
+                         <p class="text-xl italic mb-6">
+                             "The custom system handles what used to take 3 hours daily. Intake qualifies itself. Documents organize themselves. Forms can't be incomplete. We practice law, not data entry."
+                         </p>
+ 
+                         <div class="grid grid-cols-2 gap-4">
+                             <div class="bg-red-900/20 border border-red-500 rounded-lg p-4 text-center">
+                                 <p class="text-sm text-red-400">Before:</p>
+                                 <p class="text-3xl font-bold text-red-400">60%</p>
+                                 <p>of day on admin tasks</p>
+                             </div>
+                             <div class="bg-green-900/20 border border-green-500 rounded-lg p-4 text-center">
+                                 <p class="text-sm text-green-400">After:</p>
+                                 <p class="text-3xl font-bold text-green-400">90%</p>
+                                 <p>of day on billable work</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+     <!-- Investment Options -->
+     <div class="bg-navy py-16">
+         <div class="max-w-5xl mx-auto px-4">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                 YOUR INVESTMENT OPTIONS
+             </h2>
+ 
+             <div class="grid md:grid-cols-2 gap-8">
+                 <!-- Option A -->
+                 <div class="bg-red-900/20 border-2 border-red-500 rounded-lg p-8">
+                     <h3 class="text-2xl font-bold mb-6 text-red-400">
+                         Option A: Keep Your Current System
+                     </h3>
+                     <ul class="space-y-3 text-lg mb-6">
+                         <li class="flex items-start">
+                             <span class="text-red-400 mr-3">❌</span>
+                             $150/month × 5 users = $9,000/year forever
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-red-400 mr-3">❌</span>
+                             Adapt to their workflow
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-red-400 mr-3">❌</span>
+                             Data on their servers
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-red-400 mr-3">❌</span>
+                             Generic features you don't need
+                         </li>
+                     </ul>
+                     <div class="bg-red-900/30 rounded-lg p-4 text-center">
+                         <p class="text-2xl font-bold text-red-400">10-Year Cost: $90,000+</p>
+                     </div>
+                 </div>
+ 
+                 <!-- Option B -->
+                 <div class="bg-green-900/20 border-2 border-green-500 rounded-lg p-8 relative">
+                     <div class="absolute -top-4 -right-4 bg-gold text-navy px-4 py-2 rounded-full font-bold text-sm">
+                         RECOMMENDED
+                     </div>
+                     <h3 class="text-2xl font-bold mb-6 text-green-400">
+                         Option B: Custom Built System
+                     </h3>
+                     <ul class="space-y-3 text-lg mb-6">
+                         <li class="flex items-start">
+                             <span class="text-green-400 mr-3">✅</span>
+                             One-time investment (starts at $3k onetime) with free support
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-green-400 mr-3">✅</span>
+                             Built for YOUR workflow
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-green-400 mr-3">✅</span>
+                             YOUR servers, YOUR control
+                         </li>
+                         <li class="flex items-start">
+                             <span class="text-green-400 mr-3">✅</span>
+                             Exactly what you need, nothing you don't
+                         </li>
+                     </ul>
+                     <div class="bg-green-900/30 rounded-lg p-4 text-center">
+                         <p class="text-2xl font-bold text-green-400">Own It Forever. Zero Monthly Fees.</p>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- CTA Button -->
+             <div class="text-center mt-12">
+                 <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/fahim-sm/quick-chat'});return false;" class="bg-purple hover:bg-purple-700 text-white px-10 py-5 rounded-xl text-xl font-bold transition-all transform hover:scale-105 shadow-2xl">
+                     Request Your Free Sample Design
+                 </button>
+             </div>
+         </div>
+     </div>
+
+     <!-- FAQ Section -->
+     <div class="bg-gray-900 py-16">
+         <div class="max-w-4xl mx-auto px-4">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+                 Frequently Asked Questions
+             </h2>
+ 
+             <div class="space-y-4">
+                 <div class="faq-item bg-navy/50 rounded-lg p-6" onclick="toggleFAQ(this)">
+                     <div class="flex justify-between items-center">
+                         <h3 class="text-xl font-bold">What exactly do we get?</h3>
+                         <i class="fas fa-chevron-down faq-icon"></i>
+                     </div>
+                     <div class="faq-answer mt-4 text-gray-300">
+                         <p>A system built specifically for YOUR firm's processes. Not adapted. Built.</p>
+                     </div>
+                 </div>
+ 
+                 <div class="faq-item bg-navy/50 rounded-lg p-6" onclick="toggleFAQ(this)">
+                     <div class="flex justify-between items-center">
+                         <h3 class="text-xl font-bold">How long does it take?</h3>
+                         <i class="fas fa-chevron-down faq-icon"></i>
+                     </div>
+                     <div class="faq-answer mt-4 text-gray-300">
+                         <p>4-8 weeks total. We share Hi-Fi UX designs of the front end, take feedback from you, and when everything is approved, the final development starts.</p>
+                     </div>
+                 </div>
+ 
+                 <div class="faq-item bg-navy/50 rounded-lg p-6" onclick="toggleFAQ(this)">
+                     <div class="flex justify-between items-center">
+                         <h3 class="text-xl font-bold">What if we need changes later?</h3>
+                         <i class="fas fa-chevron-down faq-icon"></i>
+                     </div>
+                     <div class="faq-answer mt-4 text-gray-300">
+                         <p>It's your system. Change anything. We can help or your IT can do it. But you'll get a few months of free maintenance. Simple changes won't cost anything extra, but drastic changes or new feature request may or may not cost you anything. Everything depends on what we agree on.</p>
+                     </div>
+                 </div>
+ 
+                 <div class="faq-item bg-navy/50 rounded-lg p-6" onclick="toggleFAQ(this)">
+                     <div class="flex justify-between items-center">
+                         <h3 class="text-xl font-bold">Will it work with our current software?</h3>
+                         <i class="fas fa-chevron-down faq-icon"></i>
+                     </div>
+                     <div class="faq-answer mt-4 text-gray-300">
+                         <p>Yes. We integrate with whatever you're using.</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ 
+    <!-- Final CTA Section -->
+    <div class="bg-navy py-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Let's See If We're A Fit
+            </h2>
+            <p class="text-2xl text-gray-300 mb-12">
+                Book a 30-minute call to discuss your needs and get a clear plan forward
+            </p>
+
+            <div class="bg-navy/50 border-2 border-purple rounded-lg p-8 mb-8">
+                <!-- What Happens on the Call -->
+                <h3 class="text-2xl font-bold mb-8 text-gold">
+                    What We'll Cover:
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-10 text-left">
+                    <div class="text-center">
+                        <div class="text-3xl mb-4 text-purple">1</div>
+                        <h4 class="text-lg font-bold mb-2">Your Current Process</h4>
+                        <p class="text-gray-300">We'll understand exactly what's slowing you down</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-3xl mb-4 text-purple">2</div>
+                        <h4 class="text-lg font-bold mb-2">Custom Solution</h4>
+                        <p class="text-gray-300">We'll outline how to automate your specific workflow</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-3xl mb-4 text-purple">3</div>
+                        <h4 class="text-lg font-bold mb-2">Investment & Timeline</h4>
+                        <p class="text-gray-300">You'll get exact pricing and delivery dates</p>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/fahim-sm/quick-chat'});return false;" class="bg-purple hover:bg-purple-700 text-white px-12 py-5 rounded-lg text-xl font-bold transition-all transform hover:scale-105 shadow-lg mb-6">
+                    Schedule Your Discovery Call →
+                </button>
+
+                <p class="text-gray-400">
+                    No sales pressure. If it's not a fit, we'll tell you.
+                </p>
+            </div>
+
+            <!-- Limited Availability -->
+            <p class="text-xl">
+                <span class="text-gold font-bold">Limited to 3 new firms per month</span> to ensure quality delivery
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(element) {
+            element.classList.toggle('open');
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const countdownElements = document.querySelectorAll('.countdown-box span.text-3xl');
+            // This is a placeholder - in production, you'd calculate from actual end time
+            // For demo purposes, just show static values
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>

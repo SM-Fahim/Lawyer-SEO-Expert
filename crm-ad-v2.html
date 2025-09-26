@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Law Firm System - Watch Demo</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        darkBlue: '#0F172A',
+                        electricBlue: '#3B82F6',
+                        neonGreen: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-indicator {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .step-indicator {
+                display: none;
+            }
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin: 30px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .step-label {
+            margin-right: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .step-item:hover .step-label,
+        .step-item.active .step-label {
+            opacity: 1;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            background: #475569;
+            border-radius: 50%;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .step-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .step-item.active .step-dot {
+            background: #3B82F6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transform: scale(1.5);
+        }
+
+        .step-item.active .step-dot::after {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .video-glow {
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .highlight-price {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-your {
+            background: linear-gradient(135deg, #10B981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-darkBlue text-white min-h-screen">
+
+    <div class="step-indicator">
+        <div class="step-item active" onclick="scrollToSection('video-section')">
+            <span class="step-label">Watch Video</span>
+            <div class="step-dot"></div>
+        </div>
+        <div class="step-item" onclick="scrollToSection('booking-section')">
+            <span class="step-label">Book Call</span>
+            <div class="step-dot"></div>
+        </div>
+    </div>
+
+    <section id="main-section" class="py-12 md:px-6 px-1">
+        <div class="max-w-6xl mx-auto md:px-0 px-1">
+
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-5xl font-bold mb-3 leading-tight">
+                    Stop Paying <span class="highlight-price">$150/Month/User</span> Forever
+                </h1>
+                <p class="text-2xl md:text-3xl font-semibold text-gray-200">
+                    We Build Custom Systems for <span class="highlight-your">YOUR</span> Law Firm
+                </p>
+                <p class="text-lg text-gray-400 mt-3">
+                    (Not generic software that forces you to adapt your workflows)
+                </p>
+            </div>
+
+            <div id="video-section" class="max-w-4xl md:mx-auto mx-0 mb-2">
+                <div class="rounded-2xl md:rounded-2xl rounded-none overflow-hidden bg-black video-glow">
+                    <div class="aspect-video">
+                        <iframe
+                            src="https://www.youtube.com/embed/vZE0j_WCRvI"
+                            title="Custom Law Firm System Demo"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Separate section with larger width for Let's See If We're A Fit -->
+    <section id="booking-section" class="md:px-6 px-0 bg-gray-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-gray-900/50 rounded-2xl md:rounded-2xl rounded-none md:p-24 p-0 text-center">
+                <!-- Text content with padding on mobile -->
+                <div class="md:p-0 p-6 pt-0">
+                    <h2 class="text-3xl md:text-6xl font-bold mb-4">
+                        Let's See If We're A Fit
+                    </h2>
+
+                    <p class="text-gray-400 mb-8 md:mb-8 mb-4 text-base md:text-xl">
+                        No sales pressure. If it's not a fit, we'll tell you.
+                    </p>
+                </div>
+
+                <!-- Calendar container with no padding on mobile -->
+                <div class="bg-gray-800 rounded-xl md:rounded-xl rounded-none md:p-6 p-0 mb-6 md:mb-6 mb-2 overflow-hidden">
+                    <div class="max-w-full md:mx-auto mx-0">
+                        <div class="calendly-inline-widget md:min-h-0 min-h-[1300px]" data-url="https://calendly.com/fahim-sm/quick-chat?primary_color=3b82f6" style="width:100%;height:720px;"></div>
+                    </div>
+                </div>
+
+                <!-- Footer text with padding on mobile -->
+                <div class="md:p-0 p-6 pt-0">
+                    <p class="text-sm text-gray-500">
+                        Only 3 spots left this month • No payment required
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Update active step based on scroll position
+        window.addEventListener('scroll', function() {
+            const videoSection = document.getElementById('video-section');
+            const bookingSection = document.getElementById('booking-section');
+            const stepItems = document.querySelectorAll('.step-item');
+
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+            const videoTop = videoSection.offsetTop;
+            const bookingTop = bookingSection.offsetTop;
+
+            if (scrollPos >= bookingTop) {
+                stepItems[0].classList.remove('active');
+                stepItems[1].classList.add('active');
+            } else {
+                stepItems[0].classList.add('active');
+                stepItems[1].classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
