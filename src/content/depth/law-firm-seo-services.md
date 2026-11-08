@@ -113,22 +113,24 @@ The seven parts don't all start on day one. In a new account, the first 90 days 
 
 ## What happens in the first 90 days of law firm SEO?
 
-The first 90 days of law firm SEO lay the groundwork: tracking, fixes, the Business Profile and the first new pages. For a PI firm in New Orleans, that groundwork took about three months.
+The first 90 days of law firm SEO lay the groundwork. Month 1 goes on research and repairs: the data, the competitors, the law the pages will cover, the topic plan and the major issues. Months 2 and 3 add the pages and the links. For a PI firm in New Orleans, that groundwork took about three months.
 
 Every firm starts from a different place, so read the steps as an example plan, not a timetable for results. Here is that example plan for a new account, step by step.
 
 [steps]
-1. **Month 1: count before you change anything.** Set up call and form tracking, and record today's rankings and Business Profile calls. Every later change is measured against this baseline.
-2. **Month 1: fix what stops Google reading the site.** Clear the errors that keep pages from being crawled or indexed, and repair broken pages and redirects.
-3. **Month 1: bring the Business Profile into line.** Check the name, categories, hours and lawyer profiles against Google's rules, and start the review routine.
-4. **Month 2: write the pages for the searches that bring callers.** Build or rewrite the practice, case-type and office pages for the matters the firm wants most. You or your ethics counsel approve each one first.
-5. **Months 2 and 3: improve the pages people land on.** Tighten the design and wording where visitors leave, so more of them call or send the form.
-6. **Month 3: earn links and check AI answers.** Start outreach to relevant local and legal sites, and record what Google's AI says for the firm's key searches.
-7. **End of month 3: read the first numbers.** Compare calls, forms and rankings with the month 1 baseline, then set the order of work for the next quarter.
+1. **Month 1: collect the data.** Set up call and form tracking, and record today's rankings, Search Console data and Business Profile calls. Every later change is measured against this baseline.
+2. **Month 1: review the competitors.** See which firms take the searches you want in your market, and what their pages, profiles and links have that yours lack.
+3. **Month 1: gather the law the pages will cover.** Collect the statutes, deadlines and court rules for your practice in your state or country, so every page states the law correctly from the start.
+4. **Month 1: plan the topics.** Map the practice, case-type and question pages the firm needs, in the order they should be written.
+5. **Month 1: fix the major issues.** Clear the errors that keep pages from being crawled or indexed, repair broken pages and redirects, and correct a Business Profile that breaks Google's rules.
+6. **Month 2: write the pages for the searches that bring callers.** Build or rewrite the pages in the topic plan, starting with the matters the firm wants most. You or your ethics counsel approve each one first.
+7. **Months 2 and 3: improve the pages people land on.** Tighten the design and wording where visitors leave, so more of them call or send the form.
+8. **Month 3: earn links and check AI answers.** Start outreach to relevant local and legal sites, and record what Google's AI says for the firm's key searches.
+9. **End of month 3: read the first numbers.** Compare calls, forms and rankings with the month 1 baseline, then set the order of work for the next quarter.
 
 After that groundwork, the New Orleans firm's page for <q data-no-check>what to do after a truck accident in New Orleans</q> reached #1 within 16 hours of going live. That speed came from the groundwork, so it is no promise for a new account.
 
-Step 3 matters early because the Business Profile decides whether a firm appears in the Map pack at all.
+The Business Profile fix comes in month 1 because the profile decides whether a firm appears in the Map pack at all.
 
 ## How does a law firm earn a place in the Map pack?
 
