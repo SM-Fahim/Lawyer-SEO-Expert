@@ -1,0 +1,3 @@
+User-agent: *
+# fixture robots
+Disallow: /wp-admin/
