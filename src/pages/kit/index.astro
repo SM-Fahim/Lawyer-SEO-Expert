@@ -2,7 +2,10 @@
 // The inner-page kit, every piece once, with real copy from the v2 decks (content/v2/). Noindex and out of the
 // sitemap, like /variants/. docs/kit.md has each piece's props. The grey strips name the piece under them;
 // they exist only on this page.
+import Button from '../../components/Button.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import Band from '../../components/kit/Band.astro';
 import Bio from '../../components/kit/Bio.astro';
@@ -24,6 +27,7 @@ import TrustLine from '../../components/kit/TrustLine.astro';
 import { fahim, josh } from '../../data/people';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
 const faq: FaqItem[] = [
   {
@@ -35,14 +39,21 @@ const faq: FaqItem[] = [
     html: 'Yes. We write pages Google’s AI can quote and check its answers for your key injury searches every month.',
   },
 ];
+
+// The depth zone sample (src/content/depth/kit-sample.md): its open FAQ joins the FAQPage JSON-LD, and the page
+// adds Fahim's Person node and the WebPage node, as every page with a depth zone does.
+const title = 'Inner-page kit | Lawyer SEO Expert';
+const description = 'Every shared piece for the Lawyer SEO Expert inner pages, shown once with real copy, for the page builders.';
+const sample = await getDepth('kit-sample');
 ---
 <InnerPage
-  title="Inner-page kit | Lawyer SEO Expert"
-  description="Every shared piece for the Lawyer SEO Expert inner pages, shown once with real copy, for the page builders."
+  title={title}
+  description={description}
   path="/kit/"
   crumbs={[{ label: 'Inner-page kit' }]}
   service={{ name: 'SEO for personal injury lawyers' }}
-  faq={faq}
+  faq={[...faq, ...sample.faq]}
+  schema={depthSchema(sample, { path: '/kit/', title, description })}
   noindex
 >
   <p class="kit-label"><span class="lse-wrap"><b>Breadcrumbs</b> (above, from InnerPage) and <b>PageHero</b> layout="split" with form, panel and TrustLine</span></p>
@@ -289,6 +300,25 @@ const faq: FaqItem[] = [
   <Band heading="Before you hire an injury SEO." headingId="kit-faq-h">
     <Faq items={faq} />
   </Band>
+
+  <p class="kit-label" id="kit-depth"><span class="lse-wrap"><b>DepthZone</b> from src/content/depth/kit-sample.md: <b>Byline</b>, summary, <b>Toc</b>, sections with a table, <b>Callout</b>, &lt;q&gt;, &lt;mark&gt;, a [slot] (SearchBox), <b>Steps</b>, a [band] (mid-page CTA), <b>Checklist</b>, the open <b>Faq</b>, sources and <b>AuthorBox</b>; then <b>FinalCta</b></span></p>
+  <DepthZone depth={sample}>
+    <div slot="searches" class="kit-8">
+      <SearchBox
+        label="Searches people type after a charge"
+        queries={[
+          { text: 'criminal defense lawyer near me', mark: 'near me' },
+          { text: '[charge] lawyer in [county]', mark: '[county]' },
+        ]}
+      />
+    </div>
+    <Band slot="mid" heading="See what Google shows for your firm." headingId="kit-depth-mid-h" tone="fog" lead="A sample mid-page CTA: one line and the button, after the main sections.">
+      <Button />
+    </Band>
+  </DepthZone>
+  <FinalCta heading="See where your firm ranks today." formLabel="Kit final form" idPrefix="kit-final">
+    <p>The closing CTA comes after the author box, once per page.</p>
+  </FinalCta>
 </InnerPage>
 
 <style is:global>

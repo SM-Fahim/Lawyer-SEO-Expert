@@ -186,7 +186,7 @@ Two or three columns of searches, a hairline between columns. Column: `{ heading
 ```
 
 ### `HairTable`
-A small hairline table. Props: `head` (string[]), `rows` (cells: text, `{ q, mark? }` for a quoted search, `{ label, href }` for a link), `caption` (read out), `showCaption`.
+A small hairline table. Props: `head` (string[]), `rows` (cells: text, `{ q, mark? }` for a quoted search, `{ label, href }` for a link), `caption` (read out), `showCaption`. A link to a domain in `src/data/nofollow.ts` gets `rel="nofollow"` by itself.
 ```astro
 <HairTable caption="Which page answers which search" head={['Search', 'The page that answers it']} rows={[[{ q: 'dui lawyer [city]' }, 'Your DUI page']]} />
 ```
@@ -215,8 +215,99 @@ Plain rows with hairlines, never cards. Props: `items` (`{ title?, text? }[]`, `
 ### `TrustLine`, `src/data/logos.ts`
 "Law firms we work with" and the four logos. Props: `label`, `priority`. The only place firm names appear.
 
+## Depth zone (v3 service and practice pages)
+
+The long, in-depth part of a page, under its commercial top and above `FinalCta` (`content/DEPTH-BRIEF.md` section 2.2). The copy is Markdown, one file per page, and goes through the posts' Markdown pipeline and their `prose.css` (reading type, phone-stacked tables), so a page builder places one component and writes no markup. Live at `/kit/#kit-depth` from `src/content/depth/kit-sample.md`; screenshots `docs/shots/depthkit-kit-1440.png` and `-390.png`.
+
+Pieces, in `src/components/depth/` (plus the open mode of `Faq`):
+
+| Piece | What it is |
+|---|---|
+| `DepthZone` | The whole zone: Byline, summary and Toc (side by side from 1000px), the sections at a reading measure (35em, about 75 characters a line) with a hairline over each H2, the slots and bands, the open FAQ band, Sources, AuthorBox. Props: `depth` (from `getDepth()`), `faqTone` (`'fog'` default, or `'white'`), `sources` (default true), `authorLine` (overrides the copy's) |
+| `Byline` | One muted line: "By S. M. Fahim. Last reviewed 8 November 2026.", the name linked to `/about/sm-fahim/`. Props: `reviewed`, `person` |
+| `Toc` | The jump list: numbered anchor links on hairline rows, always visible, never sticky or collapsible. DepthZone builds it from the copy's H2s plus the FAQ. Props: `items` (`{ id, text }[]`), `label` ("On this page") |
+| `AuthorBox` | Photo on the swipe, name, role line ("Law firm SEO lead"), the line passed in, "Read Fahim's background". Between a black rule and a hairline, no card. Props: `line` (inline HTML), `person`, `role`, `linkLabel` |
+| `Faq open="all"` | Every answer shown, no `<details>`, each question an H3 (`headingTag`). Same items feed FAQPage JSON-LD |
+| `src/lib/depth.ts` | `getDepth(slug)` reads the file; `depthSchema(depth, { path, title, description })` gives `[fahimSchema, WebPage]` |
+| `webPageSchema()` | In `src/lib/schema.ts`: WebPage with `author` and `reviewedBy` `{ "@id": "https://lawyerseoexpert.com/#fahim" }` (fahimSchema's), `lastReviewed`, `dateModified` (ISO days), and links to `#breadcrumb` and `#site` |
+| `src/data/nofollow.ts` | Agency domains. Any link to one (or a subdomain) gets `rel="nofollow"` by itself, in depth copy, its sources and `HairTable` |
+
+### The file: `src/content/depth/<page slug>.md`
+```md
+---
+summary: >-
+  SEO for DUI attorneys is the work of ranking a DUI practice for the searches a driver makes between the arrest
+  and the first court date. ...           # 100 to 150 words, one paragraph, no heading. Inline Markdown only.
+reviewed: 2026-11-08                      # the byline's "Last reviewed", WebPage lastReviewed
+modified: 2026-11-08                      # optional, WebPage dateModified (defaults to reviewed)
+faqHeading: Questions DUI firms ask about SEO
+faq:                                      # 5 to 8, each answer one paragraph, links allowed
+  - q: How long before a new DUI page brings calls?
+    a: >-
+      Most new pages ... See [law firm SEO pricing](/seo-pricing/).
+authorLine: >-                            # one or two FACTS lines in this page's words (R39); inline Markdown
+  Fahim built the SEO system a New Orleans PI firm runs on ...
+sources:                                  # paste the deck's sources as they are (id, checked, supports are ignored)
+  - url: https://support.google.com/business/answer/3038177
+    publisher: Google Business Profile Help
+    title: Guidelines for representing your business on Google
+  - https://www.americanbar.org/news/abanews/publications/youraba/2018/july-2018/ad-it-up/   # a bare URL works too
+---
+
+## The first depth H2 answers the page's main search?
+
+Copy as the deck has it. [Anchor text](/target/) for links. **One bold answer phrase** per section.
+```
+The file name is the page slug (`seo-for-dui-attorneys.md` for `/seo-for-dui-attorneys/`). Drop the deck's `> Builder:` and `> Judge:` notes, its YAML deck fields (title, meta, keywords, ledger) and anything in `[ASK FAHIM]` or `[NEEDS PRICE OK]`: the build fails if one is left in.
+
+### Syntax for writers and builders
+Plain Markdown, plus four marker lines. A marker sits alone on its own line, right above what it marks.
+
+| You write | You get |
+|---|---|
+| `## Heading` and `### Heading` | Depth H2s on the site's scale (hairline above, new section) and H3s. Ids come from the words (`## How long does it take?` is `#how-long-does-it-take`), so keep a heading's words fixed once other pages link to it. No `#` H1 and no `####` |
+| Paragraphs, `-` and `1.` lists, `**bold**`, `[links](/x/)` | Prose at about 75 characters a line (35em) |
+| A Markdown table | Hairline table (muted labels over a black rule, first column in ink), up to 1040px wide; under 640px each row stacks as labelled lines, as in the posts. **At most 4 columns**, or the build fails |
+| `> **Lead.** The rest of the line.` | **Callout**: a black rule on the left, the bold lead, no box, no icon. It must open with the bold lead |
+| `[checklist]` then a `-` list | **Checklist**: hairline rows with a drawn check mark |
+| `[steps]` then a `1.` list, each item `**Title.** text` | **Numbered steps**: big Franklin numerals, the bold lead set as the step's title. A `1.` list without the marker stays a plain list |
+| `<dfn>term</dfn>` | A defined term, in ink, first time it appears |
+| `<q data-no-check>words people type</q>` | A real search, quoted (check-unique skips it). Real searches only |
+| `<mark>a few words</mark>` | The highlighter (`.lse-mk`): one fact per block, never in a heading (the build fails on a marked heading) |
+| `[slot name]` | The page's `slot="name"` content, in the text column, up to 1040px wide: any kit piece the deck's builder note names (`SearchBox`, `ProofFigure`, `Rows`, `HairTable`). Wrap it in a narrower `div` for a small piece |
+| `[band name]` | Ends the white text section and shows the page's `slot="name"` full width, then the text carries on: the mid-page CTA `Band` (R8, after the main zone only) or the `PriceBand` (put `[band price]` as the last line, so it sits above the FAQ). Use a fog or marker band so it doesn't run into the white |
+
+A link to an agency domain listed in `src/data/nofollow.ts` gets `rel="nofollow"` by itself: add the domain there (the `/seo-pricing/` market table's agencies), never type the attribute.
+
+### On the page
+```astro
+---
+import DepthZone from '../../components/depth/DepthZone.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
+const title = 'SEO for DUI Attorneys | ...';
+const description = '...';
+const depth = await getDepth('seo-for-dui-attorneys');
+---
+<InnerPage title={title} description={description} path="/seo-for-dui-attorneys/" crumbs={[...]} service={{ ... }}
+  faq={depth.faq} schema={depthSchema(depth, { path: '/seo-for-dui-attorneys/', title, description })}>
+  <PageHero ... />            <!-- the commercial top from v2: hero, form, one or two proof items -->
+  <DepthZone depth={depth}>
+    <SearchBox slot="searches" label="..." queries={[...]} />
+    <Band slot="mid" heading="..." headingId="mid-h" tone="fog" lead="..."><Button /></Band>
+  </DepthZone>
+  <FinalCta heading="See where your DUI practice ranks in your county." formLabel="dui-final" idPrefix="dui-final" practiceArea="DUI" />
+</InnerPage>
+```
+- `faq={depth.faq}` is what InnerPage turns into FAQPage JSON-LD: the same items DepthZone shows. Drop the page's old `<Faq>` band.
+- `depthSchema()` adds `fahimSchema` and the WebPage node. Base and InnerPage emit no Person, so this is the page's only one. A page that already passes `fahimSchema` uses `webPageSchema()` from `src/lib/schema.ts` instead.
+- Every `[slot x]` and `[band x]` needs a `slot="x"` child, or the build fails with the file and the name.
+- Ids DepthZone owns: `depth-toc-h`, `depth-faq`, `depth-faq-h`, `depth-sources-h`. Don't use them elsewhere on the page. A heading id that repeats another id on the page fails check-dist.
+
+### Checks the build runs on depth copy
+Any of these fails `astro build` (and `npm run check`) with the file name: an H1 or H4 in the body, a body that opens with an H3, a table over 4 columns, a callout without a bold lead, a `> Builder:` or `> Judge:` note, `[ASK FAHIM]`, `[NEEDS PRICE OK]` or `[ZVQ]` left in, an unknown or misplaced marker, `<mark>` in a heading, a summary, question, answer or author line that is more than one paragraph, questions without a `faqHeading`. check-dist and check-unique then run on the page as on any other.
+
 ## Existing pieces you still use
-`LeadForm` (own `idPrefix` and `label` per form), `CalendlyInline`, `Faq` with `faqSchema` (InnerPage's `faq` prop does it), `FinalCta` (last, once, `id="book"`), `PracticeLinks`, `Placeholder`, `Button`, `Shot`.
+`LeadForm` (own `idPrefix` and `label` per form), `CalendlyInline`, `Faq` with `faqSchema` (InnerPage's `faq` prop does it; `open="all"` in a depth zone), `FinalCta` (last, once, `id="book"`), `PracticeLinks`, `Placeholder`, `Button`, `Shot`.
 
 ## Shared data
 - `src/data/pricing.ts`: `included` (rows), `separateTotal`, `price`.
@@ -224,6 +315,8 @@ Plain rows with hairlines, never cards. Props: `items` (`{ title?, text? }[]`, `
 - `src/data/people.ts`: `fahim`, `josh`.
 - `src/data/logos.ts`: `trustLogos`.
 - `src/data/pages.ts` (existing): `practicePages`, `servicePages`, `companyPages`.
+- `src/data/nofollow.ts`: agency domains whose links get `rel="nofollow"`.
+- `src/content/depth/`: each page's depth copy (see "Depth zone").
 
 ## Image names the decks use for one file
 | Deck name | Use |

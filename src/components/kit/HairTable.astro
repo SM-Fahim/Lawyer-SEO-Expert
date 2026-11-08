@@ -1,6 +1,8 @@
 ---
 // A small table with hairline rules and no boxes (the DUI "which page owns which search"). Cells are text, a
 // quoted search ({ q }) or a link ({ label, href }, underlined). The first row of `head` labels the columns.
+// A link to a domain in src/data/nofollow.ts (another agency's price page) gets rel="nofollow" by itself.
+import { needsNofollow } from '../../lib/markdown';
 import Q from './Q.astro';
 type Cell = string | { q: string; mark?: string | string[] } | { label: string; href: string };
 interface Props {
@@ -22,7 +24,7 @@ const { head, rows, caption, showCaption = false, class: className } = Astro.pro
       {rows.map((row) => (
         <tr>
           {row.map((c) =>
-            typeof c === 'string' ? <td>{c}</td> : 'q' in c ? <td><Q text={c.q} mark={c.mark} /></td> : <td><a href={c.href}>{c.label}</a></td>,
+            typeof c === 'string' ? <td>{c}</td> : 'q' in c ? <td><Q text={c.q} mark={c.mark} /></td> : <td><a href={c.href} rel={needsNofollow(c.href) ? 'nofollow' : undefined}>{c.label}</a></td>,
           )}
         </tr>
       ))}

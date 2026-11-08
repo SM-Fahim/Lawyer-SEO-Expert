@@ -1,0 +1,100 @@
+---
+// The depth zone of a service or practice page, under its commercial top and above FinalCta
+// (content/DEPTH-BRIEF.md section 2.2): byline, summary and jump list, then the copy's sections at a reading
+// measure, the open FAQ, the sources and the author box. The copy is src/content/depth/<slug>.md, read with
+// getDepth() (src/lib/depth.ts). docs/kit.md "Depth zone" has the syntax and the page wiring.
+//
+// Slots: a "[slot name]" line in the copy shows the page's slot="name" there, in the text column (a SearchBox, a
+// Shot, Rows). A "[band name]" line ends the white text section and shows slot="name" full width (the mid-page CTA
+// Band, a PriceBand), then the text carries on. A marker with no matching slot fails the build.
+import Faq from '../Faq.astro';
+import Band from '../kit/Band.astro';
+import type { Depth } from '../../lib/depth';
+import { depthSlotNames, needsNofollow, splitDepth } from '../../lib/markdown';
+import AuthorBox from './AuthorBox.astro';
+import Byline from './Byline.astro';
+import Toc from './Toc.astro';
+import '../blog/prose.css';
+import './depth.css';
+
+interface Props {
+  depth: Depth;
+  /** The FAQ band's tone. Fog by default, so the long white text gets a break before the author box. */
+  faqTone?: 'white' | 'fog';
+  /** Show the sources list (front matter `sources`) above the author box. */
+  sources?: boolean;
+  /** Overrides the copy's authorLine. */
+  authorLine?: string;
+}
+const { depth, faqTone = 'fog', sources = true, authorLine } = Astro.props;
+const parts = splitDepth(depth.html);
+const { slots, bands } = depthSlotNames(parts);
+const filled = new Map<string, string>();
+for (const [kind, names] of [['slot', slots], ['band', bands]] as const) {
+  for (const name of names) {
+    if (!Astro.slots.has(name)) throw new Error(`src/content/depth/${depth.id}.md has a [${kind} ${name}] line, but the page passes nothing with slot="${name}"`);
+    filled.set(name, await Astro.slots.render(name));
+  }
+}
+const hasFaq = depth.faq.length > 0;
+const toc = [...depth.headings, ...(hasFaq ? [{ id: 'depth-faq', text: depth.faqHeading }] : [])];
+const showSources = sources && depth.sources.length > 0;
+const sourceRel = (url: string) => (needsNofollow(url) ? 'nofollow noopener' : 'noopener');
+---
+<div class="lse-depth" data-depth={depth.id}>
+  {parts.map((part, i) => (
+    <>
+      {part.band && <Fragment set:html={filled.get(part.band)} />}
+      {(i === 0 || part.sections.length > 0) && (
+        <div class:list={['lse-section', 'lse-depth__part', { 'lse-depth__part--first': i === 0 }]}>
+          <div class="lse-wrap">
+            {i === 0 && (
+              <div class="lse-depth__intro">
+                <div class="lse-depth__lede">
+                  <Byline reviewed={depth.reviewed} />
+                  <p class="lse-depth__summary" set:html={depth.summaryHtml} />
+                </div>
+                {toc.length > 0 && <Toc items={toc} class="lse-depth__toc" />}
+              </div>
+            )}
+            {part.sections.map((sec) => (
+              <div class="lse-depth__sec">
+                {sec.chunks.map((c) =>
+                  c.type === 'html' ? <div class="lse-prose" set:html={c.html} /> : <div class="lse-depth__slot" set:html={filled.get(c.name)} />,
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  ))}
+
+  {hasFaq && (
+    <Band heading={depth.faqHeading} headingId="depth-faq-h" id="depth-faq" tone={faqTone} class="lse-depth__faq">
+      <Faq items={depth.faq} open="all" />
+    </Band>
+  )}
+
+  <div class="lse-section lse-depth__end">
+    <div class="lse-wrap">
+      {showSources && (
+        <section class="lse-sources lse-depth__sources" aria-labelledby="depth-sources-h">
+          <h2 id="depth-sources-h">Sources</h2>
+          <ol>
+            {depth.sources.map((s) => (
+              <li>
+                {s.title ? (
+                  <><a href={s.url} rel={sourceRel(s.url)}>{s.title}</a>{s.publisher && <>. {s.publisher}</>}.</>
+                ) : (
+                  <a href={s.url} rel={sourceRel(s.url)}>{s.label}</a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+      <AuthorBox line={authorLine ?? depth.authorHtml} />
+    </div>
+  </div>
+</div>

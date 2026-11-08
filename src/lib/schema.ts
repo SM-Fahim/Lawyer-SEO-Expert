@@ -1,4 +1,12 @@
-import type { FaqItem } from '../components/Faq.astro';
+import { fahimSchema } from '../data/site';
+import { isoDay } from './dates';
+
+/** A visible FAQ item: the same shape as Faq.astro's FaqItem (kept here so this file imports no component). */
+export interface FaqEntry {
+  q: string;
+  html: string;
+  text?: string;
+}
 
 const plain = (html: string) =>
   html
@@ -8,7 +16,7 @@ const plain = (html: string) =>
     .trim();
 
 /** FAQPage JSON-LD from the visible FAQ items. Placeholders are left out of the answers. */
-export function faqSchema(items: readonly FaqItem[], pageUrl: string): object {
+export function faqSchema(items: readonly FaqEntry[], pageUrl: string): object {
   return {
     '@type': 'FAQPage',
     '@id': `${pageUrl}#faq`,
@@ -76,5 +84,38 @@ export function serviceSchema(input: ServiceInput, pageUrl: string, orgId: strin
     provider: { '@id': orgId },
     areaServed: { '@type': 'Country', name: 'United States' },
     ...(offers ? { offers } : {}),
+  };
+}
+
+export interface WebPageInput {
+  /** The page's title. */
+  name: string;
+  description?: string;
+  /** The day the page's copy was last checked. */
+  reviewed: Date | string;
+  /** The day the copy last changed. Defaults to the review day. */
+  modified?: Date | string;
+  /** The author and reviewer's Person @id. Defaults to S. M. Fahim's, the node fahimSchema emits. */
+  personId?: string;
+}
+
+/** WebPage JSON-LD for a page with a depth zone: S. M. Fahim as author and reviewer, the review and change dates
+ *  as ISO days. It points at the Person by @id only, so the page passes fahimSchema beside it (Base and InnerPage
+ *  don't emit a Person). It also points at the page's BreadcrumbList (InnerPage) and the site's WebSite node. */
+export function webPageSchema(input: WebPageInput, pageUrl: string, siteUrl: string): object {
+  const { name, description, reviewed, modified = reviewed, personId = fahimSchema['@id'] } = input;
+  return {
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name,
+    ...(description ? { description } : {}),
+    isPartOf: { '@id': `${siteUrl}/#site` },
+    breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+    inLanguage: 'en-US',
+    author: { '@id': personId },
+    reviewedBy: { '@id': personId },
+    lastReviewed: isoDay(reviewed),
+    dateModified: isoDay(modified),
   };
 }

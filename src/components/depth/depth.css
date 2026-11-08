@@ -1,0 +1,96 @@
+/* The depth zone (DepthZone.astro). It sits on the posts' prose.css (the reading type, the phone-stacked tables,
+   the sources list) and changes only what's under .lse-depth, so the posts look exactly as before.
+   "Marked" for long reading: white paper, black ink, headings on the site's scale, text at about 75 characters,
+   hairline rules between sections, checklists and steps as hairline rows. The highlighter only as <mark>. */
+
+/* Byline and summary on the left, the jump list on the right from 1000px; one column under it. */
+.lse-depth__intro { display: grid; gap: var(--s5); padding-top: var(--s3); border-top: 2px solid var(--ink); }
+.lse-depth__summary { margin-top: var(--s3); max-width: 36em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
+@media (min-width: 1000px) {
+  .lse-depth__intro { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(48px, 5vw, 96px); align-items: start; }
+  .lse-depth__intro .lse-jump { border-top: 0; }
+  .lse-depth__intro .lse-jump__h { padding-top: 0; }
+}
+
+/* Sections: each H2 opens a new one under a hairline, across the column. */
+.lse-depth__sec { margin-top: clamp(64px, 7vw, 112px); padding-top: clamp(40px, 4.5vw, 64px); border-top: 1px solid var(--line-2); }
+.lse-depth__part:not(.lse-depth__part--first) > .lse-wrap > .lse-depth__sec:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* The text: the measure goes on each block, so a table may run wider than the text beside it. 35em is about 75
+   characters a line in Franklin (CSS's 68ch is 68 zeros, about 95 letters: too long for a long read). */
+.lse-depth .lse-prose { max-width: none; }
+.lse-depth .lse-prose > :is(p, ul, ol) { max-width: 35em; }
+.lse-depth .lse-prose > h2 {
+  max-width: 20ch; margin-top: 0;
+  font-size: var(--fs-h2); line-height: 1.02; letter-spacing: -.032em;
+}
+.lse-depth .lse-prose > h2 + * { margin-top: clamp(20px, 2.2vw, 32px); }
+.lse-depth .lse-prose > h3 {
+  max-width: 30ch; margin-top: 1.7em;
+  font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -.018em;
+}
+.lse-depth .lse-prose > h3 + * { margin-top: 12px; }
+.lse-depth .lse-prose > h2 + h3 { margin-top: clamp(28px, 3vw, 40px); }
+.lse-depth dfn { font-style: normal; font-weight: 600; color: var(--ink); }
+.lse-depth .lse-prose q { color: var(--ink); }
+
+/* A kit piece the page passes for a [slot name] line, between two runs of text. As wide as a table at most; wrap
+   the piece in a narrower div on the page if it should sit at the text's width. */
+.lse-depth__slot { max-width: 1040px; margin-top: clamp(32px, 3.5vw, 48px); }
+.lse-depth__slot + .lse-prose { margin-top: clamp(32px, 3.5vw, 48px); }
+
+/* Callout: "> **Lead.** text". One fact that must not be missed: a black rule on its left, the lead in bold. */
+.lse-depth .lse-prose > .lse-callout, .lse-depth .lse-prose > .lse-callout + * { margin-top: 1.75em; }
+.lse-depth .lse-callout {
+  max-width: 33em; padding: 2px 0 4px 22px; border-left: 4px solid var(--ink);
+  font-size: 1.07em; line-height: 1.55; color: var(--ink);
+}
+.lse-depth .lse-callout > * + * { margin-top: .65em; }
+.lse-depth .lse-callout > p:first-child > strong:first-child { font-weight: 800; }
+
+/* Checklist: "[checklist]" above a bullet list. Hairline rows with a drawn check mark; no boxes. */
+.lse-depth .lse-prose > ul.lse-check { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
+.lse-depth .lse-prose > ul.lse-check > li { position: relative; margin: 0; padding: 13px 0 14px 40px; border-bottom: 1px solid var(--line-2); }
+.lse-depth .lse-prose > ul.lse-check > li::before {
+  content: ""; position: absolute; left: 4px; top: calc(13px + .5lh - 7px);
+  width: 16px; height: 8px; border: solid var(--ink); border-width: 0 0 3px 3px; transform: rotate(-45deg);
+}
+.lse-depth .lse-prose > ul.lse-check > li > p + p { margin-top: .5em; }
+
+/* Steps: "[steps]" above a numbered list. Big Franklin numerals on hairline rows; a bold lead is the title. */
+.lse-depth .lse-prose > ol.lse-steps { list-style: none; padding: 0; counter-reset: lse-step; border-top: 2px solid var(--ink); }
+.lse-depth .lse-prose > ol.lse-steps > li {
+  counter-increment: lse-step; position: relative; margin: 0;
+  padding: 22px 0 24px clamp(64px, 5vw, 84px); border-bottom: 1px solid var(--line-2);
+}
+.lse-depth .lse-prose > ol.lse-steps > li::before {
+  content: counter(lse-step); position: absolute; left: 0; top: 20px;
+  font: 900 clamp(44px, 2.4vw + 26px, 60px) / .85 var(--sans); letter-spacing: -.05em; color: var(--ink);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.lse-depth .lse-steps__t {
+  display: block; margin-bottom: 6px;
+  font-size: clamp(20px, .4vw + 17px, 23px); font-weight: 750; line-height: 1.2; letter-spacing: -.012em;
+}
+.lse-depth .lse-prose > ol.lse-steps > li > p + p { margin-top: .5em; }
+
+/* Tables on wider screens: the kit's HairTable look (muted labels over a black rule, hairline rows, the first
+   column in ink). Phones keep prose.css's stacked rows. At most 4 columns (the loader checks). */
+.lse-depth .lse-prose > table, .lse-depth .lse-prose > table + * { margin-top: 1.6em; }
+@media (min-width: 641px) {
+  .lse-depth .lse-prose > table { max-width: 1040px; font-size: .95em; }
+  .lse-depth .lse-prose thead th { padding: 0 24px 10px 0; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); }
+  .lse-depth .lse-prose td { padding: 14px 24px 15px 0; border-bottom-color: var(--line-2); }
+  .lse-depth .lse-prose tbody td:first-child { font-weight: 600; color: var(--ink); }
+  .lse-depth .lse-prose :is(th, td):last-child { padding-right: 0; }
+}
+
+/* FAQ band, then sources and the author box at the FAQ's width. FinalCta follows with its own top space. */
+.lse-depth__end { padding: clamp(48px, 5.5vw, 80px) 0 0; }
+.lse-depth__faq:not(.lse-section--fog) + .lse-depth__end { padding-top: 0; }
+.lse-depth .lse-depth__sources { margin-top: 0; max-width: 56em; }
+.lse-depth .lse-author { max-width: 56em; }
+.lse-depth__sources + .lse-author { margin-top: var(--s6); }
+
+/* No mono fonts anywhere: a code span outside the prose (an answer, the summary) keeps the family too. */
+.lse-depth code { font-family: var(--sans); }

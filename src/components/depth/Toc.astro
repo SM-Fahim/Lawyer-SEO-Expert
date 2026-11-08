@@ -1,0 +1,28 @@
+---
+// The jump list: plain anchor links to a depth zone's H2s, always visible. Not sticky, not collapsible, never a
+// <details> (content/DEPTH-BRIEF.md section 2.2). DepthZone builds it from the copy's H2s and the FAQ's.
+interface Props {
+  items: readonly { id: string; text: string }[];
+  /** The list's name, shown above it in body type (not an eyebrow, not a heading). */
+  label?: string;
+  labelId?: string;
+  class?: string;
+}
+const { items, label = 'On this page', labelId = 'depth-toc-h', class: className } = Astro.props;
+---
+<nav class:list={['lse-jump', className]} aria-labelledby={labelId}>
+  <p class="lse-jump__h" id={labelId}>{label}</p>
+  <ol>
+    {items.map((item) => <li><a href={`#${item.id}`}>{item.text}</a></li>)}
+  </ol>
+</nav>
+
+<style is:global>
+  .lse-jump { border-top: 2px solid var(--ink); max-width: 40em; }
+  .lse-jump__h { padding: 14px 0 6px; font-weight: 700; color: var(--ink); }
+  .lse-jump ol { list-style: none; counter-reset: lse-jump; }
+  .lse-jump li { counter-increment: lse-jump; display: grid; grid-template-columns: 2em minmax(0, 1fr); border-bottom: 1px solid var(--line); line-height: 1.35; }
+  .lse-jump li::before { content: counter(lse-jump); padding-top: 11px; color: var(--muted); font-size: var(--fs-meta); font-variant-numeric: tabular-nums lining-nums; }
+  .lse-jump a { display: block; padding: 10px 0 11px; color: var(--ink); font-weight: 500; text-decoration: none; }
+  .lse-jump a:hover { text-decoration: underline; text-decoration-color: var(--marker); text-decoration-thickness: 3px; text-underline-offset: .22em; }
+</style>

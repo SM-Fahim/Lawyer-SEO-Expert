@@ -1,0 +1,41 @@
+---
+// Who wrote the page, before the closing CTA: the photo on the swipe, the name, the role line, one or two lines
+// passed in (FACTS only, in this page's own words), the bio link. Plain, between hairlines; never a boxed card,
+// never the team (content/DEPTH-BRIEF.md R39). DepthZone places it; a page without a depth zone can too.
+import { fahim, type Person } from '../../data/people';
+import Face from '../kit/Face.astro';
+interface Props {
+  /** One or two lines. May hold inline HTML (a link), so pass copy from the deck only. */
+  line: string;
+  person?: Person;
+  /** R39: "Law firm SEO lead". */
+  role?: string;
+  linkLabel?: string;
+  class?: string;
+}
+const { line, person = fahim, role = 'Law firm SEO lead', linkLabel = 'Read Fahim’s background', class: className } = Astro.props;
+---
+<aside class:list={['lse-author', className]} aria-label="About the author">
+  <Face person={person} size="sm" class="lse-author__face" />
+  <div class="lse-author__text">
+    <p class="lse-author__name">{person.name}</p>
+    <p class="lse-author__role">{role}</p>
+    <p class="lse-author__line" set:html={line} />
+    <p class="lse-author__link"><a class="lse-link" href={person.href}>{linkLabel}</a></p>
+  </div>
+</aside>
+
+<style is:global>
+  .lse-author {
+    display: flex; align-items: center; gap: clamp(24px, 3.5vw, 48px);
+    max-width: 52em; padding: var(--s5) 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line-2);
+  }
+  .lse-author__name { font-size: var(--fs-h3); font-weight: 750; line-height: 1.15; letter-spacing: -.018em; color: var(--ink); }
+  .lse-author__role { margin-top: 4px; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); }
+  .lse-author__line { margin-top: 12px; max-width: 34em; color: var(--ink-2); }
+  .lse-author__link { margin-top: 12px; }
+  @media (max-width: 560px) {
+    .lse-author { align-items: flex-start; gap: 18px; }
+    .lse-author__face.lse-face { width: 88px; }
+  }
+</style>

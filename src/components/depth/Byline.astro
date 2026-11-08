@@ -1,0 +1,19 @@
+---
+// One muted line at the start of a depth zone: "By S. M. Fahim. Last reviewed 8 November 2026.", the name linked to
+// the bio. Fahim is not the headline, so it stays small (content/DEPTH-BRIEF.md R39).
+import { fahim, type Person } from '../../data/people';
+import { dayMonthYear, isoDay } from '../../lib/dates';
+interface Props {
+  reviewed: Date | string;
+  person?: Person;
+  class?: string;
+}
+const { reviewed, person = fahim, class: className } = Astro.props;
+---
+<p class:list={['lse-byline', className]}>By <a href={person.href} rel="author">{person.name}</a>. Last reviewed <time datetime={isoDay(reviewed)}>{dayMonthYear(reviewed)}</time>.</p>
+
+<style is:global>
+  .lse-byline { font-size: var(--fs-meta); line-height: 1.45; color: var(--muted); }
+  .lse-byline a { color: inherit; text-decoration-color: var(--line-2); }
+  .lse-byline a:hover { color: var(--ink); text-decoration-color: var(--ink); }
+</style>

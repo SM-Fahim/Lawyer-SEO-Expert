@@ -30,7 +30,7 @@ export default defineConfig({
     })),
   ],
   test: {
-    include: ['tests/worker/**/*.test.ts', 'tests/tracking/**/*.test.ts', 'tests/blog/**/*.test.ts'],
+    include: ['tests/worker/**/*.test.ts', 'tests/tracking/**/*.test.ts', 'tests/blog/**/*.test.ts', 'tests/lib/**/*.test.ts'],
     setupFiles: ['./tests/worker/apply-migrations.ts'],
     // The owner's PC runs short of memory.
     maxWorkers: 1,
