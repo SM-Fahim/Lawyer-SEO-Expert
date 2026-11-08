@@ -1,324 +1,444 @@
 ---
-// Homepage. Copy: content/home.md (final for this build, judge's rulings at its top). Facts: research/FACTS.md.
-// Two copy words differ from home.md because check-unique bans LCME's exact phrases (docs/DECISIONS.md):
-// "No account managers." is "No account manager." and "No long contract." is "No long-term contract."
+// Homepage v2. Copy: content/home-v2.md. Facts: research/FACTS.md. Design: docs/design-system.md.
+// Results lead and carry the page: every result has its real screenshot next to it, with the highlighter on
+// the line that proves it. Mark boxes are % of each image, measured from its pixels.
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import Faq, { type FaqItem } from '../components/Faq.astro';
 import FinalCta from '../components/FinalCta.astro';
-import MarginNote from '../components/MarginNote.astro';
-import Placeholder from '../components/Placeholder.astro';
+import LeadForm from '../components/LeadForm.astro';
 import PracticeLinks from '../components/PracticeLinks.astro';
-import PriceLine from '../components/PriceLine.astro';
-import ResultRow from '../components/ResultRow.astro';
-import SerpFigure from '../components/SerpFigure.astro';
 import Shot from '../components/Shot.astro';
-import TermsList, { type Term } from '../components/TermsList.astro';
-import WorkLog from '../components/WorkLog.astro';
-import { fahimSchema, site } from '../data/site';
+import { fahimSchema, joshSchema, site } from '../data/site';
 import { faqSchema } from '../lib/schema';
 
-const title = 'Lawyer SEO Expert | Work With the Specialist Directly';
+const title = 'Lawyer SEO Expert | Get Found First, Get More Calls';
 const description =
-  'Law firm SEO from the specialist who does it. Pay month to month, own everything we build, and see each page and link we touch. Book a ranking review.';
+  'Law firm SEO that puts you at the top of Google, the Map and AI answers. From $2,000 a month, month to month, no setup fee. Book a ranking review.';
 
-const terms: Term[] = [
-  { title: 'You pay month to month.', text: 'No long-term contract.' },
-  { title: 'You own what we build.', text: 'The site, the content and the accounts we create are yours. If you leave, they stay with you.' },
-  { title: "We won't promise a position or a date.", text: 'Google decides rankings.' },
-  { title: 'We commit to the work.', text: 'The agreed tasks, done and logged every month, with rankings on the same searches each time.' },
-  { title: "Who shouldn't hire us:", text: "firms that need a guaranteed ranking, firms that need results within weeks, and firms that won't review pages before they go live." },
-  { title: "One thing we don't do:", text: "we don't take SEO expert-witness work." },
+const P = '/img/proof/';
+
+const logos = [
+  { src: '/img/logos/rudin-ink.webp', width: 108, height: 120, alt: 'Rudin Law logo', h: 46 },
+  { src: '/img/logos/915-ink.webp', width: 602, height: 120, alt: '915 Injury logo', h: 34 },
+  { src: '/img/logos/cohen-ink.webp', width: 237, height: 120, alt: 'Cohen & Cohen logo', h: 40 },
+  { src: '/img/logos/dedert-ink.webp', width: 248, height: 39, alt: 'Dedert logo', h: 21 },
 ];
+
+const zones = [
+  { title: 'Top of Google', text: 'Pages for each practice area and city, and links from relevant sites.' },
+  { title: 'Google’s AI answers', text: 'Pages that Google’s AI can quote, checked every month.' },
+  { title: 'The Map', text: 'Google Business Profile care and a routine for new reviews.' },
+  { title: 'Your website', text: 'Design and content improvements, upkeep, and call and form tracking.' },
+];
+
+const terms = ['No setup fee.', 'Your monthly number in writing before work starts.', 'Month to month. No long-term contract.', 'Everything we build is yours.'];
 
 const faq: FaqItem[] = [
   {
-    q: 'How much does a lawyer SEO expert cost?',
-    html: 'SEO starts at $2,000 a month and rises with how competitive your practice area and city are. <a href="/seo-pricing/">Pricing</a> shows what the starting price covers.',
+    q: 'How much does law firm SEO cost with you?',
+    html: 'From $2,000 a month, and that covers everything it takes to rank. There is no setup fee. Fahim gives you your monthly number in writing before any work starts.',
   },
   {
-    q: 'How long does SEO take for a law firm?',
-    html: 'It depends on your practice area and market. Family law in a mid-size city can move faster than personal injury in a big one. On the ranking review, Fahim looks at your real competition and tells you what to expect.',
+    q: 'How soon will we get more calls?',
+    html: 'It depends on your market and where your site starts. For the New Orleans firm, new pages reached #1 in 16 hours, after about three months of groundwork. In your ranking review, Fahim tells you what is realistic for your firm.',
   },
   {
-    q: 'Can I cancel, and what do I keep?',
-    html: 'Yes, any month. You keep the site, the content and every account we set up.',
+    q: 'Do we sign a long contract?',
+    html: 'No. You pay month to month. Everything we build is yours to keep: the site, the pages and the accounts we set up for you.',
   },
   {
-    q: 'Do you guarantee first page rankings?',
-    html: 'No. Nobody can. We guarantee the work: done each month, logged, and open for you to check.',
+    q: 'Who does the work?',
+    html: 'Fahim leads your account, joins your calls and reviews all the work. A small team helps with production. You are never handed off to an account manager. Josh Henderson, our Sales Director, joins calls with firms too.',
   },
   {
     q: 'Does law firm SEO follow state bar advertising rules?',
-    html: 'Each state bar sets its own advertising rules, including on words like "expert" and "specialist". You or your ethics counsel approve every page before it is published. "Expert" in our name describes our SEO work, not a legal certification. <span class="lse-ph" data-placeholder="owner to approve or rewrite the state bar rules answer">Owner review required</span>',
+    html: 'Each state bar sets its own advertising rules, including on words like “expert” and “specialist”. You or your ethics counsel approve every page before it is published. “Expert” in our name describes our SEO work, not a legal certification.',
   },
   {
-    q: 'Can you act as an SEO expert witness?',
-    html: "No. We don't take expert-witness work.",
+    q: 'Does this cover Google’s AI answers?',
+    html: 'Yes. We write pages that Google’s AI can quote, and we check the AI answers for your key searches every month.',
   },
 ];
 
-const schema = [fahimSchema, faqSchema(faq, `${site.url}/`)];
-
-const serpAlt =
-  'Google search result for lawyer seo expert in the US on 8 November 2026: lawyerseoexpert.com is the first organic result, under the sponsored results.';
+const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
 ---
 <Base pageType="company" path="/" title={title} description={description} schema={schema}>
-  <section class="lse-hero" aria-labelledby="hero-h">
-    <div class="lse-wrap">
-      <h1 id="hero-h">Lawyer SEO expert for firms that want to see the work.</h1>
-      <p class="lse-lead lse-hero__lead">Fahim leads your SEO and is on every call. No account manager. Each month you get a log of every page, link and fix, and where your firm ranks in Google, Maps and AI answers. All it asks of you: read the log and approve new pages.</p>
-      <div class="lse-hero__cta">
-        <Button />
-        <p class="lse-small lse-hero__sub">{site.cta.sub}</p>
-      </div>
 
-      <div class="lse-review lse-hero__review">
-        <div class="lse-review__main">
-          <SerpFigure
-            src="/img/proof/serp-lawyer-seo-expert-us-2026-11-08.webp"
-            width={784}
-            height={441}
-            alt={serpAlt}
-            priority
-            marks={[{ x: 2.2, y: 70.6, w: 86.4, h: 7.4 }]}
-            chip={{ y: 74.2, label: '1', aria: 'First organic result' }}
-          />
+  <!-- Hero: the outcome, one line, a short form to act at once, a real result, and who we work with. -->
+  <section class="lse-h-hero" aria-labelledby="hero-h">
+    <div class="lse-wrap">
+      <h1 id="hero-h">Get found first for the cases you want.</h1>
+      <div class="lse-h-hero__grid">
+        <p class="lse-lead lse-h-hero__lead">Lawyer SEO Expert puts your law firm at the top of Google, the Map and AI answers, so more of the right clients call.</p>
+        <div class="lse-h-hero__act">
+          <LeadForm
+            compact
+            title="Send your website for a ranking review."
+            titleTag="h2"
+            sub="Fahim answers within an hour in business hours."
+            idPrefix="h"
+            label="Homepage hero form"
+            format="Ranking review by email"
+          >
+            <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
+          </LeadForm>
+          <p class="lse-h-hero__talk">Rather talk it through? <a href={site.cta.href} data-cal>Book a ranking review</a></p>
         </div>
-        <div class="lse-review__side lse-hero__side">
-          <MarginNote>Google, US, 8 Nov 2026</MarginNote>
-          <figure class="lse-hero__face">
-            <img src="/img/people/fahim-360.webp" width="360" height="450" alt="S. M. Fahim" loading="eager" decoding="async">
-            <figcaption>S. M. Fahim</figcaption>
+        <figure class="lse-h-hero__proof">
+          <Shot
+            tag="139 calls"
+            tagSide="right"
+            priority
+            images={[
+              { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 582, alt: 'Google Business Profile: 139 calls from June to October 2026, up 39% on the same months of 2025', marks: [{ l: 3.4, t: 33.2, w: 7.8, h: 9.4 }, { l: 3.6, t: 47.6, w: 7.5, h: 4.4 }] },
+            ]}
+          />
+          <figcaption class="lse-h-cap">A PI firm in New Orleans. Google counted 139 calls from its Business Profile in five months, 39% more than a year before.</figcaption>
+        </figure>
+        <div class="lse-h-trust">
+          <p class="lse-h-trust__label">Law firms we work with</p>
+          <ul class="lse-h-trust__logos">
+            {logos.map((l) => (
+              <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${l.h}px;width:auto`} loading="eager" decoding="async"></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rankings: three real searches. -->
+  <section class="lse-section lse-section--fog lse-h-rank" aria-labelledby="rank-h">
+    <div class="lse-wrap">
+      <h2 id="rank-h">New pages at the top of Google 16&nbsp;hours after going live.</h2>
+      <p class="lse-lead lse-h2-lead">For a PI firm in New Orleans, after about three months of groundwork. Google’s AI answers cite the pages too.</p>
+      <div class="lse-h-rank__grid">
+        <figure class="lse-h-proof lse-h-rank__main">
+          <Shot
+            tag="#1"
+            tagSide="right"
+            images={[
+              { src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' },
+              { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'The page in Google’s results, stamped 16 hours ago', marks: [{ l: 1.6, t: 63.5, w: 12.2, h: 16 }] },
+              { src: `${P}nola-wtd-ai.webp`, width: 900, height: 776, alt: 'Google’s AI answer citing the firm’s page on recorded statements and Louisiana filing deadlines', crop: { top: 21, height: 46.5 }, marks: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
+            ]}
+          />
+          <figcaption><b><q data-no-check>what to do after a truck accident in New Orleans</q></b><span>Ranked #1 on Google, and quoted 3 times in Google’s AI answer.</span></figcaption>
+        </figure>
+        <div class="lse-h-rank__side">
+          <figure class="lse-h-proof">
+            <Shot
+              tag="#1"
+              tagSide="right"
+              images={[
+                { src: `${P}nola-jackknife.webp`, width: 1022, height: 625, alt: 'Google search for jackknife truck accident Louisiana: the firm’s page is the first result, 7 days after going live, and cited in the AI Overview', marks: [{ l: 39.9, t: 50.3, w: 8.7, h: 3.8 }, { l: 1.9, t: 88.4, w: 40, h: 4 }] },
+              ]}
+            />
+            <figcaption><b><q data-no-check>jackknife truck accident Louisiana</q></b><span>Ranked #1. A week on, Google’s AI still cites it.</span></figcaption>
+          </figure>
+          <figure class="lse-h-proof">
+            <Shot
+              tag="Source #1"
+              tagSide="right"
+              images={[
+                { src: `${P}elpaso-ai-deadline.webp`, width: 1400, height: 849, alt: 'Google’s AI Overview for Texas El Paso car accident filing deadline, with an El Paso PI firm’s page as the first source', marks: [{ l: 5.1, t: 35.3, w: 33.9, h: 2.6 }, { l: 69.6, t: 35.4, w: 24, h: 3.2 }] },
+              ]}
+            />
+            <figcaption><b><q data-no-check>Texas El Paso car accident filing deadline</q></b><span>For a PI firm in El Paso, its page is the first source Google’s AI answer cites.</span></figcaption>
           </figure>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="lse-section" aria-labelledby="s1-h">
+  <!-- Calls: Google's own counts, before and with us. -->
+  <section class="lse-section lse-h-calls" aria-labelledby="calls-h">
     <div class="lse-wrap">
-      <h2 id="s1-h">The words we sell are the words we rank for.</h2>
-      <p class="lse-lead lse-section__lead">On 8 November 2026, lawyerseoexpert.com was the first organic result in US Google for "lawyer seo expert". Only the ads sat above it. The AI Overview and every agency selling the same thing came after.</p>
+      <h2 id="calls-h">More calls, counted by Google.</h2>
+      <p class="lse-lead lse-h2-lead">Calls from the Google Business Profiles we run. Google’s own numbers, not ours.</p>
 
-      <div class="lse-review lse-s1__serp">
-        <div class="lse-review__main">
-          <SerpFigure
-            src="/img/proof/serp-lawyer-seo-expert-us-2026-11-08-wide.webp"
-            width={584}
-            height={413}
-            alt="The same Google result, wider: sponsored results at the top, then lawyerseoexpert.com, then Google's AI Overview."
-            marks={[{ x: 16.2, y: 44.4, w: 57.4, h: 5.2 }]}
-            chip={{ y: 47, label: '1', aria: 'First organic result' }}
-            brackets={[
-              { y: 9.5, h: 18, label: 'Sponsored results, above' },
-              { y: 63, h: 36, label: 'AI Overview' },
-            ]}
-          />
+      <article class="lse-h-case" aria-labelledby="case-ep">
+        <div class="lse-h-case__head">
+          <div class="lse-h-nums" aria-hidden="true">
+            <div class="lse-h-nums__was"><span class="lse-h-num">9</span><span>calls in six months before us</span></div>
+            <div class="lse-h-nums__now"><span class="lse-h-num lse-h-num--marked" data-count="23">23</span><span>calls in three months with us</span></div>
+          </div>
+          <h3 id="case-ep">A PI firm in El Paso went from 9 calls in six months to 23 in three.</h3>
         </div>
-        <div class="lse-review__side">
-          <MarginNote>Google, US, 8 Nov 2026. Full page, same search.</MarginNote>
+        <div class="lse-h-pair">
+          <figure>
+            <figcaption>Before us: Aug 2025 to Jan 2026</figcaption>
+            <Shot images={[{ src: `${P}elpaso-calls-before.webp`, width: 1200, height: 649, alt: 'Google Business Profile: 9 calls from August 2025 to January 2026', marks: [{ l: 3.9, t: 34, w: 2.9, h: 9 }] }]} />
+          </figure>
+          <figure>
+            <figcaption>With us: May to Jul 2026</figcaption>
+            <Shot images={[{ src: `${P}elpaso-calls-after.webp`, width: 1347, height: 727, alt: 'Google Business Profile: 23 calls from May to July 2026, rising every month', marks: [{ l: 3.7, t: 34, w: 5.6, h: 9 }] }]} />
+          </figure>
         </div>
-      </div>
+      </article>
 
-      <div class="lse-s1__rows">
-        <ResultRow figure="1.2">
-          average position for <mark class="lse-mk">"lawyer seo expert"</mark> over 16 months.
-          <Fragment slot="source">Source: Google Search Console, July 2025 to November 2026.</Fragment>
-        </ResultRow>
-        <ResultRow figure="2.2">
-          for "lawyer seo experts" and <strong>3.3</strong> for "attorney seo expert", same period, same source.
-        </ResultRow>
-        <ResultRow figure="10">
-          is this site's Semrush Authority Score. A small site can hold the top spot when the pages do the work.
-        </ResultRow>
-      </div>
-
-      <div class="lse-s1__shots">
-        <figure class="lse-shot">
-          <Placeholder block collect="Search Console performance screenshot, 16 months, filtered to the three queries, average position visible (owner's account)" label="Search Console, 16 months, the three searches with average position" width={1000} height={420} />
-          <figcaption class="lse-shot__cap">Google Search Console, July 2025 to November 2026</figcaption>
+      <article class="lse-h-case lse-h-case--flip" aria-labelledby="case-new">
+        <div class="lse-h-case__head">
+          <div class="lse-h-nums" aria-hidden="true">
+            <div class="lse-h-nums__was"><span class="lse-h-num">1</span><span>call in July</span></div>
+            <div class="lse-h-nums__now"><span class="lse-h-num lse-h-num--marked" data-count="9">9</span><span>calls in October</span></div>
+          </div>
+          <h3 id="case-new">A new Google profile went from 1 call in July to 9 in October.</h3>
+          <p>It started with no history and climbed every month.</p>
+        </div>
+        <figure class="lse-h-case__shot">
+          <Shot images={[{ src: `${P}new-profile-calls.webp`, width: 1067, height: 571, alt: 'Google Business Profile for a new profile: calls from June to October 2026, rising from about 1 in July to 9 in October', marks: [{ l: 26.4, t: 85.6, w: 4.4, h: 6 }, { l: 93.2, t: 54.6, w: 5, h: 6.4 }] }]} />
         </figure>
-        <Shot
-          src="/img/proof/semrush-authority-2026-11-06.webp"
-          width={306}
-          height={125}
-          alt="Semrush Domain Overview for lawyerseoexpert.com, US: Authority Score 10."
-          caption="Semrush Domain Overview, US, data date 6 Nov 2026"
-          class="lse-s1__as"
-        />
-      </div>
+      </article>
 
-      <p class="lse-bridge">The same person who did this work would do yours.</p>
+      <div class="lse-h-midcta">
+        <Button />
+        <p class="lse-small">{site.cta.sub}</p>
+      </div>
     </div>
   </section>
 
-  <section class="lse-section" aria-labelledby="s2-h">
+  <!-- What one price covers: every place a firm can show up, with the real result for each. -->
+  <section class="lse-section lse-section--fog lse-h-cover" aria-labelledby="cover-h">
     <div class="lse-wrap">
-      <h2 id="s2-h">The specialist who earned that result is the one you work with.</h2>
-      <p class="lse-lead lse-section__lead">No account manager stands between you and the work. Fahim sets the plan, reviews every task the team delivers, and is the person on your calls.</p>
-
-      <div class="lse-person">
-        <img class="lse-person__photo" src="/img/people/fahim-720.webp" width="720" height="900" alt="S. M. Fahim" loading="lazy" decoding="async">
-        <div class="lse-person__text">
-          <h3>S. M. Fahim, SEO specialist</h3>
-          <p>Fahim has spent 6.5 years growing businesses online: 200+ websites, 50+ businesses ranked on Google, clients in 4 countries. Trained as a mechatronics engineer at RUET, Fahim treats a law firm's site as a system to measure and fix. For a personal injury firm in New Orleans, Fahim built the SEO system and still runs its marketing.</p>
+      <h2 id="cover-h">One monthly price covers everything it takes to rank.</h2>
+      <p class="lse-lead lse-h2-lead">Most agencies sell SEO in pieces. We handle all of it, so nothing holds your firm back.</p>
+      <div class="lse-h-cover__grid">
+        <ul class="lse-h-zones">
+          {zones.map((z) => (
+            <li class="lse-h-zone"><h3>{z.title}</h3><p>{z.text}</p></li>
+          ))}
+        </ul>
+        <div class="lse-h-board">
+          <Shot class="lse-h-board__rank" tag="Top of Google" tagSmall tagSide="right" images={[{ src: `${P}nola-tanker-rank.webp`, width: 900, height: 175, alt: 'A New Orleans PI firm’s page in Google’s results for tanker truck accident lawyer in New Orleans', marks: [{ l: 1.6, t: 33, w: 63.6, h: 20 }] }]} />
+          <Shot class="lse-h-board__ai" tag="AI answer" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google’s AI Overview citing a New Orleans PI firm', crop: { top: 0, height: 50 }, marks: [{ l: 8.6, t: 40.4, w: 13.6, h: 6.4 }] }]} />
+          <Shot class="lse-h-board__map" tag="The Map" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google lists a New Orleans PI firm under key legal firms, rated 5.0 from 317 reviews', crop: { top: 50, height: 50 }, marks: [{ l: 18.4, t: 68.5, w: 11.2, h: 6.2 }, { l: 18.4, t: 75.6, w: 19.2, h: 6.2 }] }]} />
+          <Shot class="lse-h-board__site" tag="Your site" tagSmall tagSide="right" images={[{ src: `${P}elpaso-site-mobile.webp`, width: 824, height: 1240, alt: 'A website we built for a PI firm in El Paso, on a phone', crop: { top: 0, height: 78 } }]} />
         </div>
       </div>
+      <p class="lse-h-web">Need a new website? We build law firm sites to rank, from $2,000 for the build. <a class="lse-link" href="/lawyer-web-design-development/">Law firm web design</a></p>
+    </div>
+  </section>
 
-      <div class="lse-person lse-person--small">
-        <Placeholder block collect="Josh Henderson photo: confirm the existing photo is really Josh, or supply a new one" label="Josh's photo, once confirmed" width={120} height={150} />
-        <div class="lse-person__text">
-          <h3>Josh Henderson, Sales Director</h3>
-          <p>A Texas-licensed attorney since 2008, focused on personal injury, Josh ran a Texas practice and has advised 50+ law firms on operations since 2016. Josh talks with firms about fit, with the view of someone who has run one. Josh gives business input, not legal advice.</p>
+  <!-- Our own result: one screenshot, one line. -->
+  <section class="lse-section lse-h-own" aria-labelledby="own-h">
+    <div class="lse-wrap lse-h-own__grid">
+      <div class="lse-h-own__text">
+        <h2 id="own-h">We rank #1 on Google for “lawyer seo expert”.</h2>
+        <p class="lse-lead lse-h2-lead">The same work that got us there goes into your firm’s pages.</p>
+        <p class="lse-small lse-h-own__src">Google search, United States, 8 November 2026.</p>
+      </div>
+      <Shot
+        class="lse-h-own__shot"
+        tag="#1"
+        images={[{ src: `${P}lse-serp-lawyer-seo-expert-2026-11-08.webp`, width: 1800, height: 920, alt: 'Google search for lawyer seo expert in the United States: lawyerseoexpert.com is the first result under the sponsored results', crop: { top: 15, height: 46 }, marks: [{ l: 9.7, t: 30.6, w: 76.4, h: 7.6 }] }]}
+      />
+    </div>
+  </section>
+
+  <!-- The people. -->
+  <section class="lse-section lse-section--fog lse-h-team" aria-labelledby="team-h">
+    <div class="lse-wrap">
+      <h2 id="team-h">You work with Fahim, from the first call on.</h2>
+      <div class="lse-h-team__grid">
+        <div class="lse-h-face lse-h-face--lg">
+          <img src="/img/people/fahim.webp" width="720" height="716" alt="S. M. Fahim" loading="lazy" decoding="async">
+        </div>
+        <div class="lse-h-team__text">
+          <h3>S. M. Fahim</h3>
+          <p class="lse-h-team__role">SEO lead</p>
+          <p class="lse-h-team__bio">Fahim leads every account, joins every call and reviews all the work. A small team helps with production. You are never handed off to an account manager.</p>
+          <ul class="lse-h-record">
+            <li><b>6.5</b><span>years growing businesses online</span></li>
+            <li><b>67+</b><span>businesses grown</span></li>
+            <li><b>50+</b><span>ranked on Google</span></li>
+            <li><b>200+</b><span>websites built</span></li>
+          </ul>
+          <div class="lse-h-josh">
+            <div class="lse-h-face lse-h-face--sm">
+              <img src="/img/people/josh.webp" width="720" height="707" alt="Josh Henderson" loading="lazy" decoding="async">
+            </div>
+            <div>
+              <h3>Josh Henderson</h3>
+              <p class="lse-h-team__role">Sales Director</p>
+              <p>Texas attorney since 2008, and an advisor to more than 50 law firms. Josh joins calls with firms.</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <p class="lse-bridge">Here is what a month of that work looks like on paper.</p>
     </div>
   </section>
 
-  <section class="lse-section" aria-labelledby="s3-h">
+  <!-- Price and terms, in plain lines. -->
+  <section class="lse-section lse-h-price" aria-labelledby="price-h">
     <div class="lse-wrap">
-      <h2 id="s3-h">Each month, you see every task in a log like this.</h2>
-      <p class="lse-lead lse-section__lead">No 40-page PDF. One log, one row per task, with a link so you can check each one yourself.</p>
-
-      <div class="lse-s3__log">
-        <WorkLog title="Work log, lawyerseoexpert.com" highlight={0}>
-          <Fragment slot="caption">This site's own log for <Placeholder collect="month the site launches" label="month of launch" />, every link live.</Fragment>
-          <Fragment slot="note">This page now ranks <Placeholder collect="homepage position for lawyer seo expert after launch" label="position after launch" /></Fragment>
-          <Fragment slot="foot">It ends with your rankings, this month against last, and a short note from Fahim on what comes next.</Fragment>
-        </WorkLog>
-      </div>
-
-      <p class="lse-bridge">A log shows effort. Calls show whether it worked.</p>
-    </div>
-  </section>
-
-  <section class="lse-section" aria-labelledby="s4-h">
-    <div class="lse-wrap">
-      <h2 id="s4-h">Here is what that work has done for two law firms.</h2>
-      <p class="lse-lead lse-section__lead">Each result gives a start point, dates and how it was counted. Calls are phone calls from a Google Business Profile, as Google counts them. Not every call is a qualified lead.</p>
-
-      <div class="lse-s4__rows">
-        <ResultRow title="A personal injury firm in New Orleans.">
-          139 calls from its Google Business Profile, June to October 2026. Google's own figure puts that 39% above June to October 2025.
-          <Placeholder slot="media" block collect="New capture: GBP performance panel, New Orleans main profile, Jun to Oct 2026, date range visible, calls line, firm name blurred" label="Google Business Profile calls, New Orleans, Jun to Oct 2026" width={640} height={280} />
-        </ResultRow>
-        <ResultRow title="The same firm, a second, new profile.">
-          About 1 call in July 2026, rising to 9 in October. 22 calls in all, June to October.
-          <Placeholder slot="media" block collect="New capture: GBP performance panel, New Orleans second profile, Jun to Oct 2026, firm name blurred" label="Calls on the second profile, Jun to Oct 2026" width={640} height={280} />
-        </ResultRow>
-        <ResultRow title="A personal injury firm in El Paso.">
-          9 calls across six months, August 2025 to January 2026. Then 23 calls across three months, May to July 2026.
-          <Placeholder slot="media" block collect="New capture: GBP calls, El Paso, both date ranges visible (Aug 2025 to Jan 2026, May to Jul 2026), firm name blurred" label="Google Business Profile calls, El Paso, both periods" width={640} height={280} />
-        </ResultRow>
-      </div>
-
-      <p class="lse-bridge">Here is how to hire that work for your firm.</p>
-    </div>
-  </section>
-
-  <section class="lse-section" aria-labelledby="s5-h">
-    <div class="lse-wrap">
-      <h2 id="s5-h">What we offer, what it costs, and how you would leave.</h2>
-      <p class="lse-lead lse-section__lead">Two services. Each has one starting price, printed here.</p>
-
-      <div class="lse-s5__prices">
-        <PriceLine line="SEO for law firms, from $2,000 a month.">
-          <p>Everything your firm needs to rank, in one price: website fixes and upkeep, pages, Google Business Profile, links and AI answers, all logged. The price rises with how crowded your market is. No setup fee.</p>
-          <Fragment slot="links"><a href="/law-firm-seo-services/">See what's in it</a><a href="/seo-pricing/">See pricing</a></Fragment>
-        </PriceLine>
-        <PriceLine line="Websites built to rank, from $2,000 for the build.">
-          <p>A fast site, built for the searches your clients type, ready for SEO from day one.</p>
-          <Fragment slot="links"><a href="/lawyer-web-design-development/">See web builds</a></Fragment>
-        </PriceLine>
-      </div>
-      <p class="lse-s5__consult">Have an in-house marketer and want direction instead? See how we work as a <a href="/law-firm-seo-consultant/">law firm SEO consultant</a>.</p>
-
-      <div class="lse-s5__terms">
-        <h3>Our terms.</h3>
-        <TermsList items={terms} />
+      <h2 id="price-h"><span>From $2,000 a month.</span> <span>Everything included.</span></h2>
+      <ul class="lse-h-terms">
+        {terms.map((t) => <li>{t}</li>)}
+      </ul>
+      <div class="lse-h-price__cta">
+        <Button />
       </div>
     </div>
   </section>
 
-  <section class="lse-section" id="practice-areas" aria-labelledby="s6-h">
+  <!-- Practice areas. -->
+  <section class="lse-section lse-h-practice" id="practice-areas" aria-labelledby="practice-h">
     <div class="lse-wrap">
-      <h2 id="s6-h">Your practice area has its own searches, and its own page.</h2>
-      <p class="lse-lead lse-section__lead">Someone who needs a DUI lawyer tonight searches differently from someone planning an estate. Pick your area to see how we would approach it.</p>
-      <div class="lse-s6__links"><PracticeLinks /></div>
+      <h2 id="practice-h">SEO for your practice area.</h2>
+      <div class="lse-h-practice__links"><PracticeLinks /></div>
     </div>
   </section>
 
-  <section class="lse-section" aria-labelledby="s7-h">
+  <!-- FAQ. -->
+  <section class="lse-section lse-h-faq" aria-labelledby="faq-h">
     <div class="lse-wrap">
-      <h2 id="s7-h">Before you book: cost, contracts, timing and the rules.</h2>
-      <div class="lse-s7__faq"><Faq items={faq} /></div>
+      <h2 id="faq-h">Questions before your ranking review.</h2>
+      <div class="lse-h-faq__list"><Faq items={faq} /></div>
     </div>
   </section>
 
-  <FinalCta heading="See where your firm ranks today, with Fahim, in 30 minutes." formLabel="Homepage message" idPrefix="h">
-    Bring your website. Fahim pulls up your real rankings for the searches that matter in your practice area and shows what's working and what isn't. You'll know where you stand, whether you hire us or not.
+  <FinalCta heading="See where your firm ranks today." formLabel="Homepage message">
+    <p>In 30 minutes, Fahim looks at your real rankings with you and shows what would bring in more calls first.</p>
   </FinalCta>
 </Base>
 
 <style is:global>
-  /* Homepage-only layout. Global, so it reaches into components; every class here is prefixed lse-hero or lse-s<n>. */
-  .lse-hero { padding: clamp(56px, 7vw, 112px) 0 var(--s7); }
-  .lse-hero + .lse-section { border-top: 1px solid var(--ink); }
-  .lse-hero__lead { margin-top: var(--s4); }
-  .lse-hero__cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
-  .lse-hero__sub { max-width: 30em; color: var(--ink-2); font-size: 17px; }
-  .lse-hero__review { margin-top: clamp(56px, 7vw, 96px); }
-  .lse-hero__side { display: grid; gap: var(--s4); align-content: start; }
-  .lse-hero__face { display: grid; gap: 8px; width: 132px; }
-  .lse-hero__face img { border-radius: 3px; }
-  .lse-hero__face figcaption { font-size: var(--fs-meta); color: var(--muted); }
-  @media (min-width: 1080px) {
-    .lse-hero__side { padding-top: calc(441px * .66); }
-    .lse-hero__face { width: 150px; }
+  /* ---------- Hero ---------- */
+  .lse-h-hero { padding: clamp(36px, 4.5vw, 64px) 0 clamp(72px, 8vw, 112px); }
+  .lse-h-hero h1 { max-width: 15ch; }
+  .lse-h-hero__grid {
+    display: grid; gap: 32px; margin-top: clamp(20px, 2.4vw, 32px);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "lead" "proof" "act" "trust";
   }
-  @media (max-width: 1079px) {
-    .lse-hero__side { grid-template-columns: 1fr auto; align-items: end; }
-    .lse-hero__face { width: 96px; }
+  .lse-h-hero__lead { grid-area: lead; max-width: 25em; }
+  .lse-h-hero__act { grid-area: act; display: grid; gap: 14px; align-content: start; }
+  .lse-h-hero__talk { font-size: 16px; color: var(--ink-2); }
+  .lse-h-hero__talk a { font-weight: 700; }
+  .lse-h-hero__proof { grid-area: proof; display: grid; gap: 14px; align-content: start; }
+  .lse-h-cap { font-size: var(--fs-meta); color: var(--muted); max-width: 44em; }
+  .lse-h-trust { grid-area: trust; }
+  .lse-h-trust__label { font-size: var(--fs-meta); color: var(--muted); }
+  .lse-h-trust__logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 34px; margin-top: 14px; }
+  @media (min-width: 1000px) {
+    .lse-h-hero h1 { max-width: 19ch; }
+    .lse-h-hero__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-rows: auto 1fr;
+      grid-template-areas: "lead proof" "act proof" "act trust";
+      column-gap: clamp(48px, 5vw, 80px); row-gap: 28px;
+    }
+    .lse-h-hero__proof { padding-top: 10px; }
+    .lse-h-trust { align-self: end; padding-top: 22px; border-top: 1px solid var(--line); }
   }
 
-  .lse-s1__serp { margin-top: var(--s6); }
-  .lse-s1__serp .lse-review__side { padding-top: 40px; }
-  .lse-s1__rows { margin-top: var(--s6); }
-  .lse-s1__shots { margin-top: var(--s6); display: grid; gap: var(--s5) var(--s4); grid-template-columns: minmax(0, 1fr); align-items: start; }
-  .lse-s1__shots > figure .lse-ph--block { max-width: 100%; aspect-ratio: auto; min-height: 200px; }
+  /* Proof captions: the search in bold, the result under it. */
+  .lse-h-proof { display: grid; gap: 16px; align-content: start; }
+  .lse-h-proof figcaption { display: grid; gap: 4px; font-size: 17px; line-height: 1.4; max-width: 38em; }
+  .lse-h-proof figcaption b { font-size: 18px; letter-spacing: -.01em; }
+  .lse-h-proof figcaption span { color: var(--ink-2); }
+
+  /* ---------- Rankings ---------- */
+  .lse-h-rank h2 { max-width: 22ch; }
+  .lse-h-rank__grid { display: grid; gap: 56px; margin-top: var(--s6); }
+  .lse-h-rank__side { display: grid; gap: 56px; align-content: start; }
+  @media (min-width: 1000px) {
+    .lse-h-rank__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 48px; }
+  }
+
+  /* ---------- Calls ---------- */
+  .lse-h-case { display: grid; gap: 32px; margin-top: var(--s6); }
+  .lse-h-case + .lse-h-case { margin-top: clamp(72px, 8vw, 112px); }
+  .lse-h-case__head { display: grid; gap: 16px; align-content: start; }
+  .lse-h-case__head h3 { max-width: 20ch; }
+  .lse-h-case__head p { color: var(--ink-2); }
+  .lse-h-nums { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px clamp(24px, 3vw, 44px); }
+  .lse-h-nums > div { display: grid; gap: 6px; }
+  .lse-h-nums > div > span:last-child { font-size: var(--fs-meta); color: var(--muted); max-width: 9.5em; line-height: 1.3; }
+  .lse-h-num { font-size: var(--fs-num); font-weight: 900; line-height: .82; letter-spacing: -.055em; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+  .lse-h-nums__was .lse-h-num { color: #9a9e96; }
+  .lse-h-num--marked { justify-self: start; padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--marker); clip-path: var(--swipe); }
+  .lse-h-pair { display: grid; gap: 28px; }
+  .lse-h-pair figure { display: grid; gap: 10px; align-content: start; }
+  .lse-h-pair figcaption { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .lse-h-midcta { margin-top: clamp(64px, 7vw, 96px); padding-top: var(--s5); border-top: 1px solid var(--line); display: grid; gap: 12px; justify-items: start; }
+  @media (min-width: 760px) { .lse-h-pair { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1000px) {
+    .lse-h-case:not(.lse-h-case--flip) .lse-h-case__head { grid-template-columns: auto minmax(0, 1fr); column-gap: 64px; align-items: end; }
+    .lse-h-case:not(.lse-h-case--flip) .lse-h-case__head h3 { max-width: 16ch; padding-bottom: 6px; }
+    .lse-h-case--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 64px; align-items: center; }
+    .lse-h-case--flip .lse-h-case__head { order: 2; }
+  }
+
+  /* ---------- What one price covers ---------- */
+  .lse-h-cover__grid { display: grid; gap: 48px; margin-top: var(--s6); }
+  .lse-h-zones { list-style: none; display: grid; align-content: start; border-top: 2px solid var(--ink); }
+  .lse-h-zone { padding: 18px 0 20px; border-bottom: 1px solid var(--line-2); }
+  .lse-h-zone h3 { font-size: 21px; }
+  .lse-h-zone p { margin-top: 4px; color: var(--ink-2); max-width: 28em; }
+  .lse-h-board { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .lse-h-board__site { max-width: 230px; }
+  .lse-h-board__site .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
+  .lse-h-web { margin-top: var(--s6); font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 46em; }
+  .lse-h-web a { white-space: nowrap; margin-left: 6px; }
+  @media (min-width: 700px) {
+    .lse-h-board { grid-template-columns: minmax(0, 1fr) 210px; column-gap: 28px; }
+    .lse-h-board__rank { grid-column: 1 / -1; }
+    .lse-h-board__ai { grid-column: 1; grid-row: 2; }
+    .lse-h-board__map { grid-column: 1; grid-row: 3; }
+    .lse-h-board__site { grid-column: 2; grid-row: 2 / span 2; }
+  }
+  @media (min-width: 1000px) {
+    .lse-h-cover__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 64px; }
+  }
+
+  /* ---------- Our own result ---------- */
+  .lse-h-own__grid { display: grid; gap: 48px; }
+  .lse-h-own__src { margin-top: var(--s3); }
+  @media (min-width: 1000px) {
+    .lse-h-own__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 64px; align-items: center; }
+  }
+
+  /* ---------- People ---------- */
+  .lse-h-team__grid { display: grid; gap: 40px; margin-top: var(--s6); }
+  .lse-h-face { position: relative; isolation: isolate; }
+  .lse-h-face::before { content: ""; position: absolute; z-index: -1; left: 0; right: 0; bottom: 0; height: 74%; background: var(--marker); clip-path: var(--swipe); }
+  .lse-h-face img { width: 100%; }
+  .lse-h-face--lg { max-width: 460px; }
+  .lse-h-face--sm { width: 132px; flex: none; }
+  .lse-h-team__role { margin-top: 4px; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); }
+  .lse-h-team__bio { margin-top: var(--s2); font-size: var(--fs-lead); line-height: 1.45; max-width: 30em; }
+  .lse-h-record { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 24px; margin-top: var(--s5); padding-top: var(--s3); border-top: 2px solid var(--ink); }
+  .lse-h-record li { display: grid; gap: 4px; align-content: start; }
+  .lse-h-record b { font-size: clamp(30px, 1.6vw + 18px, 42px); font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+  .lse-h-record span { font-size: var(--fs-meta); color: var(--muted); line-height: 1.3; }
+  .lse-h-josh { display: flex; gap: 24px; align-items: center; margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--line-2); }
+  .lse-h-josh h3 { font-size: 22px; }
+  .lse-h-josh p:last-child { margin-top: 6px; color: var(--ink-2); max-width: 26em; }
+  @media (min-width: 760px) { .lse-h-record { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 1000px) {
+    .lse-h-team__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 72px; align-items: end; }
+  }
+  @media (max-width: 999px) { .lse-h-face--lg { max-width: 340px; } }
+
+  /* ---------- Price band: the one highlighted section ---------- */
+  .lse-h-price { background: var(--marker); }
+  .lse-h-price h2 { font-size: clamp(40px, 4.4vw + 14px, 92px); letter-spacing: -.045em; line-height: .96; max-width: none; }
+  .lse-h-price h2 span { display: inline-block; }
+  .lse-h-terms { list-style: none; display: grid; gap: 0 32px; margin-top: var(--s6); border-top: 2px solid var(--ink); }
+  .lse-h-terms li { padding: 20px 0 22px; border-bottom: 1px solid rgba(0, 0, 0, .25); font-size: clamp(19px, .6vw + 15px, 23px); font-weight: 700; letter-spacing: -.015em; line-height: 1.3; color: var(--ink); }
+  .lse-h-price__cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+  .lse-h-price .lse-btn:hover { background: var(--paper); }
+  .lse-h-price :focus-visible { box-shadow: 0 0 0 7px var(--paper); }
   @media (min-width: 900px) {
-    .lse-s1__shots { grid-template-columns: minmax(0, 1fr) auto; }
-    .lse-s1__table { grid-column: 1 / -1; }
+    .lse-h-terms { grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 0; }
+    .lse-h-terms li { border-bottom: 0; border-top: 2px solid var(--ink); padding-right: 12px; }
   }
 
-  .lse-person { margin-top: var(--s6); display: grid; gap: var(--s3) var(--s6); align-items: start; }
-  .lse-person__photo { width: 100%; max-width: 360px; border-radius: 3px; }
-  .lse-person__text h3 { font-size: clamp(26px, 1.2vw + 18px, 34px); }
-  .lse-person__text p { margin-top: var(--s2); max-width: 34em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
-  .lse-person--small { margin-top: var(--s5); padding-top: var(--s5); border-top: 1px solid var(--rule); }
-  .lse-person--small .lse-ph--block { width: 100%; max-width: 120px; min-height: 0; padding: 12px; font-size: 14px; }
-  .lse-person--small h3 { font-size: var(--fs-h3); }
-  .lse-person--small p { font-size: var(--fs-body); }
-  @media (min-width: 761px) {
-    .lse-person { grid-template-columns: 360px minmax(0, 1fr); }
-    .lse-person__text { padding-top: var(--s5); }
-    .lse-person--small { grid-template-columns: 120px minmax(0, 1fr); gap: var(--s4); margin-left: calc(360px + var(--s6)); }
-    .lse-person--small .lse-person__text { padding-top: 0; }
-  }
-
-  .lse-s3__log { margin-top: var(--s6); }
-
-  .lse-s4__rows { margin-top: var(--s6); }
-  .lse-s4__rows .lse-ph--block { max-width: 100%; }
-
-  .lse-s5__prices { margin-top: var(--s6); display: grid; gap: 0 var(--s6); }
-  @media (min-width: 900px) { .lse-s5__prices { grid-template-columns: 1fr 1fr; } }
-  .lse-s5__consult { margin-top: var(--s2); max-width: 40em; }
-  .lse-s5__terms { margin-top: var(--s7); }
-  .lse-s5__terms h3 { margin-bottom: var(--s3); }
-
-  .lse-s6__links, .lse-s7__faq { margin-top: var(--s6); }
+  /* ---------- Practice areas and FAQ ---------- */
+  .lse-h-practice__links, .lse-h-faq__list { margin-top: var(--s5); }
+  .lse-h-faq { padding-top: 0; }
+  .lse-final { background: var(--fog); }
 </style>
