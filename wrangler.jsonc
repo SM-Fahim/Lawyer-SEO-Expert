@@ -1,0 +1,82 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // The Workers Builds Worker must have this exact name.
+  "name": "lawyerseoexpert-site",
+  // Pinned: two Cloudflare accounts are in play on this PC. Do not remove.
+  "account_id": "afdd6dc89aef390d5327db09d0c00b8f",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-08",
+  "upload_source_maps": true,
+  // TODO(launch): set workers_dev to false after the route goes live (Phase 5). Until then the
+  // pre-launch host lawyerseoexpert-site.fahim-afd.workers.dev is how the owner checks the site.
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // Needed: without this, browser page loads that match no file skip the Worker, so redirects,
+    // the broken-page log and the add-ons would never see them. Files that never move can skip it.
+    "run_worker_first": ["/*", "!/img/*", "!/fonts/*", "!/_astro/*"]
+  },
+  "vars": {
+    // LIVE stays "false" until launch day. While it is not "true" the Worker adds X-Robots-Tag: noindex everywhere.
+    "LIVE": "false",
+    "SITE_HOST": "lawyerseoexpert.com",
+    "REDDIT_PIXEL_ID": "a2_hx7ja4uz0lm1",
+    "REDDIT_TEST_ID": "", // ignored while LIVE is true
+    // GA4 Measurement Protocol (worker/ga4.ts). Also needs the GA4_API_SECRET secret, or nothing is sent.
+    "GA4_MEASUREMENT_ID": "",
+    // Meta Pixel (dataset) ID, for the Conversions API (worker/meta.ts). Also needs the META_CAPI_TOKEN
+    // secret, or nothing is sent. The browser's copy is in src/data/site.ts.
+    "META_PIXEL_ID": "",
+    "EMAIL_FROM": "leads@notify.lawyerseoexpert.com",
+    "EMAIL_TO": "fahim@wpseogeeks.com,fahim@legalcmoexpert.com"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lse-site",
+      "database_id": "", // TODO: run `npx wrangler d1 create lse-site --location enam`, paste the ID here
+      "migrations_dir": "migrations"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["leads@notify.lawyerseoexpert.com"],
+      "allowed_destination_addresses": ["fahim@wpseogeeks.com", "fahim@legalcmoexpert.com"]
+    }
+  ],
+  // Retries unsent lead emails and deletes old events. Crons only ever run on production.
+  "triggers": { "crons": ["*/5 * * * *"] },
+  // Previews do NOT inherit production settings. They get their own D1 and never send real email:
+  // no send_email binding here on purpose, and blank EMAIL_TO means leads are logged only.
+  // Crons don't belong here, because Previews never run them. REDDIT_PIXEL_ID blank means Reddit is off.
+  "previews": {
+    "vars": {
+      "LIVE": "false",
+      "SITE_HOST": "lawyerseoexpert.com",
+      "REDDIT_PIXEL_ID": "", // the test pixel, once the owner chooses to test on a Preview
+      "REDDIT_TEST_ID": "",
+      "GA4_MEASUREMENT_ID": "", // blank: Previews never send to GA4
+      "META_PIXEL_ID": "", // blank: Previews never send to Meta
+      "EMAIL_FROM": "",
+      "EMAIL_TO": ""
+    },
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "lse-site-preview",
+        "database_id": "", // TODO: run `npx wrangler d1 create lse-site-preview --location enam`, paste the ID here
+        "migrations_dir": "migrations"
+      }
+    ]
+  }
+  // A deploy replaces this Worker's routes, so keep this complete.
+  // TODO(Phase 5, needs the owner's OK on the exact change): uncomment on launch day. It is off now on purpose,
+  // because a push to main deploys, and with the route on, the Worker would take over the live WordPress site.
+  // ,"routes": [{ "pattern": "lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" }]
+}
