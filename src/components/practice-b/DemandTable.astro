@@ -1,0 +1,48 @@
+---
+// The environmental demand check as a hairline table: each issue and who searches for it. No numbers:
+// Fahim pulls the real monthly searches for a firm's own issues on the review (never sample numbers).
+interface Row {
+  issue: string;
+  who: string;
+}
+interface Props {
+  rows: Row[];
+  /** Read out as the table's caption. */
+  caption: string;
+  class?: string;
+}
+const { rows, caption, class: className } = Astro.props;
+---
+<div class:list={['pb-demand', className]}>
+  <table>
+    <caption class="lse-vh">{caption}</caption>
+    <thead>
+      <tr><th scope="col">Issue</th><th scope="col">Who searches</th></tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row">{r.issue}</th>
+          <td>{r.who}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style is:global>
+  .pb-demand { overflow-x: auto; }
+  .pb-demand table { width: 100%; border-collapse: collapse; text-align: left; }
+  .pb-demand thead th { font-size: var(--fs-meta); font-weight: 600; color: var(--muted); padding: 0 16px 12px 0; border-bottom: 2px solid var(--ink); }
+  .pb-demand tbody th, .pb-demand tbody td { padding: 20px 16px 22px 0; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+  .pb-demand tbody th { font-size: var(--fs-h3); font-weight: 750; letter-spacing: -.018em; line-height: 1.15; color: var(--ink); width: 40%; }
+  .pb-demand tbody td { font-size: var(--fs-body); color: var(--ink-2); }
+  @media (max-width: 760px) {
+    .pb-demand thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .pb-demand table, .pb-demand tbody, .pb-demand tr, .pb-demand tbody th, .pb-demand tbody td { display: block; width: auto; }
+    .pb-demand table { border-top: 2px solid var(--ink); }
+    .pb-demand tr { padding: 18px 0 20px; border-bottom: 1px solid var(--line-2); }
+    .pb-demand tbody th, .pb-demand tbody td { padding: 0; border: 0; }
+    .pb-demand tbody td { margin-top: 6px; }
+  }
+</style>

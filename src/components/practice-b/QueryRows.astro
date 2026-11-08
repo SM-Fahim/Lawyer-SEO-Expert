@@ -1,0 +1,37 @@
+---
+// Typed searches as big plain rows with hairlines (no search-box chrome): each one in <q data-no-check>,
+// with the highlighter on the words that show the hurry ("near me", "stop"). The bankruptcy page's list
+// of urgent searches, set large so the searches themselves are the visual.
+import Q from '../kit/Q.astro';
+interface Query {
+  text: string;
+  mark?: string | string[];
+}
+interface Props {
+  queries: Query[];
+  /** Read out before the list. */
+  label: string;
+  caption?: string;
+  class?: string;
+}
+const { queries, label, caption, class: className } = Astro.props;
+---
+<figure class:list={['pb-qrows', className]}>
+  <ul aria-label={label}>
+    {queries.map((q) => <li><Q text={q.text} mark={q.mark} /></li>)}
+  </ul>
+  {caption && <figcaption class="lse-small">{caption}</figcaption>}
+</figure>
+
+<style is:global>
+  .pb-qrows ul { list-style: none; border-top: 2px solid var(--ink); }
+  .pb-qrows li {
+    padding: clamp(16px, 1.6vw, 22px) 0;
+    border-bottom: 1px solid var(--line-2);
+    font-size: clamp(21px, 1vw + 15px, 30px); font-weight: 650; line-height: 1.22; letter-spacing: -.02em; color: var(--ink);
+  }
+  .pb-qrows q { quotes: none; }
+  .pb-qrows q::before { content: "“"; color: var(--line-2); margin-right: .04em; }
+  .pb-qrows q::after { content: "”"; color: var(--line-2); margin-left: .02em; }
+  .pb-qrows figcaption { margin-top: 14px; }
+</style>

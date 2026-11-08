@@ -1,0 +1,118 @@
+---
+// /seo-for-environmental-law-attorneys/ from content/v2/seo-for-environmental-law-attorneys.md (practice set B,
+// the shortest page). Hero: H1 and line across, then the New Orleans calls chart led by "+39.0%" on the fog
+// panel (left, 7) beside the short form (right, 5). No counter: the bankruptcy page is the number-led one.
+// Then the demand check (a hairline table of issues and who searches), one hub per issue, FAQ (the page's one
+// price), close.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import Rows from '../../components/kit/Rows.astro';
+import DemandTable from '../../components/practice-b/DemandTable.astro';
+import Related from '../../components/practice-b/Related.astro';
+import { proof, shot } from '../../data/proof';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'Is there enough search demand for environmental law?',
+    html: 'For some issues, yes. For others, almost none. The demand check shows which before you commit.',
+  },
+  {
+    q: 'Should we target “environmental lawyer”?',
+    html: 'Rarely. In our keyword research, many of those searches come from people curious about the career. Issue and rule searches are fewer and closer to a client.',
+  },
+  {
+    q: 'Can you write about technical rules accurately?',
+    html: 'Fahim outlines and reviews each page, a small team helps draft, and your attorneys check every rule it mentions before it is published.',
+  },
+  {
+    q: 'What does it cost?',
+    html: 'From $2,000 a month, and that price includes all the work it takes to rank. Nothing to pay up front, and your number comes in writing before we start. See <a href="/seo-pricing/">law firm SEO pricing</a>.',
+    text: 'From $2,000 a month, and that price includes all the work it takes to rank. Nothing to pay up front, and your number comes in writing before we start.',
+  },
+];
+
+---
+<InnerPage
+  title="SEO for Environmental Law Attorneys | Niche B2B Search"
+  description="SEO for environmental law attorneys: find out which of your issues people search for, then win those searches with pages companies trust."
+  path="/seo-for-environmental-law-attorneys/"
+  crumbs={[{ label: 'SEO for environmental law attorneys' }]}
+  service={{ name: 'SEO for environmental law attorneys', offer: false }}
+  faq={faq}
+>
+  <PageHero
+    layout="top"
+    h1="SEO for environmental law attorneys: win the few searches that matter."
+    lead="Companies, towns and landowners search for help with permits, compliance and contamination. These searches are few, and each one can be a large matter. We find the ones that exist for your issues and make your firm the answer."
+    form={{ title: 'Send your website for a demand check.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'env-hero', label: 'environmental-hero', practiceArea: 'Environmental law' }}
+    talk="Prefer a call?"
+    class="env-hero"
+  >
+    <figure slot="visual" class="env-hero__fig">
+      <div class="env-hero__shot">
+        <Shot tag="Up 39%" tagSide="right" priority images={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'] }), shot(proof.nolaCalls, { crop: 'chart', alt: 'The same chart’s line of monthly calls, June to October 2026' })]} />
+      </div>
+      <figcaption>
+        <span class="env-hero__cap">For a PI firm in New Orleans: calls from its Business Profile rose 39% on the year before, June to October 2026, by Google’s count.</span>
+        <span class="env-hero__line">Environmental searches are rarer, so each call matters more. The same work makes sure it reaches you.</span>
+      </figcaption>
+    </figure>
+  </PageHero>
+
+  <Band heading="First, we check who searches for your issues." headingId="env-demand-h" lead="Some issues have real searches. Some have almost none. You see which before any page is built.">
+    <DemandTable
+      caption="The demand check: each issue and who searches for it"
+      rows={[
+        { issue: 'Permits and compliance', who: 'A company that has to meet a rule or win a permit.' },
+        { issue: 'Contamination and cleanup', who: 'A landowner or buyer with a polluted site.' },
+        { issue: 'Agency action', who: 'A business answering a regulator.' },
+        { issue: 'Your firm’s name', who: 'A general counsel checking you after a referral or a talk.' },
+      ]}
+    />
+    <p class="env-numbers">Fahim pulls the real monthly numbers for your issues on the review.</p>
+    <p class="env-honest">If search can’t carry your practice, Fahim tells you so in the review.</p>
+  </Band>
+
+  <Band heading="One full hub for each issue you lead on." headingId="env-hub-h" tone="fog">
+    <div class="env-hub">
+      <Rows
+        class="env-hub__rows"
+        items={[
+          { text: 'A hub page for each issue, with the questions a client asks about it.' },
+          { text: 'Articles under your attorneys’ names, from the talks and alerts you already write.' },
+          { text: 'Links from trade groups, bar sections and industry sites.' },
+          { text: 'Pages for the side you act for, and none for the side you don’t.' },
+        ]}
+      />
+      <p class="lse-lead env-hub__ai">Google’s AI answers draw on pages like these. We check them for your issues every month.</p>
+    </div>
+  </Band>
+
+  <Band heading="Doubts about search in a small field." headingId="env-faq-h">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Find out if search can work for your practice." formLabel="environmental-final" idPrefix="env-final" practiceArea="Environmental law">
+    <p>In 30 minutes, Fahim checks your issues for real search demand and looks up your firm’s name the way a general counsel would. You’ll know if SEO is worth it, whether you hire us or not.</p>
+  </FinalCta>
+  <Related links={[{ label: 'SEO for employment lawyers', href: '/seo-for-employment-lawyers/' }, { label: 'SEO for personal injury lawyers', href: '/seo-for-personal-injury-lawyers/' }]} />
+</InnerPage>
+
+<style>
+  .env-hero__fig { display: grid; gap: 18px; }
+  /* Never wider than the summary crop's own 680px, so neither part is upscaled. */
+  .env-hero__shot { max-width: 682px; }
+  .env-hero__fig figcaption { display: grid; gap: 10px; max-width: 38em; }
+  .env-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
+  .env-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+
+  .env-numbers { margin-top: 18px; color: var(--ink-2); max-width: 40em; }
+  .env-honest { margin-top: var(--s4); font-size: clamp(21px, .8vw + 16px, 28px); font-weight: 750; line-height: 1.25; letter-spacing: -.02em; color: var(--ink); max-width: 26em; }
+
+  .env-hub { max-width: 900px; display: grid; gap: var(--s4); }
+  :global(.env-hub__rows .lse-row p) { font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
+</style>

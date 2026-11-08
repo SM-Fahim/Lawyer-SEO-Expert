@@ -1,0 +1,46 @@
+---
+// Buyers as wide rows: the buyer's name set big on the left (4 of 12), the searches they type on the right
+// (8 of 12), a hairline between rows. The IP page's "three buyers" (patent, trademark, copyright), so it
+// doesn't read as the column panels the other practice pages use. One column on phones.
+import Q from '../kit/Q.astro';
+interface Query {
+  text: string;
+  mark?: string | string[];
+}
+interface Buyer {
+  name: string;
+  queries: Query[];
+}
+interface Props {
+  buyers: Buyer[];
+  caption?: string;
+  class?: string;
+}
+const { buyers, caption, class: className } = Astro.props;
+---
+<figure class:list={['pb-buyers', className]}>
+  {buyers.map((b) => (
+    <div class="pb-buyer">
+      <h3 class="pb-buyer__h">{b.name}</h3>
+      <ul class="pb-buyer__q" aria-label={`${b.name} searches`}>
+        {b.queries.map((q) => <li><Q text={q.text} mark={q.mark} /></li>)}
+      </ul>
+    </div>
+  ))}
+  {caption && <figcaption class="lse-small">{caption}</figcaption>}
+</figure>
+
+<style is:global>
+  .pb-buyers { border-top: 2px solid var(--ink); }
+  .pb-buyer { display: grid; gap: 10px; padding: clamp(22px, 2.4vw, 34px) 0; border-bottom: 1px solid var(--line-2); }
+  .pb-buyer__h { font-size: clamp(30px, 2vw + 18px, 48px); font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+  .pb-buyer__q { list-style: none; display: grid; gap: 10px; }
+  .pb-buyer__q li { font-size: clamp(18px, .4vw + 15px, 21px); font-weight: 500; line-height: 1.35; color: var(--ink); }
+  .pb-buyer__q q { quotes: none; }
+  .pb-buyer__q li::before { content: ""; display: inline-block; width: 15px; height: 15px; margin-right: 12px; vertical-align: -1px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 5 5'/%3E%3C/svg%3E") no-repeat center / contain; }
+  .pb-buyers figcaption { margin-top: 14px; }
+  @media (min-width: 1000px) {
+    .pb-buyer { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: clamp(48px, 5vw, 72px); align-items: baseline; }
+    .pb-buyer__q { padding-top: 6px; }
+  }
+</style>
