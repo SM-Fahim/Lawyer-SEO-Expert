@@ -5,7 +5,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { plannedPaths } from '../src/data/pages.ts';
-import { pendingRedirectTargets, redirects } from '../src/data/redirects.ts';
+import { archivePrefixes, pendingRedirectTargets, redirects, wordpressIds } from '../src/data/redirects.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(ROOT, 'dist');
@@ -64,6 +64,10 @@ const PRICES_BY_PAGE = {
   // The settlement calculator post: its worked example and the calculator's default figures (an injured person's
   // settlement maths, not our prices).
   '/pi-settlement-and-attorney-fee-calculator/': ['90,000', '84,000', '28,000', '30,000', '6,000', '56,000', '54,000', '27,972', '56,028', '1,998', '0'],
+  // The CRM ad landers (noindex), ported from WordPress: the per-user software fee they compare against ($150 a
+  // month, x 5 users = $9,000 a year, $90,000 over ten years) and the build's one-time "from $3,000" (owner's page).
+  '/crm-add/': ['150', '9,000', '90,000', '3,000'],
+  '/crm-add-v2/': ['150', '9,000', '90,000', '3,000'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};
@@ -436,6 +440,18 @@ function checkRedirectTargets() {
     console.warn(`check-dist: warning, ${new Set(waiting).size} redirect target(s) not built yet (listed in pendingRedirectTargets): ${[...new Set(waiting)].join(', ')}. Launch needs this list empty.`);
   }
   if (STRICT && waiting.length) fail('redirects.ts', 'pendingRedirectTargets must be empty for a launch build');
+
+  // Archive prefixes and WordPress shortlinks are one hop too: each target is built and isn't a redirect.
+  const extra = [...archivePrefixes.map(({ from, to }) => [from, to]), ...Object.entries(wordpressIds).map(([id, to]) => [`/?p=${id}`, to])];
+  for (const [from, to] of extra) {
+    if (INTAKE.test(from) || INTAKE.test(to)) fail('redirects.ts', `${from} to ${to} touches /intake, which belongs to another Worker`);
+    if (redirectPaths.has(to)) fail('redirects.ts', `${from} goes to ${to}, which is itself a redirect`);
+    if (!isBuilt(to)) fail('redirects.ts', `${from} goes to ${to}, which isn't built`);
+  }
+  for (const { from } of archivePrefixes) {
+    const built = htmlFiles.map(pagePath).filter((path) => path.startsWith(from));
+    if (built.length) fail('redirects.ts', `the ${from} prefix would hide built page(s): ${built.join(', ')}`);
+  }
 }
 
 checkSitemap();

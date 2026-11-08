@@ -5,7 +5,7 @@
 //   4. the built files in dist/, and the 404 page for anything else
 //
 // There's no list of pages. Anything the build writes is live, so a new page or post needs no entry here.
-import { redirects, type Redirect } from '../src/data/redirects';
+import { archivePrefixes, redirects, wordpressIds, type Redirect } from '../src/data/redirects';
 import { handleAddon } from './addons';
 import { logBroken } from './broken';
 
@@ -38,10 +38,12 @@ async function respond(request: Request, url: URL, env: Env, ctx: ExecutionConte
     return Response.json({ error: 'not_found' }, { status: 404, headers: { 'cache-control': 'no-store' } });
   }
 
-  const redirect = redirectsByPath.get(withoutSlash(url.pathname));
+  const redirect = redirectsByPath.get(withoutSlash(url.pathname)) ?? archiveRedirect(url.pathname);
   if (redirect) {
     return redirectTo(`${new URL(redirect.to, url).href}${url.search}`, redirect.status);
   }
+  const shortlink = shortlinkTarget(url);
+  if (shortlink) return redirectTo(shortlink, 301);
 
   if (NOT_FOUND_PATHS.has(withoutSlash(url.pathname))) return notFoundPage(request, env);
   return staticFile(request, url, env);
@@ -92,6 +94,28 @@ async function notFoundPage(request: Request, env: Env): Promise<Response> {
   const headers = new Headers(page.headers);
   headers.delete('etag');
   return new Response(page.body, { status: 404, headers });
+}
+
+/** /category/tips/feed/, /tag/x/, /author/admin/, /blog/page/2/: WordPress archives, by prefix. */
+function archiveRedirect(path: string): Redirect | undefined {
+  const withSlash = path.endsWith('/') ? path : `${path}/`;
+  return archivePrefixes.find((rule) => withSlash.startsWith(rule.from));
+}
+
+/** /?p=1031 or /?page_id=1031: a WordPress shortlink to a known page. Keeps every other parameter. */
+function shortlinkTarget(url: URL): string | null {
+  if (url.pathname !== '/') return null;
+  for (const name of ['p', 'page_id']) {
+    const id = url.searchParams.get(name);
+    const to = id === null ? undefined : wordpressIds[id];
+    if (!to) continue;
+    const params = new URLSearchParams(url.search);
+    params.delete('p');
+    params.delete('page_id');
+    const rest = params.toString();
+    return `${url.origin}${to}${rest ? `?${rest}` : ''}`;
+  }
+  return null;
 }
 
 function redirectTo(location: string, status: number): Response {
