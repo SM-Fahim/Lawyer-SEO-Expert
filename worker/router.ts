@@ -11,6 +11,8 @@ import { logBroken } from './broken';
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '[::1]']);
 const NOT_FOUND_PATHS = new Set(['/404', '/404.html']);
+// Builder pages (the inner-page kit and the homepage drafts): on Previews only. Live, they are a 404 (QA Minor 19).
+const PREVIEW_ONLY = ['/kit', '/variants'];
 // The RSS feed keeps its old address. The assets binding can only serve a folder's index.html,
 // so /feed/ reads the built file.
 const FEED_PATH = '/feed/';
@@ -46,6 +48,9 @@ async function respond(request: Request, url: URL, env: Env, ctx: ExecutionConte
   if (shortlink) return redirectTo(shortlink, 301);
 
   if (NOT_FOUND_PATHS.has(withoutSlash(url.pathname))) return notFoundPage(request, env);
+  if (env.LIVE === 'true' && PREVIEW_ONLY.some((p) => url.pathname === p || url.pathname.startsWith(`${p}/`))) {
+    return notFoundPage(request, env);
+  }
   return staticFile(request, url, env);
 }
 

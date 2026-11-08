@@ -112,6 +112,22 @@ describe('a new page', () => {
 
 });
 
+describe('builder pages (/kit/, /variants/)', () => {
+  it('are served on a Preview', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}/kit/`, { env: envWith({ LIVE: 'false' }) });
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain('the kit demo');
+  });
+
+  it.each(['/kit/', '/kit', '/variants/', '/kit/anything'])('%s is a 404 in production', async (path) => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}${path}`);
+    expect(response.status).toBe(404);
+    expect(await response.text()).toContain(NOT_FOUND);
+  });
+});
+
 describe('WordPress is gone', () => {
   it.each(['/wp-admin/', '/wp-login.php', '/wp-json/', '/xmlrpc.php', '/wp-includes/js/jquery/jquery.min.js', '/wp-content/uploads/missing.jpg'])(
     '%s gets the 404 page and never reaches an origin',
