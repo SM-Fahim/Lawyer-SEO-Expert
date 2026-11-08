@@ -2,7 +2,7 @@
 // /careers/: the two part-time roles from the old page (WordPress page 1031), kept by owner default
 // (FACTS.md section 1). Each applies through its Google Form, as before. The video editor's details come from
 // its own form (read 2026-11-08). The graphic designer's form gave no details, and it said it was no longer
-// accepting answers on 2026-11-08: the owner should reopen it or drop the role.
+// accepting answers on 2026-11-08, so the judge dropped the role until the owner reopens it.
 // "A small team helps with production" is the owner's wording on who does the work (FACTS section 1).
 import Band from '../../components/kit/Band.astro';
 import { site } from '../../data/site';
@@ -17,27 +17,19 @@ const roles = [
     href: 'https://forms.gle/ieyHDRMEPF2LTaQUA',
     link: 'Apply for the video editor role',
   },
-  {
-    id: 'design',
-    title: 'Graphic designer',
-    meta: 'Part-time',
-    text: 'Design work for our team. The application form asks about you and your experience.',
-    href: 'https://forms.gle/nabSRbEcP2hQ1Voy5',
-    link: 'Apply for the graphic designer role',
-  },
 ];
 ---
 <InnerPage
-  title="Careers at Lawyer SEO Expert | Part-Time Video and Design Roles"
-  description="Lawyer SEO Expert is hiring a part-time video editor and a part-time graphic designer. Read what each role involves and apply through a short form."
+  title="Careers at Lawyer SEO Expert | Part-Time Video Editor"
+  description="Lawyer SEO Expert is hiring a part-time video editor. Read what the role involves and apply through a short form."
   path="/careers/"
   crumbs={[{ label: 'Careers' }]}
   pageType="company"
 >
   <section class="cr-hero" aria-labelledby="hero-h">
     <div class="lse-wrap">
-      <h1 id="hero-h">Two part-time roles are open.</h1>
-      <p class="lse-lead cr-lead">We help law firms get found on Google. Fahim leads every account, and a <span class="lse-mk">small team helps with the production work</span>. We’re adding two people to it.</p>
+      <h1 id="hero-h">A part-time video editing role is open.</h1>
+      <p class="lse-lead cr-lead">We help law firms get found on Google. Fahim leads every account, and a <span class="lse-mk">small team helps with the production work</span>. We’re adding a video editor to it.</p>
     </div>
   </section>
 
