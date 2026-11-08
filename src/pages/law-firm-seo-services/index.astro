@@ -22,7 +22,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 
 const title = 'Law Firm SEO Services | Top of Google, the Map and AI';
 const description =
-  'Law firm SEO services, part by part: the first 90 days, Map pack rules for lawyers, pages, links, AI answers and how results are counted in calls.';
+  'Law firm SEO services in the order we work: month 1 data, competitors, law and fixes, then pages, the profile and links, counted in calls.';
 const path = '/law-firm-seo-services/';
 const depth = await getDepth('law-firm-seo-services');
 
@@ -89,11 +89,12 @@ const refuse = [
   <DepthZone depth={depth} authorLinkLabel="More about Fahim">
     <figure slot="proof" class="lse-depth__proof">
       <ShotSwap
-        tag="Cited 3 times"
-        wide={[shot(proof.nolaWtdAi, { marks: ['citations'] })]}
-        narrow={[shot(proof.nolaWtdAi, { marks: ['citations'] })]}
+        tag="139 calls"
+        tagSide="left"
+        wide={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'] })]}
+        narrow={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'], phone: false })]}
       />
-      <figcaption><b><Q text="what to do after a truck accident in New Orleans" /></b><span>A PI firm in New Orleans: Google’s AI answer quotes its page 3 times.</span></figcaption>
+      <figcaption><b>139 calls in five months, up 39%</b><span>A PI firm in New Orleans: calls from its Google Business Profile, June to October 2026, by Google’s own count.</span></figcaption>
     </figure>
     <div slot="layers" class="bsv-rows"><Rows variant="inline" items={layers} /></div>
     <div slot="practices" class="bsv-practice"><PracticeLinks /></div>
@@ -101,7 +102,7 @@ const refuse = [
     <div slot="refuse" class="bsv-rows"><Rows variant="inline" items={refuse} /></div>
 
     <Band slot="mid" tone="fog" class="bsv-mid">
-      <p class="bsv-mid__line">Fahim can run your firm’s key searches live in a free 30-minute call.</p>
+      <p class="bsv-mid__line">Fahim will map your first 90 days and put the price in writing.</p>
       <Button />
     </Band>
 
