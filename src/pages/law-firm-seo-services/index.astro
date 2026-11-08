@@ -43,9 +43,9 @@ const faq: FaqItem[] = [
   },
 ];
 
-// The jackknife #1, cut above the AI panel: the search box, then the organic result (two bands of one capture).
-const jackSearch = { top: 0, height: 16.8 };
-const jackResult = { top: 80.5, height: 19.5 };
+// Judge, 2026-11-08: the hero is the "what to do" #1 strip. Google's open source popup covers the jackknife
+// result's title, so no rectangle crop of it is clean; the whole jackknife capture (AI chip and the result
+// marked) moved to section 1, row 1, where it also shows the AI citation its line claims.
 const jackTitle = [{ l: 1.9, t: 88.4, w: 37.5, h: 4 }];
 const wtdTitle = [{ l: 2, t: 40, w: 49, h: 19 }];
 // The first source card's title, both lines (proof.ts's sourceCard box sits about 20px right of the words).
@@ -74,16 +74,10 @@ const sourceTitle = [
       <ShotSwap
         tag="#1"
         priority
-        wide={[
-          shot(proof.nolaJackknife, { crop: jackSearch, alt: '' }),
-          shot(proof.nolaJackknife, { crop: jackResult, marks: jackTitle, alt: 'Google search for jackknife truck accident Louisiana: a New Orleans PI firm’s page is the first result, 7 days after going live' }),
-        ]}
-        narrow={[
-          shot(phoneProof.jackknifeLeft, { crop: 'search', alt: '' }),
-          shot(phoneProof.jackknifeLeft, { crop: 'result', marks: ['result'] }),
-        ]}
+        wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: wtdTitle, alt: 'A New Orleans PI firm’s page, What to Do After a Truck Accident, as the first result on Google' })]}
+        narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdRank, { marks: ['title'] })]}
       />
-      <figcaption><b><Q text="jackknife truck accident Louisiana" /></b>: a PI firm’s page in New Orleans ranked #1, and a week later Google’s AI still cited it.</figcaption>
+      <figcaption><b><Q text="what to do after a truck accident in New Orleans" /></b>: a PI firm’s page in New Orleans ranked #1.</figcaption>
     </figure>
   </PageHero>
 
@@ -92,13 +86,13 @@ const sourceTitle = [
       <figure slot="a" class="svc-fig">
         <ShotSwap
           tag="#1"
-          wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: wtdTitle, alt: 'A New Orleans PI firm’s page, What to Do After a Truck Accident, as the first result on Google' })]}
-          narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdRank, { marks: ['title'] })]}
+          wide={[shot(proof.nolaJackknife, { marks: [...proof.nolaJackknife.marks.aiChip, ...jackTitle] })]}
+          narrow={[shot(phoneProof.jackknifeLeft, { crop: 'search', alt: '' }), shot(phoneProof.jackknifeLeft, { crop: 'result', marks: ['result'] })]}
         />
       </figure>
       <div slot="b" class="svc-part">
         <h3>Pages that reach #1.</h3>
-        <p class="svc-part__line">For <Q text="what to do after a truck accident in New Orleans" />, the same firm’s page ranked #1.</p>
+        <p class="svc-part__line">For <Q text="jackknife truck accident Louisiana" />, the same firm’s page ranked #1, and a week later Google’s AI still cited it.</p>
         <p class="svc-part__work">We write a page for each practice area and city you serve, and earn links from relevant sites.</p>
       </div>
     </Split>
