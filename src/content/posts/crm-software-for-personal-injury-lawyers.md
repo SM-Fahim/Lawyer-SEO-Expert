@@ -101,7 +101,7 @@ Most CRMs can do this, but few firms set it up.
 5. **Tag quality.** Mark a lead as qualified if it fits your case criteria, whether or not it signs.
 6. **Review monthly.** Compare the leads from each page and listing with the retained cases.
 
-Google describes local results as based on relevance, distance and prominence ([Business Profile help](https://support.google.com/business/answer/7091)). Your CRM shows which of those effects turns into signed matters.
+Google describes local results as based on relevance, distance and prominence ([Business Profile help](https://support.google.com/business/answer/7091)). Your CRM shows which of those three actually bring you qualified leads.
 
 ## Questions that separate good tools from bad fits
 
