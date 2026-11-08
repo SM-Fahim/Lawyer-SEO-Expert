@@ -74,3 +74,9 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 **Removed:** the work log (`WorkLog`, `src/data/worklog.ts`), `MarginNote`, `SerpFigure`, `ResultRow`, `PriceLine`, `TermsList`, `Mark`, the v1 Semrush and SERP captures and the old fonts.
 
 **Worker tests:** five tests still expected `/law-firm-ppc/` to 301 to the services page after commit 323c59c made it a page. They now use `/lawyer-content-writing/` and `/seo-pricing-page/`. The Worker itself is untouched.
+
+## 2026-11-08 Homepage v2, owner round 1 (version A approved)
+
+- The "Your site" phone shows LCME's full 915 mobile capture (824x1760), the whole hero, scaled into the frame; 210px wide on phones.
+- The price band lists what the price includes with what each part typically costs a month when hired separately, the struck total ("Hired one by one: $4,000+ a month") and "With us: all of it, from $2,000 a month." plus "No setup fee." Values are the owner's proposals, in one array (`included` in `src/pages/index.astro`). Each amount is in `PRICES_BY_PAGE['/']` in `scripts/check-dist.mjs`, as the owner asked. Rows on the highlighter band, the strike is a black marker stroke: no slip, no LCME labels.
+- The terms "Your monthly number in writing", "Month to month" and "Everything we build is yours" left the band; the FAQ still answers them.

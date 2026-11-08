@@ -32,7 +32,19 @@ const zones = [
   { title: 'Your website', text: 'Design and content improvements, upkeep, and call and form tracking.' },
 ];
 
-const terms = ['No setup fee.', 'Your monthly number in writing before work starts.', 'Month to month. No long-term contract.', 'Everything we build is yours.'];
+// What the monthly price includes, and what each part typically costs a month when a firm hires it separately.
+// Proposals the owner confirms (2026-11-08). Every amount here must also be in PRICES_BY_PAGE['/'] in
+// scripts/check-dist.mjs, or the build fails.
+const included = [
+  { item: 'Practice and location pages, written for you', cost: '$1,200+' },
+  { item: 'Links from relevant sites', cost: '$1,000+' },
+  { item: 'Website design and content improvements', cost: '$750+' },
+  { item: 'Website maintenance and security', cost: '$500+' },
+  { item: 'Google Business Profile and reviews', cost: '$125+' },
+  { item: 'Call and form tracking', cost: '$300+' },
+  { item: 'Rank tracking and AI answer checks', cost: '$150+' },
+];
+const separateTotal = '$4,000+';
 
 const faq: FaqItem[] = [
   {
@@ -220,7 +232,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
           <Shot class="lse-h-board__rank" tag="Top of Google" tagSmall tagSide="right" images={[{ src: `${P}nola-tanker-rank.webp`, width: 900, height: 175, alt: 'A New Orleans PI firm’s page in Google’s results for tanker truck accident lawyer in New Orleans', marks: [{ l: 1.6, t: 33, w: 63.6, h: 20 }] }]} />
           <Shot class="lse-h-board__ai" tag="AI answer" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google’s AI Overview citing a New Orleans PI firm', crop: { top: 0, height: 50 }, marks: [{ l: 8.6, t: 40.4, w: 13.6, h: 6.4 }] }]} />
           <Shot class="lse-h-board__map" tag="The Map" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google lists a New Orleans PI firm under key legal firms, rated 5.0 from 317 reviews', crop: { top: 50, height: 50 }, marks: [{ l: 18.4, t: 68.5, w: 11.2, h: 6.2 }, { l: 18.4, t: 75.6, w: 19.2, h: 6.2 }] }]} />
-          <Shot class="lse-h-board__site" tag="Your site" tagSmall tagSide="right" images={[{ src: `${P}elpaso-site-mobile.webp`, width: 824, height: 1240, alt: 'A website we built for a PI firm in El Paso, on a phone', crop: { top: 0, height: 78 } }]} />
+          <Shot class="lse-h-board__site" tag="Your site" tagSmall tagSide="right" images={[{ src: `${P}elpaso-site-mobile.webp`, width: 824, height: 1760, alt: 'A website we built for a PI firm in El Paso, on a phone' }]} />
         </div>
       </div>
       <p class="lse-h-web">Need a new website? We build law firm sites to rank, from $2,000 for the build. <a class="lse-link" href="/lawyer-web-design-development/">Law firm web design</a></p>
@@ -280,11 +292,18 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   <section class="lse-section lse-h-price" aria-labelledby="price-h">
     <div class="lse-wrap">
       <h2 id="price-h"><span>From $2,000 a month.</span> <span>Everything included.</span></h2>
-      <ul class="lse-h-terms">
-        {terms.map((t) => <li>{t}</li>)}
-      </ul>
-      <div class="lse-h-price__cta">
-        <Button />
+      <div class="lse-h-price__grid">
+        <div class="lse-h-price__list">
+          <ul class="lse-h-costs">
+            {included.map((r) => <li><span>{r.item}</span><b>{r.cost}</b></li>)}
+          </ul>
+          <p class="lse-h-sep"><span>Hired one by one:</span> <s class="lse-h-strike">{separateTotal} a month</s></p>
+        </div>
+        <div class="lse-h-price__us">
+          <p class="lse-h-us">With us: all of it, from $2,000 a month.</p>
+          <p class="lse-h-nofee">No setup fee.</p>
+          <div class="lse-h-price__cta"><Button /></div>
+        </div>
       </div>
     </div>
   </section>
@@ -394,14 +413,13 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-board .lse-h-board__site { max-width: 210px; }
   @media (max-width: 699px) {
     /* On a phone the capture shows only its first screen, so it doesn't take a whole screen itself. */
-    .lse-h-board .lse-h-board__site { max-width: 200px; }
-    .lse-h-board__site .lse-shot__part { aspect-ratio: 824 / 860 !important; }
+    .lse-h-board .lse-h-board__site { max-width: 210px; }
   }
   .lse-h-board__site .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
   .lse-h-web { margin-top: var(--s6); font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 46em; }
   .lse-h-web a { white-space: nowrap; margin-left: 6px; }
   @media (min-width: 700px) {
-    .lse-h-board { grid-template-columns: minmax(0, 1fr) 210px; column-gap: 28px; }
+    .lse-h-board { grid-template-columns: minmax(0, 1fr) 210px; grid-template-rows: auto auto 1fr; column-gap: 28px; }
     .lse-h-board__rank { grid-column: 1 / -1; }
     .lse-h-board__ai { grid-column: 1; grid-row: 2; }
     .lse-h-board__map { grid-column: 1; grid-row: 3; }
@@ -444,14 +462,23 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-price { background: var(--marker); }
   .lse-h-price h2 { font-size: clamp(40px, 4.4vw + 14px, 92px); letter-spacing: -.045em; line-height: .96; max-width: none; }
   .lse-h-price h2 span { display: inline-block; }
-  .lse-h-terms { list-style: none; display: grid; gap: 0 32px; margin-top: var(--s6); border-top: 2px solid var(--ink); }
-  .lse-h-terms li { padding: 20px 0 22px; border-bottom: 1px solid rgba(0, 0, 0, .25); font-size: clamp(19px, .6vw + 15px, 23px); font-weight: 700; letter-spacing: -.015em; line-height: 1.3; color: var(--ink); }
-  .lse-h-price__cta { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+  .lse-h-price__grid { display: grid; gap: 40px; margin-top: var(--s6); }
+  /* Rows: the part on the left, its usual monthly cost on the right. */
+  .lse-h-costs { list-style: none; border-top: 2px solid var(--ink); }
+  .lse-h-costs li { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 13px 0 14px; border-bottom: 1px solid rgba(0, 0, 0, .22); color: var(--ink); line-height: 1.3; }
+  .lse-h-costs span { font-size: clamp(17px, .3vw + 15px, 19px); font-weight: 500; }
+  .lse-h-costs b { flex: none; font-size: clamp(18px, .4vw + 15px, 21px); font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums lining-nums; text-align: right; }
+  /* The total, struck through with a black marker stroke. */
+  .lse-h-sep { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; padding-top: 16px; border-top: 2px solid var(--ink); margin-top: -1px; font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); }
+  .lse-h-strike { position: relative; text-decoration: none; font-weight: 800; white-space: nowrap; margin-left: auto; }
+  .lse-h-strike::after { content: ""; position: absolute; left: -5px; right: -5px; top: calc(50% - .05em); height: .13em; background: var(--ink); transform: rotate(-2deg); border-radius: 2px; clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%); }
+  .lse-h-us { font-size: clamp(30px, 2vw + 18px, 48px); font-weight: 800; letter-spacing: -.035em; line-height: 1.02; color: var(--ink); max-width: 13ch; }
+  .lse-h-nofee { margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--ink); font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); }
+  .lse-h-price__cta { margin-top: var(--s4); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
   .lse-h-price .lse-btn:hover { background: var(--paper); }
   .lse-h-price :focus-visible { box-shadow: 0 0 0 7px var(--paper); }
   @media (min-width: 900px) {
-    .lse-h-terms { grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 0; }
-    .lse-h-terms li { border-bottom: 0; border-top: 2px solid var(--ink); padding-right: 12px; }
+    .lse-h-price__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; align-items: start; }
   }
 
   /* ---------- Practice areas and FAQ ---------- */

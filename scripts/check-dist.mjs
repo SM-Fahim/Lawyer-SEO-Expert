@@ -47,7 +47,11 @@ const COPY_RULES = [
 // Dollar amounts the owner approved (PLAN.md section 8, Q1): SEO from $2,000 a month, web development from $2,000.
 // A page that needs another amount gets it in PRICES_BY_PAGE with a comment saying why.
 const PRICES_EVERYWHERE = ['2,000'];
-const PRICES_BY_PAGE = {};
+const PRICES_BY_PAGE = {
+  // The homepage's price band: what each part typically costs a month when hired separately, and their total
+  // (owner request, 2026-11-08; values are proposals the owner confirms, kept in one array in src/pages/index.astro).
+  '/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+};
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};
 
