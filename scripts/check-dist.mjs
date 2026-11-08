@@ -69,6 +69,9 @@ const PRICES_BY_PAGE = {
   ],
   // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
   '/law-firm-seo-services/': ['4,000'],
+  // /seo-for-personal-injury-lawyers/: "£5,000" is the UK legal threshold for road claims through Official Injury
+  // Claim (GOV.UK), not a price (content/DEPTH-BRIEF.md section 18, ruling 22).
+  '/seo-for-personal-injury-lawyers/': ['5,000'],
   // The settlement calculator post: its worked example and the calculator's default figures (an injured person's
   // settlement maths, not our prices).
   '/pi-settlement-and-attorney-fee-calculator/': ['90,000', '84,000', '28,000', '30,000', '6,000', '56,000', '54,000', '27,972', '56,028', '1,998', '0'],
