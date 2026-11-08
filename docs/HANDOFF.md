@@ -8,15 +8,16 @@ The technical foundation is in place, forked from LCME's back end, with a bare p
 
 Nothing exists in Cloudflare yet for this site: no D1, no Worker, no secrets, no DNS or route change. Nothing was deployed or pushed.
 
-Placeholder pages: `/`, `/contact-us/` (lead form and booking dialog wired), `/thank-you/`, `/404`, `/privacy-policy/` (noindex until written). Look is unstyled. `src/styles/tokens.css` holds TODO tokens for the design phase. Open TODOs are marked `TODO(design)`, `TODO(copy)`, `TODO(owner)`, `TODO(Cloudflare)`, `TODO(blog)`: search for `TODO(`.
+Design system and homepage built (Tile A, logo concept 3): `docs/design-system.md`, screenshots in `docs/shots/`. The homepage `/` is real copy from `content/home.md` with designed placeholders where captures are missing. Still placeholder pages: `/contact-us/` (lead form and booking dialog wired), `/thank-you/`, `/404`, `/privacy-policy/` (noindex until written). Open TODOs are marked `TODO(design)`, `TODO(copy)`, `TODO(owner)`, `TODO(Cloudflare)`, `TODO(blog)`: search for `TODO(`.
 
 ## Next steps
 
-1. Design phase fills `tokens.css`, header, footer, `LeadForm`, `CalendlyInline`, `BookingDialog` looks, and builds the pages.
-2. As each redirect target page ships, remove it from `pendingRedirectTargets` in `src/data/redirects.ts`. A launch build must pass with `STRICT_REDIRECTS=1 npm run build`.
-3. Write the privacy policy (tracking, Turnstile, Calendly and ad-pixel disclosures), then drop `noindex`. Add the Meta verification tag to `Base.astro` once the dataset exists.
-4. Keep `check-unique` clean as pages land. Refresh the snapshot when LCME ships (`npm run refresh-lcme-snapshot`, commit).
-5. Port the fuller e2e specs (forms, tracking, Meta) from LCME once markup is fixed.
+1. Build the inner pages with the components in `docs/design-system.md`. Every planned page is in `src/data/pages.ts`; the build warns about links to unbuilt ones and placeholders, and a launch build fails on both.
+2. Before launch: recapture the search result at full size, the Search Console and result captures (placeholders list on the homepage), confirm Josh's photo, and have the judge check every row in `src/data/worklog.ts`.
+3. As each redirect target page ships, remove it from `pendingRedirectTargets` in `src/data/redirects.ts`. A launch build must pass with `STRICT_REDIRECTS=1 npm run build`.
+4. Write the privacy policy (tracking, Turnstile, Calendly and ad-pixel disclosures), then drop `noindex`. Add the Meta verification tag to `Base.astro` once the dataset exists.
+5. Keep `check-unique` clean as pages land. Refresh the snapshot when LCME ships (`npm run refresh-lcme-snapshot`, commit).
+6. Port the fuller e2e specs (forms, tracking, Meta) from LCME once markup is fixed.
 
 ## Cloudflare and owner steps still to do, in order
 

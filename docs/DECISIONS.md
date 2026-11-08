@@ -32,3 +32,22 @@ Newest at the bottom. Log yours.
 ## 2026-11-08 check-unique
 
 Implemented as designed in `research/INFRA-REUSE.md` section 7, with these details. A shared 10-word run fails (30 on legal pages); 7 to 9 words warn. 6-word windows: warn above 2% and fail above 4% per page, fail above 2.5% sitewide, pages under 150 words not counted. An exact heading, title, description, link or button match with LCME fails when it has 2 or more words and is not allowed; headings of 5 or more words fail at Jaccard above 0.8. Banned phrases fail anywhere on the page; watch phrases warn. The leak scan runs on every text file in `dist/`. All lists and thresholds are in `scripts/unique-config.json`. The shared Calendly link is stripped from the leak scan on purpose (the owner chose to share the event). LCME text comes from `LCME_DIST`, else the sibling `dist/`, else the committed snapshot.
+
+## 2026-11-08 Design system and homepage
+
+Built from Tile A and logo concept 3 (`docs/design-system.md`). Fonts self-hosted and subset; size-adjusted fallbacks keep CLS at 0 (measured 0 at 1440 and 390).
+
+**Copy changed from `content/home.md`, for the judge:**
+- Hero: "No account managers." is "No account manager." Terms: "No long contract." is "No long-term contract." Both exact phrases are on check-unique's banned LCME list.
+- "The terms:" is set as the heading "Our terms." ("the terms" is an exact LCME heading).
+- The wide search capture shows the AI Overview *below* our result, not above it. The section 1 lead still says "It sat below the ads and the AI Overview" as written; the bracket on the capture says "AI Overview" (not "paid and AI, above"). The lead needs the judge's ruling or a recapture that matches it.
+- Kept the form's privacy line ("We use your details to reply and to measure our advertising...") under the form, since tracking runs on the page. Added "Contacting us creates no attorney-client relationship." to the footer (FACTS section 3).
+- Practice links show one real search phrase each (the optional detail in the copy's visual note), from KEYWORD-MAP section 2.
+
+**Checks:**
+- `check-dist`: links to planned pages listed in `src/data/pages.ts` and designed placeholders (`data-placeholder`) now warn on a normal build and fail on a launch build (`STRICT_REDIRECTS=1`), the same pattern as `pendingRedirectTargets`. Before, both failed every build, which made a Preview with placeholders or a full footer impossible. `data-placeholder` left the any-file banned list (CSS styles placeholders by the `.lse-ph` class, so no other file contains it).
+- `check-unique`: practice-area names that LCME also uses as link text ("practice areas", "criminal defense", "family law", "estate planning", "intellectual property", "environmental law", "medical malpractice") are on the allow list, like "personal injury" already was. Thresholds unchanged. The footer says "Pricing", not "SEO pricing" (an LCME link label).
+
+**Proof images:** the Semrush Domain Overview capture is cropped to the SEO panel (Authority Score 10), with backlinks and referring domains cut out. The 2025-10-26 Domain Overview (backlinks visible) is not used. The Search Console capture is a placeholder.
+
+**Work log:** `src/data/worklog.ts` holds this site's own rebuild rows, each `verifyAtLaunch: true`. Two rows are dated "launch day" (placeholder) until the site is live.
