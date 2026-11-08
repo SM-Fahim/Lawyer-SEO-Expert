@@ -1,51 +1,61 @@
 ---
-// /seo-for-criminal-defense-lawyers/ from content/v2/seo-for-criminal-defense-lawyers.md. Calls first: a white
-// hero with no split, the El Paso 9 -> 23 set huge across the page over its two charts; the real calendar
-// straight after; what gets typed; how the PI work carries over; what pages may claim; FAQ.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-criminal-defense-lawyers/ from content/v3/seo-for-criminal-defense-lawyers.md. The commercial top is the
+// v2 build: a white hero with no split, the El Paso 9 -> 23 set huge across the page over its two charts, then the
+// real calendar. The v2 bands after it gave way to the depth zone (src/content/depth/): the charge and county
+// matrix, family searches as patterns, the court windows as steps, the intake checklist, a white mid-page CTA
+// between ink rules, the marketing habits as inline rows, the price as plain lines (no PriceBand on this page),
+// then the open FAQ (fog), the author box and FinalCta.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
 import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
-import SearchBox from '../../components/kit/SearchBox.astro';
-import Split from '../../components/kit/Split.astro';
-import Related from '../../components/practice-a/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
+const path = '/seo-for-criminal-defense-lawyers/';
+const title = 'SEO for Criminal Defense Lawyers | Be the First Call';
+const description =
+  'SEO for criminal defense lawyers: charge and county pages, reach across counties, family searches, court dates, after-hours calls and specialist rules.';
+const depth = await getDepth('seo-for-criminal-defense-lawyers');
+
+// "What do family members search": patterns, not real searches, so plain text (never Q, never data-no-check).
+const familyPatterns = [
+  '“[relative] arrested, when is the first court date”',
+  '“how to find out if someone is in [county] jail”',
+  '“how to pay bail in [county]”',
+  '“can I hire a lawyer for my [relative]”',
+];
+
+// "Which defense marketing habits cost a firm calls?": one template per row (the habit, why it fails, what we do).
+const habits = [
   {
-    q: 'Have you done SEO for a criminal defense firm?',
-    html: 'Every result on this page is from a PI firm. The Map, page and AI answer work behind it is what a defense firm needs too, and Fahim shows you how it applies in your county.',
+    title: 'Calling people from arrest lists.',
+    text: 'ABA Formal Opinion 501 (April 13, 2022) treats a lawyer’s phone calls to people on a list of recent arrestees as a breach of Model Rule 7.3(b) (<a href="https://www.americanbar.org/news/abanews/aba-news-archives/2022/04/aba-issues-guidance-on-live-person-lawyer-solicitation/">ABA summary</a>). Each state adopts that rule in its own form. We build pages people find, so the person makes the first contact.',
   },
+  { title: '“Open 24 hours” with voicemail behind it.', text: 'Each hour on the profile has a person on the line.' },
+  { title: 'County pages with only the name swapped.', text: 'They fail the swap test and Google’s doorway policy. Each county page carries that county’s facts.' },
+  { title: '“Expert” and “specialist” in page titles.', text: 'Titles follow the table above, and the firm approves them.' },
   {
-    q: 'How is this different from DUI SEO?',
-    html: 'DUI clients also search license and deadline questions. If DUI is a big part of your work, it gets its own section. See <a href="/seo-for-dui-attorneys/">SEO for DUI attorneys</a>.',
+    title: 'Reviews written by the agency.',
+    text: 'The US FTC rule bans writing, buying or selling fake reviews (<a href="https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers">FTC questions and answers</a>). Every review comes from a real client.',
   },
-  {
-    q: 'What does it cost?',
-    html: 'From $2,000 a month, covering everything it takes to rank, with no setup fee. Fahim gives you your number in writing before work starts. More on <a href="/seo-pricing/">law firm SEO pricing</a>.',
-  },
-  {
-    q: 'Will people review a defense lawyer?',
-    html: 'Fewer do than in other practices. We ask every client the same way, and no reply to a review ever mentions a case.',
-  },
-  {
-    q: 'Do you work with solo defense attorneys?',
-    html: 'Yes. A solo practice often needs fewer pages, aimed at one county and the charges you want most.',
-  },
+  { title: 'Dismissals as headlines.', text: 'A dismissal is a past result, so your state’s past-results rule applies before it appears on a page.' },
 ];
 ---
 <InnerPage
-  title="SEO for Criminal Defense Lawyers | Be the First Call"
-  description="SEO for criminal defense lawyers: get onto the Map and the first results for your charges in your county, so the family calls you. Book a ranking review."
-  path="/seo-for-criminal-defense-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for criminal defense lawyers' }]}
   service={{ name: 'SEO for criminal defense lawyers' }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="stack"
@@ -68,69 +78,32 @@ const faq: FaqItem[] = [
     heading="See your county’s results with Fahim."
     headingId="book-h"
     tone="fog"
-    lead="Thirty free minutes. He runs your top charges in your county with you, live."
+    lead="Thirty free minutes. Fahim runs your top charges in your county with you, live."
   />
 
-  <Band heading="Two searches decide who gets the call." headingId="typed-h">
-    <Split ratio="7/5" align="center">
-      <SearchBox
-        slot="a"
-        label="Searches people type after a charge"
-        queries={[
-          { text: 'criminal defense lawyer near me', mark: 'near me' },
-          { text: '[charge] lawyer in [county]', mark: '[county]' },
-          { text: 'how much does a criminal defense lawyer cost' },
-          { text: 'what to ask a criminal lawyer before hiring' },
-        ]}
-      />
-      <p slot="b" class="lse-lead">We go after the first two first, with your Map listing and your charge pages. Cost and hiring questions get plain pages next.</p>
-    </Split>
-  </Band>
-
-  <Band heading="The work behind those calls, aimed at your charges." headingId="work-h" tone="fog" wideHeading>
-    <Split ratio="6/6" align="center">
-      <Rows
-        slot="a"
-        variant="inline"
-        items={[
-          { title: 'The Map.', text: 'Your Google Business Profile with the charges you take, true hours and a review routine.' },
-          { title: 'Charge pages.', text: 'One page for each charge you want more of, in each county where you appear in court.' },
-          { title: 'Google’s AI answers.', text: 'Charge pages plain enough for its AI to quote, and its answers checked each month.' },
-        ]}
-      />
-      <figure slot="b" class="cr-fig">
-        <Shot tag="Key firm" tagSmall tagSide="right" images={[shot(proof.nolaKeyFirm, { crop: 'keyFirms', marks: ['firmRow'], alt: 'Google’s AI lists a New Orleans PI firm under key legal firms for tanker accidents, rated 5.0 from 317 reviews' })]} />
-        <figcaption class="lse-small">For a PI firm in New Orleans: Google’s AI lists it as a key firm for tanker accidents.</figcaption>
-      </figure>
-    </Split>
-  </Band>
-
-  <Band heading="What your pages may say, and what they won’t." headingId="claims-h">
-    <div class="cr-claims">
-      <Rows
-        variant="inline"
-        items={[
-          { title: '“Specialist”.', text: 'Only if your attorney holds the certification and your state allows the word.' },
-          { title: 'Past results.', text: 'Only with your approval and the wording your state requires.' },
-          { title: 'Promises.', text: 'No page says you will win or get a charge dropped.' },
-        ]}
-      />
-      <p class="cr-claims__line">Nothing goes live until you or your ethics counsel sign off.</p>
+  <DepthZone depth={depth}>
+    <div slot="family" class="cr-family">
+      <h3 class="cr-family__h">Family searches, as patterns</h3>
+      <ul class="cr-family__list">
+        {familyPatterns.map((p) => <li>{p}</li>)}
+      </ul>
     </div>
-  </Band>
+    <div slot="habits" class="cr-habits">
+      <Rows variant="inline" items={habits} />
+    </div>
+    <Band slot="mid" class="cr-mid">
+      <div class="cr-mid__in">
+        <p class="cr-mid__line">Fahim can check this page matrix against your own counties, live, in a ranking review.</p>
+        <Button />
+      </div>
+    </Band>
+    <Band slot="price" class="cr-price">
+      <p class="cr-price__line">Criminal defense SEO with us starts from $2,000 a month. That covers the defense pages, the profile and review routine, links, call tracking and monthly checks on AI answers, and there is no setup fee. The full breakdown is on our <a href="/seo-pricing/">law firm SEO pricing</a> page.</p>
+    </Band>
+  </DepthZone>
 
-  <Band heading="What defense attorneys want to know." headingId="faq-h" tone="fog">
-    <Faq items={faq} />
-    <Related
-      links={[
-        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
-        { label: 'SEO for immigration lawyers', href: '/seo-for-immigration-lawyers/' },
-      ]}
-    />
-  </Band>
-
-  <FinalCta heading="See which names a family finds in your county." formLabel="crim-final" idPrefix="crim-final" practiceArea="Criminal defense">
-    In 30 minutes, Fahim searches your top charges with you and shows what would bring calls first.
+  <FinalCta heading="Check how your criminal defense firm ranks for each charge and county." formLabel="crim-final" idPrefix="crim-final" practiceArea="Criminal defense">
+    In 30 minutes, Fahim searches your top charges in each county you serve and shows which page would win the next call.
   </FinalCta>
 </InnerPage>
 
@@ -144,8 +117,28 @@ const faq: FaqItem[] = [
   @media (min-width: 760px) {
     .cr-proof__shots { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; column-gap: clamp(24px, 3vw, 48px); }
   }
-  .cr-fig { display: grid; gap: 12px; }
-  .cr-claims { max-width: 860px; }
-  .cr-claims .lse-row p { font-size: clamp(19px, .35vw + 16px, 22px); }
-  .cr-claims__line { margin-top: var(--s4); font-size: var(--fs-lead); font-weight: 650; color: var(--ink); }
+
+  /* Family searches: one column of patterns at the text's width, set like a search list but in plain type. */
+  .cr-family { max-width: 35em; }
+  .cr-family__h { font-size: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+  .cr-family__list { list-style: none; }
+  .cr-family__list li { padding: 14px 0 15px; border-bottom: 1px solid var(--line-2); font-size: clamp(17px, .3vw + 15px, 19px); font-weight: 600; line-height: 1.35; color: var(--ink); }
+
+  .cr-habits { max-width: 40em; }
+
+  /* Mid-page CTA on white, between two ink rules, so it reads as its own stop in the long white text. */
+  .cr-mid { padding-block: clamp(24px, 3vw, 40px); }
+  .cr-mid__in {
+    display: grid; gap: var(--s4); justify-items: start;
+    padding-block: clamp(36px, 4vw, 56px); border-block: 2px solid var(--ink);
+  }
+  .cr-mid__line { max-width: 24em; font-size: clamp(24px, 1.2vw + 17px, 34px); font-weight: 750; line-height: 1.18; letter-spacing: -.02em; color: var(--ink); }
+  @media (min-width: 1000px) {
+    .cr-mid__in { grid-template-columns: minmax(0, 1fr) auto; align-items: end; column-gap: 64px; }
+  }
+
+  /* The price, as plain lines: no band colour and no button (no PriceBand on this page). */
+  .cr-price { padding-top: 0; }
+  .cr-price__line { max-width: 36em; padding-top: var(--s4); border-top: 1px solid var(--line-2); font-size: var(--fs-lead); line-height: 1.5; color: var(--ink); }
+  .cr-price__line a { font-weight: 700; }
 </style>

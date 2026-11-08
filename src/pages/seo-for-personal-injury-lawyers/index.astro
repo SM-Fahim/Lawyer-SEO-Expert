@@ -1,55 +1,45 @@
 ---
-// /seo-for-personal-injury-lawyers/ from content/v2/seo-for-personal-injury-lawyers.md. The one practice page
-// whose results are in its own practice, so results lead: key-firm hero, three case-type results as a
-// staggered column (a row of three would shrink the captures past reading), calls as big number rows, where
-// injury clients look, the price band, FAQ.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-personal-injury-lawyers/ from content/v3/seo-for-personal-injury-lawyers.md. The commercial top is the
+// v2 hero as built (key-firm capture on the fog panel, the form, the trust line). The v2 proof run, the "three
+// places" band, the price band and the FAQ gave way to the depth zone (src/content/depth/): the page map and
+// the truck-page worked example, a fog mid-page CTA after the main zone, the agency habits as inline rows, the
+// marker price band, then the open FAQ (fog), the author box and FinalCta.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import PhoneShot from '../../components/kit/PhoneShot.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Q from '../../components/kit/Q.astro';
 import Rows from '../../components/kit/Rows.astro';
-import Split from '../../components/kit/Split.astro';
 import TrustLine from '../../components/kit/TrustLine.astro';
-import Related from '../../components/practice-a/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'How soon will our firm get more calls?',
-    html: 'Busy injury markets take longer. In New Orleans, the groundwork took about three months, and after that new accident pages ranked within 16 hours. Fahim gives you a straight view of your own city.',
-  },
-  {
-    q: 'Should we work on the Map or the website first?',
-    html: 'Both, because they feed each other. The Map brings the “near me” calls, and Google reads your site to judge your profile.',
-  },
-  {
-    q: 'Who does the work?',
-    html: 'Fahim plans it and checks every page before you see it, and a small team helps produce it. Josh Henderson, a Texas personal injury attorney since 2008, joins calls with firms.',
-  },
-  {
-    q: 'Won’t dozens of accident pages look thin to Google?',
-    html: 'Not when each one covers what that crash brings up, like the trucking company, the insurer and the deadline. We only write a page when people search for it and there is something new to say.',
-  },
+const path = '/seo-for-personal-injury-lawyers/';
+const title = 'SEO for Personal Injury Lawyers | Own the Accident Search';
+const description =
+  'SEO for personal injury lawyers: a page map by case type and city, truck pages that ranked, AI answers, the Map pack, PI ad rules and timelines.';
+const depth = await getDepth('seo-for-personal-injury-lawyers');
+
+// "Where agencies go wrong with injury pages": one template per row (the habit, what goes wrong, what we do).
+const habits = [
+  { title: 'A page for every town.', text: 'City pages with only the name changed are the doorway pattern Google names. We build a city page only when it has local facts.' },
+  { title: 'Gains with no baseline.', text: 'A growth figure without a date or a market behind it proves nothing. Ask for calls and qualified leads, with dates and a starting point.' },
+  { title: 'Review tools that filter.', text: 'Software that sends only happy clients to Google is review gating. Our review routine asks every client, not only the happy ones.' },
+  { title: 'Settlement figures as headlines.', text: 'A big number on every page invites the past-results problem. Results go only where your counsel approves them, with context.' },
+  { title: 'Traffic as the report.', text: 'Visits are not cases. We count calls, forms and qualified leads.' },
 ];
-
-// The title line of the ranked result, measured on nola-wtd-rank.webp (900x162).
-const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
-// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
-const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
 ---
 <InnerPage
-  title="SEO for Personal Injury Lawyers | Own the Accident Search"
-  description="SEO for personal injury lawyers: truck, car and deadline pages that reach the top of Google and its AI answers. See the calls. Book a ranking review."
-  path="/seo-for-personal-injury-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for personal injury lawyers' }]}
   service={{ name: 'SEO for personal injury lawyers' }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     h1="SEO for personal injury lawyers: own the searches after a crash."
@@ -63,135 +53,36 @@ const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
     <TrustLine slot="after" />
   </PageHero>
 
-  <Band
-    heading="Accident pages that Google puts first and its AI quotes."
-    headingId="cases-h"
-    lead="Every case type you take gets a page of its own, written for what injured people ask. For the New Orleans firm, these reached the top within 16 hours, after about three months of groundwork."
-    wideHeading
-  >
-    <ol class="pi-cases">
-      <li class="pi-case">
-        <div class="pi-case__text">
-          <p class="pi-case__q"><Q text="what to do after a truck accident in New Orleans" /></p>
-          <p>#1 on Google. Quoted 3 times in the AI answer.</p>
-        </div>
-        <Shot class="pi-case__shot" tag="#1" tagSide="right" images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: [...wtdTitle, ...proof.nolaWtdRank.marks.age] })]} />
-      </li>
-      <li class="pi-case pi-case--flip">
-        <div class="pi-case__text">
-          <p class="pi-case__q"><Q text="jackknife truck accident Louisiana" /></p>
-          <p>#1 on Google, and still cited by its AI a week later.</p>
-        </div>
-        <Shot class="pi-case__shot" tag="#1" tagSide="right" images={[shot(proof.nolaJackknife, { marks: ['result', 'aiChip'] })]} />
-      </li>
-      <li class="pi-case">
-        <div class="pi-case__text">
-          <p class="pi-case__q"><Q text="Texas El Paso car accident filing deadline" /></p>
-          <p>For a PI firm in El Paso: the first source Google’s AI cites.</p>
-        </div>
-        <Shot class="pi-case__shot" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: [sourceTitle] })]} />
-      </li>
-    </ol>
-  </Band>
-
-  <Band heading="Then the phone rings more, by Google’s count." headingId="calls-h" lead="Calls from each firm’s Google Business Profile." tone="fog">
-    <div class="pi-calls">
-      <Split ratio="5/7" align="center" class="pi-call">
-        <div slot="a" class="pi-call__num">
-          <NumPair after={139} afterLabel="calls" decorative={false} />
-          <p>New Orleans, June to October 2026. Up 39% on the same months of 2025.</p>
-        </div>
-        <Shot slot="b" tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
-      </Split>
-      <Split ratio="5/7" align="center" rule class="pi-call">
-        <div slot="a" class="pi-call__num">
-          <NumPair before={9} after={23} />
-          <p>El Paso. 9 calls in the six months before us, 23 in three months with us.</p>
-        </div>
-        <div slot="b" class="pi-call__pair">
-          <Shot images={[shot(proof.elpasoCallsBefore, { marks: ['total'] })]} />
-          <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['total'] })]} />
-        </div>
-      </Split>
-      <Split ratio="5/7" align="center" rule class="pi-call">
-        <div slot="a" class="pi-call__num">
-          <NumPair before={1} after={9} />
-          <p>A second, new New Orleans profile: from 1 call in July to 9 by October.</p>
-        </div>
-        <Shot slot="b" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
-      </Split>
+  <DepthZone depth={depth}>
+    <div slot="habits" class="pi-habits">
+      <Rows variant="inline" items={habits} />
     </div>
-  </Band>
+    <Band slot="mid" tone="fog" class="pi-mid">
+      <p class="pi-mid__line">Fahim will check this page map against where your firm ranks today. It costs nothing and runs half an hour.</p>
+      <Button />
+    </Band>
+    <PriceBand
+      slot="price"
+      heading="Injury SEO, priced monthly from $2,000."
+      headingId="price-h"
+      lead="Case-type pages, the Map profile, reviews, links, site upkeep, tracking and AI answer checks, in one monthly price with no setup fee."
+    >
+      <Fragment slot="link">How the number is set: <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
+    </PriceBand>
+  </DepthZone>
 
-  <Band heading="Three places an injury client finds you." headingId="places-h">
-    <Split ratio="7/5">
-      <Rows
-        slot="a"
-        variant="inline"
-        items={[
-          { title: 'The Map.', text: '“Car accident lawyer near me” shows a map first. We run your Google Business Profile and a steady review routine.' },
-          { title: 'Your case pages.', text: 'Car, truck, motorcycle and slip-and-fall, each with its own page for the cities where you take cases.' },
-          { title: 'Google’s AI answers.', text: 'Accident pages written so its AI can quote them, with its answers checked monthly.' },
-        ]}
-      />
-      <figure slot="b" class="pi-fig pi-phone">
-        <PhoneShot width={250} tag="Your site" tagSmall tagSide="right" images={[shot(proof.elpasoSiteMobile)]} />
-        <figcaption class="lse-small">The El Paso firm’s site, which we built, on a phone.</figcaption>
-      </figure>
-    </Split>
-  </Band>
-
-  <PriceBand
-    heading="From $2,000 a month for all of it."
-    headingId="price-h"
-    lead="Case pages, links, the Map, reviews, site upkeep, call tracking and AI answer checks. No setup fee. Month to month, and everything we build is yours."
-  >
-    <Fragment slot="link">How we price: <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
-  </PriceBand>
-
-  <Band heading="Before you hire someone for injury SEO." headingId="faq-h" tone="fog">
-    <Faq items={faq} />
-    <Related
-      links={[
-        { label: 'SEO for medical malpractice lawyers', href: '/seo-for-medical-malpractice-lawyer/' },
-        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
-        { label: 'Law firm web design', href: '/lawyer-web-design-development/' },
-      ]}
-    />
-  </Band>
-
-  <FinalCta heading="See who Google shows for your case types today." formLabel="pi-final" idPrefix="pi-final" practiceArea="Personal injury">
-    In 30 minutes, Fahim searches your main accident types in your city with you and shows which fix would bring calls first.
+  <FinalCta heading="Find out which accident searches your injury firm could win next." formLabel="pi-final" idPrefix="pi-final" practiceArea="Personal injury">
+    In 30 minutes, Fahim runs your main accident searches in your city with you and shows which page or profile fix would bring calls first.
   </FinalCta>
 </InnerPage>
 
 <style is:global>
   .pi-fig { display: grid; gap: 12px; align-content: start; }
 
-  /* Case-type results: a staggered column. Each capture gets two thirds of the width, so it stays readable. */
-  .pi-cases { list-style: none; display: grid; gap: clamp(56px, 7vw, 96px); }
-  .pi-case { display: grid; gap: 20px; align-items: center; }
-  .pi-case__text { display: grid; gap: 8px; align-content: start; }
-  .pi-case__q { font-size: clamp(22px, 1vw + 16px, 30px); font-weight: 800; line-height: 1.15; letter-spacing: -.022em; color: var(--ink); max-width: 16em; }
-  .pi-case__text p:not(.pi-case__q) { color: var(--ink-2); max-width: 24em; }
-  @media (min-width: 1000px) {
-    .pi-case { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: clamp(40px, 5vw, 72px); }
-    .pi-case--flip { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
-    .pi-case--flip .pi-case__text { order: 2; }
-  }
+  /* The agency habits sit at the text's width, so the rows read as part of the section. */
+  .pi-habits { max-width: 40em; }
 
-  .pi-call__num { display: grid; gap: 18px; }
-  .pi-call__num p { color: var(--ink-2); max-width: 24em; }
-  .pi-call__pair { display: grid; gap: 16px; }
-  /* Before and after overlap a little, so the pair reads as one step up and each chart keeps its size. */
-  @media (min-width: 1000px) {
-    .pi-call__pair { gap: 0; }
-    .pi-call__pair > :first-child { width: 78%; }
-    .pi-call__pair > :last-child { width: 86%; margin: -7% 0 0 auto; position: relative; z-index: 1; }
-    .pi-call__pair > :last-child .lse-shot__frame { box-shadow: var(--shadow-lift); }
-  }
-  .pi-phone { justify-items: center; }
-  @media (min-width: 1000px) {
-    .pi-phone { justify-items: start; }
-  }
+  /* Mid-page CTA: the one line set large, the button under it, nothing beside either. */
+  .pi-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }
+  .pi-mid__line { max-width: 22em; font-size: clamp(24px, 1.2vw + 17px, 34px); font-weight: 750; line-height: 1.18; letter-spacing: -.02em; color: var(--ink); }
 </style>

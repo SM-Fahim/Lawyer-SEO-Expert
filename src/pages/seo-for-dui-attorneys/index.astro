@@ -1,48 +1,48 @@
 ---
-// /seo-for-dui-attorneys/ from content/v2/seo-for-dui-attorneys.md. H1 across the top, then the new-profile
-// calls chart on the fog panel (left) with the form beside it (right); one arrest, two searches as two
-// columns with their proofs; which page owns which search; the price band; FAQ.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-dui-attorneys/ from content/v3/seo-for-dui-attorneys.md. The commercial top is the v2 build: the H1
+// across the top, then the new-profile calls chart on the fog panel (left) with the form beside it (right). The v2
+// bands after it gave way to the depth zone (src/content/depth/), opened by a fog band (byline, summary, jump
+// list): the search timeline, the state deadline table and its callout, the sub-pages as inline rows, the
+// shortcuts as an "avoid" list, the marker price band, then the open FAQ on white, the author box and FinalCta.
+// No mid-page CTA (the deck leaves it out at this length).
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
-import Band from '../../components/kit/Band.astro';
-import HairTable from '../../components/kit/HairTable.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Q from '../../components/kit/Q.astro';
-import Related from '../../components/practice-a/Related.astro';
+import Rows from '../../components/kit/Rows.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
-const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
+const path = '/seo-for-dui-attorneys/';
+const title = 'SEO for DUI Attorneys | Win the Near Me Search';
+const description =
+  'SEO for DUI attorneys: a search timeline by case stage, state license deadline pages, DUI vs criminal pages, sub-pages, the profile, claims and the UK.';
+const depth = await getDepth('seo-for-dui-attorneys');
 
-const faq: FaqItem[] = [
+// "Beyond the main DUI page, which sub-pages bring calls?": one template per row (the page, the fact that earns it).
+const subPages = [
+  { title: 'Refusal.', text: 'In California, refusing a test brings a 1-year suspension on a first offense, against 4 months for a failed test.' },
+  { title: 'First offense.', text: 'The search with the most reassurance in it, and the place for the first-offense license rules.' },
+  { title: 'Repeat and felony DUI.', text: 'Higher penalties and longer license actions, written for a driver with a record.' },
+  { title: 'Under 21.', text: 'Lower alcohol limits can apply to young drivers; California’s Admin Per Se threshold for drivers under 21 is 0.01%.' },
   {
-    q: 'Have you run SEO for a DUI firm?',
-    html: 'The proof on this page is from PI firms. The Map and page work behind it is what a DUI firm needs too, and Fahim walks you through it for your county.',
+    title: 'Commercial drivers.',
+    text: 'Under federal rules, a first DUI conviction disqualifies a CDL holder for 1 year, even in a personal car (<a href="https://www.law.cornell.edu/cfr/text/49/383.51">49 CFR 383.51</a>).',
   },
-  {
-    q: 'Should our pages say DUI, DWI or OWI?',
-    html: 'The term your state uses, plus whatever people near you type. Often a page needs both.',
-  },
-  {
-    q: 'Do we need a separate website for DUI?',
-    html: 'Usually not. One site with its own DUI section is easier to rank and to keep up.',
-  },
-  {
-    q: 'How soon will DUI pages bring calls?',
-    html: 'It depends on your city and your site today. On your ranking review, Fahim gives you a realistic view for your county.',
-  },
+  { title: 'Ignition interlock.', text: 'California lets eligible drivers, first offenders included, drive on an interlock restriction instead of a plain suspension.' },
+  { title: 'Drivers from another state.', text: 'A visitor arrested here has questions about two states: the one with the case and the one that issued the license.' },
 ];
 ---
 <InnerPage
-  title="SEO for DUI Attorneys | Win the Near Me Search"
-  description="SEO for DUI attorneys: be on the Map for “dui lawyer near me” and on Google for the license questions that follow an arrest. Book a ranking review."
-  path="/seo-for-dui-attorneys/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for DUI attorneys' }]}
   service={{ name: 'SEO for DUI attorneys' }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="top"
@@ -53,75 +53,26 @@ const faq: FaqItem[] = [
   >
     <figure slot="visual" class="dui-fig">
       <Shot tag="9 calls in October" tagSide="left" priority images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
-      <figcaption class="lse-small">For a PI firm in New Orleans: a new Google profile went from 1 call in July to 9 in October. A DUI firm’s Map listing is built the same way.</figcaption>
+      <figcaption class="lse-small">For a PI firm in New Orleans: a brand-new Google profile climbed from about 1 call in July to 9 calls in October. A DUI firm’s Map listing is built the same way.</figcaption>
     </figure>
   </PageHero>
 
-  <Band heading="One arrest, two searches." headingId="two-h">
-    <div class="dui-two">
-      <section class="dui-two__col" aria-labelledby="two-map-h">
-        <h3 id="two-map-h">On the Map, right away</h3>
-        <ul class="dui-two__qs">
-          <li><Q text="dui lawyer near me" mark="near me" /></li>
-          <li><Q text="dui attorney open now" mark="open now" /></li>
-        </ul>
-        <p class="dui-two__line">We keep your profile, hours and reviews ready, so you are a name they can call now.</p>
-        <figure class="dui-fig">
-          <Shot tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
-          <figcaption class="lse-small">For a PI firm in New Orleans: 139 calls from its Google profile in five months, up 39% on a year before.</figcaption>
-        </figure>
-      </section>
-      <section class="dui-two__col" aria-labelledby="two-web-h">
-        <h3 id="two-web-h">On Google, the days after</h3>
-        <ul class="dui-two__qs">
-          <li><Q text="should i get a lawyer for my first dui" /></li>
-          <li><Q text="can my lawyer go to court for me for dui" /></li>
-        </ul>
-        <p class="dui-two__line">Each question gets a plain page for your state, checked by your attorneys. Google’s AI quotes pages like these.</p>
-        <figure class="dui-fig">
-          <Shot tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { crop: { top: 20, height: 28 }, marks: [...proof.elpasoAiDeadline.marks.citedLine, sourceTitle], alt: 'Google’s AI Overview for Texas El Paso car accident filing deadline, with an El Paso PI firm’s page as the first source card' })]} />
-          <figcaption class="lse-small">For a PI firm in El Paso: Google’s AI answer cites its filing-deadline page first.</figcaption>
-        </figure>
-      </section>
+  <DepthZone depth={depth} faqTone="white">
+    <div slot="subpages" class="dui-subpages">
+      <Rows variant="inline" items={subPages} />
     </div>
-  </Band>
+    <PriceBand
+      slot="price"
+      heading="What a DUI firm pays: one monthly price, from $2,000."
+      headingId="price-h"
+      lead="One price covers your DUI and license pages, profile care and reviews, links, upkeep of the site, call tracking and checks on Google’s AI answers. No setup fee."
+    >
+      <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
+    </PriceBand>
+  </DepthZone>
 
-  <Band heading="DUI pages that never compete with your criminal pages." headingId="own-h" tone="fog" wideHeading>
-    <div class="dui-table">
-      <HairTable
-        caption="Which page answers which search"
-        head={['Search', 'The page that answers it']}
-        rows={[
-          [{ q: 'dui lawyer [city]' }, 'Your DUI page'],
-          [{ q: 'criminal defense lawyer [city]' }, 'Your criminal defense page'],
-          [{ q: 'should i get a lawyer for my first dui' }, 'First-offense page'],
-          [{ q: '[state] license hearing after a dui' }, 'License page'],
-        ]}
-      />
-      <p class="dui-table__line">One search, one page, so Google never has to choose between two of yours. More on <a href="/seo-for-criminal-defense-lawyers/">SEO for criminal defense lawyers</a>.</p>
-    </div>
-  </Band>
-
-  <PriceBand
-    heading="From $2,000 a month, nothing left out."
-    headingId="price-h"
-    lead="Your Map profile, DUI pages, links, site upkeep, call tracking and AI answer checks. No setup fee, month to month."
-  >
-    <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
-  </PriceBand>
-
-  <Band heading="DUI questions for Fahim." headingId="faq-h" tone="fog">
-    <Faq items={faq} />
-    <Related
-      links={[
-        { label: 'SEO for personal injury lawyers', href: '/seo-for-personal-injury-lawyers/' },
-        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
-      ]}
-    />
-  </Band>
-
-  <FinalCta heading="See who a driver finds in your county right now." formLabel="dui-final" idPrefix="dui-final" practiceArea="DUI">
-    In 30 minutes, Fahim runs your DUI searches with you and shows the first fix that would bring calls.
+  <FinalCta heading="See which DUI and license searches your practice wins today." formLabel="dui-final" idPrefix="dui-final" practiceArea="DUI">
+    In 30 minutes, Fahim runs your DUI and license-hearing searches with you and shows the first fix that would bring calls.
   </FinalCta>
 </InnerPage>
 
@@ -129,20 +80,21 @@ const faq: FaqItem[] = [
   .dui-hero .lse-hero__h { max-width: 20ch; }
   .dui-fig { display: grid; gap: 12px; align-content: start; }
 
-  /* Two searches: two columns with a hairline between them at 1000px and up. */
-  .dui-two { display: grid; gap: 64px; }
-  .dui-two__col { display: grid; gap: 20px; align-content: start; }
-  .dui-two__col h3 { padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
-  .dui-two__qs { list-style: none; display: grid; gap: 6px; }
-  .dui-two__qs li { font-size: clamp(20px, .6vw + 16px, 26px); font-weight: 700; letter-spacing: -.018em; line-height: 1.25; color: var(--ink); }
-  .dui-two__line { color: var(--ink-2); max-width: 30em; }
-  @media (min-width: 1000px) {
-    .dui-two { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0; }
-    .dui-two__col { padding-right: clamp(28px, 3vw, 48px); }
-    .dui-two__col + .dui-two__col { padding: 0 0 0 clamp(28px, 3vw, 48px); border-left: 1px solid var(--line-2); }
+  /* The depth zone opens on a fog band (byline, summary, jump list), full bleed, then the sections on white. */
+  .lse-depth[data-depth='seo-for-dui-attorneys'] > .lse-depth__part--first { padding-top: 0; }
+  .lse-depth[data-depth='seo-for-dui-attorneys'] .lse-depth__intro {
+    padding-block: clamp(56px, 6vw, 96px); border-top: 0;
+    background: var(--fog); box-shadow: 0 0 0 100vmax var(--fog); clip-path: inset(0 -100vmax);
   }
+  .lse-depth[data-depth='seo-for-dui-attorneys'] .lse-depth__intro + .lse-depth__sec { border-top: 0; }
 
-  .dui-table { max-width: 860px; }
-  .dui-table__line { margin-top: var(--s4); color: var(--ink-2); max-width: 40em; }
-  .dui-table__line a { font-weight: 600; }
+  .dui-subpages { max-width: 40em; }
+
+  /* The shortcuts are things to avoid: the same hairline rows as a checklist, with a drawn cross for the check. */
+  .lse-depth[data-depth='seo-for-dui-attorneys'] .lse-prose > ul.lse-check > li::before {
+    left: 3px; top: calc(14px + .5lh - 9px); width: 18px; height: 18px; border: 0; transform: none;
+    background:
+      linear-gradient(45deg, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px), var(--ink) calc(50% + 1.5px), transparent calc(50% + 1.5px)),
+      linear-gradient(-45deg, transparent calc(50% - 1.5px), var(--ink) calc(50% - 1.5px), var(--ink) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+  }
 </style>
