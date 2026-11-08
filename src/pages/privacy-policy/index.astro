@@ -1,11 +1,142 @@
 ---
-// DRAFT-SAFE PLACEHOLDER. noindex until the policy is written. The tracking, Turnstile, Calendly and ad-pixel
-// disclosures must be in the real text before launch (docs/HANDOFF.md). Remove noindex then.
-import Base from '../../layouts/Base.astro';
+// Privacy policy, from ../content/privacy-policy.md (draft 1, written from the code; for the owner's counsel).
+// The deck's [IF ENABLED: GA4] and [IF ENABLED: META] blocks follow src/data/site.ts: they show only once that
+// platform's ID is set, so the page always describes what the site really loads. Placeholders stay marked.
+import LegalLayout from '../../components/blog/LegalLayout.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import { site } from '../../data/site';
+
+const ga4 = site.tracking.ga4MeasurementId !== '';
+const meta = site.tracking.metaPixelId !== '';
+const email = site.contact.email;
+const others = [ga4 && 'Google', meta && 'Meta'].filter(Boolean) as string[];
+const othersOr = others.join(' or ');
+
+const sections = [
+  { id: 'in-brief', label: 'In brief' },
+  { id: 'who-we-are', label: 'Who we are' },
+  { id: 'what-you-send', label: 'What you send us' },
+  { id: 'browsing', label: 'What the site records' },
+  { id: 'why', label: 'Why we use it' },
+  { id: 'processors', label: 'Who processes your data' },
+  { id: 'cookies', label: 'Cookies and what we store' },
+  { id: 'retention', label: 'How long we hold data' },
+  { id: 'switch-off', label: 'How to switch tracking off' },
+  { id: 'rights', label: 'Your rights' },
+  { id: 'security', label: 'Security' },
+  { id: 'children', label: 'Children' },
+  { id: 'links', label: 'Sites we link to' },
+  { id: 'changes', label: 'When this policy changes' },
+  { id: 'contact', label: 'Contact' },
+];
 ---
-<Base pageType="company" path="/privacy-policy/" title="Privacy policy (draft)" description="Draft placeholder. The privacy policy is being written." noindex>
-  <div class="lse-wrap" style="padding-block:96px">
-  <h1>Privacy policy</h1>
-  <p>Draft. This page is a placeholder and is not indexed. The real policy is written before launch.</p>
-  </div>
-</Base>
+<LegalLayout
+  title="Privacy Policy | Lawyer SEO Expert"
+  description="What lawyerseoexpert.com collects, why, who processes it, how long it is kept, and how to switch tracking off."
+  path="/privacy-policy/"
+  h1="Privacy policy"
+  sections={sections}
+>
+  <h2 id="in-brief">In brief</h2>
+  <ul>
+    <li>When you send us a form, we keep what you typed so we can reply. It is emailed to our own inboxes and stored in a database run on Cloudflare.</li>
+    <li>When you browse, the site measures visits and leads so we know which pages and ads work. Today that measurement goes to Reddit{others.length > 0 && <>, and to {others.join(' and ')} as well</>}.</li>
+    <li>We do not sell your details for money. We do send limited data to advertising platforms, as set out below.</li>
+    <li>You can switch the site's tracking off in your browser (see <a href="#switch-off">how to switch tracking off</a>).</li>
+    <li>Questions: <a href={`mailto:${email}`}>{email}</a>.</li>
+  </ul>
+
+  <h2 id="who-we-are">Who we are</h2>
+  <p>This site is run by <Placeholder collect="Legal entity name" label="legal entity name" />, trading as Lawyer SEO Expert, <Placeholder collect="Registered address" label="registered address" />. In this policy "we" means that business. Contact: <a href={`mailto:${email}`}>{email}</a>.</p>
+
+  <h2 id="what-you-send">What you send us</h2>
+  <p><strong>Through the contact form.</strong> Your name and email (required), your firm's website, and optionally your phone number and a message. Some pages also send which page or practice area the form was on.</p>
+  <p><strong>Alongside the form, automatically.</strong> The page you sent it from, any campaign tags in the link you arrived by (such as utm_source), a Reddit click ID when a Reddit ad brought you here, your screen size, your country (as Cloudflare reports it) and a one-way scrambled version of your IP address. The scrambled IP is made with a secret key and is used only to stop the same sender flooding the form.</p>
+  <p><strong>Spam checks.</strong> The form uses Cloudflare Turnstile, a check that tells people from bots without a puzzle in most cases. Turnstile is run by Cloudflare and processes technical details of your browser to do this. A hidden empty field and a minimum time on the page are also checked.</p>
+  <p><strong>When you book a call.</strong> Booking happens in a Calendly window. Your name, email and any answers you give are collected by Calendly and stay in Calendly, under <a href="https://calendly.com/privacy" rel="noopener">Calendly's privacy policy</a>. Our database records only that a booking happened, which page it came from and how you reached the site (campaign tags, the referring site, the first page you landed on). No name, email or IP address is stored with that record.</p>
+  <p><strong>When you email us.</strong> Your message reaches our mailbox at {email} and is kept there like any business email.</p>
+
+  <h2 id="browsing">What the site records when you browse</h2>
+  <ul>
+    <li><strong>Visit counts.</strong> Page views, form sends and booking-dialog opens are recorded as events with the page, the time and any campaign tags. These records hold no IP address and no contact details.</li>
+    <li><strong>Broken pages.</strong> When a page is missing or fails, we record the address requested, the error and the referring page, so we can fix the link.</li>
+    <li><strong>Technical logs.</strong> Cloudflare keeps short-lived server logs for the site. Our code is built and tested not to write contact details into them.</li>
+  </ul>
+
+  <h2 id="why">Why we use it</h2>
+  <ul>
+    <li>To answer your enquiry and discuss working together.</li>
+    <li>To measure which pages, searches and ads bring enquiries, and to report conversions to the ad platforms below.</li>
+    <li>To keep the site and the form safe from spam and abuse.</li>
+    <li>To find and fix broken pages.</li>
+  </ul>
+  <p><Placeholder collect="Owner's counsel: legal bases for processing, if EU or UK visitors are in scope" label="Owner's counsel: add the legal bases for processing if EU or UK visitors are in scope" /></p>
+
+  <h2 id="processors">Who processes your data for us</h2>
+  <p><strong>Cloudflare.</strong> Hosts the site, runs the form and database, sends lead emails, and runs Turnstile. Leads and events are stored in a Cloudflare D1 database located in eastern North America. <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">How Cloudflare handles data</a>.</p>
+  <p><strong>Lead emails.</strong> Each form sent is emailed to the business's own inboxes through Cloudflare's email service, with your address set as the reply address. If sending fails, the site retries for about three days.</p>
+  <p><strong>Reddit.</strong> We use the Reddit Pixel (ID {site.tracking.redditPixelId}) in your browser and Reddit's Conversions API from our server. Reddit receives page visits, content views and form sends, with a conversion ID, the page address, your IP address and browser details, Reddit's click ID if you came from a Reddit ad, and Reddit's own browser identifier. When you send the form, Reddit also receives your email and phone number in scrambled form (a SHA-256 hash, not the plain text), so it can match the lead to an ad click. <a href="https://www.reddit.com/policies/privacy-policy" rel="noopener">Reddit's privacy policy</a>.</p>
+  <p><strong>Calendly.</strong> Runs the booking window (see what you send us, "When you book a call").</p>
+  {ga4 && (
+    <p><strong>Google Analytics.</strong> Google Analytics 4 measures visits through a Google tag served via Cloudflare, which sets Google's <code>_ga</code> cookies. When you send a form or book a call, our server reports that event to Google with the Analytics visitor ID from those cookies, your IP address (which Google uses to estimate location), your device type and the campaign tags. No name, email or phone number is sent to Google. <a href="https://policies.google.com/privacy" rel="noopener">Google's privacy policy</a>.</p>
+  )}
+  {meta && (
+    <p><strong>Meta (Facebook and Instagram).</strong> The Meta Pixel in your browser and Meta's Conversions API from our server receive page visits and form sends, with your IP address and browser details, Meta's browser cookies (<code>_fbp</code>, <code>_fbc</code>), a random visitor ID we create, and, for a form sent, your email and phone number in scrambled (hashed) form. <a href="https://www.facebook.com/privacy/policy/" rel="noopener">Meta's privacy policy</a>.</p>
+  )}
+  <p>We share data beyond these services only if the law requires it, to protect our rights or safety, or as part of a sale or transfer of the business.</p>
+
+  <h2 id="cookies">Cookies and what the site stores in your browser</h2>
+  <table>
+    <thead><tr><th scope="col">Name</th><th scope="col">Where</th><th scope="col">Set by</th><th scope="col">What it is for</th><th scope="col">How long</th></tr></thead>
+    <tbody>
+      <tr><td><code>lse_notrack</code></td><td>Cookie</td><td>This site</td><td>Switches tracking off on this browser</td><td>1 year</td></tr>
+      <tr><td><code>rct_cid</code></td><td>Local storage</td><td>This site</td><td>Reddit ad click ID, so a later form can be matched to the click</td><td>90 days</td></tr>
+      <tr><td><code>rct_mk</code></td><td>Local storage</td><td>This site</td><td>Scrambled email and phone after a form, for Reddit matching</td><td>90 days</td></tr>
+      <tr><td><code>lse_utm</code>, <code>lse_touch</code></td><td>Local storage</td><td>This site</td><td>Campaign tags, referring site and first landing page</td><td>90 days</td></tr>
+      <tr><td><code>_rdt_uuid</code></td><td>Cookie</td><td>Reddit</td><td>Reddit's browser identifier</td><td>Set by Reddit</td></tr>
+      {ga4 && <tr><td><code>_ga</code>, <code>_ga_&lt;ID&gt;</code></td><td>Cookie</td><td>Google</td><td>Analytics visitor and session</td><td>Set by Google</td></tr>}
+      {meta && <tr><td><code>_fbp</code>, <code>_fbc</code></td><td>Cookie</td><td>Meta</td><td>Meta's browser and click identifiers</td><td>Set by Meta</td></tr>}
+      {meta && <tr><td><code>lse_vid</code>, <code>lse_fbc</code>, <code>lse_fbmk</code></td><td>Local storage</td><td>This site</td><td>Random visitor ID, Meta click ID and scrambled contact details for Meta matching</td><td>90 days</td></tr>}
+      {meta && <tr><td><code>lse_meta_test</code></td><td>Session storage</td><td>This site</td><td>A test code used only by us when testing</td><td>Until the tab closes</td></tr>}
+      <tr><td>Cloudflare and Turnstile</td><td>Cookie or storage</td><td>Cloudflare</td><td>Security and bot checks</td><td>Set by Cloudflare</td></tr>
+      <tr><td>Calendly</td><td>Cookie</td><td>Calendly</td><td>Running the booking window</td><td>Set by Calendly</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="retention">How long we hold your data</h2>
+  <ul>
+    <li><strong>Form enquiries:</strong> kept until we delete them. <Placeholder collect="Owner: retention period for form enquiries" label="Owner to set a retention period, for example 24 months after last contact" /></li>
+    <li><strong>Visit events and booking records:</strong> deleted automatically after 180 days.</li>
+    {ga4 && <li><strong>Google Analytics send records:</strong> a short record that stops the same event being counted twice, deleted after 30 days.</li>}
+    <li><strong>Broken-page records:</strong> kept until cleared. <Placeholder collect="Owner: retention period for broken-page records" label="Owner to set a period" /></li>
+    <li><strong>Browser storage set by this site:</strong> expires after 90 days, or when you clear it.</li>
+    <li><strong>Data held by Reddit, Calendly{others.length > 0 ? `, ${others.join(', ')}` : ''} and Cloudflare:</strong> kept under each company's own policy.</li>
+  </ul>
+
+  <h2 id="switch-off">How to switch tracking off</h2>
+  <ul>
+    <li><strong>On this site:</strong> visit <a href="/?notrack=1">lawyerseoexpert.com/?notrack=1</a>. That sets the <code>lse_notrack</code> cookie for a year, and the site then loads no ad pixels, records no visit events and sends nothing to Reddit{others.length > 0 && <> or {othersOr}</>}. Forms still work and still reach us, marked as not to be counted. To switch tracking back on, visit <a href="/?notrack=0">lawyerseoexpert.com/?notrack=0</a>. Clearing your cookies removes the setting.</li>
+    <li><strong>In your browser:</strong> block third-party cookies, clear site data or use a content blocker.</li>
+    <li><strong>With the platforms:</strong> Reddit{others.length > 0 && <>, {others.join(' and ')}</>} each offer ad settings in your account.</li>
+  </ul>
+  <p><Placeholder collect="Owner's counsel: whether the site must honour Global Privacy Control or Do Not Track" label="Owner's counsel: the site does not currently read Global Privacy Control or Do Not Track signals. Decide whether it must, for the states in scope" /></p>
+
+  <h2 id="rights">Your rights</h2>
+  <p>You can ask us what we hold about you, ask us to correct it or delete it, or object to how we use it. Email <a href={`mailto:${email}`}>{email}</a>. We may need to confirm it is you before acting. Depending on where you live, you may have further rights, including to opt out of the sharing of personal information for targeted advertising.</p>
+  <p><Placeholder collect="Owner's counsel: state-specific sections (for example California) and EU or UK rights, if needed" label="Owner's counsel: add state-specific sections (for example California) and EU or UK rights if needed" /></p>
+
+  <h2 id="security">Security</h2>
+  <p>Data travels over encrypted connections. The database and email run on Cloudflare's infrastructure. IP addresses are stored only in scrambled form. No system is perfectly secure, and we will tell you if the law requires it after a breach.</p>
+
+  <h2 id="children">Children</h2>
+  <p>This site is for businesses. It is not meant for anyone under 16, and we do not knowingly collect their data. <Placeholder collect="Owner's counsel: confirm the age in the children line" label="Owner's counsel to confirm the age" /></p>
+
+  <h2 id="links">Sites we link to</h2>
+  <p>Pages link to other sites, such as Google results or our booking page. Their own privacy policies apply there.</p>
+
+  <h2 id="changes">When this policy changes</h2>
+  <p>When the site changes how it handles data, we update this page and the date at the top.</p>
+
+  <h2 id="contact">Contact</h2>
+  <p><a href={`mailto:${email}`}>{email}</a><br><Placeholder collect="Legal entity name and registered address" label="legal entity name, registered address" /></p>
+</LegalLayout>

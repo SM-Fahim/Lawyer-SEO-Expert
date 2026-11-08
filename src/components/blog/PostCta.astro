@@ -1,0 +1,63 @@
+---
+// The ranking-review close under a post or the blog index: Fahim on the swipe, a short heading, the post's own
+// line, the one button, and under it (after a hairline, never beside the button) the compact form.
+// It carries id="book", so a /#book link without JavaScript lands on it.
+import Button from '../Button.astro';
+import Face from '../kit/Face.astro';
+import LeadForm from '../LeadForm.astro';
+import { fahim } from '../../data/people';
+import { site } from '../../data/site';
+interface Props {
+  /** What Fahim does in the call, for this page's reader. */
+  line: string;
+  /** source_form for the lead email. */
+  formLabel: string;
+  heading?: string;
+  idPrefix?: string;
+}
+const { line, formLabel, heading = 'Find out what Google shows for your firm.', idPrefix = 'post' } = Astro.props;
+---
+<section class="lse-section lse-section--fog lse-pcta" id="book" aria-labelledby="pcta-h">
+  <div class="lse-wrap">
+    <div class="lse-pcta__ask">
+      <Face person={fahim} size="sm" class="lse-pcta__face" />
+      <div class="lse-pcta__text">
+        <h2 id="pcta-h">{heading}</h2>
+        <p class="lse-lead lse-pcta__line">{line}</p>
+        <div class="lse-pcta__btn">
+          <Button />
+          <p class="lse-small">{site.cta.sub}</p>
+        </div>
+      </div>
+    </div>
+    <div class="lse-pcta__write">
+      <LeadForm
+        compact
+        title="Prefer email? Send your website."
+        sub="Fahim answers within an hour in business hours."
+        idPrefix={idPrefix}
+        label={formLabel}
+        submitLabel="Send to Fahim"
+      >
+        <Fragment slot="after">
+          <p class="lse-small">Sending this form creates no attorney-client relationship.</p>
+        </Fragment>
+      </LeadForm>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .lse-pcta__ask { display: grid; gap: var(--s3); align-items: start; }
+  .lse-pcta h2 { max-width: 18ch; }
+  .lse-pcta__line { margin-top: var(--s2); max-width: 34em; }
+  .lse-pcta__btn { margin-top: var(--s4); display: grid; gap: 12px; justify-items: start; }
+  .lse-pcta__write { margin-top: var(--s6); padding-top: var(--s5); border-top: 2px solid var(--ink); }
+  @media (min-width: 760px) {
+    .lse-pcta__ask { grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(32px, 4vw, 64px); }
+    .lse-pcta__write { margin-left: calc(132px + clamp(32px, 4vw, 64px)); }
+  }
+  @media (max-width: 759px) {
+    .lse-pcta__face.lse-face { width: 104px; }
+  }
+</style>

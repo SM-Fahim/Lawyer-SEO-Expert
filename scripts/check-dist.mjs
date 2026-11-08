@@ -61,6 +61,9 @@ const PRICES_BY_PAGE = {
   '/seo-pricing/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
   // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
   '/law-firm-seo-services/': ['4,000'],
+  // The settlement calculator post: its worked example and the calculator's default figures (an injured person's
+  // settlement maths, not our prices).
+  '/pi-settlement-and-attorney-fee-calculator/': ['90,000', '84,000', '28,000', '30,000', '6,000', '56,000', '54,000', '27,972', '56,028', '1,998', '0'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};

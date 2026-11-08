@@ -6,8 +6,7 @@
 //   /wp-admin/, /wp-login.php  Nothing to send them to. They answer 404, the broken-page log skips /wp-* paths
 //                              (worker/broken.ts), and robots.txt keeps "Disallow: /wp-admin/", as LCME did after
 //                              its WordPress retirement.
-//   /feed/                     The router serves dist/feed.xml at /feed/ when a blog ships one (worker/router.ts).
-//                              Until then it answers 404.
+//   /feed/                     The router serves dist/feed.xml at /feed/ (worker/router.ts). src/pages/feed.xml.ts builds it.
 export interface Redirect {
   from: string;
   to: string;
@@ -31,11 +30,10 @@ export const redirects: readonly Redirect[] = [
   { from: '/login/', to: '/', status: 301 },
 
   // INVENTORY.md section 7: the four category pages were identical copies of the blog grid.
-  // TODO(blog): enable these when /blog/ is built.
-  // { from: '/category/tips/', to: '/blog/', status: 301 },
-  // { from: '/category/personal-injury-lawyer-seo/', to: '/blog/', status: 301 },
-  // { from: '/category/criminal-defense-seo/', to: '/blog/', status: 301 },
-  // { from: '/category/web-development-for-lawyers/', to: '/blog/', status: 301 },
+  { from: '/category/tips/', to: '/blog/', status: 301 },
+  { from: '/category/personal-injury-lawyer-seo/', to: '/blog/', status: 301 },
+  { from: '/category/criminal-defense-seo/', to: '/blog/', status: 301 },
+  { from: '/category/web-development-for-lawyers/', to: '/blog/', status: 301 },
 
   // Rank Math's sitemap addresses.
   { from: '/sitemap_index.xml', to: '/sitemap-index.xml', status: 301 },
@@ -50,6 +48,5 @@ export const redirects: readonly Redirect[] = [
 // if one is built but still listed here (a stale entry), or when STRICT_REDIRECTS=1 and any is unbuilt.
 // Remove each entry in the commit that ships its page. The launch build must have this list empty.
 export const pendingRedirectTargets: readonly string[] = [
-  '/crm-software-for-personal-injury-lawyers/',
   '/newsletter/',
 ];

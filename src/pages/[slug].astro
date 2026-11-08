@@ -1,0 +1,13 @@
+---
+// Every blog post, at its old root URL (/law-firm-names/, not /blog/law-firm-names/).
+import { render } from 'astro:content';
+import PostLayout from '../components/blog/PostLayout.astro';
+import { allPosts } from '../lib/posts';
+
+export async function getStaticPaths() {
+  return (await allPosts()).map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+<PostLayout post={post} headings={headings}><Content /></PostLayout>

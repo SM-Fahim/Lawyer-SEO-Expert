@@ -1,0 +1,93 @@
+---
+// Only on the calculator post. Wires the pre-rendered markup from calculator-markup.ts: recalculates on every
+// change, groups thousands in dollar fields, marks bad fields, and resets to the example. Nothing is sent or stored.
+---
+<script>
+  import { calculate, comparisonLine, defaults, formatPercent, formatUsd, invalidFields, limits, parseAmount, type CalcInput, type CostOrder } from '../../lib/calculator';
+
+  const root = document.querySelector<HTMLElement>('[data-lse-calc]');
+  if (root) {
+    const form = root.querySelector<HTMLElement>('[data-calc-fields]')!;
+    const out = (k: string) => root.querySelector<HTMLElement>(`[data-out="${k}"]`)!;
+    const input = (k: string) => form.querySelector<HTMLInputElement>(`[name="${k}"]`)!;
+    const group = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
+    const keys = limits.map((l) => l.key);
+    type Key = (typeof keys)[number];
+    const labels: Record<Key, string> = {
+      settlement: 'The settlement amount',
+      feeRate: 'The fee rate',
+      costs: 'Case costs',
+      lien: 'Liens and bills',
+      lienReduction: 'The lien reduction',
+    };
+
+    // Dollar fields get thousands separators as you type; the caret stays after the same digit.
+    function groupMoney(el: HTMLInputElement) {
+      const raw = el.value;
+      if (/[^\d.,$\s]/.test(raw)) return; // leave text alone, so the error can say what is wrong
+      const caretFromEnd = raw.length - (el.selectionStart ?? raw.length);
+      const cleaned = raw.replace(/[^\d.]/g, '');
+      const [int = '', ...rest] = cleaned.split('.');
+      const frac = rest.join('').slice(0, 2);
+      let text = int ? group.format(Number(int)) : '';
+      if (cleaned.includes('.')) text += `.${frac}`;
+      if (text === raw) return;
+      el.value = text;
+      const pos = Math.max(0, text.length - caretFromEnd);
+      el.setSelectionRange(pos, pos);
+    }
+
+    function read() {
+      const values: Partial<Record<Key, number | null>> = {};
+      for (const k of keys) values[k] = parseAmount(input(k).value);
+      const order = (form.querySelector<HTMLInputElement>('input[name="order"]:checked')?.value ?? 'before') as CostOrder;
+      return { values, order };
+    }
+
+    function render() {
+      const { values, order } = read();
+      const bad = invalidFields(values);
+      for (const k of keys) {
+        const el = input(k);
+        const err = root!.querySelector<HTMLElement>(`#calc-${k}-err`)!;
+        const spec = limits.find((l) => l.key === k)!;
+        const isBad = bad.includes(k);
+        el.setAttribute('aria-invalid', String(isBad));
+        el.closest('.lse-calc__field')?.classList.toggle('is-bad', isBad);
+        err.hidden = !isBad;
+        err.textContent = isBad ? `${labels[k]} must be a number from ${group.format(spec.min)} to ${group.format(spec.max)}.` : '';
+      }
+      root!.classList.toggle('is-invalid', bad.length > 0);
+      out('invalid').hidden = bad.length === 0;
+      if (bad.length) {
+        out('warn').hidden = true;
+        return;
+      }
+      const r = calculate({ ...(values as Omit<CalcInput, 'order'>), order });
+      out('settlement').textContent = formatUsd(values.settlement ?? 0);
+      out('fee').textContent = `minus ${formatUsd(r.fee)}`;
+      out('costs').textContent = `minus ${formatUsd(r.costs)}`;
+      out('lien').textContent = `minus ${formatUsd(r.lien)}`;
+      out('takeHome').textContent = formatUsd(r.takeHome);
+      out('share').textContent = r.takeHomeShare === null ? 'No share to show' : `${formatPercent(r.takeHomeShare)} of the settlement`;
+      out('compare').textContent = comparisonLine(order, r.orderDifference);
+      out('warn').hidden = !r.overdrawn;
+    }
+
+    form.addEventListener('input', (e) => {
+      const t = e.target as HTMLInputElement;
+      if (t.dataset.kind === 'money') groupMoney(t);
+      render();
+    });
+    root.querySelector('[data-calc-reset]')?.addEventListener('click', () => {
+      for (const k of keys) {
+        const v = defaults[k];
+        input(k).value = input(k).dataset.kind === 'money' ? group.format(v) : String(v);
+      }
+      const order = form.querySelector<HTMLInputElement>(`input[name="order"][value="${defaults.order}"]`);
+      if (order) order.checked = true;
+      render();
+    });
+    render();
+  }
+</script>
