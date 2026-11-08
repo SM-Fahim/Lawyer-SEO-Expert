@@ -1,0 +1,62 @@
+---
+// A legal page (privacy policy, terms): crumbs, H1, last-updated line, a contents list, then plain text at the
+// reading measure. BreadcrumbList JSON-LD only. Placeholders stay visible (Placeholder) until the owner and
+// counsel fill them; a launch build fails while any is left.
+import Breadcrumbs from '../kit/Breadcrumbs.astro';
+import Placeholder from '../Placeholder.astro';
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { breadcrumbSchema, type Crumb } from '../../lib/schema';
+import './prose.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  h1: string;
+  /** The H2s, in order, for the contents list. */
+  sections: { id: string; label: string }[];
+}
+const { title, description, path, h1, sections } = Astro.props;
+const url = new URL(path, site.url).href;
+const crumbs: Crumb[] = [{ label: h1 }];
+const schema = [breadcrumbSchema(crumbs, url, site.url)];
+---
+<Base pageType="company" path={path} title={title} description={description} schema={schema}>
+  <Breadcrumbs trail={crumbs} />
+  <article class="lse-legal" aria-labelledby="legal-h1">
+    <header class="lse-wrap lse-read__head">
+      <h1 id="legal-h1">{h1}</h1>
+      <p class="lse-read__meta">Last updated: <Placeholder collect="Last updated date (the launch date)" label="date of launch" /></p>
+    </header>
+    <div class="lse-wrap lse-legal__grid">
+      <nav class="lse-legal__toc" aria-labelledby="legal-toc-h">
+        <h2 id="legal-toc-h">On this page</h2>
+        <ol>
+          {sections.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
+        </ol>
+      </nav>
+      <div class="lse-prose lse-legal__text">
+        <slot />
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  .lse-legal__grid { margin-top: clamp(40px, 5vw, 64px); padding-bottom: var(--section); }
+  .lse-legal__toc { margin-bottom: var(--s5); padding-top: 14px; border-top: 2px solid var(--ink); max-width: 68ch; }
+  .lse-legal__toc h2 { font-size: 17px; letter-spacing: 0; max-width: none; }
+  .lse-legal__toc ol { list-style: none; padding: 8px 0 16px; columns: 2 14em; column-gap: 32px; border-bottom: 1px solid var(--line); }
+  .lse-legal__toc li { break-inside: avoid; }
+  .lse-legal__toc a { display: block; padding: 5px 0; font-size: 16px; color: var(--ink-2); text-decoration: none; }
+  .lse-legal__toc a:hover { color: var(--ink); text-decoration: underline; }
+  .lse-legal__text h2 { font-size: clamp(24px, .8vw + 18px, 32px); }
+  .lse-legal__text h2:first-child { margin-top: 0; }
+  @media (min-width: 1100px) {
+    .lse-legal__grid { display: grid; grid-template-columns: minmax(200px, 250px) minmax(0, 68ch); column-gap: clamp(48px, 5vw, 96px); align-items: start; }
+    .lse-legal__toc { position: sticky; top: 24px; margin-bottom: 0; }
+    .lse-legal__toc ol { columns: auto; }
+    .lse-legal__toc a { font-size: 15px; }
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+// Terms, from ../content/terms-and-conditions.md (draft 1, for the owner's counsel). Placeholders stay marked
+// until the owner and counsel supply them.
+import LegalLayout from '../../components/blog/LegalLayout.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import { site } from '../../data/site';
+
+const sections = [
+  { id: 'about', label: 'About these terms' },
+  { id: 'what-this-site-is', label: 'What you will find here' },
+  { id: 'not-legal-advice', label: 'Not legal advice' },
+  { id: 'no-guarantees', label: 'No guarantees' },
+  { id: 'services', label: 'Our services are agreed separately' },
+  { id: 'using-the-site', label: 'Using the site' },
+  { id: 'content', label: 'Who owns the content' },
+  { id: 'what-you-send', label: 'What you send us' },
+  { id: 'links', label: 'Links and booking tools' },
+  { id: 'as-is', label: 'The site as it is' },
+  { id: 'liability', label: 'Limits on our liability' },
+  { id: 'law', label: 'Governing law' },
+  { id: 'changes', label: 'When these terms change' },
+  { id: 'contact', label: 'Contact' },
+];
+const email = site.contact.email;
+---
+<LegalLayout
+  title="Terms and Conditions | Lawyer SEO Expert"
+  description="The terms for using lawyerseoexpert.com: what the site is, what it isn't, and the limits that apply."
+  path="/terms-and-conditions/"
+  h1="Terms and conditions"
+  sections={sections}
+>
+  <h2 id="about">About these terms</h2>
+  <p>These terms cover your use of lawyerseoexpert.com. The site is run by <Placeholder collect="Legal entity name" label="legal entity name" />, trading as Lawyer SEO Expert, <Placeholder collect="Registered address" label="registered address" />. By using the site you agree to them. If you don't agree, please don't use the site.</p>
+
+  <h2 id="what-this-site-is">What you will find here</h2>
+  <p>This is a marketing site for our SEO and website services for law firms. It explains what we do and lets you book a call or write to us. Information on the site is general and may change.</p>
+
+  <h2 id="not-legal-advice">Not legal advice, and no attorney-client relationship</h2>
+  <p>Nothing on this site is legal advice. Using the site, sending a form, booking a call or emailing us does not create an attorney-client relationship with anyone.</p>
+  <p>Josh Henderson, our Sales Director, is a licensed Texas attorney. Through Lawyer SEO Expert, Josh gives marketing and business input only, never legal advice. For legal questions, including how state bar advertising rules apply to your firm, speak to your own counsel.</p>
+
+  <h2 id="no-guarantees">No guarantees</h2>
+  <p>Search engines and AI tools decide rankings and answers. We do not guarantee any ranking, position, traffic, call volume or lead count, on this site or in our services. Results described on this site are past results for specific clients over stated dates. They are not a promise of what your firm will get.</p>
+
+  <h2 id="services">Our services are agreed separately</h2>
+  <p>Any work we do for you is covered by a separate written agreement or quote, which sets out scope, price and terms. If that agreement and these terms disagree, the agreement wins.</p>
+
+  <h2 id="using-the-site">Using the site</h2>
+  <p>Please don't:</p>
+  <ul>
+    <li>break the law or anyone's rights through the site;</li>
+    <li>try to get into parts of the site, its systems or its data that aren't meant for you;</li>
+    <li>send spam, automated form entries or harmful code;</li>
+    <li>copy large parts of the site, or scrape it, for another business.</li>
+  </ul>
+  <p>We may block access that breaks these rules.</p>
+
+  <h2 id="content">Who owns the content</h2>
+  <p>The words, design, images and code on this site belong to us or the people who licensed them to us. You can read, share links to and print pages for your own use. Please ask before reusing anything else.</p>
+  <p>Work we build for a client belongs to that client, as set out in their agreement with us. Screenshots of client results are shown with permission and with identifying details removed. <Placeholder collect="Owner to confirm permission is held for every client result shown" label="Owner to confirm permission for every result shown" /></p>
+
+  <h2 id="what-you-send">What you send us</h2>
+  <p>When you send a form or email, you confirm the details are yours to share and accurate. We handle them as described in our <a href="/privacy-policy/">privacy policy</a>.</p>
+
+  <h2 id="links">Links and booking tools</h2>
+  <p>The site links to other sites and uses third-party tools, such as Calendly for booking. We don't control those sites or tools, and their own terms apply when you use them.</p>
+
+  <h2 id="as-is">The site as it is</h2>
+  <p>We work to keep the site accurate and available, but we provide it as it is, without warranties of any kind. <Placeholder collect="Owner's counsel: confirm or replace the warranty disclaimer" label="Owner's counsel: confirm or replace this disclaimer" /></p>
+
+  <h2 id="liability">Limits on our liability</h2>
+  <p><Placeholder collect="Owner's counsel: limitation of liability clause, with any cap and the exclusions the law requires" label="Owner's counsel to draft the limitation of liability clause, including any cap and the exclusions the law requires" /></p>
+
+  <h2 id="law">Governing law</h2>
+  <p><Placeholder collect="Owner's counsel: governing law and where disputes are heard" label="Owner's counsel to supply the governing law and where disputes are heard" /></p>
+
+  <h2 id="changes">When these terms change</h2>
+  <p>We may update these terms. The date at the top shows the latest version. Using the site after a change means you accept the new terms.</p>
+
+  <h2 id="contact">Contact</h2>
+  <p><a href={`mailto:${email}`}>{email}</a><br><Placeholder collect="Legal entity name and registered address" label="legal entity name, registered address" /></p>
+</LegalLayout>
