@@ -39,7 +39,7 @@
     {
       "binding": "DB",
       "database_name": "lse-site",
-      "database_id": "", // TODO: run `npx wrangler d1 create lse-site --location enam`, paste the ID here
+      "database_id": "7386cb66-d3eb-4c0d-84b4-ed6982b32729"
       "migrations_dir": "migrations"
     }
   ],
@@ -70,7 +70,7 @@
       {
         "binding": "DB",
         "database_name": "lse-site-preview",
-        "database_id": "", // TODO: run `npx wrangler d1 create lse-site-preview --location enam`, paste the ID here
+        "database_id": "bcbbb735-afb4-4d27-818f-97d376a138a3"
         "migrations_dir": "migrations"
       }
     ]

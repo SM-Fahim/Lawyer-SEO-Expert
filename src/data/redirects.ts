@@ -24,7 +24,6 @@ export const redirects: readonly Redirect[] = [
   { from: '/newslatter/', to: '/newsletter/', status: 301 },
 
   // Services that have no page of their own. PLAN.md section 9: no PPC page.
-  { from: '/law-firm-ppc/', to: '/law-firm-seo-services/', status: 301 },
   { from: '/lawyer-content-writing/', to: '/law-firm-seo-services/', status: 301 },
 
   // WordPress accounts that never existed on this site.
