@@ -16,6 +16,11 @@ import Related from '../../components/practice-a/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 
+// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
+const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
+// "2 years from the date of the car accident", over two lines of the answer.
+const twoYears = [{ l: 20.6, t: 27.9, w: 21.1, h: 3.1 }, { l: 2.4, t: 31.4, w: 5.9, h: 3 }];
+
 const faq: FaqItem[] = [
   {
     q: 'Have you done malpractice SEO before?',
@@ -56,7 +61,7 @@ const firmRowCrop = { top: 64, height: 36 };
     form={{ title: 'Send your site for a ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'mm-hero', label: 'mm-hero', practiceArea: 'Medical malpractice' }}
   >
     <figure slot="visual" class="mm-fig">
-      <Shot tag="Source #1" tagSide="right" priority images={[shot(proof.elpasoAiDeadline, { marks: ['citedLine', 'sourceCard'] })]} />
+      <Shot tag="Source #1" tagSide="right" priority images={[shot(proof.elpasoAiDeadline, { marks: [...twoYears, sourceTitle] })]} />
       <figcaption class="lse-small">For a PI firm in El Paso: its filing-deadline page is the first source Google’s AI cites. “How long do I have?” is a question malpractice families ask too, and we write that page the same way.</figcaption>
     </figure>
   </HeroAside>
@@ -104,7 +109,7 @@ const firmRowCrop = { top: 64, height: 36 };
   </Band>
 
   <Band heading="Other lawyers search your name before they send a file." headingId="name-h" tone="fog" wideHeading>
-    <Split ratio="6/6" align="center">
+    <Split ratio="5/7" align="center">
       <p slot="a" class="lse-lead">We make sure your Google profile, attorney pages and reviews come up first when they do. For the injury side of the work, see <a href="/seo-for-personal-injury-lawyers/">SEO for personal injury lawyers</a>.</p>
       <figure slot="b" class="mm-fig">
         <Shot tag="Key firm" tagSmall tagSide="right" images={[shot(proof.nolaKeyFirm, { crop: firmRowCrop, marks: ['firmRow'], alt: 'A New Orleans PI firm in Google’s key legal firms list: its name, a 5.0 rating and 317 reviews' })]} />
@@ -121,7 +126,7 @@ const firmRowCrop = { top: 64, height: 36 };
     <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
   </PriceBand>
 
-  <Band heading="Malpractice SEO, the short answers." headingId="faq-h">
+  <Band heading="Malpractice SEO, the short answers." headingId="faq-h" tone="fog">
     <Faq items={faq} />
     <Related
       links={[
@@ -139,7 +144,7 @@ const firmRowCrop = { top: 64, height: 36 };
 <style is:global>
   .mm-fig { display: grid; gap: 12px; }
   .mm-fig figcaption { max-width: 48em; }
-  .mm-under { margin-top: var(--s4); font-weight: 700; color: var(--ink); max-width: 40em; }
+  .mm-under { margin-top: var(--s4); font-size: var(--fs-lead); font-weight: 650; color: var(--ink); max-width: 34em; }
   .mm-harm { max-width: 860px; }
   @media (min-width: 900px) {
     .mm-harm .lse-rows--big .lse-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: 40px; align-items: baseline; }

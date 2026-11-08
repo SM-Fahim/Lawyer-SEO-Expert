@@ -106,7 +106,7 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
 
   <Band heading="Then the call comes from Google." headingId="call-h">
     <Split ratio="7/5" align="center">
-      <Shot slot="a" tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
+      <Shot slot="a" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
       <div slot="b" class="emp-num">
         <NumPair after={139} afterLabel="calls" />
         <p>For a PI firm in New Orleans: 139 calls in five months from its Google profile, by Google’s own count.</p>
@@ -145,7 +145,7 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
   .emp-num { display: grid; gap: 22px; }
   .emp-num p { color: var(--ink-2); max-width: 22em; }
   .emp-price { margin-top: clamp(48px, 6vw, 80px); padding-top: var(--s4); border-top: 2px solid var(--ink); }
-  .emp-price__line { font-size: clamp(26px, 1.6vw + 16px, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); max-width: 26ch; }
+  .emp-price__line { font-size: clamp(24px, 1vw + 18px, 34px); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); max-width: 30ch; }
   .emp-price__link { margin-top: var(--s3); font-size: 17px; }
   .emp-price__link a { font-weight: 700; }
 </style>

@@ -14,6 +14,9 @@ import Related from '../../components/practice-a/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 
+// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
+const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
+
 const faq: FaqItem[] = [
   {
     q: 'Have you run SEO for a DUI firm?',
@@ -76,7 +79,7 @@ const faq: FaqItem[] = [
         </ul>
         <p class="dui-two__line">Each question gets a plain page for your state, checked by your attorneys. Google’s AI quotes pages like these.</p>
         <figure class="dui-fig">
-          <Shot tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { crop: 'answer', marks: ['citedLine', 'sourceCard'], alt: 'Google’s AI Overview for Texas El Paso car accident filing deadline, with an El Paso PI firm’s page as the first source card' })]} />
+          <Shot tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { crop: { top: 20, height: 28 }, marks: [...proof.elpasoAiDeadline.marks.citedLine, sourceTitle], alt: 'Google’s AI Overview for Texas El Paso car accident filing deadline, with an El Paso PI firm’s page as the first source card' })]} />
           <figcaption class="lse-small">For a PI firm in El Paso: Google’s AI answer cites its filing-deadline page first.</figcaption>
         </figure>
       </section>
@@ -107,7 +110,7 @@ const faq: FaqItem[] = [
     <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
   </PriceBand>
 
-  <Band heading="DUI questions for Fahim." headingId="faq-h">
+  <Band heading="DUI questions for Fahim." headingId="faq-h" tone="fog">
     <Faq items={faq} />
     <Related
       links={[
@@ -134,7 +137,7 @@ const faq: FaqItem[] = [
   .dui-two__qs li { font-size: clamp(20px, .6vw + 16px, 26px); font-weight: 700; letter-spacing: -.018em; line-height: 1.25; color: var(--ink); }
   .dui-two__line { color: var(--ink-2); max-width: 30em; }
   @media (min-width: 1000px) {
-    .dui-two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; }
+    .dui-two { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 0; }
     .dui-two__col { padding-right: clamp(28px, 3vw, 48px); }
     .dui-two__col + .dui-two__col { padding: 0 0 0 clamp(28px, 3vw, 48px); border-left: 1px solid var(--line-2); }
   }

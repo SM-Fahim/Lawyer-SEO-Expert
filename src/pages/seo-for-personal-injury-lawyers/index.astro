@@ -40,6 +40,8 @@ const faq: FaqItem[] = [
 
 // The title line of the ranked result, measured on nola-wtd-rank.webp (900x162).
 const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
+// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
+const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
 ---
 <InnerPage
   title="SEO for Personal Injury Lawyers | Own the Accident Search"
@@ -87,7 +89,7 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
           <p class="pi-case__q"><Q text="Texas El Paso car accident filing deadline" /></p>
           <p>For a PI firm in El Paso: the first source Google’s AI cites.</p>
         </div>
-        <Shot class="pi-case__shot" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['sourceCard'] })]} />
+        <Shot class="pi-case__shot" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: [sourceTitle] })]} />
       </li>
     </ol>
   </Band>
@@ -122,7 +124,7 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
   </Band>
 
   <Band heading="Three places an injury client finds you." headingId="places-h">
-    <Split ratio="7/5" align="center">
+    <Split ratio="7/5">
       <Rows
         slot="a"
         variant="inline"
@@ -147,7 +149,7 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
     <Fragment slot="link">How we price: <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
   </PriceBand>
 
-  <Band heading="Before you hire someone for injury SEO." headingId="faq-h">
+  <Band heading="Before you hire someone for injury SEO." headingId="faq-h" tone="fog">
     <Faq items={faq} />
     <Related
       links={[
@@ -180,9 +182,13 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
 
   .pi-call__num { display: grid; gap: 18px; }
   .pi-call__num p { color: var(--ink-2); max-width: 24em; }
-  .pi-call__pair { display: grid; gap: 20px; }
-  @media (min-width: 700px) {
-    .pi-call__pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+  .pi-call__pair { display: grid; gap: 16px; }
+  /* Before and after overlap a little, so the pair reads as one step up and each chart keeps its size. */
+  @media (min-width: 1000px) {
+    .pi-call__pair { gap: 0; }
+    .pi-call__pair > :first-child { width: 78%; }
+    .pi-call__pair > :last-child { width: 86%; margin: -7% 0 0 auto; position: relative; z-index: 1; }
+    .pi-call__pair > :last-child .lse-shot__frame { box-shadow: var(--shadow-lift); }
   }
   .pi-phone { justify-items: center; }
   @media (min-width: 1000px) {
