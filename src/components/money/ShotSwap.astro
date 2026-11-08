@@ -1,0 +1,31 @@
+---
+// One proof, two cuts: the full capture from 760px up, and a tighter phone crop (src/data/proof-money.ts) under
+// it, so the text in the frame stays readable on a phone. Same tag on both. Only one is ever displayed, so
+// the hidden one is out of the accessibility tree, and as a lazy image it isn't fetched.
+// `priority` applies to the wide cut only (the desktop hero image); on a phone the hero image sits under the
+// form, so it isn't the LCP there.
+import Shot, { type ShotImage } from '../Shot.astro';
+interface Props {
+  wide: ShotImage[];
+  narrow: ShotImage[];
+  tag?: string;
+  tagSide?: 'left' | 'right';
+  tagSmall?: boolean;
+  priority?: boolean;
+  class?: string;
+}
+const { wide, narrow, tag, tagSide = 'right', tagSmall, priority, class: className } = Astro.props;
+---
+<div class:list={['m-swap', className]}>
+  <Shot class="m-swap__wide" images={wide} tag={tag} tagSide={tagSide} tagSmall={tagSmall} priority={priority} />
+  <Shot class="m-swap__narrow" images={narrow} tag={tag} tagSide={tagSide} tagSmall={tagSmall} />
+</div>
+
+<style is:global>
+  .m-swap { min-width: 0; }
+  .m-swap__narrow { display: none; }
+  @media (max-width: 759px) {
+    .m-swap__wide { display: none; }
+    .m-swap__narrow { display: block; }
+  }
+</style>
