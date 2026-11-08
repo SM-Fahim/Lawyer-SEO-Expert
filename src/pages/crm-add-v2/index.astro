@@ -1,0 +1,66 @@
+---
+// /crm-add-v2/: the custom client and file system ad lander, version 2 (WordPress page 1285), the A/B variant
+// of /crm-add/. Owner default (FACTS.md section 1): ported in content, in the Marked design, noindex and so out
+// of the sitemap. Version 2 leads with the cost of per-user software and the 30-minute call right under the
+// hero, and closes with the sample-design form. The shared body is in src/components/crm/.
+import LeadForm from '../../components/LeadForm.astro';
+import CrmBody from '../../components/crm/CrmBody.astro';
+import CrmBooking from '../../components/crm/CrmBooking.astro';
+import BrowserShot from '../../components/kit/BrowserShot.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import InnerPage from '../../layouts/InnerPage.astro';
+---
+<InnerPage
+  title="Stop Paying Per User for Law Firm Software | Lawyer SEO Expert"
+  description="Per-user software costs more with every hire and never ends. We build a custom client and file system for your law firm. You pay once and own it."
+  path="/crm-add-v2/"
+  crumbs={[{ label: 'Custom client and file management' }]}
+  hideCrumbs
+  noindex
+>
+  <PageHero
+    class="crm2-hero"
+    layout="split"
+    flip
+    h1="Stop paying for software by the user, every month, forever."
+    lead="We build a custom system for your law firm instead. It runs your own process, not a generic one you have to adapt to, and you pay for it once."
+  >
+    <p slot="text" class="crm2-hero__jump"><a class="lse-link" href="#fit">See if we’re a fit</a></p>
+    <figure slot="visual" class="crm2-hero__fig">
+      <BrowserShot priority images={[{ src: '/img/crm/crm-admin-clients.webp', width: 1440, height: 1073, alt: 'The admin view of a portal we built: every client and lead with their case status in one table', crop: { top: 0, height: 74 } }]} />
+      <figcaption class="lse-small">The admin view of a portal we built for a bankruptcy firm.</figcaption>
+    </figure>
+  </PageHero>
+
+  <CrmBooking id="fit" headingId="fit-h" />
+
+  <CrmBody formHref="#sample" />
+
+  <section class="lse-section crm2-sample" id="sample" aria-labelledby="sample-h">
+    <div class="lse-wrap crm2-sample__grid">
+      <div>
+        <h2 id="sample-h">See your system before you decide.</h2>
+        <p class="lse-lead lse-h2-lead">Tell us which process takes your team the most time. We send back a free sample design of how it could work.</p>
+      </div>
+      <LeadForm
+        title="Request your free sample design"
+        titleTag="h3"
+        sub="Fahim answers within an hour in business hours."
+        idPrefix="crm2-sample"
+        label="CRM lander v2: sample design"
+        format="Free sample design"
+        submitLabel="Request my sample design"
+        messageLabel="Which process takes your team the most time?"
+      >
+        <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
+      </LeadForm>
+    </div>
+  </section>
+</InnerPage>
+
+<style is:global>
+  .crm2-hero__jump { margin-top: var(--s4); font-size: 18px; font-weight: 700; }
+  .crm2-hero__fig { display: grid; gap: 12px; }
+  .crm2-sample__grid { display: grid; gap: var(--s5); }
+  @media (min-width: 1000px) { .crm2-sample__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; } }
+</style>

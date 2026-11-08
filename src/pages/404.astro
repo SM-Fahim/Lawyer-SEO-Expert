@@ -1,10 +1,48 @@
 ---
-// PLACEHOLDER 404. The Worker serves this with status 404 for anything that is not a file or a redirect.
+// The 404 page. The Worker serves it with status 404 for anything that is not a file or a redirect
+// (worker/router.ts). Old WordPress addresses with a new home are 301s in src/data/redirects.ts; anything
+// else lands here, so it points to the pages most visitors want: services, pricing, the practice areas, and
+// the ranking review. noindex, so it stays out of the sitemap.
+import Button from '../components/Button.astro';
+import PracticeLinks from '../components/PracticeLinks.astro';
+import { servicePages } from '../data/pages';
 import Base from '../layouts/Base.astro';
+
+const main = servicePages.filter((p) => p.href !== '/law-firm-ppc/');
 ---
-<Base pageType="company" path="/404/" title="Page not found" description="That page does not exist." noindex>
-  <div class="lse-wrap" style="padding-block:96px">
-  <h1>Page not found</h1>
-  <p><a href="/">Back to the homepage</a></p>
-  </div>
+<Base pageType="company" path="/404/" title="Page Not Found | Lawyer SEO Expert" description="This page isn't here. Find our law firm SEO services, pricing and practice area pages, or book a free ranking review." noindex>
+  <section class="nf-hero" aria-labelledby="nf-h">
+    <div class="lse-wrap">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <h1 id="nf-h">This page isn’t here.</h1>
+      <p class="lse-lead nf-lead">It may have moved when we rebuilt the site. The pages below are where most firms go next.</p>
+      <div class="nf-cta">
+        <Button />
+        <p class="lse-small">A free 30-minute call. Fahim checks where your firm ranks today, live.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="lse-section lse-section--fog nf-links" aria-labelledby="nf-services-h">
+    <div class="lse-wrap">
+      <h2 id="nf-services-h">Services and pricing</h2>
+      <ul class="lse-practice nf-services">
+        {main.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+      </ul>
+      <h2 id="nf-practice-h" class="nf-h2">Practice areas</h2>
+      <PracticeLinks />
+      <p class="nf-more">Or read the <a class="lse-link" href="/blog/">blog</a>, or <a class="lse-link" href="/contact-us/">write to Fahim</a>.</p>
+    </div>
+  </section>
 </Base>
+
+<style is:global>
+  .nf-hero { padding: clamp(40px, 5vw, 80px) 0 clamp(72px, 8vw, 112px); }
+  .nf-code { display: inline-block; padding: 4px 18px 6px; background: var(--marker); clip-path: var(--swipe); font-weight: 900; font-size: clamp(56px, 5vw + 24px, 112px); letter-spacing: -.055em; line-height: 1; color: var(--ink); }
+  .nf-hero h1 { margin-top: var(--s4); font-size: clamp(44px, 3.4vw + 18px, 82px); max-width: 14ch; }
+  .nf-lead { margin-top: clamp(18px, 2vw, 26px); max-width: 30em; }
+  .nf-cta { margin-top: var(--s5); display: grid; gap: 12px; justify-items: start; max-width: 30em; }
+  .nf-links h2 { font-size: var(--fs-h3); margin-bottom: var(--s3); }
+  .nf-h2 { margin-top: var(--s6); }
+  .nf-more { margin-top: var(--s5); color: var(--ink-2); }
+</style>

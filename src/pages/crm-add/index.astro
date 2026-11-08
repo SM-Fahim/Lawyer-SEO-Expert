@@ -1,0 +1,49 @@
+---
+// /crm-add/: the custom client and file system ad lander, version 1 (WordPress page 1210). Owner default
+// (FACTS.md section 1): ported in content, in the Marked design, noindex and so out of the sitemap. The
+// shared body and what was left out are in src/components/crm/. Version 1 leads with the offer and the
+// sample-design form in the hero, and closes with the 30-minute call. Version 2 (/crm-add-v2/) does the reverse.
+import CrmBody from '../../components/crm/CrmBody.astro';
+import CrmBooking from '../../components/crm/CrmBooking.astro';
+import CrmVideo from '../../components/crm/CrmVideo.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import InnerPage from '../../layouts/InnerPage.astro';
+---
+<InnerPage
+  title="Custom Client and File Management for Law Firms | Lawyer SEO Expert"
+  description="Get a client and file system built around your law firm's own process. Intake, documents and case tracking in one portal, on your servers. Pay once and own it."
+  path="/crm-add/"
+  crumbs={[{ label: 'Custom client and file management' }]}
+  hideCrumbs
+  noindex
+>
+  <PageHero
+    class="crm-hero"
+    h1="They built software for any law firm. We build it for yours."
+    lead="A custom client and file system that runs your firm’s own process: intake, documents and case tracking in one portal, on your servers. You pay once, add as many users as you like, and own it."
+    talk={false}
+    form={{
+      title: 'Request your free sample design',
+      sub: 'Send your website. Fahim answers within an hour in business hours.',
+      idPrefix: 'crm1-hero',
+      label: 'CRM lander v1: sample design',
+      format: 'Free sample design',
+      submitLabel: 'Request my sample design',
+    }}
+  >
+    <p slot="text" class="crm-hero__offer"><span class="lse-mk">One payment. Yours for good.</span></p>
+    <figure slot="visual" class="crm-hero__fig">
+      <CrmVideo priority />
+      <figcaption class="lse-small">A system we built for a bankruptcy firm. Yours takes four to eight weeks.</figcaption>
+    </figure>
+  </PageHero>
+
+  <CrmBody formHref="#crm1-hero-site" />
+
+  <CrmBooking id="book" headingId="fit-h" />
+</InnerPage>
+
+<style is:global>
+  .crm-hero__offer { font-size: clamp(19px, .5vw + 16px, 22px); font-weight: 800; color: var(--ink); }
+  .crm-hero__fig { display: grid; gap: 12px; }
+</style>

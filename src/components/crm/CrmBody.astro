@@ -1,0 +1,195 @@
+---
+// The shared body of the two CRM landers: why seat-based software fails, eight parts of a system we built,
+// the two extras, the cost comparison and the FAQ. The page puts its own hero and ways to act around it.
+// `formHref` is where "Request your free sample design" goes (the hero form on v1, the closing form on v2).
+import Faq from '../Faq.astro';
+import BrowserShot from '../kit/BrowserShot.astro';
+import Rows from '../kit/Rows.astro';
+import { dashboards, examples, faq, moreExamples } from './crm-data';
+interface Props {
+  formHref: string;
+  /** Unique heading ids if a page ever shows the body twice. */
+  idPrefix?: string;
+}
+const { formHref, idPrefix: p = 'crm' } = Astro.props;
+---
+<section class="lse-section lse-section--fog crm-why" aria-labelledby={`${p}-why-h`}>
+  <div class="lse-wrap">
+    <h2 id={`${p}-why-h`}>Why off-the-shelf software lets law firms down.</h2>
+    <div class="crm-two">
+      <div>
+        <h3>It makes you:</h3>
+        <ul class="crm-list">
+          <li>Upload confidential client files to someone else’s servers</li>
+          <li>Pay $150 or more a month for every user, for as long as you use it</li>
+          <li>Bend the process that works for you to fit their screens</li>
+          <li>Wait months for a feature request that never ships</li>
+        </ul>
+      </div>
+      <div>
+        <h3>And your team still:</h3>
+        <ul class="crm-list">
+          <li>Emails 70-page PDFs back and forth</li>
+          <li>Chases missing documents</li>
+          <li>Retypes data from scanned forms</li>
+          <li>Spends hours on leads with no case</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lse-section crm-built" aria-labelledby={`${p}-built-h`}>
+  <div class="lse-wrap">
+    <h2 id={`${p}-built-h`}>One portal for every user and your whole process.</h2>
+    <p class="lse-lead lse-h2-lead">From the first enquiry to the closed file, we build it around how your firm already works, with as many users as you need. Here are eight parts of a system we built for a bankruptcy firm.</p>
+
+    {[...examples].map((ex) => (
+      <article class="crm-ex" aria-labelledby={`${p}-ex-${ex.n}`}>
+        <div class="crm-ex__text">
+          <span class="crm-ex__n" aria-hidden="true">{ex.n}</span>
+          <h3 id={`${p}-ex-${ex.n}`}>{ex.title}</h3>
+          <div class="crm-ex__cols">
+            <div>
+              <h4>The problem</h4>
+              <p>{ex.problem}</p>
+            </div>
+            <div>
+              <h4>What we built</h4>
+              <p>{ex.builtLead}</p>
+              <ul class="crm-list crm-list--tight">{ex.built.map((b) => <li>{b}</li>)}</ul>
+              {ex.close && <p class="crm-ex__close">{ex.close}</p>}
+            </div>
+          </div>
+        </div>
+        <BrowserShot class="crm-ex__shot" images={[ex.image]} />
+      </article>
+    ))}
+
+    <article class="crm-ex crm-dash" aria-labelledby={`${p}-ex-4`}>
+      <div class="crm-ex__text">
+        <span class="crm-ex__n" aria-hidden="true">4</span>
+        <h3 id={`${p}-ex-4`}>Four dashboards, one for each kind of user.</h3>
+        <p class="crm-dash__lead">Everyone sees what they need and nothing more.</p>
+      </div>
+      <div class="crm-dash__grid">
+        {dashboards.map((d) => (
+          <div class="crm-dash__item">
+            <h4>{d.title}</h4>
+            {'image' in d && <BrowserShot images={[d.image]} />}
+            <ul class="crm-list crm-list--tight">{d.built.map((b) => <li>{b}</li>)}</ul>
+            {'close' in d && <p class="crm-ex__close">{d.close}</p>}
+          </div>
+        ))}
+      </div>
+    </article>
+
+    {moreExamples.map((ex) => (
+      <article class="crm-ex" aria-labelledby={`${p}-ex-${ex.n}`}>
+        <div class="crm-ex__text">
+          <span class="crm-ex__n" aria-hidden="true">{ex.n}</span>
+          <h3 id={`${p}-ex-${ex.n}`}>{ex.title}</h3>
+          <div class="crm-ex__cols">
+            <div>
+              <h4>The problem</h4>
+              <p>{ex.problem}</p>
+            </div>
+            <div>
+              <h4>What we built</h4>
+              <p>{ex.builtLead}</p>
+              <ul class="crm-list crm-list--tight">{ex.built.map((b) => <li>{b}</li>)}</ul>
+            </div>
+          </div>
+        </div>
+        <BrowserShot class="crm-ex__shot" images={[ex.image]} />
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="lse-section lse-section--fog crm-extras" aria-labelledby={`${p}-extras-h`}>
+  <div class="lse-wrap">
+    <h2 id={`${p}-extras-h`}>Two more things come with it.</h2>
+    <Rows
+      class="crm-extras__rows"
+      variant="big"
+      items={[
+        { title: 'We automate any repetitive task.', text: 'Your firm has its own way of working. Describe a task your team repeats, and we build it into the system.' },
+        { title: 'You own it outright.', text: 'No subscriptions and no licences. Change it whenever you like, or move it anywhere. It’s your system.' },
+      ]}
+    />
+  </div>
+</section>
+
+<section class="lse-section crm-cost" aria-labelledby={`${p}-cost-h`}>
+  <div class="lse-wrap">
+    <h2 id={`${p}-cost-h`}>Compare the two ways to pay.</h2>
+    <div class="crm-cost__grid">
+      <div class="crm-cost__col">
+        <h3>Keep renting software by the seat</h3>
+        <ul class="crm-list">
+          <li>$150 a month for each of 5 users is $9,000 a year, every year</li>
+          <li>You follow their workflow</li>
+          <li>Your data sits on their servers</li>
+          <li>You pay for features you never use</li>
+        </ul>
+        <p class="crm-cost__sum">Over ten years: <b>$90,000 or more.</b></p>
+      </div>
+      <div class="crm-cost__col crm-cost__col--us">
+        <h3>Have a system built for your firm</h3>
+        <ul class="crm-list">
+          <li>One payment, <span class="lse-mk">from $3,000</span>, with free support</li>
+          <li>Built around your workflow</li>
+          <li>On your servers, under your control</li>
+          <li>Exactly what you need and nothing you don’t</li>
+        </ul>
+        <p class="crm-cost__sum"><b>Yours for good. No monthly fees.</b></p>
+        <p class="crm-cost__link"><a class="lse-link" href={formHref}>Request your free sample design</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lse-section lse-section--fog crm-faq" aria-labelledby={`${p}-faq-h`}>
+  <div class="lse-wrap">
+    <h2 id={`${p}-faq-h`}>Questions firms ask.</h2>
+    <div class="crm-faq__body"><Faq items={faq} /></div>
+  </div>
+</section>
+
+<style is:global>
+  .crm-two { display: grid; gap: var(--s5); margin-top: var(--s5); }
+  .crm-two h3, .crm-cost__col h3 { font-size: var(--fs-h3); }
+  .crm-list { list-style: none; padding: 0; margin: var(--s2) 0 0; border-top: 2px solid var(--ink); }
+  .crm-list li { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: clamp(17px, .3vw + 16px, 19px); color: var(--ink-2); }
+  .crm-list--tight { border-top-width: 1px; border-top-color: var(--line-2); }
+  .crm-list--tight li { padding: 9px 0; font-size: 17px; }
+  @media (min-width: 800px) { .crm-two, .crm-cost__grid { grid-template-columns: 1fr 1fr; column-gap: clamp(40px, 5vw, 80px); } }
+
+  .crm-ex { margin-top: clamp(64px, 7vw, 112px); display: grid; gap: clamp(28px, 3vw, 40px); }
+  .crm-ex + .crm-ex { padding-top: clamp(48px, 5vw, 72px); border-top: 1px solid var(--line); }
+  .crm-ex__n { display: inline-grid; place-items: center; min-width: 64px; height: 56px; padding: 0 14px; background: var(--marker); clip-path: var(--swipe); font-weight: 900; font-size: 34px; letter-spacing: -.04em; color: var(--ink); }
+  .crm-ex h3 { margin-top: 18px; font-size: clamp(28px, 1.6vw + 18px, 44px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; max-width: 22ch; }
+  .crm-ex h4 { font-size: 17px; font-weight: 800; color: var(--ink); }
+  .crm-ex__cols { display: grid; gap: var(--s4); margin-top: var(--s4); }
+  .crm-ex__cols p { margin-top: 8px; color: var(--ink-2); max-width: 34em; }
+  .crm-ex__close { margin-top: 14px; font-weight: 700; color: var(--ink); }
+  @media (min-width: 900px) { .crm-ex__cols { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(40px, 5vw, 80px); } }
+
+  .crm-dash__lead { margin-top: 12px; font-size: clamp(19px, .5vw + 16px, 22px); color: var(--ink-2); }
+  .crm-dash__grid { display: grid; gap: clamp(40px, 4vw, 56px); }
+  .crm-dash__item { display: grid; gap: 16px; align-content: start; }
+  .crm-dash__item h4 { font-size: var(--fs-h3); }
+  @media (min-width: 900px) { .crm-dash__grid { grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 4vw, 56px); } }
+
+  .crm-extras__rows { margin-top: var(--s5); max-width: 860px; }
+
+  .crm-cost__grid { display: grid; gap: var(--s5); margin-top: var(--s5); }
+  .crm-cost__col { display: grid; align-content: start; gap: 4px; }
+  .crm-cost__col--us { padding: clamp(24px, 3vw, 40px); background: var(--fog); border-radius: var(--r-frame); }
+  .crm-cost__col:not(.crm-cost__col--us) { padding-top: clamp(24px, 3vw, 40px); }
+  .crm-cost__sum { margin-top: var(--s3); font-size: clamp(20px, .6vw + 17px, 26px); color: var(--ink); letter-spacing: -.01em; }
+  .crm-cost__link { margin-top: var(--s3); font-weight: 700; }
+
+  .crm-faq__body { margin-top: var(--s5); max-width: 860px; }
+</style>

@@ -1,0 +1,49 @@
+---
+// The walkthrough video from the old page (Vimeo 1133723408, unlisted). Nothing loads from Vimeo until the
+// visitor presses play: the frame shows the client dashboard capture with a play button, and the click swaps
+// in the player. Without JavaScript, the link opens the video on Vimeo.
+import BrowserShot from '../kit/BrowserShot.astro';
+const watch = 'https://vimeo.com/1133723408/4cfec16410';
+const player = 'https://player.vimeo.com/video/1133723408?h=4cfec16410&autoplay=1&muted=1&loop=1&dnt=1';
+interface Props {
+  priority?: boolean;
+}
+const { priority = false } = Astro.props;
+---
+<div class="crm-video" data-crm-video={player}>
+  <BrowserShot priority={priority} images={[{ src: '/img/crm/crm-client-dashboard.webp', width: 1440, height: 1074, alt: '', crop: { top: 0, height: 72 } }]} />
+  <a class="crm-video__play" href={watch} target="_blank" rel="noopener">
+    <span class="crm-video__btn" aria-hidden="true"></span>
+    <span class="crm-video__label">Watch a system we built</span>
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-crm-video]').forEach((box) => {
+    const link = box.querySelector<HTMLAnchorElement>('.crm-video__play');
+    link?.addEventListener('click', (event) => {
+      event.preventDefault();
+      const frame = box.querySelector('.lse-shot__part');
+      if (!frame) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = box.dataset.crmVideo ?? '';
+      iframe.title = 'Walkthrough of a custom client portal we built';
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+      iframe.className = 'crm-video__frame';
+      frame.replaceChildren(iframe);
+      link.remove();
+      iframe.focus();
+    });
+  });
+</script>
+
+<style is:global>
+  .crm-video { position: relative; }
+  .crm-video__play { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; text-decoration: none; color: var(--ink); border-radius: var(--r-frame); }
+  .crm-video__btn { width: 88px; height: 76px; background: var(--marker); clip-path: var(--swipe); position: relative; }
+  .crm-video__btn::after { content: ""; position: absolute; left: 36px; top: 24px; border-style: solid; border-width: 14px 0 14px 22px; border-color: transparent transparent transparent var(--ink); }
+  .crm-video__label { background: var(--ink); color: var(--paper); font-weight: 800; padding: 8px 14px; border-radius: var(--r-btn); font-size: 16px; }
+  .crm-video__play:hover .crm-video__label, .crm-video__play:focus-visible .crm-video__label { text-decoration: underline; }
+  .crm-video__play:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  .crm-video__frame { display: block; width: 100%; aspect-ratio: 1440 / 773; border: 0; }
+</style>

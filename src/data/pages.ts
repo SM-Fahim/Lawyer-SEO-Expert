@@ -36,6 +36,7 @@ export const companyPages: readonly NavLink[] = [
   { label: 'Josh Henderson', href: '/about/josh-henderson/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact-us/' },
+  { label: 'Careers', href: '/careers/' },
 ];
 
 export const legalPages: readonly NavLink[] = [
