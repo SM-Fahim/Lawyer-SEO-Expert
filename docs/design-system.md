@@ -45,7 +45,7 @@ Layout: left-aligned. Headings on top of their section, the visual below or besi
 
 - **Highlighter on a screenshot** (`Shot`, `marks`): a chartreuse stroke with `mix-blend-mode: multiply`, so the text under it stays dark. Boxes are percentages of the image, measured from its pixels around the exact text. One to three per image. They draw in once, left to right, when the frame scrolls into view (`src/scripts/marks.ts`); reduced motion shows them at once.
 - **Tag** (`.lse-tag`, `Shot tag="#1"`): black Franklin 900 on the swipe, half off the frame's top corner. Only a real rank or result. `tagSmall` for a place label ("The Map").
-- **Marked number** (`.lse-h-num--marked` on the homepage): a result number on the swipe. A grey number beside it is the before.
+- **Marked number** (`NumPair`, `.lse-num--marked`): a result number on the swipe. A grey number beside it is the before.
 - **`.lse-mk`**: a highlight behind a few words of running text. One per block, never in a heading.
 
 ## Motion
@@ -67,6 +67,8 @@ Only where it explains: marks drawing in on screenshots, and result numbers coun
 | `Faq` | Native `<details>`, first open, hairlines, a marker dot when open | Build FAQPage JSON-LD from the same items with `faqSchema()` |
 | `PracticeLinks` | The practice pages as big text links with hairlines; the hover is the highlighter | Reads `practicePages` |
 | `Placeholder` | A hatched, labelled stand-in, `data-placeholder="what to collect"` | Never fake data |
+
+**Inner pages** build from the kit in `src/components/kit/` and the `InnerPage` layout: `PageHero`, `Band`, `BookingBand`, `PriceBand`, `PriceCard`, `PriceList`, `Split`, `Cols`, `ProofFigure`, `BrowserShot`, `PhoneShot`, `NumPair`, `Q`, `SearchBox`, `SearchPanel`, `HairTable`, `Rows`, `Face`, `Bio`, `TrustLine`, `Breadcrumbs`. Props and examples: `docs/kit.md`; all of them live at `/kit/` (noindex). Shared data: `src/data/pricing.ts`, `proof.ts` (every capture with its size, alt, marks and crops), `people.ts`, `logos.ts`. The homepage uses the kit pieces it gave its looks to (`NumPair` is the old `.lse-h-num--marked`, `Face` the old `.lse-h-face`).
 
 Sitewide features (`src/data/features.ts`): tracking, the booking dialog, and image zoom (every `Shot` image with alt text opens full size; Enter or Space too).
 

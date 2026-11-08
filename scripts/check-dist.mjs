@@ -49,8 +49,10 @@ const COPY_RULES = [
 const PRICES_EVERYWHERE = ['2,000'];
 const PRICES_BY_PAGE = {
   // The homepage's price band: what each part typically costs a month when hired separately, and their total
-  // (owner request, 2026-11-08; values are proposals the owner confirms, kept in one array in src/pages/index.astro).
+  // (owner request, 2026-11-08; values are proposals the owner confirms, kept in one array in src/data/pricing.ts).
   '/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  // /kit/ (noindex) shows the same shared breakdown in PriceCard and the struck total in PriceBand.
+  '/kit/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};

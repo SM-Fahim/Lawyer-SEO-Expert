@@ -80,3 +80,16 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 - The "Your site" phone shows LCME's full 915 mobile capture (824x1760), the whole hero, scaled into the frame; 210px wide on phones.
 - The price band lists what the price includes with what each part typically costs a month when hired separately, the struck total ("Hired one by one: $4,000+ a month") and "With us: all of it, from $2,000 a month." plus "No setup fee." Values are the owner's proposals, in one array (`included` in `src/pages/index.astro`). Each amount is in `PRICES_BY_PAGE['/']` in `scripts/check-dist.mjs`, as the owner asked. Rows on the highlighter band, the strike is a black marker stroke: no slip, no LCME labels.
 - The terms "Your monthly number in writing", "Month to month" and "Everything we build is yours" left the band; the FAQ still answers them.
+
+## 2026-11-08 Inner-page kit
+
+`src/components/kit/` and `src/layouts/InnerPage.astro`, documented in `docs/kit.md`, shown at `/kit/` (noindex, so out of the sitemap; check-unique passes it at 1.23%, so it isn't exempted).
+
+- **Moved, not copied:** NumPair, ProofFigure, PriceBand and PriceList, Rows (plain), PhoneShot, Face and TrustLine carry the homepage's own CSS, and the homepage now uses them. Its screenshots at 1440 and 390 are pixel-identical before and after (diffed).
+- **Shared data:** `src/data/pricing.ts` (the `included` rows and `separateTotal`, moved out of `index.astro`), `proof.ts`, `people.ts`, `logos.ts`. `PRICES_BY_PAGE` gains `/kit/` with the same breakdown amounts, nothing else. `/seo-pricing/` and `/law-firm-seo-services/` add theirs when they are built.
+- **Proof images:** nine new files in `public/img/proof/` (tanker query, tanker AI left column, the whole tanker results page, Idiya's reports, Breakthrough's traffic cropped below the Authority Score and backlinks, the New Orleans site on desktop, phone and its car accident page, and the tall SERP of our own result). Plain rectangle crops only; LCME webps copied byte for byte; the 4x phone capture halved, nothing upscaled. 22 entries in `proof.ts`.
+- **Tall SERP without blurring:** the consultant deck asks to collapse the sponsored block and blur the ads. Two height bands of the one capture in a single Shot (search box to "Sponsored Results", then "Hide sponsored results" to the AI Overview) do it without editing a pixel, and no ad text is ever shown.
+- **Decks naming one file twice:** `nola-calls-sep-2026` and `nola-calls-jun-oct-2026-sep` are the homepage's 139 chart (it already shows the September 43 label); `elpaso-site-phone` is `elpaso-site-mobile`. The about-sm-fahim deck maps `calls-rudin.webp` to the 139 chart, but LCME's `calls-rudin.webp` is a different capture (May to Sept 2026, 119 calls); it isn't ported.
+- **Breadcrumbs are visible** above every inner hero, in muted 15px sentence case, so the BreadcrumbList JSON-LD matches what is on the page. `hideCrumbs` turns the trail off if the judge reads it as an eyebrow.
+- **Three-up proof rows** read badly with full results pages (text too small); `Cols count={3}` is documented for strips only.
+

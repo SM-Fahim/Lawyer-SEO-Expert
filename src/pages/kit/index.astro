@@ -1,0 +1,307 @@
+---
+// The inner-page kit, every piece once, with real copy from the v2 decks (content/v2/). Noindex and out of the
+// sitemap, like /variants/. docs/kit.md has each piece's props. The grey strips name the piece under them;
+// they exist only on this page.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import Bio from '../../components/kit/Bio.astro';
+import BookingBand from '../../components/kit/BookingBand.astro';
+import BrowserShot from '../../components/kit/BrowserShot.astro';
+import Cols from '../../components/kit/Cols.astro';
+import HairTable from '../../components/kit/HairTable.astro';
+import NumPair from '../../components/kit/NumPair.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PhoneShot from '../../components/kit/PhoneShot.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import PriceCard from '../../components/kit/PriceCard.astro';
+import ProofFigure from '../../components/kit/ProofFigure.astro';
+import Rows from '../../components/kit/Rows.astro';
+import SearchBox from '../../components/kit/SearchBox.astro';
+import SearchPanel from '../../components/kit/SearchPanel.astro';
+import Split from '../../components/kit/Split.astro';
+import TrustLine from '../../components/kit/TrustLine.astro';
+import { fahim, josh } from '../../data/people';
+import { proof, shot } from '../../data/proof';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'Should we work on the Map or the website first?',
+    html: 'Both, because they feed each other. The Map brings the “near me” calls, and Google reads your site to judge your profile.',
+  },
+  {
+    q: 'Does this cover Google’s AI answers?',
+    html: 'Yes. We write pages Google’s AI can quote and check its answers for your key injury searches every month.',
+  },
+];
+---
+<InnerPage
+  title="Inner-page kit | Lawyer SEO Expert"
+  description="Every shared piece for the Lawyer SEO Expert inner pages, shown once with real copy, for the page builders."
+  path="/kit/"
+  crumbs={[{ label: 'Inner-page kit' }]}
+  service={{ name: 'SEO for personal injury lawyers' }}
+  faq={faq}
+  noindex
+>
+  <p class="kit-label"><span class="lse-wrap"><b>Breadcrumbs</b> (above, from InnerPage) and <b>PageHero</b> layout="split" with form, panel and TrustLine</span></p>
+  <PageHero
+    h1="SEO for personal injury lawyers: own the searches after a crash."
+    lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
+    form={{ title: 'Send your website for an injury ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'kit-hero', label: 'Kit hero form' }}
+  >
+    <figure slot="visual" class="kit-fig">
+      <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaTankerQuery), shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
+      <figcaption class="lse-small">A PI firm in New Orleans. After about three months of groundwork, its new tanker truck page ranked #3 within 16 hours, and Google’s AI named the firm a key firm.</figcaption>
+    </figure>
+    <TrustLine slot="after" />
+  </PageHero>
+
+  <p class="kit-label"><span class="lse-wrap"><b>BookingBand</b> layout="split", the calendar mounts as it nears the screen</span></p>
+  <BookingBand
+    heading="Get a second opinion on your SEO."
+    headingId="kit-book-h"
+    layout="split"
+    lead="30 minutes, free. Fahim pulls up the searches that matter to your firm, shows who outranks you and names the first fixes."
+  >
+    <p>Prefer to write? <a href="#kit-hero-site">Send your website to Fahim.</a> Fahim answers within an hour in business hours.</p>
+  </BookingBand>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Band</b> tone="white", <b>Cols</b> count=2 (count=3 for strips only, or the frames get too small to read) and <b>ProofFigure</b> queryAbove, with <b>Q</b></span></p>
+  <Band heading="Accident pages that Google puts first and its AI quotes." headingId="kit-cases-h" lead="Each case type gets its own page, written for what injured people ask. For the New Orleans firm, these reached the top within 16 hours, after about three months of groundwork." wideHeading>
+    <Cols count={2}>
+      <ProofFigure queryAbove tag="#1" query="what to do after a truck accident in New Orleans" caption="#1 on Google. Quoted 3 times in the AI answer." images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: ['age'] })]} />
+      <ProofFigure queryAbove tag="#3" query="Tanker Truck Accident Lawyer in New Orleans" caption="#3 on Google within 16 hours, and named a key firm by its AI." images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRank, { marks: ['age'] })]} />
+    </Cols>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Band</b> tone="fog", <b>Split</b> rows with <b>NumPair</b> (one number, and before and after)</span></p>
+  <Band heading="Then the phone rings more, by Google’s count." headingId="kit-calls-h" lead="Calls from each firm’s Google Business Profile." tone="fog">
+    <Split ratio="5/7" align="center">
+      <div slot="a" class="kit-num">
+        <NumPair after={139} afterLabel="calls, June to October 2026" />
+        <p>New Orleans. 39% more than the same months a year before.</p>
+      </div>
+      <Shot slot="b" tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
+    </Split>
+    <div class="kit-rule kit-num">
+      <NumPair before={9} after={23} beforeLabel="calls in six months before us" afterLabel="calls in three months with us" />
+      <p>El Paso. 9 calls in the six months before us, 23 in three months with us.</p>
+      <Cols count={2} gap="md">
+        <Shot images={[shot(proof.elpasoCallsBefore, { marks: ['total'] })]} />
+        <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['total', 'range'] })]} />
+      </Cols>
+    </div>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Rows</b> variant="inline" in a <b>Split</b> 7/5 beside a <b>PhoneShot</b></span></p>
+  <Band heading="Three places an injury client finds you." headingId="kit-places-h">
+    <Split ratio="7/5">
+      <Rows
+        slot="a"
+        variant="inline"
+        items={[
+          { title: 'The Map.', text: '“Car accident lawyer near me” shows a map first. We run your Google Business Profile and a steady review routine.' },
+          { title: 'Your case pages.', text: 'Car, truck, motorcycle and slip-and-fall, each with its own page for the cities where you take cases.' },
+          { title: 'Google’s AI answers.', text: 'Pages its AI can quote, checked for your key searches every month.' },
+        ]}
+      />
+      <figure slot="b" class="kit-fig">
+        <PhoneShot tag="Your site" tagSmall tagSide="right" images={[shot(proof.elpasoSiteMobile)]} />
+        <figcaption class="lse-small">The El Paso firm’s site, which we built, on a phone.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>BrowserShot</b> with a place tag (marks read weakly on a dark site), in a <b>Split</b> 8/4 beside a <b>PhoneShot</b></span></p>
+  <Band heading="What every build comes with." headingId="kit-build-h" tone="fog">
+    <Split ratio="8/4" align="end">
+      <figure slot="a" class="kit-fig">
+        <BrowserShot tag="Practice page" tagSmall tagSide="right" images={[shot(proof.nolaSiteCarAccidentPage)]} />
+        <figcaption class="lse-small">A practice page we built for a PI firm in New Orleans.</figcaption>
+      </figure>
+      <figure slot="b" class="kit-fig">
+        <PhoneShot width={220} tag="Our build" tagSmall tagSide="right" images={[shot(proof.nolaSiteHomePhone)]} />
+        <figcaption class="lse-small">The same firm’s site on a phone.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>SearchBox</b> with marks, in a <b>Split</b> 7/5</span></p>
+  <Band heading="Two searches decide who gets the call." headingId="kit-typed-h">
+    <Split ratio="7/5" align="center">
+      <SearchBox
+        slot="a"
+        label="Searches people type after a charge"
+        queries={[
+          { text: 'criminal defense lawyer near me', mark: 'near me' },
+          { text: '[charge] lawyer in [county]', mark: '[county]' },
+          { text: 'how much does a criminal defense lawyer cost' },
+          { text: 'what to ask a criminal lawyer before hiring' },
+        ]}
+      />
+      <p slot="b" class="lse-lead">The first two, so your Map listing and your charge pages come first. Cost and hiring questions get plain pages after that.</p>
+    </Split>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>SearchPanel</b>, two columns, the second struck through</span></p>
+  <Band heading="Keep the medical searches. Skip the rest." headingId="kit-keep-h" tone="fog">
+    <SearchPanel
+      columns={[
+        {
+          heading: 'We rank you for',
+          queries: [
+            { text: 'how to find a good medical malpractice lawyer', mark: 'medical malpractice lawyer' },
+            { text: 'what type of lawyer handles medical malpractice', mark: 'medical malpractice' },
+            { text: 'how much does a medical malpractice lawyer cost', mark: 'medical malpractice lawyer' },
+          ],
+        },
+        {
+          heading: 'We leave alone',
+          strike: true,
+          queries: [
+            { text: 'can you sue a lawyer for malpractice' },
+            { text: 'how to become a medical malpractice lawyer' },
+            { text: 'how much is lawyer malpractice insurance' },
+          ],
+        },
+      ]}
+    />
+    <p class="kit-under">Ranking for the wrong half brings visits and no qualified leads.</p>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>HairTable</b> with quoted searches and links</span></p>
+  <Band heading="DUI pages that never compete with your criminal pages." headingId="kit-table-h">
+    <div class="kit-8">
+      <HairTable
+        caption="Which page answers which search"
+        head={['Search', 'The page that answers it']}
+        rows={[
+          [{ q: 'dui lawyer [city]' }, 'Your DUI page'],
+          [{ q: 'criminal defense lawyer [city]' }, 'Your criminal defense page'],
+          [{ q: 'should i get a lawyer for my first dui' }, 'First-offense page'],
+          [{ q: '[state] license hearing after a dui' }, 'License page'],
+        ]}
+      />
+      <p class="kit-under">One search, one page, so Google never has to choose between two of yours. More on <a href="/seo-for-criminal-defense-lawyers/">SEO for criminal defense lawyers</a>.</p>
+    </div>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Rows</b> variant="numbered"</span></p>
+  <Band heading="From first call to first page." headingId="kit-steps-h" tone="fog">
+    <div class="kit-8">
+      <Rows
+        variant="numbered"
+        items={[
+          { title: 'Book a ranking review.', text: 'In a free 30-minute call, Fahim looks at where you rank today.' },
+          { title: 'Get your monthly number in writing.', text: 'Before any work starts.' },
+          { title: 'Work begins.', text: 'Fahim leads it, and a small production team handles the writing and links. Nothing goes live until you approve it.' },
+        ]}
+      />
+    </div>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Rows</b> variant="answer" (answers stay visible)</span></p>
+  <Band heading="Five questions to ask any SEO specialist for lawyers." headingId="kit-vet-h" lead="Ask everyone on your list. Us included." wideHeading>
+    <div class="kit-8">
+      <Rows
+        variant="answer"
+        items={[
+          { title: 'Who will work on my firm?', text: 'Fahim, on every call and on every piece of work, backed by a small production team.' },
+          { title: 'Who owns the work if we stop?', text: 'You do: the site, the pages and the accounts we set up.' },
+          { title: 'Do you guarantee rankings?', text: 'No. Google sets rankings. Anyone who guarantees one is guessing.' },
+        ]}
+      />
+    </div>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Rows</b> variant="big", and <b>PriceCard</b> on the fog panel (the /seo-pricing/ hero visual)</span></p>
+  <Band heading="Three things decide your monthly number." headingId="kit-drivers-h" tone="fog">
+    <Split ratio="5/7">
+      <Rows
+        slot="a"
+        variant="big"
+        items={[
+          { title: 'How busy your market is.', text: 'More firms chasing the same searches means more pages and links each month.' },
+          { title: 'How many practice areas you want to grow.', text: 'Each one needs its own pages and links.' },
+          { title: 'How many offices you have.', text: 'Each office needs its own page and its own Google profile.' },
+        ]}
+      />
+      <PriceCard slot="b" title="What each part costs when a firm buys it on its own" titleTag="h3" us="Every row above, with us: from $2,000 a month." usMark="from $2,000 a month" />
+    </Split>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>PriceBand</b> variant="total" (one per page): the struck total, our line on the white swipe, a link slot</span></p>
+  <PriceBand
+    variant="total"
+    heading="All four parts, one monthly price."
+    headingId="kit-price-h"
+    lead="Many agencies sell SEO one part at a time."
+    us="With us, all four: from $2,000 a month. No setup fee."
+    usMark="from $2,000 a month"
+  >
+    <Fragment slot="link">See what each part costs on its own on our <a href="/seo-pricing/">law firm SEO pricing</a> page.</Fragment>
+  </PriceBand>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Bio</b> rows (size md, then sm)</span></p>
+  <Band heading="Who you talk to." headingId="kit-people-h">
+    <div class="kit-8">
+      <Bio person={fahim} size="md" role="Law firm SEO specialist" line="Over 6.5 years, Fahim has grown 67+ businesses online and ranked 50+ on Google. Fahim built the SEO system a New Orleans PI firm runs on.">
+        <p class="kit-bio-link"><a class="lse-link" href={fahim.href}>Read Fahim’s background</a></p>
+      </Bio>
+      <Bio person={josh} line="A Texas-licensed attorney since 2008 who has advised 50+ law firms on operations since 2016. Josh joins calls with firms and gives business input, never legal advice." />
+    </div>
+  </Band>
+
+  <p class="kit-label"><span class="lse-wrap"><b>PageHero</b> layout="stack" (shown as an H2 here): the form as one row, the visual on a fog block</span></p>
+  <PageHero
+    headingTag="h2"
+    headingId="kit-hero2-h"
+    layout="stack"
+    h1="Law firm SEO services that turn searches into calls."
+    lead="Our lawyer SEO services put your firm where clients look first: the top of Google, the Map and Google’s AI answers."
+    form={{ title: 'Where does your firm show up today?', sub: 'Send your website. Fahim answers within an hour in business hours.', idPrefix: 'kit-row', label: 'Kit row form', submitLabel: 'Check my firm' }}
+    talk="Prefer a call?"
+  >
+    <figure slot="visual" class="kit-fig">
+      <Shot tag="43 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['september'] })]} />
+      <figcaption class="lse-small">Google counted 43 calls in September 2026 from the Business Profile of a PI firm in New Orleans.</figcaption>
+    </figure>
+  </PageHero>
+
+  <p class="kit-label"><span class="lse-wrap"><b>PageHero</b> layout="top" (shown as an H2 here): H1 across, the visual on the panel left, the form right</span></p>
+  <PageHero
+    headingTag="h2"
+    headingId="kit-hero3-h"
+    layout="top"
+    h1="SEO for DUI attorneys that wins the “near me” search after an arrest."
+    lead="A DUI search is local and it is urgent. We get your firm onto the Map when a driver searches, and onto Google for the license questions that come next."
+    form={{ title: 'Can a driver in your county find you?', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'kit-top', label: 'Kit top form' }}
+  >
+    <figure slot="visual" class="kit-fig">
+      <Shot tag="9 calls" tagSide="right" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
+      <figcaption class="lse-small">For a PI firm in New Orleans: a new Google profile went from 1 call in July to 9 in October. A DUI firm’s Map listing is built the same way.</figcaption>
+    </figure>
+  </PageHero>
+
+  <p class="kit-label"><span class="lse-wrap"><b>Faq</b> (existing), with FAQPage JSON-LD from the same items through InnerPage</span></p>
+  <Band heading="Before you hire an injury SEO." headingId="kit-faq-h">
+    <Faq items={faq} />
+  </Band>
+</InnerPage>
+
+<style is:global>
+  /* Only on /kit/: the grey strip that names the piece below it. */
+  .kit-label { background: var(--ink); color: var(--on-ink-2); font-size: 14px; line-height: 1.4; padding: 10px 0; }
+  .kit-label .lse-wrap { display: block; }
+  .kit-label b { color: var(--on-ink); font-weight: 700; }
+  .kit-fig { display: grid; gap: 12px; align-content: start; }
+  .kit-num { display: grid; gap: 20px; }
+  .kit-num p { color: var(--ink-2); max-width: 26em; }
+  .kit-under { margin-top: var(--s4); color: var(--ink-2); max-width: 40em; }
+  .kit-8 { max-width: 860px; }
+  .kit-rule { margin-top: clamp(48px, 6vw, 80px); padding-top: clamp(48px, 6vw, 80px); border-top: 1px solid var(--line-2); }
+  .kit-rule .lse-cols { margin-top: 12px; }
+  .kit-bio-link { margin-top: 10px; }
+</style>
