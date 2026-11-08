@@ -86,20 +86,20 @@ const sections = [
   <p>We share data beyond these services only if the law requires it, to protect our rights or safety, or as part of a sale or transfer of the business.</p>
 
   <h2 id="cookies">Cookies and what the site stores in your browser</h2>
-  <table>
-    <thead><tr><th scope="col">Name</th><th scope="col">Where</th><th scope="col">Set by</th><th scope="col">What it is for</th><th scope="col">How long</th></tr></thead>
-    <tbody>
-      <tr><td><code>lse_notrack</code></td><td>Cookie</td><td>This site</td><td>Switches tracking off on this browser</td><td>1 year</td></tr>
-      <tr><td><code>rct_cid</code></td><td>Local storage</td><td>This site</td><td>Reddit ad click ID, so a later form can be matched to the click</td><td>90 days</td></tr>
-      <tr><td><code>rct_mk</code></td><td>Local storage</td><td>This site</td><td>Scrambled email and phone after a form, for Reddit matching</td><td>90 days</td></tr>
-      <tr><td><code>lse_utm</code>, <code>lse_touch</code></td><td>Local storage</td><td>This site</td><td>Campaign tags, referring site and first landing page</td><td>90 days</td></tr>
-      <tr><td><code>_rdt_uuid</code></td><td>Cookie</td><td>Reddit</td><td>Reddit's browser identifier</td><td>Set by Reddit</td></tr>
-      {ga4 && <tr><td><code>_ga</code>, <code>_ga_&lt;ID&gt;</code></td><td>Cookie</td><td>Google</td><td>Analytics visitor and session</td><td>Set by Google</td></tr>}
-      {meta && <tr><td><code>_fbp</code>, <code>_fbc</code></td><td>Cookie</td><td>Meta</td><td>Meta's browser and click identifiers</td><td>Set by Meta</td></tr>}
-      {meta && <tr><td><code>lse_vid</code>, <code>lse_fbc</code>, <code>lse_fbmk</code></td><td>Local storage</td><td>This site</td><td>Random visitor ID, Meta click ID and scrambled contact details for Meta matching</td><td>90 days</td></tr>}
-      {meta && <tr><td><code>lse_meta_test</code></td><td>Session storage</td><td>This site</td><td>A test code used only by us when testing</td><td>Until the tab closes</td></tr>}
-      <tr><td>Cloudflare and Turnstile</td><td>Cookie or storage</td><td>Cloudflare</td><td>Security and bot checks</td><td>Set by Cloudflare</td></tr>
-      <tr><td>Calendly</td><td>Cookie</td><td>Calendly</td><td>Running the booking window</td><td>Set by Calendly</td></tr>
+  <table class="lse-stack" role="table">
+    <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Name</th><th scope="col" role="columnheader">Where</th><th scope="col" role="columnheader">Set by</th><th scope="col" role="columnheader">What it is for</th><th scope="col" role="columnheader">How long</th></tr></thead>
+    <tbody role="rowgroup">
+      <tr role="row"><td role="cell" data-label="Name"><code>lse_notrack</code></td><td role="cell" data-label="Where">Cookie</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">Switches tracking off on this browser</td><td role="cell" data-label="How long">1 year</td></tr>
+      <tr role="row"><td role="cell" data-label="Name"><code>rct_cid</code></td><td role="cell" data-label="Where">Local storage</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">Reddit ad click ID, so a later form can be matched to the click</td><td role="cell" data-label="How long">90 days</td></tr>
+      <tr role="row"><td role="cell" data-label="Name"><code>rct_mk</code></td><td role="cell" data-label="Where">Local storage</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">Scrambled email and phone after a form, for Reddit matching</td><td role="cell" data-label="How long">90 days</td></tr>
+      <tr role="row"><td role="cell" data-label="Name"><code>lse_utm</code>, <code>lse_touch</code></td><td role="cell" data-label="Where">Local storage</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">Campaign tags, referring site and first landing page</td><td role="cell" data-label="How long">90 days</td></tr>
+      <tr role="row"><td role="cell" data-label="Name"><code>_rdt_uuid</code></td><td role="cell" data-label="Where">Cookie</td><td role="cell" data-label="Set by">Reddit</td><td role="cell" data-label="What it is for">Reddit's browser identifier</td><td role="cell" data-label="How long">Set by Reddit</td></tr>
+      {ga4 && <tr role="row"><td role="cell" data-label="Name"><code>_ga</code>, <code>_ga_&lt;ID&gt;</code></td><td role="cell" data-label="Where">Cookie</td><td role="cell" data-label="Set by">Google</td><td role="cell" data-label="What it is for">Analytics visitor and session</td><td role="cell" data-label="How long">Set by Google</td></tr>}
+      {meta && <tr role="row"><td role="cell" data-label="Name"><code>_fbp</code>, <code>_fbc</code></td><td role="cell" data-label="Where">Cookie</td><td role="cell" data-label="Set by">Meta</td><td role="cell" data-label="What it is for">Meta's browser and click identifiers</td><td role="cell" data-label="How long">Set by Meta</td></tr>}
+      {meta && <tr role="row"><td role="cell" data-label="Name"><code>lse_vid</code>, <code>lse_fbc</code>, <code>lse_fbmk</code></td><td role="cell" data-label="Where">Local storage</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">Random visitor ID, Meta click ID and scrambled contact details for Meta matching</td><td role="cell" data-label="How long">90 days</td></tr>}
+      {meta && <tr role="row"><td role="cell" data-label="Name"><code>lse_meta_test</code></td><td role="cell" data-label="Where">Session storage</td><td role="cell" data-label="Set by">This site</td><td role="cell" data-label="What it is for">A test code used only by us when testing</td><td role="cell" data-label="How long">Until the tab closes</td></tr>}
+      <tr role="row"><td role="cell" data-label="Name">Cloudflare and Turnstile</td><td role="cell" data-label="Where">Cookie or storage</td><td role="cell" data-label="Set by">Cloudflare</td><td role="cell" data-label="What it is for">Security and bot checks</td><td role="cell" data-label="How long">Set by Cloudflare</td></tr>
+      <tr role="row"><td role="cell" data-label="Name">Calendly</td><td role="cell" data-label="Where">Cookie</td><td role="cell" data-label="Set by">Calendly</td><td role="cell" data-label="What it is for">Running the booking window</td><td role="cell" data-label="How long">Set by Calendly</td></tr>
     </tbody>
   </table>
 

@@ -19,6 +19,29 @@ function markNameLists(html: string): string {
   });
 }
 
+/** Tables, readable on a phone (QA M4): each body cell gets its column's heading as data-label and the table gets
+ *  class="lse-stack", so prose.css sets each row as a block of "label  value" lines under 640px instead of
+ *  cutting columns off. Explicit ARIA roles keep it a table for screen readers once CSS changes its display. */
+function stackTables(html: string): string {
+  const strip = (t: string) => t.replace(/<[^>]+>/g, '').trim();
+  return html.replace(/<table>([\s\S]*?)<\/table>/g, (whole, inner: string) => {
+    const head = /<thead>([\s\S]*?)<\/thead>/.exec(inner)?.[1];
+    if (!head) return whole;
+    const names = [...head.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((m) => strip(m[1] ?? '').replace(/"/g, '&quot;'));
+    const body = inner
+      .replace(/<thead>/, '<thead role="rowgroup">')
+      .replace(/<tbody>/, '<tbody role="rowgroup">')
+      .replace(/<tr>/g, '<tr role="row">')
+      .replace(/<th(?=[\s>])/g, '<th role="columnheader"')
+      .replace(/<tr role="row">([\s\S]*?)<\/tr>/g, (_row: string, cells: string) => {
+        let i = 0;
+        const out = cells.replace(/<td(?=[\s>])/g, () => `<td role="cell" data-label="${names[i++] ?? ''}"`);
+        return `<tr role="row">${out}</tr>`;
+      });
+    return `<table class="lse-stack" role="table">${body}</table>`;
+  });
+}
+
 function postsLoader() {
   const base = glob({ pattern: '*.md', base: './src/content/posts' });
   return {
@@ -28,11 +51,13 @@ function postsLoader() {
       for (const entry of ctx.store.values()) {
         const calc = !!entry.body && CALC_MARKER.test(entry.body);
         const names = entry.id === NAMES_SLUG;
-        if (!entry.body || (!calc && !names)) continue;
+        const tables = !!entry.body && /^\|.*\|\s*$/m.test(entry.body);
+        if (!entry.body || (!calc && !names && !tables)) continue;
         const body = calc ? entry.body.replace(CALC_MARKER, `${calculatorHtml()}\n`) : entry.body;
         const rendered = await ctx.renderMarkdown(body, entry.filePath ? { fileURL: new URL(entry.filePath, ctx.config.root) } : undefined);
         if (names) rendered.html = markNameLists(rendered.html);
-        ctx.store.set({ ...entry, body, rendered, digest: ctx.generateDigest(`${body}|names-v1`) });
+        if (tables) rendered.html = stackTables(rendered.html);
+        ctx.store.set({ ...entry, body, rendered, digest: ctx.generateDigest(`${body}|names-v1|stack-v1`) });
       }
     },
   };

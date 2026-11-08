@@ -33,9 +33,19 @@
 .lse-prose thead th { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--ink); }
 .lse-prose tbody th { color: var(--ink); font-weight: 600; }
 .lse-prose td:last-child, .lse-prose th:last-child { padding-right: 0; }
+/* On a phone a table with labelled cells (class lse-stack) becomes one block per row: the first cell as the
+   row's name, then "label  value" lines. Nothing is cut off and nothing scrolls. Others still scroll. */
 @media (max-width: 640px) {
-  .lse-prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .lse-prose th, .lse-prose td { min-width: 9em; }
+  .lse-prose table:not(.lse-stack) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .lse-prose table:not(.lse-stack) th, .lse-prose table:not(.lse-stack) td { min-width: 9em; }
+  .lse-prose table.lse-stack, .lse-stack tbody, .lse-stack tr, .lse-stack td { display: block; width: 100%; }
+  .lse-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .lse-stack { border-top: 2px solid var(--ink); }
+  .lse-stack tr { padding: 14px 0 16px; border-bottom: 1px solid var(--line); }
+  .lse-prose .lse-stack td { display: grid; grid-template-columns: minmax(6.5em, 34%) minmax(0, 1fr); column-gap: 14px; padding: 3px 0; border: 0; }
+  .lse-stack td::before { content: attr(data-label); color: var(--muted); font-size: var(--fs-meta); line-height: 1.6; }
+  .lse-prose .lse-stack td:first-child { display: block; padding-bottom: 6px; font-weight: 700; color: var(--ink); }
+  .lse-stack td:first-child::before { content: none; }
 }
 
 /* Name lists (law-firm-names): lists of plain names (class set in src/content.config.ts) become a skimmable
