@@ -1,0 +1,124 @@
+---
+// The blog index: the nine posts as hairline rows, newest first, with the calculator shown on its own as the
+// one tool. The posts live at their root URLs. No form at the top (blog pages are exempt); the close is the
+// same ranking-review call as the posts.
+import Breadcrumbs from '../../components/kit/Breadcrumbs.astro';
+import Face from '../../components/kit/Face.astro';
+import PostCta from '../../components/blog/PostCta.astro';
+import '../../components/blog/prose.css';
+import Base from '../../layouts/Base.astro';
+import { fahim } from '../../data/people';
+import { site } from '../../data/site';
+import { breadcrumbSchema, type Crumb } from '../../lib/schema';
+import { allPosts, CALCULATOR_SLUG, isoDate, readingMinutes } from '../../lib/posts';
+
+const posts = await allPosts();
+const tool = posts.find((p) => p.data.slug === CALCULATOR_SLUG)!;
+const guides = posts.filter((p) => p !== tool);
+const path = '/blog/';
+const url = new URL(path, site.url).href;
+const title = 'Law Firm SEO Guides and Tools | Lawyer SEO Expert';
+const description = 'Plain guides for law firms on search, Maps, websites, firm names and intake, plus a settlement and attorney fee calculator. By S. M. Fahim.';
+const crumbs: Crumb[] = [{ label: 'Blog' }];
+const schema = [
+  breadcrumbSchema(crumbs, url, site.url),
+  {
+    '@type': 'CollectionPage',
+    '@id': `${url}#page`,
+    name: 'Law firm SEO guides and tools',
+    url,
+    description,
+    isPartOf: { '@id': `${site.url}/#site` },
+    hasPart: posts.map((p) => ({
+      '@type': 'Article',
+      headline: p.data.h1,
+      url: new URL(`/${p.data.slug}/`, site.url).href,
+      datePublished: isoDate(p.data.published),
+      dateModified: isoDate(p.data.updated),
+      author: { '@id': 'https://lawyerseoexpert.com/#fahim' },
+    })),
+  },
+];
+---
+<Base pageType="blog" path={path} title={title} description={description} schema={schema} feed>
+  <Breadcrumbs trail={crumbs} />
+  <header class="lse-wrap lse-read__head lse-blog__head">
+    <h1>Guides for law firms that want to be found.</h1>
+    <p class="lse-lead lse-read__lead">Plain guides on search, the Map, websites, firm names and intake. Each one shows what you can do yourself, and what to check before you pay anyone.</p>
+    <div class="lse-blog__by">
+      <Face person={fahim} size="xs" class="lse-blog__face" />
+      <p>Written by <a href={fahim.href}>{fahim.name}</a>, law firm SEO expert.</p>
+    </div>
+  </header>
+
+  <section class="lse-wrap lse-blog__tool" aria-labelledby="tool-h">
+    <div class="lse-blog__tool-in">
+      <div>
+        <h2 id="tool-h"><a href={`/${tool.data.slug}/`}>{tool.data.h1}</a></h2>
+        <p class="lse-blog__desc">{tool.data.description}</p>
+      </div>
+      <ol class="lse-blog__sum" aria-label="What the calculator takes out of a settlement">
+        <li>Settlement or offer</li>
+        <li><span>minus</span> the attorney fee</li>
+        <li><span>minus</span> case costs</li>
+        <li><span>minus</span> liens and bills</li>
+        <li class="lse-blog__sum-total">Your estimated take-home</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="lse-wrap lse-blog__list-wrap" aria-labelledby="guides-h">
+    <h2 id="guides-h">Guides</h2>
+    <ol class="lse-blog__list">
+      {guides.map((p) => (
+        <li class="lse-blog__item">
+          <p class="lse-blog__meta">
+            <span class="lse-blog__cat">{p.data.category}</span>
+            <span>{readingMinutes(p)} minute read</span>
+          </p>
+          <div>
+            <h3><a href={`/${p.data.slug}/`}>{p.data.h1}</a></h3>
+            <p class="lse-blog__desc">{p.data.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <PostCta
+    line="In a free 30-minute ranking review, Fahim searches the cases you want in your city with you, live, and shows you what he finds."
+    formLabel="Blog index"
+    idPrefix="blog"
+  />
+</Base>
+
+<style is:global>
+  .lse-blog__head h1 { max-width: 15ch; }
+  .lse-blog__by { margin-top: var(--s4); display: flex; align-items: center; gap: 14px; font-weight: 600; color: var(--ink); }
+  .lse-blog__face.lse-face { width: 56px; }
+
+  .lse-blog__tool { margin-top: clamp(48px, 6vw, 88px); }
+  .lse-blog__tool-in { display: grid; gap: var(--s4); padding: clamp(24px, 4vw, 56px); background: var(--fog); border-radius: var(--r-frame); }
+  .lse-blog__tool h2 { font-size: clamp(28px, 1.6vw + 18px, 44px); max-width: 20ch; }
+  .lse-blog__tool h2 a, .lse-blog__item h3 a { text-decoration: none; }
+  .lse-blog__tool h2 a:hover, .lse-blog__item h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+  .lse-blog__desc { margin-top: 12px; color: var(--ink-2); max-width: 38em; }
+  .lse-blog__sum { list-style: none; padding: 0; align-self: center; border-top: 2px solid var(--ink); }
+  .lse-blog__sum li { padding: 12px 0; border-bottom: 1px solid var(--line-2); font-weight: 600; color: var(--ink); font-size: 18px; }
+  .lse-blog__sum span { color: var(--muted); font-weight: 500; }
+  .lse-blog__sum .lse-blog__sum-total { border-bottom: 0; padding-top: 16px; font-weight: 800; font-size: 22px; }
+  @media (min-width: 1000px) {
+    .lse-blog__tool-in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(48px, 6vw, 96px); }
+  }
+
+  .lse-blog__list-wrap { padding-top: var(--section); padding-bottom: var(--section); }
+  .lse-blog__list { list-style: none; margin-top: var(--s5); border-top: 2px solid var(--ink); }
+  .lse-blog__item { display: grid; gap: 10px; padding: var(--s4) 0; border-bottom: 1px solid var(--line); }
+  .lse-blog__item h3 { font-size: clamp(22px, .9vw + 16px, 30px); letter-spacing: -.022em; max-width: 30ch; }
+  .lse-blog__meta { display: grid; gap: 2px; font-size: var(--fs-meta); color: var(--muted); }
+  .lse-blog__cat { font-weight: 600; color: var(--ink-2); }
+  @media (min-width: 900px) {
+    .lse-blog__item { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); column-gap: clamp(32px, 4vw, 64px); }
+    .lse-blog__meta { padding-top: 6px; }
+  }
+</style>

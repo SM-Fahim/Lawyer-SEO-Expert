@@ -1,0 +1,55 @@
+/* The settlement calculator (calculator-markup.ts). A fog panel inside the post: fields first, then the
+   take-home figure on the swipe (the one mark), the sum as hairline rows, and the disclaimer in body type. */
+.lse-prose .lse-calc { margin-top: var(--s3); padding: clamp(20px, 3vw, 32px); background: var(--fog); border-radius: var(--r-frame); font-size: 17px; line-height: 1.5; }
+.lse-calc > * + * { margin-top: 0; }
+.lse-calc__note { color: var(--ink-2); font-size: 16px; }
+.lse-calc__form { margin-top: var(--s3); display: grid; gap: 20px 24px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 600px) {
+  .lse-calc__form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lse-calc__field--wide { grid-column: 1 / -1; }
+}
+.lse-calc__field { display: grid; gap: 6px; align-content: start; min-width: 0; margin: 0; padding: 0; border: 0; }
+.lse-calc__label { font-weight: 700; color: var(--ink); font-size: 16px; padding: 0; }
+.lse-calc__input { display: flex; align-items: stretch; background: var(--paper); border: 1.5px solid #8a8f86; border-radius: var(--r-btn); }
+.lse-calc__input:focus-within { outline: 3px solid var(--ink); outline-offset: 1px; box-shadow: 0 0 0 6px var(--marker); border-color: var(--ink); }
+.lse-calc__input--post { flex-direction: row-reverse; }
+.lse-calc__unit { display: grid; place-items: center; padding: 0 4px 0 14px; color: var(--muted); font-weight: 600; font-size: 18px; }
+.lse-calc__input--post .lse-calc__unit { padding: 0 14px 0 4px; }
+.lse-calc__input input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 12px 14px 12px 4px; font: 600 20px / 1.3 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
+.lse-calc__input--post input { padding: 12px 4px 12px 14px; }
+.lse-calc__input input:focus { outline: none; }
+.lse-calc__field.is-bad .lse-calc__input { border-color: #9b2c1f; border-width: 2px; }
+.lse-calc__help { font-size: 15px; color: var(--muted); }
+.lse-calc__err { font-size: 15px; color: #8a2417; font-weight: 600; }
+
+/* Before or after the fee: two big radio choices. */
+.lse-calc__seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.lse-calc__seg label { position: relative; cursor: pointer; }
+.lse-calc__seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.lse-calc__seg span { display: block; padding: 11px 18px; border: 1.5px solid #8a8f86; border-radius: var(--r-btn); background: var(--paper); font-weight: 600; color: var(--ink-2); }
+.lse-calc__seg input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.lse-calc__seg input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 2px; box-shadow: 0 0 0 7px var(--marker); }
+
+.lse-calc__actions { grid-column: 1 / -1; }
+.lse-calc__reset { font: 600 16px / 1.2 var(--sans); color: var(--ink); background: none; border: 0; padding: 6px 0; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+
+/* Results. */
+.lse-calc__results { margin-top: var(--s4); padding-top: var(--s3); border-top: 2px solid var(--ink); }
+.lse-prose .lse-calc__rh { margin: 0; font-size: 18px; letter-spacing: 0; }
+.lse-calc__big { margin-top: 10px; }
+.lse-calc__big span {
+  display: inline-block; padding: .04em .14em .02em .08em; margin-left: -.06em;
+  font: 900 clamp(48px, 4vw + 28px, 84px) / 1 var(--sans); letter-spacing: -.045em; color: var(--ink);
+  background: var(--marker); clip-path: var(--swipe); font-variant-numeric: lining-nums tabular-nums;
+}
+.lse-calc__share { margin-top: 10px; color: var(--ink-2); }
+.lse-calc.is-invalid .lse-calc__big span { background: var(--line); color: var(--muted); }
+.lse-prose .lse-calc__table { margin-top: var(--s3); font-size: 16px; }
+.lse-prose .lse-calc__table th { font-weight: 500; color: var(--ink-2); }
+.lse-prose .lse-calc__table td { text-align: right; white-space: nowrap; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .lse-prose .lse-calc__table { display: table; } .lse-prose .lse-calc__table th, .lse-prose .lse-calc__table td { min-width: 0; } }
+.lse-calc__compare { margin-top: var(--s2); font-size: 16px; color: var(--ink-2); }
+.lse-calc__warn, .lse-calc__invalid { margin-top: var(--s2); padding: 12px 14px; border-left: 3px solid #9b2c1f; background: var(--paper); color: var(--ink); font-weight: 600; font-size: 16px; }
+.lse-calc__disclaimer { margin-top: var(--s3); padding-top: var(--s2); border-top: 1px solid var(--line-2); font-size: 16px; color: var(--ink-2); }
+.lse-calc__nojs { margin-top: var(--s2); font-size: 15px; color: var(--muted); }
+.lse-calc [hidden] { display: none; }

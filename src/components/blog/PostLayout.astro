@@ -1,0 +1,140 @@
+---
+// A blog post: crumbs, H1, byline (Fahim's photo, name, published and updated dates, reading time), the
+// contents list from the H2s (beside the text on wide screens), the post at a reading measure, its sources,
+// then the ranking-review close. Article and BreadcrumbList JSON-LD.
+import Breadcrumbs from '../kit/Breadcrumbs.astro';
+import Face from '../kit/Face.astro';
+import Base from '../../layouts/Base.astro';
+import { fahim } from '../../data/people';
+import { fahimSchema, site } from '../../data/site';
+import { breadcrumbSchema, type Crumb } from '../../lib/schema';
+import { CALCULATOR_SLUG, isoDate, longDate, pageTitle, readingMinutes, type Post } from '../../lib/posts';
+import CalculatorScript from './CalculatorScript.astro';
+import PostCta from './PostCta.astro';
+import './prose.css';
+import './calculator.css';
+
+interface Props {
+  post: Post;
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { post, headings } = Astro.props;
+const d = post.data;
+const path = `/${d.slug}/`;
+const url = new URL(path, site.url).href;
+const toc = headings.filter((h) => h.depth === 2);
+const minutes = readingMinutes(post);
+const hasCalc = d.slug === CALCULATOR_SLUG;
+const isNames = d.slug === 'law-firm-names';
+const updated = isoDate(d.updated) !== isoDate(d.published);
+
+const crumbs: Crumb[] = [{ label: 'Blog', href: '/blog/' }, { label: d.title }];
+const schema = [
+  breadcrumbSchema(crumbs, url, site.url),
+  fahimSchema,
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    headline: d.h1,
+    description: d.description,
+    articleSection: d.category,
+    image: new URL(site.ogImage, site.url).href,
+    datePublished: isoDate(d.published),
+    dateModified: isoDate(d.updated),
+    wordCount: Math.round(minutes * 220),
+    author: { '@type': 'Person', '@id': fahimSchema['@id'], name: fahim.name, url: new URL(fahim.href, site.url).href },
+    publisher: { '@id': `${site.url}/#org` },
+    inLanguage: 'en-US',
+  },
+];
+const sourceLabel = (u: string) => {
+  const x = new URL(u);
+  return `${x.hostname.replace(/^www\./, '')}${x.pathname === '/' ? '' : x.pathname.replace(/\/$/, '')}`;
+};
+---
+<Base
+  pageType="blog"
+  path={path}
+  title={pageTitle(d.title)}
+  description={d.description}
+  schema={schema}
+  feed
+  article={{ published: isoDate(d.published), modified: isoDate(d.updated), section: d.category }}
+>
+  <Breadcrumbs trail={crumbs} />
+  <article class="lse-post" aria-labelledby="post-h1">
+    <header class="lse-wrap lse-read__head">
+      <h1 id="post-h1">{d.h1}</h1>
+      <div class="lse-post__by">
+        <Face person={fahim} size="xs" class="lse-post__face" />
+        <div>
+          <p class="lse-post__name">By <a href={fahim.href} rel="author">{fahim.name}</a>, law firm SEO expert</p>
+          <p class="lse-post__dates">
+            Published <time datetime={isoDate(d.published)}>{longDate(d.published)}</time>{updated && <>. Updated <time datetime={isoDate(d.updated)}>{longDate(d.updated)}</time></>}. {minutes} minute read.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class:list={['lse-wrap', 'lse-post__grid', { 'lse-post__grid--toc': toc.length >= 4 }]}>
+      {toc.length >= 4 && (
+        <details class="lse-toc" data-toc>
+          <summary>In this post</summary>
+          <ol>
+            {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+          </ol>
+        </details>
+      )}
+      <div class="lse-post__main">
+        <div class:list={['lse-prose', { 'lse-prose--names': isNames }]}>
+          <slot />
+        </div>
+        {d.sources.length > 0 && (
+          <section class="lse-sources" aria-labelledby="sources-h">
+            <h2 id="sources-h">Sources</h2>
+            <ol>
+              {d.sources.map((u) => <li><a href={u} rel="noopener">{sourceLabel(u)}</a></li>)}
+            </ol>
+          </section>
+        )}
+      </div>
+    </div>
+  </article>
+
+  <PostCta line={d.cta} formLabel={`Blog: ${d.slug}`} />
+
+  {toc.length >= 4 && (
+    <script is:inline>
+      (function () {
+        var t = document.querySelector('[data-toc]');
+        if (t && window.matchMedia('(min-width: 1100px)').matches) t.open = true;
+      })();
+    </script>
+  )}
+  {hasCalc && <CalculatorScript />}
+</Base>
+
+<style is:global>
+  .lse-post__by { margin-top: var(--s4); display: flex; align-items: center; gap: 16px; }
+  .lse-post__face.lse-face { width: 64px; }
+  .lse-post__name { font-weight: 600; color: var(--ink); }
+  .lse-post__dates { margin-top: 2px; font-size: var(--fs-meta); color: var(--muted); }
+
+  .lse-post__grid { margin-top: clamp(40px, 5vw, 72px); padding-bottom: var(--section); }
+  .lse-post__main { min-width: 0; }
+
+  /* Contents: a closed list on phones (the post starts sooner), open beside the text on wide screens. */
+  .lse-toc { margin-bottom: var(--s5); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); max-width: 68ch; }
+  .lse-toc summary { cursor: pointer; padding: 14px 0; font-weight: 700; color: var(--ink); list-style-position: inside; }
+  .lse-toc ol { list-style: none; padding: 0 0 16px; display: grid; gap: 2px; counter-reset: toc; }
+  .lse-toc li { counter-increment: toc; display: grid; grid-template-columns: 2.1em minmax(0, 1fr); font-size: 16px; line-height: 1.35; }
+  .lse-toc li::before { content: counter(toc); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 6px; }
+  .lse-toc a { display: block; padding: 6px 0; color: var(--ink-2); text-decoration: none; }
+  .lse-toc a:hover { color: var(--ink); text-decoration: underline; }
+  @media (min-width: 1100px) {
+    .lse-post__grid--toc { display: grid; grid-template-columns: minmax(220px, 270px) minmax(0, 68ch); column-gap: clamp(48px, 5vw, 96px); align-items: start; }
+    .lse-toc { position: sticky; top: 24px; margin-bottom: 0; max-height: calc(100vh - 48px); overflow-y: auto; }
+    .lse-toc li { font-size: 15px; }
+  }
+</style>
