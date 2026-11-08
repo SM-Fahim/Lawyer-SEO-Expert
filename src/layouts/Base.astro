@@ -51,13 +51,12 @@ const { path, pageType, ...seo } = Astro.props;
 {/* TODO(owner): Meta domain verification tag for lawyerseoexpert.com goes here once the Meta dataset exists.
     Server-rendered on purpose: Meta reads it without running JavaScript. */}
 <Seo path={path} {...seo} />
-<link rel="preload" href="/fonts/newsreader-roman.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/libre-franklin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href={site.logo} type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#f3f2ea">
+<meta name="theme-color" content="#ffffff">
 <script is:inline>document.documentElement.classList.add('js')</script>
 {featuresFor(path, 'head').map((f) => <f.component />)}
 </head>

@@ -1,5 +1,5 @@
 ---
-// Site header: lockup, five links, one button. Under 900px the links fold into a menu panel.
+// Site header: lockup, five links, one button. Under 960px the links fold into a menu panel.
 // The menu is a disclosure button (aria-expanded), and works with Escape and outside clicks.
 import { site } from '../data/site';
 import Button from './Button.astro';
@@ -17,36 +17,42 @@ const here = Astro.url.pathname;
       </ul>
       <Button size="sm" block={false} class="lse-top__cta" />
     </nav>
-    <button class="lse-top__menu" type="button" aria-expanded="false" aria-controls="lse-nav" data-menu-toggle>Menu</button>
+    <button class="lse-top__menu" type="button" aria-expanded="false" aria-controls="lse-nav" data-menu-toggle>
+      <span class="lse-top__burger" aria-hidden="true"></span>Menu
+    </button>
   </div>
 </header>
 
 <style is:global>
-  .lse-top { border-bottom: 1px solid var(--rule); position: relative; z-index: 20; background: var(--paper); }
-  .lse-top__bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; }
+  .lse-top { position: relative; z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .lse-top__bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 80px; }
   .lse-top__nav { display: flex; align-items: center; gap: clamp(20px, 2.4vw, 40px); }
-  .lse-top__nav ul { list-style: none; display: flex; gap: clamp(16px, 2vw, 32px); }
-  .lse-top__nav a:not(.lse-btn) { text-decoration: none; font-size: 17px; color: var(--ink); }
-  .lse-top__nav a:not(.lse-btn):hover, .lse-top__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; }
+  .lse-top__nav ul { list-style: none; display: flex; gap: clamp(18px, 2vw, 32px); }
+  .lse-top__nav a:not(.lse-btn) { text-decoration: none; font-size: 16px; font-weight: 500; color: var(--ink); padding: 6px 0; }
+  .lse-top__nav a:not(.lse-btn):hover, .lse-top__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--marker); text-underline-offset: .35em; }
   .lse-top__menu {
-    display: none; align-items: center;
-    font: 600 16px / 1 var(--sans); color: var(--ink); background: none;
-    border: 1.5px solid var(--ink); border-radius: var(--r-btn); padding: 10px 14px; cursor: pointer;
+    display: none; align-items: center; gap: 10px;
+    font: 700 16px / 1 var(--sans); color: var(--ink); background: none;
+    border: 2px solid var(--ink); border-radius: var(--r-btn); padding: 10px 14px; cursor: pointer;
   }
+  .lse-top__burger { position: relative; width: 16px; height: 2px; background: var(--ink); }
+  .lse-top__burger::before, .lse-top__burger::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: var(--ink); }
+  .lse-top__burger::before { top: -5px; }
+  .lse-top__burger::after { top: 5px; }
 
   @media (max-width: 960px) {
-    .lse-top__bar { height: 68px; }
+    .lse-top__bar { height: 66px; }
     .js .lse-top__menu { display: inline-flex; }
     .js .lse-top__nav {
       display: none; position: absolute; left: 0; right: 0; top: 100%;
       flex-direction: column; align-items: stretch; gap: var(--s3);
-      padding: var(--s2) var(--gut) var(--s4); background: var(--paper);
-      border-bottom: 1px solid var(--ink);
+      padding: var(--s1) var(--gut) var(--s4); background: var(--paper);
+      border-bottom: 2px solid var(--ink);
     }
     .js .lse-top__nav.is-open { display: flex; }
     .js .lse-top__nav ul { flex-direction: column; gap: 0; }
-    .js .lse-top__nav li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--rule); font: 500 22px / 1.2 var(--serif); }
-    .js .lse-top__nav .lse-btn { width: 100%; padding: 16px; font-size: 17px; }
+    .js .lse-top__nav li a { display: block; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+    .js .lse-top__nav .lse-btn { width: 100%; padding: 17px; font-size: 17px; }
     /* Without JavaScript the links wrap under the logo. */
     html:not(.js) .lse-top__bar { height: auto; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
     html:not(.js) .lse-top__nav { flex-wrap: wrap; }

@@ -53,13 +53,13 @@ const { title = site.cta.label, sub = site.cta.sub, titleId, lazy = false, title
 <style is:global>
 /* The placeholder covers the frame until Calendly says it is showing (scripts/calendly.ts adds .is-ready),
    and its new-tab link appears after 6 s. */
-.lse-cal__head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 20px 14px;border-bottom:1px solid var(--rule)}
-.lse-cal__title{font:500 26px/1.15 var(--serif);margin:0}
+.lse-cal__head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 20px 14px;border-bottom:1px solid var(--line)}
+.lse-cal__title{font:800 26px/1.1 var(--sans);letter-spacing:-.025em;margin:0}
 .lse-cal__head p{margin-top:6px;color:var(--ink-2);font-size:16px}
 .lse-cal__ph{display:grid;place-content:center;gap:10px;text-align:center;padding:24px;color:var(--ink-2)}
 .lse-cal__body{position:relative;height:680px}
 .lse-cal__body iframe{display:block;width:100%;height:100%;border:0}
-.lse-cal__ph{position:absolute;inset:0;z-index:1;background:var(--sheet);pointer-events:none;transition:opacity .25s,visibility .25s}
+.lse-cal__ph{position:absolute;inset:0;z-index:1;background:var(--paper);pointer-events:none;transition:opacity .25s,visibility .25s}
 .lse-cal__ph a{pointer-events:auto}
 .lse-cal__body.is-ready .lse-cal__ph{opacity:0;visibility:hidden}
 .js .lse-cal__ph a{visibility:hidden;animation:lse-late 0s 6s forwards}

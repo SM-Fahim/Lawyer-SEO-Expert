@@ -1,6 +1,6 @@
 ---
-// The closing section of a page: H2, a lead, the booking button, then below it (after space and a hairline,
-// never beside it) "Prefer to put it in writing?" with the lead form in a narrower column.
+// The closing section of a page: H2, a lead, the booking button, then below it (after a hairline, never
+// beside the button) "Prefer to put it in writing?" with the lead form.
 // It carries id="book", so a /#book link without JavaScript lands here. Use it once per page, last.
 import { site } from '../data/site';
 import Button from './Button.astro';
@@ -20,11 +20,12 @@ const { heading, formLabel, idPrefix = 'f', practiceArea = null } = Astro.props;
     <div class="lse-final__lead lse-lead"><slot /></div>
     <div class="lse-final__cta">
       <Button />
+      <p class="lse-small">{site.cta.sub}</p>
     </div>
     <div class="lse-final__write">
       <LeadForm
         title="Prefer to put it in writing?"
-        sub="Send a short note and Fahim will reply by email."
+        sub="Send a short note. Fahim answers within an hour in business hours."
         idPrefix={idPrefix}
         label={formLabel}
         practiceArea={practiceArea}
@@ -39,8 +40,19 @@ const { heading, formLabel, idPrefix = 'f', practiceArea = null } = Astro.props;
 </section>
 
 <style is:global>
-  .lse-final h2 { font-size: clamp(36px, 3.6vw + 14px, 68px); max-width: 17ch; }
+  .lse-final h2 { font-size: clamp(40px, 4vw + 16px, 80px); letter-spacing: -.04em; line-height: .98; max-width: 14ch; }
   .lse-final__lead { margin-top: var(--s3); }
   .lse-final__cta { margin-top: var(--s5); display: grid; gap: 14px; justify-items: start; }
-  .lse-final__write { margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--rule); }
+  .lse-final__write { margin-top: var(--s7); padding-top: var(--s5); border-top: 2px solid var(--ink); }
+  .lse-final .lse-form { max-width: none; }
+  @media (min-width: 960px) {
+    .lse-final .lse-form { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 64px; align-items: start; }
+    .lse-final .lse-form > :not(form):not(.lse-form__done):not(.lse-form__alert) { grid-column: 1; }
+    .lse-final .lse-form__title { grid-row: 1; }
+    .lse-final .lse-form__sub { grid-row: 2; align-self: start; }
+    .lse-final .lse-form__alert { grid-column: 2; grid-row: 1; }
+    .lse-final .lse-form > form { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
+    .lse-final .lse-form__done { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
+    .lse-final .lse-form__alert.is-on ~ form { grid-row: 2 / span 3; }
+  }
 </style>

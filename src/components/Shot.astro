@@ -1,27 +1,101 @@
 ---
-// A plain proof screenshot on a white sheet, with a caption that says where and when it was taken.
-// Never shown larger than its natural size (max-width is the image's width), so low-resolution captures
-// stay sharp. For a search result that needs marks, use SerpFigure.
-interface Props {
+// A real screenshot (or a few stacked, like a search box over its result) in one frame, with highlighter
+// marks on the exact lines that prove the point. Marks are percentages of each image, measured from its
+// pixels: { l, t, w, h } is the box around the text. They draw in once when the frame scrolls into view.
+// `tag` puts a swipe label (a real rank or result, like "#1") on the frame's corner.
+// Images open full size on click (features/image-zoom). Never shown larger than their natural width.
+export interface MarkBox {
+  l: number;
+  t: number;
+  w: number;
+  h: number;
+}
+export interface ShotImage {
   src: string;
   width: number;
   height: number;
+  /** Empty for a strip that only gives context, like the search box above a result. */
   alt: string;
-  caption: string;
+  marks?: MarkBox[];
+  /** Show only a band of the image: top and height in % of the image's height. */
+  crop?: { top: number; height: number };
+}
+interface Props {
+  images: ShotImage[];
+  tag?: string;
+  tagSide?: 'left' | 'right';
+  /** A smaller tag, for a label like "The Map" rather than a rank. */
+  tagSmall?: boolean;
+  /** Eager-load and draw on page load (hero only). */
+  priority?: boolean;
   class?: string;
 }
-const { src, width, height, alt, caption, class: className } = Astro.props;
+const { images, tag, tagSide = 'left', tagSmall = false, priority = false, class: className } = Astro.props;
+const maxW = Math.max(...images.map((i) => i.width));
+let markIndex = 0;
 ---
-<figure class:list={['lse-shot', className]}>
-  <div class="lse-shot__frame lse-sheet" style={`max-width:${width + 2}px`}>
-    <img src={src} width={width} height={height} alt={alt} loading="lazy" decoding="async">
+<div class:list={['lse-shot', className]} data-draw style={`--shot-max:${maxW + 2}px`}>
+  {tag && <span class:list={['lse-tag', 'lse-shot__tag', `lse-shot__tag--${tagSide}`, { 'lse-tag--sm': tagSmall }]} aria-hidden="true">{tag}</span>}
+  <div class="lse-shot__frame">
+    {images.map((img) => {
+      const crop = img.crop;
+      const partStyle = crop ? `aspect-ratio:${img.width}/${((img.height * crop.height) / 100).toFixed(1)}` : undefined;
+      const canvasStyle = crop ? `margin-top:-${((crop.top / 100) * (img.height / img.width) * 100).toFixed(3)}%` : undefined;
+      return (
+        <div class:list={['lse-shot__part', { 'lse-shot__part--crop': crop }]} style={partStyle}>
+          <div class="lse-shot__canvas" style={canvasStyle}>
+            <img class="lse-shot__img" src={img.src} width={img.width} height={img.height} alt={img.alt} loading={priority ? 'eager' : 'lazy'} decoding="async" fetchpriority={priority ? 'high' : undefined} data-zoom-src={img.alt ? img.src : undefined}>
+            {(img.marks ?? []).map((m) => (
+              <span class="lse-hl" aria-hidden="true" style={`--l:${m.l};--t:${m.t};--w:${m.w};--h:${m.h};--i:${markIndex++}`}></span>
+            ))}
+          </div>
+        </div>
+      );
+    })}
   </div>
-  <figcaption class="lse-shot__cap">{caption}</figcaption>
-</figure>
+</div>
 
 <style is:global>
-  .lse-shot { display: grid; gap: 10px; align-content: start; }
-  .lse-shot__frame { overflow: hidden; }
-  .lse-shot__frame img { width: 100%; }
-  .lse-shot__cap { font: italic 400 17px / 1.4 var(--serif); color: var(--ink-2); }
+  .lse-shot { position: relative; max-width: var(--shot-max); }
+  .lse-shot__frame { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--r-frame); }
+  .lse-shot__part + .lse-shot__part { border-top: 1px solid var(--line); }
+  .lse-shot__part--crop { overflow: hidden; }
+  .lse-shot__canvas { position: relative; }
+  .lse-shot__img { width: 100%; }
+  .lse-shot__img[data-zoom-src] { cursor: zoom-in; }
+
+  /* The tag sits half off the frame's top corner, like a sticker on a printout. */
+  .lse-shot__tag { position: absolute; z-index: 2; top: -.55em; }
+  .lse-shot__tag--left { left: -.3em; }
+  .lse-shot__tag--right { right: -.3em; }
+  @media (max-width: 760px) {
+    .lse-shot__tag--left { left: -6px; }
+    .lse-shot__tag--right { right: -6px; }
+  }
+
+  /* A highlighter stroke over the screenshot. Multiply keeps the text under it dark, like a real marker. */
+  .lse-hl {
+    position: absolute;
+    left: calc(var(--l) * 1% - 3px);
+    top: calc(var(--t) * 1% - 1px);
+    width: calc(var(--w) * 1% + 6px);
+    height: calc(var(--h) * 1% + 2px);
+    background: var(--marker);
+    mix-blend-mode: multiply;
+    clip-path: polygon(0.6% 9%, 100% 0, 99.2% 91%, 0 100%);
+    pointer-events: none;
+  }
+  .js .lse-shot[data-draw] .lse-hl {
+    clip-path: polygon(0.6% 9%, 0.6% 9%, 0 100%, 0 100%);
+    transition: clip-path .55s cubic-bezier(.3, .7, .2, 1);
+    transition-delay: calc(var(--i) * 140ms + 150ms);
+  }
+  .js .lse-shot[data-draw].is-in .lse-hl { clip-path: polygon(0.6% 9%, 100% 0, 99.2% 91%, 0 100%); }
+  @media (prefers-reduced-motion: reduce) {
+    .js .lse-shot[data-draw] .lse-hl { clip-path: polygon(0.6% 9%, 100% 0, 99.2% 91%, 0 100%); }
+  }
 </style>
+
+<script>
+  import '../scripts/marks';
+</script>

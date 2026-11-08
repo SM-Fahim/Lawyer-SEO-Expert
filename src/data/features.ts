@@ -4,6 +4,7 @@
 // To switch one off: set on to false.
 // To skip pages: list their paths in exclude. A trailing * matches a prefix, like '/blog/*'.
 import BookingDialog from '../features/booking-dialog/BookingDialog.astro';
+import ImageZoom from '../features/image-zoom/ImageZoom.astro';
 import Tracking from '../features/tracking/Tracking.astro';
 
 export interface Feature {
@@ -15,11 +16,12 @@ export interface Feature {
   component: (props: Record<string, never>) => unknown;
 }
 
-// TODO(design): LCME also had an exit-intent offer, a sticky mobile bar and an image zoom here. LSE leaves them
-// out until the design phase decides it wants them (docs/DECISIONS.md). Add a line below to switch a feature on.
+// LCME also had an exit-intent offer and a sticky mobile bar. LSE leaves them out (docs/DECISIONS.md).
+// Image zoom is on: every screenshot opens full size.
 export const features: Feature[] = [
   { name: 'tracking', on: true, spot: 'head', component: Tracking },
   { name: 'booking-dialog', on: true, spot: 'body', component: BookingDialog },
+  { name: 'image-zoom', on: true, spot: 'body', component: ImageZoom },
 ];
 
 function matches(path: string, pattern: string): boolean {

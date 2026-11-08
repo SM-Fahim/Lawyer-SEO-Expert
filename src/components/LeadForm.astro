@@ -23,6 +23,8 @@ interface Props {
   messageLabel?: string;
   /** Adds an optional phone field. */
   phone?: boolean;
+  /** The short version for a hero: website first, then name and email, no message field. */
+  compact?: boolean;
 }
 const {
   title,
@@ -36,9 +38,10 @@ const {
   submitLabel = 'Send to Fahim',
   messageLabel = 'Which searches matter most to you?',
   phone = false,
+  compact = false,
 } = Astro.props;
 ---
-<div class="lse-form" data-form-card>
+<div class:list={['lse-form', { 'lse-form--compact': compact }]} data-form-card>
   <Title class="lse-form__title">{title}</Title>
   {sub && <p class="lse-form__sub">{sub}</p>}
   <div class="lse-form__alert" role="alert" tabindex="-1" data-alert></div>
@@ -48,6 +51,13 @@ const {
     <input type="hidden" name="format" value={format}>
     <div class="lse-sr" aria-hidden="true"><label>Leave this empty <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
     <slot name="fields" />
+    {compact && (
+    <div class="lse-field lse-field--site">
+      <label class="lse-label" for={`${p}-site`}>Your firm's website</label>
+      <input class="lse-input" id={`${p}-site`} name="website" type="text" inputmode="url" autocomplete="url" required data-rule="url" aria-describedby={`${p}-site-err`} placeholder={compact ? 'smithlaw.com' : undefined}>
+      <span class="lse-err" id={`${p}-site-err`}>Add your firm's web address, like smithlaw.com.</span>
+    </div>
+    )}
     <div class="lse-field">
       <label class="lse-label" for={`${p}-name`}>Your name</label>
       <input class="lse-input" id={`${p}-name`} name="name" type="text" autocomplete="name" required data-rule="name" aria-describedby={`${p}-name-err`}>
@@ -58,11 +68,13 @@ const {
       <input class="lse-input" id={`${p}-email`} name="email" type="email" autocomplete="email" required data-rule="email" aria-describedby={`${p}-email-err`}>
       <span class="lse-err" id={`${p}-email-err`}>That email address does not look right.</span>
     </div>
-    <div class="lse-field">
+    {!compact && (
+    <div class="lse-field lse-field--site">
       <label class="lse-label" for={`${p}-site`}>Your firm's website</label>
-      <input class="lse-input" id={`${p}-site`} name="website" type="text" inputmode="url" autocomplete="url" required data-rule="url" aria-describedby={`${p}-site-err`}>
+      <input class="lse-input" id={`${p}-site`} name="website" type="text" inputmode="url" autocomplete="url" required data-rule="url" aria-describedby={`${p}-site-err`} placeholder={compact ? 'smithlaw.com' : undefined}>
       <span class="lse-err" id={`${p}-site-err`}>Add your firm's web address, like smithlaw.com.</span>
     </div>
+    )}
     {phone && (
       <div class="lse-field">
         <label class="lse-label" for={`${p}-phone`}>Phone <span class="lse-opt">(optional)</span></label>
@@ -70,10 +82,12 @@ const {
         <span class="lse-err" id={`${p}-phone-err`}>That phone number does not look right.</span>
       </div>
     )}
-    <div class="lse-field">
-      <label class="lse-label" for={`${p}-message`}>{messageLabel} <span class="lse-opt">(optional)</span></label>
-      <textarea class="lse-input" id={`${p}-message`} name="message" rows="3"></textarea>
-    </div>
+    {!compact && (
+      <div class="lse-field">
+        <label class="lse-label" for={`${p}-message`}>{messageLabel} <span class="lse-opt">(optional)</span></label>
+        <textarea class="lse-input" id={`${p}-message`} name="message" rows="3"></textarea>
+      </div>
+    )}
     <div class="lse-ts" data-ts data-sitekey={site.tracking.turnstileSiteKey} data-test-sitekey={site.tracking.turnstileTestSiteKey}></div>
     <button class="lse-btn lse-btn--block" type="submit">{submitLabel}</button>
     <div class="lse-form__small"><slot name="after" /></div>
@@ -97,29 +111,50 @@ const {
   .lse-field.is-bad .lse-err { display: block; }
 
   .lse-form { max-width: 560px; }
-  .lse-form__title { font-size: var(--fs-h3); }
+  .lse-form__title { font-size: var(--fs-h3); font-weight: 800; letter-spacing: -.025em; }
   .lse-form__sub { margin-top: 8px; color: var(--ink-2); }
   .lse-form form { margin-top: var(--s3); display: grid; gap: 18px; }
   .lse-field { display: grid; gap: 6px; }
-  .lse-label { font-weight: 600; font-size: 17px; }
+  .lse-label { font-weight: 600; font-size: 16px; color: var(--ink); }
   .lse-opt { font-weight: 400; color: var(--muted); }
   .lse-input {
     width: 100%; font: 400 18px / 1.4 var(--sans); color: var(--ink);
-    background: var(--sheet); border: 1px solid #8d9a92; border-radius: var(--r-btn);
+    background: var(--paper); border: 1.5px solid #8a8f86; border-radius: var(--r-btn);
     padding: 12px 14px;
   }
-  .lse-input:focus-visible { outline: 3px solid var(--ink); outline-offset: 1px; box-shadow: none; }
+  .lse-input:focus-visible { outline: 3px solid var(--ink); outline-offset: 1px; box-shadow: 0 0 0 6px var(--marker); border-color: var(--ink); }
   textarea.lse-input { resize: vertical; min-height: 96px; }
   .lse-field.is-bad .lse-input { border-color: #9b2c1f; border-width: 2px; }
   .lse-err { font-size: 15px; color: #8a2417; }
-  .lse-form__alert { padding: 14px 16px; border-left: 3px solid #9b2c1f; background: var(--sheet); color: var(--ink); margin-top: var(--s2); }
+  .lse-form__alert { padding: 14px 16px; border-left: 3px solid #9b2c1f; background: var(--paper); color: var(--ink); margin-top: var(--s2); }
   .lse-form button.lse-btn { margin-top: 6px; justify-self: start; }
   .lse-form__small { display: grid; gap: 4px; color: var(--ink-2); font-size: 16px; }
   .lse-form__small:empty { display: none; }
   .lse-form__privacy { font-size: var(--fs-meta); color: var(--muted); }
   .lse-form__privacy a { color: var(--muted); }
-  .lse-form__done { margin-top: var(--s3); padding: var(--s3); background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r-sheet); }
+  .lse-form__done { margin-top: var(--s3); padding: var(--s3); background: var(--paper); border: 2px solid var(--ink); border-radius: var(--r-frame); }
   .lse-form__done p { margin-top: 8px; color: var(--ink-2); }
+
+  /* Compact (hero): a card, the website field set like a search box, name and email side by side. */
+  .lse-form--compact { max-width: 560px; padding: 22px 22px 18px; background: var(--paper); border: 2px solid var(--ink); border-radius: 16px; }
+  .lse-form--compact .lse-form__title { font-size: 21px; letter-spacing: -.02em; }
+  .lse-form--compact .lse-form__sub { margin-top: 4px; font-size: 16px; }
+  .lse-form--compact form { margin-top: 16px; gap: 12px; grid-template-columns: 1fr 1fr; }
+  .lse-form--compact form > * { grid-column: 1 / -1; }
+  .lse-form--compact .lse-field:not(.lse-field--site) { grid-column: auto; }
+  .lse-form--compact .lse-label { font-size: 15px; }
+  .lse-form--compact .lse-input { padding: 11px 13px; font-size: 17px; }
+  .lse-form--compact .lse-field--site .lse-input {
+    padding: 13px 18px 13px 46px; border-radius: 999px; border-color: var(--ink);
+    background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 5 5'/%3E%3C/svg%3E") no-repeat 16px 50%;
+  }
+  .lse-form--compact button.lse-btn { margin-top: 2px; justify-self: stretch; width: 100%; }
+  .lse-form--compact .lse-ts:empty { display: none; }
+  .lse-form--compact .lse-form__privacy { font-size: 13.5px; }
+  @media (max-width: 420px) {
+    .lse-form--compact { padding: 18px 16px 14px; }
+    .lse-form--compact form { grid-template-columns: 1fr; }
+  }
 </style>
 
 <script>

@@ -1,82 +1,50 @@
-/* LSE design tokens: Tile A, "the marked-up brief" (brand/BRAND-NOTES.md, owner-approved 2026-11-08).
-   Nothing here comes from LCME (no #0066FF, no Schibsted Grotesk; research/LCME-FINGERPRINT.md section 2).
-   Contrast figures are against paper unless noted. docs/design-system.md explains how to use each token. */
+/* LSE design tokens: "Marked" (homepage v2, 2026-11-08). docs/design-system.md explains each one.
+   White paper, black ink, one highlighter colour taken from the logo. The highlighter only ever marks proof:
+   the line in a screenshot that matters, a rank, a number. Nothing here comes from LCME (no #0066FF or any
+   royal blue, no navy, no Schibsted Grotesk; research/LCME-FINGERPRINT.md section 2). */
 
-/* Self-hosted, subset to Latin. Newsreader roman is 500 only with the optical-size axis kept (16 to 72),
-   so big headings get the display cut. Newsreader italic is 400 at opsz 18, for margin notes only.
-   Source Sans 3 is variable 400 to 600. */
+/* Libre Franklin, the American newspaper grotesk, variable 400 to 900, subset to Latin. One family does
+   everything: 800 to 900 for headlines and numbers, 400 to 600 for text. */
 @font-face {
-  font-family: 'Newsreader';
-  src: url('/fonts/newsreader-roman.woff2') format('woff2');
-  font-weight: 400 500;
+  font-family: 'Libre Franklin';
+  src: url('/fonts/libre-franklin.woff2') format('woff2');
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
+/* Arial sized to Libre Franklin's width and metrics (measured with HarfBuzz on a sample sentence), so the
+   swap moves nothing. */
 @font-face {
-  font-family: 'Newsreader';
-  src: url('/fonts/newsreader-italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  src: url('/fonts/source-sans-3.woff2') format('woff2');
-  font-weight: 400 600;
-  font-style: normal;
-  font-display: swap;
-}
-/* Fallbacks sized to the web fonts' widths and metrics, so the swap moves nothing (CLS 0).
-   Measured with fontTools on a sample sentence: Newsreader vs Georgia, Source Sans 3 vs Arial. */
-@font-face {
-  font-family: 'Newsreader Fallback';
-  src: local('Georgia');
-  size-adjust: 95.04%;
-  ascent-override: 77.33%;
-  descent-override: 27.88%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: 'Newsreader Fallback';
-  src: local('Georgia Italic'), local('Georgia-Italic');
-  font-style: italic;
-  size-adjust: 85.09%;
-  ascent-override: 86.38%;
-  descent-override: 31.14%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: 'Source Sans 3 Fallback';
+  font-family: 'Libre Franklin Fallback';
   src: local('Arial'), local('ArialMT');
-  size-adjust: 91.98%;
-  ascent-override: 111.32%;
-  descent-override: 43.49%;
+  size-adjust: 103%;
+  ascent-override: 93.8%;
+  descent-override: 23.9%;
   line-gap-override: 0%;
 }
 
 :root {
-  /* Colour */
-  --paper: #f3f2ea; /* page base */
-  --sheet: #ffffff; /* documents and results only: ink on it 13.08:1 */
-  --ink: #12372a; /* evergreen: text, buttons, footer. 11.65:1 */
-  --ink-2: #3c5449; /* moss: secondary text, notes. 7.31:1 */
-  --muted: #5f6e66; /* lichen: small meta only. 4.78:1 */
-  --rule: #cbd0c2; /* hairlines, never text */
-  --marker: #d4f04a; /* highlighter: behind ink text, rank chip, button hover. Never text, never thin lines */
-  --hatch: #e4e6dc; /* placeholder fill and photo backdrop */
-  --on-ink: #f3f2ea; /* text on ink. 11.65:1 */
-  --on-ink-2: #b9c9be; /* secondary text on ink. 7.57:1 */
-  --rule-on-ink: #2f5a47;
+  /* Colour. Contrast is against paper unless noted. */
+  --paper: #ffffff; /* page */
+  --fog: #f1f3f0; /* alternate bands, behind screenshot frames. ink on it 19.1:1 */
+  --ink: #000000; /* headings, numbers, buttons, footer. 21:1 */
+  --ink-2: #2b2d29; /* body and leads. 14.2:1 */
+  --muted: #5d6159; /* captions and meta, 15px and up. 6.3:1, 5.7:1 on fog */
+  --line: #d8dcd4; /* frames and hairlines, never text */
+  --line-2: #b6bbb1; /* stronger rules */
+  --marker: #d4f04a; /* the logo's highlighter. Behind ink only (ink on it 16.9:1). Never text on paper */
+  --on-ink: #ffffff; /* text on the black footer */
+  --on-ink-2: #b9bcb5; /* secondary text on black. 10.1:1 */
+  --rule-on-ink: #33352f;
 
   /* Type */
-  --serif: 'Newsreader', 'Newsreader Fallback', Georgia, serif;
-  --sans: 'Source Sans 3', 'Source Sans 3 Fallback', Arial, sans-serif;
-  --fs-h1: clamp(44px, 5.6vw + 4px, 88px);
-  --fs-h2: clamp(32px, 2.6vw + 16px, 52px);
-  --fs-h3: clamp(23px, 0.6vw + 18px, 28px);
-  --fs-lead: clamp(19px, 0.5vw + 16px, 23px);
-  --fs-body: clamp(17px, 0.25vw + 16px, 19px);
-  --fs-note: 18px;
+  --sans: 'Libre Franklin', 'Libre Franklin Fallback', Arial, sans-serif;
+  --fs-h1: clamp(44px, 4.4vw + 14px, 86px);
+  --fs-h2: clamp(32px, 2.2vw + 20px, 56px);
+  --fs-h3: clamp(22px, 0.7vw + 17px, 28px);
+  --fs-num: clamp(76px, 8vw + 20px, 152px); /* result numbers */
+  --fs-lead: clamp(19px, 0.35vw + 16px, 22px);
+  --fs-body: clamp(17px, 0.2vw + 16px, 18px);
   --fs-meta: 15px;
 
   /* Space: 8px base */
@@ -87,14 +55,13 @@
   --s5: 48px;
   --s6: 64px;
   --s7: 96px;
-  --section: clamp(80px, 10vw, 144px);
-  --wrap: 1200px;
-  --gut: clamp(16px, 4vw, 40px);
-  --note-col: 280px;
-  --note-gap: 64px;
+  --section: clamp(72px, 8.5vw, 132px);
+  --wrap: 1280px;
+  --gut: clamp(16px, 4vw, 48px);
 
-  /* Shape */
-  --r-btn: 4px;
-  --r-sheet: 6px;
-  --r-mark: 3px 6px 4px 7px; /* irregular on purpose: marks feel hand-made */
+  /* Shape. The swipe is the logo's off-square block; tags and marks reuse it. */
+  --r-btn: 8px;
+  --r-frame: 12px;
+  --swipe: polygon(1.5% 7%, 100% 0, 98.6% 93%, 0 100%);
+  --shadow-lift: 0 1px 2px rgba(0, 0, 0, 0.06), 0 18px 40px -18px rgba(0, 0, 0, 0.28);
 }

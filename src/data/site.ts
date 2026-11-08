@@ -18,7 +18,7 @@ export const site = {
   // The one CTA, everywhere (research/FACTS.md section 1). It opens the booking dialog.
   cta: {
     label: 'Book a ranking review',
-    sub: "Free, 30 minutes. Fahim pulls up your firm's real rankings while you watch.",
+    sub: 'Free, 30 minutes. Fahim checks your real rankings with you.',
     href: '/#book',
   },
   contact: {
@@ -26,8 +26,8 @@ export const site = {
   },
   calendly: {
     url: calendly,
-    // Calendly's own accent set to LSE's evergreen ink.
-    embedUrl: `${calendly}?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=12372a`,
+    // Calendly's own accent set to LSE's ink (black).
+    embedUrl: `${calendly}?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=000000`,
   },
   prices: {
     seo: 'from $2,000/month',
@@ -58,7 +58,7 @@ export const site = {
     { label: 'About', href: '/about/sm-fahim/' },
   ] as NavLink[],
   footer: {
-    line: 'SEO for law firms, led by S. M. Fahim. Each month you see every task in a log.',
+    line: 'SEO and websites for law firms, led by S. M. Fahim.',
     copyright: '© 2026 Lawyer SEO Expert',
   },
   social: {
@@ -75,9 +75,23 @@ export const fahimSchema = {
   name: 'S. M. Fahim',
   jobTitle: 'SEO specialist',
   worksFor: { '@id': 'https://lawyerseoexpert.com/#org' },
-  image: 'https://lawyerseoexpert.com/img/people/fahim-720.webp',
+  image: 'https://lawyerseoexpert.com/img/people/fahim.webp',
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Rajshahi University of Engineering & Technology (RUET)' },
   knowsAbout: ['Search engine optimization', 'Law firm SEO', 'Local SEO', 'Web development'],
+};
+
+/** Josh Henderson, Sales Director, from research/FACTS.md section 3. He gives business input, not legal advice. */
+export const joshSchema = {
+  '@type': 'Person',
+  '@id': 'https://lawyerseoexpert.com/#josh',
+  name: 'Josh Henderson',
+  jobTitle: 'Sales Director',
+  worksFor: { '@id': 'https://lawyerseoexpert.com/#org' },
+  image: 'https://lawyerseoexpert.com/img/people/josh.webp',
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Texas Tech University School of Law' },
+    { '@type': 'CollegeOrUniversity', name: 'University of New Mexico' },
+  ],
 };
 
 /** Organization and WebSite JSON-LD, used on every indexable page. */
@@ -89,7 +103,7 @@ export const siteSchema: object[] = [
     url: 'https://lawyerseoexpert.com/',
     logo: 'https://lawyerseoexpert.com/icon-512.png',
     image: 'https://lawyerseoexpert.com/img/og-default.png',
-    description: 'SEO and websites for law firms, led by S. M. Fahim, with a monthly log of every task.',
+    description: "SEO for law firms that puts them at the top of Google, the Map and Google's AI answers, led by S. M. Fahim. Websites built to rank.",
     email: 'hello@lawyerseoexpert.com',
     areaServed: { '@type': 'Country', name: 'United States' },
     priceRange: 'From $2,000',

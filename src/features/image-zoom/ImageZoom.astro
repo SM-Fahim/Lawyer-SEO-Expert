@@ -1,0 +1,49 @@
+---
+// Click or tap a screenshot to see it full size. Any img with data-zoom-src opens here (Shot.astro sets it
+// on every screenshot that has alt text). Keyboard: Enter or Space opens, Esc closes.
+---
+<dialog class="lse-zoom" aria-label="Enlarged screenshot" data-zoom>
+  <button class="lse-zoom__x" type="button" aria-label="Close" data-zoom-close>&times;</button>
+  <img alt="" data-zoom-img>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-zoom]');
+  if (dialog && typeof dialog.showModal === 'function') {
+    const big = dialog.querySelector<HTMLImageElement>('[data-zoom-img]')!;
+    document.querySelectorAll<HTMLImageElement>('img[data-zoom-src]').forEach((img) => {
+      const open = () => {
+        big.src = img.dataset.zoomSrc || img.currentSrc || img.src;
+        big.alt = img.alt;
+        dialog.showModal();
+      };
+      img.addEventListener('click', open);
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', `${img.alt} (open full size)`);
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open();
+        }
+      });
+    });
+    dialog.querySelector('[data-zoom-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>
+
+<style is:global>
+  .lse-zoom { width: min(1280px, calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); padding: 0; border: 0; border-radius: var(--r-frame); background: #fff; overflow: auto; }
+  .lse-zoom::backdrop { background: rgba(0, 0, 0, .78); }
+  .lse-zoom img { width: 100%; height: auto; }
+  .lse-zoom__x {
+    position: sticky; top: 10px; float: right; z-index: 1; margin: 10px 10px -54px 0;
+    display: grid; place-items: center; width: 44px; height: 44px;
+    font: 400 30px / 1 var(--sans); color: var(--ink); background: var(--marker);
+    border: 2px solid var(--ink); border-radius: 50%; cursor: pointer;
+  }
+  .lse-shot__img[data-zoom-src]:focus-visible { outline-offset: -3px; box-shadow: none; }
+</style>
