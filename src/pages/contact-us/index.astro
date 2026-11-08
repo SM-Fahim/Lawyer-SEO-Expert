@@ -5,7 +5,9 @@ import LeadForm from '../../components/LeadForm.astro';
 import { site } from '../../data/site';
 ---
 <Base pageType="company" path="/contact-us/" title="Contact (placeholder)" description="Placeholder contact page for the Lawyer SEO Expert rebuild.">
-  <h1>Contact</h1>
-  <p>Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or <a href="/#book" data-cal>schedule a call</a>.</p>
-  <LeadForm title="Send a message" idPrefix="c" label="Contact page message" />
+  <div class="lse-wrap" style="padding-top:64px"><h1>Contact</h1></div>
+  <div class="lse-wrap" style="padding-block:64px">
+  <p>Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or <a href="/#book" data-cal>book a ranking review</a>.</p>
+  <LeadForm title="Send a message" titleTag="h2" idPrefix="c" label="Contact page message" phone />
+  </div>
 </Base>

@@ -1,10 +1,100 @@
-/* Design tokens. TODO(design): the design phase fills these in. Nothing here is final, and none of it
-   comes from LCME (no #0066FF, no Schibsted Grotesk; see research/LCME-FINGERPRINT.md section 2). */
+/* LSE design tokens: Tile A, "the marked-up brief" (brand/BRAND-NOTES.md, owner-approved 2026-11-08).
+   Nothing here comes from LCME (no #0066FF, no Schibsted Grotesk; research/LCME-FINGERPRINT.md section 2).
+   Contrast figures are against paper unless noted. docs/design-system.md explains how to use each token. */
+
+/* Self-hosted, subset to Latin. Newsreader roman is 500 only with the optical-size axis kept (16 to 72),
+   so big headings get the display cut. Newsreader italic is 400 at opsz 18, for margin notes only.
+   Source Sans 3 is variable 400 to 600. */
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-roman.woff2') format('woff2');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('/fonts/source-sans-3.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Fallbacks sized to the web fonts' widths and metrics, so the swap moves nothing (CLS 0).
+   Measured with fontTools on a sample sentence: Newsreader vs Georgia, Source Sans 3 vs Arial. */
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Georgia');
+  size-adjust: 95.04%;
+  ascent-override: 77.33%;
+  descent-override: 27.88%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Georgia Italic'), local('Georgia-Italic');
+  font-style: italic;
+  size-adjust: 85.09%;
+  ascent-override: 86.38%;
+  descent-override: 31.14%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 91.98%;
+  ascent-override: 111.32%;
+  descent-override: 43.49%;
+  line-gap-override: 0%;
+}
+
 :root {
-  --lse-paper: #ffffff; /* TODO(design): page background */
-  --lse-ink: #000000; /* TODO(design): text */
-  --lse-accent: #000000; /* TODO(design): the one sharp accent */
-  --lse-line: #cccccc; /* TODO(design): borders */
-  --lse-font-body: system-ui, sans-serif; /* TODO(design): clean sans */
-  --lse-font-head: Georgia, serif; /* TODO(design): headline serif */
+  /* Colour */
+  --paper: #f3f2ea; /* page base */
+  --sheet: #ffffff; /* documents and results only: ink on it 13.08:1 */
+  --ink: #12372a; /* evergreen: text, buttons, footer. 11.65:1 */
+  --ink-2: #3c5449; /* moss: secondary text, notes. 7.31:1 */
+  --muted: #5f6e66; /* lichen: small meta only. 4.78:1 */
+  --rule: #cbd0c2; /* hairlines, never text */
+  --marker: #d4f04a; /* highlighter: behind ink text, rank chip, button hover. Never text, never thin lines */
+  --hatch: #e4e6dc; /* placeholder fill and photo backdrop */
+  --on-ink: #f3f2ea; /* text on ink. 11.65:1 */
+  --on-ink-2: #b9c9be; /* secondary text on ink. 7.57:1 */
+  --rule-on-ink: #2f5a47;
+
+  /* Type */
+  --serif: 'Newsreader', 'Newsreader Fallback', Georgia, serif;
+  --sans: 'Source Sans 3', 'Source Sans 3 Fallback', Arial, sans-serif;
+  --fs-h1: clamp(44px, 5.6vw + 4px, 88px);
+  --fs-h2: clamp(32px, 2.6vw + 16px, 52px);
+  --fs-h3: clamp(23px, 0.6vw + 18px, 28px);
+  --fs-lead: clamp(19px, 0.5vw + 16px, 23px);
+  --fs-body: clamp(17px, 0.25vw + 16px, 19px);
+  --fs-note: 18px;
+  --fs-meta: 15px;
+
+  /* Space: 8px base */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --section: clamp(80px, 10vw, 144px);
+  --wrap: 1200px;
+  --gut: clamp(16px, 4vw, 40px);
+  --note-col: 280px;
+  --note-gap: 64px;
+
+  /* Shape */
+  --r-btn: 4px;
+  --r-sheet: 6px;
+  --r-mark: 3px 6px 4px 7px; /* irregular on purpose: marks feel hand-made */
 }

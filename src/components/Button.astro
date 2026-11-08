@@ -1,0 +1,17 @@
+---
+// The one button. By default it is the booking CTA: a link to /#book that the booking dialog catches
+// (without JavaScript it lands on the homepage's final section). One per view; never two side by side.
+// For a form's submit, use <button class="lse-btn" type="submit"> directly, which shares these looks.
+import { site } from '../data/site';
+interface Props {
+  label?: string;
+  href?: string;
+  size?: 'md' | 'sm';
+  /** Full width on phones. On by default for in-page CTAs; the header turns it off. */
+  block?: boolean;
+  class?: string;
+}
+const { label = site.cta.label, href = site.cta.href, size = 'md', block = true, class: className } = Astro.props;
+const isBooking = href === site.cta.href;
+---
+<a class:list={['lse-btn', size === 'sm' && 'lse-btn--sm', block && 'lse-btn--block', className]} href={href} data-cal={isBooking ? '' : undefined}>{label}</a>

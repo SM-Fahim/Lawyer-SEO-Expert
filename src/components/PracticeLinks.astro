@@ -1,0 +1,23 @@
+---
+// The practice-area pages as plain text links in columns, with hairlines. Each shows one real search phrase
+// for that area under it, set like a typed query. No icons.
+import { practicePages } from '../data/pages';
+---
+<ul class="lse-practice">
+  {practicePages.map((p) => (
+    <li>
+      <a href={p.href}>{p.label}</a>
+      <span class="lse-practice__q"><span class="lse-vh">A real search: </span>{p.query}</span>
+    </li>
+  ))}
+</ul>
+
+<style is:global>
+  .lse-practice { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); column-gap: 48px; border-top: 1px solid var(--ink); }
+  .lse-practice li { display: grid; gap: 2px; padding: 18px 0 20px; border-bottom: 1px solid var(--rule); }
+  .lse-practice a { font: 500 clamp(22px, .6vw + 18px, 26px) / 1.25 var(--serif); text-decoration-color: var(--rule); }
+  .lse-practice a:hover { text-decoration-color: var(--ink); }
+  .lse-practice__q { font-size: var(--fs-meta); color: var(--muted); }
+  .lse-practice__q::before { content: "\201C"; }
+  .lse-practice__q::after { content: "\201D"; }
+</style>

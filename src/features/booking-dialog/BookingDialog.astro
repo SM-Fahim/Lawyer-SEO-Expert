@@ -2,9 +2,10 @@
 // Every booking link opens this: any link to #book or /#book, plus [data-cal].
 // Other features open it by dispatching 'lse:book' on document, with detail.source.
 import CalendlyInline from '../../components/CalendlyInline.astro';
+import { site } from '../../data/site';
 ---
 <dialog class="lse-bookdlg" aria-labelledby="bookdlg-title" data-bookdlg>
-  <CalendlyInline titleId="bookdlg-title">
+  <CalendlyInline titleId="bookdlg-title" title={site.cta.label} sub={site.cta.sub}>
     <button slot="close" class="lse-bookdlg__x" type="button" aria-label="Close" data-bookdlg-close>&times;</button>
   </CalendlyInline>
 </dialog>
@@ -17,8 +18,8 @@ import CalendlyInline from '../../components/CalendlyInline.astro';
   if (dialog && typeof dialog.showModal === 'function') {
     const title = dialog.querySelector('.lse-cal__title')!;
     const sub = dialog.querySelector('.lse-cal__head p')!;
-    // TODO(copy): final wording for the dialog. One text for every source.
-    const COPY: [string, string] = ['Schedule a call', 'Choose a time that suits you.'];
+    // One text for every source: the CTA's own words (src/data/site.ts).
+    const COPY: [string, string] = [title.textContent ?? '', sub.textContent ?? ''];
 
     const open = (source: string) => {
       if (dialog.open) return;
@@ -46,7 +47,9 @@ import CalendlyInline from '../../components/CalendlyInline.astro';
 </script>
 
 <style is:global>
-/* TODO(design): the dialog's looks. It works unstyled. */
-.lse-bookdlg{width:min(540px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0}
-.lse-bookdlg .lse-cal__body{height:min(660px,calc(100dvh - 120px))}
+.lse-bookdlg{width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--rule);border-radius:var(--r-sheet);background:var(--sheet);color:var(--ink)}
+.lse-bookdlg::backdrop{background:rgba(18,55,42,.55)}
+.lse-bookdlg .lse-cal__body{height:min(660px,calc(100dvh - 140px))}
+.lse-bookdlg__x{flex:none;width:40px;height:40px;font:400 28px/1 var(--sans);color:var(--ink);background:none;border:1.5px solid var(--ink);border-radius:var(--r-btn);cursor:pointer}
+.lse-bookdlg__x:hover{background:var(--marker)}
 </style>

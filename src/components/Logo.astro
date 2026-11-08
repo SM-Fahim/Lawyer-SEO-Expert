@@ -1,0 +1,24 @@
+---
+// The concept-3 lockup (highlighter S, "SEO" highlighted in the wordmark), inlined so it costs no request.
+// Lettering is outlined to paths, so it needs no font. `reverse` is for the ink footer.
+import lockup from '../assets/logo/concept-3-lockup.svg?raw';
+import reverse from '../assets/logo/concept-3-lockup-reverse.svg?raw';
+interface Props {
+  variant?: 'default' | 'reverse';
+  class?: string;
+}
+const { variant = 'default', class: className } = Astro.props;
+const svg = (variant === 'reverse' ? reverse : lockup)
+  .replace(/<title>[\s\S]*?<\/title>/, '')
+  .replace(/\swidth="[^"]*"\sheight="[^"]*"\srole="img"\saria-label="[^"]*"/, ' aria-hidden="true" focusable="false"')
+  // Two copies on one page must not share a mask id.
+  .replace(/id="m3"/g, `id="m3-${variant}"`)
+  .replace(/url\(#m3\)/g, `url(#m3-${variant})`);
+---
+<a class:list={['lse-logo', className]} href="/" aria-label="Lawyer SEO Expert, home" set:html={svg} />
+
+<style>
+  .lse-logo { display: inline-block; line-height: 0; border-radius: 2px; }
+  .lse-logo :global(svg) { height: 40px; width: auto; }
+  @media (max-width: 760px) { .lse-logo :global(svg) { height: 32px; } }
+</style>

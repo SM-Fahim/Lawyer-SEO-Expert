@@ -1,0 +1,27 @@
+---
+// A plain proof screenshot on a white sheet, with a caption that says where and when it was taken.
+// Never shown larger than its natural size (max-width is the image's width), so low-resolution captures
+// stay sharp. For a search result that needs marks, use SerpFigure.
+interface Props {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  caption: string;
+  class?: string;
+}
+const { src, width, height, alt, caption, class: className } = Astro.props;
+---
+<figure class:list={['lse-shot', className]}>
+  <div class="lse-shot__frame lse-sheet" style={`max-width:${width + 2}px`}>
+    <img src={src} width={width} height={height} alt={alt} loading="lazy" decoding="async">
+  </div>
+  <figcaption class="lse-shot__cap">{caption}</figcaption>
+</figure>
+
+<style is:global>
+  .lse-shot { display: grid; gap: 10px; align-content: start; }
+  .lse-shot__frame { overflow: hidden; }
+  .lse-shot__frame img { width: 100%; }
+  .lse-shot__cap { font: italic 400 17px / 1.4 var(--serif); color: var(--ink-2); }
+</style>

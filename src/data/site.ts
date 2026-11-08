@@ -1,4 +1,4 @@
-// Sitewide facts: name, contact, booking link, tracking IDs, schema. Placeholder nav until the design phase.
+// Sitewide facts: name, contact, booking link, tracking IDs, schema, header navigation.
 
 export interface NavLink {
   label: string;
@@ -12,11 +12,13 @@ const calendly = 'https://calendly.com/connect-with-fahim/schedule-call';
 export const site = {
   name: 'Lawyer SEO Expert',
   url: 'https://lawyerseoexpert.com',
-  // TODO(design): real share image and logo. These paths are placeholders and are not required to exist.
+  // 1200x630, made from the brand (docs/design-system.md says how to remake it).
   ogImage: '/img/og-default.png',
-  logo: '/favicon.ico',
+  logo: '/favicon.svg',
+  // The one CTA, everywhere (research/FACTS.md section 1). It opens the booking dialog.
   cta: {
-    label: 'Schedule a call',
+    label: 'Book a ranking review',
+    sub: "Free, 30 minutes. Fahim pulls up your firm's real rankings while you watch.",
     href: '/#book',
   },
   contact: {
@@ -24,8 +26,8 @@ export const site = {
   },
   calendly: {
     url: calendly,
-    // TODO(design): add primary_color=<LSE accent hex> once the brand colour is chosen.
-    embedUrl: `${calendly}?hide_event_type_details=1&hide_gdpr_banner=1`,
+    // Calendly's own accent set to LSE's evergreen ink.
+    embedUrl: `${calendly}?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=12372a`,
   },
   prices: {
     seo: 'from $2,000/month',
@@ -47,12 +49,16 @@ export const site = {
     // Cloudflare's published test key: always passes, widget visible. Used off production.
     turnstileTestSiteKey: '1x00000000000000000000AA',
   },
-  // TODO(design): the real navigation and footer.
+  // Header links. The footer lists every planned page from src/data/pages.ts.
   nav: [
-    { label: 'Contact', href: '/contact-us/' },
+    { label: 'SEO services', href: '/law-firm-seo-services/' },
+    { label: 'Practice areas', href: '/#practice-areas' },
+    { label: 'Web design', href: '/lawyer-web-design-development/' },
+    { label: 'Pricing', href: '/seo-pricing/' },
+    { label: 'About', href: '/about/sm-fahim/' },
   ] as NavLink[],
   footer: {
-    legal: [{ label: 'Privacy policy', href: '/privacy-policy/' }] as NavLink[],
+    line: 'SEO for law firms, led by S. M. Fahim. Each month you see every task in a log.',
     copyright: '© 2026 Lawyer SEO Expert',
   },
   social: {
@@ -62,15 +68,31 @@ export const site = {
   },
 };
 
-/** Organization and WebSite JSON-LD, used on every indexable page. TODO(copy): description and people. */
+/** S. M. Fahim, from research/FACTS.md section 3. The homepage adds this node; about pages can too. */
+export const fahimSchema = {
+  '@type': 'Person',
+  '@id': 'https://lawyerseoexpert.com/#fahim',
+  name: 'S. M. Fahim',
+  jobTitle: 'SEO specialist',
+  worksFor: { '@id': 'https://lawyerseoexpert.com/#org' },
+  image: 'https://lawyerseoexpert.com/img/people/fahim-720.webp',
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Rajshahi University of Engineering & Technology (RUET)' },
+  knowsAbout: ['Search engine optimization', 'Law firm SEO', 'Local SEO', 'Web development'],
+};
+
+/** Organization and WebSite JSON-LD, used on every indexable page. */
 export const siteSchema: object[] = [
   {
     '@type': 'ProfessionalService',
     '@id': 'https://lawyerseoexpert.com/#org',
     name: 'Lawyer SEO Expert',
     url: 'https://lawyerseoexpert.com/',
+    logo: 'https://lawyerseoexpert.com/icon-512.png',
+    image: 'https://lawyerseoexpert.com/img/og-default.png',
+    description: 'SEO and websites for law firms, led by S. M. Fahim, with a monthly log of every task.',
     email: 'hello@lawyerseoexpert.com',
-    areaServed: 'US',
+    areaServed: { '@type': 'Country', name: 'United States' },
+    priceRange: 'From $2,000',
     sameAs: [site.social.linkedin, site.social.facebook, site.social.instagram],
   },
   {

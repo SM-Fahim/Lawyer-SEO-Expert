@@ -1,0 +1,80 @@
+---
+// The monthly work log as a working document: a white sheet, hairline rows, real links in "Check it".
+// Rows come from src/data/worklog.ts by default. `highlight` marks one row's task; the `note` slot sets a
+// review note (italic serif, marker bar) under it.
+// Under 760px each row stacks into a short block; the column names stay readable as row labels.
+import { worklog, type WorkLogRow } from '../data/worklog';
+import Placeholder from './Placeholder.astro';
+interface Props {
+  rows?: readonly WorkLogRow[];
+  title: string;
+  highlight?: number;
+}
+const { rows = worklog, title, highlight } = Astro.props;
+const fmt = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const external = (href: string) => /^https?:/.test(href);
+---
+<div class="lse-log lse-sheet">
+  <div class="lse-log__head">
+    <h3>{title}</h3>
+    <p class="lse-log__cap"><slot name="caption" /></p>
+  </div>
+  <table>
+    <thead>
+      <tr><th scope="col">Date</th><th scope="col">What was done</th><th scope="col">Where</th><th scope="col">Why</th><th scope="col">Check it</th></tr>
+    </thead>
+    <tbody>
+      {rows.map((row, i) => (
+        <tr>
+          <td class="lse-log__date" data-label="Date">
+            {row.date ? <time datetime={row.date}>{fmt(row.date)}</time> : <Placeholder collect="launch date for this work-log row" label="launch day" />}
+          </td>
+          <td class="lse-log__task" data-label="What was done">
+            {i === highlight ? <mark class="lse-mk">{row.task}</mark> : row.task}
+            {i === highlight && Astro.slots.has('note') && <span class="lse-log__note"><slot name="note" /></span>}
+          </td>
+          <td data-label="Where">{row.where}</td>
+          <td data-label="Why">{row.why}</td>
+          <td data-label="Check it">
+            <a href={row.href} target={external(row.href) ? '_blank' : undefined} rel={external(row.href) ? 'noopener' : undefined}>{row.check}</a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <div class="lse-log__foot"><slot name="foot" /></div>
+</div>
+
+<style is:global>
+  .lse-log { padding: clamp(20px, 3.4vw, 44px) clamp(16px, 3.4vw, 44px); }
+  .lse-log__head { padding-bottom: 16px; border-bottom: 1.5px solid var(--ink); display: grid; gap: 6px; }
+  .lse-log__head h3 { font-size: clamp(22px, 1.4vw + 10px, 26px); }
+  .lse-log__cap { color: var(--ink-2); font-size: 16px; }
+  .lse-log table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.45; }
+  .lse-log th { text-align: left; font-weight: 600; color: var(--ink-2); font-size: 15px; padding: 14px 16px 10px 0; border-bottom: 1px solid var(--rule); }
+  .lse-log td { vertical-align: top; padding: 16px 16px 16px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+  .lse-log td.lse-log__task { color: var(--ink); font-weight: 600; }
+  .lse-log td:last-child, .lse-log th:last-child { padding-right: 0; white-space: nowrap; }
+  .lse-log tr:last-child td { border-bottom: 0; }
+  .lse-log__date { white-space: nowrap; font: 400 17px / 1.4 var(--serif); color: var(--ink-2); font-variant-numeric: oldstyle-nums; }
+  .lse-log__date time { font-family: var(--serif); }
+  .lse-log td:last-child a { font-weight: 600; color: var(--ink); }
+  .lse-log__foot { margin-top: 18px; padding-top: 16px; border-top: 1.5px solid var(--ink); color: var(--ink-2); font-size: 17px; }
+  .lse-log__foot:empty { display: none; }
+  .lse-log__note { display: block; margin-top: 10px; padding-left: 12px; border-left: 3px solid var(--marker); font: italic 400 17px / 1.4 var(--serif); color: var(--ink-2); }
+  @media (min-width: 761px) {
+    .lse-log td:nth-child(2) { width: 32%; }
+    .lse-log td:nth-child(4) { width: 30%; }
+  }
+  @media (max-width: 760px) {
+    .lse-log thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .lse-log table, .lse-log tbody, .lse-log tr, .lse-log td { display: block; }
+    .lse-log tr { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+    .lse-log tr:last-child { border-bottom: 0; padding-bottom: 0; }
+    .lse-log td { border: 0; padding: 2px 0; }
+    .lse-log td.lse-log__task { font-size: 17px; margin: 2px 0 6px; }
+    .lse-log td[data-label="Where"]::before, .lse-log td[data-label="Why"]::before { content: attr(data-label) ": "; color: var(--muted); }
+    .lse-log td:last-child { margin-top: 6px; }
+  }
+</style>

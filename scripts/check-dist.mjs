@@ -4,19 +4,28 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { plannedPaths } from '../src/data/pages.ts';
 import { pendingRedirectTargets, redirects } from '../src/data/redirects.ts';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DIST = join(ROOT, 'dist');
 const SITE_URL = 'https://lawyerseoexpert.com';
 
-// Text that must never ship, in any file type below.
-const BANNED = ['data-placeholder', 'lorem ipsum', 'wp-json', 'wpcf7', 'cdn.tailwindcss', 'fonts.googleapis.com', 'fonts.gstatic.com', 'datalayer'];
+// A launch build (STRICT_REDIRECTS=1) turns the pre-launch allowances below into failures: unbuilt redirect
+// targets, links to planned pages that aren't built, and designed placeholders (data-placeholder).
+const STRICT = !!process.env.STRICT_REDIRECTS;
+
+// Text that must never ship, in any file type below. data-placeholder is checked separately: it may show on a
+// Preview (designed placeholders the owner fills in), and fails a launch build.
+const BANNED = ['lorem ipsum', 'wp-json', 'wpcf7', 'cdn.tailwindcss', 'fonts.googleapis.com', 'fonts.gstatic.com', 'datalayer'];
 // A word start, because "assigned cases" on the custom software pages isn't this.
 const BANNED_WORDS = [[/\bsigned case/, 'signed case']];
 const TEXT_FILES = /\.(html|js|mjs|css|json|xml|txt|svg)$/i;
 
 const redirectPaths = new Set(redirects.map((redirect) => redirect.from));
+const planned = new Set(plannedPaths);
+const plannedLinks = new Set();
+const placeholderPages = new Map();
 
 // ---------- Copy rules ----------
 // Scope: the page title, the meta description, and <main>'s visible text, image alt text and aria-labels.
@@ -277,10 +286,20 @@ for (const file of htmlFiles) {
       continue;
     }
     const samePage = !target;
-    if (!samePage && !isBuilt(linkPath) && !redirectPaths.has(linkPath)) fail(rel, `internal link goes nowhere: ${href}`);
+    if (!samePage && !isBuilt(linkPath) && !redirectPaths.has(linkPath)) {
+      // A planned page (src/data/pages.ts) can be linked before it's built, until launch.
+      if (planned.has(linkPath) && !STRICT) plannedLinks.add(linkPath);
+      else fail(rel, `internal link goes nowhere: ${href}`);
+    }
     // Inner pages have no #book section. The booking dialog catches these links.
     if (samePage && hash === 'book' && html.includes('data-bookdlg')) continue;
     if (hash && idsByPage.has(linkPath) && !idsByPage.get(linkPath).has(hash)) fail(rel, `link target #${hash} is missing on ${linkPath}`);
+  }
+
+  const placeholders = (html.match(/\sdata-placeholder=/g) ?? []).length;
+  if (placeholders) {
+    if (STRICT) fail(rel, `still has ${placeholders} placeholder(s) (data-placeholder)`);
+    else placeholderPages.set(path, placeholders);
   }
 
   checkCopy(rel, path, html);
@@ -399,7 +418,7 @@ function checkRedirectTargets() {
   if (waiting.length) {
     console.warn(`check-dist: warning, ${new Set(waiting).size} redirect target(s) not built yet (listed in pendingRedirectTargets): ${[...new Set(waiting)].join(', ')}. Launch needs this list empty.`);
   }
-  if (process.env.STRICT_REDIRECTS && waiting.length) fail('redirects.ts', 'pendingRedirectTargets must be empty for a launch build');
+  if (STRICT && waiting.length) fail('redirects.ts', 'pendingRedirectTargets must be empty for a launch build');
 }
 
 checkSitemap();
@@ -407,6 +426,13 @@ checkRobots();
 checkRedirectTargets();
 checkIntake();
 // ---------- End of sitemap and robots.txt ----------
+
+if (plannedLinks.size) {
+  console.warn(`check-dist: warning, links to ${plannedLinks.size} planned page(s) not built yet (src/data/pages.ts). Launch needs them built: ${[...plannedLinks].sort().join(', ')}`);
+}
+if (placeholderPages.size) {
+  console.warn(`check-dist: warning, placeholders still showing: ${[...placeholderPages].map(([page, n]) => `${page} (${n})`).join(', ')}. Launch needs none.`);
+}
 
 if (errors.length) {
   console.error(`check-dist: ${errors.length} problem(s)\n`);

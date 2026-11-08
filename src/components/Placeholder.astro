@@ -1,0 +1,23 @@
+---
+// A designed placeholder. Visibly a placeholder, never fake data. `collect` says what to collect, and lands in
+// data-placeholder so a launch build (STRICT_REDIRECTS=1) fails while any is left (scripts/check-dist.mjs).
+// Inline for a missing word or number; block for a missing image (give it the image's width and height).
+interface Props {
+  collect: string;
+  /** What shows. Defaults to `collect`. */
+  label?: string;
+  block?: boolean;
+  width?: number;
+  height?: number;
+}
+const { collect, label = collect, block = false, width, height } = Astro.props;
+const style = block && width && height ? `aspect-ratio:${width}/${height};max-width:${width}px;min-height:0` : undefined;
+---
+{block ? (
+  <div class="lse-ph lse-ph--block" data-placeholder={collect} style={style} role="img" aria-label={`Placeholder: ${label}`}>
+    <b>To collect</b>
+    <span>{label}</span>
+  </div>
+) : (
+  <span class="lse-ph" data-placeholder={collect}>{label}</span>
+)}

@@ -1,43 +1,42 @@
 ---
-// FAQ list. Build the page's FAQPage JSON-LD from the same items, so the two always match.
+// FAQ accordion: native <details>, so it needs no script. Hairline dividers, first question open.
+// Build the page's FAQPage JSON-LD from the same items with faqSchema() in src/lib/schema.ts, so the two match.
 export interface FaqItem {
   q: string;
-  /** The answer as shown. May hold links. */
+  /** The answer as shown. May hold links and inline placeholders. */
   html: string;
   /** Plain answer for JSON-LD. Defaults to html, so set it when html has markup. */
   text?: string;
 }
 interface Props {
   items: FaqItem[];
-  /** Which item starts open. */
+  /** Which item starts open. -1 for none. */
   open?: number;
 }
 const { items, open = 0 } = Astro.props;
 ---
-<div class="lse-faq__list">
+<div class="lse-faq">
   {items.map((item, i) => (
     <details open={i === open}>
-      <summary>{item.q}<span class="lse-pm" aria-hidden="true"></span></summary>
+      <summary><span>{item.q}</span><span class="lse-faq__pm" aria-hidden="true"></span></summary>
       <div class="lse-faq__a"><p set:html={item.html}></p></div>
     </details>
   ))}
 </div>
 
 <style is:global>
-.lse-faq{display:grid;gap:40px}
-@media (min-width:1024px){.lse-faq{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:88px;align-items:start}}
-.lse-faq__list{border-top:1px solid var(--line-2)}
-.lse-faq__list details{border-bottom:1px solid var(--line-2)}
-.lse-faq__list summary{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;color:var(--ink);font-size:1.1875rem;font-weight:650;letter-spacing:-.01em;line-height:1.35;cursor:pointer}
-.lse-faq__list summary:hover{color:var(--blue-d)}
-.lse-faq__list .lse-pm{flex:none}
-.lse-faq__a{max-width:40em;padding:0 0 24px;color:var(--ink-2)}
-
-/* FAQ +/- icon */
-.lse-pm{position:relative;width:30px;height:30px;border:1px solid var(--line-2);border-radius:8px;transition:background-color .2s,border-color .2s}
-.lse-pm::before,.lse-pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;border-radius:2px;background:var(--ink);transition:transform .2s,background-color .2s}
-.lse-pm::after{transform:rotate(90deg)}
-details[open]>summary .lse-pm{border-color:var(--ink);background:var(--ink)}
-details[open]>summary .lse-pm::before,details[open]>summary .lse-pm::after{background:#fff}
-details[open]>summary .lse-pm::after{transform:rotate(0)}
+  .lse-faq { border-top: 1px solid var(--ink); max-width: 52em; }
+  .lse-faq details { border-bottom: 1px solid var(--rule); }
+  .lse-faq summary {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    padding: 22px 0; cursor: pointer; list-style: none;
+    font: 500 var(--fs-h3) / 1.25 var(--serif); color: var(--ink);
+  }
+  .lse-faq summary::-webkit-details-marker { display: none; }
+  .lse-faq summary:hover > span:first-child { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+  .lse-faq__pm { position: relative; flex: none; width: 18px; height: 18px; top: 2px; }
+  .lse-faq__pm::before, .lse-faq__pm::after { content: ""; position: absolute; left: 0; top: 50%; width: 18px; border-top: 1.5px solid var(--ink); }
+  .lse-faq__pm::after { transform: rotate(90deg); transition: transform .15s; }
+  .lse-faq details[open] .lse-faq__pm::after { transform: rotate(0); }
+  .lse-faq__a { padding: 0 0 26px; max-width: 40em; color: var(--ink-2); }
 </style>

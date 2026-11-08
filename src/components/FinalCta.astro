@@ -1,0 +1,46 @@
+---
+// The closing section of a page: H2, a lead, the booking button, then below it (after space and a hairline,
+// never beside it) "Prefer to put it in writing?" with the lead form in a narrower column.
+// It carries id="book", so a /#book link without JavaScript lands here. Use it once per page, last.
+import { site } from '../data/site';
+import Button from './Button.astro';
+import LeadForm from './LeadForm.astro';
+interface Props {
+  heading: string;
+  /** source_form for the lead email. */
+  formLabel: string;
+  idPrefix?: string;
+  practiceArea?: string | null;
+}
+const { heading, formLabel, idPrefix = 'f', practiceArea = null } = Astro.props;
+---
+<section class="lse-section lse-final" id="book" aria-labelledby="final-h">
+  <div class="lse-wrap">
+    <h2 id="final-h">{heading}</h2>
+    <div class="lse-final__lead lse-lead"><slot /></div>
+    <div class="lse-final__cta">
+      <Button />
+    </div>
+    <div class="lse-final__write">
+      <LeadForm
+        title="Prefer to put it in writing?"
+        sub="Send a short note and Fahim will reply by email."
+        idPrefix={idPrefix}
+        label={formLabel}
+        practiceArea={practiceArea}
+      >
+        <Fragment slot="after">
+          <p>Or email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.</p>
+          <p class="lse-small">Sending this form creates no attorney-client relationship.</p>
+        </Fragment>
+      </LeadForm>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .lse-final h2 { font-size: clamp(36px, 3.6vw + 14px, 68px); max-width: 17ch; }
+  .lse-final__lead { margin-top: var(--s3); }
+  .lse-final__cta { margin-top: var(--s5); display: grid; gap: 14px; justify-items: start; }
+  .lse-final__write { margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--rule); }
+</style>

@@ -1,0 +1,8 @@
+---
+// The highlight: a marker stroke behind ink text. One per block, only on the fact that matters, never in an H1.
+---
+<mark class="lse-mk"><slot /></mark>
+
+<style is:global>
+  mark.lse-mk { color: var(--ink); }
+</style>

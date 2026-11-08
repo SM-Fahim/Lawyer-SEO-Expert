@@ -1,0 +1,55 @@
+---
+// Site footer on ink: a short line and the email, then every planned page in plain link columns.
+// No phone number (not approved), no social icons.
+import { companyPages, legalPages, practicePages, servicePages } from '../data/pages';
+import { site } from '../data/site';
+import Logo from './Logo.astro';
+const cols = [
+  { title: 'Services', links: servicePages },
+  { title: 'Practice areas', links: practicePages },
+  { title: 'Company', links: companyPages },
+];
+---
+<footer class="lse-foot">
+  <div class="lse-wrap">
+    <div class="lse-foot__grid">
+      <div class="lse-foot__about">
+        <Logo variant="reverse" />
+        <p>{site.footer.line}</p>
+        <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
+      </div>
+      {cols.map((col) => (
+        <nav aria-label={col.title}>
+          <h2>{col.title}</h2>
+          <ul>{col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+        </nav>
+      ))}
+    </div>
+    <div class="lse-foot__small">
+      <p>{site.footer.copyright}. Contacting us creates no attorney-client relationship.</p>
+      <ul>{legalPages.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .lse-foot { background: var(--ink); color: var(--on-ink); padding: var(--s7) 0 var(--s5); }
+  .lse-foot a { color: var(--on-ink); text-decoration: none; }
+  .lse-foot a:hover { text-decoration: underline; }
+  .lse-foot :focus-visible { outline-color: var(--marker); box-shadow: none; }
+  .lse-foot__grid { display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr); }
+  .lse-foot__about p { margin-top: 18px; color: var(--on-ink-2); max-width: 26em; }
+  .lse-foot__about p a { color: var(--on-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+  .lse-foot h2 { font: 600 17px / 1.3 var(--sans); margin: 0 0 14px; max-width: none; letter-spacing: 0; }
+  .lse-foot ul { list-style: none; display: grid; gap: 9px; font-size: 16px; }
+  .lse-foot nav a { color: var(--on-ink-2); }
+  .lse-foot nav a:hover { color: var(--on-ink); }
+  .lse-foot__small { margin-top: var(--s6); padding-top: var(--s3); border-top: 1px solid var(--rule-on-ink); color: var(--on-ink-2); font-size: var(--fs-meta); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; }
+  .lse-foot__small ul { display: flex; gap: 24px; font-size: var(--fs-meta); }
+  .lse-foot__small a { color: var(--on-ink-2); }
+  @media (min-width: 700px) { .lse-foot__grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px) {
+    .lse-foot__grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, .9fr); }
+    .lse-foot nav[aria-label="Practice areas"] ul { grid-template-columns: 1fr; }
+  }
+</style>

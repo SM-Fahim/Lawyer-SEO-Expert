@@ -1,0 +1,111 @@
+/* Global styles: base elements, layout primitives and the shared marks. Component looks live in their
+   .astro files. Every class is prefixed lse-. See docs/design-system.md. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 var(--fs-body) / 1.6 var(--sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+p, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--marker); border-radius: 2px; }
+
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; margin: 0; font-optical-sizing: auto; text-wrap: balance; }
+h1 { font-size: var(--fs-h1); line-height: 1; letter-spacing: -.022em; max-width: 15ch; }
+h2 { font-size: var(--fs-h2); line-height: 1.06; letter-spacing: -.01em; max-width: 22ch; }
+h3 { font-size: var(--fs-h3); line-height: 1.2; letter-spacing: -.005em; }
+p { text-wrap: pretty; }
+
+.lse-skip { position: absolute; left: 16px; top: -100px; z-index: 50; background: var(--ink); color: var(--on-ink); padding: 12px 18px; border-radius: var(--r-btn); }
+.lse-skip:focus { top: 16px; }
+.lse-vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Layout */
+.lse-wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+.lse-section { padding: var(--section) 0; }
+.lse-section + .lse-section { border-top: 1px solid var(--ink); }
+.lse-section__lead { margin-top: var(--s3); }
+.lse-lead { font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); max-width: 34em; }
+.lse-body { max-width: 36em; }
+.lse-body + .lse-body { margin-top: var(--s2); }
+.lse-small { font-size: var(--fs-meta); line-height: 1.5; color: var(--muted); }
+/* The line that hands a section to the next one. Serif, so it reads as the writer speaking. */
+.lse-bridge { margin-top: var(--s6); font: 500 var(--fs-h3) / 1.3 var(--serif); max-width: 30em; }
+
+/* The review grid: content on the left, margin notes on the right. Under 1080px notes drop inline. */
+.lse-review { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: var(--s3); }
+@media (min-width: 1080px) {
+  .lse-review { grid-template-columns: minmax(0, 1fr) var(--note-col); column-gap: var(--note-gap); row-gap: var(--s5); align-items: start; }
+  .lse-review > .lse-review__main { grid-column: 1; }
+  .lse-review > .lse-review__side { grid-column: 2; }
+}
+
+/* The highlight: a marker stroke behind ink text. One per block, never in an H1. */
+.lse-mk {
+  background: linear-gradient(176deg, transparent 10%, var(--marker) 10%, var(--marker) 90%, transparent 90%);
+  color: var(--ink);
+  padding: 0 .14em;
+  margin: 0 -.06em;
+  border-radius: .18em .4em .22em .5em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* The rank chip: a marker square with a serif numeral. Real positions only. */
+.lse-chip {
+  display: inline-grid; place-items: center;
+  min-width: 1.7em; height: 1.7em; padding: 0 .3em;
+  font: 500 1em / 1 var(--serif); color: var(--ink); background: var(--marker);
+  border-radius: var(--r-mark);
+  font-variant-numeric: lining-nums;
+}
+
+/* A white sheet on paper: only for real documents (a result, a log, a screenshot). */
+.lse-sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: var(--r-sheet); }
+
+/* The button (Button.astro, and form submits). */
+  .lse-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font: 600 18px / 1.1 var(--sans);
+    color: var(--on-ink); background: var(--ink);
+    padding: 18px 26px; border: 1.5px solid var(--ink); border-radius: var(--r-btn);
+    text-decoration: none; cursor: pointer;
+    transition: background-color .15s, color .15s;
+  }
+  .lse-btn:hover { background: var(--marker); color: var(--ink); }
+  .lse-btn[disabled] { opacity: .6; cursor: progress; }
+  .lse-btn--sm { font-size: 16px; padding: 11px 16px; }
+  @media (max-width: 760px) {
+    .lse-btn--block { width: 100%; }
+  }
+
+/* Text links in a row, never buttons. */
+.lse-links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+
+/* Placeholder: visibly a placeholder, never fake data. Pair it with data-placeholder="what to collect". */
+.lse-ph {
+  display: inline-block;
+  font: 400 .82em / 1.35 var(--sans);
+  color: var(--ink-2);
+  background: repeating-linear-gradient(-45deg, var(--hatch) 0 6px, #eceee6 6px 12px);
+  border: 1px dashed #9aa79f;
+  border-radius: 3px;
+  padding: .1em .45em;
+  vertical-align: baseline;
+}
+.lse-ph--block { display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; text-align: center; gap: 6px; padding: var(--s4) var(--s3); min-height: 180px; font-size: 16px; border-radius: var(--r-sheet); }
+.lse-ph--block b { font-weight: 600; color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}

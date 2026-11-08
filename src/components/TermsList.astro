@@ -1,0 +1,20 @@
+---
+// The terms as a short list with hairlines. Each item: a bold sentence, then the plain explanation.
+export interface Term {
+  title: string;
+  text: string;
+}
+interface Props {
+  items: readonly Term[];
+}
+const { items } = Astro.props;
+---
+<ul class="lse-terms">
+  {items.map((t) => <li><strong>{t.title}</strong> {t.text}</li>)}
+</ul>
+
+<style is:global>
+  .lse-terms { list-style: none; border-top: 1px solid var(--rule); max-width: 46em; }
+  .lse-terms li { padding: 18px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+  .lse-terms strong { color: var(--ink); font-weight: 600; }
+</style>
