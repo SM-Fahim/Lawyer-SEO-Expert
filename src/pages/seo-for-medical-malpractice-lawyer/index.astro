@@ -1,0 +1,148 @@
+---
+// /seo-for-medical-malpractice-lawyer/ from content/v2/seo-for-medical-malpractice-lawyer.md. Fewer, better
+// inquiries. A white hero: H1 with the form beside it, then the El Paso AI answer at the full content width
+// (it is wide and only reads well big). Then keep or skip, pages by what went wrong, the name search
+// referring lawyers run, the price band, FAQ.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import Rows from '../../components/kit/Rows.astro';
+import SearchPanel from '../../components/kit/SearchPanel.astro';
+import Split from '../../components/kit/Split.astro';
+import HeroAside from '../../components/practice-a/HeroAside.astro';
+import Related from '../../components/practice-a/Related.astro';
+import { proof, shot } from '../../data/proof';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'Have you done malpractice SEO before?',
+    html: 'Our results to date are for PI firms. Their deadline and case-type pages are the same kind of work your malpractice pages need.',
+  },
+  {
+    q: 'Will SEO bring more cases we can take?',
+    html: 'That is the aim. We track calls and forms by page, so you see which pages bring qualified leads, not just visits.',
+  },
+  {
+    q: 'Should we publish verdicts and settlements?',
+    html: 'Only with your ethics review and your state’s rules. Each one should say what made the result possible.',
+  },
+  {
+    q: 'Do we need a page for every state’s time limit?',
+    html: 'Only for states where you take cases, each checked by your attorneys and dated.',
+  },
+  {
+    q: 'Who writes pages this sensitive?',
+    html: 'Fahim plans each page and reviews every draft, with a small team helping. Your attorneys confirm every legal and medical point before it goes live.',
+  },
+];
+
+// The firm's row alone (photo, name, 5.0 rating, 317 reviews), from the key-firms list.
+const firmRowCrop = { top: 64, height: 36 };
+---
+<InnerPage
+  title="Medical Malpractice SEO | Fewer, Better Inquiries"
+  description="Medical malpractice SEO that ranks you for the harm you take and the time-limit questions families ask, not for wrong-fit calls. Book a ranking review."
+  path="/seo-for-medical-malpractice-lawyer/"
+  crumbs={[{ label: 'Medical malpractice SEO' }]}
+  service={{ name: 'Medical malpractice SEO' }}
+  faq={faq}
+>
+  <HeroAside
+    h1="Medical malpractice SEO for fewer, better inquiries."
+    lead="You don’t need more calls. You need the right ones. We rank your firm for the harm you take and the questions those families ask."
+    form={{ title: 'Send your site for a ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'mm-hero', label: 'mm-hero', practiceArea: 'Medical malpractice' }}
+  >
+    <figure slot="visual" class="mm-fig">
+      <Shot tag="Source #1" tagSide="right" priority images={[shot(proof.elpasoAiDeadline, { marks: ['citedLine', 'sourceCard'] })]} />
+      <figcaption class="lse-small">For a PI firm in El Paso: its filing-deadline page is the first source Google’s AI cites. “How long do I have?” is a question malpractice families ask too, and we write that page the same way.</figcaption>
+    </figure>
+  </HeroAside>
+
+  <Band heading="Keep the medical searches. Skip the rest." headingId="keep-h" tone="fog">
+    <SearchPanel
+      columns={[
+        {
+          heading: 'We rank you for',
+          queries: [
+            { text: 'how to find a good medical malpractice lawyer', mark: 'medical malpractice lawyer' },
+            { text: 'what type of lawyer handles medical malpractice', mark: 'medical malpractice' },
+            { text: 'how much does a medical malpractice lawyer cost', mark: 'medical malpractice lawyer' },
+          ],
+        },
+        {
+          heading: 'We leave alone',
+          strike: true,
+          queries: [
+            { text: 'can you sue a lawyer for malpractice' },
+            { text: 'how to become a medical malpractice lawyer' },
+            { text: 'how much is lawyer malpractice insurance' },
+          ],
+        },
+      ]}
+    />
+    <p class="mm-under">Ranking for the wrong half brings visits and no qualified leads.</p>
+  </Band>
+
+  <Band heading="Pages named for what went wrong." headingId="harm-h">
+    <div class="mm-harm">
+      <Rows
+        variant="big"
+        titleTag="h3"
+        items={[
+          { title: 'Missed or late diagnosis.', text: 'What a delay can change.' },
+          { title: 'Birth injuries.', text: 'Written with care, for parents.' },
+          { title: 'Surgical errors.', text: 'A known risk, or something more.' },
+          { title: 'Medication errors.', text: 'Wrong drug, wrong dose.' },
+          { title: 'Time limits in your state.', text: 'Checked by your attorneys and dated.' },
+        ]}
+      />
+      <p class="mm-under">Only the kinds of harm you take get a page.</p>
+    </div>
+  </Band>
+
+  <Band heading="Other lawyers search your name before they send a file." headingId="name-h" tone="fog" wideHeading>
+    <Split ratio="6/6" align="center">
+      <p slot="a" class="lse-lead">We make sure your Google profile, attorney pages and reviews come up first when they do. For the injury side of the work, see <a href="/seo-for-personal-injury-lawyers/">SEO for personal injury lawyers</a>.</p>
+      <figure slot="b" class="mm-fig">
+        <Shot tag="Key firm" tagSmall tagSide="right" images={[shot(proof.nolaKeyFirm, { crop: firmRowCrop, marks: ['firmRow'], alt: 'A New Orleans PI firm in Google’s key legal firms list: its name, a 5.0 rating and 317 reviews' })]} />
+        <figcaption class="lse-small">For a PI firm in New Orleans: its name, 5.0 rating and 317 reviews, where Google’s AI lists key firms.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <PriceBand
+    heading="From $2,000 a month, for the whole job."
+    headingId="price-h"
+    lead="Pages, site upkeep, your Google profile, links, call tracking and AI answer checks. No setup fee. Month to month."
+  >
+    <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
+  </PriceBand>
+
+  <Band heading="Malpractice SEO, the short answers." headingId="faq-h">
+    <Faq items={faq} />
+    <Related
+      links={[
+        { label: 'SEO for estate planning lawyers', href: '/seo-for-estate-planning-lawyers/' },
+        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
+      ]}
+    />
+  </Band>
+
+  <FinalCta heading="See what a patient’s family finds when they search." formLabel="mm-final" idPrefix="mm-final" practiceArea="Medical malpractice">
+    In 30 minutes, Fahim runs your main malpractice searches and your firm’s name with you, and shows which searches send you the wrong calls.
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  .mm-fig { display: grid; gap: 12px; }
+  .mm-fig figcaption { max-width: 48em; }
+  .mm-under { margin-top: var(--s4); font-weight: 700; color: var(--ink); max-width: 40em; }
+  .mm-harm { max-width: 860px; }
+  @media (min-width: 900px) {
+    .mm-harm .lse-rows--big .lse-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: 40px; align-items: baseline; }
+    .mm-harm .lse-rows--big .lse-row p { margin-top: 0; }
+  }
+</style>

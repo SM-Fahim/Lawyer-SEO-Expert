@@ -1,0 +1,25 @@
+---
+// Practice set A: the related links a deck asks for, as one quiet line of descriptive text links under the
+// FAQ. Not a card row, not a list of buttons.
+interface Props {
+  links: { label: string; href: string }[];
+  /** The words before the links. */
+  intro?: string;
+  class?: string;
+}
+const { links, intro = 'Related pages:', class: className } = Astro.props;
+---
+<p class:list={['pa-related', className]}>
+  {intro}{' '}
+  {links.map((l, i) => (
+    <>
+      <a href={l.href}>{l.label}</a>
+      {i < links.length - 2 ? ', ' : i === links.length - 2 ? ' and ' : '.'}
+    </>
+  ))}
+</p>
+
+<style is:global>
+  .pa-related { margin-top: var(--s5); padding-top: var(--s3); border-top: 1px solid var(--line-2); max-width: 56em; color: var(--ink-2); }
+  .pa-related a { font-weight: 600; }
+</style>

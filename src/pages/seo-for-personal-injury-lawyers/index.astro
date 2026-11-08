@@ -1,0 +1,191 @@
+---
+// /seo-for-personal-injury-lawyers/ from content/v2/seo-for-personal-injury-lawyers.md. The one practice page
+// whose results are in its own practice, so results lead: key-firm hero, three case-type results as a
+// staggered column (a row of three would shrink the captures past reading), calls as big number rows, where
+// injury clients look, the price band, FAQ.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import NumPair from '../../components/kit/NumPair.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PhoneShot from '../../components/kit/PhoneShot.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import Q from '../../components/kit/Q.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import TrustLine from '../../components/kit/TrustLine.astro';
+import Related from '../../components/practice-a/Related.astro';
+import { proof, shot } from '../../data/proof';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'How soon will our firm get more calls?',
+    html: 'Busy injury markets take longer. In New Orleans, the groundwork took about three months, and after that new accident pages ranked within 16 hours. Fahim gives you a straight view of your own city.',
+  },
+  {
+    q: 'Should we work on the Map or the website first?',
+    html: 'Both, because they feed each other. The Map brings the “near me” calls, and Google reads your site to judge your profile.',
+  },
+  {
+    q: 'Who does the work?',
+    html: 'Fahim plans it and checks every page before you see it, and a small team helps produce it. Josh Henderson, a Texas personal injury attorney since 2008, joins calls with firms.',
+  },
+  {
+    q: 'Won’t dozens of accident pages look thin to Google?',
+    html: 'Not when each one covers what that crash brings up, like the trucking company, the insurer and the deadline. We only write a page when people search for it and there is something new to say.',
+  },
+];
+
+// The title line of the ranked result, measured on nola-wtd-rank.webp (900x162).
+const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
+---
+<InnerPage
+  title="SEO for Personal Injury Lawyers | Own the Accident Search"
+  description="SEO for personal injury lawyers: truck, car and deadline pages that reach the top of Google and its AI answers. See the calls. Book a ranking review."
+  path="/seo-for-personal-injury-lawyers/"
+  crumbs={[{ label: 'SEO for personal injury lawyers' }]}
+  service={{ name: 'SEO for personal injury lawyers' }}
+  faq={faq}
+>
+  <PageHero
+    h1="SEO for personal injury lawyers: own the searches after a crash."
+    lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
+    form={{ title: 'Send your website for an injury ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'pi-hero', label: 'pi-hero', practiceArea: 'Personal injury' }}
+  >
+    <figure slot="visual" class="pi-fig">
+      <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
+      <figcaption class="lse-small">A PI firm in New Orleans. Within 16 hours of its tanker truck page going live, Google’s AI named it a key firm. That came after about three months of groundwork.</figcaption>
+    </figure>
+    <TrustLine slot="after" />
+  </PageHero>
+
+  <Band
+    heading="Accident pages that Google puts first and its AI quotes."
+    headingId="cases-h"
+    lead="Every case type you take gets a page of its own, written for what injured people ask. For the New Orleans firm, these reached the top within 16 hours, after about three months of groundwork."
+    wideHeading
+  >
+    <ol class="pi-cases">
+      <li class="pi-case">
+        <div class="pi-case__text">
+          <p class="pi-case__q"><Q text="what to do after a truck accident in New Orleans" /></p>
+          <p>#1 on Google. Quoted 3 times in the AI answer.</p>
+        </div>
+        <Shot class="pi-case__shot" tag="#1" tagSide="right" images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: [...wtdTitle, ...proof.nolaWtdRank.marks.age] })]} />
+      </li>
+      <li class="pi-case pi-case--flip">
+        <div class="pi-case__text">
+          <p class="pi-case__q"><Q text="jackknife truck accident Louisiana" /></p>
+          <p>#1 on Google, and still cited by its AI a week later.</p>
+        </div>
+        <Shot class="pi-case__shot" tag="#1" tagSide="right" images={[shot(proof.nolaJackknife, { marks: ['result', 'aiChip'] })]} />
+      </li>
+      <li class="pi-case">
+        <div class="pi-case__text">
+          <p class="pi-case__q"><Q text="Texas El Paso car accident filing deadline" /></p>
+          <p>For a PI firm in El Paso: the first source Google’s AI cites.</p>
+        </div>
+        <Shot class="pi-case__shot" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['sourceCard'] })]} />
+      </li>
+    </ol>
+  </Band>
+
+  <Band heading="Then the phone rings more, by Google’s count." headingId="calls-h" lead="Calls from each firm’s Google Business Profile." tone="fog">
+    <div class="pi-calls">
+      <Split ratio="5/7" align="center" class="pi-call">
+        <div slot="a" class="pi-call__num">
+          <NumPair after={139} afterLabel="calls" decorative={false} />
+          <p>New Orleans, June to October 2026. Up 39% on the same months of 2025.</p>
+        </div>
+        <Shot slot="b" tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
+      </Split>
+      <Split ratio="5/7" align="center" rule class="pi-call">
+        <div slot="a" class="pi-call__num">
+          <NumPair before={9} after={23} />
+          <p>El Paso. 9 calls in the six months before us, 23 in three months with us.</p>
+        </div>
+        <div slot="b" class="pi-call__pair">
+          <Shot images={[shot(proof.elpasoCallsBefore, { marks: ['total'] })]} />
+          <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['total'] })]} />
+        </div>
+      </Split>
+      <Split ratio="5/7" align="center" rule class="pi-call">
+        <div slot="a" class="pi-call__num">
+          <NumPair before={1} after={9} />
+          <p>A second, new New Orleans profile: from 1 call in July to 9 by October.</p>
+        </div>
+        <Shot slot="b" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
+      </Split>
+    </div>
+  </Band>
+
+  <Band heading="Three places an injury client finds you." headingId="places-h">
+    <Split ratio="7/5" align="center">
+      <Rows
+        slot="a"
+        variant="inline"
+        items={[
+          { title: 'The Map.', text: '“Car accident lawyer near me” shows a map first. We run your Google Business Profile and a steady review routine.' },
+          { title: 'Your case pages.', text: 'Car, truck, motorcycle and slip-and-fall, each with its own page for the cities where you take cases.' },
+          { title: 'Google’s AI answers.', text: 'Accident pages written so its AI can quote them, with its answers checked monthly.' },
+        ]}
+      />
+      <figure slot="b" class="pi-fig pi-phone">
+        <PhoneShot width={250} tag="Your site" tagSmall tagSide="right" images={[shot(proof.elpasoSiteMobile)]} />
+        <figcaption class="lse-small">The El Paso firm’s site, which we built, on a phone.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <PriceBand
+    heading="From $2,000 a month for all of it."
+    headingId="price-h"
+    lead="Case pages, links, the Map, reviews, site upkeep, call tracking and AI answer checks. No setup fee. Month to month, and everything we build is yours."
+  >
+    <Fragment slot="link">How we price: <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
+  </PriceBand>
+
+  <Band heading="Before you hire someone for injury SEO." headingId="faq-h">
+    <Faq items={faq} />
+    <Related
+      links={[
+        { label: 'SEO for medical malpractice lawyers', href: '/seo-for-medical-malpractice-lawyer/' },
+        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
+        { label: 'Law firm web design', href: '/lawyer-web-design-development/' },
+      ]}
+    />
+  </Band>
+
+  <FinalCta heading="See who Google shows for your case types today." formLabel="pi-final" idPrefix="pi-final" practiceArea="Personal injury">
+    In 30 minutes, Fahim searches your main accident types in your city with you and shows which fix would bring calls first.
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  .pi-fig { display: grid; gap: 12px; align-content: start; }
+
+  /* Case-type results: a staggered column. Each capture gets two thirds of the width, so it stays readable. */
+  .pi-cases { list-style: none; display: grid; gap: clamp(56px, 7vw, 96px); }
+  .pi-case { display: grid; gap: 20px; align-items: center; }
+  .pi-case__text { display: grid; gap: 8px; align-content: start; }
+  .pi-case__q { font-size: clamp(22px, 1vw + 16px, 30px); font-weight: 800; line-height: 1.15; letter-spacing: -.022em; color: var(--ink); max-width: 16em; }
+  .pi-case__text p:not(.pi-case__q) { color: var(--ink-2); max-width: 24em; }
+  @media (min-width: 1000px) {
+    .pi-case { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: clamp(40px, 5vw, 72px); }
+    .pi-case--flip { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
+    .pi-case--flip .pi-case__text { order: 2; }
+  }
+
+  .pi-call__num { display: grid; gap: 18px; }
+  .pi-call__num p { color: var(--ink-2); max-width: 24em; }
+  .pi-call__pair { display: grid; gap: 20px; }
+  @media (min-width: 700px) {
+    .pi-call__pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+  }
+  .pi-phone { justify-items: center; }
+  @media (min-width: 1000px) {
+    .pi-phone { justify-items: start; }
+  }
+</style>

@@ -51,8 +51,6 @@ export const redirects: readonly Redirect[] = [
 // Remove each entry in the commit that ships its page. The launch build must have this list empty.
 export const pendingRedirectTargets: readonly string[] = [
   '/seo-pricing/',
-  '/seo-for-personal-injury-lawyers/',
-  '/seo-for-dui-attorneys/',
   '/crm-software-for-personal-injury-lawyers/',
   '/newsletter/',
   '/law-firm-seo-services/',
