@@ -1,0 +1,57 @@
+---
+// The environmental demand check as a hairline table: each search type, who types it, and its monthly
+// searches. The numbers come from a real firm's first review, so until one is shared with permission each
+// number cell is a designed placeholder (never sample numbers).
+import Placeholder from '../Placeholder.astro';
+interface Row {
+  issue: string;
+  who: string;
+}
+interface Props {
+  rows: Row[];
+  /** Read out as the table's caption. */
+  caption: string;
+  /** What to collect for the numbers column. */
+  collect: string;
+  class?: string;
+}
+const { rows, caption, collect, class: className } = Astro.props;
+---
+<div class:list={['pb-demand', className]}>
+  <table>
+    <caption class="lse-vh">{caption}</caption>
+    <thead>
+      <tr><th scope="col">Issue</th><th scope="col">Who searches</th><th scope="col">Monthly searches</th></tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row">{r.issue}</th>
+          <td>{r.who}</td>
+          <td><span class="pb-demand__l">Monthly searches: </span><Placeholder collect={collect} label="from your review" /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style is:global>
+  .pb-demand { overflow-x: auto; }
+  .pb-demand table { width: 100%; border-collapse: collapse; text-align: left; }
+  .pb-demand thead th { font-size: var(--fs-meta); font-weight: 600; color: var(--muted); padding: 0 16px 12px 0; border-bottom: 2px solid var(--ink); }
+  .pb-demand tbody th, .pb-demand tbody td { padding: 20px 16px 22px 0; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+  .pb-demand tbody th { font-size: var(--fs-h3); font-weight: 750; letter-spacing: -.018em; line-height: 1.15; color: var(--ink); width: 34%; }
+  .pb-demand tbody td { font-size: var(--fs-body); color: var(--ink-2); }
+  .pb-demand__l { display: none; }
+  .pb-demand tbody td:last-child { width: 22%; white-space: nowrap; padding-right: 0; }
+  @media (max-width: 760px) {
+    .pb-demand thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .pb-demand table, .pb-demand tbody, .pb-demand tr, .pb-demand tbody th, .pb-demand tbody td { display: block; width: auto; }
+    .pb-demand table { border-top: 2px solid var(--ink); }
+    .pb-demand tr { padding: 18px 0 20px; border-bottom: 1px solid var(--line-2); }
+    .pb-demand tbody th, .pb-demand tbody td { padding: 0; border: 0; }
+    .pb-demand tbody td { margin-top: 6px; }
+    .pb-demand tbody td:last-child { width: auto; white-space: normal; }
+    .pb-demand__l { display: inline; font-size: var(--fs-meta); color: var(--muted); }
+  }
+</style>

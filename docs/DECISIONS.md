@@ -93,3 +93,12 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 - **Breadcrumbs are visible** above every inner hero, in muted 15px sentence case, so the BreadcrumbList JSON-LD matches what is on the page. `hideCrumbs` turns the trail off if the judge reads it as an eyebrow.
 - **Three-up proof rows** read badly with full results pages (text too small); `Cols count={3}` is documented for strips only.
 
+
+## 2026-11-08 Practice pages, set B (branch p-pb)
+
+Estate planning, bankruptcy, immigration, intellectual property and environmental, from `content/v2/` and `PRACTICE-LAYOUTS-B.md`. One-off pieces in `src/components/practice-b/` (`QueryRows`, `BuyerRows`, `DemandTable`, `Related`).
+
+- **Heroes, one shape each:** estate stacks the AI answer (typed search in a search box over it, caption beside it) above the form as one row; bankruptcy is a giant "43" beside the chart on white, form in the section after; immigration is the tanker results page wide, calendar after; IP is a split with the #3 result on the fog panel, calendar after; environmental is the calls summary on the panel beside the form.
+- **New crops (plain rectangles, no pixel changed), all in `proof.ts`:** `nolaCallsMaySepChart` (LCME `calls-rudin.webp`, June to September, the 119 total and +35.2% cut) and its phone crop `nolaCallsAugSepChart`; `nolaTankerSerpTop` (search to source cards) with phone crops `nolaTankerSerpAnswer` and `nolaTankerSerpSource`; `nolaCallsSummary` (time period, 139, +39.0%), stacked over `nolaCalls` crop `chart`; `nolaTankerRankTitle` (the IP hero on phones). Phone crops exist because a 1047 to 1440px capture at 358px can't be read.
+- **Copy changed:** the "SEO pricing" anchor is an exact LCME link label (check-unique fails it), so it reads "law firm SEO pricing" on four pages. Bankruptcy's Map row starts "Near me" with a capital. The environmental demand table adds column labels "Issue", "Who searches", "Monthly searches" (the deck's placeholder note names those three).
+- **Schema:** Service with `offer: false` on all five (each deck: no price in schema).

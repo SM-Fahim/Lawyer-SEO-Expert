@@ -1,0 +1,153 @@
+---
+// /seo-for-intellectual-property-lawyers/ from content/v2/seo-for-intellectual-property-lawyers.md (practice
+// set B; the restored URL).
+// Hero: split, no form. H1 and lines left, the tanker result (#3, "16 hours ago" marked) right on the fog
+// panel. The calendar follows straight after, beside its heading. Then three buyers as wide rows, the
+// desktop page we built, what the fee covers (the page's one price), FAQ, close.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import BookingBand from '../../components/kit/BookingBand.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import BuyerRows from '../../components/practice-b/BuyerRows.astro';
+import Related from '../../components/practice-b/Related.astro';
+import { proof, shot } from '../../data/proof';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'Should we rank nationally or by city?',
+    html: 'Mostly nationally, because most IP questions name no place. Your Google Business Profile still covers local searches and your firm’s name.',
+  },
+  {
+    q: 'Can you write accurately about our technology?',
+    html: 'Fahim outlines each page and reviews it, a small team helps draft, and your attorneys check every technical and legal point before it goes live.',
+  },
+  {
+    q: 'Should we target “what does a patent lawyer do”?',
+    html: 'Usually not. Most people typing it are students weighing the career, not buyers. We aim at cost, need and choosing a firm.',
+  },
+  {
+    q: 'Will Google’s AI name our firm?',
+    html: 'Nobody can guarantee it. Pages that answer one question clearly are what it tends to quote, and we check its answers for your main questions monthly.',
+  },
+  {
+    q: 'Do these pages follow bar advertising rules?',
+    html: 'Bar rules on claims and titles vary by state. Your attorneys sign off on every page, and we never call anyone a specialist unless your rules allow it.',
+  },
+];
+
+const covers = [
+  'Patent, trademark and copyright pages, each with its own fee page.',
+  'A page for each technology field you really work in.',
+  'Your Google Business Profile and directory and LinkedIn profiles, kept consistent with your site.',
+  'Links from relevant sites, site upkeep, and call and form tracking.',
+  'A check of Google’s AI answers for your main questions every month.',
+];
+---
+<InnerPage
+  title="SEO for IP Lawyers | Patents, Trademarks, Copyright"
+  description="SEO for intellectual property lawyers: patent, trademark and copyright pages that rank nationally for the questions founders research."
+  path="/seo-for-intellectual-property-lawyers/"
+  crumbs={[{ label: 'SEO for intellectual property lawyers' }]}
+  service={{ name: 'SEO for intellectual property lawyers', offer: false }}
+  faq={faq}
+>
+  <PageHero
+    h1="Get found by founders: SEO for intellectual property lawyers."
+    lead="Founders, inventors and in-house counsel look up patent, trademark and copyright questions long before they contact a firm, and rarely by city. We put your pages at the top of those searches."
+    class="ip-hero"
+  >
+    <figure slot="visual" class="ip-hero__fig">
+      <div class="ip-hero__wide"><Shot tag="#3" tagSide="right" priority images={[shot(proof.nolaTankerRank, { marks: ['age'] })]} /></div>
+      <div class="ip-hero__phone"><Shot tag="#3" tagSide="right" images={[shot(proof.nolaTankerRankTitle, { marks: ['age'] })]} /></div>
+      <figcaption>
+        <span class="ip-hero__cap">For a PI firm in New Orleans. A new page at #3 on Google 16 hours after going live, after about three months of groundwork.</span>
+        <span class="ip-hero__line">Once the groundwork is in, a new trademark or patent page can get found fast too. This is one firm’s result, not a promise.</span>
+      </figcaption>
+    </figure>
+  </PageHero>
+
+  <BookingBand
+    heading="Put 30 minutes with Fahim in your calendar."
+    headingId="ip-book-h"
+    layout="split"
+    lead="Free. Fahim runs the searches a founder would type for your strongest service, from anywhere in the US, and shows you who they find."
+  >
+    <p slot="after">Prefer to write? Use <a href="#ip-final-name">the form at the end of this page</a>.</p>
+  </BookingBand>
+
+  <Band heading="Three kinds of buyer, three kinds of search." headingId="ip-buyers-h" lead="Each one gets its own pages, its own fee page and its own way to get in touch." tone="fog">
+    <BuyerRows
+      caption="As typed, from our keyword research."
+      buyers={[
+        {
+          name: 'Patent',
+          queries: [
+            { text: 'how much does it cost to hire a patent lawyer', mark: 'cost' },
+            { text: 'do i need a lawyer to file a provisional patent' },
+            { text: 'can a patent lawyer steal my idea', mark: 'my idea' },
+          ],
+        },
+        {
+          name: 'Trademark',
+          queries: [
+            { text: 'how much does a lawyer charge to file a trademark' },
+            { text: 'how to file a trademark without a lawyer', mark: 'without a lawyer' },
+          ],
+        },
+        {
+          name: 'Copyright',
+          queries: [{ text: 'how much does a copyright lawyer cost', mark: 'cost' }],
+        },
+      ]}
+    />
+  </Band>
+
+  <Band heading="A page built for reading at a desk." headingId="ip-desk-h" lead="Business buyers read closely and compare firms. Each page names the attorney, their technical background and the fields they work in.">
+    <figure class="ip-desk">
+      <Shot images={[shot(proof.nolaSiteCarAccidentPage)]} />
+      <figcaption class="lse-small">A practice page we built for a PI firm in New Orleans, on a desktop screen.</figcaption>
+    </figure>
+  </Band>
+
+  <Band heading="What the monthly fee covers for an IP firm." headingId="ip-fee-h" tone="fog">
+    <ul class="ip-covers">
+      {covers.map((c) => <li>{c}</li>)}
+    </ul>
+    <p class="ip-fee">One fee covers the lot: <span class="lse-mk">from $2,000 a month</span>, no setup charge. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
+  </Band>
+
+  <Band heading="IP firms want to know." headingId="ip-faq-h">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="See who a founder finds for your best service." formLabel="ip-final" idPrefix="ip-final" practiceArea="Intellectual property">
+    <p>In 30 minutes, Fahim runs those searches with you and shows what to write first.</p>
+  </FinalCta>
+  <Related links={[{ label: 'SEO for employment lawyers', href: '/seo-for-employment-lawyers/' }, { label: 'SEO for immigration lawyers', href: '/seo-for-immigration-lawyers/' }]} />
+</InnerPage>
+
+<style>
+  .ip-hero__fig { display: grid; gap: 18px; }
+  /* Phones get the title and "16 hours ago" only, at a size they can read. */
+  .ip-hero__wide { display: none; }
+  @media (min-width: 640px) {
+    .ip-hero__wide { display: block; }
+    .ip-hero__phone { display: none; }
+  }
+  .ip-hero__fig figcaption { display: grid; gap: 10px; max-width: 36em; }
+  .ip-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
+  .ip-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+
+  .ip-desk { display: grid; gap: 14px; }
+
+  .ip-covers { list-style: none; display: grid; border-top: 2px solid var(--ink); }
+  .ip-covers li { padding: 20px 0 22px; border-bottom: 1px solid var(--line-2); font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
+  @media (min-width: 900px) {
+    .ip-covers { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 5vw, 72px); }
+    .ip-covers li { padding-right: 12px; }
+  }
+  .ip-fee { margin-top: var(--s5); font-size: clamp(26px, 1.6vw + 16px, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -.03em; color: var(--ink); max-width: 22em; }
+</style>

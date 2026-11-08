@@ -1,0 +1,31 @@
+---
+// "More practice areas: A, B." A quiet line of two text links after the closing section, so each practice
+// page links to two others with descriptive anchors (the decks' "Related" line). Never a button.
+interface Link {
+  label: string;
+  href: string;
+}
+interface Props {
+  links: Link[];
+}
+const { links } = Astro.props;
+---
+<nav class="pb-related" aria-label="More practice areas">
+  <div class="lse-wrap">
+    <p>
+      More practice areas:{' '}
+      {links.map((l, i) => (
+        <>
+          <a href={l.href}>{l.label}</a>{i < links.length - 1 ? ', ' : '.'}
+        </>
+      ))}
+    </p>
+  </div>
+</nav>
+
+<style is:global>
+  .lse-final:has(+ .pb-related) { padding-bottom: var(--s6); }
+  .pb-related { padding: 0 0 clamp(48px, 6vw, 80px); }
+  .pb-related p { padding-top: 22px; border-top: 1px solid var(--line-2); color: var(--ink-2); }
+  .pb-related a { font-weight: 600; }
+</style>
