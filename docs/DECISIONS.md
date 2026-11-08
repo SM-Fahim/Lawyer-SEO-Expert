@@ -93,3 +93,15 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 - **Breadcrumbs are visible** above every inner hero, in muted 15px sentence case, so the BreadcrumbList JSON-LD matches what is on the page. `hideCrumbs` turns the trail off if the judge reads it as an eyebrow.
 - **Three-up proof rows** read badly with full results pages (text too small); `Cols count={3}` is documented for strips only.
 
+
+## 2026-11-08 Money pages (branch p-money)
+
+`/law-firm-seo-services/`, `/seo-pricing/`, `/law-firm-seo-consultant/` from the v2 decks, copy unchanged. Three different hero layouts: services `stack` (form row, then the jackknife #1 on the fog block), pricing `split` with the breakdown card (phones: H1, line, card, form, by page CSS), consultant `split` with no form and the calendar band straight after.
+
+- **Phone crops** (`src/data/proof-money.ts`, `src/components/money/ShotSwap.astro`): wide Google captures set their text at 4 to 8px in a phone column. Under 760px ShotSwap shows a plain rectangle crop of the same capture (the result line, the source card, the totals), above it the full capture. Ten crops in `public/img/proof/*-phone*.webp`. Own file, not `proof.ts`, so parallel builders never edit the same lines.
+- **Marks measured per page** where proof.ts had none or was off: the jackknife title (cut short of the source popup), the "what to do" rank title, the El Paso source card title (proof.ts's `sourceCard` box sits about 20px right of the words), the El Paso after chart's axis dates (the date range inside the tight crop).
+- **Services AI row** is full width with the text above it, not a 5/7 row: the 1400px capture at 7 columns sets its text at 9px.
+- **Pricing results** rows are 8/4 and 4/8 (deck: 7/5 and 5/7) so the 1077px charts stay legible.
+- **FinalCta** takes an optional `sub` (the line under the button), defaulting to `site.cta.sub`, for the decks' own lines.
+- `PRICES_BY_PAGE`: `/seo-pricing/` gets the breakdown amounts, `/law-firm-seo-services/` the struck `$4,000+` only. `/seo-pricing/` and `/law-firm-seo-services/` left `pendingRedirectTargets`.
+- The pricing page's classes use `cost-`: `pr-` is an LCME class prefix and fails check-unique's leak scan.
