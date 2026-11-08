@@ -306,7 +306,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
 
 <style is:global>
   /* ---------- Hero ---------- */
-  .lse-h-hero { padding: clamp(36px, 4.5vw, 64px) 0 clamp(72px, 8vw, 112px); }
+  .lse-h-hero { position: relative; overflow: hidden; padding: clamp(36px, 4.5vw, 64px) 0 clamp(72px, 8vw, 112px); }
   .lse-h-hero h1 { max-width: 15ch; }
   .lse-h-hero__grid {
     display: grid; gap: 32px; margin-top: clamp(20px, 2.4vw, 32px);
@@ -330,7 +330,10 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       grid-template-areas: "lead proof" "act proof" "act trust";
       column-gap: clamp(48px, 5vw, 80px); row-gap: 28px;
     }
-    .lse-h-hero__proof { padding-top: 10px; }
+    /* The result sits on a fog panel that runs off the right edge of the screen. */
+    .lse-h-hero__proof { position: relative; z-index: 0; padding: 44px 0 36px 40px; }
+    .lse-h-hero__proof::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; right: -50vw; background: var(--fog); border-radius: 28px 0 0 28px; }
+    .lse-h-hero__proof .lse-shot__frame { box-shadow: var(--shadow-lift); border-color: #cfd4cb; }
     .lse-h-trust { align-self: end; padding-top: 22px; border-top: 1px solid var(--line); }
   }
 

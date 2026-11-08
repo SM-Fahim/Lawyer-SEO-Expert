@@ -1,0 +1,183 @@
+---
+// Two other directions for the top of the homepage (hero and first results), so the owner can switch
+// cheaply if the main direction misses. Not for Google: noindex, so the sitemap leaves it out.
+// Same words as the homepage; only palette and composition change. Each one puts a way to act in the hero
+// or straight under it (owner rule, 2026-11-08): B has the short form inside the hero card, C has a booking
+// band with the real calendar, loaded only when it scrolls into view.
+import Base from '../../layouts/Base.astro';
+import CalendlyInline from '../../components/CalendlyInline.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Shot from '../../components/Shot.astro';
+import { site } from '../../data/site';
+
+const P = '/img/proof/';
+const logos = [
+  { src: '/img/logos/rudin-white.webp', width: 108, height: 120, alt: 'Rudin Law logo', h: 46 },
+  { src: '/img/logos/915-white.webp', width: 602, height: 120, alt: '915 Injury logo', h: 34 },
+  { src: '/img/logos/cohen-white.webp', width: 237, height: 120, alt: 'Cohen & Cohen logo', h: 40 },
+  { src: '/img/logos/dedert-white.webp', width: 248, height: 39, alt: 'Dedert logo', h: 21 },
+];
+const calls = { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 582, alt: 'Google Business Profile: 139 calls from June to October 2026, up 39% on the same months of 2025', marks: [{ l: 3.4, t: 33.2, w: 7.8, h: 9.4 }, { l: 3.6, t: 47.6, w: 7.5, h: 4.4 }] };
+---
+<Base pageType="company" path="/variants/" title="Homepage directions B and C | Lawyer SEO Expert" description="Two other directions for the top of the Lawyer SEO Expert homepage, for the owner to compare." noindex>
+  <section class="vx-intro">
+    <div class="lse-wrap">
+      <h1>Two other directions for the top of the homepage.</h1>
+      <p class="lse-lead">Same words and the same results as the <a href="/">main homepage</a>. Only the palette and the layout change. <a href="#vb">B: Evergreen</a> puts the form inside a dark hero. <a href="#vc">C: Yellow pad</a> puts the real calendar in a band straight under the hero.</p>
+    </div>
+  </section>
+
+  <!-- ===================== B: Evergreen ===================== -->
+  <div class="vb" id="vb">
+    <section class="vb-hero" aria-labelledby="vb-h">
+      <div class="lse-wrap">
+        <p class="vb-name">Direction B: Evergreen</p>
+        <h2 id="vb-h" class="vb-h">Get found first for the cases you want.</h2>
+        <p class="vb-lead">Lawyer SEO Expert puts your law firm at the top of Google, the Map and AI answers, so more of the right clients call.</p>
+        <div class="vb-card">
+          <LeadForm compact title="Send your website for a ranking review." titleTag="h3" sub="Fahim answers within an hour in business hours." idPrefix="vb" label="Variants page, direction B" format="Ranking review by email" />
+          <figure class="vb-proof">
+            <Shot tag="139 calls" tagSide="right" images={[calls]} />
+            <figcaption>A PI firm in New Orleans. Google counted 139 calls from its Business Profile in five months, 39% more than a year before.</figcaption>
+          </figure>
+        </div>
+        <ul class="vb-logos">
+          {logos.map((l) => <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${l.h}px;width:auto`} loading="lazy" decoding="async"></li>)}
+        </ul>
+      </div>
+    </section>
+    <section class="vb-res" aria-labelledby="vb-r">
+      <div class="lse-wrap">
+        <h2 id="vb-r">New pages at the top of Google 16&nbsp;hours after going live.</h2>
+        <p class="lse-lead lse-h2-lead">For a PI firm in New Orleans, after about three months of groundwork. Google’s AI answers cite the pages too.</p>
+        <div class="vb-cols">
+          <figure>
+            <p class="vb-rank" aria-hidden="true">#1</p>
+            <Shot images={[{ src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' }, { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'The page in Google’s results, stamped 16 hours ago', marks: [{ l: 1.6, t: 63.5, w: 12.2, h: 16 }] }]} />
+            <figcaption><b><q data-no-check>what to do after a truck accident in New Orleans</q></b> Ranked #1 on Google, and quoted 3 times in Google’s AI answer.</figcaption>
+          </figure>
+          <figure>
+            <p class="vb-rank" aria-hidden="true">#1</p>
+            <Shot images={[{ src: `${P}nola-jackknife.webp`, width: 1022, height: 625, alt: 'Google search for jackknife truck accident Louisiana: the firm’s page is the first result and cited in the AI Overview', marks: [{ l: 39.9, t: 50.3, w: 8.7, h: 3.8 }, { l: 1.9, t: 88.4, w: 40, h: 4 }] }]} />
+            <figcaption><b><q data-no-check>jackknife truck accident Louisiana</q></b> Ranked #1. A week on, Google’s AI still cites it.</figcaption>
+          </figure>
+          <figure>
+            <p class="vb-rank" aria-hidden="true">1st</p>
+            <Shot images={[{ src: `${P}elpaso-ai-deadline.webp`, width: 1400, height: 849, alt: 'Google’s AI Overview with an El Paso PI firm’s page as the first source', marks: [{ l: 5.1, t: 35.3, w: 33.9, h: 2.6 }, { l: 69.6, t: 35.4, w: 24, h: 3.2 }] }]} />
+            <figcaption><b><q data-no-check>Texas El Paso car accident filing deadline</q></b> For a PI firm in El Paso, its page is the first source Google’s AI answer cites.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== C: Yellow pad ===================== -->
+  <div class="vc" id="vc">
+    <section class="vc-hero" aria-labelledby="vc-h">
+      <div class="lse-wrap vc-hero__grid">
+        <div>
+          <p class="vc-name">Direction C: Yellow pad</p>
+          <h2 id="vc-h" class="vc-h">Get found first for the cases you want.</h2>
+          <p class="vc-lead">Lawyer SEO Expert puts your law firm at the top of Google, the Map and AI answers, so more of the right clients call.</p>
+          <a class="lse-btn vc-btn" href="#vc-book">Book a ranking review</a>
+        </div>
+        <figure class="vc-proof">
+          <Shot tag="#1" tagSide="right" images={[{ src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' }, { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'Google’s first result for what to do after a truck accident in New Orleans: a New Orleans PI firm’s new page', marks: [{ l: 1.6, t: 39, w: 49.6, h: 22 }] }]} />
+          <figcaption>A PI firm in New Orleans. Its new page ranked #1 on Google.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="vc-book" id="vc-book" aria-labelledby="vc-b">
+      <div class="lse-wrap vc-book__grid">
+        <div class="vc-book__text">
+          <h2 id="vc-b">Pick a time for your ranking review.</h2>
+          <ul>
+            <li>Free, 30 minutes.</li>
+            <li>Fahim checks your real rankings with you.</li>
+            <li>You leave knowing what would bring in more calls first.</li>
+          </ul>
+          <p>Rather write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>. Fahim answers within an hour in business hours.</p>
+        </div>
+        <CalendlyInline lazy titleTag="h3" title="Book a ranking review" extraClass="vc-cal" />
+      </div>
+    </section>
+    <section class="vc-res" aria-labelledby="vc-r">
+      <div class="lse-wrap">
+        <h2 id="vc-r">More calls, counted by Google.</h2>
+        <div class="vc-row">
+          <p class="vc-big" aria-hidden="true"><span data-count="139">139</span></p>
+          <div>
+            <h3>A PI firm in New Orleans: 139 calls in five months, up 39%.</h3>
+            <Shot images={[calls]} />
+          </div>
+        </div>
+        <div class="vc-row">
+          <p class="vc-big" aria-hidden="true"><span data-count="23">23</span></p>
+          <div>
+            <h3>A PI firm in El Paso went from 9 calls in six months to 23 in three.</h3>
+            <Shot images={[{ src: `${P}elpaso-calls-after.webp`, width: 1347, height: 727, alt: 'Google Business Profile: 23 calls from May to July 2026', marks: [{ l: 3.7, t: 34, w: 5.6, h: 9 }] }]} />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style is:global>
+  .vx-intro { padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
+  .vx-intro h1 { font-size: clamp(30px, 2vw + 18px, 44px); max-width: 24ch; }
+  .vx-intro .lse-lead { margin-top: 16px; }
+
+  /* ---------- B: Evergreen ---------- */
+  .vb { --vb-ink: #0f3326; --vb-mint: #edf3ee; }
+  .vb-hero { background: var(--vb-ink); color: #fff; padding: 56px 0 72px; }
+  .vb-name, .vc-name { font-size: 15px; font-weight: 700; margin-bottom: 18px; }
+  .vb-name { color: var(--marker); }
+  .vb-h { color: #fff; font-size: var(--fs-h1); line-height: .98; letter-spacing: -.038em; max-width: 19ch; }
+  .vb-lead { margin-top: 20px; font-size: var(--fs-lead); line-height: 1.45; color: #d5e2da; max-width: 34em; }
+  .vb-card { margin-top: 36px; display: grid; gap: 28px; padding: clamp(16px, 2vw, 28px); background: #fff; border-radius: 22px; color: var(--ink-2); }
+  .vb-card .lse-form--compact { border: 0; padding: 4px; max-width: none; }
+  .vb-proof { display: grid; gap: 12px; align-content: start; }
+  .vb-proof figcaption { font-size: 15px; color: var(--muted); }
+  .vb-logos { list-style: none; display: flex; flex-wrap: wrap; gap: 16px 36px; align-items: center; margin-top: 36px; }
+  .vb-res { background: var(--vb-mint); padding: var(--section) 0; }
+  .vb-res h2 { max-width: 22ch; }
+  .vb-cols { display: grid; gap: 48px; margin-top: 48px; }
+  .vb-cols figure { display: grid; gap: 14px; align-content: start; }
+  .vb-cols figcaption { font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+  .vb-cols figcaption b { display: block; color: var(--ink); }
+  .vb-rank { font-size: clamp(56px, 4vw + 20px, 96px); font-weight: 900; line-height: .85; letter-spacing: -.05em; color: var(--vb-ink); }
+  @media (min-width: 1000px) {
+    .vb-card { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 40px; }
+    .vb-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+  }
+
+  /* ---------- C: Yellow pad ---------- */
+  .vc { --marker: #ffe45c; --vc-ink: #1e1f22; }
+  .vc-hero { padding: 64px 0 72px; border-top: 8px solid var(--vc-ink); }
+  .vc-name { color: var(--vc-ink); }
+  .vc-hero__grid { display: grid; gap: 40px; }
+  .vc-h { color: var(--vc-ink); font-size: clamp(44px, 4vw + 16px, 92px); line-height: .95; letter-spacing: -.045em; max-width: 12ch; }
+  .vc-lead { margin-top: 22px; font-size: var(--fs-lead); line-height: 1.45; max-width: 26em; }
+  .vc-btn { margin-top: 28px; background: var(--vc-ink); border-color: var(--vc-ink); }
+  .vc-proof { display: grid; gap: 12px; align-content: center; }
+  .vc-proof figcaption { font-size: 15px; color: var(--muted); }
+  .vc-book { background: var(--marker); padding: clamp(56px, 6vw, 88px) 0; }
+  .vc-book__grid { display: grid; gap: 36px; }
+  .vc-book h2 { color: var(--vc-ink); max-width: 14ch; }
+  .vc-book ul { list-style: none; margin-top: 24px; display: grid; gap: 10px; border-top: 2px solid var(--vc-ink); padding-top: 18px; }
+  .vc-book li { font-size: 20px; font-weight: 700; color: var(--vc-ink); letter-spacing: -.01em; }
+  .vc-book__text > p { margin-top: 24px; color: var(--vc-ink); max-width: 28em; }
+  .vc-cal { background: #fff; border: 2px solid var(--vc-ink); border-radius: 18px; overflow: hidden; }
+  .vc-cal .lse-cal__body { height: 640px; }
+  .vc-res { padding: var(--section) 0; }
+  .vc-row { display: grid; gap: 20px; margin-top: 56px; padding-top: 28px; border-top: 2px solid var(--vc-ink); }
+  .vc-row h3 { margin-bottom: 18px; max-width: 24ch; }
+  .vc-big { font-size: clamp(96px, 12vw, 220px); font-weight: 900; line-height: .8; letter-spacing: -.06em; color: var(--vc-ink); }
+  .vc-big span { background: var(--marker); clip-path: var(--swipe); padding: 0 .06em; font-variant-numeric: tabular-nums; }
+  @media (min-width: 1000px) {
+    .vc-hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: 64px; align-items: center; }
+    .vc-book__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 64px; align-items: start; }
+    .vc-row { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 48px; }
+  }
+</style>

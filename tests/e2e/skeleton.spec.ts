@@ -4,11 +4,13 @@
 import { LOCAL, PROD, expect, fillForm, submitForm, test, waitForRow } from './helpers';
 
 test.describe('pages and the Worker', () => {
-  test('the homepage loads with the tracker, the form and the booking dialog', async ({ page }) => {
+  test('the homepage loads with the tracker, both forms and the booking dialog', async ({ page }) => {
     await page.goto(`${PROD}/`);
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('script[data-lse-tracker]')).toHaveCount(1);
-    await expect(page.locator('form[data-lead-form]')).toHaveCount(1);
+    // The short form in the hero (owner rule: a way to act in the hero) and the full one in the final section.
+    await expect(page.locator('form[data-lead-form]')).toHaveCount(2);
+    await expect(page.locator('input[name="source_form"][value="Homepage hero form"]')).toHaveCount(1);
     await expect(page.locator('dialog[data-bookdlg]')).toHaveCount(1);
   });
 
