@@ -49,3 +49,30 @@ test.describe('a lead', () => {
     await waitForRow('SELECT * FROM leads WHERE conversion_id = ?', String(calls.leads[0]?.conversion_id));
   });
 });
+
+test.describe('the shell', () => {
+  test('the phone menu opens, closes with Escape, and holds the booking button', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`${PROD}/`);
+    const toggle = page.locator('[data-menu-toggle]');
+    await expect(page.locator('#lse-nav')).toBeHidden();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#lse-nav a[data-cal]')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#lse-nav')).toBeHidden();
+    await expect(toggle).toBeFocused();
+  });
+
+  test('the homepage has one H1, the FAQ JSON-LD matches the visible questions, and every image has a size', async ({ page }) => {
+    await page.goto(`${PROD}/`);
+    const visible = await page.locator('.lse-faq summary').allInnerTexts();
+    const graph = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? '{}')['@graph'] as Array<{ '@type': string; mainEntity?: Array<{ name: string }> }>;
+    const faq = graph.find((node) => node['@type'] === 'FAQPage');
+    expect(faq?.mainEntity?.map((q) => q.name)).toEqual(visible.map((q) => q.trim()));
+    for (const img of await page.locator('main img').all()) {
+      expect(await img.getAttribute('width')).toBeTruthy();
+      expect(await img.getAttribute('height')).toBeTruthy();
+    }
+  });
+});
