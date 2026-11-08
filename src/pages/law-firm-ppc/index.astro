@@ -1,19 +1,18 @@
 ---
 // /law-firm-ppc/. Copy: content/v2/law-firm-ppc.md. Facts: research/FACTS.md section 1 (Google Ads / PPC).
-// The only page on the site about Google Ads. No PPC results are approved, so the page shows none: the three
-// visuals are designed placeholders until the owner supplies real, permitted captures.
+// The only page on the site about Google Ads. No PPC results are approved, so the page shows none. The hero
+// visual is example search terms (judge ruling); the captures to collect are listed in docs/MANUAL-REVIEW.md.
 // The hero form adds one question ("Running Google Ads now?"), so it is the compact LeadForm placed in the
 // hero's text slot rather than PageHero's own form (which has no extra fields). The answer reaches the lead
 // email through the Worker's extra fields (worker/addons/lead.ts).
 import Faq, { type FaqItem } from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Rows from '../../components/kit/Rows.astro';
-import Split from '../../components/kit/Split.astro';
+import SearchPanel from '../../components/kit/SearchPanel.astro';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 
@@ -125,43 +124,46 @@ const service = {
       <p class="lse-hero__talk">Prefer a call? <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
     </div>
     <figure slot="visual" class="ppc-fig">
-      <Placeholder
-        block
-        width={1440}
-        height={1100}
-        collect="US results page for a practice search with the Sponsored block; date it; blur every firm"
-        label="A dated US Google results page for a practice search, with the Sponsored block above the Map and organic results. Every firm blurred."
-      />
-      <figcaption class="lse-small">On searches like this one, the ads sit above every other result.</figcaption>
+      <div class="ppc-card">
+        <SearchPanel
+          columns={[
+            {
+              heading: 'Searches worth paying for',
+              queries: [
+                { text: 'car accident lawyer near me', mark: 'near me' },
+                { text: 'free car accident lawyer consultation', mark: 'consultation' },
+                { text: 'car accident attorney houston', mark: 'houston' },
+              ],
+            },
+            {
+              heading: 'Searches we block',
+              strike: true,
+              queries: [{ text: 'car accident lawyer salary' }, { text: 'car accident lawyer jobs' }, { text: 'how to become a car accident lawyer' }],
+            },
+          ]}
+        />
+      </div>
+      <figcaption class="lse-small">Example search terms for a car accident firm.</figcaption>
     </figure>
   </PageHero>
 
   <Band heading="Your budget follows the searches that bring calls." headingId="budget-h" tone="fog" wideHeading>
-    <Split ratio="7/5" align="center">
-      <Placeholder
-        slot="a"
-        block
-        width={1200}
-        height={760}
-        collect="search terms list from a client ad account, redacted, with permission"
-        label="A redacted search terms list from a client’s ad account, with wasted searches marked as blocked."
+    <div class="ppc-8">
+      <p class="ppc-big">Every call and form is tracked back to the search behind it. Spend moves toward the searches that bring qualified leads and away from the ones that only cost money.</p>
+      <Rows
+        class="ppc-budget"
+        variant="inline"
+        items={[
+          { title: 'Tracked.', text: 'Each call and form is tied to the search that brought it.' },
+          { title: 'More.', text: 'Searches that bring qualified leads get more of the budget.' },
+          { title: 'Less.', text: 'Searches that only cost money get less, or get blocked.' },
+        ]}
       />
-      <p slot="b" class="ppc-big">Every call and form is tracked back to the search behind it. Spend moves toward the searches that bring qualified leads and away from the ones that only cost money.</p>
-    </Split>
+    </div>
   </Band>
 
   <Band heading="What we handle inside your ad account." headingId="handle-h">
-    <Split ratio="7/5">
-      <Rows slot="a" variant="inline" items={handled} />
-      <Placeholder
-        slot="b"
-        block
-        width={900}
-        height={1000}
-        collect="a live client ad and its landing page, with permission; or drop the visual"
-        label="One live ad we wrote for a client firm, beside the landing page it points to."
-      />
-    </Split>
+    <Rows class="ppc-handle" variant="inline" items={handled} />
   </Band>
 
   <PriceBand variant="plain" heading="Management from $500 a month. Ad spend goes straight to Google." headingId="price-h" big="$500">
@@ -188,7 +190,12 @@ const service = {
   .ppc-hero .lse-form--compact form > .lse-form__privacy { order: 2; }
   .ppc-hero select.lse-input { appearance: none; padding-right: 40px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
   .ppc-fig { display: grid; gap: 14px; margin: 0; }
-  .ppc-big { font-size: clamp(22px, .9vw + 16px, 30px); line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--ink); max-width: 22em; }
+  .ppc-card { padding: clamp(20px, 2.4vw, 36px); background: var(--paper); border: 1px solid #cfd4cb; border-radius: var(--r-frame); box-shadow: var(--shadow-lift); }
+  .ppc-8 { max-width: 900px; display: grid; gap: var(--s5); }
+  .ppc-big { font-size: clamp(22px, .9vw + 16px, 30px); line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--ink); max-width: 26em; }
+  @media (min-width: 1000px) {
+    .ppc-handle { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 5vw, 72px); }
+  }
   .ppc-terms { border-top-color: var(--ink); }
   .ppc-terms .lse-row { border-bottom-color: rgba(0, 0, 0, .28); }
   .ppc-terms .lse-row p { color: var(--ink); }

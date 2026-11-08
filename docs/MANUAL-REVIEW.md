@@ -8,3 +8,4 @@
 - `hello@lawyerseoexpert.com` must exist as a cPanel mailbox or forwarder before the site shows it.
 - The `/category/*` pages should redirect to `/blog/` once the blog exists (commented out in `redirects.ts`).
 - Should `/about/` redirect to `/about/sm-fahim/` if no real About page is written?
+- `/law-firm-ppc/` has no real Google Ads capture yet (the hero shows example search terms). To collect from the owner, each with the client's permission: (1) a client's search terms report, redacted, with wasted searches blocked; (2) one live ad we wrote, shown on Google, with the landing page it points to; (3) a dated US Google results page for a practice search showing the Sponsored block, every firm blurred.

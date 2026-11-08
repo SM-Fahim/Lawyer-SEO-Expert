@@ -1,6 +1,7 @@
 ---
 // /contact-us/. Copy: content/v2/contact-us.md. Facts: research/FACTS.md section 1.
-// The form is the page: right under the H1, with Fahim's face and the reply line above it. The calendar loads
+// The form is the page: right under the H1, with Fahim's face and the reply line above it, and at 1000px and up
+// "After you send it" in three plain rows beside it (judge ruling). The calendar loads
 // lazily lower down (it closes the page, so it carries id="book"), then the email address and four short answers.
 // No phone number, no address.
 // The form is the compact LeadForm (website first) with the deck's one optional question added as its message
@@ -10,6 +11,7 @@ import LeadForm from '../../components/LeadForm.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
 import Face from '../../components/kit/Face.astro';
+import Rows from '../../components/kit/Rows.astro';
 import { fahim } from '../../data/people';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -59,6 +61,9 @@ const contactPage = {
       <div class="ct-col">
         <h1 id="hero-h">Tell Fahim about your firm.</h1>
         <p class="lse-lead ct-lead">Send your website and what you want more of. Fahim reads it and writes back.</p>
+      </div>
+      <div class="ct-grid">
+      <div class="ct-col">
         <div class="ct-reply">
           <Face person={fahim} size="xs" priority />
           <p>Fahim answers within an hour in business hours.</p>
@@ -73,6 +78,18 @@ const contactPage = {
           </LeadForm>
           <p class="ct-talk">Rather talk? <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
         </div>
+      </div>
+      <aside class="ct-next" aria-labelledby="next-h">
+        <h2 id="next-h">After you send it</h2>
+        <Rows
+          class="ct-next__rows"
+          items={[
+            { text: 'Fahim reads your note.' },
+            { text: 'You get an answer within an hour in business hours.' },
+            { text: 'You get a free 30-minute ranking review.' },
+          ]}
+        />
+      </aside>
       </div>
     </div>
   </section>
@@ -102,7 +119,15 @@ const contactPage = {
   .ct-col { max-width: 640px; }
   .ct-hero h1 { font-size: clamp(44px, 3.4vw + 18px, 78px); max-width: 12ch; }
   .ct-lead { margin-top: clamp(18px, 2vw, 26px); }
-  .ct-reply { margin-top: var(--s4); display: flex; align-items: center; gap: 18px; }
+  .ct-grid { display: grid; gap: var(--s6); margin-top: var(--s4); }
+  .ct-next h2 { font-size: var(--fs-h3); }
+  .ct-next__rows { margin-top: var(--s3); }
+  .ct-next__rows .lse-row p { font-size: clamp(19px, .5vw + 16px, 22px); font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
+  @media (min-width: 1000px) {
+    .ct-grid { grid-template-columns: minmax(0, 640px) minmax(0, 1fr); column-gap: clamp(56px, 6vw, 112px); align-items: start; }
+    .ct-next { padding-top: 12px; max-width: 460px; }
+  }
+  .ct-reply { display: flex; align-items: center; gap: 18px; }
   .ct-reply p { font-size: clamp(19px, .5vw + 16px, 22px); font-weight: 700; letter-spacing: -.01em; color: var(--ink); max-width: 16em; }
   .ct-form { margin-top: var(--s3); display: grid; gap: 14px; }
   /* The visible H1 and reply line already say what the form is for; its own title is read out only. */
