@@ -1,0 +1,63 @@
+---
+// The booking card: a heading plus a Calendly widget.js embed.
+// `lazy` mounts it when it comes near the screen. Otherwise something else mounts it, like the booking dialog.
+// That closed dialog is on every page, so its avatars wait until it opens.
+import { site } from '../data/site';
+interface Props {
+  title?: string;
+  sub?: string;
+  titleId?: string;
+  /** The heading's level: h2 in the dialog, h3 inside a page's section, h1 on /book/, where the card is the page. A blog post can't gain a heading its text doesn't have, so it passes 'p'. */
+  titleTag?: 'h1' | 'h2' | 'h3' | 'p';
+  lazy?: boolean;
+  extraClass?: string;
+}
+const { title = 'Schedule a call', sub = 'Choose a time that suits you.', titleId, lazy = false, titleTag: Title = 'h2', extraClass } = Astro.props;
+---
+<div class:list={['lse-cal', extraClass]}>
+  <div class="lse-cal__head">
+    <div><Title class="lse-cal__title" id={titleId}>{title}</Title><p>{sub}</p></div>
+    <slot name="close" />
+  </div>
+  <div class="lse-cal__body" data-calendly={site.calendly.embedUrl} data-calendly-lazy={lazy ? '' : undefined}>
+    <div class="lse-cal__ph"><p>The booking calendar is on its way.</p><a class="lse-link" href={site.calendly.url} target="_blank" rel="noopener">Use the calendar on Calendly instead</a></div>
+  </div>
+</div>
+
+<script>
+  import { mountCalendar, tagFallbackLink } from '../scripts/calendly';
+
+  document.querySelectorAll<HTMLElement>('[data-calendly]').forEach(tagFallbackLink);
+
+  document.querySelectorAll<HTMLElement>('[data-calendly-lazy]').forEach((box) => {
+    if (!('IntersectionObserver' in window)) {
+      mountCalendar(box);
+      return;
+    }
+    const mountWithin = (margin: string) => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          mountCalendar(box);
+        }
+      }, { rootMargin: `${margin} 0px` });
+      observer.observe(box);
+    };
+    // Calendly is over 3 MB. On a phone the calendar starts just below the screen, so it waits for
+    // the first scroll instead of competing with the first paint. Then it loads well ahead.
+    mountWithin('0px');
+    window.addEventListener('scroll', () => mountWithin('600px'), { once: true, passive: true });
+  });
+</script>
+
+<style is:global>
+/* TODO(design): all looks. Only what the loading logic needs stays: the placeholder covers the frame until
+   Calendly says it is showing (scripts/calendly.ts adds .is-ready), and its new-tab link appears after 6 s. */
+.lse-cal__body{position:relative;height:680px}
+.lse-cal__body iframe{display:block;width:100%;height:100%;border:0}
+.lse-cal__ph{position:absolute;inset:0;z-index:1;background:var(--lse-paper, #fff);pointer-events:none;transition:opacity .25s,visibility .25s}
+.lse-cal__ph a{pointer-events:auto}
+.lse-cal__body.is-ready .lse-cal__ph{opacity:0;visibility:hidden}
+.js .lse-cal__ph a{visibility:hidden;animation:lse-late 0s 6s forwards}
+@keyframes lse-late{to{visibility:visible}}
+</style>

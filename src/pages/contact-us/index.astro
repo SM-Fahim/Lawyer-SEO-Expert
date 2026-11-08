@@ -1,0 +1,11 @@
+---
+// PLACEHOLDER contact page: the lead form and the booking dialog, wired. Copy and design come later.
+import Base from '../../layouts/Base.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { site } from '../../data/site';
+---
+<Base pageType="company" path="/contact-us/" title="Contact (placeholder)" description="Placeholder contact page for the Lawyer SEO Expert rebuild.">
+  <h1>Contact</h1>
+  <p>Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or <a href="/#book" data-cal>schedule a call</a>.</p>
+  <LeadForm title="Send a message" idPrefix="c" label="Contact page message" />
+</Base>

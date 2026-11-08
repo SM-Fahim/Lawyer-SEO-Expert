@@ -1,0 +1,82 @@
+---
+// The lead form. It posts to /api/lead (contract at the top of worker/addons/lead.ts). Behaviour is in scripts/forms.ts.
+// Field names are the API's own, so a browser with no JavaScript posts the same form.
+// TODO(design): markup, fields, wording and CSS are placeholders. Keep the data-* hooks and field names:
+// data-form-card, data-lead-form, data-alert, data-done, data-ts, data-rule, name="hp", name="source_form".
+import { site } from '../data/site';
+interface Props {
+  title: string;
+  sub?: string;
+  /** Kind of form. */
+  kind?: string;
+  /** Prefix for field ids. Change it if a page has two forms. */
+  idPrefix?: string;
+  /** Shown in the lead email, so we know which form it came from. Sent as source_form. */
+  label?: string;
+  /** Sent as practice_area. Pass null to leave it out. */
+  practiceArea?: string | null;
+  format?: string;
+  /** The button's words. */
+  submitLabel?: string;
+}
+const { title, sub, kind = 'open', idPrefix: p = 'b', label = 'Homepage message', practiceArea = null, format = 'Message first', submitLabel = 'Send it' } = Astro.props;
+---
+<div class="lse-card lse-form-card" data-form-card>
+  <h2 class="lse-form-card__title">{title}</h2>
+  {sub && <p class="lse-form-card__sub">{sub}</p>}
+  <div class="lse-alert" role="alert" tabindex="-1" data-alert></div>
+  <form class="lse-open" data-lead-form={kind} data-fallback-email={site.contact.email} data-fallback-booking={site.calendly.url} action="/api/lead" method="post" novalidate>
+    <input type="hidden" name="source_form" value={label}>
+    {practiceArea && <input type="hidden" name="practice_area" value={practiceArea}>}
+    <input type="hidden" name="format" value={format}>
+    <div class="lse-sr" aria-hidden="true"><label>Leave this empty <input type="text" name="hp" tabindex="-1" autocomplete="off"></label></div>
+    <slot name="fields" />
+    <div class="lse-field">
+      <label class="lse-label" for={`${p}-site`}>Your site</label>
+      <input class="lse-input" id={`${p}-site`} name="website" type="text" inputmode="url" autocomplete="url" required data-rule="url" aria-describedby={`${p}-site-err`}>
+      <span class="lse-err" id={`${p}-site-err`}>Add the address of your site.</span>
+    </div>
+    <div class="lse-field">
+      <label class="lse-label" for={`${p}-name`}>Your name</label>
+      <input class="lse-input" id={`${p}-name`} name="name" type="text" autocomplete="name" required data-rule="name" aria-describedby={`${p}-name-err`}>
+      <span class="lse-err" id={`${p}-name-err`}>Add your name.</span>
+    </div>
+    <div class="lse-field">
+      <label class="lse-label" for={`${p}-email`}>Work email</label>
+      <input class="lse-input" id={`${p}-email`} name="email" type="email" autocomplete="email" required data-rule="email" aria-describedby={`${p}-email-err`}>
+      <span class="lse-err" id={`${p}-email-err`}>That email address does not look right.</span>
+    </div>
+    <div class="lse-field">
+      <label class="lse-label" for={`${p}-phone`}>Phone number, only if you would like a call</label>
+      <input class="lse-input" id={`${p}-phone`} name="phone" type="tel" autocomplete="tel" data-rule="phone" aria-describedby={`${p}-phone-err`}>
+      <span class="lse-err" id={`${p}-phone-err`}>That phone number does not look right.</span>
+    </div>
+    <div class="lse-field">
+      <label class="lse-label" for={`${p}-message`}>Anything we should know first</label>
+      <textarea class="lse-input" id={`${p}-message`} name="message" rows="4"></textarea>
+    </div>
+    <div class="lse-ts" data-ts data-sitekey={site.tracking.turnstileSiteKey} data-test-sitekey={site.tracking.turnstileTestSiteKey}></div>
+    <button class="lse-btn" type="submit">{submitLabel}</button>
+    <p class="lse-privacy"><slot name="privacy">Your details are used to answer you and to measure advertising. Read the <a href="/privacy-policy/">privacy policy</a>.</slot></p>
+  </form>
+  <div class="lse-done" role="status" data-done>
+    <h3>Thanks, that reached us.</h3>
+    <p>A reply is on its way. To speak sooner, <a href={site.calendly.url} target="_blank" rel="noopener">choose a time on the calendar</a>.</p>
+  </div>
+</div>
+
+<style is:global>
+/* TODO(design). Only the show/hide logic below is needed by scripts/forms.ts. */
+.lse-alert{display:none}
+.lse-alert.is-on{display:block}
+.lse-done{display:none}
+.lse-done.is-on{display:block}
+.lse-form-card.is-done .lse-open{display:none}
+.lse-sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.lse-err{display:none}
+.lse-field.is-bad .lse-err{display:block}
+</style>
+
+<script>
+  import '../scripts/forms';
+</script>

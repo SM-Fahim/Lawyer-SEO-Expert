@@ -1,0 +1,10 @@
+/* Design tokens. TODO(design): the design phase fills these in. Nothing here is final, and none of it
+   comes from LCME (no #0066FF, no Schibsted Grotesk; see research/LCME-FINGERPRINT.md section 2). */
+:root {
+  --lse-paper: #ffffff; /* TODO(design): page background */
+  --lse-ink: #000000; /* TODO(design): text */
+  --lse-accent: #000000; /* TODO(design): the one sharp accent */
+  --lse-line: #cccccc; /* TODO(design): borders */
+  --lse-font-body: system-ui, sans-serif; /* TODO(design): clean sans */
+  --lse-font-head: Georgia, serif; /* TODO(design): headline serif */
+}

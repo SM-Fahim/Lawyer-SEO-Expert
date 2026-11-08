@@ -1,0 +1,68 @@
+---
+// Everything Rank Math did in <head>: title, description, canonical, robots, Open Graph, JSON-LD (plan section 9).
+import { site, siteSchema } from '../data/site';
+interface Props {
+  title: string;
+  description: string;
+  /** The page's own path, with trailing slash. */
+  path: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  /** A page moved from WordPress keeps its live robots tag. Ignored with noindex. */
+  robots?: string;
+  /** Links the RSS feed from this page. */
+  feed?: boolean;
+  /** Blog posts: the article tags Rank Math gave them. */
+  article?: {
+    published: string;
+    modified: string;
+    section: string;
+    locale?: string | undefined;
+    siteName?: string | undefined;
+    imageWidth?: number | undefined;
+    imageHeight?: number | undefined;
+    imageAlt?: string | undefined;
+    imageType?: string | undefined;
+  };
+  /** Extra JSON-LD nodes for this page, like FAQPage. */
+  schema?: object[];
+  /** False leaves siteSchema out, so the page's JSON-LD is only what it passes in schema. */
+  siteGraph?: boolean;
+}
+const { title, description, path, ogTitle = title, ogDescription = description, ogImage = site.ogImage, noindex = false, robots, feed = false, article, ogType = article ? 'article' : 'website', schema = [], siteGraph = true } = Astro.props;
+const canonical = new URL(path, site.url).href;
+const image = new URL(ogImage, site.url).href;
+const graph = noindex ? null : { '@context': 'https://schema.org', '@graph': [...(siteGraph ? siteSchema : []), ...schema] };
+---
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex">}
+{!noindex && robots && <meta name="robots" content={robots}>}
+{feed && <link rel="alternate" type="application/rss+xml" title="Lawyer SEO Expert Feed" href={new URL('/feed/', site.url).href}>}
+<meta property="og:type" content={ogType}>
+<meta property="og:title" content={ogTitle}>
+<meta property="og:description" content={ogDescription}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={image}>
+{article && (
+  <>
+    {article.locale && <meta property="og:locale" content={article.locale}>}
+    {article.siteName && <meta property="og:site_name" content={article.siteName}>}
+    {article.imageWidth && <meta property="og:image:width" content={String(article.imageWidth)}>}
+    {article.imageHeight && <meta property="og:image:height" content={String(article.imageHeight)}>}
+    {article.imageAlt && <meta property="og:image:alt" content={article.imageAlt}>}
+    {article.imageType && <meta property="og:image:type" content={article.imageType}>}
+    <meta property="article:section" content={article.section}>
+    <meta property="article:published_time" content={article.published}>
+    {article.modified !== article.published && <meta property="article:modified_time" content={article.modified}>}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={ogTitle}>
+    <meta name="twitter:description" content={ogDescription}>
+    <meta name="twitter:image" content={image}>
+  </>
+)}
+{graph && <script type="application/ld+json" set:html={JSON.stringify(graph).replace(/</g, '\\u003c')}></script>}

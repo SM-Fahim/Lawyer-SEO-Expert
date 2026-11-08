@@ -1,0 +1,9 @@
+---
+// The tracker, inlined early in <head>. check-dist.mjs looks for data-lse-tracker on every indexable page.
+import { NO_VIEW_CONTENT_PAGES } from './core';
+import { trackerScript } from './inline';
+const code = await trackerScript();
+const { pathname } = Astro.url;
+const path = pathname.endsWith('/') ? pathname : `${pathname}/`;
+---
+<script is:inline data-lse-tracker data-no-view-content={NO_VIEW_CONTENT_PAGES.includes(path) ? '' : undefined} set:html={code}></script>

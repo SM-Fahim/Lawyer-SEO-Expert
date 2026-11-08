@@ -1,0 +1,76 @@
+---
+// Every page's shell. Sitewide features come from src/data/features.ts, so pages never list them.
+// TODO(design): header, footer and global styles are bare placeholders.
+import '../styles/tokens.css';
+import Seo from '../components/Seo.astro';
+import { featuresFor } from '../data/features';
+import { site } from '../data/site';
+import type { PageType } from '../../worker/pagetype';
+
+interface Props {
+  /** Sent to Meta as ViewContent's content_category. Layouts set it, so pages rarely do. */
+  pageType: PageType;
+  title: string;
+  description: string;
+  /** The page's own path, with trailing slash. Used for the canonical and feature exclusions. */
+  path: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  /** Overrides the robots tag. Ignored with noindex. */
+  robots?: string;
+  /** Links the RSS feed from this page. */
+  feed?: boolean;
+  /** Blog posts: their article tags, see Seo.astro. */
+  article?: {
+    published: string;
+    modified: string;
+    section: string;
+    locale?: string | undefined;
+    siteName?: string | undefined;
+    imageWidth?: number | undefined;
+    imageHeight?: number | undefined;
+    imageAlt?: string | undefined;
+    imageType?: string | undefined;
+  };
+  schema?: object[];
+  /** False leaves the Organization and WebSite nodes out of the JSON-LD. */
+  siteGraph?: boolean;
+}
+const { path, pageType, ...seo } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-page-type={pageType}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{/* TODO(owner): Meta domain verification tag for lawyerseoexpert.com goes here once the Meta dataset exists.
+    Server-rendered on purpose: Meta reads it without running JavaScript. */}
+<Seo path={path} {...seo} />
+<link rel="icon" href={site.logo}>
+<script is:inline>document.documentElement.classList.add('js')</script>
+{featuresFor(path, 'head').map((f) => <f.component />)}
+</head>
+<body>
+<a class="lse-skip" href="#main">Skip to content</a>
+<header>
+  <a href="/">{site.name}</a>
+  <nav aria-label="Main">
+    {site.nav.map((link) => <a href={link.href}>{link.label}</a>)}
+    <a href="/#book" data-cal>{site.cta.label}</a>
+  </nav>
+</header>
+<main id="main">
+  <slot />
+</main>
+<footer>
+  <nav aria-label="Legal">
+    {site.footer.legal.map((link) => <a href={link.href}>{link.label}</a>)}
+  </nav>
+  <p>{site.footer.copyright}</p>
+</footer>
+{featuresFor(path, 'body').map((f) => <f.component />)}
+</body>
+</html>

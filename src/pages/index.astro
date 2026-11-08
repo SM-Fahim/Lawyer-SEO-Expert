@@ -1,0 +1,17 @@
+---
+// PLACEHOLDER homepage: plumbing only. The design and copy phases replace everything below.
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import CalendlyInline from '../components/CalendlyInline.astro';
+---
+<Base pageType="company" path="/" title="Lawyer SEO Expert (placeholder)" description="Placeholder page for the Lawyer SEO Expert rebuild.">
+  <h1>Lawyer SEO Expert</h1>
+  <p>Placeholder page. The real homepage is built in the design phase.</p>
+  <p><a href="/#book" data-cal>Schedule a call</a></p>
+  <section id="book">
+    <CalendlyInline lazy titleTag="h2" />
+  </section>
+  <section>
+    <LeadForm title="Send a message" idPrefix="h" label="Homepage message" />
+  </section>
+</Base>

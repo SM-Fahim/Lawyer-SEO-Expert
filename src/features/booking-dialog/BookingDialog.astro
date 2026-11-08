@@ -1,0 +1,52 @@
+---
+// Every booking link opens this: any link to #book or /#book, plus [data-cal].
+// Other features open it by dispatching 'lse:book' on document, with detail.source.
+import CalendlyInline from '../../components/CalendlyInline.astro';
+---
+<dialog class="lse-bookdlg" aria-labelledby="bookdlg-title" data-bookdlg>
+  <CalendlyInline titleId="bookdlg-title">
+    <button slot="close" class="lse-bookdlg__x" type="button" aria-label="Close" data-bookdlg-close>&times;</button>
+  </CalendlyInline>
+</dialog>
+
+<script>
+  import { mountCalendar } from '../../scripts/calendly';
+  import { trackStored } from '../tracking/track';
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-bookdlg]');
+  if (dialog && typeof dialog.showModal === 'function') {
+    const title = dialog.querySelector('.lse-cal__title')!;
+    const sub = dialog.querySelector('.lse-cal__head p')!;
+    // TODO(copy): final wording for the dialog. One text for every source.
+    const COPY: [string, string] = ['Schedule a call', 'Choose a time that suits you.'];
+
+    const open = (source: string) => {
+      if (dialog.open) return;
+      const [t, s] = COPY;
+      title.textContent = t;
+      sub.textContent = s;
+      mountCalendar(dialog.querySelector<HTMLElement>('[data-calendly]'));
+      dialog.showModal();
+      document.dispatchEvent(new CustomEvent('lse:booking-opened', { detail: { source } }));
+      trackStored(source === 'exit' ? 'ExitOfferShown' : 'BookingDialogOpened');
+    };
+
+    dialog.querySelector('[data-bookdlg-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    document.addEventListener('click', (e) => {
+      const target = e.target as Element | null;
+      if (!target?.closest?.('a[href="#book"], a[href="/#book"], [data-cal]')) return;
+      e.preventDefault();
+      open('cta');
+    });
+    document.addEventListener('lse:book', (e) => open((e as CustomEvent<{ source?: string }>).detail?.source ?? 'cta'));
+  }
+</script>
+
+<style is:global>
+/* TODO(design): the dialog's looks. It works unstyled. */
+.lse-bookdlg{width:min(540px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0}
+.lse-bookdlg .lse-cal__body{height:min(660px,calc(100dvh - 120px))}
+</style>
