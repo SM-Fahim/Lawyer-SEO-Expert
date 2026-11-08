@@ -93,3 +93,17 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 - **Breadcrumbs are visible** above every inner hero, in muted 15px sentence case, so the BreadcrumbList JSON-LD matches what is on the page. `hideCrumbs` turns the trail off if the judge reads it as an eyebrow.
 - **Three-up proof rows** read badly with full results pages (text too small); `Cols count={3}` is documented for strips only.
 
+
+## 2026-11-08 Web, PPC, about, bios and contact (branch p-site)
+
+Pages: `/lawyer-web-design-development/`, `/law-firm-ppc/` (indexed), `/about/`, `/about/sm-fahim/`, `/about/josh-henderson/`, `/contact-us/` (replaces the stub). Screenshots in `docs/shots/<slug>-1440.png` and `-390.png`.
+
+- **Group pieces:** `src/components/p-site/SiteDuo.astro` (the web hero's phone overlapping the desktop frame; it only arranges BrowserShot and PhoneShot). No kit or shared component changed.
+- **PRICES_BY_PAGE:** `/law-firm-ppc/` gets `500`; `/about/sm-fahim/` gets `900K`, `2.7M`, `36M`.
+- **Proof:** the Fahim bio uses the 139 chart (`proof.nolaCalls`) with the caption "June to October 2026: 139 calls, up 39%..."; LCME's `calls-rudin.webp` (119) is not used. The Idiya screenshot is left out (its totals don't match FACTS); the $900K to $2.7M pair stands as numbers only.
+- **Forms:** the PPC hero form adds "Running Google Ads now?" (sent as `running_ads`, kept in the lead's extra fields), so it is the compact LeadForm in PageHero's text slot. The contact form is the compact LeadForm (website first) plus the deck's optional "What do you want more of?" as its message field; `source_form` stays "Contact page message" (the e2e lead test and Worker tests use it). No phone field, so `tests/e2e/helpers.ts` `fillForm` now fills phone only when the form has one.
+- **Copy changed:** the web hero hint "No site yet? Write none." is left out (the website field's URL check rejects "none"). On `/about/`, "About Fahim" and "About Josh" are "More about Fahim" and "More about Josh" (exact LCME link labels).
+- **Hidden until answered:** the web FAQ "How long does a build take?" and "Who hosts it, and can our staff edit pages?" (owner placeholders), out of the FAQPage JSON-LD too.
+- **Placeholders showing:** `/law-firm-ppc/` has three (ads results page, search terms list, live ad and landing page).
+- **Footer:** the PPC link label is "Google Ads management" (deck).
+- **Hero alignment:** `/about/` and `/law-firm-ppc/` heroes without PageHero's own form align to the top at 1000px and up (page-level CSS), so the H1 doesn't float mid-column.
