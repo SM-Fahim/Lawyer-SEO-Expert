@@ -51,3 +51,26 @@ Built from Tile A and logo concept 3 (`docs/design-system.md`). Fonts self-hoste
 **Proof images:** the Semrush Domain Overview capture is cropped to the SEO panel (Authority Score 10), with backlinks and referring domains cut out. The 2025-10-26 Domain Overview (backlinks visible) is not used. The Search Console capture is a placeholder.
 
 **Work log:** `src/data/worklog.ts` holds this site's own rebuild rows, each `verifyAtLaunch: true`. Two rows are dated "launch day" (placeholder) until the site is live.
+
+## 2026-11-08 Homepage v2 ("Marked")
+
+The owner rejected v1 (too much about our own rankings and Fahim, a work log, too much text, results hidden in text, a templated look, cream "AI slop"). v2 replaces the system and the page. `docs/design-system.md` is rewritten; copy is in `../content/home-v2.md`.
+
+**System:** white, black and the logo's highlighter `#D4F04A`, with a fog grey `#F1F3F0` for bands. Libre Franklin is the only family (Newsreader and Source Sans 3 are removed). The highlighter only marks proof: strokes over the line in a screenshot that proves the claim, and swipe tags on frames ("#1", "139 calls"). Motion: marks draw in once, result numbers count up once; both off under reduced motion.
+
+**Logo:** concept 3 is kept (the S on the off-square swipe, "SEO" on the same swipe in the wordmark) and redrawn in Libre Franklin, black on white, with a reverse for the black footer and a mono version. Same swipe geometry as the approved SVGs. The original serif files stay in `../brand/logo/`. The owner can ask for the serif lettering back; only `src/assets/logo/` changes.
+
+**Owner rules folded in during the build:** a way to act in the hero (the compact form: website, name, email, Turnstile on interaction), with "Fahim answers within an hour in business hours." beside it; Josh "joins calls with firms"; client screenshots already public on LCME used as they are; the bar-rules FAQ answer kept; no phone number.
+
+**Choices for the judge:**
+- The hero CTA is the short form, with "Book a ranking review" as a text link under it and the button in the header. Two forms on the page (hero and final), so the e2e skeleton now expects 2.
+- The hero result is the New Orleans calls chart, not a ranking: calls are the outcome the H1 promises. Rankings open the next section.
+- The "16 hours" result appears once as a section headline, always with "after about three months of groundwork". Tanker (#3) is used only as a "Top of Google" crop, never with a #1 tag.
+- `$36M+` and Idiya's `$900K to $2.7M` are left out: check-dist's price rule allows only $2,000, and allowlists stay as they are. Add them to `PRICES_BY_PAGE` for `/` if the owner wants them.
+- Literal Google searches quoted next to their screenshots are wrapped in `<q data-no-check>`, because they are the same words as LCME's captions by nature. All other copy passed check-unique by rewriting (0.98% shared 6-word windows on `/`).
+- Logo alt text says "Rudin Law logo" and so on (LCME's alt texts are the bare names).
+- `/variants/` (noindex, out of the sitemap): B "Evergreen" (form inside a dark green hero card, three proofs in a row) and C "Yellow pad" (classic highlighter yellow and graphite, the real calendar in a band straight under the hero, mounted when it scrolls into view).
+
+**Removed:** the work log (`WorkLog`, `src/data/worklog.ts`), `MarginNote`, `SerpFigure`, `ResultRow`, `PriceLine`, `TermsList`, `Mark`, the v1 Semrush and SERP captures and the old fonts.
+
+**Pre-existing test failures (not from this work):** five Worker tests expect `/law-firm-ppc/` to 301 to the services page, but commit 323c59c made it a page; they fail on the base commit too. The Worker is untouched here.

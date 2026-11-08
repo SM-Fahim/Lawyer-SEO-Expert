@@ -1,94 +1,83 @@
-# LSE design system
+# LSE design system: "Marked"
 
-Tile A, "the marked-up brief" (`../brand/BRAND-NOTES.md`, owner-approved 2026-11-08). Logo concept 3, the highlighter S. Read this before building an inner page. Pages share the language below and get their own section layouts: don't copy the homepage's order or shapes.
+Homepage v2, 2026-11-08. It replaces Tile A (cream paper, Newsreader serif), which the owner rejected. Read this before building an inner page. Pages share the language below and get their own section layouts: don't copy the homepage's order or shapes.
 
-Screenshots of the homepage: `docs/shots/home-1440.png` and `home-390.png`.
+Screenshots: `docs/shots/home-v2-1440.png`, `home-v2-390.png`, and the two other directions in `variants-1440.png`, `variants-390.png` (live at `/variants/`, noindex).
 
 ## The idea
 
-Real artefacts (a Google result, a work log, Search Console, Semrush) shown as white sheets on warm paper, then marked up like a brief someone reviewed: one highlighter stroke on the fact that matters, a rank chip for a real position, an italic margin note saying when and how it was measured. Everything else stays quiet: hairlines, generous space, one button.
+White paper, black ink, and one highlighter: the logo's chartreuse. The highlighter only ever marks proof. In a real screenshot it sits on the exact line that proves the claim (a #1 result, "16 hours ago", a call count), and as a swipe tag on the frame's corner it states the result ("#1", "139 calls"). Results are the headlines and the biggest things on the page; words are short. The type is Libre Franklin, the American newspaper grotesk, set big and tight.
 
 ## The owner's rules (they never bend)
 
-- One CTA label everywhere: "Book a ranking review". One button per view. Never two buttons, or a button and a form, side by side. Other actions are text links.
-- No eyebrows, no all-caps, no mono fonts, no labels above headings, no text to the right of an H2.
-- No em dashes in visible text (check-dist fails the build). No "→" on links. No middle-dot strings.
-- Headings are full sentences that end with a full stop. Questions only in the FAQ.
-- Hairlines over boxes. The only boxed things are real documents (results, logs, screenshots) and form fields.
-- Body text contrast at least 4.5:1. The marker colour only sits behind ink text or fills large marks; never as text, icons or thin lines.
-- Every number is real and dated, with its source next to it, or it is a designed placeholder. Never fake data.
-- No carousels, no decorative motion, no scroll reveals. Motion only answers an action (menu, FAQ, dialog). Reduced motion turns transitions off.
-- Nothing from LCME's look: no `#0066FF` or royal blue, no Schibsted Grotesk, no dark hero with a calendar on the right, no receipt price block, no rings plus numbered markers, no blue index band. No `cmo-` or `pr-` class prefixes (check-unique's leak scan).
-- No scales, gavels, columns, seals, shields, laurels, rockets, 3D art or handshake stock.
+- Lead with what the firm gets. Results come first and big, with their screenshot next to them. The people come after the results.
+- A way to act sits in the hero or the section straight after it: the short form (`LeadForm compact`) or a real booking embed. A button that only opens a dialog does not count. The reply line goes next to the form: "Fahim answers within an hour in business hours."
+- One CTA label everywhere: "Book a ranking review" (opens the booking dialog). Never two buttons side by side. A text link under a form is fine.
+- Little text: a headline that says the point, one or two short lines, then the visual. No paragraph a skimmer would skip.
+- Results are never hidden in text, tabs, carousels or accordions. Screenshots open full size on click.
+- No firm names in result text or headings ("a PI firm in New Orleans"). Named logos only in the trust line.
+- No eyebrows, no all-caps labels, no text to the right of an H2, no em dashes, no "→" on links, no middle-dot strings.
+- No "16 hours" as a general promise: it is one firm's result and always travels with "after about three months of groundwork".
+- No prices in the hero. Only "from $2,000 a month" (SEO) and "from $2,000" (website build); check-dist enforces it.
+- Nothing from LCME's look: no `#0066FF` or any royal blue, no navy, no Schibsted Grotesk, no dark hero with a calendar on the right, no receipt, no rings with numbered markers, no blue index band, no `cmo-` or `pr-` classes.
+- Banned looks: cream, beige, ivory or paper backgrounds; editorial serif; centred everything; uniform card grids; gradient blobs; glassmorphism; emoji icons; stock illustrations.
 
 ## Tokens (`src/styles/tokens.css`)
 
 | Token | Value | Use |
 |---|---|---|
-| `--paper` | `#F3F2EA` | page base |
-| `--sheet` | `#FFFFFF` | documents and results only (ink 13.08:1) |
-| `--ink` | `#12372A` | text, buttons, footer, section rules (11.65:1) |
-| `--ink-2` | `#3C5449` | secondary text, leads, notes (7.31:1) |
-| `--muted` | `#5F6E66` | small meta only, 15px and up (4.78:1) |
-| `--rule` | `#CBD0C2` | hairlines, never text |
-| `--marker` | `#D4F04A` | highlight behind ink, rank chip, button hover. 1.14:1 on paper: never text |
-| `--hatch` | `#E4E6DC` | placeholder fill, photo backdrop |
-| `--on-ink`, `--on-ink-2` | `#F3F2EA`, `#B9C9BE` | text on the ink footer |
+| `--paper` | `#FFFFFF` | page |
+| `--fog` | `#F1F3F0` | alternate bands, the panel behind the hero result. Ink on it 19.1:1 |
+| `--ink` | `#000000` | headings, numbers, buttons, footer |
+| `--ink-2` | `#2B2D29` | body and leads (14.2:1) |
+| `--muted` | `#5D6159` | captions and meta, 15px and up (6.3:1; 5.7:1 on fog) |
+| `--line`, `--line-2` | `#D8DCD4`, `#B6BBB1` | frames, hairlines, rules. Never text |
+| `--marker` | `#D4F04A` | the highlighter. Behind ink only (16.9:1). Never as text or a thin line on white |
+| `--on-ink`, `--on-ink-2` | `#FFFFFF`, `#B9BCB5` | footer text |
 
-Type: `--serif` Newsreader 500 (optical size on) for H1 to H3, numerals and price lines; Newsreader italic 400 for margin notes and captions. `--sans` Source Sans 3 400/600 for body, UI and buttons. Scale: `--fs-h1` 44 to 88, `--fs-h2` 32 to 52, `--fs-h3` 23 to 28, `--fs-lead` 19 to 23, `--fs-body` 17 to 19, `--fs-note` 18, `--fs-meta` 15. Body never under 17px; meta never under 15px.
+Type: one family, Libre Franklin (variable 400 to 900, Latin subset, `public/fonts/libre-franklin.woff2`, 24 KB, preloaded). H1 800 at `--fs-h1` (44 to 86px), tracking -0.038em, line-height 0.98. H2 800 at `--fs-h2` (32 to 56px), -0.032em. H3 750 at `--fs-h3` (22 to 28px). Result numbers 900 at `--fs-num` (76 to 152px), -0.055em. Lead 19 to 22px, body 17 to 18px, meta 15px. The fallback face is Arial with `size-adjust` 103% and metric overrides, so the swap moves nothing. To add glyphs, re-subset `LibreFranklin[wght].ttf` from Google Fonts with fontTools (instancer wght 400 to 900, then subset to woff2).
 
-Fonts are self-hosted in `public/fonts/` (Latin subset, woff2, `font-display: swap`). Roman serif and sans are preloaded in `Base.astro`. The `... Fallback` faces are Georgia and Arial with `size-adjust` and metric overrides, so the swap moves nothing (CLS 0). To add glyphs, re-subset from the Google Fonts variable TTFs with fontTools (Newsreader roman pinned to wght 500, opsz 16 to 72; italic wght 400, opsz 18; Source Sans 3 wght 400 to 600).
+Space: 8px base (`--s1` 8 to `--s7` 96). `--section` clamp(72px, 8.5vw, 132px). `--wrap` 1280px. `--gut` clamp(16px, 4vw, 48px), so phones get 16px. Shape: `--r-btn` 8px, `--r-frame` 12px, `--swipe` (the logo's off-square block, a clip-path) for tags and marked numbers. `--shadow-lift` only where a frame sits on a panel (the hero).
 
-Space: 8px base (`--s1` 8 to `--s7` 96), `--section` clamp(80px, 10vw, 144px), `--wrap` 1200px, `--gut` clamp(16px, 4vw, 40px), margin-note column `--note-col` 280px with `--note-gap` 64px. Radius: 4px buttons, 6px sheets, irregular `--r-mark` on marks so they feel hand-made.
+Layout: left-aligned. Headings on top of their section, the visual below or beside them (never text beside a heading). Asymmetric splits on a 12-column feel: 5/7 or 7/5 at 1000px and up, one column under it. Bands alternate white and fog; the price band is the one marker-coloured band per page; the footer is black.
 
-## Global classes (`src/styles/global.css`)
+## The marks
 
-- `.lse-wrap`: the centred container. `.lse-section`: a page section with `--section` padding; consecutive sections get a 1px ink rule between them.
-- `.lse-lead`: the paragraph under an H2 (moss, larger). `.lse-section__lead` adds its top margin. `.lse-small`: meta text.
-- `.lse-bridge`: the serif line that hands one section to the next. Optional; use it when the copy has one.
-- `.lse-review`, `.lse-review__main`, `.lse-review__side`: the review grid. Content left, margin notes right at 1080px and up; under that, notes drop below the content.
-- `.lse-mk` (or `<mark class="lse-mk">`): the highlight. `.lse-chip`: the rank chip. `.lse-sheet`: a white document.
-- `.lse-btn`: the button looks (also used by form submits). `.lse-links`: text links in a row.
-- `.lse-ph`, `.lse-ph--block`: placeholder looks (use the component).
-- `.lse-vh`: visually hidden.
+- **Highlighter on a screenshot** (`Shot`, `marks`): a chartreuse stroke with `mix-blend-mode: multiply`, so the text under it stays dark. Boxes are percentages of the image, measured from its pixels around the exact text. One to three per image. They draw in once, left to right, when the frame scrolls into view (`src/scripts/marks.ts`); reduced motion shows them at once.
+- **Tag** (`.lse-tag`, `Shot tag="#1"`): black Franklin 900 on the swipe, half off the frame's top corner. Only a real rank or result. `tagSmall` for a place label ("The Map").
+- **Marked number** (`.lse-h-num--marked` on the homepage): a result number on the swipe. A grey number beside it is the before.
+- **`.lse-mk`**: a highlight behind a few words of running text. One per block, never in a heading.
 
-Page-only layout goes in the page's `<style is:global>` with classes prefixed by the page (the homepage uses `lse-hero` and `lse-s1` to `lse-s7`). Global, because Astro's scoped styles don't reach into child components.
+## Motion
+
+Only where it explains: marks drawing in on screenshots, and result numbers counting up once (`data-count`). Nothing loops, nothing slides in by itself. `prefers-reduced-motion` turns it all off.
 
 ## Components (`src/components/`)
 
 | Component | What it is | How to use it |
 |---|---|---|
-| `Header` | Lockup, five links, one button; a disclosure menu under 960px | In `Base.astro`. Links come from `site.nav` |
-| `Footer` | Ink footer: line, email, every planned page, legal links | In `Base.astro`. Links come from `src/data/pages.ts` |
-| `Logo` | Inline concept-3 lockup, `variant="reverse"` for ink | Header and footer already use it |
-| `Button` | The booking CTA (`/#book`, opens the dialog) | `<Button />`. One per view. `size="sm"` in tight places. Full width on phones unless `block={false}` |
-| `Mark` | The highlight | `<Mark>the one fact</Mark>`. Once per block, never in an H1 |
-| `MarginNote` | Italic note with a leader into the content | Inside `.lse-review__side`. Say when and how: "Google, US, 8 Nov 2026" |
-| `SerpFigure` | A real search screenshot on a sheet, with marks, a rank chip and brackets layered in HTML | Positions are percentages of the image. Never larger than the image's natural size. `priority` only in a hero |
-| `Shot` | A plain proof screenshot with an italic source caption | Every capture needs a dated caption. Crop out backlink and referring-domain counts before adding |
-| `ResultRow` | A hairline row: a big serif `figure` with its sentence and `source`, or a bold `title` with text and a `media` capture | Every number with its source and date |
-| `WorkLog` | The monthly log as a document table (stacks on phones) | Rows from `src/data/worklog.ts`. `highlight` plus the `note` slot marks one row |
-| `PriceLine` | A starting price as a serif sentence, what it covers, text links | Only "from $2,000 a month" and "from $2,000" (check-dist). Never a receipt, tier table or comparison |
-| `TermsList` | Bold sentence plus plain explanation, hairlines between | Contract terms, who shouldn't hire us |
-| `PracticeLinks` | The practice pages in columns, each with a real search phrase | Reads `practicePages` |
-| `Faq` | Native `<details>` accordion, first open | Build FAQPage JSON-LD from the same items with `faqSchema()` in `src/lib/schema.ts`. No "Related" block under it |
-| `FinalCta` | Closing section: H2, lead, button; below it after a hairline "Prefer to put it in writing?" and the form | Once per page, last. Carries `id="book"`. Pass a `formLabel` for the lead email |
-| `LeadForm` | The ported lead form (name, email, website, optional message; `phone` adds a field) | Inside `FinalCta`, or alone on the contact page with `titleTag="h2"`. Keep its data-* hooks |
-| `Placeholder` | A hatched, labelled stand-in | `collect` says exactly what to collect. `block` with `width`/`height` for a missing image |
+| `Header` | Lockup, five links, one button; a menu under 960px | In `Base.astro` |
+| `Footer` | Black footer: line, email, every planned page, legal links | In `Base.astro` |
+| `Logo` | The concept-3 lockup redrawn in Libre Franklin. `variant="reverse"` on black | Header and footer use it |
+| `Button` | The booking CTA ("Book a ranking review", opens the dialog) | One per view. `size="sm"` in tight places |
+| `Shot` | Real screenshots in one frame (stack a search box over its result), with marks, an optional tag and `crop` | Every capture needs a caption that says whose result it is, without the firm's name. Never larger than natural width |
+| `LeadForm` | The lead form. `compact` is the hero version: website first (set like a search box), name and email, no message | Each form on a page needs its own `idPrefix` and `label` (source_form) |
+| `CalendlyInline` | The booking calendar. `lazy` mounts it when it nears the screen | For a booking band. The dialog has its own |
+| `FinalCta` | Closing section: H2, lead, button, then "Prefer to put it in writing?" with the form | Once per page, last. Carries `id="book"` |
+| `Faq` | Native `<details>`, first open, hairlines, a marker dot when open | Build FAQPage JSON-LD from the same items with `faqSchema()` |
+| `PracticeLinks` | The practice pages as big text links with hairlines; the hover is the highlighter | Reads `practicePages` |
+| `Placeholder` | A hatched, labelled stand-in, `data-placeholder="what to collect"` | Never fake data |
 
-Booking dialog and Calendly embed: `src/features/booking-dialog/`, `CalendlyInline.astro`. Their words are the CTA's (`site.cta`).
-
-## Placeholders and planned pages
-
-- A placeholder renders with `data-placeholder="what to collect"`. A Preview build passes with a warning listing them; a launch build (`STRICT_REDIRECTS=1 npm run build`) fails while any is left.
-- Links to pages that aren't built yet must be listed in `src/data/pages.ts`. They pass with a warning until launch; at launch every one must be built. Build a page, and its link stops warning by itself.
+Sitewide features (`src/data/features.ts`): tracking, the booking dialog, and image zoom (every `Shot` image with alt text opens full size; Enter or Space too).
 
 ## Images
 
-- Proof captures: `public/img/proof/`, webp, with `width` and `height`. Show them no larger than their natural size; never upscale. The current captures are low resolution and flagged for recapture before launch.
-- People: `public/img/people/`. Fahim's photo is the real portrait on a flat `--hatch` backdrop, 4:5. Josh's photo stays a placeholder until the owner confirms it is him.
-- Icons: `favicon.svg` (the S mark), `favicon.ico` (16 and 32), `apple-touch-icon.png` (180), `icon-192.png` and `icon-512.png` (`site.webmanifest`). Share image: `public/img/og-default.png`, 1200x630, the H1 on paper with the lockup and a rank chip. A page that needs its own share image follows the same layout.
+- Proof: `public/img/proof/`, webp, real captures only. Names say the market and what it is (`nola-calls-jun-oct-2026.webp`), never the firm. Our own result: `lse-serp-lawyer-seo-expert-2026-11-08.webp` (one screenshot; no Search Console or Semrush numbers on the homepage).
+- Logos for the trust line: `public/img/logos/<firm>-ink.webp` on white, `-white.webp` on dark.
+- People: `public/img/people/fahim.webp`, `josh.webp`, transparent cutouts, set on a marker swipe (`.lse-h-face`).
+- Share image: `public/img/og-default.png`, 1200x630: lockup, the H1, the calls chart with its tag, a black bar at the foot.
+- Icons: `favicon.svg` (the S on the swipe), `favicon.ico`, `apple-touch-icon.png` and `icon-192/512.png` (the mark on black).
 
 ## Writing on a page
 
-Use the copy file for the page exactly. Before building, check it against `scripts/unique-config.json`: banned LCME phrases fail the build anywhere on the page (for example "no account managers" and "no long contract"). Change the fewest words that keep the meaning, and note it in `docs/DECISIONS.md` for the judge.
+Use the page's copy file exactly. Check it against `scripts/unique-config.json` before building: banned LCME phrases fail the build. A literal Google search quoted as evidence goes in `<q data-no-check>` (the screenshot shows the same words). Everything else is rewritten, never exempted.
