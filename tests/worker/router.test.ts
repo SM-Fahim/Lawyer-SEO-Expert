@@ -174,6 +174,67 @@ describe('redirects', () => {
   });
 });
 
+describe('WordPress archives', () => {
+  it.each([
+    ['/category/tips/', '/blog/'],
+    ['/category/criminal-defense-seo', '/blog/'],
+    ['/category/tips/feed/', '/blog/'],
+    ['/category/personal-injury-lawyer-seo/page/2/', '/blog/'],
+    ['/category/', '/blog/'],
+    ['/category', '/blog/'],
+    ['/tag/seo/', '/blog/'],
+    ['/author/admin/', '/blog/'],
+    ['/author/s-m-fahim/', '/about/sm-fahim/'],
+    ['/blog/page/2/', '/blog/'],
+  ])('%s goes to %s with one 301', async (from, to) => {
+    const origin = originMustNotBeCalled();
+    const response = await send(`${SITE}${from}`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}${to}`);
+    expect(origin.requests).toHaveLength(0);
+  });
+
+  it('keeps the query string', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}/category/tips/?utm_source=x`);
+    expect(response.headers.get('location')).toBe(`${SITE}/blog/?utm_source=x`);
+  });
+
+  it.each(['/categoryx/', '/tags/', '/authors/', '/blog/'])('leaves %s alone', async (path) => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}${path}`);
+    expect(response.status).not.toBe(301);
+  });
+});
+
+describe('WordPress shortlinks', () => {
+  it.each([
+    ['p=1031', '/careers/'],
+    ['p=1210', '/crm-add/'],
+    ['p=935', '/blog/'],
+    ['page_id=118', '/contact-us/'],
+    ['p=610', '/law-firm-names/'],
+  ])('/?%s goes to %s with one 301', async (query, to) => {
+    const origin = originMustNotBeCalled();
+    const response = await send(`${SITE}/?${query}`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}${to}`);
+    expect(origin.requests).toHaveLength(0);
+  });
+
+  it('keeps every other parameter', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}/?p=402&gclid=abc&utm_source=x`);
+    expect(response.headers.get('location')).toBe(`${SITE}/seo-for-personal-injury-lawyers/?gclid=abc&utm_source=x`);
+  });
+
+  it('only works on the homepage', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${SITE}/blog/?p=1031`);
+    expect(response.status).not.toBe(301);
+  });
+});
+
 describe('http to https', () => {
   it('sends a 301, keeping path and query, before anything else', async () => {
     const origin = originMustNotBeCalled();

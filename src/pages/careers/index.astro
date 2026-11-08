@@ -1,0 +1,78 @@
+---
+// /careers/: the two part-time roles from the old page (WordPress page 1031), kept by owner default
+// (FACTS.md section 1). Each applies through its Google Form, as before. The video editor's details come from
+// its own form (read 2026-11-08). The graphic designer's form gave no details, and it said it was no longer
+// accepting answers on 2026-11-08, so the judge dropped the role until the owner reopens it.
+// "A small team helps with production" is the owner's wording on who does the work (FACTS section 1).
+import Band from '../../components/kit/Band.astro';
+import { site } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const roles = [
+  {
+    id: 'video',
+    title: 'Video editor',
+    meta: 'Part-time, about one to two hours a day',
+    text: 'Product promos, animated explainers, short vertical videos, tutorials, user-made clips and green-screen work. You need at least two years of paid editing in the kind of video you pick, and a computer that handles 4K. You set your own rate for each task.',
+    href: 'https://forms.gle/ieyHDRMEPF2LTaQUA',
+    link: 'Apply for the video editor role',
+  },
+];
+---
+<InnerPage
+  title="Careers at Lawyer SEO Expert | Part-Time Video Editor"
+  description="Lawyer SEO Expert is hiring a part-time video editor. Read what the role involves and apply through a short form."
+  path="/careers/"
+  crumbs={[{ label: 'Careers' }]}
+  pageType="company"
+>
+  <section class="cr-hero" aria-labelledby="hero-h">
+    <div class="lse-wrap">
+      <h1 id="hero-h">A part-time video editing role is open.</h1>
+      <p class="lse-lead cr-lead">We help law firms get found on Google. Fahim leads every account, and a <span class="lse-mk">small team helps with the production work</span>. We’re adding a video editor to it.</p>
+    </div>
+  </section>
+
+  <section class="lse-section cr-roles" aria-label="Open roles">
+    <div class="lse-wrap">
+      <ul class="cr-list">
+        {roles.map((r) => (
+          <li class="cr-role" aria-labelledby={`${r.id}-h`}>
+            <div class="cr-role__head">
+              <h2 id={`${r.id}-h`}>{r.title}</h2>
+              <p class="cr-role__meta">{r.meta}</p>
+            </div>
+            <div class="cr-role__body">
+              <p>{r.text}</p>
+              <p class="cr-role__apply"><a class="lse-link" href={r.href} target="_blank" rel="noopener">{r.link}</a></p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <Band heading="Questions about a role?" headingId="ask-h" tone="fog">
+    <p class="cr-ask">Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.</p>
+    <p class="cr-firm">Run a law firm instead? See our <a class="lse-link" href="/law-firm-seo-services/">law firm SEO services</a>.</p>
+  </Band>
+</InnerPage>
+
+<style is:global>
+  .cr-hero { padding: clamp(20px, 2.6vw, 40px) 0 clamp(8px, 1vw, 16px); }
+  .cr-hero h1 { font-size: clamp(44px, 3.4vw + 18px, 82px); max-width: 13ch; }
+  .cr-lead { margin-top: clamp(18px, 2vw, 26px); max-width: 32em; }
+  .cr-roles { padding-top: 0; }
+  .cr-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .cr-role { display: grid; gap: var(--s3); padding: clamp(32px, 4vw, 56px) 0; border-bottom: 1px solid var(--line); }
+  .cr-role h2 { font-size: var(--fs-h2); }
+  .cr-role__meta { margin-top: 10px; font-size: clamp(17px, .3vw + 16px, 19px); font-weight: 700; color: var(--muted); }
+  .cr-role__body p { color: var(--ink-2); max-width: 36em; font-size: clamp(17px, .3vw + 16px, 19px); }
+  .cr-role__apply { margin-top: var(--s3); font-weight: 800; }
+  @media (min-width: 1000px) {
+    .cr-role { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }
+    .cr-role__body { padding-top: 10px; }
+  }
+  .cr-ask { font-size: clamp(24px, 1.6vw + 14px, 40px); font-weight: 800; letter-spacing: -.03em; color: var(--ink); overflow-wrap: anywhere; }
+  .cr-firm { margin-top: var(--s3); color: var(--ink-2); }
+</style>
