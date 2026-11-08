@@ -30,6 +30,7 @@
   --ink: #000000; /* headings, numbers, buttons, footer. 21:1 */
   --ink-2: #2b2d29; /* body and leads. 14.2:1 */
   --muted: #5d6159; /* captions and meta, 15px and up. 6.3:1, 5.7:1 on fog */
+  --was: #7e827a; /* the grey "before" result number, large text only (44px and up). 3.9:1, 3.5:1 on fog */
   --line: #d8dcd4; /* frames and hairlines, never text */
   --line-2: #b6bbb1; /* stronger rules */
   --marker: #d4f04a; /* the logo's highlighter. Behind ink only (ink on it 16.9:1). Never text on paper */
