@@ -3,28 +3,79 @@
    "Marked" for long reading: white paper, black ink, headings on the site's scale, text at about 75 characters,
    hairline rules between sections, checklists and steps as hairline rows. The highlighter only as <mark>. */
 
+/* The zone opens a little closer to the hero than a full band would. */
+.lse-depth__part--first { padding-top: clamp(56px, 6vw, 96px); }
+
 /* Byline and summary on the left, the jump list on the right from 1000px; one column under it. */
 .lse-depth__intro { display: grid; gap: var(--s5); padding-top: var(--s3); border-top: 2px solid var(--ink); }
 .lse-depth__summary { margin-top: var(--s3); max-width: 36em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
+/* The short answer (the first sentence) at lead size in ink; the rest of the summary at body size under it. */
+.lse-depth__summary--split { font-size: clamp(17px, .25vw + 16px, 19px); line-height: 1.65; max-width: 35em; }
+.lse-depth__short { display: block; margin-bottom: .55em; font-size: var(--fs-lead); line-height: 1.45; font-weight: 500; color: var(--ink); }
 @media (min-width: 1000px) {
   .lse-depth__intro { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(48px, 5vw, 96px); align-items: start; }
   .lse-depth__intro .lse-jump { border-top: 0; }
   .lse-depth__intro .lse-jump__h { padding-top: 0; }
 }
 
-/* Sections: each H2 opens a new one under a hairline, across the column. */
-.lse-depth__sec { margin-top: clamp(64px, 7vw, 112px); padding-top: clamp(40px, 4.5vw, 64px); border-top: 1px solid var(--line-2); }
+/* Sections: each H2 opens a new one under a hairline, across the column. The gap above a depth H2 is about
+   --s6 in all (the section padding stays only around the full-width bands). */
+.lse-depth__sec { margin-top: clamp(40px, 4vw, 56px); padding-top: clamp(24px, 2.4vw, 36px); border-top: 1px solid var(--line-2); }
 .lse-depth__part:not(.lse-depth__part--first) > .lse-wrap > .lse-depth__sec:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+/* At 1440 the reading column starts one column in, so the white space is shared by both sides, while the
+   hairline still runs across. Tables, slots and the proof splits run on to 1040px from there. */
+@media (min-width: 1200px) {
+  .lse-depth__sec { padding-left: clamp(48px, 20vw - 192px, 96px); }
+}
+
+/* A worked example with its proof: [slot proof] sets the text after it on the left (7) and the page's real
+   capture on the right (5), from 1000px. Under that, the proof sits first, then the text. */
+.lse-depth__split { display: grid; gap: var(--s4); max-width: 1040px; margin-top: clamp(24px, 2.6vw, 36px); }
+.lse-depth__split + * { margin-top: clamp(32px, 3.5vw, 48px); }
+.lse-depth__split > .lse-prose > :first-child { margin-top: 0; }
+@media (min-width: 1000px) {
+  .lse-depth__split { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(40px, 4.5vw, 64px); align-items: start; }
+  .lse-depth__split > .lse-prose { grid-column: 1; grid-row: 1; }
+  /* The proof stays in view while the text beside it runs on. */
+  .lse-depth__split > .lse-depth__aside { grid-column: 2; grid-row: 1; padding-top: 20px; position: sticky; top: var(--s5); }
+  /* The aside is about a phone's width, so its captures use their phone crops: the same pixels, cut around the
+     marked line, so the text reads at about 11px instead of 5. */
+  .lse-depth__aside .lse-shot { max-width: var(--shot-max-p, var(--shot-max)); }
+  .lse-depth__aside .lse-shot__part--desk { display: none; }
+  .lse-depth__aside .lse-shot__part--phone { display: block; }
+  .lse-depth__aside .lse-shot__part[data-bd] { border-top: 0; }
+  .lse-depth__aside .lse-shot__part[data-bp] { border-top: 1px solid var(--line); }
+  .lse-depth__aside .m-swap__wide { display: none; }
+  .lse-depth__aside .m-swap__narrow { display: block; }
+}
+.lse-depth__proof { display: grid; gap: 14px; align-content: start; margin: 0; }
+.lse-depth__proof figcaption { display: grid; gap: 4px; max-width: 30em; font-size: var(--fs-meta); line-height: 1.45; color: var(--ink-2); }
+.lse-depth__proof figcaption b { font-size: 17px; line-height: 1.35; letter-spacing: -.01em; color: var(--ink); }
+
+/* The mid-page CTA as a trust moment: Fahim's face on its swipe, then the band's line and button beside it. */
+.lse-depth .lse-depth__mid .lse-band__body {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(20px, 3vw, 40px); row-gap: var(--s3);
+  align-items: center; justify-items: start;
+}
+.lse-depth .lse-depth__mid .lse-band__body > :not(.lse-depth__midface) { grid-column: 2; }
+.lse-depth .lse-depth__mid .lse-band__body > div:not(.lse-depth__midface) { justify-self: stretch; }
+.lse-depth .lse-depth__mid .lse-depth__midface { grid-column: 1; grid-row: 1; }
+.lse-depth .lse-depth__mid .lse-band__body:has(> :nth-child(3)) > .lse-depth__midface { grid-row: 1 / span 2; }
+@media (max-width: 640px) {
+  .lse-depth .lse-depth__mid .lse-depth__midface { width: 72px; align-self: start; }
+}
 
 /* The text: the measure goes on each block, so a table may run wider than the text beside it. 35em is about 75
    characters a line in Franklin (CSS's 68ch is 68 zeros, about 95 letters: too long for a long read). */
 .lse-depth .lse-prose { max-width: none; }
 .lse-depth .lse-prose > :is(p, ul, ol) { max-width: 35em; }
+/* Depth H2s are a step under the commercial H2s (bands, price, FAQ keep --fs-h2), so the reader sees where the
+   selling stops and the guide starts. */
 .lse-depth .lse-prose > h2 {
-  max-width: 20ch; margin-top: 0;
-  font-size: var(--fs-h2); line-height: 1.02; letter-spacing: -.032em;
+  max-width: 24ch; margin-top: 0;
+  font-size: clamp(28px, 1.4vw + 18px, 40px); line-height: 1.08; letter-spacing: -.028em;
 }
-.lse-depth .lse-prose > h2 + * { margin-top: clamp(20px, 2.2vw, 32px); }
+.lse-depth .lse-prose > h2 + * { margin-top: clamp(16px, 1.6vw, 24px); }
 .lse-depth .lse-prose > h3 {
   max-width: 30ch; margin-top: 1.7em;
   font-size: var(--fs-h3); line-height: 1.15; letter-spacing: -.018em;
@@ -42,8 +93,8 @@
 /* Callout: "> **Lead.** text". One fact that must not be missed: a black rule on its left, the lead in bold. */
 .lse-depth .lse-prose > .lse-callout, .lse-depth .lse-prose > .lse-callout + * { margin-top: 1.75em; }
 .lse-depth .lse-callout {
-  max-width: 33em; padding: 2px 0 4px 22px; border-left: 4px solid var(--ink);
-  font-size: 1.07em; line-height: 1.55; color: var(--ink);
+  max-width: 28em; padding: 2px 0 4px 22px; border-left: 4px solid var(--ink);
+  font-size: clamp(19px, .5vw + 15px, 22px); line-height: 1.45; color: var(--ink);
 }
 .lse-depth .lse-callout > * + * { margin-top: .65em; }
 .lse-depth .lse-callout > p:first-child > strong:first-child { font-weight: 800; }
@@ -73,6 +124,23 @@
   font-size: clamp(20px, .4vw + 17px, 23px); font-weight: 750; line-height: 1.2; letter-spacing: -.012em;
 }
 .lse-depth .lse-prose > ol.lse-steps > li > p + p { margin-top: .5em; }
+
+/* From 1000px, checklists of 4 or more and step lists of 2 to 4 run on to the table width in columns, so the
+   wide sections come round more often and the right side isn't empty for screens at a time. Longer step lists
+   stay one column, read in order. Inside a proof split they stay one column. */
+@media (min-width: 1000px) {
+  .lse-depth__sec > .lse-prose > ul.lse-check:has(> li:nth-child(4)) {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 4vw, 56px); max-width: 1040px;
+  }
+  .lse-depth__sec > .lse-prose > ol.lse-steps:is(:has(> li:nth-child(2):last-child), :has(> li:nth-child(4):last-child)) {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 4vw, 56px); max-width: 1040px;
+  }
+  .lse-depth__sec > .lse-prose > ol.lse-steps:has(> li:nth-child(3):last-child) {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(32px, 3vw, 48px); max-width: 1040px;
+  }
+  .lse-depth__sec > .lse-prose > ol.lse-steps:has(> li:nth-child(3):last-child) > li { padding-left: 52px; }
+  .lse-depth__sec > .lse-prose > ol.lse-steps:has(> li:nth-child(3):last-child) > li::before { font-size: 44px; }
+}
 
 /* Tables on wider screens: the kit's HairTable look (muted labels over a black rule, hairline rows, the first
    column in ink). Phones keep prose.css's stacked rows. At most 4 columns (the loader checks). */

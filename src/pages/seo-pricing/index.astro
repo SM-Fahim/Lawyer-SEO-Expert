@@ -71,6 +71,14 @@ const traps = [
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
+    <figure slot="proof" class="lse-depth__proof">
+      <ShotSwap
+        tag="1 to 9 calls"
+        wide={[shot(proof.newProfileCalls, { marks: ['points'] })]}
+        narrow={[shot(proof.newProfileCalls, { marks: ['points'] })]}
+      />
+      <figcaption>A new Google profile for a PI firm in New Orleans: about 1 call in July 2026, then 9 in October.</figcaption>
+    </figure>
     <div slot="drivers" class="bsv-rows"><Rows variant="inline" items={drivers} /></div>
     <figure slot="calls" class="cost-calls">
       <ShotSwap

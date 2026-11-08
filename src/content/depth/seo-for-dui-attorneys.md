@@ -159,6 +159,8 @@ Each state's license deadline deserves its own DUI page because it is short, exa
 
 The hearing sits apart from the criminal case, too. Texas holds license hearings at its State Office of Administrative Hearings and treats them as [unrelated to criminal court proceedings](https://www.soah.texas.gov/representing-yourself-administrative-license-revocation-drivers-license-cases-state-office). Florida's statute says the license decision may not be considered at the DUI trial. That is why the license page and the criminal page answer different questions.
 
+[slot proof]
+
 A deadline page is the kind of page Google's AI quotes. For <q data-no-check>Texas El Paso car accident filing deadline</q>, Google's AI answer cites a PI firm in El Paso first, through its deadline page. A license deadline question has that shape too: one number, one rule, one official source.
 
 Google needs no special code for this, per its [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features) page as of November 2026. The deadline page must be indexed and eligible for a snippet, nothing more. We check the AI answers for your deadline searches every month.
