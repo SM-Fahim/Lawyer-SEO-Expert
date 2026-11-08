@@ -73,4 +73,4 @@ The owner rejected v1 (too much about our own rankings and Fahim, a work log, to
 
 **Removed:** the work log (`WorkLog`, `src/data/worklog.ts`), `MarginNote`, `SerpFigure`, `ResultRow`, `PriceLine`, `TermsList`, `Mark`, the v1 Semrush and SERP captures and the old fonts.
 
-**Pre-existing test failures (not from this work):** five Worker tests expect `/law-firm-ppc/` to 301 to the services page, but commit 323c59c made it a page; they fail on the base commit too. The Worker is untouched here.
+**Worker tests:** five tests still expected `/law-firm-ppc/` to 301 to the services page after commit 323c59c made it a page. They now use `/lawyer-content-writing/` and `/seo-pricing-page/`. The Worker itself is untouched.
