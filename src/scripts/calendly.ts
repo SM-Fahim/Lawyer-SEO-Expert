@@ -61,14 +61,23 @@ export function tagFallbackLink(box: HTMLElement): void {
 
 const reveal = (box: Element): void => box.classList.add('is-ready');
 
-let state: 'idle' | 'loading' | 'ready' = 'idle';
+let state: 'idle' | 'loading' | 'ready' | 'failed' = 'idle';
 let queue: Array<() => void> = [];
+let failQueue: Array<() => void> = [];
 
-function withCalendly(fn: () => void): void {
+/** widget.js was blocked (an ad blocker, a privacy browser): the card shrinks to its message and the Calendly link. */
+const fail = (box: Element): void => box.classList.add('is-failed');
+
+function withCalendly(fn: () => void, onFail: () => void): void {
   if (state === 'ready') {
     fn();
     return;
   }
+  if (state === 'failed') {
+    onFail();
+    return;
+  }
+  failQueue.push(onFail);
   queue.push(fn);
   if (state === 'loading') return;
   state = 'loading';
@@ -89,6 +98,13 @@ function withCalendly(fn: () => void): void {
       }
     });
     queue = [];
+    failQueue = [];
+  };
+  script.onerror = () => {
+    state = 'failed';
+    failQueue.forEach((f) => f());
+    queue = [];
+    failQueue = [];
   };
   document.head.appendChild(script);
 }
@@ -102,7 +118,7 @@ export function mountCalendar(box: HTMLElement | null): void {
     // The frame is blank for seconds after it's created, so the placeholder waits for Calendly to say it's showing.
     // If that message never comes, the frame's load event still clears it.
     box.querySelector('iframe')?.addEventListener('load', () => setTimeout(() => reveal(box), READY_FALLBACK_MS), { once: true });
-  });
+  }, () => fail(box));
 }
 
 window.addEventListener('message', (e) => {

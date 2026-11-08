@@ -20,7 +20,7 @@ const { title = site.cta.label, sub = site.cta.sub, titleId, lazy = false, title
     <slot name="close" />
   </div>
   <div class="lse-cal__body" data-calendly={site.calendly.embedUrl} data-calendly-lazy={lazy ? '' : undefined}>
-    <div class="lse-cal__ph"><p>The booking calendar is on its way.</p><a class="lse-link" href={site.calendly.url} target="_blank" rel="noopener">Use the calendar on Calendly instead</a></div>
+    <div class="lse-cal__ph"><p class="lse-cal__wait">The booking calendar is on its way.</p><p class="lse-cal__off">The calendar can’t load in this browser.</p><a class="lse-link" href={site.calendly.url} target="_blank" rel="noopener">Use the calendar on Calendly instead</a></div>
   </div>
 </div>
 
@@ -64,4 +64,12 @@ const { title = site.cta.label, sub = site.cta.sub, titleId, lazy = false, title
 .lse-cal__body.is-ready .lse-cal__ph{opacity:0;visibility:hidden}
 .js .lse-cal__ph a{visibility:hidden;animation:lse-late 0s 6s forwards}
 @keyframes lse-late{to{visibility:visible}}
+/* widget.js blocked (scripts/calendly.ts adds .is-failed): no empty frame, just the message and the link, at once. */
+.lse-cal__off{display:none}
+.lse-cal__body.is-failed{height:auto}
+.lse-cal__body.is-failed .lse-cal__ph{position:static;padding:40px 24px}
+.lse-cal__body.is-failed .lse-cal__ph::before{display:none}
+.lse-cal__body.is-failed .lse-cal__wait{display:none}
+.lse-cal__body.is-failed .lse-cal__off{display:block}
+.js .lse-cal__body.is-failed .lse-cal__ph a{visibility:visible;animation:none}
 </style>
