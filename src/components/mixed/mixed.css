@@ -1,0 +1,38 @@
+/* The v3 depth zones of /lawyer-web-design-development/, /law-firm-ppc/, /seo-for-intellectual-property-lawyers/
+   and /seo-for-environmental-law-attorneys/ (builder b-mixed). Only what the kit leaves to the page: the decks'
+   plain lists set as the kit's Rows, Rows passed into a [slot] line, and the one-line mid-page CTA band.
+   Page-only looks (the intro, the FAQ, the price line) sit in each page's own <style>. */
+
+/* The decks' plain lists ("Rows" in their builder notes) stay in the Markdown and read as the kit's Rows: hairline
+   rows under a black rule, no bullets, the bold lead in ink. Checklists and steps keep the depth zone's look. */
+.lse-depth:is(
+  [data-depth='lawyer-web-design-development'],
+  [data-depth='law-firm-ppc'],
+  [data-depth='seo-for-intellectual-property-lawyers'],
+  [data-depth='seo-for-environmental-law-attorneys']
+) .lse-prose > ul:not([class]) {
+  list-style: none; padding: 0; border-top: 2px solid var(--ink);
+}
+.lse-depth:is(
+  [data-depth='lawyer-web-design-development'],
+  [data-depth='law-firm-ppc'],
+  [data-depth='seo-for-intellectual-property-lawyers'],
+  [data-depth='seo-for-environmental-law-attorneys']
+) .lse-prose > ul:not([class]) > li {
+  margin: 0; padding: 13px 0 14px; border-bottom: 1px solid var(--line-2);
+}
+.lse-depth .lse-prose > ul:not([class]) > li > strong:first-child { color: var(--ink); }
+
+/* Rows in a [slot]: the prose's size and measure, so they read as part of the copy. */
+.mx-rows { max-width: 35em; font-size: clamp(17px, .25vw + 16px, 19px); line-height: 1.6; }
+.mx-rows .lse-row { padding: 13px 0 14px; }
+.mx-rows .lse-row p { max-width: none; color: var(--ink-2); }
+.mx-rows .lse-rows--inline .lse-row b { color: var(--ink); }
+.mx-rows q { color: var(--ink); }
+
+/* The mid-page CTA (R8): one line, set large, the button under it, never beside it. */
+.mx-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }
+.mx-mid__line {
+  max-width: 28ch; font-size: clamp(28px, 1.4vw + 18px, 40px); font-weight: 800; line-height: 1.08; letter-spacing: -.032em;
+  color: var(--ink);
+}

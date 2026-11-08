@@ -18,4 +18,8 @@ export const nofollowDomains: string[] = [
   'whitehat-seo.co.uk',
   'firstpage.com.au',
   'lawonline.ca',
+  // /lawyer-web-design-development/ and /law-firm-ppc/: agencies cited only for what they say about themselves
+  // (Civille's 2026 cost guide; WordStream's own benchmark data; Forward is listed above).
+  'getciville.com',
+  'wordstream.com',
 ];

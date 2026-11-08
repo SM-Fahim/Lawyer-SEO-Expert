@@ -1,58 +1,47 @@
 ---
-// /seo-for-intellectual-property-lawyers/ from content/v2/seo-for-intellectual-property-lawyers.md (practice
-// set B; the restored URL).
-// Hero: split, no form. H1 and lines left, the tanker result (#3, "16 hours ago" marked) right on the fog
-// panel. The calendar follows straight after, beside its heading. Then three buyers as wide rows, the
-// desktop page we built, what the fee covers (the page's one price), FAQ, close.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-intellectual-property-lawyers/ from content/v3/seo-for-intellectual-property-lawyers.md (critic:
+// content/v3/CRITIC-mixed.md). The commercial top is the v2 build: a split hero with no form (the tanker result, #3,
+// "16 hours ago" marked, on the fog panel), then the calendar straight after it. The v2 bands after it gave way to
+// the depth zone (src/content/depth/): its own look on this page is a standfirst summary with the jump list under it
+// in two columns, the six keyword-research searches in one search box, the mid-page CTA after the main zone, the
+// price as one large statement on white (no PriceBand), and the open FAQ as a two-column grid on fog.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import BuyerRows from '../../components/practice-b/BuyerRows.astro';
-import Related from '../../components/practice-b/Related.astro';
+import SearchBox from '../../components/kit/SearchBox.astro';
+import '../../components/mixed/mixed.css';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'Should we rank nationally or by city?',
-    html: 'Mostly nationally, because most IP questions name no place. Your Google Business Profile still covers local searches and your firm’s name.',
-  },
-  {
-    q: 'Can you write accurately about our technology?',
-    html: 'Fahim outlines each page and reviews it, a small team helps draft, and your attorneys check every technical and legal point before it goes live.',
-  },
-  {
-    q: 'Should we target “what does a patent lawyer do”?',
-    html: 'Usually not. Most people typing it are students weighing the career, not buyers. We aim at cost, need and choosing a firm.',
-  },
-  {
-    q: 'Will Google’s AI name our firm?',
-    html: 'Nobody can guarantee it. Pages that answer one question clearly are what it tends to quote, and we check its answers for your main questions monthly.',
-  },
-  {
-    q: 'Do these pages follow bar advertising rules?',
-    html: 'Bar rules on claims and titles vary by state. Your attorneys sign off on every page, and we never call anyone a specialist unless your rules allow it.',
-  },
-];
+const path = '/seo-for-intellectual-property-lawyers/';
+const title = 'SEO for IP Lawyers | Patents, Trademarks, Copyright';
+const description =
+  'SEO for IP lawyers: national vs local reach, USPTO titles, patent, trademark and copyright pages, foreign applicants, fit and AI answers.';
+const depth = await getDepth('seo-for-intellectual-property-lawyers');
 
-const covers = [
-  'Patent, trademark and copyright pages, each with its own fee page.',
-  'A page for each technology field you really work in.',
-  'Your Google Business Profile and directory and LinkedIn profiles, kept consistent with your site.',
-  'Links from relevant sites, site upkeep, and call and form tracking.',
-  'A check of Google’s AI answers for your main questions every month.',
+// "How do patent, trademark and copyright buyers search": the six searches from our keyword research.
+const searches = [
+  { text: 'how much does it cost to hire a patent lawyer', mark: 'cost' },
+  { text: 'do i need a lawyer to file a provisional patent' },
+  { text: 'can a patent lawyer steal my idea', mark: 'my idea' },
+  { text: 'how much does a lawyer charge to file a trademark' },
+  { text: 'how to file a trademark without a lawyer', mark: 'without a lawyer' },
+  { text: 'how much does a copyright lawyer cost', mark: 'cost' },
 ];
 ---
 <InnerPage
-  title="SEO for IP Lawyers | Patents, Trademarks, Copyright"
-  description="SEO for intellectual property lawyers: patent, trademark and copyright pages that rank nationally for the questions founders research."
-  path="/seo-for-intellectual-property-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for intellectual property lawyers' }]}
   service={{ name: 'SEO for intellectual property lawyers', offer: false }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     h1="Get found by founders: SEO for intellectual property lawyers."
@@ -75,61 +64,33 @@ const covers = [
     layout="split"
     lead="Free. Fahim runs the searches a founder would type for your strongest service, from anywhere in the US, and shows you who they find."
   >
-    <p slot="after">Prefer to write? Use <a href="#ip-final-name">the form at the end of this page</a>.</p>
+    <p slot="after">Prefer to write? <a href="#ip-final-name">The short form at the foot of this page</a> goes straight to Fahim.</p>
   </BookingBand>
 
-  <Band heading="Three kinds of buyer, three kinds of search." headingId="ip-buyers-h" lead="Each one gets its own pages, its own fee page and its own way to get in touch." tone="fog">
-    <BuyerRows
-      caption="As typed, from our keyword research."
-      buyers={[
-        {
-          name: 'Patent',
-          queries: [
-            { text: 'how much does it cost to hire a patent lawyer', mark: 'cost' },
-            { text: 'do i need a lawyer to file a provisional patent' },
-            { text: 'can a patent lawyer steal my idea', mark: 'my idea' },
-          ],
-        },
-        {
-          name: 'Trademark',
-          queries: [
-            { text: 'how much does a lawyer charge to file a trademark' },
-            { text: 'how to file a trademark without a lawyer', mark: 'without a lawyer' },
-          ],
-        },
-        {
-          name: 'Copyright',
-          queries: [{ text: 'how much does a copyright lawyer cost', mark: 'cost' }],
-        },
-      ]}
-    />
-  </Band>
+  <DepthZone depth={depth} authorLinkLabel="Fahim’s full profile">
+    <div slot="searches" class="ip-searches">
+      <SearchBox label="Six searches from our keyword research" queries={searches} caption="From our keyword research." />
+    </div>
 
-  <Band heading="A page built for reading at a desk." headingId="ip-desk-h" lead="Business buyers read closely and compare firms. Each page names the attorney, their technical background and the fields they work in.">
-    <figure class="ip-desk">
-      <Shot images={[shot(proof.nolaSiteCarAccidentPage)]} />
-      <figcaption class="lse-small">A practice page we built for a PI firm in New Orleans, on a desktop screen.</figcaption>
-    </figure>
-  </Band>
+    <Band slot="mid" tone="fog" class="mx-mid ip-mid">
+      <p class="mx-mid__line">See which patent and trademark searches send founders to other firms today.</p>
+      <Button />
+    </Band>
 
-  <Band heading="What the monthly fee covers for an IP firm." headingId="ip-fee-h" tone="fog">
-    <ul class="ip-covers">
-      {covers.map((c) => <li>{c}</li>)}
-    </ul>
-    <p class="ip-fee">One fee covers the lot: <span class="lse-mk">from $2,000 a month</span>, no setup charge. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
-  </Band>
+    <Band slot="price" class="ip-price">
+      <div class="ip-price__in">
+        <p class="ip-price__big">SEO for an IP firm runs from $2,000 a month. Setup costs nothing.</p>
+        <p class="ip-price__line">Fahim puts the monthly number in writing before work starts. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
+      </div>
+    </Band>
+  </DepthZone>
 
-  <Band heading="IP firms want to know." headingId="ip-faq-h">
-    <Faq items={faq} />
-  </Band>
-
-  <FinalCta heading="See who a founder finds for your best service." formLabel="ip-final" idPrefix="ip-final" practiceArea="Intellectual property">
+  <FinalCta heading="Search your IP firm the way a founder would, with Fahim." formLabel="ip-final" idPrefix="ip-final" practiceArea="Intellectual property">
     <p>In 30 minutes, Fahim runs those searches with you and shows what to write first.</p>
   </FinalCta>
-  <Related links={[{ label: 'SEO for employment lawyers', href: '/seo-for-employment-lawyers/' }, { label: 'SEO for immigration lawyers', href: '/seo-for-immigration-lawyers/' }]} />
 </InnerPage>
 
-<style>
+<style is:global>
   .ip-hero__fig { display: grid; gap: 18px; }
   /* Phones get the title and "16 hours ago" only, at a size they can read. */
   .ip-hero__wide { display: none; }
@@ -141,13 +102,45 @@ const covers = [
   .ip-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
   .ip-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
 
-  .ip-desk { display: grid; gap: 14px; }
-
-  .ip-covers { list-style: none; display: grid; border-top: 2px solid var(--ink); }
-  .ip-covers li { padding: 20px 0 22px; border-bottom: 1px solid var(--line-2); font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
-  @media (min-width: 900px) {
-    .ip-covers { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 5vw, 72px); }
-    .ip-covers li { padding-right: 12px; }
+  /* The depth zone opens with the summary as a standfirst across the column, the jump list under it in two
+     columns of hairline rows. */
+  .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__intro { grid-template-columns: minmax(0, 1fr); row-gap: clamp(32px, 3.5vw, 48px); }
+  .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__summary {
+    max-width: 34em; font-size: clamp(19px, .7vw + 16px, 26px); line-height: 1.45; letter-spacing: -.01em; color: var(--ink);
   }
-  .ip-fee { margin-top: var(--s5); font-size: clamp(26px, 1.6vw + 16px, 40px); font-weight: 800; line-height: 1.15; letter-spacing: -.03em; color: var(--ink); max-width: 22em; }
+  .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-jump { max-width: none; border-top: 2px solid var(--ink); }
+  .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-jump__h { padding-top: 14px; }
+  @media (min-width: 900px) {
+    .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-jump ol {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; grid-template-rows: repeat(5, auto);
+      column-gap: clamp(40px, 4vw, 64px);
+    }
+  }
+
+  /* The mid-page CTA: the line at heading scale across the band, the button under it. */
+  .ip-mid .mx-mid__line { max-width: 19ch; font-size: var(--fs-h2); line-height: 1.02; letter-spacing: -.034em; }
+
+  /* The six searches at the text's width, straight under their lead-in line. */
+  .ip-searches { max-width: 35em; }
+  .lse-depth__slot:has(> .ip-searches) { margin-top: 20px; }
+
+  /* The price: one large statement on white under a black rule, the terms line and link under it. No band colour,
+     no button (the page has no PriceBand). */
+  .ip-price { padding-top: 0; }
+  .ip-price__in { display: grid; gap: var(--s3); padding-top: clamp(32px, 3.5vw, 48px); border-top: 2px solid var(--ink); }
+  .ip-price__big {
+    max-width: 19em; font-size: clamp(28px, 1.6vw + 18px, 46px); font-weight: 800; line-height: 1.08; letter-spacing: -.032em;
+    color: var(--ink);
+  }
+  .ip-price__line { max-width: 36em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
+  .ip-price__line a { font-weight: 700; color: var(--ink); }
+
+  /* The open FAQ as a two-column grid of questions on fog, each under its own black rule. */
+  @media (min-width: 1000px) {
+    .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__faq .lse-faq--open {
+      max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 5vw, 80px);
+      border-top: 0;
+    }
+    .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__faq .lse-faq__item { border-top: 2px solid var(--ink); border-bottom: 0; padding-bottom: 36px; }
+  }
 </style>
