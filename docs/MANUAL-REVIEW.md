@@ -8,3 +8,4 @@
 - `hello@lawyerseoexpert.com` must exist as a cPanel mailbox or forwarder before the site shows it.
 - The `/category/*` pages should redirect to `/blog/` once the blog exists (commented out in `redirects.ts`).
 - Should `/about/` redirect to `/about/sm-fahim/` if no real About page is written?
+- `/seo-for-employment-lawyers/`: the Employers column shows three example searches ("how to fire an employee legally", "employee filed eeoc complaint what now", "employment lawyer for small business"), captioned "Example searches.", with no volumes. Replace them with real employer-side searches from a client's market once one is collected.
