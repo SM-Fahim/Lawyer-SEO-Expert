@@ -1,0 +1,182 @@
+---
+// /lawyer-web-design-development/. Copy: content/v2/lawyer-web-design-development.md. Facts: research/FACTS.md.
+// The sites we built are the proof: the hero shows one on a desktop and a phone, section 1 the pages on them
+// that rank, section 2 what every build comes with. The price is allowed in this H1 (judge's ruling).
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import BrowserShot from '../../components/kit/BrowserShot.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PhoneShot from '../../components/kit/PhoneShot.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import Q from '../../components/kit/Q.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import SiteDuo from '../../components/p-site/SiteDuo.astro';
+import { proof, shot } from '../../data/proof';
+import { site } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const path = '/lawyer-web-design-development/';
+
+const comesWith = [
+  { title: 'A page for each case type and city.', text: 'Each one matches the words clients type, like “car accident lawyer in New Orleans”.' },
+  { title: 'One tap to call.', text: 'On a phone, the call button and a short form stay within reach.' },
+  { title: 'Your old rankings carried over.', text: 'We redirect every old page that ranks or gets visits, then fix what Search Console flags after launch.' },
+  { title: 'Calls and forms counted from day one.', text: 'Tracking goes in before launch, so you see what the site brings in.' },
+  { title: 'Light pages.', text: 'Built to feel quick on a phone, with the real speed scores handed to you at launch.' },
+];
+
+// "How long does a build take?" and "Who hosts it, and can our staff edit pages?" wait for the owner's answers
+// (deck placeholders). They stay off the page, and so out of the FAQPage JSON-LD, until answered.
+const faq: FaqItem[] = [
+  {
+    q: 'How much does a law firm website cost?',
+    html: 'From $2,000 for the build. Page count, practice areas, offices and content writing set the final number, which you get as a fixed quote in writing.',
+  },
+  {
+    q: 'Will a redesign hurt our rankings?',
+    html: 'A planned move keeps the risk low. We redirect every old page that ranks or gets visits and check Search Console after launch. Some movement in the first weeks is normal, and we watch for it.',
+  },
+  {
+    q: 'Who owns the site?',
+    html: 'Your firm does. The site, the content and the accounts we set up are yours to keep.',
+  },
+  {
+    q: 'What happens after launch?',
+    html: 'You can run the site yourself or keep it climbing with monthly SEO: new pages, links and upkeep. See <a href="/law-firm-seo-services/">law firm SEO services</a>.',
+    text: 'You can run the site yourself or keep it climbing with monthly SEO: new pages, links and upkeep. See law firm SEO services.',
+  },
+];
+
+const pageUrl = new URL(path, site.url).href;
+const webPage = {
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: 'Lawyer web design built to rank',
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: new URL(proof.nolaSiteHomeDesktop.src, site.url).href,
+    width: proof.nolaSiteHomeDesktop.width,
+    height: proof.nolaSiteHomeDesktop.height,
+  },
+};
+---
+<InnerPage
+  title="Lawyer Web Design Built to Rank | From $2,000"
+  description="Lawyer web design built to rank on Google and in its AI answers. From $2,000 for the build, a fixed quote in writing, and your firm owns all of it."
+  path={path}
+  crumbs={[{ label: 'Lawyer web design' }]}
+  service={{
+    name: 'Law firm web design and development',
+    serviceType: 'Website design and development for law firms',
+    description: 'From $2,000 for the build, fixed written quote. The firm owns the site, the content and every account we set up.',
+    offer: 'once',
+  }}
+  faq={faq}
+  schema={[webPage]}
+>
+  <PageHero
+    h1="Lawyer web design built to rank, from $2,000."
+    lead="We plan your law firm’s website around what clients type into Google, so its pages can climb the results and show up in AI answers. Fixed quote in writing. Your firm owns all of it."
+    form={{ title: 'Send us your current site.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'web-hero', label: 'web-hero', format: 'Website quote by email' }}
+    talk="Prefer a call?"
+  >
+    <figure slot="visual" class="wd-fig">
+      <SiteDuo
+        tag="New Orleans"
+        priority
+        desktop={shot(proof.nolaSiteHomeDesktop)}
+        phone={shot(proof.nolaSiteHomePhone)}
+      />
+      <figcaption class="lse-small">The site we built for a PI firm in New Orleans, on a desktop and a phone.</figcaption>
+    </figure>
+  </PageHero>
+
+  <Band
+    heading="Pages on the sites we build climb Google and its AI answers."
+    headingId="ranks-h"
+    lead="Two examples, one from each site, after about three months of groundwork."
+    wideHeading
+    tone="fog"
+  >
+    <Split ratio="7/5" align="center">
+      <Shot
+        slot="a"
+        class="wd-bleed"
+        tag="#3"
+        tagSide="right"
+        images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRank, { marks: ['address', 'age'] })]}
+      />
+      <div slot="b" class="wd-proof">
+        <p class="wd-proof__q"><b><Q text="tanker truck accident lawyer in New Orleans" /></b></p>
+        <p>On the New Orleans site. Ranked #3 on Google 16 hours after going live, and Google’s AI named the firm a key firm.</p>
+      </div>
+    </Split>
+    <Split ratio="5/7" align="start" rule bFirst>
+      <div slot="a" class="wd-proof">
+        <p class="wd-proof__q"><b><Q text="Texas El Paso car accident filing deadline" /></b></p>
+        <p>On the site we built for a PI firm in El Paso. Its page is the first source Google’s AI answer cites.</p>
+        <PhoneShot class="wd-proof__phone" width={170} images={[shot(proof.elpasoSiteMobile)]} />
+      </div>
+      <Shot slot="b" class="wd-bleed" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['sourceCard'] })]} />
+    </Split>
+  </Band>
+
+  <Band heading="Every site we build is made to be found and called." headingId="build-h">
+    <Split ratio="5/7">
+      <Rows slot="a" variant="inline" items={comesWith} />
+      <figure slot="b" class="wd-fig">
+        <BrowserShot
+          tag="Practice page"
+          tagSmall
+          tagSide="right"
+          images={[shot(proof.nolaSiteCarAccidentPage)]}
+        />
+        <figcaption class="lse-small">A practice page on the New Orleans site. The search is the headline, and the form and call button are on the first screen.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <PriceBand class="wd-price" variant="plain" heading="One fixed quote for the build." headingId="price-h" big="From $2,000">
+    <Rows
+      class="wd-terms"
+      items={[
+        { text: 'Your price is in writing before any work starts.' },
+        { text: 'Page count, practice areas, offices and who writes the content set the quote.' },
+        { text: 'The site, the content and every account we set up belong to your firm.' },
+      ]}
+    />
+    <Fragment slot="link">Free, 30 minutes. Fahim looks at what your current site ranks for.</Fragment>
+  </PriceBand>
+
+  <Band heading="Questions about a new law firm website." headingId="faq-h">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Before you rebuild, see what your site already ranks for." formLabel="web-final" idPrefix="web-final">
+    <p>In 30 minutes, Fahim shows which of your pages earn rankings today, so the new site keeps them.</p>
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  .wd-fig { display: grid; gap: 14px; align-content: start; margin: 0; }
+  .wd-proof { display: grid; gap: 10px; align-content: start; }
+  .wd-proof p { color: var(--ink-2); max-width: 28em; font-size: var(--fs-lead); line-height: 1.45; }
+  .wd-proof .wd-proof__q { color: var(--ink); }
+  .wd-proof__q b { font-size: clamp(22px, .8vw + 16px, 28px); letter-spacing: -.02em; line-height: 1.2; }
+  .wd-proof__phone { margin-top: var(--s3); }
+  /* Phones: each ranking capture runs edge to edge above its caption, so the text in it is as large as it gets. */
+  @media (max-width: 699px) {
+    .wd-bleed { margin-inline: calc(-1 * var(--gut)); max-width: none; }
+    .wd-bleed .lse-shot__frame { border-radius: 0; border-left: 0; border-right: 0; }
+    .wd-bleed .lse-shot__tag--right { right: 8px; }
+  }
+  /* "From $2,000" stays on one line on its swipe. */
+  .wd-price .lse-price__big span { font-size: clamp(46px, 7vw + 20px, 124px); white-space: nowrap; }
+  .wd-terms { border-top-color: var(--ink); }
+  .wd-terms .lse-row { border-bottom-color: rgba(0, 0, 0, .28); }
+  .wd-terms .lse-row p { font-size: var(--fs-lead); font-weight: 600; color: var(--ink); max-width: 34em; }
+</style>

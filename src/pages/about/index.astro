@@ -1,0 +1,166 @@
+---
+// /about/. Copy: content/v2/about.md. Facts: research/FACTS.md.
+// A support page: it opens on what firms get (the El Paso before and after), then the two people, the two
+// services with a proof each, the terms, a short FAQ and the form. No form near the top (CRITIQUE: support
+// page, not a landing page).
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import Bio from '../../components/kit/Bio.astro';
+import NumPair from '../../components/kit/NumPair.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PhoneShot from '../../components/kit/PhoneShot.astro';
+import Q from '../../components/kit/Q.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import { fahim, josh } from '../../data/people';
+import { proof, shot } from '../../data/proof';
+import { fahimSchema, joshSchema, site } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const path = '/about/';
+const pageUrl = new URL(path, site.url).href;
+
+const faq: FaqItem[] = [
+  {
+    q: 'Who will we talk to?',
+    html: 'Fahim is on every call. Josh Henderson, our Sales Director, joins calls with firms as well.',
+  },
+  {
+    q: 'Do you work with our practice area?',
+    html: 'We have pages for eleven practice areas, from personal injury to environmental law. Our published results so far come from personal injury firms.',
+  },
+  {
+    q: 'Is Josh our lawyer?',
+    html: 'No. Josh gives marketing and business input, not legal advice. Contacting us creates no attorney-client relationship.',
+  },
+  {
+    q: 'Do you guarantee rankings?',
+    html: 'No. Google decides rankings. On your ranking review, Fahim gives you a realistic view for your firm.',
+  },
+];
+
+const aboutPage = {
+  '@type': 'AboutPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: 'About Lawyer SEO Expert',
+  mainEntity: {
+    '@id': `${site.url}/#org`,
+    employee: [{ '@id': fahimSchema['@id'] }, { '@id': joshSchema['@id'] }],
+  },
+};
+---
+<InnerPage
+  title="About Lawyer SEO Expert | Who You Work With"
+  description="Meet the people who get law firms ranked on Google, the Map and AI answers. Fahim leads every account, and Josh Henderson joins calls with firms."
+  path={path}
+  crumbs={[{ label: 'About' }]}
+  pageType="company"
+  faq={faq}
+  schema={[aboutPage, fahimSchema, joshSchema]}
+>
+  <PageHero
+    class="ab-top"
+    h1="About us: the people who get law firms found first."
+    lead="We put law firms at the top of Google, the Map and AI answers, so more of the right clients call. Here is who you would work with."
+  >
+    <figure slot="visual" class="ab-hero">
+      <NumPair before={9} after={23} beforeLabel="calls in six months before us" afterLabel="calls in three months with us" decorative={false} />
+      <div class="ab-hero__shots">
+        <Shot class="ab-hero__before" priority images={[shot(proof.elpasoCallsBefore)]} />
+        <Shot class="ab-hero__after" tag="23 calls" tagSide="right" priority images={[shot(proof.elpasoCallsAfter, { marks: ['total', 'range'] })]} />
+      </div>
+      <figcaption class="lse-small">A PI firm in El Paso, by Google’s own count.</figcaption>
+    </figure>
+  </PageHero>
+
+  <Band heading="You work with Fahim. Josh joins the calls." headingId="people-h" tone="fog">
+    <div class="ab-people">
+      <Bio
+        person={fahim}
+        size="md"
+        role="Law firm SEO expert"
+        line="Plans your firm’s SEO, is on every call and checks each piece of work. A small production team helps, with no account manager in between."
+      >
+        <p class="ab-people__link"><a class="lse-link" href={fahim.href}>More about Fahim</a></p>
+      </Bio>
+      <Bio
+        person={josh}
+        size="md"
+        role="Sales Director"
+        line="A Texas-licensed attorney since 2008 who has run a practice and advised 50+ law firms. Josh joins calls with firms."
+      >
+        <p class="ab-people__link"><a class="lse-link" href={josh.href}>More about Josh</a></p>
+      </Bio>
+    </div>
+  </Band>
+
+  <Band heading="Two things, both built around rankings." headingId="do-h">
+    <Split ratio="5/7" align="center">
+      <div slot="a" class="ab-do">
+        <h3>SEO for law firms.</h3>
+        <p>Everything it takes to rank in one monthly price, from $2,000 a month.</p>
+        <p><a class="lse-link" href="/law-firm-seo-services/">Law firm SEO services</a></p>
+      </div>
+      <figure slot="b" class="ab-fig">
+        <Shot tag="#1" tagSide="right" images={[shot(proof.nolaJackknife, { marks: ['aiChip', 'result'] })]} />
+        <figcaption><b><Q text="jackknife truck accident Louisiana" /></b>: #1 for a PI firm in New Orleans, after about three months of groundwork.</figcaption>
+      </figure>
+    </Split>
+    <Split ratio="5/7" align="center" rule>
+      <div slot="a" class="ab-do">
+        <h3>Websites built to rank.</h3>
+        <p>From $2,000 for the build, fixed quote in writing.</p>
+        <p><a class="lse-link" href="/lawyer-web-design-development/">Lawyer web design</a></p>
+      </div>
+      <figure slot="b" class="ab-fig ab-fig--phone">
+        <PhoneShot width={240} tag="Our build" tagSmall tagSide="right" images={[shot(proof.nolaSiteHomePhone)]} />
+        <figcaption>The site we built for a PI firm in New Orleans.</figcaption>
+      </figure>
+    </Split>
+  </Band>
+
+  <Band heading="How we work with a firm." headingId="how-h" tone="fog">
+    <Rows
+      class="ab-terms"
+      items={[
+        { text: 'Your monthly number comes in writing before work starts. No setup fee.' },
+        { text: 'Month to month. Stop in any month.' },
+        { text: 'You or your ethics counsel approve every page before it goes live.' },
+        { text: 'Everything we build is yours to keep.' },
+      ]}
+    />
+  </Band>
+
+  <Band heading="Questions about working together." headingId="faq-h">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Meet Fahim on a ranking review." formLabel="about-final" idPrefix="about-final">
+    <p>In 30 minutes, Fahim looks at where your firm ranks today and what would bring more calls first.</p>
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  /* H1 at the top of the hero, not centred against the tall proof column. */
+  @media (min-width: 1000px) { .lse-hero.ab-top.lse-hero--noform .lse-hero__grid { align-items: start; } }
+  .ab-hero { display: grid; gap: 24px; margin: 0; }
+  .ab-hero__shots { display: grid; gap: 22px; }
+  .ab-hero__before { width: 68%; opacity: .92; }
+  .ab-people { max-width: 900px; }
+  .ab-people__link { margin-top: 12px; }
+  .ab-do { display: grid; gap: 12px; align-content: start; }
+  .ab-do h3 { font-size: clamp(30px, 1.6vw + 20px, 44px); letter-spacing: -.03em; }
+  .ab-do p { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink-2); max-width: 22em; }
+  .ab-fig { display: grid; gap: 14px; margin: 0; }
+  .ab-fig figcaption { font-size: 17px; color: var(--ink-2); max-width: 38em; }
+  .ab-fig figcaption b { color: var(--ink); }
+  .ab-terms { max-width: 900px; }
+  .ab-terms .lse-row { padding: 22px 0 24px; }
+  .ab-terms .lse-row p { font-size: clamp(21px, .8vw + 16px, 28px); font-weight: 700; letter-spacing: -.02em; line-height: 1.3; color: var(--ink); max-width: 32em; }
+  @media (max-width: 999px) {
+    .ab-hero__before { width: 82%; }
+  }
+</style>

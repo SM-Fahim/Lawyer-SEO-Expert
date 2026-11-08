@@ -53,6 +53,10 @@ const PRICES_BY_PAGE = {
   '/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
   // /kit/ (noindex) shows the same shared breakdown in PriceCard and the struck total in PriceBand.
   '/kit/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  // Google Ads management fee, owner decision 2026-11-08 (FACTS 1).
+  '/law-firm-ppc/': ['500'],
+  // Fahim's record: Idiya's online sales ($900K to $2.7M) and clients' combined yearly revenue ($36M+), FACTS 3.
+  '/about/sm-fahim/': ['900K', '2.7M', '36M'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};

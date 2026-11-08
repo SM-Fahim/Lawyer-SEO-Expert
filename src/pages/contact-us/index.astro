@@ -1,13 +1,149 @@
 ---
-// PLACEHOLDER contact page: the lead form and the booking dialog, wired. Copy and design come later.
-import Base from '../../layouts/Base.astro';
+// /contact-us/. Copy: content/v2/contact-us.md. Facts: research/FACTS.md section 1.
+// The form is the page: right under the H1, with Fahim's face and the reply line above it, and at 1000px and up
+// "After you send it" in three plain rows beside it (judge ruling). The calendar loads
+// lazily lower down (it closes the page, so it carries id="book"), then the email address and four short answers.
+// No phone number, no address.
+// The form is the compact LeadForm (website first) with the deck's one optional question added as its message
+// field. source_form stays "Contact page message", the label the e2e lead test and the Worker tests use.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
 import LeadForm from '../../components/LeadForm.astro';
+import Band from '../../components/kit/Band.astro';
+import BookingBand from '../../components/kit/BookingBand.astro';
+import Face from '../../components/kit/Face.astro';
+import Rows from '../../components/kit/Rows.astro';
+import { fahim } from '../../data/people';
 import { site } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const path = '/contact-us/';
+const pageUrl = new URL(path, site.url).href;
+
+const faq: FaqItem[] = [
+  { q: 'Is the ranking review free?', html: 'Yes. 30 minutes, no charge, no obligation.' },
+  { q: 'Can a partner join?', html: 'Yes. Bring a partner or your marketing lead.' },
+  {
+    q: 'Who will answer?',
+    html: '<a href="/about/sm-fahim/">Fahim</a>, who leads every account.',
+    text: 'Fahim, who leads every account.',
+  },
+  { q: 'What should I send?', html: 'Your website, plus the practice areas and cities that matter most.' },
+];
+
+const contactPage = {
+  '@type': 'ContactPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: 'Contact Lawyer SEO Expert',
+  mainEntity: {
+    '@id': `${site.url}/#org`,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: site.contact.email,
+      areaServed: 'US',
+      availableLanguage: 'English',
+    },
+  },
+};
 ---
-<Base pageType="company" path="/contact-us/" title="Contact (placeholder)" description="Placeholder contact page for the Lawyer SEO Expert rebuild.">
-  <div class="lse-wrap" style="padding-top:64px"><h1>Contact</h1></div>
-  <div class="lse-wrap" style="padding-block:64px">
-  <p>Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or <a href="/#book" data-cal>book a ranking review</a>.</p>
-  <LeadForm title="Send a message" titleTag="h2" idPrefix="c" label="Contact page message" phone />
-  </div>
-</Base>
+<InnerPage
+  title="Contact Lawyer SEO Expert | Write to Fahim"
+  description="Send Fahim your firm’s website and a short note. Fahim answers within an hour in business hours. Or book a free 30-minute ranking review."
+  path={path}
+  crumbs={[{ label: 'Contact' }]}
+  pageType="booking"
+  faq={faq}
+  schema={[contactPage]}
+>
+  <section class="ct-hero" aria-labelledby="hero-h">
+    <div class="lse-wrap">
+      <div class="ct-col">
+        <h1 id="hero-h">Tell Fahim about your firm.</h1>
+        <p class="lse-lead ct-lead">Send your website and what you want more of. Fahim reads it and writes back.</p>
+      </div>
+      <div class="ct-grid">
+      <div class="ct-col">
+        <div class="ct-reply">
+          <Face person={fahim} size="xs" priority />
+          <p>Fahim answers within an hour in business hours.</p>
+        </div>
+        <div class="ct-form">
+          <LeadForm compact title="Write to Fahim" titleTag="h2" idPrefix="contact" label="Contact page message" format="Message first">
+            <div slot="fields" class="lse-field ct-msg">
+              <label class="lse-label" for="contact-message">What do you want more of? <span class="lse-opt">(optional)</span></label>
+              <textarea class="lse-input" id="contact-message" name="message" rows="3" placeholder="More car accident calls in Tampa"></textarea>
+            </div>
+            <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
+          </LeadForm>
+          <p class="ct-talk">Rather talk? <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
+        </div>
+      </div>
+      <aside class="ct-next" aria-labelledby="next-h">
+        <h2 id="next-h">After you send it</h2>
+        <Rows
+          class="ct-next__rows"
+          items={[
+            { text: 'Fahim reads your note.' },
+            { text: 'You get an answer within an hour in business hours.' },
+            { text: 'You get a free 30-minute ranking review.' },
+          ]}
+        />
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <BookingBand
+    id="book"
+    heading="Or choose a time for your ranking review."
+    headingId="cal-h"
+    lead="Free, 30 minutes. Fahim checks your real rankings with you."
+    tone="fog"
+  />
+
+  <section class="lse-section ct-email" aria-label="Email">
+    <div class="lse-wrap">
+      <p class="ct-email__line">Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.</p>
+      <p class="lse-small ct-email__small">Contacting us creates no attorney-client relationship. Josh Henderson, our Sales Director, is a Texas attorney but gives business input here, not legal advice.</p>
+    </div>
+  </section>
+
+  <Band heading="Quick answers." headingId="faq-h" tone="fog">
+    <Faq items={faq} />
+  </Band>
+</InnerPage>
+
+<style is:global>
+  .ct-hero { padding: clamp(20px, 2.6vw, 40px) 0 clamp(72px, 8vw, 112px); }
+  .ct-col { max-width: 640px; }
+  .ct-hero h1 { font-size: clamp(44px, 3.4vw + 18px, 78px); max-width: 12ch; }
+  .ct-lead { margin-top: clamp(18px, 2vw, 26px); }
+  .ct-grid { display: grid; gap: var(--s6); margin-top: var(--s4); }
+  .ct-next h2 { font-size: var(--fs-h3); }
+  .ct-next__rows { margin-top: var(--s3); }
+  .ct-next__rows .lse-row p { font-size: clamp(19px, .5vw + 16px, 22px); font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
+  @media (min-width: 1000px) {
+    .ct-grid { grid-template-columns: minmax(0, 640px) minmax(0, 1fr); column-gap: clamp(56px, 6vw, 112px); align-items: start; }
+    .ct-next { padding-top: 12px; max-width: 460px; }
+  }
+  .ct-reply { display: flex; align-items: center; gap: 18px; }
+  .ct-reply p { font-size: clamp(19px, .5vw + 16px, 22px); font-weight: 700; letter-spacing: -.01em; color: var(--ink); max-width: 16em; }
+  .ct-form { margin-top: var(--s3); display: grid; gap: 14px; }
+  /* The visible H1 and reply line already say what the form is for; its own title is read out only. */
+  .ct-form .lse-form__title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ct-form .lse-form--compact form { margin-top: 0; }
+  .ct-form .lse-form--compact { max-width: none; }
+  /* The optional question goes after name and email, before the button. */
+  .ct-form .lse-form--compact form > .ct-msg { order: 1; grid-column: 1 / -1; }
+  .ct-form .lse-form--compact form > .lse-ts,
+  .ct-form .lse-form--compact form > button,
+  .ct-form .lse-form--compact form > .lse-form__small,
+  .ct-form .lse-form--compact form > .lse-form__privacy { order: 2; }
+  .ct-talk { font-size: 16px; color: var(--ink-2); }
+  .ct-talk a { font-weight: 700; }
+  .ct-email { padding-block: clamp(56px, 6vw, 96px); }
+  .ct-email__line { font-size: clamp(26px, 2.4vw + 14px, 52px); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; color: var(--ink); overflow-wrap: anywhere; }
+  .ct-email__line a { text-decoration-thickness: 3px; text-underline-offset: .14em; }
+  .ct-email__small { margin-top: var(--s3); max-width: 40em; }
+</style>
