@@ -4,11 +4,21 @@
 // pixels: { l, t, w, h } is the box around the text. They draw in once when the frame scrolls into view.
 // `tag` puts a swipe label (a real rank or result, like "#1") on the frame's corner.
 // Images open full size on click (features/image-zoom). Never shown larger than their natural width.
+//
+// Phones: a wide capture squeezed into a 358px column sets its text at 3 to 6px. An image's `phone` list
+// swaps it, under 760px, for one or more plain rectangle crops of the same file (same pixels, nothing edited),
+// cut around the marked line so it reads at about 11px. The marks stay as they are: each crop shows the whole
+// image's canvas through a window, so a mark box still sits on its text. From 760px up nothing changes.
+// proof.ts picks the crop for you (`shot()`); pass `phone: false` there to keep the full capture.
 export interface MarkBox {
   l: number;
   t: number;
   w: number;
   h: number;
+}
+/** A window on the image for phones, in % of the whole image. `fade`: a soft right edge where the crop cuts a line. */
+export interface PhoneCrop extends MarkBox {
+  fade?: boolean;
 }
 export interface ShotImage {
   src: string;
@@ -19,6 +29,8 @@ export interface ShotImage {
   marks?: MarkBox[];
   /** Show only a band of the image: top and height in % of the image's height. */
   crop?: { top: number; height: number };
+  /** Under 760px, show these crops (stacked) instead of the image. */
+  phone?: PhoneCrop[];
 }
 interface Props {
   images: ShotImage[];
@@ -32,21 +44,58 @@ interface Props {
 }
 const { images, tag, tagSide = 'left', tagSmall = false, priority = false, class: className } = Astro.props;
 const maxW = Math.max(...images.map((i) => i.width));
-let markIndex = 0;
+
+type Part = { img: ShotImage; mode: 'both' | 'desk' | 'phone'; rect?: PhoneCrop; zoom: boolean };
+const parts: Part[] = images.flatMap((img): Part[] => {
+  if (!img.phone?.length) return [{ img, mode: 'both', zoom: true }];
+  return [
+    { img, mode: 'desk', zoom: true },
+    ...img.phone.map((rect, j): Part => ({ img, mode: 'phone', rect, zoom: j === 0 })),
+  ];
+});
+// A hairline between stacked parts, counted separately for the parts shown at each width.
+const deskParts = parts.filter((p) => p.mode !== 'phone');
+const phoneParts = parts.filter((p) => p.mode !== 'desk');
+const cropW = (p: Part) => (p.rect ? (p.img.width * p.rect.w) / 100 : p.img.width);
+const maxPhoneW = Math.round(Math.max(...phoneParts.map(cropW)));
+const shotStyle = `--shot-max:${maxW + 2}px` + (maxPhoneW !== maxW ? `;--shot-max-p:${maxPhoneW + 2}px` : '');
+// Marks draw in one after another, counted per width so the phone crops don't wait for hidden marks.
+let deskMark = 0;
+let phoneMark = 0;
+const nextMark = (mode: Part['mode']) => {
+  const i = mode === 'phone' ? phoneMark : deskMark;
+  if (mode !== 'phone') deskMark++;
+  if (mode !== 'desk') phoneMark++;
+  return i;
+};
+const fix = (n: number) => +n.toFixed(3);
 ---
-<div class:list={['lse-shot', className]} data-draw style={`--shot-max:${maxW + 2}px`}>
+<div class:list={['lse-shot', className]} data-draw style={shotStyle}>
   {tag && <span class:list={['lse-tag', 'lse-shot__tag', `lse-shot__tag--${tagSide}`, { 'lse-tag--sm': tagSmall }]} aria-hidden="true">{tag}</span>}
   <div class="lse-shot__frame">
-    {images.map((img) => {
-      const crop = img.crop;
-      const partStyle = crop ? `aspect-ratio:${img.width}/${((img.height * crop.height) / 100).toFixed(1)}` : undefined;
-      const canvasStyle = crop ? `margin-top:-${((crop.top / 100) * (img.height / img.width) * 100).toFixed(3)}%` : undefined;
+    {parts.map((part) => {
+      const { img, rect } = part;
+      let partStyle: string | undefined;
+      let canvasStyle: string | undefined;
+      if (rect) {
+        partStyle = `aspect-ratio:${fix((img.width * rect.w) / 100)}/${fix((img.height * rect.h) / 100)}`;
+        canvasStyle = `width:${fix((100 * 100) / rect.w)}%;margin-left:-${fix((rect.l / rect.w) * 100)}%;margin-top:-${fix(((rect.t * img.height) / (rect.w * img.width)) * 100)}%`;
+      } else if (img.crop) {
+        partStyle = `aspect-ratio:${img.width}/${((img.height * img.crop.height) / 100).toFixed(1)}`;
+        canvasStyle = `margin-top:-${((img.crop.top / 100) * (img.height / img.width) * 100).toFixed(3)}%`;
+      }
+      const alt = part.zoom ? img.alt : '';
       return (
-        <div class:list={['lse-shot__part', { 'lse-shot__part--crop': crop }]} style={partStyle}>
+        <div
+          class:list={['lse-shot__part', `lse-shot__part--${part.mode}`, { 'lse-shot__part--crop': rect || img.crop, 'lse-shot__part--fade': rect?.fade }]}
+          style={partStyle}
+          data-bd={part.mode !== 'phone' && deskParts.indexOf(part) > 0 ? '' : undefined}
+          data-bp={part.mode !== 'desk' && phoneParts.indexOf(part) > 0 ? '' : undefined}
+        >
           <div class="lse-shot__canvas" style={canvasStyle}>
-            <img class="lse-shot__img" src={img.src} width={img.width} height={img.height} alt={img.alt} loading={priority ? 'eager' : 'lazy'} decoding="async" fetchpriority={priority ? 'high' : undefined} data-zoom-src={img.alt ? img.src : undefined}>
+            <img class="lse-shot__img" src={img.src} width={img.width} height={img.height} alt={alt} loading={priority ? 'eager' : 'lazy'} decoding="async" fetchpriority={priority && part.mode !== 'phone' ? 'high' : undefined} data-zoom-src={alt ? img.src : undefined}>
             {(img.marks ?? []).map((m) => (
-              <span class="lse-hl" aria-hidden="true" style={`--l:${m.l};--t:${m.t};--w:${m.w};--h:${m.h};--i:${markIndex++}`}></span>
+              <span class="lse-hl" aria-hidden="true" style={`--l:${m.l};--t:${m.t};--w:${m.w};--h:${m.h};--i:${nextMark(part.mode)}`}></span>
             ))}
           </div>
         </div>
@@ -58,11 +107,27 @@ let markIndex = 0;
 <style is:global>
   .lse-shot { position: relative; max-width: var(--shot-max); }
   .lse-shot__frame { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--r-frame); }
-  .lse-shot__part + .lse-shot__part { border-top: 1px solid var(--line); }
   .lse-shot__part--crop { overflow: hidden; }
   .lse-shot__canvas { position: relative; }
   .lse-shot__img { width: 100%; }
   .lse-shot__img[data-zoom-src] { cursor: zoom-in; }
+
+  /* Phone crops: shown under 760px in place of the full capture. */
+  .lse-shot__part--phone { display: none; }
+  .lse-shot__part--fade { position: relative; }
+  .lse-shot__part--fade::after {
+    content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 44px; pointer-events: none;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff 85%);
+  }
+  @media (min-width: 760px) {
+    .lse-shot__part[data-bd] { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 759px) {
+    .lse-shot { max-width: var(--shot-max-p, var(--shot-max)); }
+    .lse-shot__part--desk { display: none; }
+    .lse-shot__part--phone { display: block; }
+    .lse-shot__part[data-bp] { border-top: 1px solid var(--line); }
+  }
 
   /* The tag sits half off the frame's top corner, like a sticker on a printout. */
   .lse-shot__tag { position: absolute; z-index: 2; top: -.55em; }

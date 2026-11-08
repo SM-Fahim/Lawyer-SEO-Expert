@@ -16,7 +16,7 @@ import Rows from '../../components/kit/Rows.astro';
 import Split from '../../components/kit/Split.astro';
 import ShotSwap from '../../components/money/ShotSwap.astro';
 import { fahim } from '../../data/people';
-import { proof, shot } from '../../data/proof';
+import { fadeRight, proof, shot } from '../../data/proof';
 import { phoneProof } from '../../data/proof-money';
 import InnerPage from '../../layouts/InnerPage.astro';
 
@@ -75,7 +75,7 @@ const sourceTitle = [
         tag="#1"
         priority
         wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: wtdTitle, alt: 'A New Orleans PI firm’s page, What to Do After a Truck Accident, as the first result on Google' })]}
-        narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdRank, { marks: ['title'] })]}
+        narrow={[shot(phoneProof.wtdQuery), fadeRight(shot(phoneProof.wtdRank, { marks: ['title'] }))]}
       />
       <figcaption><b><Q text="what to do after a truck accident in New Orleans" /></b>: a PI firm’s page in New Orleans ranked #1.</figcaption>
     </figure>
@@ -87,7 +87,7 @@ const sourceTitle = [
         <ShotSwap
           tag="#1"
           wide={[shot(proof.nolaJackknife, { marks: [...proof.nolaJackknife.marks.aiChip, ...jackTitle] })]}
-          narrow={[shot(phoneProof.jackknifeLeft, { crop: 'search', alt: '' }), shot(phoneProof.jackknifeLeft, { crop: 'result', marks: ['result'] })]}
+          narrow={[fadeRight(shot(phoneProof.jackknifeLeft, { crop: 'search', alt: '' })), fadeRight(shot(phoneProof.jackknifeLeft, { crop: 'result', marks: ['result'] }))]}
         />
       </figure>
       <div slot="b" class="svc-part">

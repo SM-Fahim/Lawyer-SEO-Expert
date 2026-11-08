@@ -21,5 +21,9 @@ const { class: className, width, ...shot } = Astro.props;
 
 <style is:global>
   .lse-phone { max-width: var(--phone-w, 260px); }
+  /* On a phone, a phone capture needs about 300px for its text to read (it shows its first screen there). */
+  @media (max-width: 759px) {
+    .lse-phone { max-width: max(var(--phone-w, 260px), min(300px, 100%)); }
+  }
   .lse-phone .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
 </style>

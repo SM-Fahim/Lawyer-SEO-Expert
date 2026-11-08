@@ -5,7 +5,7 @@
 // the hero; our own #1 shows once, as the answer to "Do you rank for what you sell?".
 import Faq, { type FaqItem } from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import Shot from '../../components/Shot.astro';
+import Shot, { type ShotImage } from '../../components/Shot.astro';
 import Band from '../../components/kit/Band.astro';
 import Bio from '../../components/kit/Bio.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
@@ -16,7 +16,7 @@ import Rows from '../../components/kit/Rows.astro';
 import Split from '../../components/kit/Split.astro';
 import ShotSwap from '../../components/money/ShotSwap.astro';
 import { fahim, josh } from '../../data/people';
-import { proof, shot } from '../../data/proof';
+import { fadeRight, proof, shot } from '../../data/proof';
 import { phoneProof } from '../../data/proof-money';
 import { fahimSchema } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -47,6 +47,8 @@ const faq: FaqItem[] = [
 // The El Paso after chart, cut tight: from the "23" down to the May to July axis. Marks: the total, and the
 // first and last month on the axis (the date range). % of the whole image, measured from its pixels.
 const epCrop = { top: 30.5, height: 63 };
+// Our own result on a phone: the left 1,250px of the phone crop, so the title reads at about 12px.
+const lseNarrow = (img: ShotImage): ShotImage => ({ ...img, phone: [{ l: 0, t: 0, w: 83.4, h: 100, fade: true }] });
 const epRange = [
   { l: 3.9, t: 89.6, w: 4.7, h: 2.4 },
   { l: 92, t: 89.6, w: 4.3, h: 2.4 },
@@ -72,7 +74,7 @@ const epRange = [
         tag="23 calls"
         tagSide="right"
         priority
-        images={[shot(proof.elpasoCallsAfter, { crop: epCrop, marks: [...proof.elpasoCallsAfter.marks.total, ...epRange], alt: 'Google Business Profile for an El Paso PI firm: 23 calls from May to July 2026, rising every month' })]}
+        images={[shot(proof.elpasoCallsAfter, { crop: epCrop, phone: 'totalRange', marks: [...proof.elpasoCallsAfter.marks.total, ...epRange], alt: 'Google Business Profile for an El Paso PI firm: 23 calls from May to July 2026, rising every month' })]}
       />
       <figcaption>A PI firm in El Paso: 23 calls in three months, after 9 in the six before. Google’s own count, May to July 2026.</figcaption>
     </figure>
@@ -94,7 +96,7 @@ const epRange = [
         <ShotSwap
           tag="#1"
           wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdAi, { marks: ['citations'] })]}
-          narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdAiLeft, { marks: ['citations'] })]}
+          narrow={[shot(phoneProof.wtdQuery), fadeRight(shot(phoneProof.wtdAiLeft, { marks: ['citations'] }))]}
         />
       </figure>
       <div slot="b" class="con-case">
@@ -132,7 +134,7 @@ const epRange = [
           <ShotSwap
             tag="#1"
             wide={[shot(proof.lseSerpTall, { crop: 'search', alt: '' }), shot(proof.lseSerpTall, { crop: 'result', marks: ['title'] })]}
-            narrow={[shot(phoneProof.lseSearch), shot(phoneProof.lseResult, { marks: ['title'] })]}
+            narrow={[lseNarrow(shot(phoneProof.lseSearch)), lseNarrow(shot(phoneProof.lseResult, { marks: ['title'] }))]}
           />
           <figcaption class="lse-small">Google search, United States, 8 November 2026.</figcaption>
         </figure>

@@ -5,13 +5,25 @@
 // as they are (owner, FACTS section 4). Crops are plain rectangles, and nothing else changes pixels.
 // Marks: boxes in % of the whole image ({ l, t, w, h }), measured from its pixels around the exact text.
 // Crops: bands in % of the image's height ({ top, height }), for Shot's `crop`.
+// Phone: plain rectangle windows on the same file, in image pixels ({ x, y, w, h }), shown stacked under 760px
+// so the marked line reads at about 11px on a phone (QA B2). `shot()` picks the first set that holds every
+// mark it draws. A set cut through a line of text gets `fade` (a soft right edge).
 // Captions never name a firm. Alt text says what the capture proves.
 // `deckNames`: other names the v2 decks use for the same file. A deck that names one of them means this entry.
-import type { MarkBox, ShotImage } from '../components/Shot.astro';
+import type { MarkBox, PhoneCrop, ShotImage } from '../components/Shot.astro';
 
 export interface Crop {
   top: number;
   height: number;
+}
+
+/** A phone window in image pixels. */
+export interface PhoneRect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  fade?: boolean;
 }
 
 export interface Proof {
@@ -26,6 +38,8 @@ export interface Proof {
   source: string;
   marks?: Record<string, MarkBox[]>;
   crops?: Record<string, Crop>;
+  /** Phone crop sets, in preference order (see the note at the top). */
+  phone?: Record<string, PhoneRect[]>;
   deckNames?: string[];
   /** Anything a builder must know before using it. */
   note?: string;
@@ -49,6 +63,10 @@ export const proof = {
     },
     // The September point and its label sit in the middle of this band (the bankruptcy hero).
     crops: { chart: { top: 52, height: 48 } },
+    phone: {
+      totals: [{ x: 24, y: 180, w: 376, h: 130 }],
+      september: [{ x: 560, y: 300, w: 517, h: 282 }],
+    },
     deckNames: ['calls-rudin-oct.webp', 'nola-calls-sep-2026.webp', 'nola-calls-jun-oct-2026-sep.webp'],
     note: 'The only 139 chart: its September point is open at "43 September 2026". There is no version without the label, so decks asking for "the tooltip version" mean this file. The September mark sits on a blue label, where the highlighter reads darker.',
   },
@@ -61,6 +79,7 @@ export const proof = {
     source: 'LCME public/img/calls-ep-before.webp',
     marks: { total: [{ l: 3.9, t: 34, w: 2.9, h: 9 }] },
     deckNames: ['calls-ep-before.webp'],
+    phone: { totals: [{ x: 30, y: 205, w: 370, h: 115 }] },
   },
   elpasoCallsAfter: {
     src: `${P}elpaso-calls-after.webp`,
@@ -74,6 +93,10 @@ export const proof = {
       range: [{ l: 41.3, t: 13.8, w: 11.9, h: 3.3 }],
     },
     deckNames: ['calls-ep-after.webp'],
+    phone: {
+      totals: [{ x: 35, y: 235, w: 380, h: 120 }],
+      totalRange: [{ x: 500, y: 70, w: 360, h: 80 }, { x: 35, y: 235, w: 380, h: 120 }],
+    },
   },
   newProfileCalls: {
     src: `${P}new-profile-calls.webp`,
@@ -84,6 +107,8 @@ export const proof = {
     source: 'LCME public/img/calls-new-profile.webp',
     marks: { points: [{ l: 26.4, t: 85.6, w: 4.4, h: 6 }, { l: 93.2, t: 54.6, w: 5, h: 6.4 }] },
     deckNames: ['calls-new-profile.webp'],
+    // July to October, where the two marked points sit.
+    phone: { chart: [{ x: 250, y: 300, w: 817, h: 255 }] },
   },
 
   // ---------- Rankings and Google's AI answers ----------
@@ -95,6 +120,7 @@ export const proof = {
     caption: 'what to do after a truck accident in New Orleans',
     source: 'LCME public/img/p16-wtd-query.webp',
     deckNames: ['p16-wtd-query.webp'],
+    phone: { query: [{ x: 0, y: 0, w: 560, h: 67 }] },
     note: 'A search box strip: stack it over nola-wtd-rank or nola-wtd-ai in one Shot.',
   },
   nolaWtdRank: {
@@ -106,6 +132,7 @@ export const proof = {
     source: 'LCME public/img/p16-wtd-rank.webp',
     marks: { age: [{ l: 1.6, t: 63.5, w: 12.2, h: 16 }] },
     deckNames: ['p16-wtd-rank.webp'],
+    phone: { result: [{ x: 0, y: 0, w: 500, h: 162, fade: true }] },
     note: '"16 hours" always travels with "after about three months of groundwork".',
   },
   nolaWtdAi: {
@@ -117,6 +144,7 @@ export const proof = {
     source: 'LCME public/img/p16-wtd-ai.webp',
     marks: { citations: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
     deckNames: ['p16-wtd-ai.webp', 'ai-wtd.webp'],
+    phone: { citations: [{ x: 0, y: 0, w: 680, h: 525, fade: true }] },
   },
   nolaJackknife: {
     src: `${P}nola-jackknife.webp`,
@@ -133,6 +161,14 @@ export const proof = {
     // The organic result alone, as a strip (for a row of three, where the whole page would be too small).
     crops: { result: { top: 80, height: 20 } },
     deckNames: ['p16-jackknife.webp', 'ai-jackknife.webp'],
+    // The search, the AI answer's line with the firm's chip, and the result left of the open popup.
+    phone: {
+      main: [
+        { x: 0, y: 0, w: 420, h: 56, fade: true },
+        { x: 30, y: 315, w: 475, h: 27 },
+        { x: 0, y: 505, w: 432, h: 120, fade: true },
+      ],
+    },
     note: 'An open source popup covers part of the AI panel, so the sourceCard mark is partly hidden: prefer aiChip and result.',
   },
   elpasoAiDeadline: {
@@ -144,11 +180,16 @@ export const proof = {
     source: 'LCME public/img/ai-915.webp',
     marks: {
       citedLine: [{ l: 5.1, t: 35.3, w: 33.9, h: 2.6 }],
-      sourceCard: [{ l: 69.6, t: 35.4, w: 24, h: 3.2 }],
+      sourceCard: [{ l: 68, t: 35.4, w: 21, h: 3.2 }],
     },
     // The answer's first lines and the first source card.
     crops: { answer: { top: 22, height: 24 } },
     deckNames: ['ai-915.webp', 'p16-915-ai.webp'],
+    phone: {
+      answer: [{ x: 15, y: 8, w: 470, h: 66 }, { x: 20, y: 185, w: 625, h: 145 }],
+      source: [{ x: 15, y: 8, w: 470, h: 66 }, { x: 935, y: 255, w: 460, h: 140 }],
+      answerSource: [{ x: 15, y: 8, w: 470, h: 66 }, { x: 20, y: 185, w: 625, h: 145 }, { x: 935, y: 255, w: 460, h: 140 }],
+    },
     note: 'LCME has two versions; this is ai-915 (search box included). Decks that say p16-915-ai mean this file.',
   },
   nolaKeyFirm: {
@@ -165,6 +206,11 @@ export const proof = {
     },
     crops: { answer: { top: 0, height: 50 }, keyFirms: { top: 50, height: 50 } },
     deckNames: ['aio-tanker-main.webp'],
+    phone: {
+      answer: [{ x: 15, y: 15, w: 480, h: 160, fade: true }],
+      // Blank space above the heading, so the tag covers no text.
+      keyFirms: [{ x: 15, y: 170, w: 622, h: 63 }, { x: 15, y: 236, w: 400, h: 120 }],
+    },
   },
   nolaTankerQuery: {
     src: `${P}nola-tanker-query.webp`,
@@ -174,6 +220,7 @@ export const proof = {
     caption: 'Tanker Truck Accident Lawyer in New Orleans',
     source: 'LCME public/img/p16-tanker-query.webp',
     deckNames: ['p16-tanker-query.webp'],
+    phone: { query: [{ x: 0, y: 0, w: 560, h: 67 }] },
     note: 'A search box strip: stack it over nola-tanker-rank in one Shot.',
   },
   nolaTankerRank: {
@@ -189,6 +236,10 @@ export const proof = {
       address: [{ l: 7.6, t: 16.5, w: 26, h: 11 }],
     },
     deckNames: ['p16-tanker-rank.webp'],
+    phone: {
+      age: [{ x: 0, y: 0, w: 470, h: 175, fade: true }],
+      title: [{ x: 0, y: 0, w: 640, h: 175, fade: true }],
+    },
     note: 'This page ranked #3. Never tag it "#1".',
   },
   nolaTankerAi: {
@@ -204,6 +255,7 @@ export const proof = {
       rating: [{ l: 18.3, t: 66.5, w: 19.2, h: 4.5 }],
     },
     deckNames: ['p16-tanker-ai.webp'],
+    phone: { firm: [{ x: 0, y: 134, w: 540, h: 166 }] },
     note: 'The services deck prefers a fresh LSE-only Business Profile capture when one exists (placeholder until then).',
   },
   nolaTankerSerpFull: {
@@ -233,6 +285,7 @@ export const proof = {
     source: 'research/proof/serp-lawyer-seo-expert-us-2026-11-08-tight.png',
     marks: { title: [{ l: 9.7, t: 30.6, w: 76.4, h: 7.6 }] },
     crops: { result: { top: 15, height: 46 } },
+    phone: { result: [{ x: 160, y: 165, w: 1460, h: 365 }] },
     note: 'The homepage uses this one. The capture still shows the old title; recapture once the new one is live.',
   },
   lseSerpTall: {
@@ -246,6 +299,11 @@ export const proof = {
     // Two bands in one Shot "collapse" the sponsored block to its label without editing a pixel:
     // the search box down to "Sponsored Results", then "Hide sponsored results" down to the AI Overview.
     crops: { search: { top: 0, height: 15.6 }, result: { top: 70, height: 30 } },
+    // Pass `phone: 'search'` with the search band; the result picks its own.
+    phone: {
+      result: [{ x: 60, y: 2165, w: 1250, h: 425, fade: true }],
+      search: [{ x: 60, y: 30, w: 1250, h: 430, fade: true }],
+    },
     deckNames: ['serp-lawyer-seo-expert-us-2026-11-08-tall.png'],
     note: 'Use the two crops as two images in one Shot (docs/kit.md). The ads are never shown, so nothing needs blurring. Still the old title "Our Own Ranking Proves We Can Deliver" (an LCME H1): recapture before launch.',
   },
@@ -259,6 +317,8 @@ export const proof = {
     caption: 'The El Paso firm’s site, which we built, on a phone.',
     source: 'LCME public/img/site-915-mobile.webp',
     deckNames: ['site-915-mobile.webp', 'elpaso-site-phone.webp'],
+    // Its first screen, so a phone frame wide enough to read stays short on a phone.
+    phone: { firstScreen: [{ x: 0, y: 0, w: 824, h: 1260 }] },
   },
   nolaSiteHomeDesktop: {
     src: `${P}nola-site-home-desktop.webp`,
@@ -271,6 +331,8 @@ export const proof = {
       searchLine: [{ l: 4.9, t: 22.4, w: 28.3, h: 2.2 }],
       callButton: [{ l: 80.5, t: 12, w: 15, h: 8 }],
     },
+    // The hero's headline block and its button.
+    phone: { hero: [{ x: 30, y: 95, w: 750, h: 740 }] },
     note: 'A dark and gold site: the highlighter reads weakly on it. Use at most one mark, or a tag only.',
   },
   nolaSiteHomePhone: {
@@ -281,6 +343,7 @@ export const proof = {
     caption: 'The same site on a phone.',
     source: 'research/proof/client-getrude-home-mobile-390-2026-11-08.png (a 4x capture of one 390px screen, halved)',
     deckNames: ['client-getrude-home-mobile-390-2026-11-08.png'],
+    phone: { firstScreen: [{ x: 0, y: 0, w: 780, h: 1100 }] },
   },
   nolaSiteCarAccidentPage: {
     src: `${P}nola-site-car-accident-page.webp`,
@@ -295,6 +358,8 @@ export const proof = {
       callButton: [{ l: 4.9, t: 95.3, w: 26.4, h: 4.7 }],
     },
     deckNames: ['client-getrude-car-accidents-page-desktop-1440-2026-11-08.png'],
+    // The headline, the opening paragraph and the call button.
+    phone: { headline: [{ x: 50, y: 370, w: 680, h: 530 }] },
     note: 'A dark site: marks read weakly. It is a build, not a ranking, so no rank tag.',
   },
 
@@ -319,6 +384,7 @@ export const proof = {
     source: 'LCME public/img/tr-breakthrough-traffic.webp, cropped to the traffic line and chart (Authority Score, backlinks and referring domains cut out)',
     marks: { traffic: [{ l: 19.3, t: 24.2, w: 15.3, h: 6.1 }] },
     deckNames: ['tr-breakthrough-traffic.webp'],
+    phone: { traffic: [{ x: 15, y: 100, w: 690, h: 85 }, { x: 15, y: 290, w: 1375, h: 275 }] },
   },
 
   // ---------- Practice pages, set B (branch p-pb): plain rectangle crops, no pixel changed ----------
@@ -364,6 +430,7 @@ export const proof = {
       growth: [{ l: 2.8, t: 85.7, w: 11.9, h: 9.7 }],
       range: [{ l: 62.2, t: 11.3, w: 19, h: 6.8 }],
     },
+    phone: { totals: [{ x: 320, y: 20, w: 360, h: 60 }, { x: 0, y: 130, w: 360, h: 135 }] },
     note: 'The environmental hero, readable at the width of a 7-column panel. Stack nolaCalls with crop "chart" under it for the line.',
   },
   nolaTankerSerpTop: {
@@ -408,11 +475,42 @@ export interface ShotOptions {
   crop?: string | Crop;
   /** Overrides the entry's alt text (say what this crop proves). */
   alt?: string;
+  /** A name from the entry's `phone` sets, or false for the full capture on phones. Default: picked from the marks. */
+  phone?: string | false;
+}
+
+const inside = (b: MarkBox, r: PhoneCrop) =>
+  b.l >= r.l - 0.5 && b.t >= r.t - 0.5 && b.l + b.w <= r.l + r.w + 0.5 && b.t + b.h <= r.t + r.h + 0.5;
+
+/** The phone crops for a shot: the named set, or the first set that holds every mark (the first set if none). */
+function phoneCrops(entry: Proof, boxes: MarkBox[], band: Crop | undefined, choice: string | false | undefined): PhoneCrop[] | undefined {
+  if (choice === false || !entry.phone) return undefined;
+  const toPct = (r: PhoneRect): PhoneCrop => ({
+    l: +((r.x / entry.width) * 100).toFixed(3),
+    t: +((r.y / entry.height) * 100).toFixed(3),
+    w: +((r.w / entry.width) * 100).toFixed(3),
+    h: +((r.h / entry.height) * 100).toFixed(3),
+    ...(r.fade ? { fade: true } : {}),
+  });
+  if (typeof choice === 'string') {
+    const set = entry.phone[choice];
+    if (!set) throw new Error(`proof: ${entry.src} has no phone set "${choice}"`);
+    return set.map(toPct);
+  }
+  const sets = Object.values(entry.phone).map((set) => set.map(toPct));
+  // A band with no marks (a context strip, like a chart's line) keeps its band unless a set is named.
+  if (!boxes.length) return band ? undefined : sets[0];
+  return sets.find((set) => boxes.every((b) => set.some((r) => inside(b, r))));
+}
+
+/** A soft right edge on phones, for a phone crop file cut through a line of text (proof-money.ts). */
+export function fadeRight(img: ShotImage): ShotImage {
+  return { ...img, phone: [{ l: 0, t: img.crop?.top ?? 0, w: 100, h: img.crop?.height ?? 100, fade: true }] };
 }
 
 /** One proof entry as a Shot image. */
 export function shot(entry: Proof, options: ShotOptions = {}): ShotImage {
-  const { marks = [], crop, alt } = options;
+  const { marks = [], crop, alt, phone } = options;
   const boxes = marks.flatMap((m) => {
     if (typeof m !== 'string') return [m];
     const named = entry.marks?.[m];
@@ -421,6 +519,7 @@ export function shot(entry: Proof, options: ShotOptions = {}): ShotImage {
   });
   const band = typeof crop === 'string' ? entry.crops?.[crop] : crop;
   if (typeof crop === 'string' && !band) throw new Error(`proof: ${entry.src} has no crop "${crop}"`);
+  const phoneSet = phoneCrops(entry, boxes, band, phone);
   return {
     src: entry.src,
     width: entry.width,
@@ -428,5 +527,6 @@ export function shot(entry: Proof, options: ShotOptions = {}): ShotImage {
     alt: alt ?? entry.alt,
     ...(boxes.length ? { marks: boxes } : {}),
     ...(band ? { crop: band } : {}),
+    ...(phoneSet ? { phone: phoneSet } : {}),
   };
 }

@@ -140,6 +140,10 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
   /* The stack's visual: a rounded fog block inside the page width. */
   .lse-hero--stack.lse-hero--panel .lse-hero__visual { padding: clamp(16px, 3vw, 40px); background: var(--fog); border-radius: 28px; }
   .lse-hero--panel .lse-hero__visual .lse-shot__frame { box-shadow: var(--shadow-lift); border-color: #cfd4cb; }
+  /* On a phone the fog block runs to the screen edges, so the capture keeps the full page width and reads. */
+  @media (max-width: 759px) {
+    .lse-hero--stack.lse-hero--panel .lse-hero__visual { margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); border-radius: 0; }
+  }
 
   @media (min-width: 1000px) {
     .lse-hero--split .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }

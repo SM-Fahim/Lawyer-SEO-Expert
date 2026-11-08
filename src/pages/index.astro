@@ -321,8 +321,8 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-board { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
   .lse-h-board .lse-h-board__site { max-width: 210px; }
   @media (max-width: 699px) {
-    /* On a phone the capture shows only its first screen, so it doesn't take a whole screen itself. */
-    .lse-h-board .lse-h-board__site { max-width: 210px; }
+    /* On a phone the capture shows only its first screen, wide enough for its text to read. */
+    .lse-h-board .lse-h-board__site { max-width: 300px; }
   }
   .lse-h-web { margin-top: var(--s6); font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 46em; }
   .lse-h-web a { white-space: nowrap; margin-left: 6px; }

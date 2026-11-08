@@ -105,7 +105,6 @@ const webPage = {
     <Split ratio="7/5" align="center">
       <Shot
         slot="a"
-        class="wd-bleed"
         tag="#3"
         tagSide="right"
         images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRank, { marks: ['address', 'age'] })]}
@@ -121,7 +120,7 @@ const webPage = {
         <p>On the site we built for a PI firm in El Paso. Its page is the first source Google’s AI answer cites.</p>
         <PhoneShot class="wd-proof__phone" width={170} images={[shot(proof.elpasoSiteMobile)]} />
       </div>
-      <Shot slot="b" class="wd-bleed" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['sourceCard'] })]} />
+      <Shot slot="b" tag="Source #1" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['sourceCard'] })]} />
     </Split>
   </Band>
 
@@ -168,12 +167,6 @@ const webPage = {
   .wd-proof .wd-proof__q { color: var(--ink); }
   .wd-proof__q b { font-size: clamp(22px, .8vw + 16px, 28px); letter-spacing: -.02em; line-height: 1.2; }
   .wd-proof__phone { margin-top: var(--s3); }
-  /* Phones: each ranking capture runs edge to edge above its caption, so the text in it is as large as it gets. */
-  @media (max-width: 699px) {
-    .wd-bleed { margin-inline: calc(-1 * var(--gut)); max-width: none; }
-    .wd-bleed .lse-shot__frame { border-radius: 0; border-left: 0; border-right: 0; }
-    .wd-bleed .lse-shot__tag--right { right: 8px; }
-  }
   /* "From $2,000" stays on one line on its swipe. */
   .wd-price .lse-price__big span { font-size: clamp(46px, 7vw + 20px, 124px); white-space: nowrap; }
   .wd-terms { border-top-color: var(--ink); }
