@@ -2,7 +2,7 @@
 // /seo-for-environmental-law-attorneys/ from content/v2/seo-for-environmental-law-attorneys.md (practice set B,
 // the shortest page). Hero: H1 and line across, then the New Orleans calls chart led by "+39.0%" on the fog
 // panel (left, 7) beside the short form (right, 5). No counter: the bankruptcy page is the number-led one.
-// Then the demand check (a hairline table, numbers as placeholders), one hub per issue, FAQ (the page's one
+// Then the demand check (a hairline table of issues and who searches), one hub per issue, FAQ (the page's one
 // price), close.
 import Faq, { type FaqItem } from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
@@ -65,8 +65,7 @@ const faq: FaqItem[] = [
 
   <Band heading="First, we check who searches for your issues." headingId="env-demand-h" lead="Some issues have real searches. Some have almost none. You see which before any page is built.">
     <DemandTable
-      caption="The demand check: each issue, who searches for it, and its monthly searches"
-      collect="A demand table for a real firm's issues from a first review, with permission: issue, monthly searches, who searches. Never sample numbers."
+      caption="The demand check: each issue and who searches for it"
       rows={[
         { issue: 'Permits and compliance', who: 'A company that has to meet a rule or win a permit.' },
         { issue: 'Contamination and cleanup', who: 'A landowner or buyer with a polluted site.' },
@@ -74,13 +73,14 @@ const faq: FaqItem[] = [
         { issue: 'Your firm’s name', who: 'A general counsel checking you after a referral or a talk.' },
       ]}
     />
+    <p class="env-numbers">Fahim pulls the real monthly numbers for your issues on the review.</p>
     <p class="env-honest">If search can’t carry your practice, Fahim tells you so in the review.</p>
   </Band>
 
   <Band heading="One full hub for each issue you lead on." headingId="env-hub-h" tone="fog">
     <div class="env-hub">
       <Rows
-        variant="numbered"
+        class="env-hub__rows"
         items={[
           { text: 'A hub page for each issue, with the questions a client asks about it.' },
           { text: 'Articles under your attorneys’ names, from the talks and alerts you already write.' },
@@ -110,8 +110,9 @@ const faq: FaqItem[] = [
   .env-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
   .env-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
 
+  .env-numbers { margin-top: 18px; color: var(--ink-2); max-width: 40em; }
   .env-honest { margin-top: var(--s4); font-size: clamp(21px, .8vw + 16px, 28px); font-weight: 750; line-height: 1.25; letter-spacing: -.02em; color: var(--ink); max-width: 26em; }
 
   .env-hub { max-width: 900px; display: grid; gap: var(--s4); }
-  :global(.env-hub .lse-rows--numbered .lse-row p) { margin-top: 6px; font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
+  :global(.env-hub__rows .lse-row p) { font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
 </style>

@@ -1,18 +1,15 @@
 ---
 // /seo-for-estate-planning-lawyers/ from content/v2/seo-for-estate-planning-lawyers.md (practice set B).
-// Hero: stacked. H1 and line, then the AI answer on a wide fog block (the typed search over the frame, the
-// caption beside it), then the short form as one row. Then two search lists, the name search with a
-// placeholder capture, what the firm gets (the page's one price line), FAQ, close.
+// Hero: stacked. H1 and line, the short form as one row (on the first screen at 1440), then the AI answer
+// on a wide fog block (the typed search over the frame, the caption beside it). Then two search lists, the name search, what the firm gets (the page's one price line), FAQ, close.
 import Faq, { type FaqItem } from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import Shot from '../../components/Shot.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
 import SearchPanel from '../../components/kit/SearchPanel.astro';
-import Split from '../../components/kit/Split.astro';
 import Related from '../../components/practice-b/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -50,7 +47,6 @@ const faq: FaqItem[] = [
 >
   <PageHero
     layout="stack"
-    visualFirst
     h1="Estate planning SEO that makes you the answer families find first."
     lead="Planning clients read for a while before they pick a lawyer. We make your firm the page that ranks for their questions, and the source Google’s AI answer quotes."
     form={{ title: 'Which planning questions do you rank for?', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'ep-hero', label: 'estate-hero', practiceArea: 'Estate planning' }}
@@ -107,9 +103,8 @@ const faq: FaqItem[] = [
     headingId="ep-name-h"
     lead="Advisers, accountants and past clients send people to you. Many look you up before they call, so that search has to help."
   >
-    <Split ratio="7/5" align="center">
+    <div class="ep-name">
       <Rows
-        slot="a"
         variant="inline"
         items={[
           { title: 'Your Google Business Profile:', text: 'correct details, real photos and a steady flow of new reviews.' },
@@ -117,15 +112,7 @@ const faq: FaqItem[] = [
           { title: 'Old listings:', text: 'directories with an old address or phone number get fixed.' },
         ]}
       />
-      <Placeholder
-        slot="b"
-        block
-        width={560}
-        height={420}
-        collect="A real Google search for a planning firm's own name, with the firm's permission, before our work. Mark the item that needed fixing first."
-        label="A real search for a planning firm’s own name, with its permission, before our work"
-      />
-    </Split>
+    </div>
   </Band>
 
   <Band heading="What your planning practice gets each month." headingId="ep-gets-h" tone="fog">
@@ -168,7 +155,7 @@ const faq: FaqItem[] = [
     .ep-hero__vis { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(36px, 4vw, 64px); align-items: end; }
     .ep-hero__say { padding-bottom: 8px; }
   }
-  :global(.ep-hero .lse-hero__act) { margin-top: 8px; }
+  .ep-name { max-width: 860px; }
 
   .ep-under { margin-top: var(--s5); display: grid; gap: 14px; }
 

@@ -6,7 +6,6 @@
 // Then two languages, city and nationwide, trust, FAQ (the page's one price), close.
 import Faq, { type FaqItem } from '../../components/Faq.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import Shot from '../../components/Shot.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
@@ -101,10 +100,14 @@ const faq: FaqItem[] = [
       </div>
       <div slot="b" class="im-lang">
         <h3 class="im-lang__h">Spanish</h3>
-        <Placeholder
-          block
-          collect="Four real Spanish searches for the same case types, pulled from a keyword tool (US, Spanish) and checked by a fluent speaker. Do not translate the English list."
-          label="Four real Spanish searches for the same case types, from a keyword tool, checked by a fluent speaker"
+        <SearchBox
+          label="Spanish searches"
+          caption="Example searches."
+          queries={[
+            { text: 'abogado de inmigración cerca de mí', mark: 'inmigración' },
+            { text: 'cómo sacar la green card', mark: 'green card' },
+            { text: 'abogado de asilo político', mark: 'asilo' },
+          ]}
         />
       </div>
     </Split>
@@ -124,17 +127,8 @@ const faq: FaqItem[] = [
   </Band>
 
   <Band heading="Pages a careful client can trust." headingId="im-trust-h" lead="Many readers have heard of scams. Every case-type page shows them a real attorney.">
-    <Split ratio="7/5" align="center">
-      <Placeholder
-        slot="a"
-        block
-        width={700}
-        height={400}
-        collect="The foot of a real case-type page showing the attorney block (name, bar admission, check link), from a client who agrees, or a clearly labelled sample."
-        label="The attorney block from a real case-type page, from a client who agrees, or a labelled sample"
-      />
+    <div class="im-trust">
       <Rows
-        slot="b"
         class="im-trust__rows"
         items={[
           { text: 'The attorney’s name and bar admission, with a link to check it.' },
@@ -142,7 +136,7 @@ const faq: FaqItem[] = [
           { text: 'No promises about approval or speed, on any page.' },
         ]}
       />
-    </Split>
+    </div>
   </Band>
 
   <Band heading="Immigration firms ask us." headingId="im-faq-h" tone="fog">
@@ -174,11 +168,11 @@ const faq: FaqItem[] = [
 
   .im-lang { display: grid; gap: 16px; align-content: start; }
   .im-lang__h { font-size: 22px; }
-  .im-lang :global(.lse-ph--block) { min-height: 260px; }
 
   .im-reach { max-width: 860px; display: grid; gap: 20px; }
   .im-reach :global(.lse-row p) { font-size: var(--fs-lead); line-height: 1.45; }
   .im-reach__note { max-width: 44em; }
 
+  .im-trust { max-width: 760px; }
   :global(.im-trust__rows .lse-row p) { font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
 </style>
