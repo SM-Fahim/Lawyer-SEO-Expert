@@ -27,7 +27,7 @@ export const site = {
   // The hero form's words, everywhere a hero form is set (judge ruling 1, 2026-11-08). A practice page swaps
   // "your firm" for its practice in plain words through askTitle().
   ask: {
-    sub: 'Send your website. Fahim replies within an hour in business hours, then sends the searches worth winning in your market and your monthly price, in writing.',
+    sub: 'Send your website. Fahim sends back the searches worth winning in your market and your monthly price, in writing.',
     submit: 'Get my plan and price',
     talk: 'Prefer a call?',
     reply: 'Fahim answers within an hour in business hours.',
