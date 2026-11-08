@@ -1,25 +1,21 @@
 ---
 // /law-firm-ppc/. Copy: content/v3/law-firm-ppc.md (critic: content/v3/CRITIC-mixed.md). Facts: research/FACTS.md
 // section 1 (Google Ads / PPC). The only page on the site about Google Ads. No PPC results are approved, so the page
-// shows none. The commercial top is v2's as built: the hero (example search terms, the compact form with the
-// "Running Google Ads now?" question) and the owner-confirmed scope band. The depth zone follows
-// (src/content/depth/law-firm-ppc.md): the mid-page CTA after the main zone, the $500 price band above the open FAQ.
-// The hero form adds one question, so it is the compact LeadForm placed in the hero's text slot rather than
-// PageHero's own form (which has no extra fields). The answer reaches the lead email through the Worker's extra
-// fields (worker/addons/lead.ts).
+// shows none. The commercial top: the hero (S4: the H1 across, the example search terms and the 3-field form under
+// it; the "Running Google Ads now?" select left the hero, critique 2.2) and the owner-confirmed scope band. The depth
+// zone follows (src/content/depth/law-firm-ppc.md): the mid-page CTA after the main zone, the $500 price band above
+// the open FAQ.
 // Schema: the custom Service node carries only the $500 management fee; never the $2,000 SEO offer (R41).
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
-import LeadForm from '../../components/LeadForm.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import HeroTrust from '../../components/kit/HeroTrust.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchPanel from '../../components/kit/SearchPanel.astro';
 import '../../components/mixed/mixed.css';
-import { askTitle, site } from '../../data/site';
+import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -79,35 +75,13 @@ const service = {
   schema={[service, ...depthSchema(depth, { path, title, description })]}
 >
   <PageHero
+    layout="top"
+    panel={false}
     class="ppc-hero"
     h1="Law firm PPC, run for calls instead of clicks."
     lead="We manage Google Ads for law firms inside your own ad account. We track which searches turn into calls and put your budget behind those."
+    form={{ idPrefix: 'ppc-hero', label: 'ppc-hero', format: 'Google Ads review by email' }}
   >
-    <div slot="text" class="lse-hero__act">
-      <LeadForm
-        compact
-        title={askTitle()}
-        titleTag="h2"
-        sub={site.ask.sub}
-        submitLabel={site.ask.submit}
-        idPrefix="ppc-hero"
-        label="ppc-hero"
-        format="Google Ads review by email"
-      >
-        <div slot="fields" class="lse-field ppc-ads">
-          <label class="lse-label" for="ppc-hero-ads">Running Google Ads now?</label>
-          <select class="lse-input" id="ppc-hero-ads" name="running_ads">
-            <option value="">Choose one</option>
-            <option>Yes</option>
-            <option>No</option>
-            <option>Not sure</option>
-          </select>
-        </div>
-        <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
-      </LeadForm>
-      <p class="lse-hero__talk">{site.ask.talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
-      <HeroTrust />
-    </div>
     <figure slot="visual" class="ppc-fig">
       <div class="ppc-card">
         <SearchPanel
@@ -138,7 +112,7 @@ const service = {
 
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
     <Band slot="mid" tone="fog" class="mx-mid">
-      <p class="mx-mid__line">Already running Google Ads? Fahim can go through the account with you in a free 30-minute ranking review.</p>
+      <p class="mx-mid__line">Already running Google Ads? Fahim can go through the account with you in a free 30-minute call.</p>
       <Button />
     </Band>
 
@@ -154,14 +128,6 @@ const service = {
 </InnerPage>
 
 <style is:global>
-  /* The extra question sits after name and email, before the button. */
-  .ppc-hero .lse-form--compact form > .ppc-ads { order: 1; grid-column: 1 / -1; }
-  @media (min-width: 1000px) { .lse-hero.ppc-hero.lse-hero--noform .lse-hero__grid { align-items: start; } }
-  .ppc-hero .lse-form--compact form > .lse-ts,
-  .ppc-hero .lse-form--compact form > button,
-  .ppc-hero .lse-form--compact form > .lse-form__small,
-  .ppc-hero .lse-form--compact form > .lse-form__privacy { order: 2; }
-  .ppc-hero select.lse-input { appearance: none; padding-right: 40px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
   .ppc-fig { display: grid; gap: 14px; margin: 0; }
   .ppc-card { padding: clamp(20px, 2.4vw, 36px); background: var(--paper); border: 1px solid #cfd4cb; border-radius: var(--r-frame); box-shadow: var(--shadow-lift); }
   @media (min-width: 1000px) {

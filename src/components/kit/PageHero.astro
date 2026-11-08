@@ -1,15 +1,17 @@
 ---
 // The inner-page hero: H1, one line, a way to act (the compact LeadForm, the "Prefer a call?" line and the trust
-// row under it: kit/HeroTrust.astro), and the visual. No price in a hero (except /seo-pricing/ and /lawyer-web-design-development/).
-// Layouts (pick the one the deck describes; pages in a group must not all use the same one):
-//   'split'  H1, line and form on the left (5), the visual on the right (7). `flip` puts the visual left.
-//   'top'    H1 and line across the top; under them the visual (7) and the form (5). `flip` swaps the two.
-//   'stack'  H1 and line, then the form as one wide row, then the visual full width (or the visual first,
-//            with `visualFirst`).
-// `panel` sets the visual on the fog panel (running off the screen edge in 'split' and 'top' at 1000px and up,
-// a rounded fog block in 'stack'), and lifts the frames on it. Leave `form` out when a booking band or a form
-// section follows straight after the hero.
-// Phones: one column, H1, line, form, then the visual (`visualFirst` puts the visual before the form).
+// row under it: kit/HeroTrust.astro), and one proof. No price in a hero (except /seo-pricing/ and
+// /lawyer-web-design-development/). The budget and the variants: docs/DESIGN-CRITIQUE.md section 2.3.
+// Three blocks, placed by grid areas: the head (H1, line, "text" slot), the visual, and the act (form, talk, trust).
+// Layouts at 1000px and up (pages in a group must not all use the same one):
+//   'split'  head and act on the left (5), the visual on the right (7). `flip` puts the visual left (7/5).
+//   'top'    head across the top; under it the visual (7) and the act (5). `flip` puts the act left (5/7).
+//   'under'  head on the left (7) with the visual under it, the act on the right (5), on white.
+//   'stack'  head, then the act as one wide row, then the visual full width (the kit page only).
+// `panel` sets the visual on the fog panel (running off the screen edge in 'split' and 'top'), and lifts the
+// frames on it. Leave `form` out when a booking band or a form section follows straight after the hero.
+// Phones: one column. `visualFirst` gives the order of the budget: H1, line, the proof (a compact crop of 220px or
+// less), then the form and the trust row. Without it: H1, line, form, then the visual.
 // Slots: "visual" (the frames, a figure, a PriceCard, a Face), "text" (extra under the line, like a
 // credentials line or a LinkedIn link), "after" (under everything: a TrustLine).
 import { askTitle, site } from '../../data/site';
@@ -38,7 +40,7 @@ export interface HeroForm {
 interface Props {
   h1: string;
   lead?: string;
-  layout?: 'split' | 'top' | 'stack';
+  layout?: 'split' | 'top' | 'under' | 'stack';
   flip?: boolean;
   panel?: boolean;
   form?: HeroForm;
@@ -59,7 +61,7 @@ const {
   lead,
   layout = 'split',
   flip = false,
-  panel = true,
+  panel = layout !== 'under',
   form,
   talk = site.ask.talk,
   trust = true,
@@ -77,56 +79,40 @@ const ask = form && {
   done: form.done ?? site.ask.done,
   format: form.format ?? 'Plan and price by email',
 };
-// Which side the visual sits on at 1000px and up, so the fog panel runs off the right edge.
-const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
+// Which side the visual sits on at 1000px and up, so the fog panel runs off that edge.
+const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) || layout === 'under';
 ---
 <section
   class:list={[
     'lse-hero',
     `lse-hero--${layout}`,
     {
-      'lse-hero--panel': panel && hasVisual,
+      'lse-hero--flip': flip,
+      'lse-hero--panel': panel && hasVisual && layout !== 'under',
       'lse-hero--vleft': visualLeft,
       'lse-hero--vfirst': visualFirst,
       'lse-hero--noform': !form,
+      'lse-hero--novisual': !hasVisual,
     },
     className,
   ]}
   aria-labelledby={headingId}
 >
   <div class="lse-wrap">
-    {layout !== 'split' && (
-      <div class="lse-hero__top">
+    <div class="lse-hero__grid">
+      <div class="lse-hero__head">
         <H id={headingId} class="lse-hero__h">{h1}</H>
         {lead && <p class="lse-lead lse-hero__lead">{lead}</p>}
         <slot name="text" />
       </div>
-    )}
-    <div class="lse-hero__grid">
-      {layout === 'split' && (
-        <div class="lse-hero__text">
-          <H id={headingId} class="lse-hero__h">{h1}</H>
-          {lead && <p class="lse-lead lse-hero__lead">{lead}</p>}
-          <slot name="text" />
-          {form && ask && (
-            <div class="lse-hero__act">
-              <LeadForm compact title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
-                <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
-              </LeadForm>
-              {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
-              {trust && <HeroTrust />}
-            </div>
-          )}
-        </div>
-      )}
       {hasVisual && <div class="lse-hero__visual"><slot name="visual" /></div>}
-      {layout !== 'split' && form && ask && (
+      {form && ask && (
         <div class:list={['lse-hero__act', { 'lse-hero__act--row': formRow }]}>
           <LeadForm compact title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
             <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
           </LeadForm>
           {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
-              {trust && <HeroTrust />}
+          {trust && <HeroTrust />}
         </div>
       )}
     </div>
@@ -137,42 +123,67 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
 <style is:global>
   .lse-hero { position: relative; overflow: hidden; padding: clamp(20px, 2.6vw, 40px) 0 clamp(72px, 8vw, 112px); }
   .lse-hero__h { font-size: clamp(40px, 3.4vw + 18px, 78px); max-width: 18ch; }
-  .lse-hero--split .lse-hero__h { font-size: clamp(40px, 2.6vw + 20px, 66px); max-width: 15ch; }
+  .lse-hero--split .lse-hero__h, .lse-hero--under .lse-hero__h { font-size: clamp(40px, 2.6vw + 20px, 66px); max-width: 15ch; }
+  .lse-hero--under .lse-hero__h { max-width: 17ch; }
   .lse-hero__lead { margin-top: clamp(18px, 2vw, 26px); max-width: 30em; }
-  .lse-hero__top { display: grid; align-content: start; }
-  .lse-hero__top > :not(.lse-hero__h):not(.lse-hero__lead) { margin-top: 14px; }
-  .lse-hero__text { display: grid; align-content: start; }
-  .lse-hero__text > :not(.lse-hero__h):not(.lse-hero__lead):not(.lse-hero__act) { margin-top: 14px; }
-  .lse-hero__act { display: grid; gap: 14px; align-content: start; }
-  .lse-hero__text .lse-hero__act { margin-top: clamp(28px, 3vw, 40px); }
+  /* Across the page, a lead of about 25 words keeps to 2 lines. */
+  .lse-hero--top .lse-hero__lead { max-width: 36em; }
+  .lse-hero__head { display: grid; align-content: start; min-width: 0; }
+  .lse-hero__head > :not(.lse-hero__h):not(.lse-hero__lead) { margin-top: 14px; }
+  .lse-hero__act { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .lse-hero__talk { font-size: 16px; color: var(--ink-2); }
   .lse-hero__talk a { font-weight: 700; }
   .lse-hero__visual { display: grid; gap: 14px; align-content: start; min-width: 0; }
   .lse-hero__after { margin-top: clamp(40px, 4vw, 56px); }
+  /* A one-line caption under the hero proof: whose result it is (critique 2.3). */
+  .lse-hero__visual figcaption { font-size: var(--fs-meta, 15px); color: var(--muted); line-height: 1.4; }
 
-  /* Phones: text, form, visual. */
-  .lse-hero__grid { display: grid; gap: 36px; grid-template-columns: minmax(0, 1fr); margin-top: clamp(28px, 3vw, 44px); }
-  .lse-hero--split .lse-hero__grid { margin-top: 0; }
-  .lse-hero--top .lse-hero__act, .lse-hero--stack .lse-hero__act { order: -1; }
-  .lse-hero--vfirst .lse-hero__act { order: 1; }
+  /* Phones: one column. Head, then the act and the visual in the order the page asks for. */
+  .lse-hero__grid { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); }
+  .lse-hero__head { order: 0; }
+  .lse-hero__act { order: 1; }
+  .lse-hero__visual { order: 2; }
+  .lse-hero--vfirst .lse-hero__visual { order: 1; }
+  .lse-hero--vfirst .lse-hero__act { order: 2; }
+  @media (max-width: 999px) {
+    .lse-hero--vfirst .lse-hero__grid { gap: 28px; }
+  }
 
   /* The stack's visual: a rounded fog block inside the page width. */
   .lse-hero--stack.lse-hero--panel .lse-hero__visual { padding: clamp(16px, 3vw, 40px); background: var(--fog); border-radius: 28px; }
   .lse-hero--panel .lse-hero__visual .lse-shot__frame { box-shadow: var(--shadow-lift); border-color: #cfd4cb; }
-  /* On a phone the fog block runs to the screen edges, so the capture keeps the full page width and reads. */
+  /* On a phone the stack's fog block runs to the screen edges, so the capture keeps the full page width and reads. */
   @media (max-width: 759px) {
     .lse-hero--stack.lse-hero--panel .lse-hero__visual { margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); border-radius: 0; }
   }
 
   @media (min-width: 1000px) {
-    .lse-hero--split .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }
-    .lse-hero--split.lse-hero--vleft .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-    .lse-hero--split.lse-hero--vleft .lse-hero__visual { order: -1; }
-    .lse-hero--split.lse-hero--noform .lse-hero__grid { align-items: center; }
-    .lse-hero--top .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }
-    .lse-hero--top .lse-hero__act { order: -1; }
-    .lse-hero--top.lse-hero--vleft .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-    .lse-hero--top.lse-hero--vleft .lse-hero__act { order: 1; }
+    .lse-hero__grid { column-gap: clamp(48px, 5vw, 80px); row-gap: 0; align-items: start; }
+    .lse-hero__head, .lse-hero__act, .lse-hero__visual { order: 0; }
+    .lse-hero__head { grid-area: head; }
+    .lse-hero__act { grid-area: act; }
+    .lse-hero__visual { grid-area: visual; }
+
+    /* Split: head and act stacked on one side, the visual beside both. */
+    .lse-hero--split .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; grid-template-areas: "head visual" "act visual"; }
+    .lse-hero--split.lse-hero--flip .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "visual head" "visual act"; }
+    .lse-hero--split .lse-hero__act { margin-top: clamp(28px, 3vw, 40px); }
+    .lse-hero--split.lse-hero--noform .lse-hero__grid { grid-template-rows: auto; grid-template-areas: "head visual"; align-items: center; }
+    .lse-hero--split.lse-hero--noform.lse-hero--flip .lse-hero__grid { grid-template-areas: "visual head"; }
+
+    /* Top: the head across, then the visual and the act side by side. */
+    .lse-hero--top .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "head head" "visual act"; }
+    .lse-hero--top.lse-hero--flip .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "head head" "act visual"; }
+    .lse-hero--top .lse-hero__visual, .lse-hero--top .lse-hero__act { margin-top: clamp(28px, 3vw, 44px); }
+    .lse-hero--top.lse-hero--noform .lse-hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "visual"; }
+
+    /* Under: the head with the visual under it, the act on the right, on white. */
+    .lse-hero--under .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto 1fr; grid-template-areas: "head act" "visual act"; }
+    .lse-hero--under .lse-hero__visual { margin-top: clamp(28px, 3vw, 40px); }
+
+    /* Stack: one column. */
+    .lse-hero--stack .lse-hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "act" "visual"; row-gap: 36px; }
+    .lse-hero--stack.lse-hero--vfirst .lse-hero__grid { grid-template-areas: "head" "visual" "act"; }
 
     /* The fog panel runs off the screen edge on the visual's side. */
     .lse-hero--panel:not(.lse-hero--stack) .lse-hero__visual { position: relative; z-index: 0; padding: 44px 0 36px 40px; }

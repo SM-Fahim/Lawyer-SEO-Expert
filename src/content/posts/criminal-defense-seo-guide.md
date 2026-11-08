@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Criminal Defense SEO
 published: 2025-06-21
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim searches your top charges in your county with you, live."
+cta: "In a free 30-minute call, Fahim searches your top charges in your county with you, live."
 sources:
   - https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing
   - https://web.dev/articles/vitals

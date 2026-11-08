@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Getting Clients
 published: 2024-10-11
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim searches your main services in your city with you, live."
+cta: "In a free 30-minute call, Fahim searches your main services in your city with you, live."
 sources:
   - https://support.google.com/business/answer/7091
   - https://support.google.com/business/answer/3474122

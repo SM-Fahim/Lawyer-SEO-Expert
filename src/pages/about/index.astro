@@ -1,6 +1,6 @@
 ---
 // /about/. Copy: content/v2/about.md. Facts: research/FACTS.md.
-// A support page: it opens on what firms get (the El Paso before and after), then the two people, the two
+// A support page: it opens on the two people you work with and one result line (critique 2.2), then the people, the two
 // services with a proof each, the terms, a short FAQ and the form. No form near the top (CRITIQUE: support
 // page, not a landing page).
 import Faq, { type FaqItem } from '../../components/Faq.astro';
@@ -8,7 +8,7 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import Band from '../../components/kit/Band.astro';
 import Bio from '../../components/kit/Bio.astro';
-import NumPair from '../../components/kit/NumPair.astro';
+import Face from '../../components/kit/Face.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PhoneShot from '../../components/kit/PhoneShot.astro';
 import Q from '../../components/kit/Q.astro';
@@ -37,7 +37,7 @@ const faq: FaqItem[] = [
   },
   {
     q: 'Do you guarantee rankings?',
-    html: 'No. Google decides rankings. On your ranking review, Fahim gives you a realistic view for your firm.',
+    html: 'No. Google decides rankings. On a free 30-minute call, Fahim gives you a realistic view for your firm.',
   },
 ];
 
@@ -67,12 +67,15 @@ const aboutPage = {
     lead="We put law firms at the top of Google, the Map and AI answers, so more of the right clients call. Here is who you would work with."
   >
     <figure slot="visual" class="ab-hero">
-      <NumPair before={9} after={23} beforeLabel="calls in six months before us" afterLabel="calls in three months with us" decorative={false} />
-      <div class="ab-hero__shots">
-        <Shot class="ab-hero__before" priority images={[shot(proof.elpasoCallsBefore)]} />
-        <Shot class="ab-hero__after" tag="23 calls" tagSide="right" priority images={[shot(proof.elpasoCallsAfter, { marks: ['total', 'range'] })]} />
+      <div class="ab-hero__people">
+        {[fahim, josh].map((p) => (
+          <div class="ab-hero__person">
+            <Face person={p} size="md" priority />
+            <p><b>{p.display}</b><span>{p.role}</span></p>
+          </div>
+        ))}
       </div>
-      <figcaption class="lse-small">A PI firm in El Paso, by Google’s own count.</figcaption>
+      <figcaption class="ab-hero__result">A PI firm in New Orleans: <span class="lse-mk">139 calls</span> from Google in five months.</figcaption>
     </figure>
   </PageHero>
 
@@ -80,7 +83,7 @@ const aboutPage = {
     <div class="ab-people">
       <Bio
         person={fahim}
-        size="md"
+        size="sm"
         role="Law firm SEO expert"
         line="Plans your firm’s SEO, is on every call and checks each piece of work. A small production team helps, with no account manager in between."
       >
@@ -88,7 +91,7 @@ const aboutPage = {
       </Bio>
       <Bio
         person={josh}
-        size="md"
+        size="sm"
         role="Sales Director"
         line="A Texas-licensed attorney since 2008 who has run a practice and advised 50+ law firms. Josh joins calls with firms."
       >
@@ -144,11 +147,18 @@ const aboutPage = {
 </InnerPage>
 
 <style is:global>
-  /* H1 at the top of the hero, not centred against the tall proof column. */
-  @media (min-width: 1000px) { .lse-hero.ab-top.lse-hero--noform .lse-hero__grid { align-items: start; } }
-  .ab-hero { display: grid; gap: 24px; margin: 0; }
-  .ab-hero__shots { display: grid; gap: 22px; }
-  .ab-hero__before { width: 68%; opacity: .92; }
+  /* Hero: the two people you work with on the fog panel, and one result line under them. */
+  .ab-hero { display: grid; gap: clamp(20px, 2.4vw, 32px); margin: 0; }
+  .ab-hero__people { display: flex; flex-wrap: wrap; gap: clamp(24px, 3vw, 48px); }
+  .ab-hero__person { display: grid; gap: 12px; justify-items: start; }
+  .ab-hero__person p { display: grid; gap: 2px; font-size: 17px; line-height: 1.35; color: var(--ink-2); }
+  .ab-hero__person b { font-size: 19px; color: var(--ink); }
+  .ab-hero .ab-hero__result { font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; line-height: 1.35; letter-spacing: -.01em; color: var(--ink); max-width: 26em; }
+  @media (max-width: 759px) {
+    .ab-hero__people { gap: 16px; flex-wrap: nowrap; }
+    .ab-hero__person { flex: 1 1 0; min-width: 0; }
+    .ab-hero__person .lse-face--md { width: 100%; max-width: 150px; }
+  }
   .ab-people { max-width: 900px; }
   .ab-people__link { margin-top: 12px; }
   .ab-do { display: grid; gap: 12px; align-content: start; }
@@ -160,7 +170,4 @@ const aboutPage = {
   .ab-terms { max-width: 900px; }
   .ab-terms .lse-row { padding: 22px 0 24px; }
   .ab-terms .lse-row p { font-size: clamp(21px, .8vw + 16px, 28px); font-weight: 700; letter-spacing: -.02em; line-height: 1.3; color: var(--ink); max-width: 32em; }
-  @media (max-width: 999px) {
-    .ab-hero__before { width: 82%; }
-  }
 </style>

@@ -1,8 +1,8 @@
 ---
 // /seo-for-employment-lawyers/. Copy: content/v3/seo-for-employment-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-// Facts: research/FACTS.md. The commercial top is the v2 build with the deck's new hero capture: H1 and line across,
-// then Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi), with its caption on the
-// left of the fog block. The real calendar follows (split, on fog). The v2 bands, FAQ and Related block gave way to
+// Facts: research/FACTS.md. The hero is variant P1 (docs/DESIGN-CRITIQUE.md 2.3): H1, line and form on the left,
+// Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi) on the fog panel on the
+// right, with a one-line caption. The v2 bands, FAQ and Related block gave way to
 // the depth zone (src/content/depth/seo-for-employment-lawyers.md): an intro with the summary across and the jump
 // list in two columns, the worker searches on a fog panel, the issue and deadline tables, the employer pages as
 // rows, a mid-page CTA in a fog block, the price as a fog band (no PriceBand on this page), then the open FAQ on
@@ -44,16 +44,15 @@ const employerPages = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="stack"
+    visualFirst
     class="emp-hero"
     h1="Employment lawyer SEO that answers the question before they call."
-    lead="A fired worker types what happened. An HR director types what to do next. We write the pages Google ranks first and its AI quotes, for the side you represent."
+    lead="We write the pages Google ranks first and its AI quotes, for the side you represent."
     form={{ who: 'your employment practice', idPrefix: 'emp-hero', label: 'emp-hero', practiceArea: 'Employment' }}
-    formRow={false}
   >
     <figure slot="visual" class="emp-fig">
-      <Shot tag="Named in the AI answer" tagSide="right" priority images={[shot(proof.nolaTankerAi, { marks: ['name'] })]} />
-      <figcaption>For a PI firm in New Orleans: it is named as a key firm in Google’s AI answer on tanker accidents. The same work can put an employment firm in the answer to a worker’s question.</figcaption>
+      <Shot tag="Named by AI" tagSide="right" priority images={[shot(proof.nolaTankerAi, { crop: 'firm', marks: ['name', 'rating'] })]} />
+      <figcaption>A PI firm in New Orleans, named in Google’s AI answer on tanker accidents.</figcaption>
     </figure>
   </PageHero>
 
@@ -90,17 +89,8 @@ const employerPages = [
 </InnerPage>
 
 <style is:global>
-  .emp-hero .lse-hero__h { max-width: 19ch; }
-  .emp-hero .lse-hero__lead { max-width: 38em; }
-
-  /* Hero: the caption on the left of the fog block, the AI answer at its natural width on the right. */
-  .emp-fig { display: grid; gap: 16px; }
-  .emp-fig figcaption { font-size: 17px; line-height: 1.5; color: var(--ink-2); max-width: 32em; }
-  @media (min-width: 1000px) {
-    .emp-fig { grid-template-columns: minmax(0, 1fr) minmax(0, 667px); column-gap: clamp(40px, 5vw, 80px); align-items: start; }
-    .emp-fig .lse-shot { grid-column: 2; grid-row: 1; }
-    .emp-fig figcaption { grid-column: 1; grid-row: 1; align-self: center; font-size: clamp(18px, .4vw + 14px, 21px); max-width: 22em; }
-  }
+  /* Hero: the AI answer on the fog panel, its one-line caption under it. */
+  .emp-fig { display: grid; gap: 12px; margin: 0; }
 
   /* Depth intro: the summary across the column, the jump list under it in two columns. */
   .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-depth__intro { grid-template-columns: minmax(0, 1fr); }
@@ -127,11 +117,10 @@ const employerPages = [
   .lse-depth__slot:has(> .emp-rows) + .lse-prose { margin-top: 28px; }
 
   /* Mid-page CTA: a rounded fog block on white, the line and the button side by side from 1000px. */
+  /* The fog block is the band's body, so Fahim's face (put first in the body by DepthZone) sits inside it. */
   .lse-depth .emp-mid { padding-block: 0; }
-  .emp-mid__block {
-    display: grid; gap: var(--s4); justify-items: start;
-    padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px); background: var(--fog); border-radius: 28px;
-  }
+  .lse-depth .emp-mid .lse-band__body { padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px); background: var(--fog); border-radius: 28px; }
+  .emp-mid__block { display: grid; gap: var(--s4); justify-items: start; }
   .emp-mid__line { max-width: 22em; font-size: clamp(24px, 1.2vw + 17px, 36px); font-weight: 750; line-height: 1.15; letter-spacing: -.022em; color: var(--ink); }
   @media (min-width: 1000px) {
     .emp-mid__block { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 64px; }

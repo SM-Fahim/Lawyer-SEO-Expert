@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Web Development
 published: 2025-06-21
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim looks at your current pages and rankings before you plan the new site."
+cta: "In a free 30-minute call, Fahim looks at your current pages and rankings before you plan the new site."
 sources:
   - https://web.dev/articles/vitals
   - https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing

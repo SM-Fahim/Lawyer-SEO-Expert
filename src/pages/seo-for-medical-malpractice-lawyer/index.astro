@@ -1,7 +1,8 @@
 ---
 // /seo-for-medical-malpractice-lawyer/ from content/v3/seo-for-medical-malpractice-lawyer.md (critic:
-// content/v3/CRITIC-practice-3.md). Facts: research/FACTS.md. Fewer, better inquiries. The commercial top is the v2
-// build: a white hero, H1 with the form beside it, then the El Paso AI answer at the full content width. The v2 bands
+// content/v3/CRITIC-practice-3.md). Facts: research/FACTS.md. Fewer, better inquiries. The hero is variant P4
+// (docs/DESIGN-CRITIQUE.md 2.3): on white, the H1 and line with the El Paso search and its first AI source card under
+// them, the form on the right. The v2 bands
 // (keep or skip, harm pages, the name search), FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-medical-malpractice-lawyer.md). Its own look on this page: the jump list under a thick
 // rule on its left, the rule tables with the state set large, the harm pages and agency habits as two-column rows
@@ -10,8 +11,9 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import HeroAside from '../../components/practice-a/HeroAside.astro';
-import { proof, shot } from '../../data/proof';
+import PageHero from '../../components/kit/PageHero.astro';
+import { shot } from '../../data/proof';
+import { phoneProof } from '../../data/proof-money';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -20,11 +22,6 @@ const title = 'Medical Malpractice SEO | Fewer, Better Inquiries';
 const description =
   'Medical malpractice SEO: screening forms, state pre-suit rules, fee caps by state, harm pages, referrals and verdicts, AI deadline answers, UK firms.';
 const depth = await getDepth('seo-for-medical-malpractice-lawyer');
-
-// The first source card's title, measured on elpaso-ai-deadline.webp (1400x849).
-const sourceTitle = { l: 67.9, t: 35.1, w: 21.4, h: 2.9 };
-// "2 years from the date of the car accident", over two lines of the answer.
-const twoYears = [{ l: 20.6, t: 27.9, w: 21.1, h: 3.1 }, { l: 2.4, t: 31.4, w: 5.9, h: 3 }];
 ---
 <InnerPage
   title={title}
@@ -35,16 +32,18 @@ const twoYears = [{ l: 20.6, t: 27.9, w: 21.1, h: 3.1 }, { l: 2.4, t: 31.4, w: 5
   faq={depth.faq}
   schema={depthSchema(depth, { path, title, description })}
 >
-  <HeroAside
+  <PageHero
+    layout="under"
+    visualFirst
     h1="Medical malpractice SEO for fewer, better inquiries."
     lead="You don’t need more calls. You need the right ones. We rank your firm for the harm you take and the questions those families ask."
     form={{ who: 'your malpractice firm', idPrefix: 'mm-hero', label: 'mm-hero', practiceArea: 'Medical malpractice' }}
   >
     <figure slot="visual" class="mm-fig">
-      <Shot tag="Source #1" tagSide="right" priority images={[shot(proof.elpasoAiDeadline, { marks: [...twoYears, sourceTitle] })]} />
-      <figcaption class="lse-small">For a PI firm in El Paso: its filing-deadline page is the first source Google’s AI cites. “How long do I have?” is a question malpractice families ask too, and we write that page the same way.</figcaption>
+      <Shot tag="Source #1" tagSide="right" priority images={[shot(phoneProof.elpasoQuery), shot(phoneProof.elpasoSource, { marks: ['title'] })]} />
+      <figcaption>A PI firm in El Paso: the first source in Google’s AI answer on a filing deadline.</figcaption>
     </figure>
-  </HeroAside>
+  </PageHero>
 
   <DepthZone depth={depth} faqTone="white" authorLinkLabel="Background on S. M. Fahim">
     <PriceBand
@@ -63,8 +62,7 @@ const twoYears = [{ l: 20.6, t: 27.9, w: 21.1, h: 3.1 }, { l: 2.4, t: 31.4, w: 5
 </InnerPage>
 
 <style is:global>
-  .mm-fig { display: grid; gap: 12px; }
-  .mm-fig figcaption { max-width: 48em; }
+  .mm-fig { display: grid; gap: 12px; margin: 0; }
 
   /* The depth zone on this page. The jump list hangs from a thick black rule on its left, not a rule on top. */
   .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-depth__toc { border-top: 0; padding-left: 22px; border-left: 4px solid var(--ink); }

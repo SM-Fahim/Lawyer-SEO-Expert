@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Intake and Tracking
 published: 2024-12-05
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim goes through your search results and how your leads are recorded today."
+cta: "In a free 30-minute call, Fahim goes through your search results and how your leads are recorded today."
 sources:
   - https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_1_18_duties_of_prospective_client/
   - https://support.google.com/business/answer/7091

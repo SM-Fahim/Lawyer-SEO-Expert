@@ -1,8 +1,8 @@
 ---
 // /seo-for-immigration-lawyers/ from content/v3/seo-for-immigration-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-// Facts: research/FACTS.md. This page owns multilingual pages and hreflang (DEPTH-BRIEF section 5). The commercial
-// top is the v2 build: a stacked hero with no form (one city's results page wide on the fog panel, only the AI
-// answer chip and the source card marked, never the key-firms row), then the booking calendar. The v2 bands, FAQ and
+// Facts: research/FACTS.md. This page owns multilingual pages and hreflang (DEPTH-BRIEF section 5). The hero is
+// variant P1 (docs/DESIGN-CRITIQUE.md 2.3): H1, line and form on the left, the AI answer cropped from one city's
+// results page on the fog panel (only the AI answer chip marked, never the key-firms row). The v2 bands, FAQ and
 // Related block gave way to the depth zone (src/content/depth/seo-for-immigration-lawyers.md). Its own look on this
 // page: the jump list on the left and the summary on the right, the agency habits as run-in hairline rows, the
 // mid-page CTA as the page's one marker band (no PriceBand here), the price as two plain lines side by side on white
@@ -33,31 +33,21 @@ const depth = await getDepth('seo-for-immigration-lawyers');
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="stack"
+    visualFirst
     h1="SEO for immigration lawyers, found in every language you serve."
-    lead="Clients search for green card, citizenship or asylum help in English or in their first language, near your office or far from it. We make your firm the one they find, in your city and beyond it."
+    lead="We make your firm the one they find, in your city and beyond it."
     class="im-hero"
     form={{ who: 'your immigration practice', idPrefix: 'im-hero', label: 'immigration-hero', practiceArea: 'Immigration' }}
-    formRow={false}
   >
     <figure slot="visual" class="im-hero__fig">
-      <div class="im-hero__wide">
-        <Shot tag="Cited by Google’s AI" tagSide="right" priority images={[shot(proof.nolaTankerSerpTop, { marks: ['aiChip', 'sourceCard'] })]} />
-      </div>
-      <div class="im-hero__phone">
-        <Shot tag="Cited by Google’s AI" tagSide="right" tagSmall images={[shot(proof.nolaTankerSerpAnswer, { marks: ['aiChip'] })]} />
-        <Shot class="im-hero__card" images={[shot(proof.nolaTankerSerpSource, { marks: ['sourceCard'] })]} />
-      </div>
-      <figcaption class="im-hero__say">
-        <span class="im-hero__cap">For a PI firm in New Orleans. On one city search, Google’s AI answer named it a key firm.</span>
-        <span class="im-hero__line">An immigration firm can hold its own city’s results page the same way, for each case type it takes.</span>
-      </figcaption>
+      <Shot tag="Cited by AI" tagSide="right" priority images={[shot(proof.nolaTankerSerpAnswer, { marks: ['aiChip'] })]} />
+      <figcaption>A PI firm in New Orleans, cited in Google’s AI answer on a city search.</figcaption>
     </figure>
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="Fahim’s profile and record">
     <Band slot="mid" tone="marker" class="im-mid">
-      <p class="im-mid__line">Fahim can check this language plan against your own site in a free, <span class="im-nowrap">30-minute</span> ranking review.</p>
+      <p class="im-mid__line">Fahim can check this language plan against your own site in a free, <span class="im-nowrap">30-minute</span> call.</p>
       <Button />
     </Band>
 
@@ -75,21 +65,7 @@ const depth = await getDepth('seo-for-immigration-lawyers');
 </InnerPage>
 
 <style>
-  .im-hero__fig { display: grid; gap: 22px; }
-  .im-hero__phone { display: grid; gap: 18px; }
-  .im-hero__phone :global(.im-hero__card) { max-width: 322px; }
-  .im-hero__wide { display: none; }
-  @media (min-width: 760px) {
-    .im-hero__wide { display: block; }
-    .im-hero__phone { display: none; }
-  }
-  .im-hero__say { display: grid; gap: 8px; max-width: 46em; }
-  .im-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-  .im-hero__line { margin-top: 6px; font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; max-width: 30em; }
-  @media (min-width: 1000px) {
-    .im-hero__say { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; max-width: none; }
-    .im-hero__line { grid-column: 2; grid-row: 1; margin-top: 0; }
-  }
+  .im-hero__fig { display: grid; gap: 12px; margin: 0; }
 </style>
 
 <style is:global>

@@ -1,24 +1,18 @@
 ---
 // /seo-for-bankruptcy-lawyers/ from content/v3/seo-for-bankruptcy-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-// Facts: research/FACTS.md. The commercial top is the v2 build: a number-led hero on white (H1 and line, then a
-// giant marked "43" beside the calls chart cropped to the September point), and the urgent searches beside the form
-// straight after it. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
+// Facts: research/FACTS.md. The hero is variant P2 (docs/DESIGN-CRITIQUE.md 2.3): the H1 across, then the form and
+// the calls chart cropped to the September point, on white; the urgent searches follow on fog. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-bankruptcy-lawyers.md). Its own look on this page: the jump list with big ink numerals,
 // the problem pages and agency habits as hairline rows with each bold lead on its own line, the built marker
 // PriceBand (moved, one line changed), and the open FAQ on fog with each question beside its answer.
 import FinalCta from '../../components/FinalCta.astro';
-import LeadForm from '../../components/LeadForm.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import NumPair from '../../components/kit/NumPair.astro';
-import HeroTrust from '../../components/kit/HeroTrust.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Split from '../../components/kit/Split.astro';
 import QueryRows from '../../components/practice-b/QueryRows.astro';
 import { proof, shot } from '../../data/proof';
-import { askTitle, site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -38,31 +32,24 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="stack"
+    layout="top"
+    flip
     panel={false}
+    visualFirst
     h1="SEO for bankruptcy lawyers, built to win the local call."
     lead="Someone facing a garnishment searches for a lawyer nearby. We put your firm where that search lands: on the Map, in the results and in Google’s AI answers."
+    form={{ who: 'your bankruptcy practice', idPrefix: 'bk-top', label: 'bankruptcy-top', practiceArea: 'Bankruptcy' }}
     class="bk-hero"
   >
-    <div slot="visual" class="bk-hero__vis">
-      <div class="bk-hero__num">
-        <NumPair after={43} afterLabel="calls in one month" size="xl" />
-      </div>
-      <figure class="bk-hero__fig">
-        <div class="bk-hero__wide"><Shot tag="43 calls" tagSide="left" priority images={[shot(proof.nolaCallsMaySepChart)]} /></div>
-        <div class="bk-hero__phone"><Shot tag="43 calls" tagSide="left" images={[shot(proof.nolaCallsAugSepChart)]} /></div>
-        <figcaption>
-          <span class="bk-hero__cap">For a PI firm in New Orleans. Google counted 43 calls from its Business Profile in September 2026.</span>
-          <span class="bk-hero__line">Urgent bankruptcy searches end the same way, with a tap on the call button.</span>
-        </figcaption>
-      </figure>
-    </div>
+    <figure slot="visual" class="bk-hero__fig">
+      <Shot tag="43 calls" tagSide="left" priority images={[shot(proof.nolaCallsMaySepChart, { phone: 'augSep' })]} />
+      <figcaption>A PI firm in New Orleans: 43 calls from its Business Profile in September 2026.</figcaption>
+    </figure>
   </PageHero>
 
-  <Band heading="The searches that come before a bankruptcy call." headingId="bk-searches-h" tone="fog" wideHeading>
-    <Split ratio="7/5">
+  <Band heading="The searches that come before a bankruptcy call." headingId="bk-searches-h" lead="Urgent bankruptcy searches end the same way, with a tap on the call button." tone="fog" wideHeading>
+    <div class="bk-searches">
       <QueryRows
-        slot="a"
         label="Searches people type before a bankruptcy call"
         caption="Each one a real search, from our keyword data."
         queries={[
@@ -73,14 +60,7 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
           { text: 'do i need a lawyer for debt collection' },
         ]}
       />
-      <div slot="b" class="bk-act">
-        <LeadForm compact title={askTitle('your bankruptcy practice')} titleTag="h3" sub={site.ask.sub} submitLabel={site.ask.submit} idPrefix="bk-top" label="bankruptcy-top" format="Plan and price by email" practiceArea="Bankruptcy">
-          <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
-        </LeadForm>
-        <p class="bk-act__talk">{site.ask.talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
-        <HeroTrust />
-      </div>
-    </Split>
+    </div>
   </Band>
 
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
@@ -96,29 +76,12 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
 </InnerPage>
 
 <style>
-  /* Hero: the number on the left, the chart on the right, both on white. */
-  .bk-hero__vis { display: grid; gap: 36px; align-items: center; }
-  .bk-hero__fig { display: grid; gap: 16px; }
-  .bk-hero__fig figcaption { display: grid; gap: 8px; max-width: 40em; }
-  .bk-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-  .bk-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  /* Hero: the chart with its tag on white, beside the form; a one-line caption. */
+  .bk-hero__fig { display: grid; gap: 12px; margin: 0; }
   .bk-hero__fig :global(.lse-shot__frame) { box-shadow: var(--shadow-lift); }
-  /* Phones get the August to September crop, so the 43 label stays readable. */
-  .bk-hero__wide { display: none; }
-  @media (min-width: 640px) {
-    .bk-hero__wide { display: block; }
-    .bk-hero__phone { display: none; }
-  }
-  @media (min-width: 1000px) {
-    .bk-hero__vis { grid-template-columns: auto minmax(0, 1fr); column-gap: clamp(48px, 5vw, 80px); margin-top: 8px; padding-top: clamp(32px, 3vw, 48px); border-top: 2px solid var(--ink); }
-  }
-
-  .bk-act { display: grid; gap: 14px; align-content: start; }
-  .bk-act__talk { font-size: 16px; color: var(--ink-2); }
-  .bk-act__talk a { font-weight: 700; }
-  @media (min-width: 1000px) {
-    .bk-act { position: sticky; top: 24px; }
-  }
+  @media (min-width: 1000px) { .bk-hero__fig { padding-top: 20px; } }
+  /* The searches under the hero, at a readable width. */
+  .bk-searches { max-width: 760px; }
 
   :global(.bk-price .lse-price__more) { display: grid; gap: 18px; }
   .bk-price__lead { font-size: clamp(24px, 1.4vw + 16px, 36px); font-weight: 700; line-height: 1.2; letter-spacing: -.025em; color: var(--ink); max-width: 24em; }

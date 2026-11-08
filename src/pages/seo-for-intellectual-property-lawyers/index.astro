@@ -1,7 +1,7 @@
 ---
 // /seo-for-intellectual-property-lawyers/ from content/v3/seo-for-intellectual-property-lawyers.md (critic:
-// content/v3/CRITIC-mixed.md). The commercial top is the v2 build: a split hero with no form (the tanker result, #3,
-// "16 hours ago" marked, on the fog panel), then the calendar straight after it. The v2 bands after it gave way to
+// content/v3/CRITIC-mixed.md). The hero is variant P3 (docs/DESIGN-CRITIQUE.md 2.3): the H1
+// across, then the tanker search over its #3 result ("16 hours ago" marked) on the fog panel, and the form. The v2 bands gave way to
 // the depth zone (src/content/depth/): its own look on this page is a standfirst summary with the jump list under it
 // in two columns, the six keyword-research searches in one search box, the mid-page CTA after the main zone, the
 // price as one large statement on white (no PriceBand), and the open FAQ as a two-column grid on fog.
@@ -43,18 +43,16 @@ const searches = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
+    layout="top"
+    visualFirst
     h1="Get found by founders: SEO for intellectual property lawyers."
     lead="Founders, inventors and in-house counsel look up patent, trademark and copyright questions long before they contact a firm, and rarely by city. We put your pages at the top of those searches."
     class="ip-hero"
     form={{ who: 'your IP firm', idPrefix: 'ip-hero', label: 'ip-hero', practiceArea: 'Intellectual property' }}
   >
     <figure slot="visual" class="ip-hero__fig">
-      <div class="ip-hero__wide"><Shot tag="#3" tagSide="right" priority images={[shot(proof.nolaTankerRank, { marks: ['age'] })]} /></div>
-      <div class="ip-hero__phone"><Shot tag="#3" tagSide="right" images={[shot(proof.nolaTankerRankTitle, { marks: ['age'] })]} /></div>
-      <figcaption>
-        <span class="ip-hero__cap">For a PI firm in New Orleans. A new page at #3 on Google 16 hours after going live, after about three months of groundwork.</span>
-        <span class="ip-hero__line">Once the groundwork is in, a new trademark or patent page can get found fast too. This is one firm’s result, not a promise.</span>
-      </figcaption>
+      <Shot tag="#3" tagSide="right" priority images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRank, { marks: ['age'] })]} />
+      <figcaption>A PI firm in New Orleans: #3 within 16 hours, after three months of groundwork.</figcaption>
     </figure>
   </PageHero>
 
@@ -82,16 +80,7 @@ const searches = [
 </InnerPage>
 
 <style is:global>
-  .ip-hero__fig { display: grid; gap: 18px; }
-  /* Phones get the title and "16 hours ago" only, at a size they can read. */
-  .ip-hero__wide { display: none; }
-  @media (min-width: 640px) {
-    .ip-hero__wide { display: block; }
-    .ip-hero__phone { display: none; }
-  }
-  .ip-hero__fig figcaption { display: grid; gap: 10px; max-width: 36em; }
-  .ip-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-  .ip-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  .ip-hero__fig { display: grid; gap: 12px; margin: 0; }
 
   /* The depth zone opens with the summary as a standfirst across the column, the jump list under it in two
      columns of hairline rows. */

@@ -71,7 +71,7 @@ sources:
 
 ## How much search demand does an environmental practice really have?
 
-An environmental practice should measure search demand issue by issue before it builds a page, because some issues draw steady searches and others draw almost none. That check decides where the firm's SEO budget goes.
+An environmental practice should measure search demand issue by issue before it builds a page, because some issues draw steady searches and others draw almost none. That check decides where the firm's SEO budget goes. These searches are few, and each one can be a large matter.
 
 The demand check runs in four steps:
 

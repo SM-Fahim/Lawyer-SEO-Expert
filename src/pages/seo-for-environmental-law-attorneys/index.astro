@@ -1,7 +1,7 @@
 ---
 // /seo-for-environmental-law-attorneys/ from content/v3/seo-for-environmental-law-attorneys.md (critic:
-// content/v3/CRITIC-mixed.md). The commercial top is the v2 build: the H1 and line across, then the New Orleans calls
-// chart led by "Up 39%" on the fog panel beside the short form. The v2 bands after it gave way to the depth zone
+// content/v3/CRITIC-mixed.md). The hero is variant P2 (docs/DESIGN-CRITIQUE.md 2.3): the H1 and line across, then
+// the short form and the New Orleans calls chart led by "Up 39%", on white. The v2 bands after it gave way to the depth zone
 // (src/content/depth/). Its own look on this page: the jump list first and narrow, the summary beside it; the
 // notices and deadlines section (the unique asset) as a fog band in the middle of the white text; the price as two
 // lines on fog (no PriceBand); the open FAQ on white with each question beside its answer. No mid-page CTA (R8).
@@ -10,6 +10,7 @@ import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
+import ShotSwap from '../../components/money/ShotSwap.astro';
 import '../../components/mixed/mixed.css';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -32,19 +33,23 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
 >
   <PageHero
     layout="top"
+    flip
+    panel={false}
+    visualFirst
     h1="SEO for environmental law attorneys: win the few searches that matter."
-    lead="Companies, towns and landowners search for help with permits, compliance and contamination. These searches are few, and each one can be a large matter. We find the ones that exist for your issues and make your firm the answer."
+    lead="Companies, towns and landowners search for help with permits, compliance and contamination. We find the ones that exist for your issues and make your firm the answer."
     form={{ who: 'your environmental law firm', idPrefix: 'env-hero', label: 'environmental-hero', practiceArea: 'Environmental law' }}
     class="env-hero"
   >
     <figure slot="visual" class="env-hero__fig">
-      <div class="env-hero__shot">
-        <Shot tag="Up 39%" tagSide="right" priority images={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'] }), shot(proof.nolaCalls, { crop: 'chart', alt: 'The same chart’s line of monthly calls, June to October 2026' })]} />
-      </div>
-      <figcaption>
-        <span class="env-hero__cap">For a PI firm in New Orleans: calls from its Business Profile rose 39% on the year before, June to October 2026, by Google’s count.</span>
-        <span class="env-hero__line">Environmental searches are rarer, so each call matters more. The same work puts your firm where those searches land.</span>
-      </figcaption>
+      <ShotSwap
+        class="env-hero__shot"
+        tag="Up 39%"
+        priority
+        wide={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'] }), shot(proof.nolaCalls, { crop: 'chart', alt: 'The same chart’s line of monthly calls, June to October 2026' })]}
+        narrow={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'], phone: false })]}
+      />
+      <figcaption>A PI firm in New Orleans: calls up 39% on the year before, by Google’s count.</figcaption>
     </figure>
   </PageHero>
 
@@ -61,12 +66,9 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
 </InnerPage>
 
 <style is:global>
-  .env-hero__fig { display: grid; gap: 18px; }
-  /* Never wider than the summary crop's own 680px, so neither part is upscaled. */
+  .env-hero__fig { display: grid; gap: 12px; margin: 0; }
   .env-hero__shot { max-width: 682px; }
-  .env-hero__fig figcaption { display: grid; gap: 10px; max-width: 38em; }
-  .env-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-  .env-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  .env-hero__fig .lse-shot__frame { box-shadow: var(--shadow-lift); }
 
   /* The depth zone opens with the jump list first and narrow, the byline and summary beside it (phones: the summary
      first, as everywhere). */

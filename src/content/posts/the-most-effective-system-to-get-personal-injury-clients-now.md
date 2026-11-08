@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Personal Injury SEO
 published: 2025-01-12
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim takes your baseline with you: your case types, in your city, on live results."
+cta: "In a free 30-minute call, Fahim takes your baseline with you: your case types, in your city, on live results."
 sources:
   - https://support.google.com/business/answer/7091
   - https://support.google.com/business/answer/3038177

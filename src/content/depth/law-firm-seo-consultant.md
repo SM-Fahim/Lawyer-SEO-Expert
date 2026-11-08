@@ -11,9 +11,9 @@ summary: >-
 reviewed: 2026-11-08
 faqHeading: Questions about hiring a law firm SEO advisor.
 faq:
-  - q: What should we have ready for the ranking review?
+  - q: What should we have ready for the call with Fahim?
     a: >-
-      Your website, your main practice areas and the cities you serve. Search Console access helps, but the review
+      Your website, your main practice areas and the cities you serve. Search Console access helps, but the call
       works without it.
   - q: Does a law firm SEO consultant need to be a lawyer?
     a: >-
@@ -105,7 +105,7 @@ Google suggests asking for past work, whether the SEO follows Google Search Esse
   Our answer: ask us on the call.
 - **Give read access first.** For an audit, Google advises read access to Search Console, not write access.
 
-  Our answer: the ranking review runs without any access to your accounts.
+  Our answer: the free call with Fahim runs without any access to your accounts.
 - **Ask who will own each account.** The firm should own the site, the domain, the Business Profile, Search Console and analytics.
 
   Our answer: the firm owns the site, the content and the accounts we create.
@@ -157,7 +157,7 @@ These are the moments when an outside look pays for the time it takes.
 
 [slot moments]
 
-Our version is the free 30-minute ranking review, where Fahim looks at the firm's real rankings live.
+Our version is a free 30-minute call, where Fahim looks at the firm's real rankings live.
 
 A good review checks what the current provider has published about the firm's lawyers, including words like "specialist".
 
@@ -193,7 +193,7 @@ A provider that serves other industries too can still be strong, if it passes bo
 
 Advice alone costs less up front, but its value depends on someone at the firm doing the work it describes. A plan that sits unread for a quarter buys nothing, while the firms above it keep publishing.
 
-The cheaper route is the one that gets done. With us, the free review is the advice, and the monthly work is where it gets carried out.
+The cheaper route is the one that gets done. With us, the free call is the advice, and the monthly work is where it gets carried out.
 
 ### What goes wrong when a firm hires on the pitch alone
 

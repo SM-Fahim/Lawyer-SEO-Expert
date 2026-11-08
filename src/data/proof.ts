@@ -107,8 +107,10 @@ export const proof = {
     source: 'LCME public/img/calls-new-profile.webp',
     marks: { points: [{ l: 26.4, t: 85.6, w: 4.4, h: 6 }, { l: 93.2, t: 54.6, w: 5, h: 6.4 }] },
     deckNames: ['calls-new-profile.webp'],
-    // July to October, where the two marked points sit.
-    phone: { chart: [{ x: 250, y: 300, w: 817, h: 255 }] },
+    // The line under the 22 (the five-month total), so a "1 to 9 calls" tag never sits beside a bigger number.
+    crops: { line: { top: 50, height: 50 } },
+    // The whole line with its y-axis (10, 5) and month labels (design-3; was a strip from July, with no axis).
+    phone: { axis: [{ x: 18, y: 300, w: 1049, h: 262 }] },
   },
 
   // ---------- Rankings and Google's AI answers ----------
@@ -144,7 +146,13 @@ export const proof = {
     source: 'LCME public/img/p16-wtd-ai.webp',
     marks: { citations: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
     deckNames: ['p16-wtd-ai.webp', 'ai-wtd.webp'],
-    phone: { citations: [{ x: 0, y: 0, w: 680, h: 525, fade: true }] },
+    phone: {
+      citations: [{ x: 0, y: 0, w: 680, h: 525, fade: true }],
+      // The first two citations only, short enough for a phone hero (design-3).
+      two: [{ x: 30, y: 135, w: 650, h: 290, fade: true }],
+    },
+    // The answer from its first citation to its second (the estate planning hero).
+    crops: { two: { top: 14, height: 41 } },
   },
   nolaJackknife: {
     src: `${P}nola-jackknife.webp`,
@@ -256,6 +264,8 @@ export const proof = {
     },
     deckNames: ['p16-tanker-ai.webp'],
     phone: { firm: [{ x: 0, y: 134, w: 540, h: 166 }] },
+    // Down to the key firm's row, without the "Show more" button (the employment hero).
+    crops: { firm: { top: 0, height: 86 } },
     note: 'The services deck prefers a fresh LSE-only Business Profile capture when one exists (placeholder until then).',
   },
   nolaTankerSerpFull: {
@@ -397,6 +407,8 @@ export const proof = {
     caption: 'For a PI firm in New Orleans. Google counted 43 calls from its Business Profile in September 2026.',
     source: 'LCME public/img/calls-rudin.webp (May to Sept 2026), cropped to the line chart from June to September: x 300 to 1347, y 396 to 708. The 119 total and +35.2% are cut (not in FACTS).',
     marks: { september: [{ l: 80.6, t: 7.4, w: 12.4, h: 22 }] },
+    // August and September with the 43 label, about 206px tall on a phone (design-3).
+    phone: { augSep: [{ x: 540, y: 20, w: 507, h: 292 }] },
     deckNames: ['calls-rudin.webp', 'nola-calls-may-sep-2026.webp'],
     note: 'The bankruptcy hero. A different capture from nolaCalls (139); only its September 43 is a FACTS number.',
   },
@@ -464,6 +476,23 @@ export const proof = {
     caption: 'Its page is listed as a source.',
     source: 'nola-tanker-serp-full.webp, cropped to the source cards: x 848 to 1168, y 332 to 546.',
     marks: { sourceCard: [{ l: 5, t: 71, w: 63.4, h: 13.6 }] },
+  },
+
+  // ---------- Hero crops (branch design-3): plain rectangle crops, no pixel changed ----------
+  nolaJackknifeAiResult: {
+    src: `${P}nola-jackknife-ai-result.webp`,
+    width: 730,
+    height: 375,
+    alt: 'Google search for jackknife truck accident Louisiana: Google’s AI answer cites a New Orleans PI firm, and its page is the first result, 7 days after going live',
+    caption: 'A PI firm in New Orleans: #1, and still cited by Google’s AI a week later.',
+    source: 'nola-jackknife.webp (LCME p16-jackknife.webp), cropped to the AI answer’s cited line, the source popup and the first result: x 0 to 730, y 250 to 625.',
+    marks: {
+      aiChip: [{ l: 55.9, t: 17.2, w: 12.2, h: 6.3 }],
+      result: [{ l: 2.7, t: 80.7, w: 52.5, h: 6.7 }],
+    },
+    // The cited line with the chip, then the result left of the popup.
+    phone: { main: [{ x: 0, y: 40, w: 500, h: 50, fade: true }, { x: 0, y: 258, w: 400, h: 117, fade: true }] },
+    note: 'The family hero. The thin column at the right edge is the results page’s source column, left as captured.',
   },
 } satisfies Record<string, Proof>;
 

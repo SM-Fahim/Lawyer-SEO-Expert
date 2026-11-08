@@ -16,7 +16,7 @@ faqHeading: What firms still ask about SEO cost.
 faq:
   - q: Do you charge by the hour or sell a one-off audit?
     a: >-
-      We charge one monthly price for hands-on work. The 30-minute ranking review that comes first is free, and Fahim
+      We charge one monthly price for hands-on work. The 30-minute call that comes first is free, and Fahim
       looks at your real rankings live in it.
   - q: Why does law firm SEO cost more than SEO for other local businesses?
     a: >-

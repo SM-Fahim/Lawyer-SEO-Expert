@@ -41,13 +41,14 @@ const habits = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
+    visualFirst
     h1="SEO for personal injury lawyers: own the searches after a crash."
-    lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
+    lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers."
     form={{ who: 'your injury firm', idPrefix: 'pi-hero', label: 'pi-hero', practiceArea: 'Personal injury' }}
   >
     <figure slot="visual" class="pi-fig">
-      <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
-      <figcaption class="lse-small">A PI firm in New Orleans. Within 16 hours of its tanker truck page going live, Google’s AI named it a key firm. That came after about three months of groundwork.</figcaption>
+      <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaKeyFirm, { marks: [...proof.nolaKeyFirm.marks.heading, proof.nolaKeyFirm.marks.firmRow[0]], phone: 'keyFirms' })]} />
+      <figcaption>A PI firm in New Orleans, named a key firm in Google’s AI answer.</figcaption>
     </figure>
   </PageHero>
 

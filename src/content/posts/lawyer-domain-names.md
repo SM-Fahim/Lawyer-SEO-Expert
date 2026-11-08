@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Branding and SEO
 published: 2024-10-15
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim checks your domain options and what a move would do to your rankings."
+cta: "In a free 30-minute call, Fahim checks your domain options and what a move would do to your rankings."
 sources:
   - https://developers.google.com/search/blog/2015/07/googles-handling-of-new-top-level
   - https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites

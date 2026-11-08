@@ -72,18 +72,21 @@ const pageSchema = [
   schema={pageSchema}
 >
   <PageHero
+    flip
+    visualFirst
+    class="wd-hero"
     h1="Lawyer web design built to rank, from $2,000."
-    lead="We plan your law firm’s website around what clients type into Google, so its pages can climb the results and show up in AI answers. Fixed quote in writing. Your firm owns all of it."
+    lead="We plan your law firm’s website around what clients type into Google, so its pages can climb the results and show up in AI answers."
     form={{ title: 'What could a new website bring your firm, and what would it cost?', sub: 'Send your website. Fahim sends back what the new site should fix and your fixed price, in writing.', idPrefix: 'web-hero', label: 'web-hero', format: 'Website quote by email' }}
   >
     <figure slot="visual" class="wd-fig">
       <SiteDuo
-        tag="New Orleans"
+        tag="Our build"
         priority
-        desktop={shot(proof.nolaSiteHomeDesktop)}
+        desktop={{ ...shot(proof.nolaSiteHomeDesktop), phone: [{ l: 0, t: 0, w: 100, h: 95 }] }}
         phone={shot(proof.nolaSiteHomePhone)}
       />
-      <figcaption class="lse-small">The site we built for a PI firm in New Orleans, on a desktop and a phone.</figcaption>
+      <figcaption>The site we built for a PI firm in New Orleans.</figcaption>
     </figure>
   </PageHero>
 
@@ -102,6 +105,7 @@ const pageSchema = [
         <li>On the New Orleans site in the hero, the page for <Q text="tanker truck accident lawyer in New Orleans" /> reached #3 on Google within 16 hours of going live. Google’s AI answer named the firm as a key firm.</li>
       </ul>
     </Split>
+    <p class="wd-ranks__own">Fixed quote in writing. Your firm owns all of it.</p>
   </Band>
 
   <DepthZone depth={depth} authorLinkLabel="Fahim’s background">
@@ -140,6 +144,9 @@ const pageSchema = [
 
 <style is:global>
   .wd-fig { display: grid; gap: 14px; align-content: start; margin: 0; }
+  /* Phones: the hero shows the desktop screen only, a compact crop above the form. */
+  @media (max-width: 759px) { .wd-hero .ps-duo__phone { display: none; } }
+  .wd-ranks__own { margin-top: clamp(28px, 3vw, 40px); font-size: var(--fs-lead); font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
 
   /* The two results beside the El Paso phone: hairline rows at lead size, each search in ink. */
   .wd-ranks__rows { list-style: none; display: grid; border-top: 2px solid var(--ink); }

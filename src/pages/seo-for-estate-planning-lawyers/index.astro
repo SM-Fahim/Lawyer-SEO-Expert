@@ -1,8 +1,7 @@
 ---
 // /seo-for-estate-planning-lawyers/. Copy: content/v3/seo-for-estate-planning-lawyers.md (critic:
-// content/v3/CRITIC-practice-2.md). Facts: research/FACTS.md. The commercial top is the v2 build: a stacked hero with
-// the short form as one row, then the AI answer on a wide fog block (the typed search over the frame, the caption
-// beside it). The v2 bands, FAQ and Related block gave way to the depth zone
+// content/v3/CRITIC-practice-2.md). Facts: research/FACTS.md. The hero is variant P4 (docs/DESIGN-CRITIQUE.md 2.3): on white,
+// the H1 and line with the AI answer under them, the form on the right. The v2 bands, FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-estate-planning-lawyers.md), opened by a fog band (byline, summary, jump list): the
 // planning vs probate table, the fee page checklist, the four writing rules as large rows, a white mid-page CTA
 // under an ink rule, the price as two lines side by side (no PriceBand on this page), then the open FAQ on fog, the
@@ -14,7 +13,6 @@ import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
-import SearchBox from '../../components/kit/SearchBox.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -43,22 +41,17 @@ const writingRules = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="stack"
+    layout="under"
+    visualFirst
     h1="Estate planning SEO that makes you the answer families find first."
     lead="Planning clients read for a while before they pick a lawyer. We make your firm the page that ranks for their questions, and the source Google’s AI answer quotes."
     form={{ who: 'your estate planning firm', idPrefix: 'ep-hero', label: 'estate-hero', practiceArea: 'Estate planning' }}
     class="ep-hero"
   >
-    <div slot="visual" class="ep-hero__vis">
-      <div class="ep-hero__proof">
-        <SearchBox label="The search typed into Google" queries={[{ text: 'what to do after a truck accident in New Orleans' }]} />
-        <Shot tag="Cited 3 times" tagSide="right" priority images={[shot(proof.nolaWtdAi, { marks: ['citations'] })]} />
-      </div>
-      <div class="ep-hero__say">
-        <p class="ep-hero__cap">For a PI firm in New Orleans. Google’s AI answer cites its question page three times.</p>
-        <p class="ep-hero__line">A will, trust or probate question works the same way. One clear page that answers it well gets ranked and quoted.</p>
-      </div>
-    </div>
+    <figure slot="visual" class="ep-hero__fig">
+      <Shot tag="Quoted by AI" tagSide="right" priority images={[shot(proof.nolaWtdAi, { crop: 'two', phone: 'two', marks: proof.nolaWtdAi.marks.citations.slice(0, 2), alt: 'Google’s AI answer for what to do after a truck accident in New Orleans, citing a New Orleans PI firm’s page' })]} />
+      <figcaption>A PI firm in New Orleans: Google’s AI answer cites its question page.</figcaption>
+    </figure>
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="Read S. M. Fahim’s profile">
@@ -85,17 +78,8 @@ const writingRules = [
 </InnerPage>
 
 <style>
-  /* Hero: the search and the AI answer on the left of the fog block, what it shows on the right. */
-  .ep-hero__vis { display: grid; gap: 28px; }
-  .ep-hero__proof { display: grid; gap: 18px; max-width: 902px; }
-  .ep-hero__proof :global(.lse-search__box) { border-radius: 999px; padding: 0; }
-  .ep-hero__say { display: grid; gap: 14px; align-content: end; }
-  .ep-hero__cap { font-size: 17px; line-height: 1.45; color: var(--ink-2); max-width: 30em; }
-  .ep-hero__line { font-size: var(--fs-lead); line-height: 1.4; font-weight: 600; color: var(--ink); max-width: 22em; letter-spacing: -.01em; }
-  @media (min-width: 1000px) {
-    .ep-hero__vis { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(36px, 4vw, 64px); align-items: end; }
-    .ep-hero__say { padding-bottom: 8px; }
-  }
+  /* Hero: the AI answer under the H1 on white, its one-line caption under it. */
+  .ep-hero__fig { display: grid; gap: 12px; margin: 0; }
 </style>
 
 <style is:global>

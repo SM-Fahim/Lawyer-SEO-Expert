@@ -135,7 +135,7 @@ sources:
 
 An immigration practice should give each case type its own page, then build a separate version of that page in each language its lawyers and staff can serve. Google recommends a different URL for each language version, so Google can find and show each one.
 
-Three English searches from our keyword research show the pattern. Each names a case type: <q data-no-check>can a lawyer stop deportation</q>, <q data-no-check>can i apply for asylum without a lawyer</q> and <q data-no-check>how much does an immigration lawyer cost for green card</q>. Each deserves an answer in the client's own language.
+Clients search for green card, citizenship or asylum help in English or in their first language, near your office or far from it. Three English searches from our keyword research show the pattern. Each names a case type: <q data-no-check>can a lawyer stop deportation</q>, <q data-no-check>can i apply for asylum without a lawyer</q> and <q data-no-check>how much does an immigration lawyer cost for green card</q>. Each deserves an answer in the client's own language.
 
 Some searches look big and bring no clients. <q data-no-check>i-9 form</q> names an employer's work-eligibility form, a poor match for a firm that wants consults.
 
@@ -240,7 +240,7 @@ For a PI firm in New Orleans, the page that answered <q data-no-check>what to do
 
 The New Orleans PI firm needed about three months of groundwork before its new pages could rank within hours. An immigration firm should expect the same order: profile and core case pages first, then language versions and policy pages.
 
-How crowded your case types are and where your site starts set the real pace. Fahim gives that estimate in the ranking review, never as a promise, and two kinds of work can change the plan.
+How crowded your case types are and where your site starts set the real pace. Fahim gives that estimate on a free 30-minute call, never as a promise, and two kinds of work can change the plan.
 
 [band mid]
 

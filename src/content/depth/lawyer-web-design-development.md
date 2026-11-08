@@ -171,7 +171,7 @@ A law firm website build runs in seven steps, from a review of what the current 
 Fahim leads each build and checks every page before you see it, while a small team handles production. These are the steps.
 
 [steps]
-1. **Review the current site's rankings.** In a free 30-minute ranking review, Fahim looks at which pages earn rankings today, live, with you.
+1. **Review the current site's rankings.** In a free 30-minute call, Fahim looks at which pages earn rankings today, live, with you.
 2. **Put the price and the page plan in writing.** The fixed quote lists the pages, the price and what the firm will own.
 3. **Write the pages.** Each page targets one search. You or your ethics counsel approve every page before it goes live.
 4. **Design and build on a staging copy.** The firm reviews the pages on a phone and a desktop before anything is public.

@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Branding and SEO
 published: 2024-10-16
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim looks at the live results for every name on your shortlist."
+cta: "In a free 30-minute call, Fahim looks at the live results for every name on your shortlist."
 sources:
   - https://support.google.com/business/answer/3038177
   - https://support.google.com/business/answer/7091

@@ -15,7 +15,7 @@ faq:
   - q: Is any of your proof from DUI cases?
     a: >-
       The results here all come from PI firms, and each one says so. The profile and deadline-page work behind them
-      is the same work a DUI practice needs. Fahim walks through how it fits your state in the ranking review.
+      is the same work a DUI practice needs. Fahim walks through how it fits your state on a free 30-minute call.
   - q: Where do county court pages fit on a DUI firm's site?
     a: >-
       County court pages belong to the criminal defense side of the site, because they serve every charge heard
@@ -206,7 +206,7 @@ Hours matter for a DUI firm because the first searches come right after release.
 
 Reviews come slowly in DUI work, since clients may not want the case known. Google's review policy bars reviews from staff and other conflicts of interest, as well as asking only happy clients ([review policy](https://support.google.com/contributionpolicy/answer/7400114)). Every review has to come from a real client.
 
-Who you compete with depends on the town: the Map pack for "dui lawyer" can go to DUI-only firms, general defense firms or firms from the next town. The ranking review shows which of them hold yours.
+Who you compete with depends on the town: the Map pack for "dui lawyer" can go to DUI-only firms, general defense firms or firms from the next town. A free 30-minute call with Fahim shows which of them hold yours.
 
 A new profile takes months, not days. For a PI firm in New Orleans, a second profile with no history logged about 1 call in July and 9 in October. A new DUI profile starts from zero the same way.
 

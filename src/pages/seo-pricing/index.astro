@@ -7,6 +7,7 @@
 // the terms on the one highlighter band, the open FAQ and the author box. The real calendar closes the page (no
 // second form: the hero has one).
 import Button from '../../components/Button.astro';
+import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
@@ -55,6 +56,7 @@ const traps = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
+    visualFirst
     class="cost-hero"
     h1="Law firm SEO pricing: one price, from $2,000 a month."
     lead="One price pays for all the work it takes to rank your firm. No setup fee, no packages to decode, and you pay month to month."
@@ -71,11 +73,7 @@ const traps = [
 
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
     <figure slot="proof" class="lse-depth__proof">
-      <ShotSwap
-        tag="1 to 9 calls"
-        wide={[shot(proof.newProfileCalls, { marks: ['points'] })]}
-        narrow={[shot(proof.newProfileCalls, { marks: ['points'] })]}
-      />
+      <Shot tag="1 to 9 calls" tagSide="right" images={[shot(proof.newProfileCalls, { marks: ['points'], phone: 'axis' })]} />
       <figcaption>A new Google profile for a PI firm in New Orleans: about 1 call in July 2026, then 9 in October.</figcaption>
     </figure>
     <div slot="drivers" class="bsv-rows"><Rows variant="inline" items={drivers} /></div>
@@ -118,15 +116,17 @@ const traps = [
 </InnerPage>
 
 <style is:global>
-  /* Hero: on phones the card comes before the form (H1, line, card, form). */
-  @media (max-width: 999px) {
-    .cost-hero .lse-hero__grid { gap: 0; }
-    .cost-hero .lse-hero__text { display: contents; }
-    .cost-hero .lse-hero__visual { order: 1; margin-top: 32px; }
-    .cost-hero .lse-hero__text .lse-hero__act { order: 2; margin-top: 40px; }
-  }
+  /* Hero: on phones the card comes before the form (H1, line, card, form): PageHero's visualFirst. */
   @media (min-width: 1000px) {
     .cost-hero .lse-hero__visual { padding-top: 40px; padding-bottom: 40px; }
+  }
+
+  /* The new profile's calls: the whole line with its y-axis needs the full width to read, so from 1000px it sits
+     above its text at 1040px instead of in the narrow aside. */
+  @media (min-width: 1000px) {
+    .lse-depth[data-depth='seo-pricing'] .lse-depth__split { grid-template-columns: minmax(0, 1fr); }
+    .lse-depth[data-depth='seo-pricing'] .lse-depth__split > .lse-depth__aside { grid-column: 1; grid-row: 1; position: static; padding-top: 0; }
+    .lse-depth[data-depth='seo-pricing'] .lse-depth__split > .lse-prose { grid-row: 2; }
   }
 
   /* The 139 capture under its paragraph, at the width of the text and a little more. */

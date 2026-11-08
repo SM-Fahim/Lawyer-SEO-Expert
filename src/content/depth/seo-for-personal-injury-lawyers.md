@@ -185,7 +185,7 @@ sources:
 
 An injury firm needs a page for every case type it wants and question pages for each stage of the claim. City versions come only where it has local facts to add.
 
-Searches change as the claim moves: a nearby firm first, then deadlines, insurers and fees, then names and reviews. Here is the page map we plan from. Brackets mark a pattern, not a real search.
+Searches change as the claim moves: a nearby firm first, then deadlines, insurers and fees, then names and reviews. Injury is where our results come from. Here is the page map we plan from. Brackets mark a pattern, not a real search.
 
 | Claim stage | What people type | Page that answers it | Build it when |
 |---|---|---|---|
@@ -300,7 +300,7 @@ For the New Orleans firm, the groundwork took about three months before new page
 
 Three things set the pace: how crowded your city is for your case types, where the site and profile start, and the number of case types you want at once.
 
-We have no first-hand data on the broadest searches, such as "car accident lawyer" in a large city. Fahim gives that view market by market in a ranking review, never as a promise.
+We have no first-hand data on the broadest searches, such as "car accident lawyer" in a large city. Fahim gives that view market by market on a free 30-minute call, never as a promise.
 
 We count calls and qualified leads from the profile and the site, not traffic alone. Our services page explains [how the month runs and how results are counted](/law-firm-seo-services/).
 

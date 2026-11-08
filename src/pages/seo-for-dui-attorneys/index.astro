@@ -46,14 +46,15 @@ const subPages = [
 >
   <PageHero
     layout="top"
+    visualFirst
     class="dui-hero"
     h1="SEO for DUI attorneys that wins the “near me” search after an arrest."
     lead="A DUI search is local and it is urgent. We get your firm onto the Map when a driver searches, and onto Google for the license questions that come next."
     form={{ who: 'your DUI practice', idPrefix: 'dui-hero', label: 'dui-hero', practiceArea: 'DUI' }}
   >
     <figure slot="visual" class="dui-fig">
-      <Shot tag="9 calls in October" tagSide="left" priority images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
-      <figcaption class="lse-small">For a PI firm in New Orleans: a brand-new Google profile climbed from about 1 call in July to 9 calls in October. A DUI firm’s Map listing is built the same way.</figcaption>
+      <Shot tag="1 to 9 calls" tagSide="left" priority images={[shot(proof.newProfileCalls, { crop: 'line', marks: ['points'], phone: 'axis', alt: 'Google Business Profile calls for a new profile, June to October 2026: about 1 call in July, rising to 9 in October' })]} />
+      <figcaption>A new Google profile for a PI firm in New Orleans, July to October 2026.</figcaption>
     </figure>
   </PageHero>
 

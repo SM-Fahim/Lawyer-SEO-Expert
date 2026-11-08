@@ -94,7 +94,7 @@ sources:
 
 ## Who searches for an employment firm, and what do they type?
 
-Two groups search for an employment firm: workers who describe what happened to them, and employers who describe a task or a risk. An employment practice ranks best when each group gets pages in its own words.
+Two groups search for an employment firm: workers who describe what happened to them, and employers who describe a task or a risk. An employment practice ranks best when each group gets pages in its own words. A fired worker types what happened. An HR director types what to do next.
 
 Workers search by problem, and by the kind of lawyer they think they need. These three searches come from our keyword research:
 

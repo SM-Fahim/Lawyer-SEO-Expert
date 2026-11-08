@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Tools
 published: 2025-01-13
 updated: 2026-11-08
-cta: "For firms: in a free 30-minute ranking review, Fahim shows you how a page like this would be found on your site."
+cta: "For firms: in a free 30-minute call, Fahim shows you how a page like this would be found on your site."
 sources:
   - https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_1_5_fees/
 ---

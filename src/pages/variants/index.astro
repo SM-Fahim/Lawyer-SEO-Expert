@@ -35,7 +35,7 @@ const calls = { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 58
         <h2 id="vb-h" class="vb-h">Get found first for the cases you want.</h2>
         <p class="vb-lead">Lawyer SEO Expert puts your law firm at the top of Google, the Map and AI answers, so more of the right clients call.</p>
         <div class="vb-card">
-          <LeadForm compact title="Send your website for a ranking review." titleTag="h3" sub="Fahim answers within an hour in business hours." idPrefix="vb" label="Variants page, direction B" format="Ranking review by email" />
+          <LeadForm compact title="Send your website for your plan and price." titleTag="h3" sub="Fahim answers within an hour in business hours." idPrefix="vb" label="Variants page, direction B" format="Plan and price by email" />
           <figure class="vb-proof">
             <Shot tag="139 calls" tagSide="right" images={[calls]} />
             <figcaption>A PI firm in New Orleans. Google counted 139 calls from its Business Profile in five months, 39% more than a year before.</figcaption>
@@ -79,7 +79,7 @@ const calls = { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 58
           <p class="vc-name">Direction C: Yellow pad</p>
           <h2 id="vc-h" class="vc-h">Get found first for the cases you want.</h2>
           <p class="vc-lead">Lawyer SEO Expert puts your law firm at the top of Google, the Map and AI answers, so more of the right clients call.</p>
-          <a class="lse-btn vc-btn" href="#vc-book">Book a ranking review</a>
+          <a class="lse-btn vc-btn" href="#vc-book">{site.cta.label}</a>
         </div>
         <figure class="vc-proof">
           <Shot tag="#1" tagSide="right" images={[{ src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' }, { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'Google’s first result for what to do after a truck accident in New Orleans: a New Orleans PI firm’s new page', marks: [{ l: 1.6, t: 39, w: 49.6, h: 22 }] }]} />
@@ -90,7 +90,7 @@ const calls = { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 58
     <section class="vc-book" id="vc-book" aria-labelledby="vc-b">
       <div class="lse-wrap vc-book__grid">
         <div class="vc-book__text">
-          <h2 id="vc-b">Pick a time for your ranking review.</h2>
+          <h2 id="vc-b">Pick a time for your call with Fahim.</h2>
           <ul>
             <li>Free, 30 minutes.</li>
             <li>Fahim checks your real rankings with you.</li>
@@ -98,7 +98,7 @@ const calls = { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 58
           </ul>
           <p>Rather write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>. Fahim answers within an hour in business hours.</p>
         </div>
-        <CalendlyInline lazy titleTag="h3" title="Book a ranking review" extraClass="vc-cal" />
+        <CalendlyInline lazy titleTag="h3" title={site.cta.label} extraClass="vc-cal" />
       </div>
     </section>
     <section class="vc-res" aria-labelledby="vc-r">

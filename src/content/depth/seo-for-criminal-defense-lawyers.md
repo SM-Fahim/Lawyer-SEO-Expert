@@ -16,7 +16,7 @@ faq:
   - q: Do you have results from criminal defense firms?
     a: >-
       Every result on this page comes from PI firms, and we label each one that way. The profile, page and AI
-      answer work behind them is what a defense practice needs as well. In the ranking review, Fahim shows how it
+      answer work behind them is what a defense practice needs as well. In a free 30-minute call, Fahim shows how it
       would apply in your counties.
   - q: Should misdemeanor and felony cases share a page?
     a: >-
@@ -174,6 +174,8 @@ Our test is a swap. Put a neighboring county's name in place of this one. If eve
 
 Distance is one of the three things Google weighs for Map results, beside relevance and prominence, so a defense office competes hardest near its own address ([how local ranking works](https://support.google.com/business/answer/7091)). We build reach into other counties through the website.
 
+[slot proof]
+
 Google's [guidelines for business profiles](https://support.google.com/business/answer/3038177) set the limits on stretching a listing:
 
 [checklist]
@@ -192,7 +194,7 @@ Our [law firm SEO services](/law-firm-seo-services/) page explains how we handle
 
 For a PI firm in New Orleans, new pages ranked within hours, but only after about three months of groundwork. A defense firm should plan in the same order: base work on the site and profile first, then county pages that can move.
 
-We have no criminal defense results to quote yet. Fahim gives a view county by county in the ranking review, never as a promise. The counties are only half the picture, though: the person typing may be a relative, not the one charged.
+We have no criminal defense results to quote yet. Fahim gives a view county by county on a free 30-minute call, never as a promise. The counties are only half the picture, though: the person typing may be a relative, not the one charged.
 
 ## What do family members search when a relative is arrested?
 

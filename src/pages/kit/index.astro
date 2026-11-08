@@ -26,6 +26,7 @@ import Split from '../../components/kit/Split.astro';
 import TrustLine from '../../components/kit/TrustLine.astro';
 import { fahim, josh } from '../../data/people';
 import { proof, shot } from '../../data/proof';
+import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -205,7 +206,7 @@ const sample = await getDepth('kit-sample');
       <Rows
         variant="numbered"
         items={[
-          { title: 'Book a ranking review.', text: 'In a free 30-minute call, Fahim looks at where you rank today.' },
+          { title: `${site.cta.label}.`, text: 'In a free 30-minute call, Fahim looks at where you rank today.' },
           { title: 'Get your monthly number in writing.', text: 'Before any work starts.' },
           { title: 'Work begins.', text: 'Fahim leads it, and a small production team handles the writing and links. Nothing goes live until you approve it.' },
         ]}

@@ -7,7 +7,7 @@ author: S. M. Fahim
 category: Social Media and SEO
 published: 2024-12-05
 updated: 2026-11-08
-cta: "In a free 30-minute ranking review, Fahim shows you which of your pages can win searches, using your live results."
+cta: "In a free 30-minute call, Fahim shows you which of your pages can win searches, using your live results."
 sources:
   - https://support.google.com/business/answer/7091
   - https://support.google.com/business/answer/3474122

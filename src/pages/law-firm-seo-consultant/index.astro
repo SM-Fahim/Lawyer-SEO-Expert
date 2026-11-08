@@ -7,7 +7,6 @@
 import FinalCta from '../../components/FinalCta.astro';
 import Shot, { type ShotImage } from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
-import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
 import ShotSwap from '../../components/money/ShotSwap.astro';
@@ -82,20 +81,22 @@ const patterns = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
+    layout="top"
+    panel={false}
+    visualFirst
     class="con-hero"
     h1="A law firm SEO consultant who gets you ranked, not just advised."
     lead="Find out what holds your firm back on Google, get the fixes in order, and have the same person lead the work that follows."
     form={{ idPrefix: 'con-hero', label: 'consultant-hero' }}
   >
     <figure slot="visual" class="con-hero__fig">
-      <NumPair after={23} afterLabel="calls in three months" size="xl" />
       <Shot
         tag="23 calls"
         tagSide="right"
         priority
-        images={[shot(proof.elpasoCallsAfter, { crop: epCrop, phone: 'totalRange', marks: [...proof.elpasoCallsAfter.marks.total, ...epRange], alt: 'Google Business Profile for an El Paso PI firm: 23 calls from May to July 2026, rising every month' })]}
+        images={[shot(proof.elpasoCallsAfter, { crop: epCrop, phone: 'totalRange', marks: epRange, alt: 'Google Business Profile for an El Paso PI firm: 23 calls from May to July 2026, rising every month' })]}
       />
-      <figcaption>A PI firm in El Paso: 23 calls in three months, after 9 in the six before. Google’s own count, May to July 2026.</figcaption>
+      <figcaption>A PI firm in El Paso, May to July 2026, by Google’s own count.</figcaption>
     </figure>
   </PageHero>
 
@@ -120,10 +121,9 @@ const patterns = [
 </InnerPage>
 
 <style is:global>
-  /* Hero: the big marked 23 over the chart, on the fog panel. */
-  .con-hero__fig { display: grid; gap: 24px; align-content: start; }
-  .con-hero__fig figcaption { font-size: var(--fs-meta); line-height: 1.45; color: var(--muted); max-width: 40em; }
-  .con-hero .lse-hero__h { max-width: 14ch; }
+  /* Hero: the chart with its tag, on white. */
+  .con-hero__fig { display: grid; gap: 14px; align-content: start; margin: 0; }
+  .con-hero .lse-hero__h { max-width: 17ch; }
 
   /* Our own result, under the first test's answer, wide enough that the result's lines read; caption under it. */
   .con-serp { display: grid; gap: 10px; max-width: 920px; }

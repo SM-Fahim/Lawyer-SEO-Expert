@@ -243,7 +243,7 @@ We check the AI answers for your main malpractice questions each month and note 
 
 A malpractice site's timeline starts with groundwork, not new pages. For a PI firm in New Orleans, new pages began ranking within hours of going live only after about three months of that groundwork. A malpractice firm builds in the same order: profile, screening forms and state pages, then harm pages.
 
-How fast a malpractice site moves depends on its state's competition and where the site starts. Fahim's ranking review gives an estimate for your market, never a promise. Two kinds of firm need a different plan.
+How fast a malpractice site moves depends on its state's competition and where the site starts. A free 30-minute call with Fahim gives an estimate for your market, never a promise. Two kinds of firm need a different plan.
 
 ## Malpractice firms with a different reach
 

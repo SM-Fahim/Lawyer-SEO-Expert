@@ -69,7 +69,7 @@ const refuse = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="stack"
+    visualFirst
     class="svc-hero"
     h1="Law firm SEO services that turn searches into calls."
     lead="Our lawyer SEO services put your firm where clients look first: the top of Google, the Map and Google’s AI answers."
@@ -101,7 +101,7 @@ const refuse = [
     <div slot="refuse" class="bsv-rows"><Rows variant="inline" items={refuse} /></div>
 
     <Band slot="mid" tone="fog" class="bsv-mid">
-      <p class="bsv-mid__line">Fahim can run your firm’s key searches live in a free 30-minute ranking review.</p>
+      <p class="bsv-mid__line">Fahim can run your firm’s key searches live in a free 30-minute call.</p>
       <Button />
     </Band>
 
@@ -126,7 +126,7 @@ const refuse = [
 <style is:global>
   /* Hero: the #1 frame on the fog block, full content width. */
   .svc-hero__fig { display: grid; gap: 14px; }
-  .svc-hero__fig figcaption { font-size: 17px; line-height: 1.45; color: var(--ink-2); max-width: 46em; }
+  .svc-hero__fig figcaption { max-width: 46em; }
   .svc-hero__fig figcaption b { color: var(--ink); }
 
   /* The practice list under its lead-in line. */
