@@ -35,11 +35,20 @@ if (!reduced) {
       if (!Number.isFinite(target) || target < 2) return;
       const start = performance.now();
       const ms = Math.min(1100, 500 + target * 18);
+      // Fix the final number's width while it counts, so "0" to "43" never moves anything next to it (CLS 0).
+      // Not a min-width: some in-between numbers set a few px wider than the final one even with tabular digits.
+      const cs = getComputedStyle(el);
+      if (cs.display === 'inline') el.style.display = 'inline-block';
+      // A live style: after the line above, width is the used width in px, in the element's own box-sizing.
+      const width = cs.width;
+      el.style.width = width;
+      el.style.whiteSpace = 'nowrap';
       const tick = (now: number) => {
         const p = Math.min(1, (now - start) / ms);
         const eased = 1 - Math.pow(1 - p, 3);
         el.textContent = String(Math.round(target * eased));
         if (p < 1) requestAnimationFrame(tick);
+        else el.style.width = '';
       };
       el.textContent = '0';
       requestAnimationFrame(tick);
