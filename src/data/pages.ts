@@ -27,7 +27,7 @@ export const servicePages: readonly NavLink[] = [
   { label: 'SEO consultant', href: '/law-firm-seo-consultant/' },
   { label: 'Pricing', href: '/seo-pricing/' },
   { label: 'Web design and development', href: '/lawyer-web-design-development/' },
-  { label: 'Google Ads', href: '/law-firm-ppc/' },
+  { label: 'Google Ads management', href: '/law-firm-ppc/' },
 ];
 
 export const companyPages: readonly NavLink[] = [

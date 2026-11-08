@@ -272,7 +272,9 @@ export async function fillForm(page: Page, input: LeadInput = {}): Promise<void>
   await page.locator('input[name="website"]').fill(input.website ?? 'examplefirm.com');
   await page.locator('input[name="name"]').fill(input.name ?? 'TEST - ignore');
   await page.locator('input[name="email"]').fill(input.email ?? 'Al.ice+Apple@Example.Com');
-  await page.locator('input[name="phone"]').fill(input.phone ?? '(555) 444-1234');
+  // The phone field is optional and not on every form (the contact form has none).
+  const phone = page.locator('input[name="phone"]');
+  if (await phone.count()) await phone.fill(input.phone ?? '(555) 444-1234');
 }
 
 export const submitForm = (page: Page): Promise<void> =>

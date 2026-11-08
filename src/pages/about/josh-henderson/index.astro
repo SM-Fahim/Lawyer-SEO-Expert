@@ -1,0 +1,129 @@
+---
+// /about/josh-henderson/. Copy: content/v2/about-josh-henderson.md. Facts: research/FACTS.md sections 1 and 3.
+// Josh's role is only what FACTS allows: Sales Director, who joins calls with firms, and gives business input,
+// never legal advice. The 2010 settlement story is left out (judge's ruling).
+import Faq, { type FaqItem } from '../../../components/Faq.astro';
+import FinalCta from '../../../components/FinalCta.astro';
+import Shot from '../../../components/Shot.astro';
+import Band from '../../../components/kit/Band.astro';
+import Cols from '../../../components/kit/Cols.astro';
+import Face from '../../../components/kit/Face.astro';
+import PageHero from '../../../components/kit/PageHero.astro';
+import Rows from '../../../components/kit/Rows.astro';
+import { josh } from '../../../data/people';
+import { proof, shot } from '../../../data/proof';
+import { joshSchema, site } from '../../../data/site';
+import InnerPage from '../../../layouts/InnerPage.astro';
+
+const path = '/about/josh-henderson/';
+const pageUrl = new URL(path, site.url).href;
+const linkedin = 'https://www.linkedin.com/in/joshhendersontx';
+
+const faq: FaqItem[] = [
+  {
+    q: 'Will Josh be on our call?',
+    html: 'Josh joins calls with firms. <a href="/about/sm-fahim/">Fahim</a>, who leads the SEO work, is on every call.',
+    text: 'Josh joins calls with firms. Fahim, who leads the SEO work, is on every call.',
+  },
+  {
+    q: 'Why does an SEO firm have an attorney as Sales Director?',
+    html: 'A plan has to fit how a law firm really runs. Josh has run a practice and advised more than 50 firms, so that view is on the call.',
+  },
+  {
+    q: 'Does Josh advise on bar advertising rules?',
+    html: 'No. That is a legal question for your own counsel or your state bar.',
+  },
+  {
+    q: 'Is Josh only useful to injury firms?',
+    html: 'No. Josh’s own practice was personal injury, but the business of running a firm looks much the same in every practice.',
+  },
+];
+
+const profile = {
+  '@type': 'ProfilePage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: 'Josh Henderson',
+  mainEntity: {
+    ...joshSchema,
+    url: pageUrl,
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Licensed attorney, State Bar of Texas, since 2008',
+      credentialCategory: 'license',
+    },
+    sameAs: [linkedin],
+  },
+};
+---
+<InnerPage
+  title="Josh Henderson | Sales Director, Lawyer SEO Expert"
+  description="Josh Henderson is Sales Director at Lawyer SEO Expert: a Texas-licensed attorney since 2008 who has run a practice and advised 50+ law firms."
+  path={path}
+  crumbs={[{ label: 'About', href: '/about/' }, { label: 'Josh Henderson' }]}
+  pageType="company"
+  faq={faq}
+  schema={[profile]}
+>
+  <PageHero
+    h1="Josh Henderson, Sales Director and Texas attorney."
+    lead="When Josh joins your call, you talk about growing your firm with someone who has run a law practice and advised more than 50 firms on how they operate."
+    panel={false}
+    flip
+  >
+    <Fragment slot="text">
+      <p class="jh-cred">JD, Texas Tech. BA, University of New Mexico, summa cum laude.</p>
+      <p class="jh-li"><a class="lse-link" href={linkedin} rel="noopener">Josh on LinkedIn</a></p>
+    </Fragment>
+    <Face slot="visual" person={josh} size="lg" priority />
+  </PageHero>
+
+  <Band heading="A firm owner’s view, on your call." headingId="call-h" tone="fog">
+    <Rows
+      class="jh-rows"
+      variant="big"
+      items={[
+        { title: 'Licensed in Texas since 2008.', text: 'A practice focused on personal injury.' },
+        { title: 'Ran a practice.', text: 'Josh has run a Texas law practice, so the business side of a firm is familiar ground.' },
+        { title: 'Advised 50+ law firms.', text: 'On how firms operate, since 2016.' },
+      ]}
+    />
+  </Band>
+
+  <Band heading="Injury law is Josh’s field. It’s where our results come from too." headingId="results-h" wideHeading>
+    <Cols count={2}>
+      <figure class="jh-fig">
+        <Shot tag="139 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
+        <figcaption>A PI firm in New Orleans: 139 calls from its Google profile in five months, 39% more than a year before.</figcaption>
+      </figure>
+      <figure class="jh-fig">
+        <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['total'] })]} />
+        <figcaption>In El Paso, another PI firm: 9 calls in six months before us, 23 in three with us.</figcaption>
+      </figure>
+    </Cols>
+    <p class="jh-more">See how we get there: <a href="/law-firm-seo-services/">law firm SEO services</a>.</p>
+  </Band>
+
+  <Band heading="Business input, never legal advice." headingId="input-h" tone="fog">
+    <p class="jh-input">Josh speaks as someone who has run a firm, not as your lawyer. Contacting us or talking with Josh creates no attorney-client relationship.</p>
+  </Band>
+
+  <Band heading="Before you talk with Josh." headingId="faq-h">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Start with where your firm ranks today." formLabel="josh-final" idPrefix="josh-final">
+    <p>On a free ranking review, Fahim shows in 30 minutes where your firm ranks and what would bring more calls first.</p>
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  .jh-cred { font-size: var(--fs-meta); color: var(--muted); font-weight: 600; }
+  .jh-li { font-size: 18px; }
+  .jh-rows { max-width: 900px; }
+  .jh-fig { display: grid; gap: 16px; margin: 0; }
+  .jh-fig figcaption { font-size: 17px; line-height: 1.45; color: var(--ink-2); max-width: 32em; }
+  .jh-more { margin-top: var(--s5); font-size: var(--fs-lead); color: var(--ink-2); }
+  .jh-more a { font-weight: 700; }
+  .jh-input { padding-top: var(--s3); border-top: 2px solid var(--ink); font-size: clamp(22px, .9vw + 16px, 30px); line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--ink); max-width: 30em; }
+</style>
