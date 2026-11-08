@@ -93,6 +93,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
   - Make a phone crop for each capture, tight around the marked line and at least about 50% scale.
   - Serve it with `<picture media="(max-width: 640px)">` or the `Shot` `crop` prop.
   - Restore the page gutter on the web design proof frames.
+- **Status: Fixed** (branch `fix-qa`). `Shot` takes an additive `phone` list: under 760px each wide capture is swapped for plain rectangle windows on the same file (same pixels, marks unchanged), and `shot()` picks the window set from the marks drawn. Every capture in the table now shows its marked line at about 11 to 16 CSS px at 390 (measured: 10.5 to 16.8px on the marked line). Phone frames get 300px on phones (site text at about 11px), the web design hero stacks its desktop and phone captures, its ranking captures have their gutter back, and the stack hero's fog panel runs to the screen edges on phones. Desktop is unchanged. Still small on phones, with no text marked: the new-profile chart's month labels (its marks sit on two points; `NumPair` says 1 → 9 beside it) and the environmental hero's unmarked chart line under its readable summary. Re-shot at 390 in `docs/shots/`.
 
 ---
 
@@ -191,6 +192,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
    - Text stops mid-word ("Cueri…", "if your inju…"), so it reads as a broken image.
    - Evidence: `docs/qa-shots/consultant-wtd-crop-390.png`, `services-jackknife-crop-390.png`.
    - Fix: crop at a column boundary, or add a soft right-edge fade so the cut looks deliberate.
+   - **Status: Fixed.** Both crops (and the services hero's rank crop) get a soft right edge on phones (`fadeRight()`), and every new phone window that cuts a line has one too.
 6. **"5.0 stars from 317 reviews" is not in FACTS.**
    - Pages: `/law-firm-seo-services/`, `/seo-for-medical-malpractice-lawyer/`.
    - It is visible in the key-firm capture, but review counts change.
@@ -233,6 +235,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
     - `lse-serp-lawyer-seo-expert-2026-11-08.webp` has a large empty white band under the result, inside the image.
     - Evidence: `docs/qa-shots/home-own-serp-390.png`.
     - Fix: crop the image to the result.
+    - **Status: Fixed.** The `result` band now stops under the sitelinks (43.6% instead of 46%), and the phone window is cut to the result.
 14. **The `#fahim` Person entity disagrees with itself.**
     - Its `jobTitle` is "SEO specialist" site-wide but "Law firm SEO expert" on `/about/sm-fahim/`, under the same `@id`.
     - The org's `sameAs` (LinkedIn company, Facebook, Instagram) are not in FACTS and were not verified.
@@ -258,6 +261,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
 20. **The only image over 200 KB.**
     - `lse-serp-lawyer-seo-expert-tall-2026-11-08.webp` is 251 KB. It is lazy and below the fold on `/law-firm-seo-consultant/`.
     - Fix: re-encode it at q70 or crop it (target under 120 KB).
+    - **Status: Fixed in part.** Re-encoded at q70: 251 KB to 194 KB, so no image is over 200 KB. Under 120 KB would need a downscale or a new crop of the source, which changes the marks and crops: left for a recapture (the capture also still shows the old title). Phones never load it (they get the 48 KB and 16 KB phone crops).
 21. **A capture is shown past its natural width.**
     - Pages: `/law-firm-seo-services/` and `/seo-for-employment-lawyers/`. `nola-wtd-rank.webp` is shown at 976 px, which is wider than its natural 900 px.
     - Fix: cap it with `max-width: 900px` (the `Shot` rule: never larger than natural width).
