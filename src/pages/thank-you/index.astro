@@ -1,10 +1,20 @@
 ---
-// PLACEHOLDER. A browser with no JavaScript is sent here (303) after posting the form.
+// A browser with no JavaScript is sent here (303) after posting the form. noindex.
 import Base from '../../layouts/Base.astro';
 ---
-<Base pageType="company" path="/thank-you/" title="Thank you" description="Your message was received." noindex>
-  <div class="lse-wrap" style="padding-block:96px">
-  <h1>Thank you</h1>
-  <p>Your message was received. We will reply soon.</p>
-  </div>
+<Base pageType="company" path="/thank-you/" title="Thank You | Lawyer SEO Expert" description="Your message was received. Fahim answers within an hour in business hours." noindex>
+  <section class="ty-hero" aria-labelledby="ty-h">
+    <div class="lse-wrap">
+      <h1 id="ty-h">Thank you.</h1>
+      <p class="lse-lead ty-lead">Your message was received. Fahim answers within an hour in business hours.</p>
+      <p class="ty-more">While you wait, see our <a class="lse-link" href="/law-firm-seo-services/">law firm SEO services</a>, or go back to the <a class="lse-link" href="/">homepage</a>.</p>
+    </div>
+  </section>
 </Base>
+
+<style is:global>
+  .ty-hero { padding: clamp(56px, 7vw, 120px) 0 clamp(88px, 10vw, 160px); }
+  .ty-hero h1 { font-size: clamp(44px, 3.4vw + 18px, 82px); }
+  .ty-lead { margin-top: clamp(18px, 2vw, 26px); max-width: 30em; }
+  .ty-more { margin-top: var(--s5); color: var(--ink-2); max-width: 36em; }
+</style>

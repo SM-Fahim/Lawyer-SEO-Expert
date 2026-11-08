@@ -84,6 +84,9 @@ const fix = (n: number) => +n.toFixed(3);
         partStyle = `aspect-ratio:${img.width}/${((img.height * img.crop.height) / 100).toFixed(1)}`;
         canvasStyle = `margin-top:-${((img.crop.top / 100) * (img.height / img.width) * 100).toFixed(3)}%`;
       }
+      // A capture narrower than the frame's widest one stays at its natural width (never upscaled; QA Minor 21).
+      const natW = Math.round(cropW(part));
+      if (natW < (part.mode === 'phone' ? maxPhoneW : maxW)) partStyle = `${partStyle ? `${partStyle};` : ''}max-width:${natW}px`;
       const alt = part.zoom ? img.alt : '';
       return (
         <div

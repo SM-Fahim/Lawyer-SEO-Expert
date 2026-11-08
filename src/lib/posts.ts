@@ -25,8 +25,8 @@ export async function allPosts(): Promise<Post[]> {
   return posts.sort((a, b) => b.data.published.getTime() - a.data.published.getTime() || a.data.title.localeCompare(b.data.title));
 }
 
-/** "Title | Lawyer SEO Expert" when it fits in about 60 characters, else the title alone. */
+/** "Title | Lawyer SEO Expert" when it fits in 60 characters, else the title alone. */
 export function pageTitle(title: string): string {
   const full = `${title} | Lawyer SEO Expert`;
-  return full.length <= 62 ? full : title;
+  return full.length <= 60 ? full : title;
 }

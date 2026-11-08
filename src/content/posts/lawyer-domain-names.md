@@ -108,7 +108,7 @@ Expect rankings to wobble for a while. A move done in an hour with no URL map is
 
 ## Email on your domain
 
-Use email at your own domain, not a free mailbox. Addresses like name@harlanpikelaw.com look like a real firm, and they keep working if you change providers. Set up the standard authentication records (SPF, DKIM and DMARC) so your messages reach inboxes. Your web host or email provider can walk you through this.
+Use email at your own domain, not a free mailbox. Addresses like `name@harlanpikelaw.com` look like a real firm, and they keep working if you change providers. Set up the standard authentication records (SPF, DKIM and DMARC) so your messages reach inboxes. Your web host or email provider can walk you through this.
 
 ## One domain or one per office
 

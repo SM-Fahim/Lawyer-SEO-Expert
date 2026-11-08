@@ -45,7 +45,7 @@ const {
   <Title class="lse-form__title">{title}</Title>
   {sub && <p class="lse-form__sub">{sub}</p>}
   <div class="lse-form__alert" role="alert" tabindex="-1" data-alert></div>
-  <form class="lse-open" data-lead-form={kind} data-fallback-email={site.contact.email} data-fallback-booking={site.calendly.url} action="/api/lead" method="post" novalidate>
+  <form id={`${p}-form`} class="lse-open" data-lead-form={kind} data-fallback-email={site.contact.email} data-fallback-booking={site.calendly.url} action="/api/lead" method="post" novalidate>
     <input type="hidden" name="source_form" value={label}>
     {practiceArea && <input type="hidden" name="practice_area" value={practiceArea}>}
     <input type="hidden" name="format" value={format}>
@@ -150,7 +150,7 @@ const {
   }
   .lse-form--compact button.lse-btn { margin-top: 2px; justify-self: stretch; width: 100%; }
   .lse-form--compact .lse-ts:empty { display: none; }
-  .lse-form--compact .lse-form__privacy { font-size: 13.5px; }
+  .lse-form--compact .lse-form__privacy { line-height: 1.4; }
   @media (max-width: 420px) {
     .lse-form--compact { padding: 18px 16px 14px; }
     .lse-form--compact form { grid-template-columns: 1fr; }

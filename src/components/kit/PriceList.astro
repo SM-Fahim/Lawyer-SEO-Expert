@@ -37,4 +37,9 @@ const { rows = included, total = separateTotal, totalLabel = 'Hired one by one:'
   .lse-costs--total .lse-strike { margin-left: 0; }
   .lse-strike { position: relative; text-decoration: none; font-weight: 800; white-space: nowrap; margin-left: auto; }
   .lse-strike::after { content: ""; position: absolute; left: -5px; right: -5px; top: calc(50% - .05em); height: .13em; background: var(--ink); transform: rotate(-2deg); border-radius: 2px; clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%); }
+  /* Phones: the label and the struck total stay on one line, and the stroke's overhang stays inside the column. */
+  @media (max-width: 480px) {
+    .lse-costs__sep { flex-wrap: nowrap; gap: 10px; font-size: 17px; }
+    .lse-costs__sep .lse-strike { margin-right: 5px; }
+  }
 </style>

@@ -48,6 +48,10 @@ const graph = noindex ? null : { '@context': 'https://schema.org', '@graph': [..
 <meta property="og:description" content={ogDescription}>
 <meta property="og:url" content={canonical}>
 <meta property="og:image" content={image}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={ogTitle}>
+<meta name="twitter:description" content={ogDescription}>
+<meta name="twitter:image" content={image}>
 {article && (
   <>
     {article.locale && <meta property="og:locale" content={article.locale}>}
@@ -59,10 +63,6 @@ const graph = noindex ? null : { '@context': 'https://schema.org', '@graph': [..
     <meta property="article:section" content={article.section}>
     <meta property="article:published_time" content={article.published}>
     {article.modified !== article.published && <meta property="article:modified_time" content={article.modified}>}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content={ogTitle}>
-    <meta name="twitter:description" content={ogDescription}>
-    <meta name="twitter:image" content={image}>
   </>
 )}
 {graph && <script type="application/ld+json" set:html={JSON.stringify(graph).replace(/</g, '\\u003c')}></script>}

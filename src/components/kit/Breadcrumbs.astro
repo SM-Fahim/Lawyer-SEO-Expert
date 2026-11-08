@@ -23,7 +23,10 @@ const items = [{ label: 'Home', href: '/' }, ...trail];
 <style is:global>
   .lse-crumbs { padding-top: clamp(16px, 2vw, 24px); }
   .lse-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: var(--fs-meta); line-height: 1.4; color: var(--muted); }
-  .lse-crumbs li + li::before { content: "/"; margin: 0 10px; color: var(--line-2); }
+  /* The "/" ends the crumb before it, so a long title that wraps never starts its line with "/". */
+  .lse-crumbs li:not(:last-child) { white-space: nowrap; }
+  .lse-crumbs li:not(:last-child)::after { content: "/"; margin: 0 10px; color: var(--line-2); }
+  .lse-crumbs li:last-child { min-width: 0; }
   .lse-crumbs a { color: var(--muted); text-decoration: none; }
   .lse-crumbs a:hover { color: var(--ink); text-decoration: underline; }
 </style>
