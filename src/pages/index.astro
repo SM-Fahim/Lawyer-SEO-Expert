@@ -23,7 +23,7 @@ import { faqSchema } from '../lib/schema';
 
 const title = 'Lawyer SEO Expert | Get Found First, Get More Calls';
 const description =
-  'Law firm SEO that puts you at the top of Google, the Map and AI answers. From $2,000 a month, month to month, no setup fee. Book a ranking review.';
+  'Lawyer SEO expert for law firms: we put you at the top of Google, the Map and AI answers. From $2,000 a month, month to month, no setup fee.';
 
 const zones = [
   { title: 'Top of Google', text: 'Pages for each practice area and city, and links from relevant sites.' },
@@ -170,7 +170,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   <section class="lse-section lse-section--fog lse-h-cover" aria-labelledby="cover-h">
     <div class="lse-wrap">
       <h2 id="cover-h">One monthly price covers everything it takes to rank.</h2>
-      <p class="lse-lead lse-h2-lead">Most agencies sell SEO in pieces. We handle all of it, so nothing holds your firm back.</p>
+      <p class="lse-lead lse-h2-lead">Most agencies sell SEO in pieces. We handle all of it, so nothing holds your firm back. See every part of our <a class="lse-link" href="/law-firm-seo-services/">law firm SEO services</a>.</p>
       <div class="lse-h-cover__grid">
         <Rows items={zones} />
         <div class="lse-h-board">
@@ -224,6 +224,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
               <p>Texas attorney since 2008, and an advisor to more than 50 law firms. Josh joins calls with firms.</p>
             </div>
           </div>
+          <p class="lse-h-team__more">Want a second opinion first? See <a class="lse-link" href="/law-firm-seo-consultant/">law firm SEO consulting</a>.</p>
         </div>
       </div>
     </div>
@@ -236,7 +237,9 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
     headingId="price-h"
     us="With us: all of it, from $2,000 a month."
     note="No setup fee."
-  />
+  >
+    <Fragment slot="link">What sets your firm’s price is on our <a href="/seo-pricing/">law firm SEO pricing</a> page.</Fragment>
+  </PriceBand>
 
   <!-- Practice areas. -->
   <section class="lse-section lse-h-practice" id="practice-areas" aria-labelledby="practice-h">
@@ -352,6 +355,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-record li { display: grid; gap: 4px; align-content: start; }
   .lse-h-record b { font-size: clamp(30px, 1.6vw + 18px, 42px); font-weight: 900; letter-spacing: -.04em; line-height: 1; }
   .lse-h-record span { font-size: var(--fs-meta); color: var(--muted); line-height: 1.3; }
+  .lse-h-team__more { margin-top: var(--s4); color: var(--ink-2); }
   .lse-h-josh { display: flex; gap: 24px; align-items: center; margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--line-2); }
   .lse-h-josh h3 { font-size: 22px; }
   .lse-h-josh p:last-child { margin-top: 6px; color: var(--ink-2); max-width: 26em; }
