@@ -1,23 +1,33 @@
 ---
-// /law-firm-ppc/. Copy: content/v2/law-firm-ppc.md. Facts: research/FACTS.md section 1 (Google Ads / PPC).
-// The only page on the site about Google Ads. No PPC results are approved, so the page shows none. The hero
-// visual is example search terms (judge ruling); the captures to collect are listed in docs/MANUAL-REVIEW.md.
-// The hero form adds one question ("Running Google Ads now?"), so it is the compact LeadForm placed in the
-// hero's text slot rather than PageHero's own form (which has no extra fields). The answer reaches the lead
-// email through the Worker's extra fields (worker/addons/lead.ts).
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /law-firm-ppc/. Copy: content/v3/law-firm-ppc.md (critic: content/v3/CRITIC-mixed.md). Facts: research/FACTS.md
+// section 1 (Google Ads / PPC). The only page on the site about Google Ads. No PPC results are approved, so the page
+// shows none. The commercial top is v2's as built: the hero (example search terms, the compact form with the
+// "Running Google Ads now?" question) and the owner-confirmed scope band. The depth zone follows
+// (src/content/depth/law-firm-ppc.md): the mid-page CTA after the main zone, the $500 price band above the open FAQ.
+// The hero form adds one question, so it is the compact LeadForm placed in the hero's text slot rather than
+// PageHero's own form (which has no extra fields). The answer reaches the lead email through the Worker's extra
+// fields (worker/addons/lead.ts).
+// Schema: the custom Service node carries only the $500 management fee; never the $2,000 SEO offer (R41).
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchPanel from '../../components/kit/SearchPanel.astro';
+import '../../components/mixed/mixed.css';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
 const path = '/law-firm-ppc/';
 const pageUrl = new URL(path, site.url).href;
+const title = 'Law Firm PPC | Google Ads Run in Your Own Account';
+const description =
+  'Law firm PPC in your own Google Ads account, from $500 a month: the auction, ownership, negative keywords, lead tracking, ad policies, LSA and bar rules.';
+const depth = await getDepth('law-firm-ppc');
 
 const handled = [
   { title: 'Campaign setup.', text: 'Campaigns built around the cases you want, in the places you serve.' },
@@ -33,34 +43,6 @@ const terms = [
   { title: 'Your billing.', text: 'Google bills your firm directly for every click. Our fee is separate.' },
   { title: 'Already running ads?', text: 'We take over your existing account, history and all.' },
   { title: 'In writing first.', text: 'Fahim gives you the monthly fee before any work starts. Month to month.' },
-];
-
-const faq: FaqItem[] = [
-  {
-    q: 'What does law firm PPC cost?',
-    html: 'Two parts. Your ad spend, which Google bills to your firm, and our management fee, from $500 a month. You get the fee in writing before work starts.',
-  },
-  {
-    q: 'Can you take over our current Google Ads account?',
-    html: 'Yes. We work in your existing account, so its history stays, and we start by reviewing what it has been spending on.',
-  },
-  {
-    q: 'What results should we expect?',
-    html: 'We won’t quote a cost per call before we’ve seen your market and your account. Once ads run, you see what each call and qualified lead actually cost.',
-  },
-  {
-    q: 'Do the ads follow bar advertising rules?',
-    html: 'Each state bar sets its own rules. You or your ethics counsel approve every ad before it runs.',
-  },
-  {
-    q: 'Should we run ads or invest in SEO?',
-    html: 'Ads can bring calls soon but stop when the budget does. Rankings take longer and don’t charge by the click. See <a href="/seo-pricing/">law firm SEO pricing</a>.',
-    text: 'Ads can bring calls soon but stop when the budget does. Rankings take longer and don’t charge by the click. See law firm SEO pricing.',
-  },
-  {
-    q: 'Who runs our account?',
-    html: 'Fahim leads it, joins your calls and reviews every change. A small team helps with the setup work.',
-  },
 ];
 
 // Service JSON-LD with the ads management fee (the kit's serviceSchema only knows the $2,000 SEO and web offers).
@@ -88,12 +70,12 @@ const service = {
 };
 ---
 <InnerPage
-  title="Law Firm PPC | Google Ads Run in Your Own Account"
-  description="Law firm PPC run in your own Google Ads account. You pay Google directly, and our management fee is from $500 a month. We can take over your account."
+  title={title}
+  description={description}
   path={path}
   crumbs={[{ label: 'Law firm PPC' }]}
-  faq={faq}
-  schema={[service]}
+  faq={depth.faq}
+  schema={[service, ...depthSchema(depth, { path, title, description })]}
 >
   <PageHero
     class="ppc-hero"
@@ -147,35 +129,23 @@ const service = {
     </figure>
   </PageHero>
 
-  <Band heading="Your budget follows the searches that bring calls." headingId="budget-h" tone="fog" wideHeading>
-    <div class="ppc-8">
-      <p class="ppc-big">Every call and form is tracked back to the search behind it. Spend moves toward the searches that bring qualified leads and away from the ones that only cost money.</p>
-      <Rows
-        class="ppc-budget"
-        variant="inline"
-        items={[
-          { title: 'Tracked.', text: 'Each call and form is tied to the search that brought it.' },
-          { title: 'More.', text: 'Searches that bring qualified leads get more of the budget.' },
-          { title: 'Less.', text: 'Searches that only cost money get less, or get blocked.' },
-        ]}
-      />
-    </div>
-  </Band>
-
-  <Band heading="What we handle inside your ad account." headingId="handle-h">
+  <Band heading="What we handle inside your ad account." headingId="handle-h" tone="fog">
     <Rows class="ppc-handle" variant="inline" items={handled} />
   </Band>
 
-  <PriceBand variant="plain" heading="Management from $500 a month. Ad spend goes straight to Google." headingId="price-h" big="$500">
-    <Rows class="ppc-terms" variant="big" items={terms} />
-    <Fragment slot="link">Free, 30 minutes. Bring your ad account and Fahim looks at it with you.</Fragment>
-  </PriceBand>
+  <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
+    <Band slot="mid" tone="fog" class="mx-mid">
+      <p class="mx-mid__line">Already running Google Ads? Fahim can go through the account with you in a free 30-minute ranking review.</p>
+      <Button />
+    </Band>
 
-  <Band heading="Questions about Google Ads for your firm." headingId="faq-h">
-    <Faq items={faq} />
-  </Band>
+    <PriceBand slot="price" variant="plain" heading="Management from $500 a month. Ad spend goes straight to Google." headingId="price-h" big="$500">
+      <Rows class="ppc-terms" variant="big" items={terms} />
+      <Fragment slot="link">Free, 30 minutes. Bring your ad account and Fahim looks at it with you.</Fragment>
+    </PriceBand>
+  </DepthZone>
 
-  <FinalCta heading="Find out what your ad budget is buying." formLabel="ppc-final" idPrefix="ppc-final">
+  <FinalCta heading="Find out what your law firm’s ad budget is buying." formLabel="ppc-final" idPrefix="ppc-final">
     <p>Bring your website, and your Google Ads account if you have one. In 30 minutes, Fahim looks at where your firm ranks and where your ad money goes.</p>
   </FinalCta>
 </InnerPage>
@@ -191,8 +161,6 @@ const service = {
   .ppc-hero select.lse-input { appearance: none; padding-right: 40px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m1 1 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
   .ppc-fig { display: grid; gap: 14px; margin: 0; }
   .ppc-card { padding: clamp(20px, 2.4vw, 36px); background: var(--paper); border: 1px solid #cfd4cb; border-radius: var(--r-frame); box-shadow: var(--shadow-lift); }
-  .ppc-8 { max-width: 900px; display: grid; gap: var(--s5); }
-  .ppc-big { font-size: clamp(22px, .9vw + 16px, 30px); line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--ink); max-width: 26em; }
   @media (min-width: 1000px) {
     .ppc-handle { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 5vw, 72px); }
   }
