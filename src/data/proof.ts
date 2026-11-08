@@ -152,7 +152,7 @@ export const proof = {
       two: [{ x: 30, y: 135, w: 650, h: 290, fade: true }],
     },
     // The answer from its first citation to its second (the estate planning hero).
-    crops: { two: { top: 14, height: 41 } },
+    crops: { two: { top: 16.5, height: 36.5 } },
   },
   nolaJackknife: {
     src: `${P}nola-jackknife.webp`,

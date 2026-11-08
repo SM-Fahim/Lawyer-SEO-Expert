@@ -129,6 +129,10 @@ const traps = [
     .lse-depth[data-depth='seo-pricing'] .lse-depth__split > .lse-prose { grid-row: 2; }
   }
 
+  /* The chart's top right holds the marked October point, so the frame gives the tag a white strip above it. */
+  .lse-depth[data-depth='seo-pricing'] .lse-depth__proof .lse-shot__frame { padding-top: 30px; }
+  @media (max-width: 759px) { .lse-depth[data-depth='seo-pricing'] .lse-depth__proof .lse-shot__frame { padding-top: 22px; } }
+
   /* The 139 capture under its paragraph, at the width of the text and a little more. */
   .cost-calls { max-width: 820px; }
 

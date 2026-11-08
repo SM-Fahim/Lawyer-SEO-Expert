@@ -80,6 +80,9 @@ const writingRules = [
 <style>
   /* Hero: the AI answer under the H1 on white, its one-line caption under it. */
   .ep-hero__fig { display: grid; gap: 12px; margin: 0; }
+  /* The capture has no blank top, so the frame gives the tag a white strip to sit on (design-3). */
+  .ep-hero__fig :global(.lse-shot__frame) { padding-top: 30px; }
+  @media (max-width: 759px) { .ep-hero__fig :global(.lse-shot__frame) { padding-top: 22px; } }
 </style>
 
 <style is:global>

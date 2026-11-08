@@ -1,0 +1,222 @@
+[
+ {
+  "file": "src/content/depth/law-firm-seo-consultant.md",
+  "before": "What should we have ready for the ranking review?",
+  "after": "What should we have ready for the call with Fahim?"
+ },
+ {
+  "file": "src/content/depth/law-firm-seo-consultant.md",
+  "before": "Search Console access helps, but the review\n      works without it.",
+  "after": "Search Console access helps, but the call\n      works without it."
+ },
+ {
+  "file": "src/content/depth/law-firm-seo-consultant.md",
+  "before": "Our answer: the ranking review runs without any access to your accounts.",
+  "after": "Our answer: the free call with Fahim runs without any access to your accounts."
+ },
+ {
+  "file": "src/content/depth/law-firm-seo-consultant.md",
+  "before": "Our version is the free 30-minute ranking review, where Fahim looks",
+  "after": "Our version is a free 30-minute call, where Fahim looks"
+ },
+ {
+  "file": "src/content/depth/law-firm-seo-consultant.md",
+  "before": "With us, the free review is the advice,",
+  "after": "With us, the free call is the advice,"
+ },
+ {
+  "file": "src/content/depth/lawyer-web-design-development.md",
+  "before": "In a free 30-minute ranking review, Fahim looks at which pages",
+  "after": "In a free 30-minute call, Fahim looks at which pages"
+ },
+ {
+  "file": "src/content/depth/seo-for-criminal-defense-lawyers.md",
+  "before": "In the ranking review, Fahim shows how it",
+  "after": "In a free 30-minute call, Fahim shows how it"
+ },
+ {
+  "file": "src/content/depth/seo-for-criminal-defense-lawyers.md",
+  "before": "Fahim gives a view county by county in the ranking review, never as a promise.",
+  "after": "Fahim gives a view county by county on a free 30-minute call, never as a promise."
+ },
+ {
+  "file": "src/content/depth/seo-for-dui-attorneys.md",
+  "before": "Fahim walks through how it fits your state in the ranking review.",
+  "after": "Fahim walks through how it fits your state on a free 30-minute call."
+ },
+ {
+  "file": "src/content/depth/seo-for-dui-attorneys.md",
+  "before": "The ranking review shows which of them hold yours.",
+  "after": "A free 30-minute call with Fahim shows which of them hold yours."
+ },
+ {
+  "file": "src/content/depth/seo-for-immigration-lawyers.md",
+  "before": "Fahim gives that estimate in the ranking review, never as a promise,",
+  "after": "Fahim gives that estimate on a free 30-minute call, never as a promise,"
+ },
+ {
+  "file": "src/content/depth/seo-for-medical-malpractice-lawyer.md",
+  "before": "Fahim's ranking review gives an estimate for your market, never a promise.",
+  "after": "A free 30-minute call with Fahim gives an estimate for your market, never a promise."
+ },
+ {
+  "file": "src/content/depth/seo-for-personal-injury-lawyers.md",
+  "before": "Fahim gives that view market by market in a ranking review, never as a promise.",
+  "after": "Fahim gives that view market by market on a free 30-minute call, never as a promise."
+ },
+ {
+  "file": "src/content/depth/seo-pricing.md",
+  "before": "The 30-minute ranking review that comes first is free,",
+  "after": "The 30-minute call that comes first is free,"
+ },
+ {
+  "file": "src/content/posts/criminal-defense-seo-guide.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/crm-software-for-personal-injury-lawyers.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/how-to-get-clients-as-lawyers.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/law-firm-names.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/law-firm-social-media-post-ideas.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/lawyer-domain-names.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/pi-settlement-and-attorney-fee-calculator.md",
+  "before": "cta: \"For firms: in a free 30-minute ranking review, Fahim",
+  "after": "cta: \"For firms: in a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/the-most-effective-system-to-get-personal-injury-clients-now.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/content/posts/web-development-for-lawyers-guide.md",
+  "before": "cta: \"In a free 30-minute ranking review, Fahim",
+  "after": "cta: \"In a free 30-minute call, Fahim"
+ },
+ {
+  "file": "src/pages/404.astro",
+  "before": "// the ranking review.",
+  "after": "// the booking call."
+ },
+ {
+  "file": "src/pages/404.astro",
+  "before": "or book a free ranking review.",
+  "after": "or pick a time for a free 30-minute call with Fahim."
+ },
+ {
+  "file": "src/pages/about/index.astro",
+  "before": "On your ranking review, Fahim gives you a realistic view",
+  "after": "On a free 30-minute call, Fahim gives you a realistic view"
+ },
+ {
+  "file": "src/pages/about/sm-fahim/index.astro",
+  "before": "starting with the free ranking review.",
+  "after": "starting with the free 30-minute call."
+ },
+ {
+  "file": "src/pages/blog/index.astro",
+  "before": "In a free 30-minute ranking review, Fahim searches",
+  "after": "In a free 30-minute call, Fahim searches"
+ },
+ {
+  "file": "src/pages/contact-us/index.astro",
+  "before": "q: 'Is the ranking review free?'",
+  "after": "q: 'Is the call with Fahim free?'"
+ },
+ {
+  "file": "src/pages/contact-us/index.astro",
+  "before": "Or book a free 30-minute ranking review.",
+  "after": "Or pick a time for a free 30-minute call."
+ },
+ {
+  "file": "src/pages/contact-us/index.astro",
+  "before": "{ text: 'You get a free 30-minute ranking review.' }",
+  "after": "{ text: 'You get a free 30-minute call with Fahim.' }"
+ },
+ {
+  "file": "src/pages/index.astro",
+  "before": "In your ranking review, Fahim tells you what is realistic",
+  "after": "On a free 30-minute call, Fahim tells you what is realistic"
+ },
+ {
+  "file": "src/pages/index.astro",
+  "before": "<h2 id=\"faq-h\">Questions before your ranking review.</h2>",
+  "after": "<h2 id=\"faq-h\">Questions before your call with Fahim.</h2>"
+ },
+ {
+  "file": "src/pages/kit/index.astro",
+  "before": "{ title: 'Book a ranking review.', text:",
+  "after": "{ title: `${site.cta.label}.`, text:"
+ },
+ {
+  "file": "src/pages/law-firm-ppc/index.astro",
+  "before": "Fahim can go through the account with you in a free 30-minute ranking review.",
+  "after": "Fahim can go through the account with you in a free 30-minute call."
+ },
+ {
+  "file": "src/pages/law-firm-seo-services/index.astro",
+  "before": "Fahim can run your firm’s key searches live in a free 30-minute ranking review.",
+  "after": "Fahim can run your firm’s key searches live in a free 30-minute call."
+ },
+ {
+  "file": "src/pages/seo-for-criminal-defense-lawyers/index.astro",
+  "before": "against your own counties, live, in a ranking review.",
+  "after": "against your own counties, live, on a free 30-minute call."
+ },
+ {
+  "file": "src/pages/seo-for-immigration-lawyers/index.astro",
+  "before": "<span class=\"im-nowrap\">30-minute</span> ranking review.",
+  "after": "<span class=\"im-nowrap\">30-minute</span> call."
+ },
+ {
+  "file": "src/pages/variants/index.astro",
+  "before": "title=\"Send your website for a ranking review.\"",
+  "after": "title=\"Send your website for your plan and price.\""
+ },
+ {
+  "file": "src/pages/variants/index.astro",
+  "before": "format=\"Ranking review by email\"",
+  "after": "format=\"Plan and price by email\""
+ },
+ {
+  "file": "src/pages/variants/index.astro",
+  "before": "<a class=\"lse-btn vc-btn\" href=\"#vc-book\">Book a ranking review</a>",
+  "after": "<a class=\"lse-btn vc-btn\" href=\"#vc-book\">{site.cta.label}</a>"
+ },
+ {
+  "file": "src/pages/variants/index.astro",
+  "before": "Pick a time for your ranking review.",
+  "after": "Pick a time for your call with Fahim."
+ },
+ {
+  "file": "src/pages/variants/index.astro",
+  "before": "title=\"Book a ranking review\" extraClass=\"vc-cal\"",
+  "after": "title={site.cta.label} extraClass=\"vc-cal\""
+ },
+ {
+  "file": "src/components/practice-b/DemandTable.astro",
+  "before": "on the review (never sample numbers)",
+  "after": "on the call (never sample numbers)"
+ }
+]
