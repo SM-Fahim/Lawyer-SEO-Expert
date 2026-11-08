@@ -284,7 +284,8 @@ export const proof = {
     caption: 'Google search, United States, 8 November 2026.',
     source: 'research/proof/serp-lawyer-seo-expert-us-2026-11-08-tight.png',
     marks: { title: [{ l: 9.7, t: 30.6, w: 76.4, h: 7.6 }] },
-    crops: { result: { top: 15, height: 46 } },
+    // The result down to its sitelinks, with no blank band under it (QA Minor 13).
+    crops: { result: { top: 15, height: 43.6 } },
     phone: { result: [{ x: 160, y: 165, w: 1460, h: 365 }] },
     note: 'The homepage uses this one. The capture still shows the old title; recapture once the new one is live.',
   },
