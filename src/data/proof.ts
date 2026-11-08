@@ -467,6 +467,8 @@ export const proof = {
     caption: 'Google’s AI answer cites the firm.',
     source: 'nola-tanker-serp-full.webp, cropped to the AI answer column: x 228 to 792, y 292 to 552.',
     marks: { aiChip: [{ l: 7.8, t: 40.4, w: 14.4, h: 5.4 }] },
+    // The answer paragraph only, above the key firms list (the immigration hero; employment shows the key firm).
+    crops: { answer: { top: 0, height: 50 } },
   },
   nolaTankerSerpSource: {
     src: `${P}nola-tanker-serp-source-card.webp`,
@@ -476,6 +478,8 @@ export const proof = {
     caption: 'Its page is listed as a source.',
     source: 'nola-tanker-serp-full.webp, cropped to the source cards: x 848 to 1168, y 332 to 546.',
     marks: { sourceCard: [{ l: 5, t: 71, w: 63.4, h: 13.6 }] },
+    // The firm's own source card only (the immigration hero).
+    crops: { firm: { top: 56, height: 44 } },
   },
 
   // ---------- Hero crops (branch design-3): plain rectangle crops, no pixel changed ----------
