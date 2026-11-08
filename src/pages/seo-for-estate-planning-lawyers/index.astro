@@ -1,49 +1,46 @@
 ---
-// /seo-for-estate-planning-lawyers/ from content/v2/seo-for-estate-planning-lawyers.md (practice set B).
-// Hero: stacked. H1 and line, the short form as one row (on the first screen at 1440), then the AI answer
-// on a wide fog block (the typed search over the frame, the caption beside it). Then two search lists, the name search, what the firm gets (the page's one price line), FAQ, close.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-estate-planning-lawyers/. Copy: content/v3/seo-for-estate-planning-lawyers.md (critic:
+// content/v3/CRITIC-practice-2.md). Facts: research/FACTS.md. The commercial top is the v2 build: a stacked hero with
+// the short form as one row, then the AI answer on a wide fog block (the typed search over the frame, the caption
+// beside it). The v2 bands, FAQ and Related block gave way to the depth zone
+// (src/content/depth/seo-for-estate-planning-lawyers.md), opened by a fog band (byline, summary, jump list): the
+// planning vs probate table, the fee page checklist, the four writing rules as large rows, a white mid-page CTA
+// under an ink rule, the price as two lines side by side (no PriceBand on this page), then the open FAQ on fog, the
+// author box and FinalCta.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
-import SearchPanel from '../../components/kit/SearchPanel.astro';
-import Related from '../../components/practice-b/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'How long before planning pages bring calls?',
-    html: 'That turns on your town, your competition and the state of your site. Planning clients decide slowly, so results build over months. Fahim gives you an honest view in the ranking review.',
-  },
-  {
-    q: 'Should we write about making a will without a lawyer?',
-    html: 'Yes, honestly. People search for it. A fair page on what a homemade will can miss earns trust without scaring anyone.',
-  },
-  {
-    q: 'How do you handle pages about illness and death?',
-    html: 'Plainly and calmly. No pressure lines and no stock photos of hospital beds. Your attorneys approve each page before it goes live.',
-  },
-  {
-    q: 'What about bar advertising rules?',
-    html: 'Rules differ from state to state, including on words like “specialist”. Nothing goes on your site until your firm has signed off on it.',
-  },
-  {
-    q: 'Who will we work with?',
-    html: 'Fahim runs your account, is on every call and checks every page, and a small team helps him produce the work. Josh Henderson, our Sales Director and a Texas attorney since 2008, joins calls with firms.',
-  },
+const path = '/seo-for-estate-planning-lawyers/';
+const title = 'SEO for Estate Planning Lawyers | Be the Answer They Read';
+const description =
+  'Estate planning SEO: planning vs probate searches, fee pages, referrals and seminars, county probate pages, reviews, and what 2026 changed for AI answers.';
+const depth = await getDepth('seo-for-estate-planning-lawyers');
+
+// "Reviews and sensitive topics in a planning practice": the four writing rules, plain rows.
+const writingRules = [
+  { text: 'Name incapacity and dementia plainly, then say what is still possible.' },
+  { text: 'Use no pressure lines, countdowns or scare statistics.' },
+  { text: 'Choose photos of people planning, not hospital beds.' },
+  { text: 'Explain the process in family disputes, without taking a side.' },
 ];
 ---
 <InnerPage
-  title="SEO for Estate Planning Lawyers | Be the Answer They Read"
-  description="SEO for estate planning lawyers: rank for the will, trust and probate questions families research, and get quoted in Google's AI answers."
-  path="/seo-for-estate-planning-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for estate planning lawyers' }]}
   service={{ name: 'SEO for estate planning lawyers', offer: false }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="stack"
@@ -65,82 +62,27 @@ const faq: FaqItem[] = [
     </div>
   </PageHero>
 
-  <Band
-    heading="The questions planning clients type before they call."
-    headingId="ep-types-h"
-    lead="Two kinds of reader: people planning ahead, and families settling an estate after a death. Each gets its own pages."
-    tone="fog"
-    wideHeading
-  >
-    <SearchPanel
-      columns={[
-        {
-          heading: 'Planning',
-          queries: [
-            { text: 'cost of making a will with a lawyer', mark: 'cost' },
-            { text: 'do you need a lawyer to get power of attorney' },
-            { text: 'how to make a living trust without a lawyer' },
-          ],
-        },
-        {
-          heading: 'Probate',
-          queries: [
-            { text: 'how much does a probate lawyer cost', mark: 'how much' },
-            { text: 'do i need a lawyer to become executor of estate' },
-            { text: 'what percentage does a lawyer get for settling an estate', mark: 'percentage' },
-          ],
-        },
-      ]}
-    />
-    <div class="ep-under">
-      <p class="lse-small">Taken word for word from our keyword research.</p>
-      <p class="lse-lead">Each question gets a short page in plain words, with large readable text and a clear next step. Your attorneys approve every one.</p>
-    </div>
-  </Band>
+  <DepthZone depth={depth} authorLinkLabel="Read S. M. Fahim’s profile">
+    <div slot="rules" class="ep-rules"><Rows items={writingRules} /></div>
 
-  <Band
-    heading="A referred client checks your name on Google."
-    headingId="ep-name-h"
-    lead="Advisers, accountants and past clients send people to you. Many look you up before they call, so that search has to help."
-  >
-    <div class="ep-name">
-      <Rows
-        variant="inline"
-        items={[
-          { title: 'Your Google Business Profile:', text: 'correct details, real photos and a steady flow of new reviews.' },
-          { title: 'Attorney pages:', text: 'each attorney’s page comes up when someone searches that attorney’s name.' },
-          { title: 'Old listings:', text: 'directories with an old address or phone number get fixed.' },
-        ]}
-      />
-    </div>
-  </Band>
-
-  <Band heading="What your planning practice gets each month." headingId="ep-gets-h" tone="fog">
-    <div class="ep-gets">
-      <Rows
-        class="ep-gets__rows"
-        items={[
-          { text: 'Pages for the will, trust, power of attorney and probate questions you want to win.' },
-          { text: 'Your Google Business Profile looked after, with a simple routine for new reviews.' },
-          { text: 'A faster, easier site, kept up to date, with every call and form tracked.' },
-          { text: 'Google’s AI answers for your main questions, checked monthly.' },
-        ]}
-      />
-      <div class="ep-gets__price">
-        <p class="ep-gets__line">You pay one monthly price for all of it: <span class="lse-mk">from $2,000 a month</span>, with nothing to set up. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
-        <p>The full list is on our <a href="/law-firm-seo-services/">law firm SEO services</a> page.</p>
+    <Band slot="mid" class="ep-mid">
+      <div class="ep-mid__in">
+        <p class="ep-mid__line">Find out which will, trust and probate questions name your firm.</p>
+        <Button />
       </div>
-    </div>
-  </Band>
+    </Band>
 
-  <Band heading="Before you start: planning firm questions." headingId="ep-faq-h">
-    <Faq items={faq} />
-  </Band>
+    <Band slot="price" class="ep-price">
+      <div class="ep-price__in">
+        <p class="ep-price__line">Estate planning SEO is from $2,000 a month, and there is nothing to pay for setup.</p>
+        <p class="ep-price__more">Fahim sends your monthly figure in writing before anything starts. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
+      </div>
+    </Band>
+  </DepthZone>
 
-  <FinalCta heading="See which planning questions your firm ranks for." formLabel="estate-final" idPrefix="ep-final" practiceArea="Estate planning">
+  <FinalCta heading="Learn which will, trust and probate searches your estate planning firm holds." formLabel="estate-final" idPrefix="ep-final" practiceArea="Estate planning">
     <p>In 30 minutes, Fahim searches your main will, trust and probate questions with you, then your firm’s name, and shows what to fix first.</p>
   </FinalCta>
-  <Related links={[{ label: 'SEO for family lawyers', href: '/seo-for-family-lawyers/' }, { label: 'SEO for bankruptcy lawyers', href: '/seo-for-bankruptcy-lawyers/' }]} />
 </InnerPage>
 
 <style>
@@ -155,17 +97,40 @@ const faq: FaqItem[] = [
     .ep-hero__vis { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(36px, 4vw, 64px); align-items: end; }
     .ep-hero__say { padding-bottom: 8px; }
   }
-  .ep-name { max-width: 860px; }
+</style>
 
-  .ep-under { margin-top: var(--s5); display: grid; gap: 14px; }
+<style is:global>
+  /* The depth zone opens on a fog band (byline, summary, jump list), full bleed, then the sections on white. */
+  .lse-depth[data-depth='seo-for-estate-planning-lawyers'] > .lse-depth__part--first { padding-top: 0; }
+  .lse-depth[data-depth='seo-for-estate-planning-lawyers'] .lse-depth__intro {
+    padding-block: clamp(56px, 6vw, 96px); border-top: 0;
+    background: var(--fog); box-shadow: 0 0 0 100vmax var(--fog); clip-path: inset(0 -100vmax);
+  }
+  .lse-depth[data-depth='seo-for-estate-planning-lawyers'] .lse-depth__intro + .lse-depth__sec { border-top: 0; }
 
-  .ep-gets { display: grid; gap: var(--s5); }
-  :global(.ep-gets__rows .lse-row p) { font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); max-width: 34em; }
-  .ep-gets__price { display: grid; gap: 14px; }
-  .ep-gets__line { font-size: clamp(22px, 1vw + 16px, 30px); font-weight: 750; line-height: 1.25; letter-spacing: -.02em; color: var(--ink); max-width: 26em; }
-  .ep-gets__price p:last-child { color: var(--ink-2); }
+  /* The four writing rules: large plain rows in ink, so they read as rules, not notes. */
+  .ep-rules { max-width: 35em; }
+  .ep-rules .lse-row { padding: 16px 0 17px; }
+  .ep-rules .lse-row p { max-width: none; font-size: clamp(19px, .45vw + 15px, 22px); font-weight: 600; line-height: 1.35; letter-spacing: -.01em; color: var(--ink); }
+  .lse-depth__slot:has(> .ep-rules) { margin-top: 20px; }
+  .lse-depth__slot:has(> .ep-rules) + .lse-prose { margin-top: 32px; }
+
+  /* Mid-page CTA on white: an ink rule above, a hairline below, the line set large and the button under it. */
+  .lse-depth .ep-mid { padding-block: 0; }
+  .ep-mid__in {
+    display: grid; gap: var(--s4); justify-items: start;
+    padding-block: clamp(36px, 4vw, 56px) clamp(40px, 4.5vw, 64px); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line-2);
+  }
+  .ep-mid__line { max-width: 22em; font-size: clamp(24px, 1.2vw + 17px, 36px); font-weight: 750; line-height: 1.15; letter-spacing: -.022em; color: var(--ink); }
+
+  /* The price: two lines side by side from 1000px, under a hairline. No button. */
+  .lse-depth .ep-price { padding-top: 0; }
+  .ep-price__in { max-width: 1040px; display: grid; gap: var(--s3); padding-top: var(--s4); border-top: 1px solid var(--line-2); }
+  .ep-price__line { max-width: 22em; font-size: clamp(22px, .8vw + 17px, 28px); font-weight: 750; line-height: 1.22; letter-spacing: -.018em; color: var(--ink); }
+  .ep-price__more { max-width: 26em; color: var(--ink-2); }
+  .ep-price__more a { font-weight: 700; }
   @media (min-width: 1000px) {
-    .ep-gets { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(48px, 5vw, 72px); align-items: start; }
-    .ep-gets__price { padding-top: 20px; }
+    .ep-price__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(40px, 4vw, 64px); align-items: start; }
+    .ep-price__more { padding-top: 6px; }
   }
 </style>

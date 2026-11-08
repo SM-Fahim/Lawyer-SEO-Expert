@@ -1,52 +1,48 @@
 ---
-// /seo-for-employment-lawyers/ from content/v2/seo-for-employment-lawyers.md. Workers type what happened,
-// employers type what to do next. Hero: H1 across, then the "what to do after" search over its #1 result,
-// big on a fog block. No form in the hero: the calendar band follows (split, so it doesn't repeat the
-// criminal and family bands). Two searchers, issue pages, the call with the price line under it (no price
-// band on this page), FAQ.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-employment-lawyers/. Copy: content/v3/seo-for-employment-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
+// Facts: research/FACTS.md. The commercial top is the v2 build with the deck's new hero capture: H1 and line across,
+// then Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi), with its caption on the
+// left of the fog block. The real calendar follows (split, on fog). The v2 bands, FAQ and Related block gave way to
+// the depth zone (src/content/depth/seo-for-employment-lawyers.md): an intro with the summary across and the jump
+// list in two columns, the worker searches on a fog panel, the issue and deadline tables, the employer pages as
+// rows, a mid-page CTA in a fog block, the price as a fog band (no PriceBand on this page), then the open FAQ on
+// white, the author box and FinalCta.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
-import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
-import SearchPanel from '../../components/kit/SearchPanel.astro';
-import Split from '../../components/kit/Split.astro';
-import Related from '../../components/practice-a/Related.astro';
+import SearchBox from '../../components/kit/SearchBox.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'Have you done SEO for an employment firm?',
-    html: 'So far our proven results are for injury firms in two cities. Question pages, the Map and Google’s AI answers behave the same way for employment searches.',
-  },
-  {
-    q: 'Should plaintiff and employer work be on two websites?',
-    html: 'Usually one site with two clear sections is enough, and easier to keep up. Your attorneys decide if the two sides need separate brands.',
-  },
-  {
-    q: 'Can you rank for “do I have a case” searches?',
-    html: 'They are questions, so a clear page can rank and be quoted by Google’s AI. We write them to help readers decide, never to promise an outcome.',
-  },
-  {
-    q: 'Who does the work?',
-    html: 'Fahim plans your pages, is on every call and checks the work before it goes out. A small team helps produce it, and you never deal with an account manager.',
-  },
+const path = '/seo-for-employment-lawyers/';
+const title = 'SEO for Employment Lawyers | Rank for What Workers Ask';
+const description =
+  'SEO for employment lawyers: worker and employer searches, issue pages, filing deadlines, settlements and reviews, state pages and the Map.';
+const depth = await getDepth('seo-for-employment-lawyers');
+
+// "What do employer-side pages need that worker pages don't?": one template per row, the key noun first.
+const employerPages = [
+  { title: 'Dismissal process:', text: 'the steps to take before a termination.' },
+  { title: 'Charge response:', text: 'what an EEOC notice means and what comes next.' },
+  { title: 'Handbook reviews:', text: 'what gets checked, and how often.' },
+  { title: 'Investigations:', text: 'who runs them and what the report covers.' },
+  { title: 'Law change updates:', text: 'one dated page per change, such as Britain’s tribunal limit.' },
 ];
-
-// The title line of the ranked result, measured on nola-wtd-rank.webp (900x162).
-const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
 ---
 <InnerPage
-  title="SEO for Employment Lawyers | Rank for What Workers Ask"
-  description="SEO for employment lawyers: pages that answer what fired, unpaid and harassed workers ask, ranked on Google and quoted by its AI. Book a ranking review."
-  path="/seo-for-employment-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for employment lawyers' }]}
   service={{ name: 'SEO for employment lawyers' }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="stack"
@@ -55,8 +51,8 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
     lead="A fired worker types what happened. An HR director types what to do next. We write the pages Google ranks first and its AI quotes, for the side you represent."
   >
     <figure slot="visual" class="emp-fig">
-      <Shot tag="#1" tagSide="right" priority images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: wtdTitle, alt: 'A New Orleans PI firm’s page, What to Do After a Truck Accident, as the first result on Google' })]} />
-      <figcaption class="lse-small">For a PI firm in New Orleans: its “what to do after” page, #1 on Google. A worker’s “what do I do now” question is the same kind of search.</figcaption>
+      <Shot tag="Named in the AI answer" tagSide="right" priority images={[shot(proof.nolaTankerAi, { marks: ['name'] })]} />
+      <figcaption>For a PI firm in New Orleans: it is named as a key firm in Google’s AI answer on tanker accidents. The same work can put an employment firm in the answer to a worker’s question.</figcaption>
     </figure>
   </PageHero>
 
@@ -65,75 +61,37 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
     headingId="book-h"
     tone="fog"
     layout="split"
-    lead="30 minutes with Fahim. Tell him which side you represent, and he searches it with you."
+    lead="30 minutes with Fahim. Say which side you represent, and Fahim searches it with you."
   />
 
-  <Band heading="Workers and employers never type the same words." headingId="sides-h" wideHeading>
-    <SearchPanel
-      columns={[
-        {
-          heading: 'Workers',
-          queries: [
-            { text: 'what type of lawyer do i need for wrongful termination', mark: 'what type of lawyer' },
-            { text: 'what kind of lawyer do i need for unpaid wages', mark: 'what kind of lawyer' },
-            { text: 'should i tell hr i’m getting a lawyer' },
-          ],
-        },
-        {
-          heading: 'Employers',
-          queries: [
-            { text: 'how to fire an employee legally' },
-            { text: 'employee filed eeoc complaint what now' },
-            { text: 'employment lawyer for small business' },
-          ],
-          note: 'Example searches.',
-        },
-      ]}
-    />
-    <p class="emp-under">Each side gets its own section, wording and way to get in touch. If you serve one side only, the other section doesn’t exist.</p>
-  </Band>
-
-  <Band heading="Pages named for what happened at work." headingId="issues-h" tone="fog">
-    <div class="emp-issues">
-      <Rows
-        variant="inline"
-        items={[
-          { title: 'Fired.', text: 'Wrongful termination, in the worker’s words.' },
-          { title: 'Not paid.', text: 'Unpaid wages and overtime.' },
-          { title: 'Harassed or pushed out.', text: 'What counts, and what to do first.' },
-          { title: 'For employers.', text: 'Policies, investigations and terminations, if you take that side.' },
+  <DepthZone depth={depth} faqTone="white" authorLinkLabel="S. M. Fahim’s background">
+    <div slot="searches" class="emp-searches">
+      <SearchBox
+        label="Searches workers make about a problem at work"
+        caption="From our keyword research."
+        queries={[
+          { text: 'what type of lawyer do i need for wrongful termination', mark: 'what type of lawyer' },
+          { text: 'what kind of lawyer do i need for unpaid wages', mark: 'what kind of lawyer' },
+          { text: 'should i tell hr i’m getting a lawyer' },
         ]}
       />
-      <p class="emp-under">Each page says which cases you take and which you don’t, so your intake gets fewer dead ends.</p>
     </div>
-  </Band>
+    <div slot="employers" class="emp-rows"><Rows variant="inline" items={employerPages} /></div>
 
-  <Band heading="Then the call comes from Google." headingId="call-h">
-    <Split ratio="7/5" align="center">
-      <Shot slot="a" images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
-      <div slot="b" class="emp-num">
-        <NumPair after={139} afterLabel="calls" />
-        <p>For a PI firm in New Orleans: 139 calls in five months from its Google profile, by Google’s own count.</p>
+    <Band slot="mid" class="emp-mid">
+      <div class="emp-mid__block">
+        <p class="emp-mid__line">Find out which employment deadlines your firm ranks for today.</p>
+        <Button />
       </div>
-    </Split>
-    <div class="emp-price">
-      <p class="emp-price__line">All of it <span class="lse-mk">from $2,000 a month</span>: pages, your Google profile, links, site upkeep, call tracking and AI answer checks. No setup fee.</p>
-      <p class="emp-price__link"><a href="/seo-pricing/">See law firm SEO pricing</a></p>
-    </div>
-  </Band>
+    </Band>
 
-  <Band heading="Employment law SEO in four answers." headingId="faq-h" tone="fog">
-    <Faq items={faq} />
-    <Related
-      links={[
-        { label: 'SEO for immigration lawyers', href: '/seo-for-immigration-lawyers/' },
-        { label: 'SEO for personal injury lawyers', href: '/seo-for-personal-injury-lawyers/' },
-        { label: 'law firm SEO services', href: '/law-firm-seo-services/' },
-      ]}
-    />
-  </Band>
+    <Band slot="price" tone="fog" class="emp-price">
+      <p class="emp-price__line">For an employment practice, our SEO is <span class="lse-mk">from $2,000 a month</span>. There is no setup fee.</p>
+      <p class="emp-price__more">You get the monthly figure from Fahim in writing before work begins. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
+    </Band>
+  </DepthZone>
 
-  <FinalCta heading="Check your issue searches with Fahim." formLabel="emp-final" idPrefix="emp-final" practiceArea="Employment">
+  <FinalCta heading="Check which worker and employer searches find your employment practice." formLabel="emp-final" idPrefix="emp-final" practiceArea="Employment">
     In 30 minutes, Fahim searches the issues you want more of, for workers or employers, and shows what to fix first.
   </FinalCta>
 </InnerPage>
@@ -141,15 +99,54 @@ const wtdTitle = [{ l: 1.9, t: 39.5, w: 48.8, h: 19.5 }];
 <style is:global>
   .emp-hero .lse-hero__h { max-width: 19ch; }
   .emp-hero .lse-hero__lead { max-width: 38em; }
-  .emp-fig { display: grid; gap: 14px; justify-items: center; }
-  .emp-fig .lse-shot { width: 100%; }
-  .emp-fig figcaption { max-width: 44em; justify-self: center; text-align: left; width: 100%; max-width: 978px; }
-  .emp-under { margin-top: var(--s4); color: var(--ink-2); max-width: 40em; }
-  .emp-issues { max-width: 860px; }
-  .emp-num { display: grid; gap: 22px; }
-  .emp-num p { color: var(--ink-2); max-width: 22em; }
-  .emp-price { margin-top: clamp(48px, 6vw, 80px); padding-top: var(--s4); border-top: 2px solid var(--ink); }
-  .emp-price__line { font-size: clamp(24px, 1vw + 18px, 34px); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); max-width: 30ch; }
-  .emp-price__link { margin-top: var(--s3); font-size: 17px; }
-  .emp-price__link a { font-weight: 700; }
+
+  /* Hero: the caption on the left of the fog block, the AI answer at its natural width on the right. */
+  .emp-fig { display: grid; gap: 16px; }
+  .emp-fig figcaption { font-size: 17px; line-height: 1.5; color: var(--ink-2); max-width: 32em; }
+  @media (min-width: 1000px) {
+    .emp-fig { grid-template-columns: minmax(0, 1fr) minmax(0, 667px); column-gap: clamp(40px, 5vw, 80px); align-items: start; }
+    .emp-fig .lse-shot { grid-column: 2; grid-row: 1; }
+    .emp-fig figcaption { grid-column: 1; grid-row: 1; align-self: center; font-size: clamp(18px, .4vw + 14px, 21px); max-width: 22em; }
+  }
+
+  /* Depth intro: the summary across the column, the jump list under it in two columns. */
+  .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-depth__intro { grid-template-columns: minmax(0, 1fr); }
+  .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-depth__summary { max-width: 38em; }
+  .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-jump { max-width: none; border-top: 1px solid var(--line-2); }
+  .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-jump__h { padding-top: 14px; }
+  @media (min-width: 1000px) {
+    .lse-depth[data-depth='seo-for-employment-lawyers'] .lse-jump ol { display: grid; grid-auto-flow: column; grid-template-rows: repeat(5, auto); grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 5vw, 80px); }
+  }
+
+  /* The worker searches on a rounded fog panel, as in the hero. */
+  .emp-searches { max-width: 820px; padding: clamp(16px, 2.5vw, 32px); background: var(--fog); border-radius: 28px; }
+  .emp-searches .lse-small { padding-left: 4px; }
+  @media (max-width: 759px) {
+    .emp-searches { margin-inline: calc(-1 * var(--gut)); padding-inline: var(--gut); border-radius: 0; }
+  }
+
+  /* The employer pages: inline rows at the text's size and measure. */
+  .emp-rows { max-width: 35em; font-size: clamp(17px, .25vw + 16px, 19px); line-height: 1.6; }
+  .emp-rows .lse-row { padding: 14px 0 15px; }
+  .emp-rows .lse-row p { max-width: none; color: var(--ink-2); }
+  .emp-rows .lse-row b { color: var(--ink); }
+  .lse-depth__slot:has(> .emp-rows) { margin-top: 20px; }
+  .lse-depth__slot:has(> .emp-rows) + .lse-prose { margin-top: 28px; }
+
+  /* Mid-page CTA: a rounded fog block on white, the line and the button side by side from 1000px. */
+  .lse-depth .emp-mid { padding-block: 0; }
+  .emp-mid__block {
+    display: grid; gap: var(--s4); justify-items: start;
+    padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px); background: var(--fog); border-radius: 28px;
+  }
+  .emp-mid__line { max-width: 22em; font-size: clamp(24px, 1.2vw + 17px, 36px); font-weight: 750; line-height: 1.15; letter-spacing: -.022em; color: var(--ink); }
+  @media (min-width: 1000px) {
+    .emp-mid__block { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 64px; }
+  }
+
+  /* The price: a fog band, the line set large and the details under it. No button. */
+  .emp-price .lse-band__body { display: grid; gap: var(--s3); }
+  .emp-price__line { max-width: 24em; font-size: clamp(24px, 1vw + 18px, 32px); font-weight: 750; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
+  .emp-price__more { max-width: 36em; color: var(--ink-2); }
+  .emp-price__more a { font-weight: 700; }
 </style>

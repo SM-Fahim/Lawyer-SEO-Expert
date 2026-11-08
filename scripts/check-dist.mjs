@@ -79,6 +79,9 @@ const PRICES_BY_PAGE = {
   // month, x 5 users = $9,000 a year, $90,000 over ten years) and the build's one-time "from $3,000" (owner's page).
   '/crm-add/': ['150', '9,000', '90,000', '3,000'],
   '/crm-add-v2/': ['150', '9,000', '90,000', '3,000'],
+  // /seo-for-estate-planning-lawyers/: "$15,000,000" is the IRS 2026 basic exclusion amount (IRS "What's new: Estate
+  // and gift tax", Public Law 119-21), a tax figure, not a price (content/DEPTH-BRIEF.md section 18, ruling 22).
+  '/seo-for-estate-planning-lawyers/': ['15,000,000'],
 };
 // An amount in $ (A$ and C$ included, since they end in "$") or £: every one must be in the page's list above.
 const PRICE = /[$£]\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?[$£]?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
