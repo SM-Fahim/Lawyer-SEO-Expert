@@ -137,6 +137,12 @@ Our own ranking, tall, with the ads collapsed to their label and nothing blurred
 ```
 Your own marks: pass boxes (`{ l, t, w, h }`, % of the whole image) instead of names; measure them on the pixels.
 
+**Phones (QA B2): proof must read at 390px.** A wide capture in a 358px column sets its text at 3 to 6px. A proof entry's `phone` sets are plain rectangle windows on the same file (`{ x, y, w, h, fade? }`, image pixels). Under 760px, Shot shows them stacked in the frame instead of the whole image; from 760px up nothing changes. The marks keep their boxes (each window looks at the whole image's canvas). `shot()` picks the first set that holds every mark you draw, so most pages need nothing. Pass `phone: 'name'` to choose a set (a band with no marks keeps its band unless you do), or `phone: false` for the full capture. Aim for the marked line at about 11px: a window's width in image px is at most `358 × font px ÷ 11`. `fade` gives a soft right edge where a window cuts a line. For a separate phone crop file (`proof-money.ts`) cut through a word, wrap it in `fadeRight()`. Keep blank space above the text where the tag sits. Phone frames (`PhoneShot`) get at least 300px on phones, and a capture there should show its first screen only (a `phone` set).
+```ts
+// proof.ts entry
+phone: { answer: [{ x: 15, y: 15, w: 480, h: 160, fade: true }], keyFirms: [{ x: 15, y: 170, w: 622, h: 63 }, { x: 15, y: 236, w: 400, h: 120 }] },
+```
+
 ### `ProofFigure`
 A Shot with its proof caption: the quoted search in bold, then a line. Props: Shot's (`images`, `tag`, `tagSide` default right, `tagSmall`, `priority`), `query`, `queryMark`, `queryAbove` (search above the frame), `caption` or the default slot.
 ```astro
