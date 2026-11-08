@@ -209,6 +209,8 @@ If the current site can't hold this structure, our page on [lawyer web design bu
 
 ## What happened when a New Orleans firm published its truck accident pages?
 
+[slot proof]
+
 For a PI firm in New Orleans, three truck accident pages reached Google's top three within 16 hours of being published. Before that came about three months of groundwork, on a website we built for the firm.
 
 Each page aimed at a different kind of search: case type and city, case type and state, and what to do next.

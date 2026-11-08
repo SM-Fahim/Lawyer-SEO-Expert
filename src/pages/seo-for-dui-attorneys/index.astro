@@ -58,6 +58,10 @@ const subPages = [
   </PageHero>
 
   <DepthZone depth={depth} faqTone="white">
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="First source" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['citedLine', 'sourceCard'] })]} />
+      <figcaption>A PI firm in El Paso: its deadline page is the first source Google’s AI answer cites.</figcaption>
+    </figure>
     <div slot="subpages" class="dui-subpages">
       <Rows variant="inline" items={subPages} />
     </div>

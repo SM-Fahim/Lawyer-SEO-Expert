@@ -7,8 +7,17 @@
 // Slots: a "[slot name]" line in the copy shows the page's slot="name" there, in the text column (a SearchBox, a
 // Shot, Rows). A "[band name]" line ends the white text section and shows slot="name" full width (the mid-page CTA
 // Band, a PriceBand), then the text carries on. A marker with no matching slot fails the build.
+//
+// A "[slot proof]" line (or a slot named proof-...) sets the text after it, up to the section's next slot or its
+// end, as a 7/5 split from 1000px: the text on the left, the page's real proof on the right (a Shot in a
+// <figure>, with its caption). The H2 stays above the split, across the column. Phones: the proof, then the text.
+//
+// The band named "mid" (the mid-page CTA) gets Fahim's face (xs) first in its body: the trust moment. The
+// summary's first sentence (the short answer) is set at lead size, the rest at body size.
 import Faq from '../Faq.astro';
 import Band from '../kit/Band.astro';
+import Face from '../kit/Face.astro';
+import { fahim } from '../../data/people';
 import type { Depth } from '../../lib/depth';
 import { depthSlotNames, needsNofollow, splitDepth } from '../../lib/markdown';
 import AuthorBox from './AuthorBox.astro';
@@ -38,6 +47,51 @@ for (const [kind, names] of [['slot', slots], ['band', bands]] as const) {
     filled.set(name, await Astro.slots.render(name));
   }
 }
+// A section's chunks, with each proof slot paired with the text that follows it.
+type Chunk = (typeof parts)[number]['sections'][number]['chunks'][number];
+type Run = Chunk | { type: 'split'; name: string; html: string };
+const isProof = (name: string) => name === 'proof' || name.startsWith('proof-');
+const runsOf = (chunks: readonly Chunk[]): Run[] => {
+  const runs: Run[] = [];
+  for (let i = 0; i < chunks.length; i++) {
+    const c = chunks[i]!;
+    const next = chunks[i + 1];
+    if (c.type === 'slot' && isProof(c.name) && next?.type === 'html') {
+      runs.push({ type: 'split', name: c.name, html: next.html });
+      i++;
+    } else runs.push(c);
+  }
+  return runs;
+};
+
+// The summary's first sentence: up to the first . ? or ! outside a tag and outside an inline element, followed by
+// a space and a capital. An initial ("S.") doesn't count. Null when there is no second sentence.
+const firstSentence = (html: string): [string, string] | null => {
+  let inTag = false;
+  for (let i = 0; i < html.length; i++) {
+    const ch = html[i];
+    if (ch === '<') inTag = true;
+    else if (ch === '>') inTag = false;
+    else if (!inTag && (ch === '.' || ch === '?' || ch === '!')) {
+      const rest = html.slice(i + 1);
+      const gap = /^\s+(?=[A-Z“"<])/.exec(rest);
+      if (!gap || /(^|[\s>])[A-Z]$/.test(html.slice(Math.max(0, i - 2), i))) continue;
+      const head = html.slice(0, i + 1);
+      const opened = (head.match(/<[a-z][a-z0-9]*(?=[\s>])/g) ?? []).filter((t) => t !== '<br').length;
+      const closed = (head.match(/<\/[a-z][a-z0-9]*>/g) ?? []).length;
+      if (opened !== closed) continue;
+      return [head, rest.slice(gap[0].length)];
+    }
+  }
+  return null;
+};
+const summary = firstSentence(depth.summaryHtml);
+
+// The mid band, cut just inside its body's opening tag, so Fahim's face goes first in the body.
+const midHtml = filled.get('mid');
+const bodyOpen = midHtml ? /<div class="lse-band__body[^"]*"[^>]*>/.exec(midHtml) : null;
+const mid = midHtml && bodyOpen ? [midHtml.slice(0, bodyOpen.index + bodyOpen[0].length), midHtml.slice(bodyOpen.index + bodyOpen[0].length)] : null;
+
 const hasFaq = depth.faq.length > 0;
 const toc = [...depth.headings, ...(hasFaq ? [{ id: 'depth-faq', text: depth.faqHeading }] : [])];
 const showSources = sources && depth.sources.length > 0;
@@ -46,7 +100,15 @@ const sourceRel = (url: string) => (needsNofollow(url) ? 'nofollow noopener' : '
 <div class="lse-depth" data-depth={depth.id}>
   {parts.map((part, i) => (
     <>
-      {part.band && <Fragment set:html={filled.get(part.band)} />}
+      {part.band === 'mid' && mid ? (
+        <div class="lse-depth__mid">
+          <Fragment set:html={mid[0]} />
+          <Face person={fahim} size="xs" class="lse-depth__midface" />
+          <Fragment set:html={mid[1]} />
+        </div>
+      ) : (
+        part.band && <Fragment set:html={filled.get(part.band)} />
+      )}
       {(i === 0 || part.sections.length > 0) && (
         <div class:list={['lse-section', 'lse-depth__part', { 'lse-depth__part--first': i === 0 }]}>
           <div class="lse-wrap">
@@ -54,15 +116,30 @@ const sourceRel = (url: string) => (needsNofollow(url) ? 'nofollow noopener' : '
               <div class="lse-depth__intro">
                 <div class="lse-depth__lede">
                   <Byline reviewed={depth.reviewed} />
-                  <p class="lse-depth__summary" set:html={depth.summaryHtml} />
+                  {summary ? (
+                    <p class="lse-depth__summary lse-depth__summary--split">
+                      <span class="lse-depth__short" set:html={summary[0]} /> <span class="lse-depth__more" set:html={summary[1]} />
+                    </p>
+                  ) : (
+                    <p class="lse-depth__summary" set:html={depth.summaryHtml} />
+                  )}
                 </div>
                 {toc.length > 0 && <Toc items={toc} class="lse-depth__toc" />}
               </div>
             )}
             {part.sections.map((sec) => (
               <div class="lse-depth__sec">
-                {sec.chunks.map((c) =>
-                  c.type === 'html' ? <div class="lse-prose" set:html={c.html} /> : <div class="lse-depth__slot" set:html={filled.get(c.name)} />,
+                {runsOf(sec.chunks).map((c) =>
+                  c.type === 'html' ? (
+                    <div class="lse-prose" set:html={c.html} />
+                  ) : c.type === 'split' ? (
+                    <div class="lse-depth__split">
+                      <div class="lse-depth__aside" set:html={filled.get(c.name)} />
+                      <div class="lse-prose" set:html={c.html} />
+                    </div>
+                  ) : (
+                    <div class="lse-depth__slot" set:html={filled.get(c.name)} />
+                  ),
                 )}
               </div>
             ))}

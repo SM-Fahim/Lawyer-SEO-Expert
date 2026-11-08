@@ -52,6 +52,10 @@ const habits = [
   </PageHero>
 
   <DepthZone depth={depth}>
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="#3" tagSide="right" images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRankTitle, { marks: ['age'] })]} />
+      <figcaption>A PI firm in New Orleans: #3 on Google 16 hours after the page went live, after about three months of groundwork.</figcaption>
+    </figure>
     <div slot="habits" class="pi-habits">
       <Rows variant="inline" items={habits} />
     </div>

@@ -87,6 +87,14 @@ const refuse = [
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="More about Fahim">
+    <figure slot="proof" class="lse-depth__proof">
+      <ShotSwap
+        tag="Cited 3 times"
+        wide={[shot(proof.nolaWtdAi, { marks: ['citations'] })]}
+        narrow={[shot(proof.nolaWtdAi, { marks: ['citations'] })]}
+      />
+      <figcaption><b><Q text="what to do after a truck accident in New Orleans" /></b><span>A PI firm in New Orleans: Google’s AI answer quotes its page 3 times.</span></figcaption>
+    </figure>
     <div slot="layers" class="bsv-rows"><Rows variant="inline" items={layers} /></div>
     <div slot="practices" class="bsv-practice"><PracticeLinks /></div>
     <div slot="reasons" class="bsv-rows"><Rows variant="inline" items={reasons} /></div>

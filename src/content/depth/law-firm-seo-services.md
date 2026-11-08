@@ -193,6 +193,8 @@ The same useful pages are the ones a firm wants quoted in Google's AI answers.
 
 ## How do Google's AI answers pick a law firm page to cite?
 
+[slot proof]
+
 Google's AI answers cite law firm pages that already qualify for normal search results. [Google's guidance on AI features](https://developers.google.com/search/docs/appearance/ai-features) sets no extra requirements for AI Overviews or AI Mode, beyond being indexed and able to appear in Search with a snippet.
 
 As of November 2026, Google says no special schema, AI text file or new markup is needed. So the work stays the same: clear answers on pages Google can crawl, index and quote.

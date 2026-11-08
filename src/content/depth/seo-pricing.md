@@ -141,6 +141,8 @@ The drivers below are the ones to raise on any pricing call.
 
 [slot drivers]
 
+[slot proof]
+
 A brand-new Business Profile starts with no history at all. For a PI firm in New Orleans, a new profile got about 1 call in July 2026 and 9 in October, as it built a history.
 
 Reach is part of the market factor. A firm that wants statewide or national searches, not only local ones, takes on a wider field of competitors.
