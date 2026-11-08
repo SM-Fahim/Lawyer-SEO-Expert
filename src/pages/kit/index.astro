@@ -60,7 +60,7 @@ const sample = await getDepth('kit-sample');
   <PageHero
     h1="SEO for personal injury lawyers: own the searches after a crash."
     lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
-    form={{ title: 'Send your website for an injury ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'kit-hero', label: 'Kit hero form' }}
+    form={{ who: 'your injury firm', idPrefix: 'kit-hero', label: 'Kit hero form' }}
   >
     <figure slot="visual" class="kit-fig">
       <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaTankerQuery), shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
@@ -272,8 +272,7 @@ const sample = await getDepth('kit-sample');
     layout="stack"
     h1="Law firm SEO services that turn searches into calls."
     lead="Our lawyer SEO services put your firm where clients look first: the top of Google, the Map and Google’s AI answers."
-    form={{ title: 'Where does your firm show up today?', sub: 'Send your website. Fahim answers within an hour in business hours.', idPrefix: 'kit-row', label: 'Kit row form', submitLabel: 'Check my firm' }}
-    talk="Prefer a call?"
+    form={{ idPrefix: 'kit-row', label: 'Kit row form' }}
   >
     <figure slot="visual" class="kit-fig">
       <Shot tag="43 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['september'] })]} />
@@ -288,7 +287,7 @@ const sample = await getDepth('kit-sample');
     layout="top"
     h1="SEO for DUI attorneys that wins the “near me” search after an arrest."
     lead="A DUI search is local and it is urgent. We get your firm onto the Map when a driver searches, and onto Google for the license questions that come next."
-    form={{ title: 'Can a driver in your county find you?', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'kit-top', label: 'Kit top form' }}
+    form={{ who: 'your DUI practice', idPrefix: 'kit-top', label: 'Kit top form' }}
   >
     <figure slot="visual" class="kit-fig">
       <Shot tag="9 calls" tagSide="right" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
@@ -316,7 +315,7 @@ const sample = await getDepth('kit-sample');
       <Button />
     </Band>
   </DepthZone>
-  <FinalCta heading="See where your firm ranks today." formLabel="Kit final form" idPrefix="kit-final">
+  <FinalCta heading="The kit’s closing heading asks about calls and cost." writeHref="#kit-hero-form">
     <p>The closing CTA comes after the author box, once per page.</p>
   </FinalCta>
 </InnerPage>

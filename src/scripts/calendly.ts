@@ -17,6 +17,9 @@ const READY_FALLBACK_MS = 4000;
 // Calendly says it's showing before it has fetched the free days. That fetch finished 0.6 to 1 s later on desktop,
 // and no message marks it, so the placeholder stays this long to cover it.
 const FREE_DAYS_MS = 1000;
+// Counted from the mount, not from page load: the slowest phone measured took about 4 s, so 8 s is a real delay.
+// Then the placeholder offers Calendly's own page.
+const SLOW_MS = 8000;
 const UTM_NAMES: Record<string, string> = {
   utm_source: 'utmSource',
   utm_medium: 'utmMedium',
@@ -48,7 +51,7 @@ function widgetUtm(source: Record<string, string>): Record<string, string> {
 
 /** The placeholder's new-tab link books on Calendly, out of this page's sight, so at least Calendly gets the source. */
 export function tagFallbackLink(box: HTMLElement): void {
-  const link = box.querySelector<HTMLAnchorElement>('.lse-cal__ph a');
+  const link = box.querySelector<HTMLAnchorElement>('.lse-cal__out a');
   if (!link) return;
   try {
     const url = new URL(link.href);
@@ -59,14 +62,34 @@ export function tagFallbackLink(box: HTMLElement): void {
   }
 }
 
-const reveal = (box: Element): void => box.classList.add('is-ready');
+const slowTimers = new WeakMap<Element, number>();
+
+/** Calendly is showing: the placeholder fades out. */
+const reveal = (box: Element): void => {
+  window.clearTimeout(slowTimers.get(box));
+  box.classList.remove('is-loading', 'is-slow');
+  box.classList.add('is-ready');
+};
+
+/** The words line changes its text, not its node, so a screen reader hears the new state (role="status"). */
+function say(box: Element, key: 'slow' | 'off'): void {
+  const line = box.querySelector<HTMLElement>('.lse-cal__say');
+  const text = line?.dataset[key];
+  const strong = line?.querySelector('strong');
+  if (text && strong) strong.textContent = text;
+}
 
 let state: 'idle' | 'loading' | 'ready' | 'failed' = 'idle';
 let queue: Array<() => void> = [];
 let failQueue: Array<() => void> = [];
 
-/** widget.js was blocked (an ad blocker, a privacy browser): the card shrinks to its message and the Calendly link. */
-const fail = (box: Element): void => box.classList.add('is-failed');
+/** widget.js was blocked (an ad blocker, a privacy browser): at once, the message, the Calendly link and the form. */
+const fail = (box: Element): void => {
+  window.clearTimeout(slowTimers.get(box));
+  box.classList.remove('is-loading', 'is-slow');
+  box.classList.add('is-failed');
+  say(box, 'off');
+};
 
 function withCalendly(fn: () => void, onFail: () => void): void {
   if (state === 'ready') {
@@ -112,6 +135,17 @@ function withCalendly(fn: () => void, onFail: () => void): void {
 export function mountCalendar(box: HTMLElement | null): void {
   if (!box || box.getAttribute('data-mounted')) return;
   box.setAttribute('data-mounted', '1');
+  // The slow timer starts here, at the mount (a dialog's at the click). data-mounted keeps a reopened dialog from
+  // starting it again.
+  box.classList.add('is-loading');
+  slowTimers.set(
+    box,
+    window.setTimeout(() => {
+      if (box.classList.contains('is-ready') || box.classList.contains('is-failed')) return;
+      box.classList.add('is-slow');
+      say(box, 'slow');
+    }, SLOW_MS),
+  );
   withCalendly(() => {
     window.Calendly?.initInlineWidget({ url: box.getAttribute('data-calendly') ?? '', parentElement: box, utm: widgetUtm(bookingSource()) });
     box.classList.add('is-loaded');

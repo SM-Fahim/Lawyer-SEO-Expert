@@ -1,26 +1,65 @@
 ---
-// The booking card: a heading plus a Calendly widget.js embed.
+// The booking card: an optional head (Fahim's face, a title, the sub line) plus a Calendly widget.js embed.
 // `lazy` mounts it when it comes near the screen. Otherwise something else mounts it, like the booking dialog.
-// That closed dialog is on every page, so its avatars wait until it opens.
+// That closed dialog is on every page, so its images wait until it opens.
+// Until Calendly shows, one placeholder covers the frame in every card: a progress line (only once loading has
+// started), a calendar-shaped skeleton in hairlines and the words. scripts/calendly.ts sets the state classes on
+// .lse-cal__body: is-loading (mounted, the slow timer starts), is-slow (8 s later: the Calendly link shows),
+// is-failed (widget.js blocked: the link and the form line show at once), is-ready (the placeholder fades out).
+import { fahim } from '../data/people';
 import { site } from '../data/site';
+import Face from './kit/Face.astro';
 interface Props {
   title?: string;
   sub?: string;
   titleId?: string;
   /** The heading's level: h2 in the dialog, h3 inside a page's section, h1 on /book/, where the card is the page. A blog post can't gain a heading its text doesn't have, so it passes 'p'. */
   titleTag?: 'h1' | 'h2' | 'h3' | 'p';
+  /** false drops the card's own head, for a section whose H2 and lead already say it (BookingBand, FinalCta). */
+  head?: boolean;
+  /** Where "send your website" goes when the calendar can't load: the page's own form, or the contact page. */
+  formHref?: string;
   lazy?: boolean;
   extraClass?: string;
 }
-const { title = site.cta.label, sub = site.cta.sub, titleId, lazy = false, titleTag: Title = 'h2', extraClass } = Astro.props;
+const {
+  title = site.cta.label,
+  sub = site.cta.sub,
+  titleId,
+  head = true,
+  formHref = '/contact-us/',
+  lazy = false,
+  titleTag: Title = 'h2',
+  extraClass,
+} = Astro.props;
+const days = Array.from({ length: 35 });
 ---
-<div class:list={['lse-cal', extraClass]}>
-  <div class="lse-cal__head">
-    <div><Title class="lse-cal__title" id={titleId}>{title}</Title><p>{sub}</p></div>
-    <slot name="close" />
-  </div>
+<div class:list={['lse-cal', { 'lse-cal--nohead': !head }, extraClass]}>
+  {head && (
+    <div class="lse-cal__head">
+      <Face person={fahim} size="xs" class="lse-cal__face" />
+      <div class="lse-cal__words"><Title class="lse-cal__title" id={titleId}>{title}</Title><p class="lse-cal__sub">{sub}</p></div>
+      <slot name="close" />
+    </div>
+  )}
   <div class="lse-cal__body" data-calendly={site.calendly.embedUrl} data-calendly-lazy={lazy ? '' : undefined}>
-    <div class="lse-cal__ph"><p class="lse-cal__wait">The booking calendar is on its way.</p><p class="lse-cal__off">The calendar can’t load in this browser.</p><a class="lse-link" href={site.calendly.url} target="_blank" rel="noopener">Use the calendar on Calendly instead</a></div>
+    <div class="lse-cal__ph">
+      <div class="lse-cal__bar" aria-hidden="true"><i></i></div>
+      <div class="lse-cal__skel" aria-hidden="true">
+        <div class="lse-cal__month"><b></b></div>
+        <div class="lse-cal__grid">
+          <div class="lse-cal__wk">{Array.from({ length: 7 }).map(() => <i></i>)}</div>
+          <div class="lse-cal__days">{days.map(() => <i></i>)}</div>
+        </div>
+        <div class="lse-cal__times"><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="lse-cal__msg">
+        <p class="lse-cal__say" role="status" data-slow="Still loading?" data-off="Your browser blocked the calendar."><strong>Loading Fahim’s calendar</strong></p>
+        <p class="lse-cal__hint">It takes a few seconds.</p>
+        <p class="lse-cal__out"><a class="lse-link" href={site.calendly.url} target="_blank" rel="noopener">Open Fahim’s calendar on Calendly</a></p>
+        <p class="lse-cal__alt">Or <a href={formHref}>send your website</a>, and Fahim writes back within an hour in business hours.</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -51,25 +90,64 @@ const { title = site.cta.label, sub = site.cta.sub, titleId, lazy = false, title
 </script>
 
 <style is:global>
-/* The placeholder covers the frame until Calendly says it is showing (scripts/calendly.ts adds .is-ready),
-   and its new-tab link appears after 6 s. */
-.lse-cal__head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:20px 20px 14px;border-bottom:1px solid var(--line)}
+.lse-cal__head{display:flex;align-items:center;gap:16px;padding:16px 20px 14px;border-bottom:1px solid var(--line)}
+.lse-cal__face.lse-face--xs{width:64px}
+.lse-cal__words{flex:1;min-width:0}
 .lse-cal__title{font:800 26px/1.1 var(--sans);letter-spacing:-.025em;margin:0}
-.lse-cal__head p{margin-top:6px;color:var(--ink-2);font-size:16px}
-.lse-cal__ph{display:grid;place-content:center;gap:10px;text-align:center;padding:24px;color:var(--ink-2)}
+.lse-cal__sub{margin-top:6px;color:var(--ink-2);font-size:16px;line-height:1.4}
+.lse-cal__head > :last-child:not(.lse-cal__words){align-self:flex-start}
+@media (max-width:480px){.lse-cal__face.lse-face--xs{width:48px}.lse-cal__title{font-size:22px}.lse-cal__head{gap:12px;padding-inline:16px}}
+
 .lse-cal__body{position:relative;height:680px}
 .lse-cal__body iframe{display:block;width:100%;height:100%;border:0}
-.lse-cal__ph{position:absolute;inset:0;z-index:1;background:var(--paper);pointer-events:none;transition:opacity .25s,visibility .25s}
-.lse-cal__ph a{pointer-events:auto}
-.lse-cal__body.is-ready .lse-cal__ph{opacity:0;visibility:hidden}
-.js .lse-cal__ph a{visibility:hidden;animation:lse-late 0s 6s forwards}
-@keyframes lse-late{to{visibility:visible}}
-/* widget.js blocked (scripts/calendly.ts adds .is-failed): no empty frame, just the message and the link, at once. */
-.lse-cal__off{display:none}
-.lse-cal__body.is-failed{height:auto}
-.lse-cal__body.is-failed .lse-cal__ph{position:static;padding:40px 24px}
-.lse-cal__body.is-failed .lse-cal__ph::before{display:none}
-.lse-cal__body.is-failed .lse-cal__wait{display:none}
-.lse-cal__body.is-failed .lse-cal__off{display:block}
-.js .lse-cal__body.is-failed .lse-cal__ph a{visibility:visible;animation:none}
+
+/* The placeholder: on top of the frame until Calendly says it's showing. */
+.lse-cal__ph{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;background:var(--paper);overflow:hidden;transition:opacity .25s,visibility .25s}
+.lse-cal__body.is-ready .lse-cal__ph{opacity:0;visibility:hidden;pointer-events:none}
+
+/* The progress line: a black bar running across the top, only once loading has started. */
+.lse-cal__bar{flex:none;height:3px;background:var(--line);overflow:hidden;visibility:hidden}
+.lse-cal__bar i{display:block;width:34%;height:100%;background:var(--ink);transform:translateX(-100%)}
+.lse-cal__body.is-loading .lse-cal__bar{visibility:visible}
+.lse-cal__body.is-loading .lse-cal__bar i{animation:lse-cal-run 1.2s ease-in-out infinite}
+.lse-cal__body.is-failed .lse-cal__bar{visibility:hidden}
+@keyframes lse-cal-run{to{transform:translateX(300%)}}
+@media (prefers-reduced-motion:reduce){.lse-cal__body.is-loading .lse-cal__bar i{animation:none;width:40%;transform:none}}
+
+/* The skeleton: a month label, weekday ticks, a 7 by 5 grid of hairline cells (never filled, so no day looks
+   open) and, on a wide card, a column of time slots, the way Calendly lays it out. */
+.lse-cal__skel{flex:none;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding:28px 24px 0}
+.lse-cal__month b{display:block;width:40%;height:14px;border-radius:4px;background:var(--fog)}
+.lse-cal__wk,.lse-cal__days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.lse-cal__wk i{display:block;height:6px;width:40%;margin-inline:auto;border-radius:3px;background:var(--fog)}
+.lse-cal__days{margin-top:12px}
+.lse-cal__days i{display:block;aspect-ratio:1;max-height:52px;border:1px solid var(--line);border-radius:6px}
+.lse-cal__times{display:none}
+.lse-cal__times i{display:block;height:44px;border:1px solid var(--line);border-radius:6px}
+@container lse-cal (min-width:560px){
+  .lse-cal__skel{grid-template-columns:minmax(0,1fr) 30%;column-gap:28px}
+  .lse-cal__month{grid-column:1 / -1}
+  .lse-cal__times{display:grid;gap:10px;align-content:start}
+}
+.lse-cal__body{container:lse-cal / inline-size}
+
+/* The words, under the skeleton. */
+.lse-cal__msg{flex:1;display:grid;align-content:start;justify-items:center;gap:6px;padding:28px 24px 24px;text-align:center;color:var(--ink-2)}
+.lse-cal__say{font-size:18px;color:var(--ink)}
+.lse-cal__hint{font-size:var(--fs-meta);color:var(--muted)}
+.lse-cal__out,.lse-cal__alt{display:none}
+.lse-cal__out{margin-top:8px;font-weight:700}
+.lse-cal__alt{max-width:30em;font-size:16px}
+.lse-cal__alt a{font-weight:700}
+/* No JavaScript: no calendar will come, so the link shows at once. */
+html:not(.js) .lse-cal__out{display:block}
+html:not(.js) .lse-cal__hint{display:none}
+/* Slow (8 s after the mount): the link. Blocked: the link and the form, at once. */
+.lse-cal__body.is-slow .lse-cal__out,.lse-cal__body.is-failed .lse-cal__out{display:block}
+.lse-cal__body.is-slow .lse-cal__hint,.lse-cal__body.is-failed .lse-cal__hint{display:none}
+.lse-cal__body.is-failed .lse-cal__alt{display:block}
+/* Blocked: the card keeps a calendar's height (at least 320 px), with the words over a lighter skeleton. */
+.lse-cal__body.is-failed{height:auto;min-height:320px}
+.lse-cal__body.is-failed .lse-cal__ph{position:relative;min-height:320px}
+.lse-cal__body.is-failed .lse-cal__skel{opacity:.45}
 </style>

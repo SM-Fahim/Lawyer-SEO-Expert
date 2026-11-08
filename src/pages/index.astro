@@ -18,7 +18,7 @@ import Rows from '../components/kit/Rows.astro';
 import TrustLine from '../components/kit/TrustLine.astro';
 import { fahim, josh } from '../data/people';
 import { proof, shot } from '../data/proof';
-import { fahimSchema, joshSchema, site } from '../data/site';
+import { askTitle, fahimSchema, joshSchema, site } from '../data/site';
 import { faqSchema } from '../lib/schema';
 
 const title = 'Lawyer SEO Expert | Get Found First, Get More Calls';
@@ -74,16 +74,18 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
         <div class="lse-h-hero__act">
           <LeadForm
             compact
-            title="Send your website for a ranking review."
+            boxed
+            title={askTitle()}
             titleTag="h2"
-            sub="Fahim answers within an hour in business hours."
+            sub={site.ask.sub}
+            submitLabel={site.ask.submit}
             idPrefix="h"
             label="Homepage hero form"
-            format="Ranking review by email"
+            format="Plan and price by email"
           >
             <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
           </LeadForm>
-          <p class="lse-h-hero__talk">Rather talk it through? <a href={site.cta.href} data-cal>Book a ranking review</a></p>
+          <p class="lse-h-hero__talk">{site.ask.talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
         </div>
         <figure class="lse-h-hero__proof">
           <Shot tag="139 calls" tagSide="right" priority images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
@@ -257,7 +259,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
     </div>
   </section>
 
-  <FinalCta heading="See where your firm ranks today." formLabel="Homepage message">
+  <FinalCta heading="See where your firm ranks today." writeHref="#h-form">
     <p>In 30 minutes, Fahim looks at your real rankings with you and shows what would bring in more calls first.</p>
   </FinalCta>
 </Base>

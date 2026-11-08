@@ -43,15 +43,6 @@ const { headingId, tone = 'white', id } = Astro.props;
   .crm-book__rows .lse-row__t { font-weight: 800; color: var(--ink); }
   .crm-book__note { margin-top: var(--s3); font-weight: 700; color: var(--ink); }
   .crm-book__card { background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--r-frame); overflow: hidden; }
-  .crm-book__card .lse-cal__ph { isolation: isolate; }
-  .crm-book__card .lse-cal__ph::before {
-    content: ""; position: absolute; inset: 88px 24px 24px; z-index: -1;
-    background:
-      repeating-linear-gradient(90deg, transparent 0 calc(14.28% - 1px), var(--line) calc(14.28% - 1px) 14.28%),
-      repeating-linear-gradient(180deg, transparent 0 calc(16.66% - 1px), var(--line) calc(16.66% - 1px) 16.66%);
-    border: 1px solid var(--line);
-  }
-  .crm-book__card .lse-cal__ph p, .crm-book__card .lse-cal__ph a { position: relative; background: var(--paper); padding: 4px 10px; }
   @media (min-width: 1000px) {
     .crm-book__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 72px); align-items: start; }
   }

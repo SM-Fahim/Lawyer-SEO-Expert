@@ -12,7 +12,6 @@ import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Rows from '../../components/kit/Rows.astro';
-import TrustLine from '../../components/kit/TrustLine.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -44,13 +43,12 @@ const habits = [
   <PageHero
     h1="SEO for personal injury lawyers: own the searches after a crash."
     lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
-    form={{ title: 'Send your website for an injury ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'pi-hero', label: 'pi-hero', practiceArea: 'Personal injury' }}
+    form={{ who: 'your injury firm', idPrefix: 'pi-hero', label: 'pi-hero', practiceArea: 'Personal injury' }}
   >
     <figure slot="visual" class="pi-fig">
       <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
       <figcaption class="lse-small">A PI firm in New Orleans. Within 16 hours of its tanker truck page going live, Google’s AI named it a key firm. That came after about three months of groundwork.</figcaption>
     </figure>
-    <TrustLine slot="after" />
   </PageHero>
 
   <DepthZone depth={depth}>
@@ -71,7 +69,7 @@ const habits = [
     </PriceBand>
   </DepthZone>
 
-  <FinalCta heading="Find out which accident searches your injury firm could win next." formLabel="pi-final" idPrefix="pi-final" practiceArea="Personal injury">
+  <FinalCta heading="Find out how many more injury calls are within reach, and the price." writeHref="#pi-hero-form">
     In 30 minutes, Fahim runs your main accident searches in your city with you and shows which page or profile fix would bring calls first.
   </FinalCta>
 </InnerPage>

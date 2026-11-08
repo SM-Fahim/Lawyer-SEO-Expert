@@ -10,7 +10,6 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import BookingBand from '../../components/kit/BookingBand.astro';
 import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
@@ -63,6 +62,8 @@ const habits = [
     class="cr-hero"
     h1="Be the first call after a charge: SEO for criminal defense lawyers."
     lead="After a charge, someone searches the charge and the county, then calls one of the first names Google shows. We put your firm among them."
+    form={{ who: 'your defense firm', idPrefix: 'crim-hero', label: 'crim-hero', practiceArea: 'Criminal defense' }}
+    formRow={false}
   >
     <figure slot="visual" class="cr-proof">
       <NumPair size="xl" before={9} after={23} beforeLabel="calls in six months before us" afterLabel="calls in three months with us" decorative={false} />
@@ -73,13 +74,6 @@ const habits = [
       <figcaption class="lse-small">For a PI firm in El Paso, counted by Google from its Business Profile. A criminal defense search runs through the same Map, so the same profile work applies.</figcaption>
     </figure>
   </PageHero>
-
-  <BookingBand
-    heading="See your county’s results with Fahim."
-    headingId="book-h"
-    tone="fog"
-    lead="Thirty free minutes. Fahim runs your top charges in your county with you, live."
-  />
 
   <DepthZone depth={depth}>
     <div slot="family" class="cr-family">
@@ -102,7 +96,7 @@ const habits = [
     </Band>
   </DepthZone>
 
-  <FinalCta heading="Check how your criminal defense firm ranks for each charge and county." formLabel="crim-final" idPrefix="crim-final" practiceArea="Criminal defense">
+  <FinalCta heading="What would it cost to be the first call after an arrest in your county?" writeHref="#crim-hero-form">
     In 30 minutes, Fahim searches your top charges in each county you serve and shows which page would win the next call.
   </FinalCta>
 </InnerPage>

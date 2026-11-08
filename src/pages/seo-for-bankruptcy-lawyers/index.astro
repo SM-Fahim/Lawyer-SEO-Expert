@@ -12,12 +12,13 @@ import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import NumPair from '../../components/kit/NumPair.astro';
+import HeroTrust from '../../components/kit/HeroTrust.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Split from '../../components/kit/Split.astro';
 import QueryRows from '../../components/practice-b/QueryRows.astro';
 import { proof, shot } from '../../data/proof';
-import { site } from '../../data/site';
+import { askTitle, site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -73,10 +74,11 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
         ]}
       />
       <div slot="b" class="bk-act">
-        <LeadForm compact title="Where does your firm show up for these?" titleTag="h3" sub="Send your website. Fahim answers within an hour in business hours." idPrefix="bk-top" label="bankruptcy-top" format="Ranking review by email" practiceArea="Bankruptcy">
+        <LeadForm compact title={askTitle('your bankruptcy practice')} titleTag="h3" sub={site.ask.sub} submitLabel={site.ask.submit} idPrefix="bk-top" label="bankruptcy-top" format="Plan and price by email" practiceArea="Bankruptcy">
           <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
         </LeadForm>
-        <p class="bk-act__talk">Prefer a call? <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
+        <p class="bk-act__talk">{site.ask.talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
+        <HeroTrust />
       </div>
     </Split>
   </Band>
@@ -88,7 +90,7 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
     </PriceBand>
   </DepthZone>
 
-  <FinalCta heading="Check your bankruptcy pages against your district’s top results." formLabel="bankruptcy-final" idPrefix="bk-final" practiceArea="Bankruptcy">
+  <FinalCta heading="Put a number on more Chapter 7 and Chapter 13 calls, district by district." writeHref="#bk-top-form">
     <p>In 30 minutes, Fahim runs your Chapter 7 and Chapter 13 searches for each district with you and shows who takes those calls today.</p>
   </FinalCta>
 </InnerPage>

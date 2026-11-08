@@ -3,8 +3,9 @@
 // both at the full content width, on white with a hairline frame. Built for medical malpractice, whose AI
 // answer capture is wide and only reads well when it gets the whole width. PageHero has no shape for it.
 // Phones: H1, line, form, then the visual.
-import { site } from '../../data/site';
+import { askTitle, site } from '../../data/site';
 import LeadForm from '../LeadForm.astro';
+import HeroTrust from '../kit/HeroTrust.astro';
 import type { HeroForm } from '../kit/PageHero.astro';
 interface Props {
   h1: string;
@@ -13,7 +14,7 @@ interface Props {
   talk?: string;
   headingId?: string;
 }
-const { h1, lead, form, talk = 'Rather talk it through?', headingId = 'hero-h' } = Astro.props;
+const { h1, lead, form, talk = site.ask.talk, headingId = 'hero-h' } = Astro.props;
 ---
 <section class="pa-aside" aria-labelledby={headingId}>
   <div class="lse-wrap">
@@ -23,10 +24,11 @@ const { h1, lead, form, talk = 'Rather talk it through?', headingId = 'hero-h' }
         {lead && <p class="lse-lead pa-aside__lead">{lead}</p>}
       </div>
       <div class="pa-aside__act">
-        <LeadForm compact title={form.title} titleTag={form.titleTag ?? 'h2'} sub={form.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Ranking review by email'} submitLabel={form.submitLabel} practiceArea={form.practiceArea ?? null}>
+        <LeadForm compact title={form.title ?? askTitle(form.who)} titleTag={form.titleTag ?? 'h2'} sub={form.sub ?? site.ask.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Plan and price by email'} submitLabel={form.submitLabel ?? site.ask.submit} done={form.done ?? site.ask.done} practiceArea={form.practiceArea ?? null}>
           <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
         </LeadForm>
         {talk && <p class="pa-aside__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
+        <HeroTrust />
       </div>
     </div>
     <div class="pa-aside__visual"><slot name="visual" /></div>

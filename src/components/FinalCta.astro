@@ -1,60 +1,71 @@
 ---
-// The closing section of a page: H2, a lead, the booking button, then below it (after a hairline, never
-// beside the button) "Prefer to put it in writing?" with the lead form.
-// It carries id="book", so a /#book link without JavaScript lands here. Use it once per page, last.
-import { site } from '../data/site';
-import Button from './Button.astro';
-import LeadForm from './LeadForm.astro';
+// The closing section of a page, call-first (judge ruling 4): by the end of the page trust is highest, so the close
+// is the real calendar. H2 and the lead on the left with Fahim and Josh, one line each, and one text link back to
+// the form ("Prefer to write?"); the calendar card on the right (5/7 at 1000px and up). Never a button beside it.
+// It carries id="book", so a /#book link without JavaScript lands on the calendar. Use it once per page, last.
+import { fahim, josh } from '../data/people';
+import CalendlyInline from './CalendlyInline.astro';
+import Face from './kit/Face.astro';
 interface Props {
+  /** Asks about calls and cost, names the page's practice or service, and is unique on the site (ruling 3). */
   heading: string;
-  /** source_form for the lead email. */
-  formLabel: string;
-  idPrefix?: string;
-  practiceArea?: string | null;
-  /** The line under the button. Defaults to site.cta.sub; a page passes its deck's own words. */
-  sub?: string;
+  /** Where "Send your website" goes: the page's hero form (like "#pi-hero-form"), or the contact page. */
+  writeHref?: string;
 }
-const { heading, formLabel, idPrefix = 'f', practiceArea = null, sub = site.cta.sub } = Astro.props;
+const { heading, writeHref = '/contact-us/' } = Astro.props;
+const people = [
+  { person: fahim, line: 'Leads every account and is on every call.' },
+  { person: josh, line: 'Texas attorney since 2008. Joins calls with firms.' },
+];
 ---
 <section class="lse-section lse-final" id="book" aria-labelledby="final-h">
-  <div class="lse-wrap">
-    <h2 id="final-h">{heading}</h2>
-    <div class="lse-final__lead lse-lead"><slot /></div>
-    <div class="lse-final__cta">
-      <Button />
-      <p class="lse-small">{sub}</p>
+  <div class="lse-wrap lse-final__grid">
+    <div class="lse-final__text">
+      <h2 id="final-h">{heading}</h2>
+      <div class="lse-final__lead lse-lead"><slot /></div>
+      <ul class="lse-final__people">
+        {people.map(({ person, line }) => (
+          <li>
+            <Face person={person} size="xs" />
+            <p><strong>{person.name}</strong> {line}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="lse-final__write">Prefer to write? <a href={writeHref} data-final-write>Send your website</a></p>
     </div>
-    <div class="lse-final__write">
-      <LeadForm
-        title="Prefer to put it in writing?"
-        sub="Send a short note. Fahim answers within an hour in business hours."
-        idPrefix={idPrefix}
-        label={formLabel}
-        practiceArea={practiceArea}
-      >
-        <Fragment slot="after">
-          <p>Or email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.</p>
-          <p class="lse-small">Sending this form creates no attorney-client relationship.</p>
-        </Fragment>
-      </LeadForm>
+    <div class="lse-final__cal">
+      <CalendlyInline lazy head={false} formHref={writeHref} extraClass="lse-final__card" />
     </div>
   </div>
 </section>
 
+<script>
+  // "Send your website" to the hero form on the same page: once the page has scrolled there, the website field
+  // takes the focus, so the visitor can type at once.
+  document.querySelectorAll<HTMLAnchorElement>('a[data-final-write]').forEach((link) => {
+    const hash = link.getAttribute('href') ?? '';
+    if (!hash.startsWith('#')) return;
+    link.addEventListener('click', () => {
+      const field = document.getElementById(hash.slice(1))?.querySelector<HTMLInputElement>('input[name="website"]');
+      if (field) window.setTimeout(() => field.focus({ preventScroll: true }), 0);
+    });
+  });
+</script>
+
 <style is:global>
-  .lse-final h2 { font-size: clamp(40px, 4vw + 16px, 80px); letter-spacing: -.04em; line-height: .98; max-width: 14ch; }
-  .lse-final__lead { margin-top: var(--s3); }
-  .lse-final__cta { margin-top: var(--s5); display: grid; gap: 14px; justify-items: start; }
-  .lse-final__write { margin-top: var(--s7); padding-top: var(--s5); border-top: 2px solid var(--ink); }
-  .lse-final .lse-form { max-width: none; }
-  @media (min-width: 960px) {
-    .lse-final .lse-form { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 64px; align-items: start; }
-    .lse-final .lse-form > :not(form):not(.lse-form__done):not(.lse-form__alert) { grid-column: 1; }
-    .lse-final .lse-form__title { grid-row: 1; }
-    .lse-final .lse-form__sub { grid-row: 2; align-self: start; }
-    .lse-final .lse-form__alert { grid-column: 2; grid-row: 1; }
-    .lse-final .lse-form > form { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
-    .lse-final .lse-form__done { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
-    .lse-final .lse-form__alert.is-on ~ form { grid-row: 2 / span 3; }
+  .lse-final__grid { display: grid; gap: var(--s5); }
+  .lse-final h2 { font-size: var(--fs-h2); letter-spacing: -.035em; line-height: 1.02; max-width: 17ch; }
+  .lse-final__lead { margin-top: var(--s3); max-width: 30em; }
+  .lse-final__people { list-style: none; margin-top: var(--s4); display: grid; gap: 14px; max-width: 30em; }
+  .lse-final__people li { display: flex; align-items: center; gap: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .lse-final__people .lse-face--xs { width: 72px; }
+  .lse-final__people p { font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+  .lse-final__people strong { display: block; color: var(--ink); font-size: 17px; }
+  .lse-final__write { margin-top: var(--s4); font-size: 17px; color: var(--ink-2); }
+  .lse-final__write a { font-weight: 700; }
+  .lse-final__card { background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--r-frame); overflow: hidden; }
+  [id$='-form'] { scroll-margin-top: 120px; }
+  @media (min-width: 1000px) {
+    .lse-final__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 72px); align-items: start; }
   }
 </style>

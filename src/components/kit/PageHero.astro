@@ -1,6 +1,6 @@
 ---
-// The inner-page hero: H1, one line, a way to act (the compact LeadForm with "Rather talk it through?" under
-// it), and the visual. No price in a hero (except /seo-pricing/ and /lawyer-web-design-development/).
+// The inner-page hero: H1, one line, a way to act (the compact LeadForm, the "Prefer a call?" line and the trust
+// row under it: kit/HeroTrust.astro), and the visual. No price in a hero (except /seo-pricing/ and /lawyer-web-design-development/).
 // Layouts (pick the one the deck describes; pages in a group must not all use the same one):
 //   'split'  H1, line and form on the left (5), the visual on the right (7). `flip` puts the visual left.
 //   'top'    H1 and line across the top; under them the visual (7) and the form (5). `flip` swaps the two.
@@ -12,12 +12,19 @@
 // Phones: one column, H1, line, form, then the visual (`visualFirst` puts the visual before the form).
 // Slots: "visual" (the frames, a figure, a PriceCard, a Face), "text" (extra under the line, like a
 // credentials line or a LinkedIn link), "after" (under everything: a TrustLine).
-import { site } from '../../data/site';
+import { askTitle, site } from '../../data/site';
 import LeadForm from '../LeadForm.astro';
+import HeroTrust from './HeroTrust.astro';
 
 export interface HeroForm {
-  title: string;
+  /** Defaults to askTitle(who): "What could Google bring your firm, and what would it cost?" */
+  title?: string;
+  /** The practice in plain words for the default heading, like "your injury firm". */
+  who?: string;
+  /** Defaults to site.ask.sub. */
   sub?: string;
+  /** The thank-you line. Defaults to site.ask.done. */
+  done?: string;
   /** Unique on the page, like "pi-hero". */
   idPrefix: string;
   /** source_form in the lead email, like "pi-hero". */
@@ -35,8 +42,10 @@ interface Props {
   flip?: boolean;
   panel?: boolean;
   form?: HeroForm;
-  /** The words before the booking link under the form. false hides the line. */
+  /** The words before the booking link under the form. false hides the line. One string sitewide: site.ask.talk. */
   talk?: string | false;
+  /** The trust row under the form (face, reply line, logos). On whenever there is a form. */
+  trust?: boolean;
   /** Under the form in 'stack': the form as one row (website, name, email, button). On by default there. */
   formRow?: boolean;
   visualFirst?: boolean;
@@ -52,7 +61,8 @@ const {
   flip = false,
   panel = true,
   form,
-  talk = 'Rather talk it through?',
+  talk = site.ask.talk,
+  trust = true,
   formRow = layout === 'stack',
   visualFirst = false,
   headingTag: H = 'h1',
@@ -60,6 +70,13 @@ const {
   class: className,
 } = Astro.props;
 const hasVisual = Astro.slots.has('visual');
+const ask = form && {
+  title: form.title ?? askTitle(form.who),
+  sub: form.sub ?? site.ask.sub,
+  submitLabel: form.submitLabel ?? site.ask.submit,
+  done: form.done ?? site.ask.done,
+  format: form.format ?? 'Plan and price by email',
+};
 // Which side the visual sits on at 1000px and up, so the fog panel runs off the right edge.
 const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
 ---
@@ -91,23 +108,25 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
           <H id={headingId} class="lse-hero__h">{h1}</H>
           {lead && <p class="lse-lead lse-hero__lead">{lead}</p>}
           <slot name="text" />
-          {form && (
+          {form && ask && (
             <div class="lse-hero__act">
-              <LeadForm compact title={form.title} titleTag={form.titleTag ?? 'h2'} sub={form.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Ranking review by email'} submitLabel={form.submitLabel} practiceArea={form.practiceArea ?? null}>
+              <LeadForm compact title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
                 <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
               </LeadForm>
               {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
+              {trust && <HeroTrust />}
             </div>
           )}
         </div>
       )}
       {hasVisual && <div class="lse-hero__visual"><slot name="visual" /></div>}
-      {layout !== 'split' && form && (
+      {layout !== 'split' && form && ask && (
         <div class:list={['lse-hero__act', { 'lse-hero__act--row': formRow }]}>
-          <LeadForm compact title={form.title} titleTag={form.titleTag ?? 'h2'} sub={form.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Ranking review by email'} submitLabel={form.submitLabel} practiceArea={form.practiceArea ?? null}>
+          <LeadForm compact title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
             <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
           </LeadForm>
           {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
+              {trust && <HeroTrust />}
         </div>
       )}
     </div>

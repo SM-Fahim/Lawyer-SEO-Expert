@@ -10,7 +10,6 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import BookingBand from '../../components/kit/BookingBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
 import '../../components/mixed/mixed.css';
@@ -47,6 +46,7 @@ const searches = [
     h1="Get found by founders: SEO for intellectual property lawyers."
     lead="Founders, inventors and in-house counsel look up patent, trademark and copyright questions long before they contact a firm, and rarely by city. We put your pages at the top of those searches."
     class="ip-hero"
+    form={{ who: 'your IP firm', idPrefix: 'ip-hero', label: 'ip-hero', practiceArea: 'Intellectual property' }}
   >
     <figure slot="visual" class="ip-hero__fig">
       <div class="ip-hero__wide"><Shot tag="#3" tagSide="right" priority images={[shot(proof.nolaTankerRank, { marks: ['age'] })]} /></div>
@@ -57,15 +57,6 @@ const searches = [
       </figcaption>
     </figure>
   </PageHero>
-
-  <BookingBand
-    heading="Put 30 minutes with Fahim in your calendar."
-    headingId="ip-book-h"
-    layout="split"
-    lead="Free. Fahim runs the searches a founder would type for your strongest service, from anywhere in the US, and shows you who they find."
-  >
-    <p slot="after">Prefer to write? <a href="#ip-final-name">The short form at the foot of this page</a> goes straight to Fahim.</p>
-  </BookingBand>
 
   <DepthZone depth={depth} authorLinkLabel="Fahim’s full profile">
     <div slot="searches" class="ip-searches">
@@ -85,7 +76,7 @@ const searches = [
     </Band>
   </DepthZone>
 
-  <FinalCta heading="Search your IP firm the way a founder would, with Fahim." formLabel="ip-final" idPrefix="ip-final" practiceArea="Intellectual property">
+  <FinalCta heading="Talk through what more patent and trademark inquiries would cost." writeHref="#ip-hero-form">
     <p>In 30 minutes, Fahim runs those searches with you and shows what to write first.</p>
   </FinalCta>
 </InnerPage>

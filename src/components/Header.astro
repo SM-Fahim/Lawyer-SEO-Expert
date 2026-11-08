@@ -1,24 +1,44 @@
 ---
-// Site header: lockup, five links, one button. Under 1080px the links fold into a menu panel.
-// The menu is a disclosure button (aria-expanded), and works with Escape and outside clicks.
+// Site header: lockup, five links, one button. Under 1080px the links fold into a menu panel that fills the
+// screen below the bar (the page can't scroll under it), and the toggle reads "Close" while it is open.
+// "Practice areas" is a disclosure button that opens a plain list of the practice pages (hairlines, text only:
+// no mega-menu, no icons). Without JavaScript it is a link to the homepage's practice list.
+// Both are disclosure buttons (aria-expanded), and work with Escape and outside clicks.
+import { practicePages } from '../data/pages';
 import { site } from '../data/site';
 import Button from './Button.astro';
 import Logo from './Logo.astro';
 const here = Astro.url.pathname;
+const PRACTICE = '/#practice-areas';
+const inPractice = practicePages.some((p) => p.href === here);
 ---
-<header class="lse-top">
+<header class="lse-top" data-top>
   <div class="lse-wrap lse-top__bar">
     <Logo />
     <nav class="lse-top__nav" id="lse-nav" aria-label="Main" data-menu-panel>
-      <ul>
-        {site.nav.map((link) => (
-          <li><a href={link.href} aria-current={here === link.href ? 'page' : undefined}>{link.label}</a></li>
-        ))}
+      <ul class="lse-top__links">
+        {site.nav.map((link) =>
+          link.href === PRACTICE ? (
+            <li class="lse-top__pa">
+              <a class="lse-top__pa-link" href={link.href}>{link.label}</a>
+              <button class="lse-top__pa-btn" type="button" aria-expanded="false" aria-controls="lse-pa" data-pa-toggle data-current={inPractice ? '' : undefined}>{link.label}<span class="lse-top__caret" aria-hidden="true"></span></button>
+              <div class="lse-top__pa-panel" id="lse-pa" data-pa-panel>
+                <ul>
+                  {practicePages.map((p) => (
+                    <li><a href={p.href} aria-current={here === p.href ? 'page' : undefined}>{p.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ) : (
+            <li><a href={link.href} aria-current={here === link.href ? 'page' : undefined}>{link.label}</a></li>
+          ),
+        )}
       </ul>
       <Button size="sm" block={false} class="lse-top__cta" />
     </nav>
     <button class="lse-top__menu" type="button" aria-expanded="false" aria-controls="lse-nav" data-menu-toggle>
-      <span class="lse-top__burger" aria-hidden="true"></span>Menu
+      <span class="lse-top__burger" aria-hidden="true"></span><span data-menu-word>Menu</span>
     </button>
   </div>
 </header>
@@ -27,12 +47,36 @@ const here = Astro.url.pathname;
   .lse-top { position: relative; z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
   .lse-top__bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 80px; }
   .lse-top__nav { display: flex; align-items: center; gap: clamp(20px, 2.4vw, 40px); }
-  .lse-top__nav ul { list-style: none; display: flex; gap: clamp(18px, 2vw, 32px); }
-  .lse-top__nav a:not(.lse-btn) { text-decoration: none; font-size: 16px; font-weight: 500; color: var(--ink); padding: 6px 0; white-space: nowrap; }
+  .lse-top__links { list-style: none; display: flex; gap: clamp(18px, 2vw, 32px); }
+  .lse-top__nav a:not(.lse-btn), .lse-top__pa-btn { text-decoration: none; font-size: 16px; font-weight: 500; color: var(--ink); padding: 6px 0; white-space: nowrap; }
   .lse-top__nav .lse-btn { white-space: nowrap; }
-  .lse-top__nav a:not(.lse-btn):hover, .lse-top__nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--marker); text-underline-offset: .35em; }
+  .lse-top__nav a:not(.lse-btn):hover, .lse-top__nav a[aria-current="page"], .lse-top__pa-btn:hover, .lse-top__pa-btn[data-current] {
+    text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--marker); text-underline-offset: .35em;
+  }
+
+  /* Practice areas: a link without JavaScript, a disclosure button with it. */
+  .lse-top__pa { position: relative; }
+  .lse-top__pa-btn { display: none; align-items: center; gap: 8px; font-family: var(--sans); background: none; border: 0; cursor: pointer; }
+  .js .lse-top__pa-link { display: none; }
+  .js .lse-top__pa-btn { display: inline-flex; }
+  .lse-top__caret { width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .15s; }
+  .lse-top__pa-btn[aria-expanded="true"] .lse-top__caret { transform: translateY(2px) rotate(-135deg); }
+  .lse-top__pa-panel { display: none; }
+  .lse-top__pa-panel.is-open { display: block; }
+  .lse-top__pa-panel ul { list-style: none; }
+  .lse-top__pa-panel li { border-bottom: 1px solid var(--line); }
+  .lse-top__nav .lse-top__pa-panel a { display: block; padding: 11px 0; font-size: 16px; font-weight: 600; white-space: normal; }
+  @media (min-width: 1081px) {
+    .lse-top__pa-panel {
+      position: absolute; top: calc(100% + 18px); left: -24px; z-index: 30; width: 520px;
+      padding: 12px 24px 18px; background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--r-frame);
+      box-shadow: var(--shadow-lift);
+    }
+    .lse-top__pa-panel ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
+  }
+
   .lse-top__menu {
-    display: none; align-items: center; gap: 10px;
+    display: none; align-items: center; gap: 10px; min-width: 96px; justify-content: center;
     font: 700 16px / 1 var(--sans); color: var(--ink); background: none;
     border: 2px solid var(--ink); border-radius: var(--r-btn); padding: 10px 14px; cursor: pointer;
   }
@@ -40,40 +84,72 @@ const here = Astro.url.pathname;
   .lse-top__burger::before, .lse-top__burger::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: var(--ink); }
   .lse-top__burger::before { top: -5px; }
   .lse-top__burger::after { top: 5px; }
+  .lse-top__menu[aria-expanded="true"] .lse-top__burger { background: transparent; }
+  .lse-top__menu[aria-expanded="true"] .lse-top__burger::before { top: 0; transform: rotate(45deg); }
+  .lse-top__menu[aria-expanded="true"] .lse-top__burger::after { top: 0; transform: rotate(-45deg); }
+
+  /* While the phone menu is open the page under it can't scroll. */
+  html.lse-menu-open, html.lse-menu-open body { overflow: hidden; }
 
   @media (max-width: 1080px) {
     .lse-top__bar { height: 66px; }
     .js .lse-top__menu { display: inline-flex; }
+    /* The panel fills the screen from the bar down (its top is set from the bar's position when it opens). */
     .js .lse-top__nav {
-      display: none; position: absolute; left: 0; right: 0; top: 100%;
+      display: none; position: fixed; left: 0; right: 0; top: var(--lse-menu-top, 66px); bottom: 0; z-index: 25;
       flex-direction: column; align-items: stretch; gap: var(--s3);
-      padding: var(--s1) var(--gut) var(--s4); background: var(--paper);
-      border-bottom: 2px solid var(--ink);
+      padding: var(--s1) var(--gut) var(--s5); background: var(--paper);
+      overflow-y: auto; overscroll-behavior: contain;
     }
     .js .lse-top__nav.is-open { display: flex; }
-    .js .lse-top__nav ul { flex-direction: column; gap: 0; }
-    .js .lse-top__nav li a { display: block; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 22px; font-weight: 700; letter-spacing: -.02em; }
+    .js .lse-top__links { flex-direction: column; gap: 0; }
+    .js .lse-top__links > li > a, .js .lse-top__pa-btn {
+      display: flex; width: 100%; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--line);
+      font-size: 22px; font-weight: 700; letter-spacing: -.02em;
+    }
+    .js .lse-top__pa-panel { padding: 4px 0 8px 16px; border-bottom: 1px solid var(--line); }
+    .js .lse-top__pa-panel li:last-child { border-bottom: 0; }
+    .js .lse-top__nav .lse-top__pa-panel a { font-size: 18px; padding: 12px 0; }
     .js .lse-top__nav .lse-btn { width: 100%; padding: 17px; font-size: 17px; }
     /* Without JavaScript the links wrap under the logo. */
     html:not(.js) .lse-top__bar { height: auto; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
     html:not(.js) .lse-top__nav { flex-wrap: wrap; }
-    html:not(.js) .lse-top__nav ul { flex-wrap: wrap; }
+    html:not(.js) .lse-top__links { flex-wrap: wrap; }
   }
 </style>
 
 <script>
+  const bar = document.querySelector<HTMLElement>('[data-top]');
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const word = document.querySelector<HTMLElement>('[data-menu-word]');
   const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+  const paToggle = document.querySelector<HTMLButtonElement>('[data-pa-toggle]');
+  const paPanel = document.querySelector<HTMLElement>('[data-pa-panel]');
+
+  const setPractice = (open: boolean) => {
+    if (!paToggle || !paPanel) return;
+    paToggle.setAttribute('aria-expanded', String(open));
+    paPanel.classList.toggle('is-open', open);
+  };
+
   if (toggle && panel) {
     const set = (open: boolean) => {
+      if (open && bar) document.documentElement.style.setProperty('--lse-menu-top', `${Math.max(0, bar.getBoundingClientRect().bottom)}px`);
       toggle.setAttribute('aria-expanded', String(open));
       panel.classList.toggle('is-open', open);
+      document.documentElement.classList.toggle('lse-menu-open', open);
+      if (word) word.textContent = open ? 'Close' : 'Menu';
+      if (!open) setPractice(false);
     };
     toggle.addEventListener('click', () => set(toggle.getAttribute('aria-expanded') !== 'true'));
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+      if (e.key !== 'Escape') return;
+      if (panel.classList.contains('is-open')) {
         set(false);
         toggle.focus();
+      } else if (paPanel?.classList.contains('is-open')) {
+        setPractice(false);
+        paToggle?.focus();
       }
     });
     document.addEventListener('click', (e) => {
@@ -86,6 +162,14 @@ const here = Astro.url.pathname;
     });
     matchMedia('(min-width: 1081px)').addEventListener('change', (e) => {
       if (e.matches) set(false);
+    });
+  }
+
+  if (paToggle && paPanel) {
+    paToggle.addEventListener('click', () => setPractice(paToggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('click', (e) => {
+      const t = e.target as Node;
+      if (paPanel.classList.contains('is-open') && !paPanel.contains(t) && !paToggle.contains(t)) setPractice(false);
     });
   }
 </script>

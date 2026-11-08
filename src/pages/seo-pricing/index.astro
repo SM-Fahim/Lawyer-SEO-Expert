@@ -58,8 +58,7 @@ const traps = [
     class="cost-hero"
     h1="Law firm SEO pricing: one price, from $2,000 a month."
     lead="One price pays for all the work it takes to rank your firm. No setup fee, no packages to decode, and you pay month to month."
-    form={{ title: 'Get your monthly number.', sub: 'Send your website. Fahim answers within an hour in business hours.', idPrefix: 'price-hero', label: 'pricing-hero' }}
-    talk="Prefer a call?"
+    form={{ idPrefix: 'price-hero', label: 'pricing-hero' }}
   >
     <PriceCard
       slot="visual"
@@ -100,10 +99,11 @@ const traps = [
     id="book"
     heading="Ask Fahim for your law firm SEO price, in writing."
     headingId="book-h"
+    formHref="#price-hero-form"
     lead="Choose a time below. In 30 minutes, Fahim checks your market live and tells you what the work would involve."
   >
     <Fragment slot="after">
-      <p>Prefer to write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or use <a href="#price-hero-site">the form at the top of this page</a>. Fahim answers within an hour in business hours.</p>
+      <p>Prefer to write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or use <a href="#price-hero-form">the form at the top of this page</a>. Fahim answers within an hour in business hours.</p>
       <p>See <a class="lse-link" href="/law-firm-seo-services/">what the monthly work includes</a>.</p>
     </Fragment>
   </BookingBand>

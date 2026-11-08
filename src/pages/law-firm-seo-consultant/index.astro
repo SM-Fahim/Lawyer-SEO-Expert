@@ -7,7 +7,6 @@
 import FinalCta from '../../components/FinalCta.astro';
 import Shot, { type ShotImage } from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
-import BookingBand from '../../components/kit/BookingBand.astro';
 import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
@@ -86,6 +85,7 @@ const patterns = [
     class="con-hero"
     h1="A law firm SEO consultant who gets you ranked, not just advised."
     lead="Find out what holds your firm back on Google, get the fixes in order, and have the same person lead the work that follows."
+    form={{ idPrefix: 'con-hero', label: 'consultant-hero' }}
   >
     <figure slot="visual" class="con-hero__fig">
       <NumPair after={23} afterLabel="calls in three months" size="xl" />
@@ -98,16 +98,6 @@ const patterns = [
       <figcaption>A PI firm in El Paso: 23 calls in three months, after 9 in the six before. Google’s own count, May to July 2026.</figcaption>
     </figure>
   </PageHero>
-
-  <BookingBand
-    layout="split"
-    heading="Get a second opinion on your SEO."
-    headingId="book-h"
-    lead="30 minutes, free. Fahim pulls up the searches that matter to your firm, shows who outranks you and names the first fixes. The advice is yours to keep, whether you hire us or not."
-    class="con-book"
-  >
-    <p>Prefer to write? <a href="#book">Send your website to Fahim.</a> Fahim answers within an hour in business hours.</p>
-  </BookingBand>
 
   <DepthZone depth={depth} faqTone="fog" authorLinkLabel="Fahim’s full background">
     <figure slot="serp" class="con-serp">
@@ -124,8 +114,8 @@ const patterns = [
     <div slot="patterns" class="bsv-rows"><Rows variant="inline" items={patterns} /></div>
   </DepthZone>
 
-  <FinalCta heading="Get a law firm SEO consultant’s read on your rankings." formLabel="consultant-final" idPrefix="consult-final" sub="No charge. Half an hour, with your rankings on screen.">
-    <p>In 30 minutes you see where you rank, who sits above you and what to fix first.</p>
+  <FinalCta heading="Ask a law firm SEO consultant how many more calls you could get, and for how much." writeHref="#con-hero-form">
+    <p>In 30 minutes you see who takes the calls you want today, what to fix first and what the work would cost.</p>
   </FinalCta>
 </InnerPage>
 

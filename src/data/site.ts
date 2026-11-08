@@ -15,11 +15,23 @@ export const site = {
   // 1200x630, made from the brand (docs/design-system.md says how to remake it).
   ogImage: '/img/og-default.png',
   logo: '/favicon.svg',
-  // The one CTA, everywhere (research/FACTS.md section 1). It opens the booking dialog.
+  // The one CTA, everywhere (research/FACTS.md section 1). It opens the booking dialog. Every button, the header,
+  // the dialog title and the talk line read the label from here.
+  // 2026-11-08: changed from 'Book a ranking review' after the owner's CTA feedback; owner confirmation pending.
+  // To revert, put the old label back on the next line.
   cta: {
-    label: 'Book a ranking review',
-    sub: 'Free, 30 minutes. Fahim checks your real rankings with you.',
+    label: 'Get your plan and price',
+    sub: 'Free, 30 minutes with Fahim. You leave knowing which searches can bring you clients, what it takes and what it costs.',
     href: '/#book',
+  },
+  // The hero form's words, everywhere a hero form is set (judge ruling 1, 2026-11-08). A practice page swaps
+  // "your firm" for its practice in plain words through askTitle().
+  ask: {
+    sub: 'Send your website. Fahim replies within an hour in business hours, then sends the searches worth winning in your market and your monthly price, in writing.',
+    submit: 'Get my plan and price',
+    talk: 'Prefer a call?',
+    reply: 'Fahim answers within an hour in business hours.',
+    done: 'Your plan and price come by email within an hour in business hours.',
   },
   contact: {
     email: 'hello@lawyerseoexpert.com',
@@ -67,6 +79,9 @@ export const site = {
     instagram: 'https://www.instagram.com/lawyerseoexpert',
   },
 };
+
+/** The hero form's heading. `who` is "your firm", or the practice in plain words, like "your injury firm". */
+export const askTitle = (who = 'your firm'): string => `What could Google bring ${who}, and what would it cost?`;
 
 /** S. M. Fahim, from research/FACTS.md section 3. The homepage adds this node; about pages can too. */
 export const fahimSchema = {

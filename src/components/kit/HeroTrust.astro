@@ -1,0 +1,29 @@
+---
+// The trust row attached under a hero form (judge ruling 4): Fahim's face, the reply line and the four client
+// logos at the small size. Always the same block, so it reads as one thing with the form above it.
+import { fahim } from '../../data/people';
+import { site } from '../../data/site';
+import Face from './Face.astro';
+import TrustLine from './TrustLine.astro';
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+<div class:list={['lse-htrust', className]}>
+  <Face person={fahim} size="xs" priority class="lse-htrust__face" />
+  <div class="lse-htrust__words">
+    <p class="lse-htrust__reply">{site.ask.reply}</p>
+    <TrustLine size="sm" label="Our clients include" priority />
+  </div>
+</div>
+
+<style is:global>
+  .lse-htrust { display: flex; align-items: center; gap: 18px; padding-top: 16px; border-top: 1px solid var(--line); max-width: 560px; }
+  .lse-htrust__words { min-width: 0; display: grid; gap: 10px; }
+  .lse-htrust__reply { font-weight: 700; font-size: 16px; line-height: 1.35; color: var(--ink); }
+  @media (max-width: 420px) {
+    .lse-htrust { align-items: flex-start; gap: 14px; }
+    .lse-htrust__face.lse-face--xs { width: 72px; }
+  }
+</style>

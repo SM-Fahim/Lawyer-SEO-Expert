@@ -6,15 +6,18 @@ interface Props {
   label?: string;
   /** Eager-load the logos (in a hero). */
   priority?: boolean;
+  /** 'sm': the logos at about 60% height, for the trust row under a hero form (kit/HeroTrust.astro). */
+  size?: 'md' | 'sm';
   class?: string;
 }
-const { label = 'Law firms we work with', priority = false, class: className } = Astro.props;
+const { label = 'Law firms we work with', priority = false, size = 'md', class: className } = Astro.props;
+const scale = size === 'sm' ? 0.6 : 1;
 ---
-<div class:list={['lse-trust', className]}>
+<div class:list={['lse-trust', `lse-trust--${size}`, className]}>
   <p class="lse-trust__label">{label}</p>
   <ul class="lse-trust__logos">
     {trustLogos.map((l) => (
-      <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${l.h}px;width:auto`} loading={priority ? 'eager' : 'lazy'} decoding="async"></li>
+      <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${Math.round(l.h * scale)}px;width:auto`} loading={priority ? 'eager' : 'lazy'} decoding="async"></li>
     ))}
   </ul>
 </div>
@@ -22,4 +25,6 @@ const { label = 'Law firms we work with', priority = false, class: className } =
 <style is:global>
   .lse-trust__label { font-size: var(--fs-meta); color: var(--muted); }
   .lse-trust__logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 34px; margin-top: 14px; }
+  .lse-trust--sm .lse-trust__label { font-size: 14px; }
+  .lse-trust--sm .lse-trust__logos { gap: 10px 22px; margin-top: 8px; }
 </style>

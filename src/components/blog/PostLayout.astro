@@ -79,12 +79,12 @@ const sourceLabel = (u: string) => {
 
     <div class:list={['lse-wrap', 'lse-post__grid', { 'lse-post__grid--toc': toc.length >= 4 }]}>
       {toc.length >= 4 && (
-        <details class="lse-toc" data-toc>
-          <summary>In this post</summary>
+        <nav class="lse-toc" aria-labelledby="toc-h">
+          <p class="lse-toc__h" id="toc-h">In this post</p>
           <ol>
             {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
           </ol>
-        </details>
+        </nav>
       )}
       <div class="lse-post__main">
         <div class:list={['lse-prose', { 'lse-prose--names': isNames }]}>
@@ -104,14 +104,6 @@ const sourceLabel = (u: string) => {
 
   <PostCta line={d.cta} formLabel={`Blog: ${d.slug}`} />
 
-  {toc.length >= 4 && (
-    <script is:inline>
-      (function () {
-        var t = document.querySelector('[data-toc]');
-        if (t && window.matchMedia('(min-width: 1100px)').matches) t.open = true;
-      })();
-    </script>
-  )}
   {hasCalc && <CalculatorScript />}
 </Base>
 
@@ -126,7 +118,7 @@ const sourceLabel = (u: string) => {
 
   /* Contents: a closed list on phones (the post starts sooner), open beside the text on wide screens. */
   .lse-toc { margin-bottom: var(--s5); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); max-width: 68ch; }
-  .lse-toc summary { cursor: pointer; padding: 14px 0; font-weight: 700; color: var(--ink); list-style-position: inside; }
+  .lse-toc__h { padding: 14px 0 8px; font-weight: 700; color: var(--ink); }
   .lse-toc ol { list-style: none; padding: 0 0 16px; display: grid; gap: 2px; counter-reset: toc; }
   .lse-toc li { counter-increment: toc; display: grid; grid-template-columns: 2.1em minmax(0, 1fr); font-size: 16px; line-height: 1.35; }
   .lse-toc li::before { content: counter(toc); color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 6px; }

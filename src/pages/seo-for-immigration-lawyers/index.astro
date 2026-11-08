@@ -12,7 +12,6 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import BookingBand from '../../components/kit/BookingBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -38,6 +37,8 @@ const depth = await getDepth('seo-for-immigration-lawyers');
     h1="SEO for immigration lawyers, found in every language you serve."
     lead="Clients search for green card, citizenship or asylum help in English or in their first language, near your office or far from it. We make your firm the one they find, in your city and beyond it."
     class="im-hero"
+    form={{ who: 'your immigration practice', idPrefix: 'im-hero', label: 'immigration-hero', practiceArea: 'Immigration' }}
+    formRow={false}
   >
     <figure slot="visual" class="im-hero__fig">
       <div class="im-hero__wide">
@@ -54,15 +55,6 @@ const depth = await getDepth('seo-for-immigration-lawyers');
     </figure>
   </PageHero>
 
-  <BookingBand
-    heading="Choose a time for your ranking review."
-    headingId="im-book-h"
-    lead="Free, 30 minutes. Fahim runs your main case types on Google with you and shows who comes up."
-    tone="fog"
-  >
-    <p slot="after">Prefer to write? Send your website through <a href="#im-final-name">the short form at the foot of this page</a>.</p>
-  </BookingBand>
-
   <DepthZone depth={depth} authorLinkLabel="Fahim’s profile and record">
     <Band slot="mid" tone="marker" class="im-mid">
       <p class="im-mid__line">Fahim can check this language plan against your own site in a free, <span class="im-nowrap">30-minute</span> ranking review.</p>
@@ -77,7 +69,7 @@ const depth = await getDepth('seo-for-immigration-lawyers');
     </Band>
   </DepthZone>
 
-  <FinalCta heading="Test your immigration case pages against the firms clients find first." formLabel="immigration-final" idPrefix="im-final" practiceArea="Immigration">
+  <FinalCta heading="Which immigration cases could Google send you, and at what price?" writeHref="#im-hero-form">
     <p>Bring your list of case types. Fahim checks them on Google with you in a free 30-minute call and shows which page to build first.</p>
   </FinalCta>
 </InnerPage>

@@ -13,12 +13,13 @@ import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
+import HeroTrust from '../../components/kit/HeroTrust.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchPanel from '../../components/kit/SearchPanel.astro';
 import '../../components/mixed/mixed.css';
-import { site } from '../../data/site';
+import { askTitle, site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
 
@@ -85,9 +86,10 @@ const service = {
     <div slot="text" class="lse-hero__act">
       <LeadForm
         compact
-        title="Send your website. Add your ad account if you have one."
+        title={askTitle()}
         titleTag="h2"
-        sub="Fahim answers within an hour in business hours."
+        sub={site.ask.sub}
+        submitLabel={site.ask.submit}
         idPrefix="ppc-hero"
         label="ppc-hero"
         format="Google Ads review by email"
@@ -103,7 +105,8 @@ const service = {
         </div>
         <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
       </LeadForm>
-      <p class="lse-hero__talk">Prefer a call? <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
+      <p class="lse-hero__talk">{site.ask.talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>
+      <HeroTrust />
     </div>
     <figure slot="visual" class="ppc-fig">
       <div class="ppc-card">
@@ -145,8 +148,8 @@ const service = {
     </PriceBand>
   </DepthZone>
 
-  <FinalCta heading="Find out what your law firm’s ad budget is buying." formLabel="ppc-final" idPrefix="ppc-final">
-    <p>Bring your website, and your Google Ads account if you have one. In 30 minutes, Fahim looks at where your firm ranks and where your ad money goes.</p>
+  <FinalCta heading="See how many calls your law firm’s ad budget could buy, and our fee." writeHref="#ppc-hero-form">
+    <p>Bring your website, and your Google Ads account if you have one. In 30 minutes, Fahim looks at where your ad money goes and which searches turn into calls.</p>
   </FinalCta>
 </InnerPage>
 

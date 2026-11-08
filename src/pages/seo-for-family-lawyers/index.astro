@@ -11,7 +11,6 @@ import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
-import BookingBand from '../../components/kit/BookingBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import Rows from '../../components/kit/Rows.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
@@ -48,19 +47,13 @@ const mistakes = [
     class="fam-hero"
     h1="SEO for family lawyers: be the answer they find again and again."
     lead="Divorce and custody clients research for a long time before they call. We write the pages Google ranks and its AI quotes, so your firm is the name they keep meeting."
+    form={{ who: 'your family law firm', idPrefix: 'fam-hero', label: 'fam-hero', practiceArea: 'Family law' }}
   >
     <figure slot="visual" class="fam-fig">
       <Shot tag="Still cited a week later" tagSmall tagSide="right" priority images={[shot(proof.nolaJackknife, { marks: ['aiChip', 'result'] })]} />
       <figcaption class="lse-small">For a PI firm in New Orleans: #1 on Google, and a week later its AI was still citing the page. A family law answer can hold its place the same way while a parent researches.</figcaption>
     </figure>
   </PageHero>
-
-  <BookingBand
-    heading="Talk it through with Fahim first."
-    headingId="book-h"
-    class="fam-book"
-    lead="It is free and takes 30 minutes. Fahim runs your city’s divorce and custody searches with you."
-  />
 
   <DepthZone depth={depth} authorLinkLabel="More about S. M. Fahim">
     <div slot="searches" class="fam-searches">
@@ -88,7 +81,7 @@ const mistakes = [
     </Band>
   </DepthZone>
 
-  <FinalCta heading="See which family law firm parents find first in your county." formLabel="fam-final" idPrefix="fam-final" practiceArea="Family law">
+  <FinalCta heading="What would more divorce and custody calls cost your family law firm?" writeHref="#fam-hero-form">
     In 30 minutes, Fahim searches your main divorce and custody questions with you and shows which page to write first.
   </FinalCta>
 </InnerPage>
