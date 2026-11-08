@@ -65,6 +65,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
   None of them is in `research/FACTS.md`. `content/V2-COPY-BRIEF.md` says they are "values awaiting the owner's confirmation". CLAUDE.md rule 10 allows only the approved prices. check-dist passes only because the figures are listed in `PRICES_BY_PAGE`.
 - **Evidence:** `docs/qa-shots/pricing-monthly-number-1440.png`. The figures also appear in the text of `/` and `/law-firm-seo-services/` ("Hired one by one: $4,000+ a month").
 - **Fix:** Get the owner's written OK on each figure and add them to FACTS section 1, or remove the breakdown and keep only "from $2,000 a month".
+- **Status: Not fixed (judge ruling).** The breakdown values await the owner's confirmation.
 
 ### B2. Proof screenshots are unreadable on phones (owner rule: "screenshots small enough to squint at are a failure")
 - **Issue:** At 390 px, 17 captures are shown at 20% to 40% of their natural width. Their text renders at about 3 to 6 CSS px. Only the tags and marks can be read. The worst cases (natural width → rendered width) are listed below.
@@ -107,6 +108,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
   - Both pages also share the same angle: home is "Get Found First, Get More Calls" and services is "Law firm SEO services that turn searches into calls."
 - **Evidence:** `document.title` = "Lawyer SEO Expert | Get Found First, Get More Calls". `h1` = "Get found first for the cases you want." `meta[name=description]` starts "Law firm SEO…". Screenshot: `docs/qa-shots/home-hero-1440.png`.
 - **Fix:** Put "lawyer SEO expert" in the H1 (for example "Lawyer SEO expert for firms that want to be found first.") and open the meta with "Lawyer SEO expert…". Keep "law firm SEO" and "services" phrasing for `/law-firm-seo-services/`. The consultant page is clean: no "expert" in its H1 or title, and it links back with the anchor "lawyer SEO expert".
+- **Status: Fixed in part (judge ruling).** The H1 and hero copy stay as the owner approved them, and the hero's first line already names "Lawyer SEO Expert". The title already led with "Lawyer SEO Expert" (51 characters) and is unchanged. The meta now opens "Lawyer SEO expert for law firms: …" (140 characters) and no longer leads with "Law firm SEO".
 
 ### M2. Key pages get no internal links from body content
 - **Pages:** `/`, `/law-firm-seo-consultant/`, `/contact-us/`
@@ -118,12 +120,14 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
 - **Fix:**
   - Add a body link from home to `/law-firm-seo-consultant/` (anchor "law firm SEO consultant"), plus links to `/law-firm-seo-services/` from the "One monthly price covers everything" section and to `/seo-pricing/` from the price band.
   - Link `/contact-us/` from the about pages or the FinalCta "Prefer to put it in writing?" line.
+- **Status: Fixed for the homepage.** Three short in-body text links, no new buttons: "law firm SEO services" in the "One monthly price" lead, "law firm SEO pricing" under the price band (PriceBand's `link` slot), and "Want a second opinion first? See law firm SEO consulting." in the "You work with Fahim" section. check-unique passes with no new warning on them. Not done: a body link to `/contact-us/` from the about pages (new copy on other pages; not in the judge's list).
 
 ### M3. Layout shift on the bankruptcy hero is "poor" (CLS 0.107 to 0.122 at 1440)
 - **Page:** `/seo-for-bankruptcy-lawyers/`
 - **Issue:** The big "43" counts up (`data-count`). While it does, `.bk-hero__num` changes width from 263 to 147 px and back, which resizes `.bk-hero__fig` and `.lse-shot__frame` next to it. Every other page measured under 0.002.
 - **Evidence:** Three runs measured 0.1217, 0.1217 and 0.1070. Sources: `DIV.bk-hero__num 263x195->147x195`, `DIV.lse-shot__frame 933x338->1049x373`. Screenshot: `docs/qa-shots/bankruptcy-hero-1440.png`.
 - **Fix:** Give the number a fixed width (`font-variant-numeric: tabular-nums; min-width: 2ch`), or a fixed grid column for `.bk-hero__num`, or skip the count-up above the fold.
+- **Status: Fixed.** `scripts/marks.ts` fixes each count-up's final width before it starts (the digits were already tabular, but "40" still set 7px wider than "43", so a min-width alone was not enough) and releases it at the end. The width stayed at 274px through the whole count, and CLS measured 0.0000 at 1440 on bankruptcy, home, about, Fahim, PI and employment, the pages that use a count-up.
 
 ### M4. Tables are cut off on phones and can't be scrolled with the keyboard
 - **Pages:** `/lawyer-domain-names/`, `/privacy-policy/`
@@ -134,23 +138,27 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
   axe reports `scrollable-region-focusable` (serious) on both, because a keyboard user can't reach the hidden columns.
 - **Evidence:** domain-names table `scrollWidth` 422 vs `clientWidth` 358, and the privacy table 704 vs 358. Screenshots: `docs/qa-shots/domain-names-table-390.png`, `docs/qa-shots/privacy-cookie-table-390.png`.
 - **Fix:** Stack each row as a block under 640 px (label: value), or give the scroll wrapper `tabindex="0"`, `role="region"`, an `aria-label` and a visible edge fade or scroll hint.
+- **Status: Fixed.** Under 640px, every Markdown table in a post (domain names, law firm names) and the privacy cookie table stack into one block per row: the first cell as the row's name, then "label  value" lines. Nothing is cut off and nothing scrolls. The labels come from the column headings: the posts loader adds them (`stackTables` in `src/content.config.ts`), and the privacy table carries them in its markup. Explicit ARIA table roles keep the table semantics. Desktop is unchanged.
 
 ### M5. The DUI hero's "9 calls" tag sits on a chart whose headline number is 22
 - **Page:** `/seo-for-dui-attorneys/`
 - **Issue:** The tag says "9 calls", but the biggest number in the capture is "22" (calls Jun to Oct). The 9 is the October point, and the caption explains it. At a glance the two numbers clash, and the El Paso result elsewhere is also "9 calls" (in six months), which adds to the confusion. The numbers are true per FACTS section 4; the framing reads wrong.
 - **Evidence:** `docs/qa-shots/dui-hero-1440.png`.
 - **Fix:** Change the tag to "9 in October" or "1 → 9", or mark the 22, or use a crop around the July and October points.
+- **Status: Fixed.** The tag reads "9 calls in October". It moved to the frame's left corner so that on phones it no longer covers the marked October point.
 
 ### M6. A blog post says "signed matters" (owner rule: "qualified leads, never signed cases")
 - **Page:** `/crm-software-for-personal-injury-lawyers/`
 - **Evidence:** "Your CRM shows which of those effects turns into signed matters."
 - **Fix:** Rewrite it, for example "…which of those effects turns into qualified leads and retained clients." The FAQ line "Retained. The fee agreement is signed." describes a CRM stage and is fine.
+- **Status: Fixed.** The line now reads "Your CRM shows which of those three actually bring you qualified leads."
 
 ### M7. Contrast fail on the "before" numbers on Fahim's bio
 - **Page:** `/about/sm-fahim/`
 - **Issue:** The grey "was" numbers (`.fa-pair .lse-num--was`, `#9A9E96` on white) measure 2.72:1. That is below 3:1 even for large text. axe flags it as `color-contrast` (serious) at both widths, although the element is `aria-hidden`.
 - **Evidence:** `docs/qa-shots/fahim-numpair-1440.png` ($900K beside $2.7M).
 - **Fix:** Use `--muted` (`#5D6159`, 6.3:1) or at least `#80847C` (about 3.9:1) for `.lse-num--was`. The same class may be used elsewhere, so check `NumPair`.
+- **Status: Fixed.** A new token, `--was: #7e827a` (3.9:1 on white, 3.5:1 on fog), replaces `#9a9e96` in `NumPair`, so every "before" number changes, the homepage's included. These numbers are 44px and up, so they count as large text (3:1). The look is still a light grey.
 
 ### M8. The practice pages read like one template because they reuse the same proof
 - **Pages:** employment, estate planning, immigration, IP, environmental, family, criminal
@@ -169,6 +177,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
   - the El Paso before/after for criminal
 
   Give each page one practice-specific visual (a typed query in `SearchBox` for that practice) above the borrowed PI result.
+- **Status: Not fixed (judge ruling).** No other proof exists yet, so the practice heroes keep the PI captures.
 
 ---
 
@@ -177,16 +186,20 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
 1. **`/pi-settlement-and-attorney-fee-calculator/`: title is 61 characters.**
    - Evidence: "PI Settlement and Attorney Fee Calculator | Lawyer SEO Expert".
    - Fix: drop the brand suffix or shorten it to "PI Settlement and Attorney Fee Calculator | LSE".
+   - **Status: Fixed.** Posts add " | Lawyer SEO Expert" only when the result fits in 60 characters (was 62), so the calculator's title is "PI Settlement and Attorney Fee Calculator" (41).
 2. **27 pages have no `twitter:card`.**
    - Only the nine posts (calculator included) have one.
    - Fix: add `summary_large_image` in `Seo.astro` for every page.
+   - **Status: Fixed.** `Seo.astro` emits `twitter:card` (summary_large_image), title, description and image on every page.
 3. **Every page shares `og-default.png`, including the Article `image` on the posts.**
    - Social shares all look identical.
    - Fix: make per-page OG images for at least home, services, pricing, consultant and the posts.
+   - **Status: Not fixed.** Needs new images designed: an owner and design decision.
 4. **No `<form>` has an `id`.**
    - The field ids are unique (`h-site`, `price-hero-email`…).
    - The `source_form` naming is mixed: "Homepage hero form", "Contact page message", "Blog: law-firm-names", "pi-hero", "about-final". This makes lead reports and GA4 harder to read.
    - Fix: set `id={idPrefix + '-form'}` in `LeadForm`, and use one `source_form` scheme (for example `page-position`).
+   - **Status: Fixed in part.** Every form now has `id="<idPrefix>-form"`. The `source_form` labels are unchanged: renaming them changes lead reports and GA4 history, so that is the owner's call.
 5. **Phone captures cut mid-word on the right.**
    - Pages: `/law-firm-seo-consultant/` (`nola-wtd-ai-left-phone.webp`) and `/law-firm-seo-services/` (`nola-jackknife-left-phone.webp`).
    - Text stops mid-word ("Cueri…", "if your inju…"), so it reads as a broken image.
@@ -197,26 +210,32 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
    - Pages: `/law-firm-seo-services/`, `/seo-for-medical-malpractice-lawyer/`.
    - It is visible in the key-firm capture, but review counts change.
    - Fix: add it to FACTS section 4 with the capture date, or drop the number from the copy and let the screenshot carry it.
+   - **Status: Not fixed.** Needs the owner (FACTS) or a copy decision.
 7. **An unsourced number in a guide.**
    - Page: `/criminal-defense-seo-guide/`, "A page like this is usually between 900 and 1,500 words."
    - Fix: cite a source or soften it ("long enough to answer every question").
+   - **Status: Not fixed.** A copy decision.
 8. **Example brackets read as unfilled placeholders.**
    - Examples: "[charge] lawyer in [county]" (criminal, DUI), "dui lawyer [city]" and "[state] license hearing" (DUI table), "[Surname] Law, PLLC" (law-firm-names), "[case type] in [state]" (social post ideas).
    - Fix: use real-looking examples ("dui lawyer Tampa"), or style the variables visibly (italic or marker) so they read as variables.
+   - **Status: Not fixed.** A copy and style decision across five pages.
 9. **A live mailto link to an example address.**
    - Page: `/law-firm-names/`, `mailto:name@harlanpikelaw.com`.
    - If that domain exists, it is a real firm.
    - Fix: render it as plain text or `<code>`, not a link.
+   - **Status: Fixed.** The address is now `<code>`, not an auto-link. It sits in `/lawyer-domain-names/`, not `/law-firm-names/`.
 10. **`/thank-you/` looks unfinished.**
     - It has the heading "Thank you" with no full stop (every other heading has one), one tight line under it, no next step, and the title "Thank you" (9 characters).
     - Evidence: `docs/qa-shots/thank-you-1440.png`.
     - Fix: add spacing, the reply line ("Fahim answers within an hour in business hours."), a link back to a useful page, and the brand in the title.
+    - **Status: Fixed.** Title "Thank You | Lawyer SEO Expert", H1 "Thank you.", the reply line, links to the services page and the homepage, and section spacing.
 11. **When Calendly is blocked, the embed shows a 6×7 empty grid with "The booking calendar is on its way." indefinitely.**
     - Pages: contact, consultant, pricing, criminal, family, employment, immigration, IP.
     - A fallback link is present, which is good.
     - Ad blockers and privacy browsers will hit this, and on criminal, consultant and family it is the first action on the page.
     - Evidence: `docs/qa-shots/consultant-booking-1440.png`.
     - Fix: after about 6 s with no `calendly.event_type_viewed`, swap the grid for a short message plus the form or the link.
+    - **Status: Fixed in part.** When Calendly's widget.js can't load (the blocked case measured here), the card drops the empty grid at once and shows "The calendar can’t load in this browser." with the Calendly link (`is-failed` in `scripts/calendly.ts`). If the script loads but the frame stays blank, the existing link still appears after 6 s. Swapping in a form is a layout decision and was not added.
 12. **The first action sits low on some practice pages.**
     - The rule is met: the form or Calendly is in the section straight after the hero.
     - But on these pages it starts more than a viewport down (top of the first form or embed, desktop/phone):
@@ -231,6 +250,7 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
 
     - Practice pages are also inconsistent: PI, DUI, estate, med mal and environmental have the form in the hero.
     - Fix: decide one pattern per page type. For the Calendly pages, add the compact form to the hero.
+    - **Status: Not fixed.** Needs a pattern decision per page type.
 13. **The homepage's own-ranking capture has a blank band.**
     - `lse-serp-lawyer-seo-expert-2026-11-08.webp` has a large empty white band under the result, inside the image.
     - Evidence: `docs/qa-shots/home-own-serp-390.png`.
@@ -240,24 +260,30 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
     - Its `jobTitle` is "SEO specialist" site-wide but "Law firm SEO expert" on `/about/sm-fahim/`, under the same `@id`.
     - The org's `sameAs` (LinkedIn company, Facebook, Instagram) are not in FACTS and were not verified.
     - Fix: use one `jobTitle`, and confirm that each `sameAs` URL exists before launch.
+    - **Status: Fixed in part.** `/about/sm-fahim/` no longer overrides the jobTitle, so `#fahim` is "SEO specialist" everywhere (as in FACTS). The `sameAs` URLs still need the owner to confirm them.
 15. **A stranded line on Fahim's bio.**
     - Page: `/about/sm-fahim/`, "For a law firm in Denver, Fahim built a client portal and intake…".
     - It stands alone with no heading or visual and reads like a leftover caption.
     - Fix: fold it into the record list, or give it a row heading.
+    - **Status: Not fixed.** Needs new copy (a row heading) or a layout decision.
 16. **The contact hero repeats itself.**
     - Page: `/contact-us/`. "Fahim answers within an hour in business hours." appears next to the photo, and "You get an answer within an hour in business hours." appears in "After you send it".
     - Evidence: `docs/qa-shots/contact-hero-1440.png`.
     - Fix: keep one of them.
+    - **Status: Fixed.** The line by the photo stays; the "After you send it" row that repeated it is gone.
 17. **Blog breadcrumbs wrap badly on phones.**
     - On the posts at 390, the breadcrumb wraps with a "/" at the start of the second line.
     - Fix: put the separator in `::before` of the next item with `white-space: nowrap` per item, or truncate the last crumb.
+    - **Status: Fixed.** The "/" now ends the crumb before it (`::after`, `nowrap` per crumb), so a wrapped title never starts its line with "/".
 18. **The struck "$4,000+ a month" wraps on phones.**
     - Pages: home, services and pricing at 390. It wraps onto its own line, and the strike runs slightly past the text.
     - Fix: `white-space: nowrap` on the struck span.
+    - **Status: Fixed.** It already had `nowrap`. Under 480px the label and the struck total now stay on one line (17px, 10px gap), and the stroke's overhang stays inside the column.
 19. **`/kit/` and `/variants/` ship to production.**
     - Both are noindex and unlinked.
     - `/variants/` carries the homepage H1 and an LCME-similar 2.25% six-gram share, with eyebrows ("Direction B: Evergreen") and an axe `landmark-unique` issue.
     - Fix: leave them out of the production build, or have the Worker answer 404 for them when `LIVE` is true.
+    - **Status: Fixed.** The Worker answers 404 (the real 404 page) for `/kit/` and `/variants/` and anything under them when `LIVE` is `"true"`. Previews still serve them. Covered by router tests.
 20. **The only image over 200 KB.**
     - `lse-serp-lawyer-seo-expert-tall-2026-11-08.webp` is 251 KB. It is lazy and below the fold on `/law-firm-seo-consultant/`.
     - Fix: re-encode it at q70 or crop it (target under 120 KB).
@@ -265,14 +291,18 @@ The focus rings the visual reviewers saw in some captures came from my own keybo
 21. **A capture is shown past its natural width.**
     - Pages: `/law-firm-seo-services/` and `/seo-for-employment-lawyers/`. `nola-wtd-rank.webp` is shown at 976 px, which is wider than its natural 900 px.
     - Fix: cap it with `max-width: 900px` (the `Shot` rule: never larger than natural width).
+    - **Status: Fixed.** `Shot` caps any part narrower than the frame's widest image at its natural width, so `nola-wtd-rank.webp` shows at 900px.
 22. **Stale notes in the repo.**
     - `src/data/redirects.ts` says "PLAN.md section 9: no PPC page", but `/law-firm-ppc/` exists.
     - CLAUDE.md rule 10 lists only the $2,000 prices, but FACTS section 1 approves "from $500 a month" for PPC.
     - Fix: update both so the next builder isn't misled.
+    - **Status: Fixed in part.** The `redirects.ts` note was already corrected in e670420. CLAUDE.md rule 10 is the owner's rule text, so it is left for the owner to update.
 
 ---
 
 ## Launch gates (expected on the Preview, must change for launch)
+
+**Status: Not fixed (judge ruling), except G2.** G1, G3 and G4 change at launch, with the owner's OK. G2 was fixed by e670420 on `rebuild` (after this QA ran): `/newsletter/` and `/newslatter/` now 301 to `/blog/`.
 
 - **G1. `X-Robots-Tag: noindex` on every response.** It is on every HTML page, `robots.txt`, the sitemap and the feed, because `LIVE` is `"false"` in `wrangler.jsonc` (`worker/router.ts:103`). This is correct for the Preview. Launch needs `LIVE: "true"`, then a re-check with `npm run verify-live`.
 - **G2. `/newslatter/` redirects to `/newsletter/`, which returns 404.** `pendingRedirectTargets` still lists `/newsletter/`. Build the page, or point the redirect at `/blog/` or `/`.
@@ -312,6 +342,7 @@ What would affect Core Web Vitals:
 - **Highlighter:** `.lse-mk` is black on `#D4F04A`, which measures 16.9:1. Marks on screenshots use `mix-blend-mode: multiply`, so the text under them stays dark. The one weak spot is the September mark on the blue label in `nola-calls-jun-oct-2026.webp`, already noted in `proof.ts`.
 - **Focus:** a 3 px black outline plus a 6 to 7 px marker ring, visible on links, buttons and inputs on every page.
 - **Small text:** the form privacy line ("We use your details…" and its "Privacy policy" link) is 13.5 px on every page with a form, under the 15 px meta minimum in `design-system.md`. Raise it to 15 px.
+  - **Status: Fixed.** The compact form's privacy line now uses the 15px meta size.
 - **Error states:** verified on the PI hero form without submitting. An invalid email gets `aria-invalid="true"` and the message "That email address does not look right." Website and name have their messages ready. No POST was sent (`docs/qa-shots/pi-hero-form-error-390.png`).
 
 ## Facts spot-check (FACTS.md sections 1 to 4)
