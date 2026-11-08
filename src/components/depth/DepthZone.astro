@@ -21,12 +21,12 @@ interface Props {
   depth: Depth;
   /** The FAQ band's tone. Fog by default, so the long white text gets a break before the author box. */
   faqTone?: 'white' | 'fog';
-  /** Show the sources list (front matter `sources`) above the author box. */
+  /** Show the sources list (front matter `sources`) above the author box. Off by default: DEPTH-BRIEF R30 keeps sources inline, with no bibliography on the page. */
   sources?: boolean;
   /** Overrides the copy's authorLine. */
   authorLine?: string;
 }
-const { depth, faqTone = 'fog', sources = true, authorLine } = Astro.props;
+const { depth, faqTone = 'fog', sources = false, authorLine } = Astro.props;
 const parts = splitDepth(depth.html);
 const { slots, bands } = depthSlotNames(parts);
 const filled = new Map<string, string>();
