@@ -103,7 +103,7 @@ const inPractice = practicePages.some((p) => p.href === here);
     }
     .js .lse-top__nav.is-open { display: flex; }
     .js .lse-top__links { flex-direction: column; gap: 0; }
-    .js .lse-top__links > li > a, .js .lse-top__pa-btn {
+    .js .lse-top__links > li > a:not(.lse-top__pa-link), .js .lse-top__pa-btn {
       display: flex; width: 100%; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--line);
       font-size: 22px; font-weight: 700; letter-spacing: -.02em;
     }
