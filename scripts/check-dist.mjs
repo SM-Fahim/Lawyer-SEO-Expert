@@ -58,7 +58,15 @@ const PRICES_BY_PAGE = {
   // Fahim's record: Idiya's online sales ($900K to $2.7M) and clients' combined yearly revenue ($36M+), FACTS 3.
   '/about/sm-fahim/': ['900K', '2.7M', '36M'],
   // /seo-pricing/: the hero card shows the whole shared breakdown and its struck total (src/data/pricing.ts).
-  '/seo-pricing/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  '/seo-pricing/': [
+    '1,200', '1,000', '750', '500', '125', '300', '150', '4,000',
+    // "What other agencies publish as law firm SEO prices" (and its intro line): each named publisher's own figure,
+    // dated, approved by the judge (content/DEPTH-BRIEF.md section 18, rulings 1 and 23; the deck's NEEDS PRICE OK
+    // markers). US rows in $; the three non-US rows in £, A$ and C$, checked through this same list.
+    '1,000', '100,000', '3,500', '25,000', '6,000', '12,000', '60,000', '2,500', '5,000', '20,000', '50,000', '75', '200',
+    '15,000', '3,800', '1,995', '3,295', '4,795', '1,500', '2,300', '750', '3,209', '3,250', '1,349',
+    '8,000', '10,000',
+  ],
   // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
   '/law-firm-seo-services/': ['4,000'],
   // The settlement calculator post: its worked example and the calculator's default figures (an injured person's
@@ -69,7 +77,8 @@ const PRICES_BY_PAGE = {
   '/crm-add/': ['150', '9,000', '90,000', '3,000'],
   '/crm-add-v2/': ['150', '9,000', '90,000', '3,000'],
 };
-const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
+// An amount in $ (A$ and C$ included, since they end in "$") or £: every one must be in the page's list above.
+const PRICE = /[$£]\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?[$£]?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};
 
 // A small tree of the built HTML. Astro's output is well formed, so this doesn't need a full parser,

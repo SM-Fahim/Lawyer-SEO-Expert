@@ -1,0 +1,34 @@
+/* The three service pages' depth zones (/law-firm-seo-services/, /law-firm-seo-consultant/, /seo-pricing/), v3.
+   Only what the kit leaves to the page: Rows passed into a [slot] line, set to the text's measure and type so they
+   read as part of the copy, and the one-line mid-page CTA band (content/DEPTH-BRIEF.md R8). */
+
+/* Rows in the text column: the prose's size and measure, hairline rows under a black rule (as the checklists). */
+.bsv-rows { max-width: 35em; font-size: clamp(17px, .25vw + 16px, 19px); line-height: 1.6; }
+.bsv-rows .lse-row { padding: 14px 0 15px; }
+.bsv-rows .lse-row p { max-width: none; color: var(--ink-2); }
+.bsv-rows .lse-rows--inline .lse-row b { color: var(--ink); }
+.bsv-rows a { font-weight: 500; text-decoration-color: var(--line-2); text-decoration-thickness: 1.5px; }
+.bsv-rows a:hover { text-decoration-color: var(--ink); }
+/* A list sits under its lead-in sentence, as a Markdown list would, not a section's gap away. */
+.lse-depth__slot:has(> .bsv-rows) { margin-top: 20px; }
+.lse-depth__slot:has(> .bsv-rows) + .lse-prose { margin-top: 28px; }
+
+/* Tables. A publisher's name linked in the first column keeps that column's weight, so "Whitehat SEO (UK)" reads
+   as one name. On a phone a two-column table (term, answer) stays one line per row, with no label repeated on
+   every row; tables of three or four columns keep the kit's stacked rows. */
+.lse-depth .lse-prose tbody td:first-child a { font-weight: inherit; }
+@media (max-width: 640px) {
+  .lse-depth .lse-prose table.lse-stack:not(:has(th:nth-child(3))) tr {
+    display: grid; grid-template-columns: minmax(6.5em, 34%) minmax(0, 1fr); column-gap: 14px; align-items: baseline;
+    padding: 12px 0 13px;
+  }
+  .lse-depth .lse-prose table.lse-stack:not(:has(th:nth-child(3))) td { display: block; padding: 0; }
+  .lse-depth .lse-prose table.lse-stack:not(:has(th:nth-child(3))) td::before { content: none; }
+}
+
+/* The mid-page CTA: one line, set large, and the button under it (never beside it). */
+.bsv-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }
+.bsv-mid__line {
+  max-width: 24ch; font-size: clamp(28px, 1.5vw + 19px, 44px); font-weight: 800; line-height: 1.08; letter-spacing: -.032em;
+  color: var(--ink);
+}

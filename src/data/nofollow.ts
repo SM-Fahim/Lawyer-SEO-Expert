@@ -5,4 +5,17 @@
 export const nofollowDomains: string[] = [
   // Reserved for examples (RFC 2606). The /kit/ sample and the unit tests use it.
   'example.com',
+  // /seo-pricing/, "What other agencies publish as law firm SEO prices": the publishers in its two tables, and the
+  // Ahrefs survey (an SEO vendor's own data), which the models section cites too.
+  'jurisdigital.com',
+  'hennessey.com',
+  'growlaw.co',
+  'seoprofy.com',
+  'webkeydigital.com',
+  'fwd-lawyermarketing.com',
+  'dagmarmarketing.com',
+  'ahrefs.com',
+  'whitehat-seo.co.uk',
+  'firstpage.com.au',
+  'lawonline.ca',
 ];
