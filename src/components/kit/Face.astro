@@ -1,0 +1,28 @@
+---
+// A person's photo: the transparent cutout on the marker swipe (the logo's block, behind the lower three
+// quarters). Sizes: 'lg' up to 460px (340px under 1000px), 'md' 240px, 'sm' 132px, 'xs' 96px.
+import type { Person } from '../../data/people';
+interface Props {
+  person: Person;
+  size?: 'lg' | 'md' | 'sm' | 'xs';
+  /** Eager-load (a hero photo). */
+  priority?: boolean;
+  class?: string;
+}
+const { person, size = 'md', priority = false, class: className } = Astro.props;
+const { src, width, height, alt } = person.photo;
+---
+<div class:list={['lse-face', `lse-face--${size}`, className]}>
+  <img src={src} width={width} height={height} alt={alt} loading={priority ? 'eager' : 'lazy'} decoding="async" fetchpriority={priority ? 'high' : undefined}>
+</div>
+
+<style is:global>
+  .lse-face { position: relative; isolation: isolate; }
+  .lse-face::before { content: ""; position: absolute; z-index: -1; left: 0; right: 0; bottom: 0; height: 74%; background: var(--marker); clip-path: var(--swipe); }
+  .lse-face img { width: 100%; }
+  .lse-face--lg { max-width: 460px; }
+  .lse-face--md { width: 240px; max-width: 100%; flex: none; }
+  .lse-face--sm { width: 132px; flex: none; }
+  .lse-face--xs { width: 96px; flex: none; }
+  @media (max-width: 999px) { .lse-face--lg { max-width: 340px; } }
+</style>

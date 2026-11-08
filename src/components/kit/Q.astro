@@ -1,0 +1,30 @@
+---
+// A literal Google search, quoted. Always in <q data-no-check>: the words are what people type (the screenshot
+// shows the same words), so check-unique skips them. Never use it to sneak other copy past the check.
+// `mark` puts the highlighter (.lse-mk) behind the words that matter, like "near me" or "cost".
+interface Props {
+  text: string;
+  mark?: string | string[];
+  class?: string;
+}
+const { text, mark = [], class: className } = Astro.props;
+const marks = (Array.isArray(mark) ? mark : [mark]).filter(Boolean);
+// Split the text into plain and marked parts, first match wins, case-insensitive.
+const parts: { s: string; m: boolean }[] = [];
+let rest = text;
+while (rest) {
+  let best: { at: number; len: number } | null = null;
+  for (const m of marks) {
+    const at = rest.toLowerCase().indexOf(m.toLowerCase());
+    if (at >= 0 && (!best || at < best.at)) best = { at, len: m.length };
+  }
+  if (!best) {
+    parts.push({ s: rest, m: false });
+    break;
+  }
+  if (best.at > 0) parts.push({ s: rest.slice(0, best.at), m: false });
+  parts.push({ s: rest.slice(best.at, best.at + best.len), m: true });
+  rest = rest.slice(best.at + best.len);
+}
+---
+<q class:list={['lse-q', className]} data-no-check>{parts.map((p) => (p.m ? <span class="lse-mk">{p.s}</span> : p.s))}</q>

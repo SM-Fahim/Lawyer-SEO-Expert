@@ -1,0 +1,75 @@
+---
+// Plain rows with hairlines: never boxed cards. A 2px ink rule on top, a hairline under each row.
+// Variants:
+//   'plain'    title (a small H3) over its line. The homepage's "what one price covers" list.
+//   'inline'   the bold title starts the sentence: "**The Map.** We run your profile..." (body size).
+//   'big'      the title set at H3 size, the line under it.
+//   'numbered' a big Franklin 900 numeral on the left, title and line on the right (steps).
+//   'answer'   a question at H3 size, the answer under it with a thin ink rule on its left (vetting
+//              questions: answers stay visible, never an accordion).
+// `text` may hold inline HTML (a link, a .lse-mk), so only pass copy from the deck.
+interface Row {
+  title?: string;
+  text?: string;
+}
+interface Props {
+  items: Row[];
+  variant?: 'plain' | 'inline' | 'big' | 'numbered' | 'answer';
+  /** Heading level for the titles (not used by 'inline'). */
+  titleTag?: 'h3' | 'h4' | 'p';
+  class?: string;
+}
+const { items, variant = 'plain', titleTag: T = 'h3', class: className } = Astro.props;
+---
+{variant === 'numbered' ? (
+  <ol class:list={['lse-rows', 'lse-rows--numbered', className]}>
+    {items.map((r, i) => (
+      <li class="lse-row">
+        <span class="lse-row__n" aria-hidden="true">{i + 1}</span>
+        <div>
+          {r.title && <T class="lse-row__t">{r.title}</T>}
+          {r.text && <p set:html={r.text} />}
+        </div>
+      </li>
+    ))}
+  </ol>
+) : (
+  <ul class:list={['lse-rows', `lse-rows--${variant}`, className]}>
+    {items.map((r) => (
+      <li class="lse-row">
+        {variant === 'inline' ? (
+          <p>{r.title && <b>{r.title}</b>}{r.title && r.text ? ' ' : ''}{r.text && <Fragment set:html={r.text} />}</p>
+        ) : (
+          <>
+            {r.title && <T class="lse-row__t">{r.title}</T>}
+            {r.text && <p set:html={r.text} />}
+          </>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
+<style is:global>
+  .lse-rows { list-style: none; display: grid; align-content: start; border-top: 2px solid var(--ink); }
+  .lse-row { padding: 18px 0 20px; border-bottom: 1px solid var(--line-2); }
+  .lse-row__t { font-size: 21px; }
+  .lse-row p { margin-top: 4px; color: var(--ink-2); max-width: 28em; }
+  .lse-row p:first-child { margin-top: 0; }
+
+  .lse-rows--inline .lse-row p { max-width: 40em; }
+  .lse-rows--inline .lse-row b { font-weight: 750; }
+
+  .lse-rows--big .lse-row { padding: 24px 0 26px; }
+  .lse-rows--big .lse-row__t { font-size: var(--fs-h3); }
+  .lse-rows--big .lse-row p { margin-top: 8px; max-width: 36em; }
+
+  .lse-rows--numbered .lse-row { display: grid; grid-template-columns: clamp(56px, 6vw, 88px) minmax(0, 1fr); column-gap: 20px; align-items: start; padding: 24px 0 26px; }
+  .lse-row__n { font-size: clamp(44px, 3vw + 24px, 72px); font-weight: 900; line-height: .85; letter-spacing: -.05em; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+  .lse-rows--numbered .lse-row__t { font-size: var(--fs-h3); }
+  .lse-rows--numbered .lse-row p { margin-top: 8px; max-width: 34em; }
+
+  .lse-rows--answer .lse-row { padding: 28px 0 30px; }
+  .lse-rows--answer .lse-row__t { font-size: var(--fs-h3); max-width: 26em; }
+  .lse-rows--answer .lse-row p { margin-top: 12px; padding-left: 18px; border-left: 2px solid var(--ink); max-width: 38em; }
+</style>

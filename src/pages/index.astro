@@ -9,21 +9,21 @@ import FinalCta from '../components/FinalCta.astro';
 import LeadForm from '../components/LeadForm.astro';
 import PracticeLinks from '../components/PracticeLinks.astro';
 import Shot from '../components/Shot.astro';
+import Face from '../components/kit/Face.astro';
+import NumPair from '../components/kit/NumPair.astro';
+import PhoneShot from '../components/kit/PhoneShot.astro';
+import PriceBand from '../components/kit/PriceBand.astro';
+import ProofFigure from '../components/kit/ProofFigure.astro';
+import Rows from '../components/kit/Rows.astro';
+import TrustLine from '../components/kit/TrustLine.astro';
+import { fahim, josh } from '../data/people';
+import { proof, shot } from '../data/proof';
 import { fahimSchema, joshSchema, site } from '../data/site';
 import { faqSchema } from '../lib/schema';
 
 const title = 'Lawyer SEO Expert | Get Found First, Get More Calls';
 const description =
   'Law firm SEO that puts you at the top of Google, the Map and AI answers. From $2,000 a month, month to month, no setup fee. Book a ranking review.';
-
-const P = '/img/proof/';
-
-const logos = [
-  { src: '/img/logos/rudin-ink.webp', width: 108, height: 120, alt: 'Rudin Law logo', h: 46 },
-  { src: '/img/logos/915-ink.webp', width: 602, height: 120, alt: '915 Injury logo', h: 34 },
-  { src: '/img/logos/cohen-ink.webp', width: 237, height: 120, alt: 'Cohen & Cohen logo', h: 40 },
-  { src: '/img/logos/dedert-ink.webp', width: 248, height: 39, alt: 'Dedert logo', h: 21 },
-];
 
 const zones = [
   { title: 'Top of Google', text: 'Pages for each practice area and city, and links from relevant sites.' },
@@ -32,19 +32,7 @@ const zones = [
   { title: 'Your website', text: 'Design and content improvements, upkeep, and call and form tracking.' },
 ];
 
-// What the monthly price includes, and what each part typically costs a month when a firm hires it separately.
-// Proposals the owner confirms (2026-11-08). Every amount here must also be in PRICES_BY_PAGE['/'] in
-// scripts/check-dist.mjs, or the build fails.
-const included = [
-  { item: 'Practice and location pages, written for you', cost: '$1,200+' },
-  { item: 'Links from relevant sites', cost: '$1,000+' },
-  { item: 'Website design and content improvements', cost: '$750+' },
-  { item: 'Website maintenance and security', cost: '$500+' },
-  { item: 'Google Business Profile and reviews', cost: '$125+' },
-  { item: 'Call and form tracking', cost: '$300+' },
-  { item: 'Rank tracking and AI answer checks', cost: '$150+' },
-];
-const separateTotal = '$4,000+';
+// The price band reads its rows from src/data/pricing.ts (shared with /seo-pricing/ and the services page).
 
 const faq: FaqItem[] = [
   {
@@ -98,24 +86,10 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
           <p class="lse-h-hero__talk">Rather talk it through? <a href={site.cta.href} data-cal>Book a ranking review</a></p>
         </div>
         <figure class="lse-h-hero__proof">
-          <Shot
-            tag="139 calls"
-            tagSide="right"
-            priority
-            images={[
-              { src: `${P}nola-calls-jun-oct-2026.webp`, width: 1077, height: 582, alt: 'Google Business Profile: 139 calls from June to October 2026, up 39% on the same months of 2025', marks: [{ l: 3.4, t: 33.2, w: 7.8, h: 9.4 }, { l: 3.6, t: 47.6, w: 7.5, h: 4.4 }] },
-            ]}
-          />
+          <Shot tag="139 calls" tagSide="right" priority images={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]} />
           <figcaption class="lse-h-cap">A PI firm in New Orleans. Google counted 139 calls from its Business Profile in five months, 39% more than a year before.</figcaption>
         </figure>
-        <div class="lse-h-trust">
-          <p class="lse-h-trust__label">Law firms we work with</p>
-          <ul class="lse-h-trust__logos">
-            {logos.map((l) => (
-              <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${l.h}px;width:auto`} loading="eager" decoding="async"></li>
-            ))}
-          </ul>
-        </div>
+        <TrustLine class="lse-h-trust" priority />
       </div>
     </div>
   </section>
@@ -126,39 +100,26 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       <h2 id="rank-h">New pages at the top of Google 16&nbsp;hours after going live.</h2>
       <p class="lse-lead lse-h2-lead">For a PI firm in New Orleans, after about three months of groundwork. Google’s AI answers cite the pages too.</p>
       <div class="lse-h-rank__grid">
-        <figure class="lse-h-proof lse-h-rank__main">
-          <Shot
-            tag="#1"
-            tagSide="right"
-            images={[
-              { src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' },
-              { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'The page in Google’s results, stamped 16 hours ago', marks: [{ l: 1.6, t: 63.5, w: 12.2, h: 16 }] },
-              { src: `${P}nola-wtd-ai.webp`, width: 900, height: 776, alt: 'Google’s AI answer citing the firm’s page on recorded statements and Louisiana filing deadlines', marks: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
-            ]}
-          />
-          <figcaption><b><q data-no-check>what to do after a truck accident in New Orleans</q></b><span>Ranked #1 on Google, and quoted 3 times in Google’s AI answer.</span></figcaption>
-        </figure>
+        <ProofFigure
+          class="lse-h-rank__main"
+          tag="#1"
+          images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: ['age'] }), shot(proof.nolaWtdAi, { marks: ['citations'] })]}
+          query="what to do after a truck accident in New Orleans"
+          caption="Ranked #1 on Google, and quoted 3 times in Google’s AI answer."
+        />
         <div class="lse-h-rank__side">
-          <figure class="lse-h-proof">
-            <Shot
-              tag="#1"
-              tagSide="right"
-              images={[
-                { src: `${P}nola-jackknife.webp`, width: 1022, height: 625, alt: 'Google search for jackknife truck accident Louisiana: the firm’s page is the first result, 7 days after going live, and cited in the AI Overview', marks: [{ l: 39.9, t: 50.3, w: 8.7, h: 3.8 }, { l: 1.9, t: 88.4, w: 40, h: 4 }] },
-              ]}
-            />
-            <figcaption><b><q data-no-check>jackknife truck accident Louisiana</q></b><span>Ranked #1. A week on, Google’s AI still cites it.</span></figcaption>
-          </figure>
-          <figure class="lse-h-proof">
-            <Shot
-              tag="Source #1"
-              tagSide="right"
-              images={[
-                { src: `${P}elpaso-ai-deadline.webp`, width: 1400, height: 849, alt: 'Google’s AI Overview for Texas El Paso car accident filing deadline, with an El Paso PI firm’s page as the first source', marks: [{ l: 5.1, t: 35.3, w: 33.9, h: 2.6 }, { l: 69.6, t: 35.4, w: 24, h: 3.2 }] },
-              ]}
-            />
-            <figcaption><b><q data-no-check>Texas El Paso car accident filing deadline</q></b><span>For a PI firm in El Paso, its page is the first source Google’s AI answer cites.</span></figcaption>
-          </figure>
+          <ProofFigure
+            tag="#1"
+            images={[shot(proof.nolaJackknife, { marks: ['aiChip', 'result'] })]}
+            query="jackknife truck accident Louisiana"
+            caption="Ranked #1. A week on, Google’s AI still cites it."
+          />
+          <ProofFigure
+            tag="Source #1"
+            images={[shot(proof.elpasoAiDeadline, { marks: ['citedLine', 'sourceCard'] })]}
+            query="Texas El Paso car accident filing deadline"
+            caption="For a PI firm in El Paso, its page is the first source Google’s AI answer cites."
+          />
         </div>
       </div>
     </div>
@@ -172,41 +133,29 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
 
       <article class="lse-h-case" aria-labelledby="case-ep">
         <div class="lse-h-case__head">
-          <div class="lse-h-nums" aria-hidden="true">
-            <span class="lse-h-num lse-h-num--was">9</span>
-            <span class="lse-h-nums__to"><svg viewBox="0 0 48 24" focusable="false"><path d="M2 12h40M32 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="lse-h-num lse-h-num--marked" data-count="23">23</span>
-            <span class="lse-h-nums__l">calls in six months before us</span>
-            <span class="lse-h-nums__l lse-h-nums__l--now">calls in three months with us</span>
-          </div>
+          <NumPair before={9} after={23} beforeLabel="calls in six months before us" afterLabel="calls in three months with us" />
           <h3 id="case-ep">A PI firm in El Paso went from 9 calls in six months to 23 in three.</h3>
         </div>
         <div class="lse-h-pair">
           <figure>
             <figcaption>Before us: Aug 2025 to Jan 2026</figcaption>
-            <Shot images={[{ src: `${P}elpaso-calls-before.webp`, width: 1200, height: 649, alt: 'Google Business Profile: 9 calls from August 2025 to January 2026', marks: [{ l: 3.9, t: 34, w: 2.9, h: 9 }] }]} />
+            <Shot images={[shot(proof.elpasoCallsBefore, { marks: ['total'] })]} />
           </figure>
           <figure>
             <figcaption>With us: May to Jul 2026</figcaption>
-            <Shot images={[{ src: `${P}elpaso-calls-after.webp`, width: 1347, height: 727, alt: 'Google Business Profile: 23 calls from May to July 2026, rising every month', marks: [{ l: 3.7, t: 34, w: 5.6, h: 9 }] }]} />
+            <Shot images={[shot(proof.elpasoCallsAfter, { marks: ['total'] })]} />
           </figure>
         </div>
       </article>
 
       <article class="lse-h-case lse-h-case--flip" aria-labelledby="case-new">
         <div class="lse-h-case__head">
-          <div class="lse-h-nums" aria-hidden="true">
-            <span class="lse-h-num lse-h-num--was">1</span>
-            <span class="lse-h-nums__to"><svg viewBox="0 0 48 24" focusable="false"><path d="M2 12h40M32 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="lse-h-num lse-h-num--marked" data-count="9">9</span>
-            <span class="lse-h-nums__l">call in July</span>
-            <span class="lse-h-nums__l lse-h-nums__l--now">calls in October</span>
-          </div>
+          <NumPair before={1} after={9} beforeLabel="call in July" afterLabel="calls in October" />
           <h3 id="case-new">A new Google profile went from 1 call in July to 9 in October.</h3>
           <p>It started with no history and climbed every month.</p>
         </div>
         <figure class="lse-h-case__shot">
-          <Shot images={[{ src: `${P}new-profile-calls.webp`, width: 1067, height: 571, alt: 'Google Business Profile for a new profile: calls from June to October 2026, rising from about 1 in July to 9 in October', marks: [{ l: 26.4, t: 85.6, w: 4.4, h: 6 }, { l: 93.2, t: 54.6, w: 5, h: 6.4 }] }]} />
+          <Shot images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
         </figure>
       </article>
 
@@ -223,16 +172,12 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       <h2 id="cover-h">One monthly price covers everything it takes to rank.</h2>
       <p class="lse-lead lse-h2-lead">Most agencies sell SEO in pieces. We handle all of it, so nothing holds your firm back.</p>
       <div class="lse-h-cover__grid">
-        <ul class="lse-h-zones">
-          {zones.map((z) => (
-            <li class="lse-h-zone"><h3>{z.title}</h3><p>{z.text}</p></li>
-          ))}
-        </ul>
+        <Rows items={zones} />
         <div class="lse-h-board">
-          <Shot class="lse-h-board__rank" tag="Top of Google" tagSmall tagSide="right" images={[{ src: `${P}nola-tanker-rank.webp`, width: 900, height: 175, alt: 'A New Orleans PI firm’s page in Google’s results for tanker truck accident lawyer in New Orleans', marks: [{ l: 1.6, t: 33, w: 63.6, h: 20 }] }]} />
-          <Shot class="lse-h-board__ai" tag="AI answer" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google’s AI Overview citing a New Orleans PI firm', crop: { top: 0, height: 50 }, marks: [{ l: 8.6, t: 40.4, w: 13.6, h: 6.4 }] }]} />
-          <Shot class="lse-h-board__map" tag="The Map" tagSmall tagSide="right" images={[{ src: `${P}nola-key-firm.webp`, width: 790, height: 358, alt: 'Google lists a New Orleans PI firm under key legal firms, rated 5.0 from 317 reviews', crop: { top: 50, height: 50 }, marks: [{ l: 18.4, t: 68.5, w: 11.2, h: 6.2 }, { l: 18.4, t: 75.6, w: 19.2, h: 6.2 }] }]} />
-          <Shot class="lse-h-board__site" tag="Your site" tagSmall tagSide="right" images={[{ src: `${P}elpaso-site-mobile.webp`, width: 824, height: 1760, alt: 'A website we built for a PI firm in El Paso, on a phone' }]} />
+          <Shot class="lse-h-board__rank" tag="Top of Google" tagSmall tagSide="right" images={[shot(proof.nolaTankerRank, { marks: ['title'], alt: 'A New Orleans PI firm’s page in Google’s results for tanker truck accident lawyer in New Orleans' })]} />
+          <Shot class="lse-h-board__ai" tag="AI answer" tagSmall tagSide="right" images={[shot(proof.nolaKeyFirm, { crop: 'answer', marks: ['aiChip'], alt: 'Google’s AI Overview citing a New Orleans PI firm' })]} />
+          <Shot class="lse-h-board__map" tag="The Map" tagSmall tagSide="right" images={[shot(proof.nolaKeyFirm, { crop: 'keyFirms', marks: ['firmRow'], alt: 'Google lists a New Orleans PI firm under key legal firms, rated 5.0 from 317 reviews' })]} />
+          <PhoneShot class="lse-h-board__site" tag="Your site" tagSmall tagSide="right" images={[shot(proof.elpasoSiteMobile)]} />
         </div>
       </div>
       <p class="lse-h-web">Need a new website? We build law firm sites to rank, from $2,000 for the build. <a class="lse-link" href="/lawyer-web-design-development/">Law firm web design</a></p>
@@ -250,7 +195,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       <Shot
         class="lse-h-own__shot"
         tag="#1"
-        images={[{ src: `${P}lse-serp-lawyer-seo-expert-2026-11-08.webp`, width: 1800, height: 920, alt: 'Google search for lawyer seo expert in the United States: lawyerseoexpert.com is the first result under the sponsored results', crop: { top: 15, height: 46 }, marks: [{ l: 9.7, t: 30.6, w: 76.4, h: 7.6 }] }]}
+        images={[shot(proof.lseSerp, { crop: 'result', marks: ['title'] })]}
       />
     </div>
   </section>
@@ -260,9 +205,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
     <div class="lse-wrap">
       <h2 id="team-h">You work with Fahim, from the first call on.</h2>
       <div class="lse-h-team__grid">
-        <div class="lse-h-face lse-h-face--lg">
-          <img src="/img/people/fahim.webp" width="720" height="716" alt="S. M. Fahim" loading="lazy" decoding="async">
-        </div>
+        <Face person={fahim} size="lg" />
         <div class="lse-h-team__text">
           <h3>S.&nbsp;M.&nbsp;Fahim</h3>
           <p class="lse-h-team__role">Law firm SEO expert</p>
@@ -274,9 +217,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
             <li><b>200+</b><span>websites built</span></li>
           </ul>
           <div class="lse-h-josh">
-            <div class="lse-h-face lse-h-face--sm">
-              <img src="/img/people/josh.webp" width="720" height="707" alt="Josh Henderson" loading="lazy" decoding="async">
-            </div>
+            <Face person={josh} size="sm" />
             <div>
               <h3>Josh Henderson</h3>
               <p class="lse-h-team__role">Sales Director</p>
@@ -289,24 +230,13 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   </section>
 
   <!-- Price and terms, in plain lines. -->
-  <section class="lse-section lse-h-price" aria-labelledby="price-h">
-    <div class="lse-wrap">
-      <h2 id="price-h"><span>From $2,000 a month.</span> <span>Everything included.</span></h2>
-      <div class="lse-h-price__grid">
-        <div class="lse-h-price__list">
-          <ul class="lse-h-costs">
-            {included.map((r) => <li><span>{r.item}</span><b>{r.cost}</b></li>)}
-          </ul>
-          <p class="lse-h-sep"><span>Hired one by one:</span> <s class="lse-h-strike">{separateTotal} a month</s></p>
-        </div>
-        <div class="lse-h-price__us">
-          <p class="lse-h-us">With us: all of it, from $2,000 a month.</p>
-          <p class="lse-h-nofee">No setup fee.</p>
-          <div class="lse-h-price__cta"><Button /></div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <PriceBand
+    variant="breakdown"
+    heading={['From $2,000 a month.', 'Everything included.']}
+    headingId="price-h"
+    us="With us: all of it, from $2,000 a month."
+    note="No setup fee."
+  />
 
   <!-- Practice areas. -->
   <section class="lse-section lse-h-practice" id="practice-areas" aria-labelledby="practice-h">
@@ -345,8 +275,6 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-hero__proof { grid-area: proof; display: grid; gap: 14px; align-content: start; }
   .lse-h-cap { font-size: var(--fs-meta); color: var(--muted); max-width: 44em; }
   .lse-h-trust { grid-area: trust; }
-  .lse-h-trust__label { font-size: var(--fs-meta); color: var(--muted); }
-  .lse-h-trust__logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 34px; margin-top: 14px; }
   @media (min-width: 1000px) {
     .lse-h-hero h1 { max-width: 19ch; }
     .lse-h-hero__grid {
@@ -362,12 +290,6 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
     .lse-h-trust { align-self: end; padding-top: 22px; border-top: 1px solid var(--line); }
   }
 
-  /* Proof captions: the search in bold, the result under it. */
-  .lse-h-proof { display: grid; gap: 16px; align-content: start; }
-  .lse-h-proof figcaption { display: grid; gap: 4px; font-size: 17px; line-height: 1.4; max-width: 38em; }
-  .lse-h-proof figcaption b { font-size: 18px; letter-spacing: -.01em; }
-  .lse-h-proof figcaption span { color: var(--ink-2); }
-
   /* ---------- Rankings ---------- */
   .lse-h-rank h2 { max-width: 22ch; }
   .lse-h-rank__grid { display: grid; gap: 56px; margin-top: var(--s6); }
@@ -382,15 +304,6 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-case__head { display: grid; gap: 16px; align-content: start; }
   .lse-h-case__head h3 { max-width: 20ch; }
   .lse-h-case__head p { color: var(--ink-2); }
-  /* Before, an arrow, after. The arrow sits in its own column so "9 23" never reads as one number. */
-  .lse-h-nums { display: grid; grid-template-columns: auto auto auto; justify-content: start; align-items: center; column-gap: clamp(14px, 2vw, 28px); row-gap: 10px; }
-  .lse-h-nums__to { grid-row: 1; grid-column: 2; display: block; width: calc(var(--fs-num) * .5); color: var(--ink); }
-  .lse-h-nums__to svg { width: 100%; height: auto; }
-  .lse-h-nums__l { grid-row: 2; grid-column: 1 / 3; align-self: start; font-size: var(--fs-meta); color: var(--muted); max-width: 8.5em; line-height: 1.3; }
-  .lse-h-nums__l--now { grid-column: 3; }
-  .lse-h-num { font-size: var(--fs-num); font-weight: 900; line-height: .82; letter-spacing: -.055em; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
-  .lse-h-num--was { grid-row: 1; grid-column: 1; color: #9a9e96; }
-  .lse-h-num--marked { grid-row: 1; grid-column: 3; justify-self: start; padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--marker); clip-path: var(--swipe); }
   .lse-h-pair { display: grid; gap: 28px; }
   .lse-h-pair figure { display: grid; gap: 10px; align-content: start; }
   .lse-h-pair figcaption { font-size: 16px; font-weight: 700; color: var(--ink); }
@@ -405,17 +318,12 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
 
   /* ---------- What one price covers ---------- */
   .lse-h-cover__grid { display: grid; gap: 48px; margin-top: var(--s6); }
-  .lse-h-zones { list-style: none; display: grid; align-content: start; border-top: 2px solid var(--ink); }
-  .lse-h-zone { padding: 18px 0 20px; border-bottom: 1px solid var(--line-2); }
-  .lse-h-zone h3 { font-size: 21px; }
-  .lse-h-zone p { margin-top: 4px; color: var(--ink-2); max-width: 28em; }
   .lse-h-board { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
   .lse-h-board .lse-h-board__site { max-width: 210px; }
   @media (max-width: 699px) {
     /* On a phone the capture shows only its first screen, so it doesn't take a whole screen itself. */
     .lse-h-board .lse-h-board__site { max-width: 210px; }
   }
-  .lse-h-board__site .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
   .lse-h-web { margin-top: var(--s6); font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 46em; }
   .lse-h-web a { white-space: nowrap; margin-left: 6px; }
   @media (min-width: 700px) {
@@ -438,11 +346,6 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
 
   /* ---------- People ---------- */
   .lse-h-team__grid { display: grid; gap: 40px; margin-top: var(--s6); }
-  .lse-h-face { position: relative; isolation: isolate; }
-  .lse-h-face::before { content: ""; position: absolute; z-index: -1; left: 0; right: 0; bottom: 0; height: 74%; background: var(--marker); clip-path: var(--swipe); }
-  .lse-h-face img { width: 100%; }
-  .lse-h-face--lg { max-width: 460px; }
-  .lse-h-face--sm { width: 132px; flex: none; }
   .lse-h-team__role { margin-top: 4px; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); }
   .lse-h-team__bio { margin-top: var(--s2); font-size: var(--fs-lead); line-height: 1.45; max-width: 30em; }
   .lse-h-record { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 24px; margin-top: var(--s5); padding-top: var(--s3); border-top: 2px solid var(--ink); }
@@ -455,30 +358,6 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   @media (min-width: 760px) { .lse-h-record { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   @media (min-width: 1000px) {
     .lse-h-team__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 72px; align-items: end; }
-  }
-  @media (max-width: 999px) { .lse-h-face--lg { max-width: 340px; } }
-
-  /* ---------- Price band: the one highlighted section ---------- */
-  .lse-h-price { background: var(--marker); }
-  .lse-h-price h2 { font-size: clamp(40px, 4.4vw + 14px, 92px); letter-spacing: -.045em; line-height: .96; max-width: none; }
-  .lse-h-price h2 span { display: inline-block; }
-  .lse-h-price__grid { display: grid; gap: 40px; margin-top: var(--s6); }
-  /* Rows: the part on the left, its usual monthly cost on the right. */
-  .lse-h-costs { list-style: none; border-top: 2px solid var(--ink); }
-  .lse-h-costs li { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 13px 0 14px; border-bottom: 1px solid rgba(0, 0, 0, .22); color: var(--ink); line-height: 1.3; }
-  .lse-h-costs span { font-size: clamp(17px, .3vw + 15px, 19px); font-weight: 500; }
-  .lse-h-costs b { flex: none; font-size: clamp(18px, .4vw + 15px, 21px); font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums lining-nums; text-align: right; }
-  /* The total, struck through with a black marker stroke. */
-  .lse-h-sep { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; padding-top: 16px; border-top: 2px solid var(--ink); margin-top: -1px; font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); }
-  .lse-h-strike { position: relative; text-decoration: none; font-weight: 800; white-space: nowrap; margin-left: auto; }
-  .lse-h-strike::after { content: ""; position: absolute; left: -5px; right: -5px; top: calc(50% - .05em); height: .13em; background: var(--ink); transform: rotate(-2deg); border-radius: 2px; clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%); }
-  .lse-h-us { font-size: clamp(30px, 2vw + 18px, 48px); font-weight: 800; letter-spacing: -.035em; line-height: 1.02; color: var(--ink); max-width: 13ch; }
-  .lse-h-nofee { margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--ink); font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); }
-  .lse-h-price__cta { margin-top: var(--s4); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
-  .lse-h-price .lse-btn:hover { background: var(--paper); }
-  .lse-h-price :focus-visible { box-shadow: 0 0 0 7px var(--paper); }
-  @media (min-width: 900px) {
-    .lse-h-price__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; align-items: start; }
   }
 
   /* ---------- Practice areas and FAQ ---------- */

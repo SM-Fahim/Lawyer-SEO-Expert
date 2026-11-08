@@ -1,0 +1,55 @@
+---
+// A result as big numbers: a grey "before", an arrow, and the "after" on the marker swipe. Leave out `before`
+// for one marked number on its own (the bankruptcy "43", the environmental "23").
+// The arrow sits in its own column, so "9 23" never reads as one number. Whole-number results count up once
+// when they scroll into view (scripts/marks.ts); reduced motion leaves them as written.
+// The numbers are aria-hidden by default: the heading or caption next to them must say the same thing.
+interface Props {
+  before?: string | number;
+  after: string | number;
+  /** Under the before number, in meta size. */
+  beforeLabel?: string;
+  /** Under the after number. */
+  afterLabel?: string;
+  /** 'xl' sets the numbers larger, for a hero where the number is the visual. */
+  size?: 'md' | 'xl';
+  /** Count the after number up once. On by default for whole numbers of 2 and more. */
+  count?: boolean;
+  /** Set false when no text nearby says the same numbers, so screen readers read them. */
+  decorative?: boolean;
+  class?: string;
+}
+const { before, after, beforeLabel, afterLabel, size = 'md', count = true, decorative = true, class: className } = Astro.props;
+const single = before === undefined;
+const target = Number(after);
+const counts = count && Number.isInteger(target) && target >= 2;
+---
+<div class:list={['lse-nums', { 'lse-nums--single': single, 'lse-nums--xl': size === 'xl' }, className]} aria-hidden={decorative ? 'true' : undefined}>
+  {!single && <span class="lse-num lse-num--was">{before}</span>}
+  {!single && (
+    <span class="lse-nums__to"><svg viewBox="0 0 48 24" focusable="false"><path d="M2 12h40M32 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  )}
+  <span class="lse-num lse-num--marked" data-count={counts ? String(target) : undefined}>{after}</span>
+  {!single && beforeLabel && <span class="lse-nums__l">{beforeLabel}</span>}
+  {afterLabel && <span class="lse-nums__l lse-nums__l--now">{afterLabel}</span>}
+</div>
+
+<style is:global>
+  /* Before, an arrow, after. */
+  .lse-nums { --n: var(--fs-num); display: grid; grid-template-columns: auto auto auto; justify-content: start; align-items: center; column-gap: clamp(14px, 2vw, 28px); row-gap: 10px; }
+  .lse-nums--xl { --n: clamp(104px, 11vw + 28px, 216px); }
+  .lse-nums__to { grid-row: 1; grid-column: 2; display: block; width: calc(var(--n) * .5); color: var(--ink); }
+  .lse-nums__to svg { width: 100%; height: auto; }
+  .lse-nums__l { grid-row: 2; grid-column: 1 / 3; align-self: start; font-size: var(--fs-meta); color: var(--muted); max-width: 8.5em; line-height: 1.3; }
+  .lse-nums__l--now { grid-column: 3; }
+  .lse-num { font-size: var(--n); font-weight: 900; line-height: .82; letter-spacing: -.055em; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+  .lse-num--was { grid-row: 1; grid-column: 1; color: #9a9e96; }
+  .lse-num--marked { grid-row: 1; grid-column: 3; justify-self: start; padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--marker); clip-path: var(--swipe); }
+  .lse-nums--single { grid-template-columns: auto; }
+  .lse-nums--single .lse-num--marked { grid-column: 1; }
+  .lse-nums--single .lse-nums__l--now { grid-column: 1; max-width: 16em; }
+</style>
+
+<script>
+  import '../../scripts/marks';
+</script>

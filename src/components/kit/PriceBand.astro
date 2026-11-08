@@ -1,0 +1,98 @@
+---
+// The page's one highlighter band: the price. One per page at most, and the only place the price shows.
+// Variants:
+//   'breakdown'  the homepage's: H2, then "hired one by one" rows with the struck total on the left, and our
+//                line, a note and the button on the right (7/5 at 900px and up).
+//   'total'      one column (max 760px): H2, lead, the struck total alone, our line, slot, button.
+//   'plain'      one column: H2, lead, the default slot (rows, terms), button.
+// `big` sets an amount at result-number size on a white swipe ("$2,000", "$500"); `usMark` puts part of our
+// line on the white swipe ("from $2,000 a month"). The highlighter can't mark the highlighter, so on this band
+// the swipe is white.
+// Amounts shown here must be in the page's PRICES_BY_PAGE entry, apart from $2,000.
+import Button from '../Button.astro';
+import PriceList from './PriceList.astro';
+interface Props {
+  /** One string, or parts that each stay on one line where they fit. */
+  heading: string | string[];
+  headingId: string;
+  variant?: 'breakdown' | 'total' | 'plain';
+  lead?: string;
+  /** Our line: "With us: all of it, from $2,000 a month." */
+  us?: string;
+  /** Words inside `us` to set on the white swipe. */
+  usMark?: string;
+  /** Under our line, after a rule: "No setup fee." */
+  note?: string;
+  /** An amount set huge on the white swipe, above the lead. */
+  big?: string;
+  button?: boolean;
+  id?: string;
+  class?: string;
+}
+const { heading, headingId, variant = 'plain', lead, us, usMark, note, big, button = true, id, class: className } = Astro.props;
+const parts = Array.isArray(heading) ? heading : [heading];
+let usParts: [string, string, string] | null = null;
+if (us && usMark && us.includes(usMark)) {
+  const at = us.indexOf(usMark);
+  usParts = [us.slice(0, at), usMark, us.slice(at + usMark.length)];
+}
+const hasSlot = Astro.slots.has('default');
+const hasLink = Astro.slots.has('link');
+---
+<section class:list={['lse-section', 'lse-price', `lse-price--${variant}`, className]} id={id} aria-labelledby={headingId}>
+  <div class="lse-wrap">
+    <h2 id={headingId}>{parts.map((p, i) => <>{i > 0 && ' '}<span>{p}</span></>)}</h2>
+    {variant === 'breakdown' ? (
+      <div class="lse-price__grid">
+        <div class="lse-price__list">
+          <PriceList />
+        </div>
+        <div class="lse-price__side">
+          {us && <p class="lse-price__us">{usParts ? <>{usParts[0]}<span class="lse-price__swipe">{usParts[1]}</span>{usParts[2]}</> : us}</p>}
+          {note && <p class="lse-price__note">{note}</p>}
+          {hasSlot && <div class="lse-price__more"><slot /></div>}
+          {button && <div class="lse-price__cta"><Button /></div>}
+          {hasLink && <p class="lse-price__link"><slot name="link" /></p>}
+        </div>
+      </div>
+    ) : (
+      <div class="lse-price__col">
+        {big && <p class="lse-price__big"><span>{big}</span></p>}
+        {lead && <p class="lse-price__lead">{lead}</p>}
+        {variant === 'total' && <PriceList totalOnly />}
+        {us && <p class="lse-price__us lse-price__us--line">{usParts ? <>{usParts[0]}<span class="lse-price__swipe">{usParts[1]}</span>{usParts[2]}</> : us}</p>}
+        {note && <p class="lse-price__note">{note}</p>}
+        {hasSlot && <div class="lse-price__more"><slot /></div>}
+        {button && <div class="lse-price__cta"><Button /></div>}
+        {hasLink && <p class="lse-price__link"><slot name="link" /></p>}
+      </div>
+    )}
+  </div>
+</section>
+
+<style is:global>
+  .lse-price { background: var(--marker); }
+  .lse-price h2 { font-size: clamp(40px, 4.4vw + 14px, 92px); letter-spacing: -.045em; line-height: .96; max-width: none; }
+  .lse-price h2 span { display: inline-block; }
+  .lse-price__grid { display: grid; gap: 40px; margin-top: var(--s6); }
+  .lse-price__us { font-size: clamp(30px, 2vw + 18px, 48px); font-weight: 800; letter-spacing: -.035em; line-height: 1.02; color: var(--ink); max-width: 13ch; }
+  .lse-price__note { margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--ink); font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); }
+  .lse-price__cta { margin-top: var(--s4); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
+  .lse-price__link { margin-top: 16px; font-size: 17px; color: var(--ink); }
+  .lse-price__link a { font-weight: 700; }
+  .lse-price__more { margin-top: var(--s4); color: var(--ink); }
+  .lse-price .lse-btn:hover { background: var(--paper); }
+  .lse-price :focus-visible { box-shadow: 0 0 0 7px var(--paper); }
+  .lse-price__swipe { display: inline; padding: 0 .12em; margin: 0 -.04em; background: var(--paper); -webkit-box-decoration-break: clone; box-decoration-break: clone; clip-path: none; }
+
+  /* One column. */
+  .lse-price__col { max-width: 760px; margin-top: var(--s5); display: grid; gap: 0; }
+  .lse-price__lead { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 34em; }
+  .lse-price__col .lse-costs { margin-top: var(--s4); }
+  .lse-price__us--line { max-width: 20ch; margin-top: var(--s4); }
+  .lse-price__big { margin-bottom: var(--s4); }
+  .lse-price__big span { display: inline-block; font-size: var(--fs-num); font-weight: 900; line-height: .82; letter-spacing: -.055em; color: var(--ink); padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--paper); clip-path: var(--swipe); font-variant-numeric: tabular-nums lining-nums; }
+  @media (min-width: 900px) {
+    .lse-price__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 72px; align-items: start; }
+  }
+</style>

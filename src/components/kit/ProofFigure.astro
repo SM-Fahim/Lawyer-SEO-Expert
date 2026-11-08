@@ -1,0 +1,45 @@
+---
+// A screenshot with its proof caption: the quoted search in bold, then one line on what it shows.
+// `query` goes in <q data-no-check>. `queryAbove` sets the search above the frame instead (a row of three
+// proofs reads better that way); the line stays under it. The caption never names the firm.
+// Pass the Shot props straight through (images, tag, tagSide, tagSmall, priority).
+import Shot, { type ShotImage } from '../Shot.astro';
+import Q from './Q.astro';
+interface Props {
+  images: ShotImage[];
+  tag?: string;
+  tagSide?: 'left' | 'right';
+  tagSmall?: boolean;
+  priority?: boolean;
+  /** The literal search, quoted. */
+  query?: string;
+  /** Words to highlight inside the query. */
+  queryMark?: string | string[];
+  queryAbove?: boolean;
+  /** One line on what the capture shows. Or use the default slot. */
+  caption?: string;
+  class?: string;
+}
+const { images, tag, tagSide = 'right', tagSmall, priority, query, queryMark, queryAbove = false, caption, class: className } = Astro.props;
+const hasSlot = Astro.slots.has('default');
+---
+<figure class:list={['lse-proof', className]}>
+  {query && queryAbove && <p class="lse-proof__q"><b><Q text={query} mark={queryMark} /></b></p>}
+  <Shot images={images} tag={tag} tagSide={tagSide} tagSmall={tagSmall} priority={priority} />
+  {(caption || hasSlot || (query && !queryAbove)) && (
+    <figcaption>
+      {query && !queryAbove && <b><Q text={query} mark={queryMark} /></b>}
+      {caption && <span>{caption}</span>}
+      {hasSlot && <span><slot /></span>}
+    </figcaption>
+  )}
+</figure>
+
+<style is:global>
+  /* Proof captions: the search in bold, the result under it. */
+  .lse-proof { display: grid; gap: 16px; align-content: start; }
+  .lse-proof figcaption { display: grid; gap: 4px; font-size: 17px; line-height: 1.4; max-width: 38em; }
+  .lse-proof figcaption b, .lse-proof__q b { font-size: 18px; letter-spacing: -.01em; }
+  .lse-proof figcaption span { color: var(--ink-2); }
+  .lse-proof__q { line-height: 1.35; max-width: 30em; }
+</style>

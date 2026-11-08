@@ -1,0 +1,25 @@
+---
+// A phone capture in a black phone frame (the homepage's "Your site"). The whole capture scales into the
+// frame; `width` caps it (default 260px), so a phone never takes a whole screen on a phone.
+// Takes Shot's props. Use `crop` on the image to show only the first screen of a tall capture.
+import Shot, { type ShotImage } from '../Shot.astro';
+interface Props {
+  images: ShotImage[];
+  tag?: string;
+  tagSide?: 'left' | 'right';
+  tagSmall?: boolean;
+  priority?: boolean;
+  /** Max width in px. */
+  width?: number;
+  class?: string;
+}
+const { class: className, width, ...shot } = Astro.props;
+---
+<div class:list={['lse-phone', className]} style={width ? `--phone-w:${width}px` : undefined}>
+  <Shot {...shot} />
+</div>
+
+<style is:global>
+  .lse-phone { max-width: var(--phone-w, 260px); }
+  .lse-phone .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
+</style>

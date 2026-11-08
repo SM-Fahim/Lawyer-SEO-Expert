@@ -1,0 +1,25 @@
+---
+// "Law firms we work with" and the four client logos (src/data/logos.ts). The only place firm names may
+// appear (FACTS section 4). The homepage hero has it; a page repeats it only if its deck asks.
+import { trustLogos } from '../../data/logos';
+interface Props {
+  label?: string;
+  /** Eager-load the logos (in a hero). */
+  priority?: boolean;
+  class?: string;
+}
+const { label = 'Law firms we work with', priority = false, class: className } = Astro.props;
+---
+<div class:list={['lse-trust', className]}>
+  <p class="lse-trust__label">{label}</p>
+  <ul class="lse-trust__logos">
+    {trustLogos.map((l) => (
+      <li><img src={l.src} width={l.width} height={l.height} alt={l.alt} style={`height:${l.h}px;width:auto`} loading={priority ? 'eager' : 'lazy'} decoding="async"></li>
+    ))}
+  </ul>
+</div>
+
+<style is:global>
+  .lse-trust__label { font-size: var(--fs-meta); color: var(--muted); }
+  .lse-trust__logos { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 34px; margin-top: 14px; }
+</style>
