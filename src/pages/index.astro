@@ -121,7 +121,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
             images={[
               { src: `${P}nola-wtd-query.webp`, width: 976, height: 67, alt: '' },
               { src: `${P}nola-wtd-rank.webp`, width: 900, height: 162, alt: 'The page in Google’s results, stamped 16 hours ago', marks: [{ l: 1.6, t: 63.5, w: 12.2, h: 16 }] },
-              { src: `${P}nola-wtd-ai.webp`, width: 900, height: 776, alt: 'Google’s AI answer citing the firm’s page on recorded statements and Louisiana filing deadlines', crop: { top: 21, height: 46.5 }, marks: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
+              { src: `${P}nola-wtd-ai.webp`, width: 900, height: 776, alt: 'Google’s AI answer citing the firm’s page on recorded statements and Louisiana filing deadlines', marks: [{ l: 60, t: 25.8, w: 14.4, h: 3.2 }, { l: 14.1, t: 48.9, w: 11.8, h: 3.3 }, { l: 61.4, t: 63.3, w: 11.9, h: 3.1 }] },
             ]}
           />
           <figcaption><b><q data-no-check>what to do after a truck accident in New Orleans</q></b><span>Ranked #1 on Google, and quoted 3 times in Google’s AI answer.</span></figcaption>
@@ -161,8 +161,11 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       <article class="lse-h-case" aria-labelledby="case-ep">
         <div class="lse-h-case__head">
           <div class="lse-h-nums" aria-hidden="true">
-            <div class="lse-h-nums__was"><span class="lse-h-num">9</span><span>calls in six months before us</span></div>
-            <div class="lse-h-nums__now"><span class="lse-h-num lse-h-num--marked" data-count="23">23</span><span>calls in three months with us</span></div>
+            <span class="lse-h-num lse-h-num--was">9</span>
+            <span class="lse-h-nums__to"><svg viewBox="0 0 48 24" focusable="false"><path d="M2 12h40M32 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="lse-h-num lse-h-num--marked" data-count="23">23</span>
+            <span class="lse-h-nums__l">calls in six months before us</span>
+            <span class="lse-h-nums__l lse-h-nums__l--now">calls in three months with us</span>
           </div>
           <h3 id="case-ep">A PI firm in El Paso went from 9 calls in six months to 23 in three.</h3>
         </div>
@@ -181,8 +184,11 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
       <article class="lse-h-case lse-h-case--flip" aria-labelledby="case-new">
         <div class="lse-h-case__head">
           <div class="lse-h-nums" aria-hidden="true">
-            <div class="lse-h-nums__was"><span class="lse-h-num">1</span><span>call in July</span></div>
-            <div class="lse-h-nums__now"><span class="lse-h-num lse-h-num--marked" data-count="9">9</span><span>calls in October</span></div>
+            <span class="lse-h-num lse-h-num--was">1</span>
+            <span class="lse-h-nums__to"><svg viewBox="0 0 48 24" focusable="false"><path d="M2 12h40M32 3l10 9-10 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="lse-h-num lse-h-num--marked" data-count="9">9</span>
+            <span class="lse-h-nums__l">call in July</span>
+            <span class="lse-h-nums__l lse-h-nums__l--now">calls in October</span>
           </div>
           <h3 id="case-new">A new Google profile went from 1 call in July to 9 in October.</h3>
           <p>It started with no history and climbed every month.</p>
@@ -246,7 +252,7 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
           <img src="/img/people/fahim.webp" width="720" height="716" alt="S. M. Fahim" loading="lazy" decoding="async">
         </div>
         <div class="lse-h-team__text">
-          <h3>S. M. Fahim</h3>
+          <h3>S.&nbsp;M.&nbsp;Fahim</h3>
           <p class="lse-h-team__role">Law firm SEO expert</p>
           <p class="lse-h-team__bio">Fahim leads every account, joins every call and reviews all the work. A small team helps with production. You are never handed off to an account manager.</p>
           <ul class="lse-h-record">
@@ -357,12 +363,15 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-case__head { display: grid; gap: 16px; align-content: start; }
   .lse-h-case__head h3 { max-width: 20ch; }
   .lse-h-case__head p { color: var(--ink-2); }
-  .lse-h-nums { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px clamp(24px, 3vw, 44px); }
-  .lse-h-nums > div { display: grid; gap: 6px; }
-  .lse-h-nums > div > span:last-child { font-size: var(--fs-meta); color: var(--muted); max-width: 9.5em; line-height: 1.3; }
+  /* Before, an arrow, after. The arrow sits in its own column so "9 23" never reads as one number. */
+  .lse-h-nums { display: grid; grid-template-columns: auto auto auto; justify-content: start; align-items: center; column-gap: clamp(14px, 2vw, 28px); row-gap: 10px; }
+  .lse-h-nums__to { grid-row: 1; grid-column: 2; display: block; width: calc(var(--fs-num) * .5); color: var(--ink); }
+  .lse-h-nums__to svg { width: 100%; height: auto; }
+  .lse-h-nums__l { grid-row: 2; grid-column: 1 / 3; align-self: start; font-size: var(--fs-meta); color: var(--muted); max-width: 8.5em; line-height: 1.3; }
+  .lse-h-nums__l--now { grid-column: 3; }
   .lse-h-num { font-size: var(--fs-num); font-weight: 900; line-height: .82; letter-spacing: -.055em; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
-  .lse-h-nums__was .lse-h-num { color: #9a9e96; }
-  .lse-h-num--marked { justify-self: start; padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--marker); clip-path: var(--swipe); }
+  .lse-h-num--was { grid-row: 1; grid-column: 1; color: #9a9e96; }
+  .lse-h-num--marked { grid-row: 1; grid-column: 3; justify-self: start; padding: .05em .12em .02em .06em; margin-left: -.06em; background: var(--marker); clip-path: var(--swipe); }
   .lse-h-pair { display: grid; gap: 28px; }
   .lse-h-pair figure { display: grid; gap: 10px; align-content: start; }
   .lse-h-pair figcaption { font-size: 16px; font-weight: 700; color: var(--ink); }
@@ -382,7 +391,12 @@ const schema = [fahimSchema, joshSchema, faqSchema(faq, `${site.url}/`)];
   .lse-h-zone h3 { font-size: 21px; }
   .lse-h-zone p { margin-top: 4px; color: var(--ink-2); max-width: 28em; }
   .lse-h-board { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: start; }
-  .lse-h-board__site { max-width: 230px; }
+  .lse-h-board .lse-h-board__site { max-width: 210px; }
+  @media (max-width: 699px) {
+    /* On a phone the capture shows only its first screen, so it doesn't take a whole screen itself. */
+    .lse-h-board .lse-h-board__site { max-width: 200px; }
+    .lse-h-board__site .lse-shot__part { aspect-ratio: 824 / 860 !important; }
+  }
   .lse-h-board__site .lse-shot__frame { border-radius: 26px; border: 7px solid var(--ink); }
   .lse-h-web { margin-top: var(--s6); font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 46em; }
   .lse-h-web a { white-space: nowrap; margin-left: 6px; }

@@ -32,7 +32,7 @@ export const servicePages: readonly NavLink[] = [
 
 export const companyPages: readonly NavLink[] = [
   { label: 'About', href: '/about/' },
-  { label: 'S. M. Fahim', href: '/about/sm-fahim/' },
+  { label: 'S. M. Fahim', href: '/about/sm-fahim/' },
   { label: 'Josh Henderson', href: '/about/josh-henderson/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'Contact', href: '/contact-us/' },

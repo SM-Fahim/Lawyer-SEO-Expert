@@ -58,7 +58,7 @@ export const site = {
     { label: 'About', href: '/about/sm-fahim/' },
   ] as NavLink[],
   footer: {
-    line: 'SEO and websites for law firms, led by S. M. Fahim.',
+    line: 'SEO and websites for law firms, led by S. M. Fahim.',
     copyright: '© 2026 Lawyer SEO Expert',
   },
   social: {

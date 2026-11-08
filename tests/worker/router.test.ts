@@ -62,7 +62,7 @@ describe('the built files', () => {
     const query = '?fbclid=IwAR2-abc_1.x&utm_source=facebook';
     const cases: Array<[string, string]> = [
       [`${SITE}/thank-you${query}`, `${SITE}/thank-you/${query}`],
-      [`${SITE}/law-firm-ppc/${query}`, `${SITE}/law-firm-seo-services/${query}`],
+      [`${SITE}/lawyer-content-writing/${query}`, `${SITE}/law-firm-seo-services/${query}`],
       [`http://lawyerseoexpert.com/thank-you/${query}`, `${SITE}/thank-you/${query}`],
     ];
     for (const [from, to] of cases) {
@@ -156,7 +156,7 @@ describe('redirects', () => {
   it.each([
     ['/seo-for-personal-injury-lawyer/', '/seo-for-personal-injury-lawyers/'],
     ['/seo-for-personal-injury-lawyer', '/seo-for-personal-injury-lawyers/'],
-    ['/law-firm-ppc/', '/law-firm-seo-services/'],
+    ['/seo-pricing-page/', '/seo-pricing/'],
     ['/lawyer-content-writing/', '/law-firm-seo-services/'],
   ])('old WordPress URL: %s goes to %s with a 301', async (from, to) => {
     const origin = originMustNotBeCalled();
@@ -168,7 +168,7 @@ describe('redirects', () => {
 
   it('keeps the query string', async () => {
     originMustNotBeCalled();
-    const response = await send(`${SITE}/law-firm-ppc/?rdt_cid=x&utm_source=reddit`);
+    const response = await send(`${SITE}/lawyer-content-writing/?rdt_cid=x&utm_source=reddit`);
     expect(response.status).toBe(301);
     expect(response.headers.get('location')).toBe(`${SITE}/law-firm-seo-services/?rdt_cid=x&utm_source=reddit`);
   });
@@ -342,7 +342,7 @@ describe('noindex', () => {
   it('is added to redirects too, keeping them on the Preview\'s host', async () => {
     originMustNotBeCalled();
     const host = 'https://lawyerseoexpert-site.fahim-afd.workers.dev';
-    const response = await send(`${host}/law-firm-ppc/`, { env: previewEnv() });
+    const response = await send(`${host}/lawyer-content-writing/`, { env: previewEnv() });
     expect(response.status).toBe(301);
     expect(response.headers.get('location')).toBe(`${host}/law-firm-seo-services/`);
     expect(response.headers.get('x-robots-tag')).toBe('noindex');

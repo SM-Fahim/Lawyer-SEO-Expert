@@ -106,7 +106,7 @@ describe('with the table in place', () => {
   it('ignores healthy responses and redirects', async () => {
     await send(`${SITE}/new-page/`);
     await send(`${SITE}/new-page`);
-    await send(`${SITE}/law-firm-ppc/`);
+    await send(`${SITE}/lawyer-content-writing/`);
     await send(`${SITE}/`);
     expect(await rows()).toHaveLength(0);
   });
