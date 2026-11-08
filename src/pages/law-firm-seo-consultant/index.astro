@@ -1,0 +1,191 @@
+---
+// /law-firm-seo-consultant/. Copy: content/v2/law-firm-seo-consultant.md (final, judge ruling 3 applied).
+// Facts: research/FACTS.md. A free second opinion from the person who also does the work. A client result
+// leads (El Paso, 23 calls, the after chart alone, cropped tight); the real calendar follows straight after
+// the hero; our own #1 shows once, as the answer to "Do you rank for what you sell?".
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import Shot from '../../components/Shot.astro';
+import Band from '../../components/kit/Band.astro';
+import Bio from '../../components/kit/Bio.astro';
+import BookingBand from '../../components/kit/BookingBand.astro';
+import NumPair from '../../components/kit/NumPair.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import Q from '../../components/kit/Q.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import ShotSwap from '../../components/money/ShotSwap.astro';
+import { fahim, josh } from '../../data/people';
+import { proof, shot } from '../../data/proof';
+import { phoneProof } from '../../data/proof-money';
+import { fahimSchema } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'What does a law firm SEO consultant do?',
+    html: 'Finds what keeps a firm’s pages and Google profile from ranking, decides what to fix first and checks that the fixes work. With us, the same person also leads the work.',
+  },
+  {
+    q: 'Is lawyer SEO consulting the same as hiring an agency?',
+    html: 'Not here. Consulting often stops at advice. With us, the advice and the monthly work come from the same person, so nobody hands you a plan and walks away.',
+  },
+  {
+    q: 'Do you sell an audit on its own?',
+    html: 'No. The free ranking review shows your main problems. If you want them fixed, that is our monthly SEO.',
+  },
+  {
+    q: 'What should I bring to the ranking review?',
+    html: 'Your website, your main practice areas and the cities you serve. Search Console access helps but is not needed.',
+  },
+  {
+    q: 'How soon will we see more calls?',
+    html: 'That turns on your city, your practice and the state of your site today. Fahim gives you a frank view on the call, not a date.',
+  },
+];
+
+// The El Paso after chart, cut tight: from the "23" down to the May to July axis. Marks: the total, and the
+// first and last month on the axis (the date range). % of the whole image, measured from its pixels.
+const epCrop = { top: 30.5, height: 63 };
+const epRange = [
+  { l: 3.9, t: 89.6, w: 4.7, h: 2.4 },
+  { l: 92, t: 89.6, w: 4.3, h: 2.4 },
+];
+---
+<InnerPage
+  title="Law Firm SEO Consultant | A Second Opinion, Then the Work"
+  description="A law firm SEO consultant who finds what holds your rankings down and leads the fix. Our own site ranks #1 on Google. Book a free ranking review."
+  path="/law-firm-seo-consultant/"
+  crumbs={[{ label: 'Law firm SEO consultant' }]}
+  service={{ name: 'Law firm SEO consultant', serviceType: 'Search engine optimization consulting for law firms' }}
+  faq={faq}
+  schema={[fahimSchema]}
+>
+  <PageHero
+    class="con-hero"
+    h1="A law firm SEO consultant who gets you ranked, not just advised."
+    lead="Find out what holds your firm back on Google, get the fixes in order, and have the same person lead the work that follows."
+  >
+    <figure slot="visual" class="con-hero__fig">
+      <NumPair after={23} afterLabel="calls in three months" size="xl" />
+      <Shot
+        tag="23 calls"
+        tagSide="right"
+        priority
+        images={[shot(proof.elpasoCallsAfter, { crop: epCrop, marks: [...proof.elpasoCallsAfter.marks.total, ...epRange], alt: 'Google Business Profile for an El Paso PI firm: 23 calls from May to July 2026, rising every month' })]}
+      />
+      <figcaption>A PI firm in El Paso: 23 calls in three months, after 9 in the six before. Google’s own count, May to July 2026.</figcaption>
+    </figure>
+  </PageHero>
+
+  <BookingBand
+    layout="split"
+    heading="Get a second opinion on your SEO."
+    headingId="book-h"
+    lead="30 minutes, free. Fahim pulls up the searches that matter to your firm, shows who outranks you and names the first fixes. The advice is yours to keep, whether you hire us or not."
+    class="con-book"
+  >
+    <p>Prefer to write? <a href="#book">Send your website to Fahim.</a> Fahim answers within an hour in business hours.</p>
+  </BookingBand>
+
+  <Band heading="And for a PI firm in New Orleans, the top spot." headingId="nola-h" tone="fog">
+    <Split ratio="7/5" align="center">
+      <figure slot="a" class="con-fig">
+        <ShotSwap
+          tag="#1"
+          wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdAi, { marks: ['citations'] })]}
+          narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdAiLeft, { marks: ['citations'] })]}
+        />
+      </figure>
+      <div slot="b" class="con-case">
+        <h3>#1 on Google, and quoted 3 times by its AI.</h3>
+        <p>For <Q text="what to do after a truck accident in New Orleans" />, a PI firm’s page leads the results and Google’s AI answer cites it three times.</p>
+      </div>
+    </Split>
+  </Band>
+
+  <Band heading="The advice, and the hands to carry it out." headingId="get-h">
+    <div class="con-narrow">
+      <Rows
+        variant="numbered"
+        items={[
+          { title: 'A clear diagnosis.', text: 'What holds your rankings down, on your site, your Google profile and the sites around you. Shown on screen, in plain words.' },
+          { title: 'Fixes in the right order.', text: 'What can bring calls soonest comes first. The rest waits.' },
+          { title: 'The work, done.', text: 'Fahim leads it, a small production team does the writing and outreach, and nothing goes live without your approval. One monthly price, from $2,000 a month. See <a href="/seo-pricing/">law firm SEO pricing</a>.' },
+        ]}
+      />
+    </div>
+  </Band>
+
+  <Band heading="Five questions to ask any SEO specialist for lawyers." headingId="vet-h" lead="Ask everyone on your list. Us included." tone="fog" wideHeading>
+    <!-- Rows variant="answer" markup by hand, so the screenshot can sit under the second answer only.
+         The styles come from Rows, which this page renders above. -->
+    <ul class="lse-rows lse-rows--answer con-vet">
+      <li class="lse-row">
+        <h3 class="lse-row__t">Who will work on my firm?</h3>
+        <p>Fahim, on every call and on every piece of work, backed by a small production team.</p>
+      </li>
+      <li class="lse-row">
+        <h3 class="lse-row__t">Do you rank for what you sell?</h3>
+        <p>Yes. We are the first result on Google for <Q text="lawyer seo expert" />. Only the ads sit above us.</p>
+        <figure class="con-serp">
+          <ShotSwap
+            tag="#1"
+            wide={[shot(proof.lseSerpTall, { crop: 'search', alt: '' }), shot(proof.lseSerpTall, { crop: 'result', marks: ['title'] })]}
+            narrow={[shot(phoneProof.lseSearch), shot(phoneProof.lseResult, { marks: ['title'] })]}
+          />
+          <figcaption class="lse-small">Google search, United States, 8 November 2026.</figcaption>
+        </figure>
+      </li>
+      <li class="lse-row">
+        <h3 class="lse-row__t">Who owns the work if we stop?</h3>
+        <p>You do: the site, the pages and the accounts we set up.</p>
+      </li>
+      <li class="lse-row">
+        <h3 class="lse-row__t">How long is the contract?</h3>
+        <p>Month to month. Stop in any month.</p>
+      </li>
+      <li class="lse-row">
+        <h3 class="lse-row__t">Do you guarantee rankings?</h3>
+        <p>No. Google sets rankings. Anyone who guarantees one is guessing.</p>
+      </li>
+    </ul>
+  </Band>
+
+  <Band heading="Who you talk to." headingId="people-h">
+    <div class="con-narrow">
+      <Bio person={fahim} size="md" role="Law firm SEO specialist" line="">
+        <p class="lse-bio__line">Over 6.5 years, Fahim has grown 67+ businesses online and ranked 50+ on Google. Fahim built the SEO system a New Orleans PI firm runs on, and is the <a href="/">lawyer SEO expert</a> behind this site’s #1.</p>
+        <p class="con-bio-link"><a class="lse-link" href={fahim.href}>Read Fahim’s background</a></p>
+      </Bio>
+      <Bio person={josh} role="Sales Director" line="A Texas-licensed attorney since 2008. Since 2016, Josh has advised 50+ law firms on how they run. Josh joins calls with firms and gives business input, never legal advice." />
+    </div>
+  </Band>
+
+  <Band heading="Questions about hiring a law firm SEO advisor." headingId="faq-h" tone="fog">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Bring your questions. Fahim brings your rankings." formLabel="consultant-final" idPrefix="consult-final" sub="No charge. Half an hour, with your rankings on screen.">
+    <p>In 30 minutes you see where you rank, who sits above you and what to fix first.</p>
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  /* Hero: the big marked 23 over the chart, on the fog panel. */
+  .con-hero__fig { display: grid; gap: 24px; align-content: start; }
+  .con-hero__fig figcaption { font-size: var(--fs-meta); line-height: 1.45; color: var(--muted); max-width: 40em; }
+  .con-hero .lse-hero__h { max-width: 14ch; }
+
+  .con-fig { display: grid; gap: 12px; min-width: 0; }
+  .con-case { display: grid; gap: 14px; align-content: start; }
+  .con-case h3 { font-size: clamp(28px, 1.6vw + 18px, 40px); letter-spacing: -.03em; line-height: 1.04; max-width: 14ch; }
+  .con-case p { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink-2); max-width: 26em; }
+
+  .con-narrow { max-width: 900px; }
+
+  /* Vetting: the one screenshot under its answer, at about seven columns. */
+  .con-vet { max-width: 900px; }
+  .con-serp { display: grid; gap: 10px; margin-top: 24px; max-width: 760px; }
+  .con-bio-link { margin-top: 10px; }
+</style>

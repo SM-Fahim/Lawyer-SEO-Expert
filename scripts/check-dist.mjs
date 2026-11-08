@@ -53,6 +53,10 @@ const PRICES_BY_PAGE = {
   '/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
   // /kit/ (noindex) shows the same shared breakdown in PriceCard and the struck total in PriceBand.
   '/kit/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  // /seo-pricing/: the hero card shows the whole shared breakdown and its struck total (src/data/pricing.ts).
+  '/seo-pricing/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
+  '/law-firm-seo-services/': ['4,000'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};

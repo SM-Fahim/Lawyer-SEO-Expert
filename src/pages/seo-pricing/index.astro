@@ -1,0 +1,162 @@
+---
+// /seo-pricing/. Copy: content/v2/seo-pricing.md (final). Facts: research/FACTS.md.
+// The number first: the "hired one by one" breakdown is the hero visual (rows and total from
+// src/data/pricing.ts, never retyped), then the calls the price pays for, what sets the number, the terms on
+// the one highlighter band, the FAQ, and the real calendar to close (no second form: the hero has one).
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import Shot from '../../components/Shot.astro';
+import ShotSwap from '../../components/money/ShotSwap.astro';
+import Band from '../../components/kit/Band.astro';
+import BookingBand from '../../components/kit/BookingBand.astro';
+import NumPair from '../../components/kit/NumPair.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import PriceCard from '../../components/kit/PriceCard.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import { proof, shot } from '../../data/proof';
+import { phoneProof } from '../../data/proof-money';
+import { site } from '../../data/site';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'How much does SEO cost for lawyers?',
+    html: 'From $2,000 a month with us, for the whole job. Where your number lands within that comes down to the three things above.',
+  },
+  {
+    q: 'Why one price and not packages?',
+    html: 'Packages make you guess which level you need, and the parts that matter often sit in the top one. We include the whole job and price it by how much work your market needs.',
+  },
+  {
+    q: 'Does personal injury SEO cost more?',
+    html: 'It can. Busy injury markets usually need more pages and links each month. Fahim looks at your real competitors before giving you a number.',
+  },
+  {
+    q: 'What happens if we stop?',
+    html: 'The site, pages and accounts we set up stay yours. Rankings can slip once the work stops, but nothing we built is taken down.',
+  },
+  {
+    q: 'What if we only need a new website?',
+    html: 'Website builds start from $2,000, quoted in writing. See <a href="/lawyer-web-design-development/">law firm web design</a>.',
+    text: 'Website builds start from $2,000, quoted in writing. See law firm web design.',
+  },
+];
+---
+<InnerPage
+  title="Law Firm SEO Pricing | From $2,000 a Month, All In"
+  description="Law firm SEO from $2,000 a month. One price covers pages, links, your Google profile, AI answers and your site. No setup fee, month to month."
+  path="/seo-pricing/"
+  crumbs={[{ label: 'Law firm SEO pricing' }]}
+  pageType="pricing"
+  service={{ name: 'Law firm SEO', serviceType: 'Search engine optimization for law firms' }}
+  faq={faq}
+>
+  <PageHero
+    class="cost-hero"
+    h1="Law firm SEO pricing: one price, from $2,000 a month."
+    lead="One price pays for all the work it takes to rank your firm. No setup fee, no packages to decode, and you pay month to month."
+    form={{ title: 'Get your monthly number.', sub: 'Send your website. Fahim answers within an hour in business hours.', idPrefix: 'price-hero', label: 'pricing-hero' }}
+    talk="Prefer a call?"
+  >
+    <PriceCard
+      slot="visual"
+      title="What each part costs when a firm buys it on its own"
+      titleTag="h2"
+      us="Every row above, with us: from $2,000 a month."
+      usMark="from $2,000 a month"
+    />
+  </PageHero>
+
+  <Band heading="Judge the price by the calls it brings." headingId="calls-h" lead="Counted by Google, from Business Profiles we look after.">
+    <Split ratio="8/4" align="center">
+      <ShotSwap
+        slot="a"
+        tag="139 calls"
+        wide={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]}
+        narrow={[shot(phoneProof.nolaCallsTotal, { marks: ['total', 'growth'] })]}
+      />
+      <div slot="b" class="cost-case">
+        <NumPair after={139} />
+        <h3>In five months, a PI firm in New Orleans took 139 calls.</h3>
+        <p>June to October 2026, by Google’s count. That is 39% more than June to October 2025.</p>
+      </div>
+    </Split>
+    <Split ratio="4/8" align="center" rule>
+      <div slot="a" class="cost-case">
+        <NumPair before={1} after={9} beforeLabel="July" afterLabel="October" />
+        <h3>A brand-new profile for the same firm: 1 call in July, then 9 in October.</h3>
+        <p>No history to start from. Calls rose each month after.</p>
+      </div>
+      <Shot slot="b" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
+    </Split>
+  </Band>
+
+  <Band heading="Three things decide your monthly number." headingId="drivers-h" tone="fog">
+    <div class="cost-narrow">
+      <Rows
+        variant="big"
+        items={[
+          { title: 'How busy your market is.', text: 'More firms chasing the same searches means more pages and links each month.' },
+          { title: 'How many practice areas you want to grow.', text: 'Each one needs its own pages and links.' },
+          { title: 'How many offices you have.', text: 'Each office needs its own page and its own Google profile.' },
+        ]}
+      />
+      <p class="cost-writing">Fahim puts your number in writing before any work starts.</p>
+    </div>
+  </Band>
+
+  <PriceBand variant="plain" heading="No setup fee. No lock-in." headingId="terms-h" class="cost-terms">
+    <Rows
+      variant="big"
+      items={[
+        { title: 'Month to month. Stop in any month.' },
+        { title: 'Your number in writing before work starts.' },
+        { title: 'Everything we build stays yours: the site, the pages and the accounts we set up.' },
+        { title: 'We sell the work, never a guaranteed ranking.' },
+      ]}
+    />
+  </PriceBand>
+
+  <Band heading="Questions about law firm SEO cost." headingId="faq-h" tone="fog">
+    <Faq items={faq} />
+  </Band>
+
+  <BookingBand
+    id="book"
+    heading="Get your own number from Fahim."
+    headingId="book-h"
+    lead="Choose a time below. In 30 minutes, Fahim checks your market live and tells you what the work would involve."
+  >
+    <Fragment slot="after">
+      <p>Prefer to write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or use <a href="#price-hero-site">the form at the top of this page</a>. Fahim answers within an hour in business hours.</p>
+      <p>What the monthly work includes: <a class="lse-link" href="/law-firm-seo-services/">law firm SEO services</a>.</p>
+    </Fragment>
+  </BookingBand>
+</InnerPage>
+
+<style is:global>
+  /* Hero: on phones the card comes before the form (H1, line, card, form). */
+  @media (max-width: 999px) {
+    .cost-hero .lse-hero__grid { gap: 0; }
+    .cost-hero .lse-hero__text { display: contents; }
+    .cost-hero .lse-hero__visual { order: 1; margin-top: 32px; }
+    .cost-hero .lse-hero__text .lse-hero__act { order: 2; margin-top: 40px; }
+  }
+  @media (min-width: 1000px) {
+    .cost-hero .lse-hero__visual { padding-top: 40px; padding-bottom: 40px; }
+  }
+
+  /* Results: the number and its line beside the frame. */
+  .cost-case { display: grid; gap: 16px; align-content: start; }
+  .cost-case h3 { max-width: 18ch; }
+  .cost-case p { color: var(--ink-2); max-width: 28em; }
+
+  .cost-narrow { max-width: 880px; }
+  .cost-writing { margin-top: var(--s4); font-size: var(--fs-lead); line-height: 1.45; font-weight: 700; color: var(--ink); }
+
+  /* Terms on the highlighter: the hairlines darken so they show on chartreuse. */
+  .cost-terms .lse-price__col { max-width: 900px; }
+  .cost-terms .lse-row { border-bottom-color: rgba(0, 0, 0, .28); }
+  .cost-terms .lse-rows--big .lse-row__t { max-width: 30ch; font-size: clamp(24px, 1.2vw + 16px, 34px); letter-spacing: -.025em; line-height: 1.12; }
+</style>

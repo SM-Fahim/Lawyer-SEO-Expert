@@ -11,8 +11,10 @@ interface Props {
   formLabel: string;
   idPrefix?: string;
   practiceArea?: string | null;
+  /** The line under the button. Defaults to site.cta.sub; a page passes its deck's own words. */
+  sub?: string;
 }
-const { heading, formLabel, idPrefix = 'f', practiceArea = null } = Astro.props;
+const { heading, formLabel, idPrefix = 'f', practiceArea = null, sub = site.cta.sub } = Astro.props;
 ---
 <section class="lse-section lse-final" id="book" aria-labelledby="final-h">
   <div class="lse-wrap">
@@ -20,7 +22,7 @@ const { heading, formLabel, idPrefix = 'f', practiceArea = null } = Astro.props;
     <div class="lse-final__lead lse-lead"><slot /></div>
     <div class="lse-final__cta">
       <Button />
-      <p class="lse-small">{site.cta.sub}</p>
+      <p class="lse-small">{sub}</p>
     </div>
     <div class="lse-final__write">
       <LeadForm
