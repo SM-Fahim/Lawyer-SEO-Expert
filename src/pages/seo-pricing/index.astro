@@ -1,56 +1,58 @@
 ---
-// /seo-pricing/. Copy: content/v2/seo-pricing.md (final). Facts: research/FACTS.md.
-// The number first: the "hired one by one" breakdown is the hero visual (rows and total from
-// src/data/pricing.ts, never retyped), then the calls the price pays for, what sets the number, the terms on
-// the one highlighter band, the FAQ, and the real calendar to close (no second form: the hero has one).
-import Faq, { type FaqItem } from '../../components/Faq.astro';
-import Shot from '../../components/Shot.astro';
-import ShotSwap from '../../components/money/ShotSwap.astro';
+// /seo-pricing/. Copy: content/v3/seo-pricing.md (critic: content/v3/CRITIC-services.md). Facts: research/FACTS.md.
+// The number first: the "hired one by one" breakdown is the hero visual (rows and total from src/data/pricing.ts,
+// never retyped). The depth zone follows straight after it (src/content/depth/seo-pricing.md): the models and their
+// rules, the drivers, the extras, what other agencies publish (the only market figures on the site, DEPTH-BRIEF 18,
+// rulings 1 and 23), cost per lead with the 139 capture, the quote checklist, then the mid-page CTA, the situations,
+// the terms on the one highlighter band, the open FAQ and the author box. The real calendar closes the page (no
+// second form: the hero has one).
+import Button from '../../components/Button.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
-import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import PriceCard from '../../components/kit/PriceCard.astro';
 import Rows from '../../components/kit/Rows.astro';
-import Split from '../../components/kit/Split.astro';
+import ShotSwap from '../../components/money/ShotSwap.astro';
+import '../../components/services/services.css';
 import { proof, shot } from '../../data/proof';
 import { phoneProof } from '../../data/proof-money';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'How much does SEO cost for lawyers?',
-    html: 'From $2,000 a month with us, for the whole job. Where your number lands within that comes down to the three things above.',
-  },
-  {
-    q: 'Why one price and not packages?',
-    html: 'Packages make you guess which level you need, and the parts that matter often sit in the top one. We include the whole job and price it by how much work your market needs.',
-  },
-  {
-    q: 'Does personal injury SEO cost more?',
-    html: 'It can. Busy injury markets usually need more pages and links each month. Fahim looks at your real competitors before giving you a number.',
-  },
-  {
-    q: 'What happens if we stop?',
-    html: 'The site, pages and accounts we set up stay yours. Rankings can slip once the work stops, but nothing we built is taken down.',
-  },
-  {
-    q: 'What if we only need a new website?',
-    html: 'Website builds start from $2,000, quoted in writing. See <a href="/lawyer-web-design-development/">law firm web design</a>.',
-    text: 'Website builds start from $2,000, quoted in writing. See law firm web design.',
-  },
+const title = 'Law Firm SEO Pricing 2026 | From $2,000 a Month, All In';
+const description =
+  'Law firm SEO pricing for 2026: our price, the pricing models and their rules, what moves the number, extras, published prices, cost per lead and terms.';
+const path = '/seo-pricing/';
+const depth = await getDepth('seo-pricing');
+
+// Depth section 3: what moves the monthly number.
+const drivers = [
+  { title: 'The market.', text: 'A busy city, where more firms chase the same searches, needs more pages and links each month than a quiet town.' },
+  { title: 'The practice areas.', text: 'Each practice a firm wants to grow needs its own pages and its own links. Practices with more firms competing for them need more of both.' },
+  { title: 'The offices.', text: 'Each real office needs its own page and its own Business Profile, with reviews to match.' },
+  { title: 'The site’s starting point.', text: 'A new site, a neglected one and a penalized one each need different groundwork before new pages can rank.' },
+];
+// Supplementary H3 3: pricing patterns to refuse.
+const traps = [
+  { title: 'Counts in place of outcomes.', text: 'A tier that promises a set number of articles or links says nothing about calls.' },
+  { title: 'A share of fees, or a fee per new client.', text: 'These tie the agency’s pay to the firm’s fees, which can run into state fee-sharing rules.' },
+  { title: 'Long minimum terms.', text: 'The firm keeps paying for work that isn’t working, because leaving costs more.' },
+  { title: 'Accounts in the agency’s name.', text: 'The firm pays to build assets it can’t take with it.' },
+  { title: 'Return claims with no method.', text: 'A return figure with no inputs can’t be checked, so it proves nothing.' },
 ];
 ---
 <InnerPage
-  title="Law Firm SEO Pricing | From $2,000 a Month, All In"
-  description="Law firm SEO from $2,000 a month. One price covers pages, links, your Google profile, AI answers and your site. No setup fee, month to month."
-  path="/seo-pricing/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'Law firm SEO pricing' }]}
   pageType="pricing"
   service={{ name: 'Law firm SEO', serviceType: 'Search engine optimization for law firms' }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     class="cost-hero"
@@ -68,69 +70,41 @@ const faq: FaqItem[] = [
     />
   </PageHero>
 
-  <Band heading="Judge the price by the calls it brings." headingId="calls-h" lead="Counted by Google, from Business Profiles we look after.">
-    <Split ratio="8/4" align="center">
+  <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
+    <div slot="drivers" class="bsv-rows"><Rows variant="inline" items={drivers} /></div>
+    <figure slot="calls" class="cost-calls">
       <ShotSwap
-        slot="a"
         tag="139 calls"
         wide={[shot(proof.nolaCalls, { marks: ['total', 'growth'] })]}
         narrow={[shot(phoneProof.nolaCallsTotal, { marks: ['total', 'growth'] })]}
       />
-      <div slot="b" class="cost-case">
-        <NumPair after={139} />
-        <h3>In five months, a PI firm in New Orleans took 139 calls.</h3>
-        <p>June to October 2026, by Google’s count. That is 39% more than June to October 2025.</p>
-      </div>
-    </Split>
-    <Split ratio="4/8" align="center" rule>
-      <div slot="a" class="cost-case">
-        <NumPair before={1} after={9} beforeLabel="July" afterLabel="October" />
-        <h3>A brand-new profile for the same firm: 1 call in July, then 9 in October.</h3>
-        <p>No history to start from. Calls rose each month after.</p>
-      </div>
-      <Shot slot="b" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
-    </Split>
-  </Band>
+    </figure>
+    <div slot="traps" class="bsv-rows"><Rows variant="inline" items={traps} /></div>
 
-  <Band heading="Three things decide your monthly number." headingId="drivers-h" tone="fog">
-    <div class="cost-narrow">
-      <Rows
-        variant="big"
-        items={[
-          { title: 'How busy your market is.', text: 'More firms chasing the same searches means more pages and links each month.' },
-          { title: 'How many practice areas you want to grow.', text: 'Each one needs its own pages and links.' },
-          { title: 'How many offices you have.', text: 'Each office needs its own page and its own Google profile.' },
-        ]}
-      />
-      <p class="cost-writing">Fahim puts your number in writing before any work starts.</p>
-    </div>
-  </Band>
+    <Band slot="mid" tone="fog" class="bsv-mid">
+      <p class="bsv-mid__line">Get your firm’s own number from Fahim, in writing, before any work starts.</p>
+      <Button />
+    </Band>
 
-  <PriceBand variant="plain" heading="No setup fee. No lock-in." headingId="terms-h" class="cost-terms">
-    <Rows
-      variant="big"
-      items={[
-        { title: 'Month to month. Stop in any month.' },
-        { title: 'Your number in writing before work starts.' },
-        { title: 'Everything we build stays yours: the site, the pages and the accounts we set up.' },
-        { title: 'We sell the work, never a guaranteed ranking.' },
-      ]}
+    <PriceBand
+      slot="price"
+      variant="plain"
+      heading="No setup fee. No lock-in."
+      headingId="terms-h"
+      lead="One price from $2,000 a month covers the whole job, and you can stop in any month."
+      class="cost-terms"
     />
-  </PriceBand>
-
-  <Band heading="Questions about law firm SEO cost." headingId="faq-h" tone="fog">
-    <Faq items={faq} />
-  </Band>
+  </DepthZone>
 
   <BookingBand
     id="book"
-    heading="Get your own number from Fahim."
+    heading="Ask Fahim for your law firm SEO price, in writing."
     headingId="book-h"
     lead="Choose a time below. In 30 minutes, Fahim checks your market live and tells you what the work would involve."
   >
     <Fragment slot="after">
       <p>Prefer to write? Email <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a> or use <a href="#price-hero-site">the form at the top of this page</a>. Fahim answers within an hour in business hours.</p>
-      <p>What the monthly work includes: <a class="lse-link" href="/law-firm-seo-services/">law firm SEO services</a>.</p>
+      <p>See <a class="lse-link" href="/law-firm-seo-services/">what the monthly work includes</a>.</p>
     </Fragment>
   </BookingBand>
 </InnerPage>
@@ -147,16 +121,9 @@ const faq: FaqItem[] = [
     .cost-hero .lse-hero__visual { padding-top: 40px; padding-bottom: 40px; }
   }
 
-  /* Results: the number and its line beside the frame. */
-  .cost-case { display: grid; gap: 16px; align-content: start; }
-  .cost-case h3 { max-width: 18ch; }
-  .cost-case p { color: var(--ink-2); max-width: 28em; }
+  /* The 139 capture under its paragraph, at the width of the text and a little more. */
+  .cost-calls { max-width: 820px; }
 
-  .cost-narrow { max-width: 880px; }
-  .cost-writing { margin-top: var(--s4); font-size: var(--fs-lead); line-height: 1.45; font-weight: 700; color: var(--ink); }
-
-  /* Terms on the highlighter: the hairlines darken so they show on chartreuse. */
-  .cost-terms .lse-price__col { max-width: 900px; }
-  .cost-terms .lse-row { border-bottom-color: rgba(0, 0, 0, .28); }
-  .cost-terms .lse-rows--big .lse-row__t { max-width: 30ch; font-size: clamp(24px, 1.2vw + 16px, 34px); letter-spacing: -.025em; line-height: 1.12; }
+  /* Terms on the highlighter: the heading, one line, the button. */
+  .cost-terms .lse-price__lead { font-size: clamp(21px, .8vw + 16px, 28px); font-weight: 600; line-height: 1.35; max-width: 28em; }
 </style>

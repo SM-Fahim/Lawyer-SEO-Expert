@@ -25,8 +25,10 @@ interface Props {
   sources?: boolean;
   /** Overrides the copy's authorLine. */
   authorLine?: string;
+  /** The author box's bio link words, when the deck names its own ("More about Fahim"). Default: AuthorBox's. */
+  authorLinkLabel?: string;
 }
-const { depth, faqTone = 'fog', sources = false, authorLine } = Astro.props;
+const { depth, faqTone = 'fog', sources = false, authorLine, authorLinkLabel } = Astro.props;
 const parts = splitDepth(depth.html);
 const { slots, bands } = depthSlotNames(parts);
 const filled = new Map<string, string>();
@@ -94,7 +96,7 @@ const sourceRel = (url: string) => (needsNofollow(url) ? 'nofollow noopener' : '
           </ol>
         </section>
       )}
-      <AuthorBox line={authorLine ?? depth.authorHtml} />
+      <AuthorBox line={authorLine ?? depth.authorHtml} linkLabel={authorLinkLabel} />
     </div>
   </div>
 </div>
