@@ -1,0 +1,170 @@
+---
+// The inner-page hero: H1, one line, a way to act (the compact LeadForm with "Rather talk it through?" under
+// it), and the visual. No price in a hero (except /seo-pricing/ and /lawyer-web-design-development/).
+// Layouts (pick the one the deck describes; pages in a group must not all use the same one):
+//   'split'  H1, line and form on the left (5), the visual on the right (7). `flip` puts the visual left.
+//   'top'    H1 and line across the top; under them the visual (7) and the form (5). `flip` swaps the two.
+//   'stack'  H1 and line, then the form as one wide row, then the visual full width (or the visual first,
+//            with `visualFirst`).
+// `panel` sets the visual on the fog panel (running off the screen edge in 'split' and 'top' at 1000px and up,
+// a rounded fog block in 'stack'), and lifts the frames on it. Leave `form` out when a booking band or a form
+// section follows straight after the hero.
+// Phones: one column, H1, line, form, then the visual (`visualFirst` puts the visual before the form).
+// Slots: "visual" (the frames, a figure, a PriceCard, a Face), "text" (extra under the line, like a
+// credentials line or a LinkedIn link), "after" (under everything: a TrustLine).
+import { site } from '../../data/site';
+import LeadForm from '../LeadForm.astro';
+
+export interface HeroForm {
+  title: string;
+  sub?: string;
+  /** Unique on the page, like "pi-hero". */
+  idPrefix: string;
+  /** source_form in the lead email, like "pi-hero". */
+  label: string;
+  format?: string;
+  submitLabel?: string;
+  practiceArea?: string | null;
+  titleTag?: 'h2' | 'h3';
+}
+
+interface Props {
+  h1: string;
+  lead?: string;
+  layout?: 'split' | 'top' | 'stack';
+  flip?: boolean;
+  panel?: boolean;
+  form?: HeroForm;
+  /** The words before the booking link under the form. false hides the line. */
+  talk?: string | false;
+  /** Under the form in 'stack': the form as one row (website, name, email, button). On by default there. */
+  formRow?: boolean;
+  visualFirst?: boolean;
+  /** Only the kit page sets 'h2', to show a second hero. Every real page has one H1: this one. */
+  headingTag?: 'h1' | 'h2';
+  headingId?: string;
+  class?: string;
+}
+const {
+  h1,
+  lead,
+  layout = 'split',
+  flip = false,
+  panel = true,
+  form,
+  talk = 'Rather talk it through?',
+  formRow = layout === 'stack',
+  visualFirst = false,
+  headingTag: H = 'h1',
+  headingId = 'hero-h',
+  class: className,
+} = Astro.props;
+const hasVisual = Astro.slots.has('visual');
+// Which side the visual sits on at 1000px and up, so the fog panel runs off the right edge.
+const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip);
+---
+<section
+  class:list={[
+    'lse-hero',
+    `lse-hero--${layout}`,
+    {
+      'lse-hero--panel': panel && hasVisual,
+      'lse-hero--vleft': visualLeft,
+      'lse-hero--vfirst': visualFirst,
+      'lse-hero--noform': !form,
+    },
+    className,
+  ]}
+  aria-labelledby={headingId}
+>
+  <div class="lse-wrap">
+    {layout !== 'split' && (
+      <div class="lse-hero__top">
+        <H id={headingId} class="lse-hero__h">{h1}</H>
+        {lead && <p class="lse-lead lse-hero__lead">{lead}</p>}
+        <slot name="text" />
+      </div>
+    )}
+    <div class="lse-hero__grid">
+      {layout === 'split' && (
+        <div class="lse-hero__text">
+          <H id={headingId} class="lse-hero__h">{h1}</H>
+          {lead && <p class="lse-lead lse-hero__lead">{lead}</p>}
+          <slot name="text" />
+          {form && (
+            <div class="lse-hero__act">
+              <LeadForm compact title={form.title} titleTag={form.titleTag ?? 'h2'} sub={form.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Ranking review by email'} submitLabel={form.submitLabel} practiceArea={form.practiceArea ?? null}>
+                <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
+              </LeadForm>
+              {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
+            </div>
+          )}
+        </div>
+      )}
+      {hasVisual && <div class="lse-hero__visual"><slot name="visual" /></div>}
+      {layout !== 'split' && form && (
+        <div class:list={['lse-hero__act', { 'lse-hero__act--row': formRow }]}>
+          <LeadForm compact title={form.title} titleTag={form.titleTag ?? 'h2'} sub={form.sub} idPrefix={form.idPrefix} label={form.label} format={form.format ?? 'Ranking review by email'} submitLabel={form.submitLabel} practiceArea={form.practiceArea ?? null}>
+            <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
+          </LeadForm>
+          {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
+        </div>
+      )}
+    </div>
+    {Astro.slots.has('after') && <div class="lse-hero__after"><slot name="after" /></div>}
+  </div>
+</section>
+
+<style is:global>
+  .lse-hero { position: relative; overflow: hidden; padding: clamp(20px, 2.6vw, 40px) 0 clamp(72px, 8vw, 112px); }
+  .lse-hero__h { font-size: clamp(40px, 3.4vw + 18px, 78px); max-width: 18ch; }
+  .lse-hero--split .lse-hero__h { font-size: clamp(40px, 2.6vw + 20px, 66px); max-width: 15ch; }
+  .lse-hero__lead { margin-top: clamp(18px, 2vw, 26px); max-width: 30em; }
+  .lse-hero__top { display: grid; align-content: start; }
+  .lse-hero__top > :not(.lse-hero__h):not(.lse-hero__lead) { margin-top: 14px; }
+  .lse-hero__text { display: grid; align-content: start; }
+  .lse-hero__text > :not(.lse-hero__h):not(.lse-hero__lead):not(.lse-hero__act) { margin-top: 14px; }
+  .lse-hero__act { display: grid; gap: 14px; align-content: start; }
+  .lse-hero__text .lse-hero__act { margin-top: clamp(28px, 3vw, 40px); }
+  .lse-hero__talk { font-size: 16px; color: var(--ink-2); }
+  .lse-hero__talk a { font-weight: 700; }
+  .lse-hero__visual { display: grid; gap: 14px; align-content: start; min-width: 0; }
+  .lse-hero__after { margin-top: clamp(40px, 4vw, 56px); }
+
+  /* Phones: text, form, visual. */
+  .lse-hero__grid { display: grid; gap: 36px; grid-template-columns: minmax(0, 1fr); margin-top: clamp(28px, 3vw, 44px); }
+  .lse-hero--split .lse-hero__grid { margin-top: 0; }
+  .lse-hero--top .lse-hero__act, .lse-hero--stack .lse-hero__act { order: -1; }
+  .lse-hero--vfirst .lse-hero__act { order: 1; }
+
+  /* The stack's visual: a rounded fog block inside the page width. */
+  .lse-hero--stack.lse-hero--panel .lse-hero__visual { padding: clamp(16px, 3vw, 40px); background: var(--fog); border-radius: 28px; }
+  .lse-hero--panel .lse-hero__visual .lse-shot__frame { box-shadow: var(--shadow-lift); border-color: #cfd4cb; }
+
+  @media (min-width: 1000px) {
+    .lse-hero--split .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }
+    .lse-hero--split.lse-hero--vleft .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .lse-hero--split.lse-hero--vleft .lse-hero__visual { order: -1; }
+    .lse-hero--split.lse-hero--noform .lse-hero__grid { align-items: center; }
+    .lse-hero--top .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: start; }
+    .lse-hero--top .lse-hero__act { order: -1; }
+    .lse-hero--top.lse-hero--vleft .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .lse-hero--top.lse-hero--vleft .lse-hero__act { order: 1; }
+
+    /* The fog panel runs off the screen edge on the visual's side. */
+    .lse-hero--panel:not(.lse-hero--stack) .lse-hero__visual { position: relative; z-index: 0; padding: 44px 0 36px 40px; }
+    .lse-hero--panel:not(.lse-hero--stack) .lse-hero__visual::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; right: -50vw; background: var(--fog); border-radius: 28px 0 0 28px; }
+    .lse-hero--panel.lse-hero--vleft:not(.lse-hero--stack) .lse-hero__visual { padding: 44px 40px 36px 0; }
+    .lse-hero--panel.lse-hero--vleft:not(.lse-hero--stack) .lse-hero__visual::before { left: -50vw; right: 0; border-radius: 0 28px 28px 0; }
+  }
+
+  /* The form as one row: website (set like a search box), name, email, then the button. */
+  @media (min-width: 900px) {
+    .lse-hero__act--row .lse-form--compact { max-width: none; }
+    .lse-hero__act--row .lse-form--compact form { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) auto; align-items: end; column-gap: 14px; }
+    .lse-hero__act--row .lse-form--compact .lse-field--site { grid-column: 1; grid-row: 1; }
+    .lse-hero__act--row .lse-form--compact .lse-field:not(.lse-field--site) { grid-column: auto; grid-row: 1; }
+    .lse-hero__act--row .lse-form--compact .lse-input { padding-top: 13px; padding-bottom: 13px; }
+    .lse-hero__act--row .lse-form--compact button.lse-btn { grid-column: 4; grid-row: 1; width: auto; margin-top: 0; padding: 15px 26px; }
+  }
+</style>

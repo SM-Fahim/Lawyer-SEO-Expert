@@ -1,0 +1,28 @@
+---
+// Equal columns for a row of proofs (two or three frames side by side at 1000px and up, two at 700px for a
+// pair of charts, one column on phones). Each child is one column. For uneven splits use Split.
+interface Props {
+  count?: 2 | 3;
+  /** Space between columns and rows. */
+  gap?: 'md' | 'lg';
+  align?: 'start' | 'end';
+  class?: string;
+}
+const { count = 3, gap = 'lg', align = 'start', class: className } = Astro.props;
+---
+<div class:list={['lse-cols', `lse-cols--${count}`, `lse-cols--${gap}`, { 'lse-cols--end': align === 'end' }, className]}>
+  <slot />
+</div>
+
+<style is:global>
+  .lse-cols { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .lse-cols--md { gap: 28px; }
+  .lse-cols--lg { gap: 48px clamp(28px, 3vw, 48px); }
+  .lse-cols--end { align-items: end; }
+  @media (min-width: 700px) {
+    .lse-cols--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1000px) {
+    .lse-cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+</style>

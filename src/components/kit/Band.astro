@@ -1,0 +1,40 @@
+---
+// A page section: a band of colour with the H2 and an optional lead on top, content below. Never text to
+// the right of the H2. Bands alternate white and fog down a page. The highlighter band is PriceBand's job
+// (one per page); 'marker' here is for a page with no price band whose deck asks for one marked section.
+interface Props {
+  heading?: string;
+  /** Needed when there's a heading. Unique on the page. */
+  headingId?: string;
+  lead?: string;
+  tone?: 'white' | 'fog' | 'marker';
+  id?: string;
+  /** Wider H2 measure, for a long heading. */
+  wideHeading?: boolean;
+  /** Drop the top padding, when the band continues the one above (same tone). */
+  flushTop?: boolean;
+  class?: string;
+}
+const { heading, headingId, lead, tone = 'white', id, wideHeading = false, flushTop = false, class: className } = Astro.props;
+---
+<section
+  class:list={['lse-section', 'lse-band', { 'lse-section--fog': tone === 'fog', 'lse-band--marker': tone === 'marker', 'lse-band--flush': flushTop }, className]}
+  id={id}
+  aria-labelledby={heading ? headingId : undefined}
+>
+  <div class="lse-wrap">
+    {heading && <h2 id={headingId} class:list={{ 'lse-band__h--wide': wideHeading }}>{heading}</h2>}
+    {lead && <p class="lse-lead lse-h2-lead">{lead}</p>}
+    <div class:list={['lse-band__body', { 'lse-band__body--after': heading || lead }]}>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .lse-band--marker { background: var(--marker); }
+  .lse-band--marker .lse-lead { color: var(--ink); }
+  .lse-band--flush { padding-top: 0; }
+  .lse-band__h--wide { max-width: 26ch; }
+  .lse-band__body--after { margin-top: var(--s6); }
+</style>

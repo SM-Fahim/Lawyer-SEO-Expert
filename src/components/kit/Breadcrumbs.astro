@@ -1,0 +1,29 @@
+---
+// The visible trail, in quiet meta type above the H1: "Home / SEO for personal injury lawyers". Sentence case,
+// muted, never all caps, so it never reads as an eyebrow. InnerPage renders it and the matching
+// BreadcrumbList JSON-LD from the same `trail` (breadcrumbSchema in src/lib/schema.ts), so they always agree.
+import type { Crumb } from '../../lib/schema';
+interface Props {
+  /** After Home. The last item is the page itself. */
+  trail: readonly Crumb[];
+}
+const { trail } = Astro.props;
+const items = [{ label: 'Home', href: '/' }, ...trail];
+---
+<nav class="lse-crumbs" aria-label="Breadcrumb">
+  <div class="lse-wrap">
+    <ol>
+      {items.map((c, i) =>
+        i === items.length - 1 ? <li><span aria-current="page">{c.label}</span></li> : <li><a href={c.href}>{c.label}</a></li>,
+      )}
+    </ol>
+  </div>
+</nav>
+
+<style is:global>
+  .lse-crumbs { padding-top: clamp(16px, 2vw, 24px); }
+  .lse-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: var(--fs-meta); line-height: 1.4; color: var(--muted); }
+  .lse-crumbs li + li::before { content: "/"; margin: 0 10px; color: var(--line-2); }
+  .lse-crumbs a { color: var(--muted); text-decoration: none; }
+  .lse-crumbs a:hover { color: var(--ink); text-decoration: underline; }
+</style>

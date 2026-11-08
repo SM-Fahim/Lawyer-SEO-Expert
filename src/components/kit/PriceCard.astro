@@ -1,0 +1,29 @@
+---
+// The breakdown as a white card, for a hero visual on the fog panel (/seo-pricing/): a title, the
+// "hired one by one" rows with the struck total, and our line with "from $2,000 a month" on the swipe.
+// No receipt look: plain rows, tabular figures, one marker swipe. Data from src/data/pricing.ts.
+import PriceList from './PriceList.astro';
+interface Props {
+  title: string;
+  titleTag?: 'h2' | 'h3' | 'p';
+  /** Our line. */
+  us: string;
+  /** Words inside `us` set on the marker swipe. */
+  usMark?: string;
+  class?: string;
+}
+const { title, titleTag: T = 'h2', us, usMark, class: className } = Astro.props;
+const at = usMark ? us.indexOf(usMark) : -1;
+---
+<div class:list={['lse-pcard', className]}>
+  <T class="lse-pcard__t">{title}</T>
+  <PriceList />
+  <p class="lse-pcard__us">{at >= 0 && usMark ? <>{us.slice(0, at)}<span class="lse-mk">{usMark}</span>{us.slice(at + usMark.length)}</> : us}</p>
+</div>
+
+<style is:global>
+  .lse-pcard { background: var(--paper); border: 1px solid #cfd4cb; border-radius: var(--r-frame); box-shadow: var(--shadow-lift); padding: clamp(22px, 2.4vw, 36px); max-width: 640px; }
+  .lse-pcard__t { font-size: clamp(20px, .6vw + 16px, 24px); font-weight: 800; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 18px; color: var(--ink); }
+  .lse-pcard .lse-costs { --rule: var(--line); }
+  .lse-pcard__us { margin-top: 22px; font-size: clamp(24px, 1.2vw + 16px, 34px); font-weight: 800; letter-spacing: -.03em; line-height: 1.12; color: var(--ink); }
+</style>

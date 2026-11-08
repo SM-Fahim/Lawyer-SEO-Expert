@@ -1,0 +1,44 @@
+---
+// A small table with hairline rules and no boxes (the DUI "which page owns which search"). Cells are text, a
+// quoted search ({ q }) or a link ({ label, href }, underlined). The first row of `head` labels the columns.
+import Q from './Q.astro';
+type Cell = string | { q: string; mark?: string | string[] } | { label: string; href: string };
+interface Props {
+  head: string[];
+  rows: Cell[][];
+  /** Read out as the table's name. */
+  caption: string;
+  /** Show the caption as a line above the table (otherwise it's for screen readers only). */
+  showCaption?: boolean;
+  class?: string;
+}
+const { head, rows, caption, showCaption = false, class: className } = Astro.props;
+---
+<div class:list={['lse-table', className]}>
+  <table>
+    <caption class:list={{ 'lse-vh': !showCaption }}>{caption}</caption>
+    <thead><tr>{head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          {row.map((c) =>
+            typeof c === 'string' ? <td>{c}</td> : 'q' in c ? <td><Q text={c.q} mark={c.mark} /></td> : <td><a href={c.href}>{c.label}</a></td>,
+          )}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style is:global>
+  .lse-table { overflow-x: auto; }
+  .lse-table table { width: 100%; border-collapse: collapse; font-size: clamp(17px, .3vw + 15px, 19px); line-height: 1.35; }
+  .lse-table caption { text-align: left; padding-bottom: 12px; font-weight: 700; color: var(--ink); }
+  .lse-table th { text-align: left; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); padding: 0 24px 10px 0; border-bottom: 2px solid var(--ink); }
+  .lse-table td { padding: 15px 24px 16px 0; border-bottom: 1px solid var(--line-2); color: var(--ink); vertical-align: top; }
+  .lse-table td:first-child { font-weight: 600; }
+  .lse-table td a { font-weight: 600; }
+  @media (max-width: 560px) {
+    .lse-table th, .lse-table td { padding-right: 14px; }
+  }
+</style>

@@ -1,0 +1,40 @@
+---
+// Two columns on a 12-column feel at 1000px and up, one column under it. Put one side in slot "a" (left) and
+// the other in slot "b" (right). Asymmetric by default: 5/7 or 7/5. Stack several and add `rule` for a
+// hairline between them; alternate `ratio` for the zig-zag rows the decks ask for.
+// `bFirst` puts slot b first on phones (a deck that says "Phones: visual first").
+interface Props {
+  ratio?: '5/7' | '7/5' | '6/6' | '4/8' | '8/4';
+  align?: 'start' | 'center' | 'end';
+  bFirst?: boolean;
+  /** A hairline above, with space, when rows stack. */
+  rule?: boolean;
+  class?: string;
+}
+const { ratio = '5/7', align = 'start', bFirst = false, rule = false, class: className } = Astro.props;
+const r = ratio.replace('/', '');
+---
+<div
+  class:list={['lse-split', `lse-split--r${r}`, `lse-split--${align}`, { 'lse-split--bfirst': bFirst, 'lse-split--rule': rule }, className]}
+>
+  <div class="lse-split__a"><slot name="a" /></div>
+  <div class="lse-split__b"><slot name="b" /></div>
+</div>
+
+<style is:global>
+  .lse-split { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); }
+  .lse-split__a, .lse-split__b { display: grid; gap: 16px; align-content: start; min-width: 0; }
+  .lse-split--bfirst .lse-split__b { order: -1; }
+  .lse-split--rule { margin-top: clamp(48px, 6vw, 80px); padding-top: clamp(48px, 6vw, 80px); border-top: 1px solid var(--line-2); }
+  @media (min-width: 1000px) {
+    .lse-split { column-gap: clamp(48px, 5vw, 72px); }
+    .lse-split--r57 { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+    .lse-split--r75 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+    .lse-split--r66 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .lse-split--r48 { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+    .lse-split--r84 { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
+    .lse-split--bfirst .lse-split__b { order: 0; }
+    .lse-split--center { align-items: center; }
+    .lse-split--end { align-items: end; }
+  }
+</style>

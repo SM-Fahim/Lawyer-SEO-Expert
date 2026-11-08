@@ -130,6 +130,8 @@ export const proof = {
       result: [{ l: 1.9, t: 88.4, w: 40, h: 4 }],
       sourceCard: [{ l: 67.7, t: 49.3, w: 21.5, h: 8.6 }],
     },
+    // The organic result alone, as a strip (for a row of three, where the whole page would be too small).
+    crops: { result: { top: 80, height: 20 } },
     deckNames: ['p16-jackknife.webp', 'ai-jackknife.webp'],
     note: 'An open source popup covers part of the AI panel, so the sourceCard mark is partly hidden: prefer aiChip and result.',
   },
@@ -144,6 +146,8 @@ export const proof = {
       citedLine: [{ l: 5.1, t: 35.3, w: 33.9, h: 2.6 }],
       sourceCard: [{ l: 69.6, t: 35.4, w: 24, h: 3.2 }],
     },
+    // The answer's first lines and the first source card.
+    crops: { answer: { top: 22, height: 24 } },
     deckNames: ['ai-915.webp', 'p16-915-ai.webp'],
     note: 'LCME has two versions; this is ai-915 (search box included). Decks that say p16-915-ai mean this file.',
   },

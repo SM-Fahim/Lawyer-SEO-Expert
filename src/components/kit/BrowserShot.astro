@@ -1,0 +1,31 @@
+---
+// A screenshot of a website in a plain browser frame: a grey bar with three grey dots, no address, no
+// colours. For a site we built (a desktop capture), not for a Google result (those use Shot as they are).
+// Takes Shot's props. Marks and the tag work as in Shot; the bar never covers a mark.
+import Shot, { type ShotImage } from '../Shot.astro';
+interface Props {
+  images: ShotImage[];
+  tag?: string;
+  tagSide?: 'left' | 'right';
+  tagSmall?: boolean;
+  priority?: boolean;
+  class?: string;
+}
+const { class: className, ...shot } = Astro.props;
+---
+<div class:list={['lse-browser', className]}>
+  <Shot {...shot} />
+</div>
+
+<style is:global>
+  .lse-browser .lse-shot__frame { border-color: var(--line-2); }
+  .lse-browser .lse-shot__frame::before {
+    content: ""; display: block; height: clamp(20px, 2vw, 28px);
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 16px 50%, var(--line-2) 4px, transparent 4.5px),
+      radial-gradient(circle at 30px 50%, var(--line-2) 4px, transparent 4.5px),
+      radial-gradient(circle at 44px 50%, var(--line-2) 4px, transparent 4.5px),
+      var(--fog);
+  }
+</style>

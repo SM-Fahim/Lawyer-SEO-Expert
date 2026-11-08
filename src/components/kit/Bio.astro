@@ -1,0 +1,40 @@
+---
+// A person as a row: the photo on the swipe, then name, role and a line or two. Stack several and a hairline
+// runs between them (people rows on /about/, the consultant page). Never cards, never side by side.
+// `line` defaults to the person's short line in src/data/people.ts; pass the deck's own words, or use the
+// default slot for more (a record line, a text link).
+import type { Person } from '../../data/people';
+import Face from './Face.astro';
+interface Props {
+  person: Person;
+  size?: 'md' | 'sm' | 'xs';
+  headingTag?: 'h2' | 'h3';
+  /** Overrides the role under the name. */
+  role?: string;
+  line?: string;
+  class?: string;
+}
+const { person, size = 'sm', headingTag: H = 'h3', role = person.role, line = person.line, class: className } = Astro.props;
+---
+<div class:list={['lse-bio', `lse-bio--${size}`, className]}>
+  <Face person={person} size={size} />
+  <div class="lse-bio__text">
+    <H class="lse-bio__name" set:html={person.display} />
+    <p class="lse-bio__role">{role}</p>
+    {line && <p class="lse-bio__line">{line}</p>}
+    <slot />
+  </div>
+</div>
+
+<style is:global>
+  .lse-bio { display: flex; gap: clamp(20px, 3vw, 40px); align-items: center; }
+  .lse-bio + .lse-bio { margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--line-2); }
+  .lse-bio__name { font-size: var(--fs-h3); }
+  .lse-bio--sm .lse-bio__name, .lse-bio--xs .lse-bio__name { font-size: 22px; }
+  .lse-bio__role { margin-top: 4px; font-size: var(--fs-meta); font-weight: 600; color: var(--muted); }
+  .lse-bio__line { margin-top: 8px; color: var(--ink-2); max-width: 32em; }
+  @media (max-width: 560px) {
+    .lse-bio--md { flex-direction: column; align-items: flex-start; }
+    .lse-bio--md .lse-face { width: 180px; }
+  }
+</style>

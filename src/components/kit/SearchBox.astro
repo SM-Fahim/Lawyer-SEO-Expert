@@ -1,0 +1,45 @@
+---
+// Searches typed into a plain search box: one rounded box, a magnifier on each line, hairlines between.
+// For "what people type" sections. Each query is quoted (<q data-no-check>); `mark` highlights the words that
+// matter ("near me", "[county]"). A pattern keeps its brackets: "[charge] lawyer in [county]".
+import Q from './Q.astro';
+interface Query {
+  text: string;
+  mark?: string | string[];
+}
+interface Props {
+  queries: Query[];
+  /** Read out before the list, like "Searches people type". */
+  label: string;
+  /** A small line under the box, like "Real searches from our keyword research." */
+  caption?: string;
+  class?: string;
+}
+const { queries, label, caption, class: className } = Astro.props;
+---
+<figure class:list={['lse-search', className]}>
+  <ul class="lse-search__box" aria-label={label}>
+    {queries.map((q) => <li><Q text={q.text} mark={q.mark} /></li>)}
+  </ul>
+  {caption && <figcaption class="lse-small">{caption}</figcaption>}
+</figure>
+
+<style is:global>
+  .lse-search { display: grid; gap: 12px; }
+  .lse-search__box { list-style: none; background: var(--paper); border: 2px solid var(--ink); border-radius: 22px; padding: 6px 0; }
+  .lse-search__box li {
+    position: relative; padding: 16px 22px 16px 58px;
+    font-size: clamp(18px, .5vw + 15px, 22px); font-weight: 500; line-height: 1.35; color: var(--ink); letter-spacing: -.01em;
+  }
+  .lse-search__box li + li { border-top: 1px solid var(--line); }
+  .lse-search__box li::before {
+    content: ""; position: absolute; left: 22px; top: calc(16px + .675em - 10px); width: 20px; height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 5 5'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+  /* A search is typed, so no quote marks around it here. */
+  .lse-search__box q { quotes: none; }
+  @media (max-width: 480px) {
+    .lse-search__box li { padding: 14px 16px 14px 48px; }
+    .lse-search__box li::before { left: 16px; top: calc(14px + .675em - 10px); }
+  }
+</style>

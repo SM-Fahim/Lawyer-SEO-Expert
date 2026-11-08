@@ -1,0 +1,62 @@
+---
+// Searches in two or three columns side by side, a hairline between the columns, plain rows inside them.
+// For "two searchers" (worker and employer), "keep or skip", "same case, two languages", "three buyers".
+// Each column has a short heading and its queries (each in <q data-no-check>, with optional marks), and an
+// optional line under it. One column on phones.
+import Placeholder from '../Placeholder.astro';
+import Q from './Q.astro';
+interface Query {
+  text: string;
+  mark?: string | string[];
+}
+interface Column {
+  heading: string;
+  queries: Query[];
+  /** One short line under the list. */
+  note?: string;
+  /** When the queries aren't collected yet: what to collect. Shows a Placeholder instead of the list. */
+  placeholder?: string;
+  /** Strike the queries through in grey: searches the firm should not chase ("keep or skip"). */
+  strike?: boolean;
+}
+interface Props {
+  columns: Column[];
+  headingTag?: 'h3' | 'h4';
+  class?: string;
+}
+const { columns, headingTag: H = 'h3', class: className } = Astro.props;
+---
+<div class:list={['lse-panel', `lse-panel--${columns.length}`, className]}>
+  {columns.map((c) => (
+    <div class:list={['lse-panel__col', { 'lse-panel__col--strike': c.strike }]}>
+      <H class="lse-panel__h">{c.heading}</H>
+      {c.placeholder ? (
+        <Placeholder block collect={c.placeholder} />
+      ) : (
+        <ul class="lse-panel__list">
+          {c.queries.map((q) => <li><Q text={q.text} mark={q.mark} /></li>)}
+        </ul>
+      )}
+      {c.note && <p class="lse-panel__note">{c.note}</p>}
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .lse-panel { display: grid; gap: 48px; }
+  .lse-panel__h { font-size: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+  .lse-panel__list { list-style: none; }
+  .lse-panel__list li { padding: 14px 0 15px; border-bottom: 1px solid var(--line-2); font-size: clamp(17px, .3vw + 15px, 19px); font-weight: 500; line-height: 1.35; color: var(--ink); }
+  .lse-panel__col--strike .lse-panel__list li { color: var(--muted); font-weight: 400; text-decoration: line-through; text-decoration-color: var(--line-2); text-decoration-thickness: 2px; }
+  .lse-panel__note { margin-top: 16px; color: var(--ink-2); max-width: 30em; }
+  .lse-panel .lse-ph--block { margin-top: 16px; }
+  @media (min-width: 1000px) {
+    .lse-panel { gap: 0; }
+    .lse-panel--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .lse-panel--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .lse-panel__col { padding: 0 clamp(28px, 3vw, 48px); }
+    .lse-panel__col:first-child { padding-left: 0; }
+    .lse-panel__col:last-child { padding-right: 0; }
+    .lse-panel__col + .lse-panel__col { border-left: 1px solid var(--line-2); }
+  }
+</style>

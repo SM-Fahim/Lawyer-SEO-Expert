@@ -1,0 +1,47 @@
+---
+// The shell for every inner page: Base (head, header, footer, sitewide features), the breadcrumb trail, and
+// the page's JSON-LD built from what it passes:
+//   crumbs   -> BreadcrumbList (always), and the visible trail above the hero
+//   service  -> Service with the approved "from" price (service, practice, pricing, web, PPC pages)
+//   faq      -> FAQPage from the same items the page shows in <Faq> (never anything not visible)
+//   schema   -> anything else (Person or ProfilePage on a bio)
+// pageType defaults to "service" (worker/pagetype.ts).
+import type { FaqItem } from '../components/Faq.astro';
+import Breadcrumbs from '../components/kit/Breadcrumbs.astro';
+import { site } from '../data/site';
+import { breadcrumbSchema, faqSchema, serviceSchema, type Crumb, type ServiceInput } from '../lib/schema';
+import type { PageType } from '../../worker/pagetype';
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** The page's own path, with trailing slash. */
+  path: string;
+  /** The trail after Home; the last item is this page (no href needed). */
+  crumbs: Crumb[];
+  pageType?: PageType;
+  service?: ServiceInput;
+  faq?: readonly FaqItem[];
+  schema?: object[];
+  /** Hide the visible trail (the JSON-LD stays). */
+  hideCrumbs?: boolean;
+  noindex?: boolean;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+}
+const { title, description, path, crumbs, pageType = 'service', service, faq, schema = [], hideCrumbs = false, noindex, ogTitle, ogDescription, ogImage } = Astro.props;
+const pageUrl = new URL(path, site.url).href;
+const orgId = `${site.url}/#org`;
+const graph = [
+  breadcrumbSchema(crumbs, pageUrl, site.url),
+  ...(service ? [serviceSchema(service, pageUrl, orgId)] : []),
+  ...(faq?.length ? [faqSchema(faq, pageUrl)] : []),
+  ...schema,
+];
+---
+<Base pageType={pageType} path={path} title={title} description={description} schema={graph} noindex={noindex} ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage}>
+  {!hideCrumbs && <Breadcrumbs trail={crumbs} />}
+  <slot />
+</Base>
