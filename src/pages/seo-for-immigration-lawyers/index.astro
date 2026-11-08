@@ -1,58 +1,42 @@
 ---
-// /seo-for-immigration-lawyers/ from content/v2/seo-for-immigration-lawyers.md (practice set B).
-// Hero: stacked, no form. H1 and line, then one city's results page wide on a fog block, with only the AI
-// answer chip and the source card marked (judge ruling 1: never the key-firms row the PI hero marks). On
-// phones the same capture shows as two readable crops. The booking calendar follows straight after.
-// Then two languages, city and nationwide, trust, FAQ (the page's one price), close.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-immigration-lawyers/ from content/v3/seo-for-immigration-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
+// Facts: research/FACTS.md. This page owns multilingual pages and hreflang (DEPTH-BRIEF section 5). The commercial
+// top is the v2 build: a stacked hero with no form (one city's results page wide on the fog panel, only the AI
+// answer chip and the source card marked, never the key-firms row), then the booking calendar. The v2 bands, FAQ and
+// Related block gave way to the depth zone (src/content/depth/seo-for-immigration-lawyers.md). Its own look on this
+// page: the jump list on the left and the summary on the right, the agency habits as run-in hairline rows, the
+// mid-page CTA as the page's one marker band (no PriceBand here), the price as two plain lines side by side on white
+// under a black rule (no button), and the open FAQ on fog.
+import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import BookingBand from '../../components/kit/BookingBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import Rows from '../../components/kit/Rows.astro';
-import SearchBox from '../../components/kit/SearchBox.astro';
-import Split from '../../components/kit/Split.astro';
-import Related from '../../components/practice-b/Related.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'Should we build pages by visa type or by city?',
-    html: 'Mostly by case type, because clients can live anywhere. City pages go where you have an office or attend court.',
-  },
-  {
-    q: 'Can we rank in Spanish?',
-    html: 'Yes, with real Spanish pages at their own address, checked by a fluent speaker. The same goes for any other language your team speaks.',
-  },
-  {
-    q: 'Our attorneys speak a language you don’t. Can you still help?',
-    html: 'Yes. Fahim plans the pages and the search work for every language. A fluent speaker at your firm checks every word before it goes live.',
-  },
-  {
-    q: 'What does SEO for an immigration firm cost?',
-    html: 'From $2,000 a month for everything it takes to rank, and there is no setup fee. You get your exact number in writing first. See <a href="/seo-pricing/">law firm SEO pricing</a>.',
-    text: 'From $2,000 a month for everything it takes to rank, and there is no setup fee. You get your exact number in writing first.',
-  },
-  {
-    q: 'Does this follow bar advertising rules?',
-    html: 'Your state bar sets the rules, and your firm approves each page before it is published. No page promises an approval, a result or a timeline.',
-  },
-];
+const path = '/seo-for-immigration-lawyers/';
+const title = 'SEO for Immigration Lawyers | Found in Every Language';
+const description =
+  'SEO for immigration lawyers: case pages in each language with hreflang, trust against notarios, national reach, EOIR rules, policy changes, non-US firms.';
+const depth = await getDepth('seo-for-immigration-lawyers');
 ---
 <InnerPage
-  title="SEO for Immigration Lawyers | Found in Every Language"
-  description="SEO for immigration lawyers: rank for the case types you take, in the languages your clients speak, in your city and beyond it."
-  path="/seo-for-immigration-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for immigration lawyers' }]}
   service={{ name: 'SEO for immigration lawyers', offer: false }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="stack"
     h1="SEO for immigration lawyers, found in every language you serve."
-    lead="Clients search for a green card, citizenship or asylum help, often in Spanish and often far from your office. We make your firm the one they find, in your city and beyond it."
+    lead="Clients search for green card, citizenship or asylum help in English or in their first language, near your office or far from it. We make your firm the one they find, in your city and beyond it."
     class="im-hero"
   >
     <figure slot="visual" class="im-hero__fig">
@@ -64,7 +48,7 @@ const faq: FaqItem[] = [
         <Shot class="im-hero__card" images={[shot(proof.nolaTankerSerpSource, { marks: ['sourceCard'] })]} />
       </div>
       <figcaption class="im-hero__say">
-        <span class="im-hero__cap">For a PI firm in New Orleans. On one city search, Google’s AI answer cites the firm and lists its page as a source.</span>
+        <span class="im-hero__cap">For a PI firm in New Orleans. On one city search, Google’s AI answer named it a key firm.</span>
         <span class="im-hero__line">An immigration firm can hold its own city’s results page the same way, for each case type it takes.</span>
       </figcaption>
     </figure>
@@ -76,77 +60,26 @@ const faq: FaqItem[] = [
     lead="Free, 30 minutes. Fahim runs your main case types on Google with you and shows who comes up."
     tone="fog"
   >
-    <p slot="after">Prefer to write? Send your website through <a href="#im-final-name">the form at the end of this page</a>.</p>
+    <p slot="after">Prefer to write? Send your website through <a href="#im-final-name">the short form at the foot of this page</a>.</p>
   </BookingBand>
 
-  <Band
-    heading="One case type, searched in two languages."
-    headingId="im-lang-h"
-    lead="Each language gets real pages at their own address, checked by a fluent speaker at your firm. A translate button does not rank."
-  >
-    <Split ratio="6/6">
-      <div slot="a" class="im-lang">
-        <h3 class="im-lang__h">English</h3>
-        <SearchBox
-          label="English searches"
-          caption="English searches from our keyword research."
-          queries={[
-            { text: 'how much does an immigration lawyer cost for green card', mark: 'green card' },
-            { text: 'how much does immigration lawyer cost for citizenship', mark: 'citizenship' },
-            { text: 'can i apply for asylum without a lawyer', mark: 'asylum' },
-            { text: 'can a lawyer stop deportation', mark: 'deportation' },
-          ]}
-        />
+  <DepthZone depth={depth} authorLinkLabel="Fahim’s profile and record">
+    <Band slot="mid" tone="marker" class="im-mid">
+      <p class="im-mid__line">Fahim can check this language plan against your own site in a free, <span class="im-nowrap">30-minute</span> ranking review.</p>
+      <Button />
+    </Band>
+
+    <Band slot="price" class="im-price">
+      <div class="im-price__in">
+        <p class="im-price__big">Immigration SEO runs from $2,000 a month with us, and we charge no setup fee. Fahim puts your number in writing before any work begins.</p>
+        <p class="im-price__line">It covers the case pages in each language, the profile and reviews, links, site upkeep, call and form tracking and AI answer checks. See <a href="/seo-pricing/">law firm SEO pricing</a> for how the number is set.</p>
       </div>
-      <div slot="b" class="im-lang">
-        <h3 class="im-lang__h">Spanish</h3>
-        <SearchBox
-          label="Spanish searches"
-          caption="Example searches."
-          queries={[
-            { text: 'abogado de inmigración cerca de mí', mark: 'inmigración' },
-            { text: 'cómo sacar la green card', mark: 'green card' },
-            { text: 'abogado de asilo político', mark: 'asilo' },
-          ]}
-        />
-      </div>
-    </Split>
-  </Band>
+    </Band>
+  </DepthZone>
 
-  <Band heading="Win your city first, then the case types that cross state lines." headingId="im-reach-h" tone="fog" wideHeading>
-    <div class="im-reach">
-      <Rows
-        variant="inline"
-        items={[
-          { title: 'Your city:', text: 'your Google Business Profile, reviews, and city pages where you have an office or attend immigration court.' },
-          { title: 'Nationwide:', text: 'a page for every case type you handle, in each language you serve.' },
-        ]}
-      />
-      <p class="lse-small im-reach__note">As general information, federal rules let a lawyer in good standing in any one US state handle cases before USCIS and in immigration court, wherever the client lives. Your attorneys confirm what your own state bar allows in advertising.</p>
-    </div>
-  </Band>
-
-  <Band heading="Pages a careful client can trust." headingId="im-trust-h" lead="Many readers have heard of scams. Every case-type page shows them a real attorney.">
-    <div class="im-trust">
-      <Rows
-        class="im-trust__rows"
-        items={[
-          { text: 'The attorney’s name and bar admission, with a link to check it.' },
-          { text: 'How the first consultation works, what it costs and in which languages.' },
-          { text: 'No promises about approval or speed, on any page.' },
-        ]}
-      />
-    </div>
-  </Band>
-
-  <Band heading="Immigration firms ask us." headingId="im-faq-h" tone="fog">
-    <Faq items={faq} />
-  </Band>
-
-  <FinalCta heading="See who a client finds for your case types." formLabel="immigration-final" idPrefix="im-final" practiceArea="Immigration">
-    <p>In 30 minutes, Fahim runs your main case-type searches with you and shows whether your firm comes up, in your city and beyond, and what to build first.</p>
+  <FinalCta heading="Test your immigration case pages against the firms clients find first." formLabel="immigration-final" idPrefix="im-final" practiceArea="Immigration">
+    <p>Bring your list of case types. Fahim checks them on Google with you in a free 30-minute call and shows which page to build first.</p>
   </FinalCta>
-  <Related links={[{ label: 'SEO for criminal defense lawyers', href: '/seo-for-criminal-defense-lawyers/' }, { label: 'SEO for employment lawyers', href: '/seo-for-employment-lawyers/' }]} />
 </InnerPage>
 
 <style>
@@ -165,14 +98,36 @@ const faq: FaqItem[] = [
     .im-hero__say { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px; max-width: none; }
     .im-hero__line { grid-column: 2; grid-row: 1; margin-top: 0; }
   }
+</style>
 
-  .im-lang { display: grid; gap: 16px; align-content: start; }
-  .im-lang__h { font-size: 22px; }
+<style is:global>
+  /* The booking band and the depth zone: fog, then white, with the usual section space. From 1000px the jump list
+     sits on the left and the byline and summary on the right (the copy's order stays the same for readers). */
+  @media (min-width: 1000px) {
+    .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__intro { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+    .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__lede { grid-column: 2; grid-row: 1; }
+    .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__toc { grid-column: 1; grid-row: 1; }
+    .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__summary { font-size: clamp(19px, .5vw + 16px, 24px); line-height: 1.45; color: var(--ink); }
+  }
 
-  .im-reach { max-width: 860px; display: grid; gap: 20px; }
-  .im-reach :global(.lse-row p) { font-size: var(--fs-lead); line-height: 1.45; }
-  .im-reach__note { max-width: 44em; }
+  /* The agency habits: run-in hairline rows at the text's size, the bold lead in ink. */
+  .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
+  .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) > li { margin: 0; padding: 14px 0 15px; border-bottom: 1px solid var(--line-2); }
+  .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) > li > strong:first-child { color: var(--ink); font-weight: 750; }
 
-  .im-trust { max-width: 760px; }
-  :global(.im-trust__rows .lse-row p) { font-size: var(--fs-lead); line-height: 1.4; color: var(--ink); }
+  /* The mid-page CTA: the page's one marker band (it has no PriceBand), the line large, the button under it. */
+  .im-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }
+  .im-mid__line { max-width: 24ch; font-size: clamp(30px, 2.2vw + 18px, 52px); font-weight: 800; line-height: 1.04; letter-spacing: -.032em; color: var(--ink); }
+  .im-mid .lse-btn:hover { background: var(--paper); }
+  .im-nowrap { white-space: nowrap; }
+
+  /* The price: two plain lines under a black rule, side by side from 1000px, the link in the second. No button. */
+  .im-price { padding-top: 0; }
+  .im-price__in { display: grid; gap: var(--s3); padding-top: clamp(28px, 3vw, 40px); border-top: 2px solid var(--ink); }
+  .im-price__big { max-width: 22em; font-size: clamp(22px, .9vw + 17px, 30px); font-weight: 750; line-height: 1.22; letter-spacing: -.02em; color: var(--ink); }
+  .im-price__line { max-width: 30em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
+  .im-price__line a { font-weight: 700; color: var(--ink); }
+  @media (min-width: 1000px) {
+    .im-price__in { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(48px, 5vw, 96px); align-items: start; }
+  }
 </style>

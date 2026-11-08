@@ -1,61 +1,46 @@
 ---
-// /seo-for-bankruptcy-lawyers/ from content/v2/seo-for-bankruptcy-lawyers.md (practice set B).
-// Hero: number-led on white. H1 and line, then a giant marked "43" beside the calls chart cropped to the
-// September point (a real rectangle crop of LCME's calls-rudin.webp, src/data/proof.ts). No form in the hero:
-// section 1 straight after it puts the urgent searches beside the form. Then Map or page, the price band
-// (the page's one marker band), FAQ, close.
-import Faq, { type FaqItem } from '../../components/Faq.astro';
+// /seo-for-bankruptcy-lawyers/ from content/v3/seo-for-bankruptcy-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
+// Facts: research/FACTS.md. The commercial top is the v2 build: a number-led hero on white (H1 and line, then a
+// giant marked "43" beside the calls chart cropped to the September point), and the urgent searches beside the form
+// straight after it. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
+// (src/content/depth/seo-for-bankruptcy-lawyers.md). Its own look on this page: the jump list with big ink numerals,
+// the problem pages and agency habits as hairline rows with each bold lead on its own line, the built marker
+// PriceBand (moved, one line changed), and the open FAQ on fog with each question beside its answer.
 import FinalCta from '../../components/FinalCta.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import Shot from '../../components/Shot.astro';
+import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Rows from '../../components/kit/Rows.astro';
 import Split from '../../components/kit/Split.astro';
 import QueryRows from '../../components/practice-b/QueryRows.astro';
-import Related from '../../components/practice-b/Related.astro';
 import { proof, shot } from '../../data/proof';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
+import { depthSchema, getDepth } from '../../lib/depth';
 
-const faq: FaqItem[] = [
-  {
-    q: 'Is SEO worth it for a flat-fee practice?',
-    html: 'Only if the qualified leads it brings cover the cost with room to spare. Bring your average fee for each chapter to the review, and Fahim works through the numbers with you.',
-  },
-  {
-    q: 'Should we publish our fees?',
-    html: 'If you can, yes. Cost is among the first things people search, and a clear fee page saves your staff calls from people who are not ready yet.',
-  },
-  {
-    q: 'How do reviews work when clients want privacy?',
-    html: 'The routine asks every client the same way and accepts first names. Replies never mention anyone’s case or debts.',
-  },
-  {
-    q: 'Do the pages carry the statements our rules require?',
-    html: 'Your attorneys decide which statements your rules require, and approve every page before it goes live. We keep that wording on every page that needs it.',
-  },
-  {
-    q: 'How soon will calls pick up?',
-    html: 'That depends on how crowded your city is and how your profile and site look today. Fahim checks both with you in the review and gives you an honest answer.',
-  },
-];
+const path = '/seo-for-bankruptcy-lawyers/';
+const title = 'SEO for Bankruptcy Lawyers | Get the Local Call';
+const description =
+  'SEO for bankruptcy lawyers: Chapter 7 and 13 pages, the debt relief agency statement, district pages, problem pages, AI answers and fee timing.';
+const depth = await getDepth('seo-for-bankruptcy-lawyers');
 ---
 <InnerPage
-  title="SEO for Bankruptcy Lawyers | Get the Local Call"
-  description="SEO for bankruptcy lawyers: get on the Map and the first results when people nearby search for debt help, and turn those searches into calls."
-  path="/seo-for-bankruptcy-lawyers/"
+  title={title}
+  description={description}
+  path={path}
   crumbs={[{ label: 'SEO for bankruptcy lawyers' }]}
   service={{ name: 'SEO for bankruptcy lawyers', offer: false }}
-  faq={faq}
+  faq={depth.faq}
+  schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
     layout="stack"
     panel={false}
     h1="SEO for bankruptcy lawyers, built to win the local call."
-    lead="Someone facing a garnishment searches for a lawyer nearby and calls one of the first few they see. We put your firm there: on the Map, in the results and in Google’s AI answers."
+    lead="Someone facing a garnishment searches for a lawyer nearby. We put your firm where that search lands: on the Map, in the results and in Google’s AI answers."
     class="bk-hero"
   >
     <div slot="visual" class="bk-hero__vis">
@@ -96,32 +81,16 @@ const faq: FaqItem[] = [
     </Split>
   </Band>
 
-  <Band heading="Which search goes to the Map, and which to a page." headingId="bk-where-h">
-    <div class="bk-where">
-      <Rows
-        variant="big"
-        items={[
-          { title: 'The Map', text: '“Near me” and “bankruptcy lawyer” plus your city. Your Google Business Profile, your reviews and the call button win these.' },
-          { title: 'Your pages', text: 'Problem questions like a garnishment or a debt collector. One page for each, with your fee for Chapter 7 and Chapter 13 in plain view if you publish it.' },
-          { title: 'Google’s AI answers', text: 'The same problem pages, written so Google’s AI can quote them.' },
-        ]}
-      />
-    </div>
-  </Band>
+  <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
+    <PriceBand slot="price" variant="plain" heading="The Map, the pages and the calls, in one price." headingId="bk-price-h" class="bk-price">
+      <p class="bk-price__lead"><a href="/seo-pricing/">From $2,000 a month</a> pays for the full job of ranking: your profile and reviews, the pages, site upkeep, links, call and form tracking, and AI answer checks.</p>
+      <p class="bk-price__terms">No setup fee, no lock-in, and Fahim gives you the number in writing first.</p>
+    </PriceBand>
+  </DepthZone>
 
-  <PriceBand variant="plain" heading="The Map, the pages and the calls, in one price." headingId="bk-price-h" class="bk-price">
-    <p class="bk-price__lead"><a href="/seo-pricing/">From $2,000 a month</a> covers everything it takes to rank: your profile and reviews, the pages, site upkeep, links, call and form tracking, and AI answer checks.</p>
-    <p class="bk-price__terms">No setup fee, no lock-in, and Fahim gives you the number in writing first.</p>
-  </PriceBand>
-
-  <Band heading="Bankruptcy SEO, asked and answered." headingId="bk-faq-h">
-    <Faq items={faq} />
-  </Band>
-
-  <FinalCta heading="See who gets the call in your city today." formLabel="bankruptcy-final" idPrefix="bk-final" practiceArea="Bankruptcy">
-    <p>In 30 minutes, Fahim runs the local bankruptcy searches for your city with you and shows which firms take the calls now, and what would move you up first.</p>
+  <FinalCta heading="Check your bankruptcy pages against your district’s top results." formLabel="bankruptcy-final" idPrefix="bk-final" practiceArea="Bankruptcy">
+    <p>In 30 minutes, Fahim runs your Chapter 7 and Chapter 13 searches for each district with you and shows who takes those calls today.</p>
   </FinalCta>
-  <Related links={[{ label: 'SEO for family lawyers', href: '/seo-for-family-lawyers/' }, { label: 'SEO for estate planning lawyers', href: '/seo-for-estate-planning-lawyers/' }]} />
 </InnerPage>
 
 <style>
@@ -149,10 +118,32 @@ const faq: FaqItem[] = [
     .bk-act { position: sticky; top: 24px; }
   }
 
-  .bk-where { max-width: 900px; }
-
   :global(.bk-price .lse-price__more) { display: grid; gap: 18px; }
   .bk-price__lead { font-size: clamp(24px, 1.4vw + 16px, 36px); font-weight: 700; line-height: 1.2; letter-spacing: -.025em; color: var(--ink); max-width: 24em; }
   .bk-price__lead a { font-weight: 900; background: var(--paper); padding: 0 .12em; margin: 0 -.04em; text-decoration-thickness: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .bk-price__terms { padding-top: 16px; border-top: 2px solid var(--ink); font-size: clamp(19px, .5vw + 16px, 23px); font-weight: 700; color: var(--ink); max-width: 30em; }
+</style>
+
+<style is:global>
+  /* The depth zone on this page. The jump list counts its sections in big ink numerals. */
+  .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-jump li { grid-template-columns: 2.4em minmax(0, 1fr); align-items: baseline; }
+  .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-jump li::before {
+    padding-top: 9px; font-size: 26px; font-weight: 900; line-height: 1; letter-spacing: -.04em; color: var(--ink);
+  }
+
+  /* The problem pages and the agency habits: hairline rows, each bold lead on its own line at a small heading size. */
+  .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
+  .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) > li { margin: 0; padding: 16px 0 18px; border-bottom: 1px solid var(--line-2); }
+  .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) > li > strong:first-child {
+    display: block; margin-bottom: 4px; font-size: clamp(19px, .4vw + 16px, 22px); font-weight: 750; line-height: 1.25; letter-spacing: -.012em; color: var(--ink);
+  }
+
+  /* The open FAQ: each question beside its answer from 1000px, under one black rule. */
+  @media (min-width: 1000px) {
+    .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-depth__faq .lse-faq--open { max-width: none; }
+    .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-depth__faq .lse-faq__item {
+      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(40px, 5vw, 80px); align-items: baseline;
+    }
+    .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-depth__faq .lse-faq--open .lse-faq__a { padding-top: 0; }
+  }
 </style>
