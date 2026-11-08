@@ -108,3 +108,14 @@ Pages: `/lawyer-web-design-development/`, `/law-firm-ppc/` (indexed), `/about/`,
 - **Footer:** the PPC link label is "Google Ads management" (deck).
 - **Hero alignment:** `/about/` and `/law-firm-ppc/` heroes without PageHero's own form align to the top at 1000px and up (page-level CSS), so the H1 doesn't float mid-column.
 - **Judge round 1 (same day):** `/law-firm-ppc/` has no placeholders now: the hero is a SearchPanel of example search terms for a car accident firm (kept and blocked, no numbers), the budget section is a line and three rows, and the account section is rows in two columns; the three captures to collect are in `docs/MANUAL-REVIEW.md`. Web page: the price band H2 is "One fixed quote for the build." under a one-line "From $2,000" swipe; ranking captures run edge to edge on phones; the dark New Orleans captures have tags only, no marks. `/contact-us/` puts "After you send it" (three rows) beside the form at 1000px and up; "What happens next" is an LCME heading.
+## 2026-11-08 Money pages (branch p-money)
+
+`/law-firm-seo-services/`, `/seo-pricing/`, `/law-firm-seo-consultant/` from the v2 decks, copy unchanged. Three different hero layouts: services `stack` (form row, then the jackknife #1 on the fog block), pricing `split` with the breakdown card (phones: H1, line, card, form, by page CSS), consultant `split` with no form and the calendar band straight after.
+
+- **Phone crops** (`src/data/proof-money.ts`, `src/components/money/ShotSwap.astro`): wide Google captures set their text at 4 to 8px in a phone column. Under 760px ShotSwap shows a plain rectangle crop of the same capture (the result line, the source card, the totals), above it the full capture. Ten crops in `public/img/proof/*-phone*.webp`. Own file, not `proof.ts`, so parallel builders never edit the same lines.
+- **Marks measured per page** where proof.ts had none or was off: the jackknife title (cut short of the source popup), the "what to do" rank title, the El Paso source card title (proof.ts's `sourceCard` box sits about 20px right of the words), the El Paso after chart's axis dates (the date range inside the tight crop).
+- **Services AI row** is full width with the text above it, not a 5/7 row: the 1400px capture at 7 columns sets its text at 9px.
+- **Pricing results** rows are 8/4 and 4/8 (deck: 7/5 and 5/7) so the 1077px charts stay legible.
+- **FinalCta** takes an optional `sub` (the line under the button), defaulting to `site.cta.sub`, for the decks' own lines.
+- `PRICES_BY_PAGE`: `/seo-pricing/` gets the breakdown amounts, `/law-firm-seo-services/` the struck `$4,000+` only. `/seo-pricing/` and `/law-firm-seo-services/` left `pendingRedirectTargets`.
+- The pricing page's classes use `cost-`: `pr-` is an LCME class prefix and fails check-unique's leak scan.

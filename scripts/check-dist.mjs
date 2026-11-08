@@ -57,6 +57,10 @@ const PRICES_BY_PAGE = {
   '/law-firm-ppc/': ['500'],
   // Fahim's record: Idiya's online sales ($900K to $2.7M) and clients' combined yearly revenue ($36M+), FACTS 3.
   '/about/sm-fahim/': ['900K', '2.7M', '36M'],
+  // /seo-pricing/: the hero card shows the whole shared breakdown and its struck total (src/data/pricing.ts).
+  '/seo-pricing/': ['1,200', '1,000', '750', '500', '125', '300', '150', '4,000'],
+  // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
+  '/law-firm-seo-services/': ['4,000'],
 };
 const PRICE = /\$\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?\$?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};

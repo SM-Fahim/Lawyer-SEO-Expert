@@ -1,0 +1,213 @@
+---
+// /law-firm-seo-services/. Copy: content/v2/law-firm-seo-services.md (final). Facts: research/FACTS.md.
+// The service as four parts, each with the real result it produced. The price shows once, as the struck
+// "hired one by one" total from src/data/pricing.ts; the breakdown itself lives on /seo-pricing/.
+// Section order: hero (form row, then the #1 frame), four parts, price band, steps, practice areas, FAQ, final.
+import Faq, { type FaqItem } from '../../components/Faq.astro';
+import FinalCta from '../../components/FinalCta.astro';
+import PracticeLinks from '../../components/PracticeLinks.astro';
+import Band from '../../components/kit/Band.astro';
+import BrowserShot from '../../components/kit/BrowserShot.astro';
+import Face from '../../components/kit/Face.astro';
+import PageHero from '../../components/kit/PageHero.astro';
+import PriceBand from '../../components/kit/PriceBand.astro';
+import Q from '../../components/kit/Q.astro';
+import Rows from '../../components/kit/Rows.astro';
+import Split from '../../components/kit/Split.astro';
+import ShotSwap from '../../components/money/ShotSwap.astro';
+import { fahim } from '../../data/people';
+import { proof, shot } from '../../data/proof';
+import { phoneProof } from '../../data/proof-money';
+import InnerPage from '../../layouts/InnerPage.astro';
+
+const faq: FaqItem[] = [
+  {
+    q: 'What do your law firm SEO services include?',
+    html: 'Pages for each practice area and city, links from relevant sites, Google Business Profile care and reviews, and AI answer checks. Your website’s design, content, upkeep and call tracking are included too.',
+  },
+  {
+    q: 'How are you different from a law firm SEO agency?',
+    html: 'You deal with Fahim, not an account manager. Fahim leads your account, is on every call and checks each piece of work before you see it. A small team handles production.',
+  },
+  {
+    q: 'Do you handle local SEO and the Map?',
+    html: 'Yes. Your Business Profile, the review routine and your city pages are part of the monthly work.',
+  },
+  {
+    q: 'Who writes the pages?',
+    html: 'Our team writes them and Fahim reviews them. Advertising rules differ from state to state, so you or your ethics counsel sign off each page first.',
+  },
+  {
+    q: 'How do you measure results?',
+    html: 'In calls and qualified leads. We track calls and forms from your site and your Business Profile, and check your rankings and AI answers every month.',
+  },
+];
+
+// Judge, 2026-11-08: the hero is the "what to do" #1 strip. Google's open source popup covers the jackknife
+// result's title, so no rectangle crop of it is clean; the whole jackknife capture (AI chip and the result
+// marked) moved to section 1, row 1, where it also shows the AI citation its line claims.
+const jackTitle = [{ l: 1.9, t: 88.4, w: 37.5, h: 4 }];
+const wtdTitle = [{ l: 2, t: 40, w: 49, h: 19 }];
+// The first source card's title, both lines (proof.ts's sourceCard box sits about 20px right of the words).
+const sourceTitle = [
+  { l: 67.9, t: 35, w: 21.2, h: 2.8 },
+  { l: 67.9, t: 37.7, w: 5.9, h: 2.8 },
+];
+---
+<InnerPage
+  title="Law Firm SEO Services | Top of Google, the Map and AI"
+  description="Law firm SEO services that put your firm at the top of Google, on the Map and in AI answers. Pages, links, reviews and site upkeep in one price."
+  path="/law-firm-seo-services/"
+  crumbs={[{ label: 'Law firm SEO services' }]}
+  service={{ name: 'Law firm SEO services', serviceType: 'Search engine optimization for law firms' }}
+  faq={faq}
+>
+  <PageHero
+    layout="stack"
+    class="svc-hero"
+    h1="Law firm SEO services that turn searches into calls."
+    lead="Our lawyer SEO services put your firm where clients look first: the top of Google, the Map and Google’s AI answers."
+    form={{ title: 'Where does your firm show up today?', sub: 'Send your website. Fahim answers within an hour in business hours.', idPrefix: 'svc-hero', label: 'services-hero' }}
+    talk="Prefer a call?"
+  >
+    <figure slot="visual" class="svc-hero__fig">
+      <ShotSwap
+        tag="#1"
+        priority
+        wide={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: wtdTitle, alt: 'A New Orleans PI firm’s page, What to Do After a Truck Accident, as the first result on Google' })]}
+        narrow={[shot(phoneProof.wtdQuery), shot(phoneProof.wtdRank, { marks: ['title'] })]}
+      />
+      <figcaption><b><Q text="what to do after a truck accident in New Orleans" /></b>: a PI firm’s page in New Orleans ranked #1.</figcaption>
+    </figure>
+  </PageHero>
+
+  <Band heading="Four parts of the work, each with a result behind it." headingId="parts-h" wideHeading class="svc-parts">
+    <Split ratio="7/5" align="center">
+      <figure slot="a" class="svc-fig">
+        <ShotSwap
+          tag="#1"
+          wide={[shot(proof.nolaJackknife, { marks: [...proof.nolaJackknife.marks.aiChip, ...jackTitle] })]}
+          narrow={[shot(phoneProof.jackknifeLeft, { crop: 'search', alt: '' }), shot(phoneProof.jackknifeLeft, { crop: 'result', marks: ['result'] })]}
+        />
+      </figure>
+      <div slot="b" class="svc-part">
+        <h3>Pages that reach #1.</h3>
+        <p class="svc-part__line">For <Q text="jackknife truck accident Louisiana" />, the same firm’s page ranked #1, and a week later Google’s AI still cited it.</p>
+        <p class="svc-part__work">We write a page for each practice area and city you serve, and earn links from relevant sites.</p>
+      </div>
+    </Split>
+
+    <Split ratio="5/7" align="center" rule bFirst>
+      <div slot="a" class="svc-part">
+        <h3>A Map listing clients trust.</h3>
+        <p class="svc-part__line">For tanker accidents in New Orleans, Google’s AI lists the same firm as a key firm, at 5.0 stars from 317 reviews.</p>
+        <p class="svc-part__work">We look after your Business Profile and give your staff a simple routine for new reviews.</p>
+      </div>
+      <figure slot="b" class="svc-fig">
+        <ShotSwap
+          tag="Key firm"
+          wide={[shot(proof.nolaTankerAi, { marks: ['name', 'rating'] })]}
+          narrow={[shot(phoneProof.tankerFirm, { marks: ['name', 'rating'] })]}
+        />
+      </figure>
+    </Split>
+
+    <div class="svc-wide">
+      <div class="svc-part svc-part--top">
+        <h3>Pages Google’s AI quotes first.</h3>
+        <p class="svc-part__line">Ask Google about the El Paso car accident filing deadline. Its AI answer cites a PI firm’s page as the first source.</p>
+        <p class="svc-part__work">We write pages AI can quote, and check the AI answers for your key searches every month.</p>
+      </div>
+      <figure class="svc-fig">
+        <ShotSwap
+          tag="Source #1"
+          wide={[shot(proof.elpasoAiDeadline, { marks: [...proof.elpasoAiDeadline.marks.citedLine, ...sourceTitle] })]}
+          narrow={[shot(phoneProof.elpasoQuery), shot(phoneProof.elpasoSource, { marks: ['title'] })]}
+        />
+      </figure>
+    </div>
+
+    <Split ratio="5/7" align="center" rule bFirst>
+      <div slot="a" class="svc-part">
+        <h3>A website that keeps up.</h3>
+        <p class="svc-part__line">We built this practice page’s site for a PI firm in New Orleans.</p>
+        <p class="svc-part__work">We improve its design and content, keep it maintained and track every call and form. Need a new site? See <a href="/lawyer-web-design-development/">law firm web design</a>.</p>
+      </div>
+      <figure slot="b" class="svc-fig">
+        <BrowserShot tag="Your site" tagSmall tagSide="right" images={[shot(proof.nolaSiteCarAccidentPage)]} />
+      </figure>
+    </Split>
+  </Band>
+
+  <PriceBand
+    variant="total"
+    heading="All four parts, one monthly price."
+    headingId="price-h"
+    lead="Many agencies sell SEO one part at a time."
+    us="With us, all four: from $2,000 a month. No setup fee."
+    usMark="from $2,000 a month"
+  >
+    <Fragment slot="link">See what each part costs on its own on our <a href="/seo-pricing/">law firm SEO pricing</a> page.</Fragment>
+  </PriceBand>
+
+  <Band heading="From first call to first page." headingId="steps-h" tone="fog">
+    <div class="svc-steps">
+      <Rows
+        variant="numbered"
+        items={[
+          { title: 'Book a ranking review.', text: 'In a free 30-minute call, Fahim looks at where you rank today.' },
+          { title: 'Get your monthly number in writing before any work starts.' },
+          { title: 'Work begins.', text: 'Fahim leads it, and a small production team handles the writing and links. Nothing goes live until you approve it.' },
+        ]}
+      />
+      <Face person={fahim} size="sm" class="svc-steps__face" />
+    </div>
+  </Band>
+
+  <Band heading="SEO services for lawyers in your practice area." headingId="practice-h" lead="Our proven results so far are for PI firms. The same work fits the searches in every practice below." wideHeading>
+    <PracticeLinks />
+  </Band>
+
+  <Band heading="Questions about our lawyer SEO services." headingId="faq-h" tone="fog">
+    <Faq items={faq} />
+  </Band>
+
+  <FinalCta heading="Search for your firm with Fahim." formLabel="services-final" idPrefix="svc-final" sub="Free. 30 minutes on your actual search results.">
+    <p>In 30 minutes, Fahim runs the searches your clients use, live, and shows which part of the work would bring calls soonest.</p>
+  </FinalCta>
+</InnerPage>
+
+<style is:global>
+  /* Hero: the #1 frame on the fog block, full content width. */
+  .svc-hero__fig { display: grid; gap: 14px; }
+  .svc-hero__fig figcaption { font-size: 17px; line-height: 1.45; color: var(--ink-2); max-width: 46em; }
+  .svc-hero__fig figcaption b { color: var(--ink); }
+
+  /* The four parts: visual large, words small. */
+  .svc-fig { display: grid; gap: 12px; min-width: 0; }
+  .svc-part { display: grid; gap: 12px; align-content: start; }
+  .svc-part h3 { font-size: clamp(28px, 1.6vw + 18px, 40px); letter-spacing: -.03em; line-height: 1.04; max-width: 14ch; }
+  .svc-part__line { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink); max-width: 26em; }
+  .svc-part__work { font-size: 16px; line-height: 1.5; color: var(--muted); max-width: 30em; padding-top: 12px; border-top: 1px solid var(--line); }
+  .svc-part__work a { color: var(--ink); font-weight: 600; }
+  /* The AI row: the capture is 1400px wide, so it takes the whole width (text over it) to stay readable. */
+  .svc-wide { display: grid; gap: 32px; margin-top: clamp(48px, 6vw, 80px); padding-top: clamp(48px, 6vw, 80px); border-top: 1px solid var(--line-2); }
+  @media (min-width: 1000px) {
+    .svc-part--top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 72px); align-items: start; }
+    .svc-part--top h3 { grid-row: 1 / span 2; }
+    .svc-part--top .svc-part__work { padding-top: 12px; }
+  }
+
+  /* Steps: Fahim's photo beside step 3 only (the column's foot lines up with the last row). */
+  .svc-steps { display: grid; gap: 24px; max-width: 1040px; }
+  .svc-steps__face { width: 132px; }
+  @media (min-width: 760px) {
+    .svc-steps { grid-template-columns: minmax(0, 1fr) 150px; column-gap: 40px; align-items: end; }
+    .svc-steps__face { width: 150px; margin-bottom: 14px; }
+  }
+  @media (max-width: 759px) {
+    /* Under the list, lined up with the step text, so it still reads as step 3's. */
+    .svc-steps { gap: 0; }
+    .svc-steps__face { width: 104px; margin-left: calc(clamp(56px, 6vw, 88px) + 20px); margin-top: 16px; }
+  }
+</style>
