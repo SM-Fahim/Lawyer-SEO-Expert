@@ -29,8 +29,10 @@ export interface Depth {
   reviewed: Date;
   modified: Date;
   faqHeading: string;
-  /** The open FAQ, also what InnerPage's `faq` prop needs for FAQPage JSON-LD. */
+  /** The FAQ, also what InnerPage's `faq` prop needs for FAQPage JSON-LD. */
   faq: FaqItem[];
+  /** 'open': every answer shown. 'accordion': each question a closed <details>. */
+  faqStyle: 'open' | 'accordion';
   /** The author box line's inner HTML. */
   authorHtml: string;
   sources: DepthSource[];
@@ -58,6 +60,7 @@ export async function getDepth(id: string): Promise<Depth> {
     modified: d.modified ?? d.reviewed,
     faqHeading: d.faqHeading ?? '',
     faq: meta.faq,
+    faqStyle: d.faqStyle,
     authorHtml: meta.authorHtml,
     sources: d.sources.map((s) => (typeof s === 'string' ? { url: s, label: sourceLabel(s) } : { ...s, label: sourceLabel(s.url) })),
   };

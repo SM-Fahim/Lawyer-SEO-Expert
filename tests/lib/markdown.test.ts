@@ -88,6 +88,56 @@ describe('depthBlocks', () => {
   });
 });
 
+describe('see more blocks', () => {
+  it('turns [more "Label"] ... [/more] into a closed <details> with the label as its summary', () => {
+    const { html, problems } = depthBlocks(
+      '<h2 id="a">A</h2>\n<p>Point.</p>\n<p>[more “See how we collect the law”]</p>\n<h3 id="b">Detail</h3>\n<p>Long text.</p>\n<p>[/more]</p>\n<p>After.</p>',
+    );
+    expect(problems).toEqual([]);
+    expect(html).toBe(
+      '<h2 id="a">A</h2>\n<p>Point.</p>\n<details class="lse-more"><summary><span class="lse-more__pm" aria-hidden="true"></span>' +
+        '<span class="lse-more__label">See how we collect the law</span></summary><div class="lse-more__body lse-prose">\n' +
+        '<h3 id="b">Detail</h3>\n<p>Long text.</p>\n</div></details>\n<p>After.</p>',
+    );
+    expect(html).not.toMatch(/<details[^>]*\sopen/);
+  });
+
+  it('keeps steps, checklists, tables and callouts working inside a block', () => {
+    const { html, problems } = depthBlocks(
+      '<p>[more "See the steps"]</p>\n<p>[steps]</p>\n<ol>\n<li><strong>One.</strong> Text.</li>\n</ol>\n<blockquote>\n<p><strong>Lead.</strong> Rest.</p>\n</blockquote>\n<p>[/more]</p>',
+    );
+    expect(problems).toEqual([]);
+    expect(html).toContain('<ol class="lse-steps">\n<li><strong class="lse-steps__t">One.</strong>');
+    expect(html).toContain('<div class="lse-callout" role="note">');
+    expect(html.indexOf('</details>')).toBeGreaterThan(html.indexOf('lse-callout'));
+  });
+
+  it('fails a block left open, a close with no block, nesting, an H2, a slot or band, and bad labels', () => {
+    const all = (input: string) => depthBlocks(input).problems.join('\n');
+    expect(all('<p>[more "See it"]</p>\n<p>Text.</p>')).toMatch(/\[more "See it"\] has no \[\/more\] after it/);
+    expect(all('<p>Text.</p>\n<p>[/more]</p>')).toMatch(/\[\/more\] has no \[more "Label"\] line above it/);
+    expect(all('<p>[more "Outer"]</p>\n<p>[more "Inner"]</p>\n<p>x</p>\n<p>[/more]</p>\n<p>[/more]</p>')).toMatch(/blocks can't nest/);
+    expect(all('<p>[more "See it"]</p>\n<h2 id="x">Next</h2>\n<p>[/more]</p>')).toMatch(/holds the H2 "Next": the jump list can't point into a closed block/);
+    expect(all('<p>[more "See it"]</p>\n<p>[slot proof]</p>\n<p>[/more]</p>')).toMatch(/holds \[slot proof\]/);
+    expect(all('<p>[more "See it"]</p>\n<p>[band mid]</p>\n<p>[/more]</p>')).toMatch(/holds \[band mid\]/);
+    expect(all('<p>[more]</p>\n<p>x</p>\n<p>[/more]</p>')).toMatch(/\[more\] needs its label in quotes/);
+    expect(all('<p>[more "One two three four five six seven eight nine"]</p>\n<p>x</p>\n<p>[/more]</p>')).toMatch(/at most 8 words \(this one has 9\)/);
+    expect(all('<p>[more "Same"]</p>\n<p>x</p>\n<p>[/more]</p>\n<p>[more "Same"]</p>\n<p>y</p>\n<p>[/more]</p>')).toMatch(/is used twice/);
+    expect(all('<p>[more "See it"]</p>\n<p>[/more]</p>')).toMatch(/is empty/);
+    expect(all('<p>Some text [more "See it"]</p>')).toMatch(/must sit alone on its own line/);
+    expect(all('<ul>\n<li>\n<p>[more "See it"]</p>\n<p>x</p>\n<p>[/more]</p>\n</li>\n</ul>')).toMatch(/sits inside a list or quote/);
+    expect(all('<p>[more "See it"]</p>\n<ul>\n<li>\n<p>x</p>\n<p>[/more]</p>\n</li>\n</ul>')).toMatch(/must sit at the same level/);
+  });
+
+  it('keeps every block whole when the zone is split into sections', () => {
+    const { html } = depthHtml('<h2 id="a">A</h2>\n<p>[more "See it"]</p>\n<p>x</p>\n<p>[/more]</p>\n<h2 id="b">B</h2>\n<p>y</p>');
+    const sections = splitDepth(html)[0]?.sections ?? [];
+    expect(sections.map((s) => s.id)).toEqual(['a', 'b']);
+    const first = sections[0]?.chunks[0];
+    expect(first?.type === 'html' && first.html.endsWith('</details>')).toBe(true);
+  });
+});
+
 describe('nofollow', () => {
   const domains = ['agency.test'];
   it('matches a listed domain, www and subdomains, and nothing else', () => {

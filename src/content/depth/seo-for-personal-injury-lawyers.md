@@ -10,6 +10,7 @@ summary: >-
 reviewed: 2026-11-09
 modified: 2026-11-09
 faqHeading: Injury SEO questions, answered before you book.
+faqStyle: accordion
 faq:
   - q: Should we start with the Map or the website?
     a: >-
@@ -60,16 +61,30 @@ Injured people search in stages. First they look for a lawyer nearby, usually on
 
 So an injury site needs three kinds of page: one for each case type the firm takes, pages that answer the questions after a crash, and local pages about the city's roads, courts and hospitals. The Google profile carries the "near me" search.
 
+[more "See how we find what ranking pages miss"]
+
 For every search we target, we record who ranks, how long their pages are and every question Google suggests, then note what no ranking page covers. In one city, the top truck crash pages skipped the filing deadline, the fault rule and the other companies behind a truck, such as the shipper and the broker. Those gaps became sections on our pages.
+
+[/more]
 
 ## What we build for an injury firm, in order
 
 [steps]
-1. **The lawyer's red lines.** Before we plan a page, the lawyer tells us what must never appear on the site. Both PI lawyers we write for set similar lines: no settlement dollar ranges, no pain-and-suffering formulas, no tax advice and nothing that offers cases they send elsewhere.
-2. **The state's law, written through each case.** We collect the state's injury law from the statutes first. Then we write each rule through its case type instead of pasting one fault paragraph everywhere: a dog bite page through the dog-owner rule, a truck page through federal trucking rules, a fall page through the store-owner rule.
-3. **One main page per case type.** Each case type gets a main page, the narrower pages under it and the guides that feed it, and the plan says where one case type stops and the next starts. "Car wreck", "car crash" and "auto accident" share one page, because three pages would split the firm's strength.
-4. **Local pages most firms don't have.** These cover the city's dangerous roads, its crash numbers, its trauma centers and how to file in its courts. We pull crash records from the state by road, cross street, light, time and cause, and a page that names local hospitals or courts names all of them or none.
-5. **The lawyer's review.** The lawyer's edits are about precision: a fall inside a hospital is a malpractice claim, not a premises claim, and a hit-and-run claim runs through uninsured motorist cover only. We check distinctions like these before a draft reaches the lawyer.
+1. **The lawyer's red lines.**
+2. **The state's law, written through each case.**
+3. **One main page per case type.**
+4. **Local pages most firms don't have.**
+5. **The lawyer's review.**
+
+[more "See how each step works"]
+
+1. Before we plan a page, the lawyer tells us what must never appear on the site. Both PI lawyers we write for set similar lines: no settlement dollar ranges, no pain-and-suffering formulas, no tax advice and nothing that offers cases they send elsewhere.
+2. We collect the state's injury law from the statutes first. Then we write each rule through its case type instead of pasting one fault paragraph everywhere: a dog bite page through the dog-owner rule, a truck page through federal trucking rules, a fall page through the store-owner rule.
+3. Each case type gets a main page, the narrower pages under it and the guides that feed it, and the plan says where one case type stops and the next starts. "Car wreck", "car crash" and "auto accident" share one page, because three pages would split the firm's strength.
+4. These cover the city's dangerous roads, its crash numbers, its trauma centers and how to file in its courts. We pull crash records from the state by road, cross street, light, time and cause, and a page that names local hospitals or courts names all of them or none.
+5. The lawyer's edits are about precision: a fall inside a hospital is a malpractice claim, not a premises claim, and a hit-and-run claim runs through uninsured motorist cover only. We check distinctions like these before a draft reaches the lawyer.
+
+[/more]
 
 On one injury account, that plan meant about 60 pages across six practice areas before launch. City pages come only where the firm has an office and local facts to fill them. Medical malpractice has searches of its own, so it gets its own plan: see [SEO for medical malpractice lawyers](/seo-for-medical-malpractice-lawyer/).
 
@@ -77,25 +92,37 @@ On one injury account, that plan meant about 60 pages across six practice areas 
 
 [slot proof]
 
-For a PI firm in New Orleans, the groundwork took about three months, on a website we built for the firm. Then three truck accident pages went live and reached Google's top three within 16 hours.
+For a PI firm in New Orleans, the groundwork took about three months, on a website we built for the firm. Then three truck accident pages went live, one for hiring a lawyer and two that answer questions, and all three reached Google's top three within 16 hours.
 
-For <q data-no-check>tanker truck accident lawyer in New Orleans</q>, the page came in at #3, and Google's AI answer listed the firm among its key firms. For <q data-no-check>jackknife truck accident Louisiana</q>, it took #1, and the AI was still citing it seven days on. For <q data-no-check>what to do after a truck accident in New Orleans</q>, it took #1 and the AI answer quoted it 3 times.
+The hiring page, for <q data-no-check>tanker truck accident lawyer in New Orleans</q>, came in at #3, and Google's AI answer listed the firm among its key firms. The question pages, for <q data-no-check>common truck accident injuries in Louisiana</q> and <q data-no-check>what to do after a truck accident in New Orleans</q>, both took #1, and Google's AI answers cited both, the second one 3 times. A jackknife truck page published a week earlier was still #1, and still cited by the AI.
+
+[more "See what Google's AI quoted"]
 
 **What Google's AI quoted shows how to write for it.** It quoted the filing deadline, the warning not to give the trucking company's insurer a recorded statement, and the highways where jackknife crashes happen. It didn't quote "call an experienced attorney today".
 
+[/more]
+
 Every page it cited was already on page one, so AI visibility starts with ranking. For an El Paso injury firm, Google's AI answer on the car accident filing deadline listed the firm's page as its first source.
 
+[more "See where Google's AI got local facts wrong"]
+
 Those answers can be wrong about local facts, though. While we planned one El Paso page, Google's AI said local crashes were falling; the state's own records showed them rising. Every number on our pages comes from the official source.
+
+[/more]
 
 ## The Map, the profile and reviews
 
 The "lawyer near me" search is answered by the Map, and the Map runs on the firm's Google Business Profile. For a PI firm in New Orleans, the profile brought 139 calls from June to October 2026, up 39% on the same months a year earlier, by Google's own count.
+
+[more "See how we handle services, posts and tracking"]
 
 On the profile, we add a service for each case type the firm takes and name it the same as the matching page. We never add a category for work the firm doesn't do, because that breaks Google's rules and can break the bar's too.
 
 Each profile post is written for someone choosing a lawyer now: it names the case type, gives one reason to pick the firm and links to the page. Tips, holiday greetings and blog summaries don't belong there.
 
 Call tracking doesn't hurt local search when it's set up right. The firm's real number stays in the page code and every directory, and a script shows the tracking number to visitors only.
+
+[/more]
 
 Reviews follow [Google's review policy](https://support.google.com/contributionpolicy/answer/7400114): ask every client, offer nothing for it and never ask only the happy ones. On the site, a review shows a first name and last initial, with a results disclaimer nearby.
 
@@ -107,9 +134,13 @@ Plan on about three months of groundwork before new pages can move fast. After t
 
 We count calls and qualified leads, by Google's count and by call tracking, against the same months a year before. Traffic on its own isn't the measure.
 
+[more "See how we rebuilt one firm's intake form"]
+
 A ranking pays only if someone answers the call. For one injury firm, we rebuilt the intake form around its five-minute callback, so the lead's record reaches the firm's system the moment they give a name and number.
 
 That form never tells a visitor what their case is worth or how strong it is. Everyone who finishes sees the same screen, and a real person calls. Our post on [a system to get personal injury clients](/the-most-effective-system-to-get-personal-injury-clients-now/) covers the rest of that path.
+
+[/more]
 
 ## What injury SEO costs
 

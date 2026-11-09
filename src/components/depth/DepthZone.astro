@@ -1,7 +1,8 @@
 ---
 // The depth zone of a service or practice page, under its commercial top and above FinalCta
 // (content/DEPTH-BRIEF.md section 2.2): byline, summary and jump list, then the copy's sections at a reading
-// measure, the open FAQ, the sources and the author box. The copy is src/content/depth/<slug>.md, read with
+// measure, the FAQ (open, or an accordion with every question closed: front matter faqStyle), the sources and the
+// author box. The copy is src/content/depth/<slug>.md, read with
 // getDepth() (src/lib/depth.ts). docs/kit.md "Depth zone" has the syntax and the page wiring.
 //
 // Slots: a "[slot name]" line in the copy shows the page's slot="name" there, in the text column (a SearchBox, a
@@ -151,7 +152,7 @@ const sourceRel = (url: string) => (needsNofollow(url) ? 'nofollow noopener' : '
 
   {hasFaq && (
     <Band heading={depth.faqHeading} headingId="depth-faq-h" id="depth-faq" tone={faqTone} class="lse-depth__faq">
-      <Faq items={depth.faq} open="all" />
+      <Faq items={depth.faq} open={depth.faqStyle === 'accordion' ? -1 : 'all'} />
     </Band>
   )}
 

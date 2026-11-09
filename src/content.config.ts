@@ -63,8 +63,8 @@ const posts = defineCollection({
 // section 2.2). One file per page, src/content/depth/<page slug>.md: the front matter holds the summary, the
 // open FAQ, the review date, the author box line and the sources; the body is the sections. It goes through the
 // posts' Markdown pipeline, then src/lib/markdown.ts (checklists, steps, callouts, slots, stacked tables,
-// nofollow). docs/kit.md "Depth zone" has the syntax. Any problem in the copy fails the build.
-const DEPTH_PASS = 'depth-v2';
+// nofollow, "see more" blocks). docs/kit.md "Depth zone" has the syntax. Any problem in the copy fails the build.
+const DEPTH_PASS = 'depth-v3';
 
 const depthSource = z.union([
   z.url(),
@@ -81,8 +81,11 @@ const depthSchema = z.object({
   modified: z.coerce.date().optional(),
   /** The FAQ's H2. Needed when there are questions. */
   faqHeading: z.string().optional(),
-  /** Every answer is shown open, and FAQPage JSON-LD is built from the same items. One paragraph each. */
+  /** FAQPage JSON-LD is built from the same items. One paragraph each. */
   faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+  /** How the FAQ shows: 'open' (every answer shown, each question an H3) or 'accordion' (each question a closed
+   *  <details>, the answers still in the HTML). */
+  faqStyle: z.enum(['open', 'accordion']).default('open'),
   /** The author box's one or two lines, from FACTS, in this page's own words. Inline Markdown. */
   authorLine: z.string(),
   sources: z.array(depthSource).default([]),

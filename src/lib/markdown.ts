@@ -81,6 +81,8 @@ export function nofollowLinks(html: string, domains: readonly string[] = nofollo
 //   [steps]        right above a numbered list: big numerals; a bold lead on an item becomes its title
 //   [slot name]    a kit piece the page passes with slot="name" (SearchBox, Shot, Rows ...), in the text column
 //   [band name]    a full-width section the page passes with slot="name" (the mid-page CTA, a PriceBand)
+//   [more "Label"] ... [/more]
+//                  a "see more" block: the lines between sit in a native <details>, closed, under the label
 // A Markdown quote ("> **Lead.** text") is a Callout. <mark> is the highlighter (.lse-mk).
 
 const MARKER = /<p>\[([a-z]+)(?:\s+([a-z0-9-]+))?\]<\/p>/g;
@@ -113,12 +115,16 @@ export function depthBlocks(input: string): DepthBlocks {
   html = html.replace(MARKER, (whole, kind: string, name: string | undefined) => {
     if ((kind === 'slot' || kind === 'band') && name) return `<!--lse:${kind}:${name}-->`;
     const line = whole.replace(/<\/?p>/g, '');
+    if (kind === 'more') return whole; // moreBlocks() below reports a [more] without its label
     if (kind === 'checklist') problems.push(`${line} must sit right above a bullet list`);
     else if (kind === 'steps') problems.push(`${line} must sit right above a numbered list (starting at 1)`);
     else if (kind === 'slot' || kind === 'band') problems.push(`${line} needs a name, like [${kind} mid]`);
-    else problems.push(`unknown marker ${line} (the markers are [checklist], [steps], [slot name] and [band name])`);
+    else problems.push(`unknown marker ${line} (the markers are [checklist], [steps], [slot name], [band name] and [more "Label"] with [/more])`);
     return whole;
   });
+
+  // "See more" blocks, once the slots are split points (a block must not hold one).
+  html = moreBlocks(html, problems);
 
   // Callouts: a Markdown quote that opens with a bold lead. A deck's "> Builder:" or "> Judge:" note is not copy.
   html = html.replace(/<blockquote>\s*([\s\S]*?)\s*<\/blockquote>/g, (_m, inner: string) => {
@@ -148,6 +154,80 @@ export function depthBlocks(input: string): DepthBlocks {
   }
 
   return { html, problems };
+}
+
+// ---------- "See more" blocks ----------
+// A line [more "See how we collect the law"] opens a block, a line [/more] closes it, each alone on its own line
+// at the top level. The block is a native <details>, closed, with the label as its <summary>: no script, and the
+// text stays in the HTML (Google reads it, find in page opens it). H3s may sit inside; an H2, a slot or a band
+// may not, because the jump list must never point into a closed block and proof always stays in view. The body
+// is a .lse-prose of its own, so everything in it is set exactly as it is outside.
+
+const MORE_LINE = /<p>(\[\/?more\b[^\]]*\])<\/p>/g;
+const MORE_OPEN = /^\[more\s+[“"]([^“”"]+)[”"]\]$/;
+const CONTAINER_TAG = /<(\/?)(ul|ol|li|blockquote|table|details|div|section|figure|dl)(?=[\s>])[^>]*>/g;
+/** How many lists, quotes, tables or blocks are open at the end of this bit of HTML. */
+const containerDepth = (html: string) => [...html.matchAll(CONTAINER_TAG)].reduce((d, m) => d + (m[1] ? -1 : 1), 0);
+const MORE_LABEL_WORDS = 8;
+
+function moreBlocks(input: string, problems: string[]): string {
+  // A marker that shares its paragraph with other words: Markdown needs a blank line above and below it.
+  const stray = input.replace(MORE_LINE, '').match(/\[\/?more\b[^\]]*\]/g) ?? [];
+  for (const line of stray) problems.push(`${line} must sit alone on its own line, with a blank line above and below`);
+
+  let out = '';
+  let at = 0;
+  let open: { label: string; line: string; start: number; end: number } | null = null;
+  let nested = 0;
+  const labels = new Set<string>();
+  for (const m of input.matchAll(MORE_LINE)) {
+    const line = m[1] ?? '';
+    const start = m.index;
+    const end = start + m[0].length;
+    if (line.startsWith('[/')) {
+      if (line !== '[/more]') problems.push(`unknown marker ${line}: a block closes with [/more] alone`);
+      if (nested) {
+        nested--;
+        continue;
+      }
+      if (!open) {
+        problems.push(`${line} has no [more "Label"] line above it`);
+        continue;
+      }
+      const inner = input.slice(open.end, start).trim();
+      const name = `[more "${open.label}"]`;
+      const h2 = /<h2[^>]*>([\s\S]*?)<\/h2>/.exec(inner);
+      if (h2) problems.push(`${name} holds the H2 "${htmlToText(h2[1] ?? '')}": the jump list can't point into a closed block, so close it with [/more] above the ## (H3s are fine)`);
+      const slot = /<!--lse:(slot|band):([a-z0-9-]+)-->/.exec(inner);
+      if (slot) problems.push(`${name} holds [${slot[1]} ${slot[2]}]: slots, proof and bands stay in view, so put the marker outside the block`);
+      if (!htmlToText(inner)) problems.push(`${name} is empty`);
+      if (containerDepth(inner) !== 0) problems.push(`${name} and its [/more] must sit at the same level, outside any list or quote`);
+      out += `${input.slice(at, open.start)}<details class="lse-more"><summary><span class="lse-more__pm" aria-hidden="true"></span><span class="lse-more__label">${open.label}</span></summary><div class="lse-more__body lse-prose">\n${inner}\n</div></details>`;
+      at = end;
+      open = null;
+      continue;
+    }
+    const label = MORE_OPEN.exec(line)?.[1]?.trim();
+    if (!label) {
+      problems.push(`${line} needs its label in quotes, like [more "See how we collect the law"]`);
+      continue;
+    }
+    if (open) {
+      problems.push(`[more "${label}"] opens inside [more "${open.label}"]: blocks can't nest, so close the first with [/more] before the next one`);
+      nested++;
+      continue;
+    }
+    if (containerDepth(input.slice(0, start)) !== 0) problems.push(`[more "${label}"] sits inside a list or quote: put it on its own line at the top level`);
+    if (/<[a-z]/i.test(label)) problems.push(`[more "${label}"]: a label is plain words, with no links or formatting`);
+    const words = htmlToText(label).split(/\s+/).length;
+    if (words > MORE_LABEL_WORDS) problems.push(`[more "${label}"]: a label has at most ${MORE_LABEL_WORDS} words (this one has ${words})`);
+    const key = htmlToText(label).toLowerCase();
+    if (labels.has(key)) problems.push(`[more "${label}"] is used twice: each label says what its own block holds`);
+    labels.add(key);
+    open = { label, line, start, end };
+  }
+  if (open) problems.push(`[more "${open.label}"] has no [/more] after it: close the block with a [/more] line`);
+  return out + input.slice(at);
 }
 
 /** Each stacked cell's content in one <span>. On a phone prose.css sets a cell as a grid of its label and its

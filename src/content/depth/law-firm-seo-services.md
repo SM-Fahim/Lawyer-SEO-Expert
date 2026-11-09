@@ -10,6 +10,7 @@ summary: >-
 reviewed: 2026-11-09
 modified: 2026-11-09
 faqHeading: Questions about our lawyer SEO services.
+faqStyle: accordion
 faq:
   - q: Will you work on our current website, or rebuild it?
     a: >-
@@ -63,11 +64,15 @@ One price covers seven parts: practice and office pages, links from relevant sit
 
 We take on all seven because what holds a firm back rarely sits in one place. These are real findings from injury firms' sites:
 
+[more "See the five findings"]
+
 - **Work marked "complete" that wasn't there.** An earlier report said one site's schema, the code that describes the firm to Google, had been rebuilt. The live pages carried no schema at all, though the plugin that makes it was installed.
 - **A tracking number posing as the firm's phone.** A call tracking number set on one firm's Google profile had been copied by directory sites, so it spread as the firm's main number.
 - **An office move nobody finished.** After one firm moved, its new address appeared nowhere online, not even on its own website. The old address was still live in at least eight places.
 - **Law that changed under the firm's own FAQ.** One site still gave a filing deadline that the legislature had since changed.
 - **Analytics the firm didn't control.** On one site, two analytics accounts counted the same visitors, and the firm could look at the older one but not control it.
+
+[/more]
 
 None of these shows up in a ranking report, yet each one works against the pages and links we add. So we look for all of them in the first month.
 
@@ -78,15 +83,27 @@ Month 1 is mostly groundwork: data, competitors, the law, the topic plan and the
 ### Month 1: data, competitors, law, plan and fixes
 
 [steps]
-1. **Collect the firm's data.** The firm answers one set of questions, once: the cases it takes and refers out, how it words its fee, which results it may publish and what must never appear on its site. On one account those red lines arrived after the pages were written, so now they come first. Then we pull the firm's own search data, list every tracking tag on the site and record today's calls as the starting point.
-2. **Find the real competitors.** For each main search, we note who holds the top five, how their sites are built and what every ranking page covers or skips. The rival a firm worries about isn't always the one that ranks: in one El Paso practice area, the firm we were asked to beat appeared in none of the searches we checked.
-3. **Gather the law the pages will cover.** We build one file of the rules the pages rely on, each read from the statute itself and kept with its official link. That is how we catch what a summary misses: the [Texas Tort Claims Act](https://statutes.capitol.texas.gov/Docs/CP/htm/CP.101.htm#101.101) allows six months for notice of a claim against a government body and lets a city set its own period, and El Paso's code asks for notice within 90 days.
-4. **Plan every page before writing one.** The topic plan lists each page the site needs: where it sits, its one job and the search it serves. One page owns each topic in full, so no two pages compete for the same search.
-5. **Fix the major issues.** We compare what the live site actually serves to Google with what earlier reports say was done. Then we correct the law already on the site and clean up the listings that show a wrong address or number.
+1. **Collect the firm's data.**
+2. **Find the real competitors.**
+3. **Gather the law the pages will cover.**
+4. **Plan every page before writing one.**
+5. **Fix the major issues.**
+
+[more "See how each month 1 step works"]
+
+1. The firm answers one set of questions, once: the cases it takes and refers out, how it words its fee, which results it may publish and what must never appear on its site. On one account those red lines arrived after the pages were written, so now they come first. Then we pull the firm's own search data, list every tracking tag on the site and record today's calls as the starting point.
+2. For each main search, we note who holds the top five, how their sites are built and what every ranking page covers or skips. The rival a firm worries about isn't always the one that ranks: in one El Paso practice area, the firm we were asked to beat appeared in none of the searches we checked.
+3. We build one file of the rules the pages rely on, each read from the statute itself and kept with its official link. That is how we catch what a summary misses: the [Texas Tort Claims Act](https://statutes.capitol.texas.gov/Docs/CP/htm/CP.101.htm#101.101) allows six months for notice of a claim against a government body and lets a city set its own period, and El Paso's code asks for notice within 90 days.
+4. The topic plan lists each page the site needs: where it sits, its one job and the search it serves. One page owns each topic in full, so no two pages compete for the same search.
+5. We compare what the live site actually serves to Google with what earlier reports say was done. Then we correct the law already on the site and clean up the listings that show a wrong address or number.
+
+[/more]
 
 ### Months 2 and 3: pages, the profile and links
 
 We write one page first and refine it with the firm until it sounds like them. That page becomes the model for every page after it.
+
+[more "See how months 2 and 3 run"]
 
 The lawyer reviews pages in a plain sheet: the page, the current line, the corrected line and a comment. Each correction becomes a standing rule, so the same mistake never reaches the lawyer twice.
 
@@ -95,6 +112,8 @@ Pages go live main page first, then the pages under it, at a steady weekly pace.
 On the Google profile, each case type the firm takes becomes a service with the same name as its page, so the profile and the site tell Google the same story.
 
 For links, we give local reporters something they can't get anywhere else. For a PI firm in El Paso, we turned years of public crash records into local data stories, each with a map, a Spanish version and the data file. We don't buy links.
+
+[/more]
 
 This order holds in every practice area, though the page types and the law change. Our results so far come from injury firms, and each practice page shows how the plan fits that practice.
 
@@ -120,9 +139,13 @@ We count calls and qualified leads first and rankings second. A <dfn>qualified l
 
 Calls come from two counts: Google's own count for the Business Profile, and the call tracking system for the website, each compared with the same months a year earlier. **A tap on a phone number is not a call,** so we count answered calls and never add the taps on top.
 
+[more "See how we check tracking and AI answers"]
+
 We test the counting too. On one site, Google's tag panel rated a tag "Excellent" for two days while it sent no data at all. Since then, we check what the browser actually sends after every tracking change.
 
 AI answers mostly quote pages that already rank, so there is no separate "AI" fee. Each month we record what Google's AI says for the firm's key searches and which pages it cites.
+
+[/more]
 
 [band mid]
 

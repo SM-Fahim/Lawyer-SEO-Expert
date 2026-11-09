@@ -142,6 +142,32 @@
   .lse-depth__sec > .lse-prose > ol.lse-steps:has(> li:nth-child(3):last-child) > li::before { font-size: 44px; }
 }
 
+/* "See more": [more "Label"] ... [/more], a native <details>, closed. The summary is a quiet control in body type:
+   a small ringed plus, then the label in ink. Opening it turns the plus's upright into a minus, and the text
+   below reads as the section's own, at its measure, with no box or rule. The focus ring is the site's. */
+.lse-depth .lse-prose > .lse-more { margin-top: 1.05em; }
+.lse-depth .lse-prose > .lse-more + * { margin-top: 1.05em; }
+/* 8px above and below the label: a tap target of about 44px on a phone. */
+.lse-depth .lse-more > summary {
+  display: flex; align-items: flex-start; gap: 12px; width: fit-content; max-width: 35em;
+  padding: 8px 0; cursor: pointer; list-style: none;
+  font-weight: 600; line-height: 1.45; color: var(--ink);
+}
+.lse-depth .lse-more > summary::-webkit-details-marker { display: none; }
+/* The ring sits on the label's first line (1.45 line-height). */
+.lse-more__pm {
+  position: relative; flex: none; width: 24px; height: 24px; margin-top: calc((1.45em - 24px) / 2);
+  border: 1.5px solid var(--ink); border-radius: 50%;
+}
+.lse-more__pm::before, .lse-more__pm::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 1.5px; margin: -.75px 0 0 -5px; background: var(--ink);
+}
+.lse-more__pm::after { transform: rotate(90deg); transition: transform .18s ease-out; }
+.lse-more[open] > summary .lse-more__pm::after { transform: rotate(0); }
+.lse-depth .lse-more > summary:hover .lse-more__label { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .22em; }
+.lse-depth .lse-more > summary:hover .lse-more__pm { background: var(--fog); }
+.lse-depth .lse-more__body { margin-top: 1.05em; }
+
 /* Tables on wider screens: the kit's HairTable look (muted labels over a black rule, hairline rows, the first
    column in ink). Phones keep prose.css's stacked rows. At most 4 columns (the loader checks). */
 .lse-depth .lse-prose > table, .lse-depth .lse-prose > table + * { margin-top: 1.6em; }

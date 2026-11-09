@@ -227,7 +227,7 @@ Pieces, in `src/components/depth/` (plus the open mode of `Faq`):
 | `Byline` | One muted line: "By S. M. Fahim. Last reviewed 8 November 2026.", the name linked to `/about/sm-fahim/`. Props: `reviewed`, `person` |
 | `Toc` | The jump list: numbered anchor links on hairline rows, always visible, never sticky or collapsible. DepthZone builds it from the copy's H2s plus the FAQ. Props: `items` (`{ id, text }[]`), `label` ("On this page") |
 | `AuthorBox` | Photo on the swipe, name, role line ("Law firm SEO lead"), the line passed in, "Read Fahim's background". Between a black rule and a hairline, no card. Props: `line` (inline HTML), `person`, `role`, `linkLabel` |
-| `Faq open="all"` | Every answer shown, no `<details>`, each question an H3 (`headingTag`). Same items feed FAQPage JSON-LD |
+| `Faq open="all"` | Every answer shown, no `<details>`, each question an H3 (`headingTag`). Same items feed FAQPage JSON-LD. With `faqStyle: accordion` in the copy's front matter, DepthZone passes `open={-1}` instead: each question a closed `<details>`, the answers still in the HTML, the JSON-LD from the same items. The homepage's `Faq` (first question open) is untouched |
 | `src/lib/depth.ts` | `getDepth(slug)` reads the file; `depthSchema(depth, { path, title, description })` gives `[fahimSchema, WebPage]` |
 | `webPageSchema()` | In `src/lib/schema.ts`: WebPage with `author` and `reviewedBy` `{ "@id": "https://lawyerseoexpert.com/#fahim" }` (fahimSchema's), `lastReviewed`, `dateModified` (ISO days), and links to `#breadcrumb` and `#site` |
 | `src/data/nofollow.ts` | Agency domains. Any link to one (or a subdomain) gets `rel="nofollow"` by itself, in depth copy, its sources and `HairTable` |
@@ -245,6 +245,7 @@ faq:                                      # 5 to 8, each answer one paragraph, l
   - q: How long before a new DUI page brings calls?
     a: >-
       Most new pages ... See [law firm SEO pricing](/seo-pricing/).
+faqStyle: accordion                       # optional: each question a closed <details>. Default open (every answer shown)
 authorLine: >-                            # one or two FACTS lines in this page's words (R39); inline Markdown
   Fahim built the SEO system a New Orleans PI firm runs on ...
 sources:                                  # paste the deck's sources as they are (id, checked, supports are ignored)
@@ -261,7 +262,7 @@ Copy as the deck has it. [Anchor text](/target/) for links. **One bold answer ph
 The file name is the page slug (`seo-for-dui-attorneys.md` for `/seo-for-dui-attorneys/`). Drop the deck's `> Builder:` and `> Judge:` notes, its YAML deck fields (title, meta, keywords, ledger) and anything in `[ASK FAHIM]` or `[NEEDS PRICE OK]`: the build fails if one is left in.
 
 ### Syntax for writers and builders
-Plain Markdown, plus four marker lines. A marker sits alone on its own line, right above what it marks.
+Plain Markdown, plus five kinds of marker line. A marker sits alone on its own line (a blank line above and below), right above what it marks.
 
 | You write | You get |
 |---|---|
@@ -275,7 +276,21 @@ Plain Markdown, plus four marker lines. A marker sits alone on its own line, rig
 | `<q data-no-check>words people type</q>` | A real search, quoted (check-unique skips it). Real searches only |
 | `<mark>a few words</mark>` | The highlighter (`.lse-mk`): one fact per block, never in a heading (the build fails on a marked heading) |
 | `[slot name]` | The page's `slot="name"` content, in the text column, up to 1040px wide: any kit piece the deck's builder note names (`SearchBox`, `ProofFigure`, `Rows`, `HairTable`). Wrap it in a narrower `div` for a small piece |
+| `[more "See how we collect the law"]`, then the text, then `[/more]` | **See more block**: a native `<details>`, closed, under a quiet control (a small ringed plus, the label in body type). The text inside stays in the HTML, so Google reads it and find in page opens it; no script. Paragraphs, lists, `[steps]`, `[checklist]`, tables, callouts and H3s inside look exactly as outside. Rules the build enforces: both lines at the top level (not in a list or quote), no nesting, no H2 inside (the jump list must never point into a closed block), no `[slot]` or `[band]` inside (proof stays in view), a plain label of at most 8 words, unique on the page |
 | `[band name]` | Ends the white text section and shows the page's `slot="name"` full width, then the text carries on: the mid-page CTA `Band` (R8, after the main zone only) or the `PriceBand` (put `[band price]` as the last line, so it sits above the FAQ). Use a fog or marker band so it doesn't run into the white |
+
+**When to use a see more block** (owner, 2026-11-09): a skimmer reads each section's point in a few seconds, and the detail, examples and how-we-do-it sit one click away. Keep the section's opening point, its key lines and its results visible, and move the longer explanation into one or two blocks, so a section shows about 150 words at most. Results, proof slots, bands and step lists always stay visible (a step list may keep its titles visible and put the long step bodies in one block under it, as a plain `1.` list). The label says what's inside, in plain words: "See the five findings", "See how each month 1 step works". No em dashes, no "Read more".
+```md
+We take on all seven because what holds a firm back rarely sits in one place. These are real findings from injury firms' sites:
+
+[more "See the five findings"]
+
+- **Work marked "complete" that wasn't there.** ...
+
+[/more]
+
+None of these shows up in a ranking report ...
+```
 
 A link to an agency domain listed in `src/data/nofollow.ts` gets `rel="nofollow"` by itself: add the domain there (the `/seo-pricing/` market table's agencies), never type the attribute.
 
@@ -304,7 +319,7 @@ const depth = await getDepth('seo-for-dui-attorneys');
 - Ids DepthZone owns: `depth-toc-h`, `depth-faq`, `depth-faq-h`, `depth-sources-h`. Don't use them elsewhere on the page. A heading id that repeats another id on the page fails check-dist.
 
 ### Checks the build runs on depth copy
-Any of these fails `astro build` (and `npm run check`) with the file name: an H1 or H4 in the body, a body that opens with an H3, a table over 4 columns, a callout without a bold lead, a `> Builder:` or `> Judge:` note, `[ASK FAHIM]`, `[NEEDS PRICE OK]` or `[ZVQ]` left in, an unknown or misplaced marker, `<mark>` in a heading, a summary, question, answer or author line that is more than one paragraph, questions without a `faqHeading`. check-dist and check-unique then run on the page as on any other.
+Any of these fails `astro build` (and `npm run check`) with the file name: an H1 or H4 in the body, a body that opens with an H3, a table over 4 columns, a callout without a bold lead, a `> Builder:` or `> Judge:` note, `[ASK FAHIM]`, `[NEEDS PRICE OK]` or `[ZVQ]` left in, an unknown or misplaced marker, a `[more]` block left open, nested, holding an H2, slot or band, or with a long or repeated label, `<mark>` in a heading, a summary, question, answer or author line that is more than one paragraph, questions without a `faqHeading`. check-dist and check-unique then run on the page as on any other.
 
 ## Existing pieces you still use
 `LeadForm` (own `idPrefix` and `label` per form), `CalendlyInline`, `Faq` with `faqSchema` (InnerPage's `faq` prop does it; `open="all"` in a depth zone), `FinalCta` (last, once, `id="book"`), `PracticeLinks`, `Placeholder`, `Button`, `Shot`.
