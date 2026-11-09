@@ -3,6 +3,7 @@ import worker from '../../worker/index';
 import { emailEnabled, recipientsOf, renderLeadEmail, type LeadRecord } from '../../worker/email';
 import { deliverLead, drainOutbox, outboxStuck } from '../../worker/outbox';
 import { pruneEvents } from '../../worker/addons/events';
+import { pruneLeads } from '../../worker/addons/lead';
 import {
   brokenDb,
   callWorker,
@@ -441,6 +442,16 @@ describe('the cron', () => {
     await pruneEvents(db, T0);
     const left = await db.prepare('SELECT name FROM events').all<{ name: string }>();
     expect(left.results.map((row) => row.name)).toEqual(['a']);
+  });
+
+  it('keeps a lead exactly 730 days old, and deletes an older one with its outbox row', async () => {
+    await seedLead({ id: 'kept', conversion_id: 'conv-kept', created_at: T0 - 730 * DAY });
+    await seedLead({ id: 'gone', conversion_id: 'conv-gone', created_at: T0 - 730 * DAY - 1 });
+    await pruneLeads(db, T0);
+    const leads = await db.prepare('SELECT id FROM leads').all<{ id: string }>();
+    const outbox = await db.prepare('SELECT lead_id FROM outbox').all<{ lead_id: string }>();
+    expect(leads.results.map((row) => row.id)).toEqual(['kept']);
+    expect(outbox.results.map((row) => row.lead_id)).toEqual(['kept']);
   });
 
   it('one failing job does not stop the other, and the cron itself does not throw', async () => {

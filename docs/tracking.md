@@ -22,10 +22,10 @@ Previews never track: the `previews` block in `wrangler.jsonc` keeps every pixel
 - **Reused, not created.** The property is the one WordPress used, so the history stays. It is used only by this domain. The Rudin intake under `/intake` (another Worker, `rudin-intake-staging`) also sends its `gr_*` events here, with three custom dimensions of its own. Leave those alone.
 - **Page views** come from the Google tag, which Cloudflare's tag gateway injects at the edge for browser requests and serves from `/analytics/`. The site never loads `gtag.js` itself. The gateway was already on for the zone before the move, with "Set up tag" on, so page views carry on through the cutover with no change.
 - **Conversions** come only from the Worker, through the Measurement Protocol (`worker/ga4.ts`), once each through D1 table `ga4_sent`: `generate_lead` (`lead_id`, `source_form`, `page_location`) from `/api/lead`, and `schedule_call` (`booking_id`) from `/api/activity` on a Calendly booking. Also `booking_dialog_open` and `exit_offer_shown`, not key events.
-- **The GTM container** holds the GA4 page tag, the Rudin intake tag, and three old WordPress tags (`track__bookameeting`, `track__contactus`, `track__homepage`). Those fire only on URLs with `?bookameeting`, `?contactus` or `?performanceaudit`, which the new site never makes, so they do nothing. No Meta or Reddit tags are in the container, so nothing doubles the site's own pixels.
+- **The GTM container** holds the GA4 page tag and the Rudin intake tag, with their triggers and 5 variables. Version 11 (2026-11-09) removed the three old WordPress tags (`track__bookameeting`, `track__contactus`, `track__homepage`) and their triggers. No Meta or Reddit tags are in the container, so nothing doubles the site's own pixels.
 - **Admin, done 2026-11-09:** `calendly.com` on the unwanted referrals list (Google tag settings). Custom dimension "Source form", event scope, parameter `source_form`. Data retention was already 14 months for event and user data. Enhanced measurement: form interactions are off, so GA4 makes no form events of its own. Page views, scrolls, outbound clicks, site search, video and file downloads stay on.
 - **Existing key events:** `gr_game_complete` and `gr_lead_start` (Rudin intake). `purchase` is listed, not starred.
-- **Measurement Protocol secrets:** one already exists, "PixelYourSite", made by the WordPress plugin. Leave it until WordPress is retired. The Worker gets its own.
+- **Measurement Protocol secret:** the stream has ONE secret, "PixelYourSite" (made by the old WordPress plugin, 2025-04-17). No "Cloudflare Worker" secret was created, so the Worker's `GA4_API_SECRET` is that value. **Keep it:** deleting it breaks the Worker's conversions. (Checked 2026-11-09 when WordPress was retired.)
 
 ## Meta
 
@@ -75,4 +75,4 @@ After launch:
 4. GA4: once `generate_lead` and `schedule_call` show in Admin, Events, Recent events, star both as key events. They can't be added before Google has seen them.
 5. Check the live page's network requests (above), and that `/intake` still gets its own Worker.
 6. Meta: after a day of traffic, check Event Match Quality. Connect the dataset to an ad account when LSE runs Meta ads.
-7. When WordPress is retired, with the owner's OK: delete the "PixelYourSite" GA4 secret. Keep the Reddit token, because the Worker uses the same one.
+7. WordPress retired 2026-11-09. Keep the "PixelYourSite" GA4 secret and the Reddit token: the Worker uses both. GTM version 11 removed the three old WordPress tags and their triggers.

@@ -75,6 +75,21 @@ export const leadRoute: RouteAddon = { path: '/api/lead', handle: handleLead };
 
 export const outboxJob: CronJob = { name: 'outbox', run: (env) => drainOutbox(env) };
 
+// The privacy policy keeps an enquiry that leads to no work for 24 months. Client records live outside this
+// database, so every lead goes 730 days after it came in, which is never later than the policy allows.
+const LEAD_RETENTION_MS = 730 * 24 * 60 * 60_000;
+
+/** Deletes leads older than 730 days, with their outbox rows first (the outbox refers to the lead). */
+export function pruneLeads(db: D1Database, now = Date.now()): Promise<D1Result[]> {
+  const cutoff = now - LEAD_RETENTION_MS;
+  return db.batch([
+    db.prepare('DELETE FROM outbox WHERE lead_id IN (SELECT id FROM leads WHERE created_at < ?)').bind(cutoff),
+    db.prepare('DELETE FROM leads WHERE created_at < ?').bind(cutoff),
+  ]);
+}
+
+export const leadsRetentionJob: CronJob = { name: 'leads-retention', run: (env) => pruneLeads(env.DB) };
+
 // The numbered steps are plan section 7's order of operations. Don't reorder them.
 async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
   if (request.method !== 'POST') return methodNotAllowed('POST');
