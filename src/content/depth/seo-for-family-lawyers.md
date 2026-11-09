@@ -1,256 +1,169 @@
 ---
-# /seo-for-family-lawyers/ depth zone. Copy: content/v3/seo-for-family-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-# Slots the page fills: searches (SearchBox), mistakes (Rows); bands mid and price.
+# /seo-for-family-lawyers/ depth zone, v4 (content/V4-BRIEF.md): written from our own practice
+# (research/EXPERTISE.md, item ids per section in content/v4/LEDGER.md). Our accounts are injury firms, and each
+# example says so. Slots the page fills: searches (SearchBox), proof; bands mid and price.
 summary: >-
-  SEO for family lawyers is the work of ranking a family law practice for the divorce, custody and support searches
-  people make before they hire. The short answer: a page per matter you take, built for the counties where you file,
-  safe for readers at risk, and written so Google's AI can quote it. Below, we start with what a family firm needs
-  from search, then which matters deserve a page and how to make protective order pages safe. Then come Map reach,
-  what reviews and claims may say, and the pages Google's AI quotes. The page ends with edge cases and the mistakes
-  that cost consultations.
-reviewed: 2026-11-08
+  SEO for family lawyers, as we do it, builds one strong page for each matter you take, written from your state's
+  family code, so your firm is the answer a parent or spouse keeps finding through weeks of private reading. What
+  matters most is trust: correct law, honest claims, and pages that are safe for a reader who may be watched.
+reviewed: 2026-11-09
+modified: 2026-11-09
 faqHeading: Five follow-up questions on family law SEO.
+faqStyle: accordion
 faq:
   - q: Have you done SEO for a family law firm?
     a: >-
-      The results we can show so far are for PI firms in New Orleans and El Paso. The page, profile and AI answer work
-      carries over to family matters.
+      Not so far. Both firms behind our results handle injury cases, and we describe them that way every time. What
+      carries over is what a family site depends on: one code shared across many pages, the lawyer's corrections
+      kept as rules, profile services only for matters you take, and question pages that Google's AI can quote.
   - q: How do we stop our divorce page competing with our homepage?
     a: >-
-      Give each page one job and its own title. The homepage names the firm, its practices and counties; the divorce
-      page answers divorce questions in depth, linked from the homepage with the words people search.
-  - q: How should we answer a former client's bad review?
-    a: >-
-      Flag it if it breaks Google's policy, and keep any reply short and calm. Texas Ethics
-      [Opinion 662](https://legalethicstexas.com/resources/opinions/opinion-662/) allows only a proportional,
-      restrained response that reveals no confidential information. Other states have their own opinions, so check
-      yours.
+      Give each page one job. The homepage targets the firm as a whole, with its matters and counties, and the
+      divorce page answers divorce questions in depth, linked from the homepage in the words people search. On one
+      injury site we moved the homepage off a single case type for the same reason.
   - q: Should a family firm publish its fees?
     a: >-
-      A fee page helps a reader who is comparing firms, and cost searches sit close to a call. In England and Wales,
-      family work isn't on the [SRA Transparency Rules](https://www.sra.org.uk/solicitors/standards-regulations/transparency-rules/)
-      list of services that must publish prices, so it is a choice there too.
+      A fee page helps a reader who is comparing firms, and cost searches sit close to a call. Any figure on it must
+      hold up under your state's advertising rules, so we word fees exactly as the firm approves them. In England
+      and Wales, family work isn't on the regulator's list of services that must publish prices, so it is a choice
+      there too.
   - q: Do we need a separate website for each office?
     a: >-
-      One site with a page per office and county is easier to rank and keep accurate than a set of thin sites.
-      Google's [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) list multiple sites
-      with slight variations, built to widen reach, as doorway abuse.
+      No. One site with a page per office is easier to rank and to keep accurate than a set of thin sites, which
+      Google's spam rules treat as doorways. Two offices do mean two Google profiles, each posting about its own
+      office.
+  - q: Do you work with family firms outside the US?
+    a: >-
+      Yes, remotely, and the words matter more than usual. England and Wales now say conditional order and final
+      order where pages once said decree nisi and decree absolute, and Canada's Divorce Act speaks of parenting
+      orders. A page that still uses the old terms reads as out of date, so month 1 checks the current ones.
 authorLine: >-
-  Fahim has grown 67+ businesses online over 6.5 years, and built the SEO system a New Orleans PI firm runs on. Fahim
-  leads every account, with a small team.
+  Fahim built the SEO for a New Orleans PI firm, still runs its marketing, and has grown 67+ businesses online in 6.5
+  years. A small production team supports each account Fahim leads.
 sources:
-  - url: https://selfhelp.courts.ca.gov/divorce
-    publisher: California Courts Self-Help Guide
-    title: The divorce process
-  - url: https://design-system.service.gov.uk/patterns/exit-a-page-quickly/
-    publisher: GOV.UK Design System
-    title: Exit a page quickly
-  - url: https://support.google.com/business/answer/7091
-    publisher: Google Business Profile Help
-    title: Tips to improve your local ranking on Google
   - url: https://support.google.com/business/answer/3038177
     publisher: Google Business Profile Help
     title: Guidelines for representing your business on Google
+  - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_1_communication_concerning_a_lawyer_s_services/comment_on_rule_7_1/
+    publisher: American Bar Association
+    title: Comment on Rule 7.1
   - url: https://support.google.com/contributionpolicy/answer/7400114
-    publisher: Google Maps user-contributed content policy
+    publisher: Google Maps user contributed content policy
     title: Fake engagement
-  - url: https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers
-    publisher: US Federal Trade Commission
-    title: "Consumer Reviews and Testimonials Rule: Questions and Answers"
-  - url: https://legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/communications-concerning-a-lawyers-services/
-    publisher: Texas Center for Legal Ethics
-    title: Texas Disciplinary Rules of Professional Conduct, Rule 7.01
-  - url: https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/advertisements
-    publisher: Texas Center for Legal Ethics
-    title: Texas Disciplinary Rules of Professional Conduct, Rule 7.02
-  - url: https://www.sra.org.uk/solicitors/standards-regulations/code-conduct-solicitors/
-    publisher: Solicitors Regulation Authority
-    title: SRA Code of Conduct for Solicitors, RELs and RFLs (in effect from 11 April 2025)
-  - url: https://cba.org/resources/practice-tools/the-ethics-of-advertising-a-toolkit-for-lawyers/the-rules-of-advertising/
-    publisher: Canadian Bar Association
-    title: "The ethics of advertising: the rules of advertising"
-  - url: https://www.lawsociety.com.au/practising-law-in-NSW/ethics-and-compliance/regulatory-compliance/advertising-legal-services
-    publisher: Law Society of NSW
-    title: Advertising legal services
-  - url: https://developers.google.com/search/docs/appearance/ai-features
-    publisher: Google Search Central
-    title: AI features and your website
-  - url: https://www.gov.uk/government/news/blame-game-ends-as-no-fault-divorce-comes-into-force
-    publisher: GOV.UK (Ministry of Justice)
-    title: Blame game ends as no-fault divorce comes into force
-  - url: https://www.justice.gc.ca/eng/fl-df/cfl-mdf/dace-clde/div18.html
-    publisher: Department of Justice Canada
-    title: Divorce Act changes explained
-  - url: https://lsc.sa.gov.au/cb_pages/news/familylawchanges.php?lscsa_prod%5Bpage%5D=47
-    publisher: Legal Services Commission of South Australia
-    title: Family Law changes commence from 6 May (news item dated 6 May 2024)
-  - url: https://legalethicstexas.com/resources/opinions/opinion-662/
-    publisher: Professional Ethics Committee for the State Bar of Texas
-    title: Opinion 662 (August 2016)
-  - url: https://www.sra.org.uk/solicitors/standards-regulations/transparency-rules/
-    publisher: Solicitors Regulation Authority
-    title: SRA Transparency Rules (in effect from 11 April 2025)
-  - url: https://developers.google.com/search/docs/essentials/spam-policies
-    publisher: Google Search Central
-    title: Spam policies for Google web search
 ---
 
-## What does a family law firm need from SEO?
+## SEO for family lawyers starts with a long, private search
 
-A family law firm needs SEO that ranks a separate page for each matter it takes, in the counties where it files, for the questions people research before calling. Those pages, the Business Profile and Google's AI answers bring the calls.
+Few people hire a family lawyer on the day they first search. They read for weeks, often late at night and often on a shared phone or laptop, asking what it costs, whether they need a lawyer and how the process works.
 
-Family clients search in stages. First they price the decision and test whether they need a lawyer. Later they compare firms. These four searches from our keyword research show both stages:
+These searches from our keyword research show both ends of that reading:
 
 [slot searches]
 
-The cost search and the "questions to ask" search sit close to a call. The two "do I need a lawyer" searches sit further back, and an honest answer there earns trust before the reader is ready.
+The cost search and the "questions to ask" search sit close to a call. The two "do I need a lawyer" searches sit further back, and an honest answer there earns trust before the reader is ready to hire.
 
-Broad definitions with no state in them are the weakest targets. The reader is far from hiring, and the answer reads the same on every site.
+[more "See which questions earn a page, and why"]
 
-A family firm competes with free help too. California's courts publish a [self-help guide to the divorce process](https://selfhelp.courts.ca.gov/divorce), with the forms for each step. A firm page wins by covering what that guide can't: cost, strategy and when to hire a lawyer.
+We list, for each target search, the sites that rank, what sort of site each one is and the questions Google shows under it. The question nobody answers well is where a new page starts.
 
-Our [law firm SEO services](/law-firm-seo-services/) page lists the monthly work behind these pages. It starts with choosing which matters get a page.
+A topic that looks tiny in one tool can be large in another, so before we drop one, we read the results page itself. If Google ranks pages built only for that question, it gets a page.
 
-## Which family law matters deserve a page of their own?
+Free help competes here too. California's courts, for one, publish a self-help guide to divorce with the forms for each step. A firm's page wins by covering what such a guide can't: cost, strategy and when a lawyer is worth hiring.
 
-A family law matter deserves its own page when the firm takes that work and its searchers ask different questions, as with custody, child support and protective orders. One "family law" page can't rank for all of them.
+[/more]
 
-The table shows what each matter's page must answer and the official source it should cite.
+## What we build from one family code
 
-| Matter | What the page must answer | Source it should cite |
-|---|---|---|
-| Divorce | Residency, steps, timing, and when a lawyer helps | The state's divorce statute and court guide |
-| Custody and parenting time | How the court decides, and how a parent prepares | The state's best-interest factors |
-| Child support | How the amount is worked out | The state guideline and official worksheet |
-| Spousal support | What the court weighs, and for how long | The state's support statute |
-| Changing an order | What counts as a change, and how to ask | The court's modification forms |
-| Protective orders | How to apply and what follows, safety first | The court's protective order forms |
-| Relocation with a child | Notice rules and what the court weighs | The state's relocation statute |
-| Mediation and collaborative divorce | How each works and who it suits | The court's mediation program |
-
-Prenups, adoption, paternity and enforcement earn a page only when the firm does enough of that work to write from experience. A page that repeats the divorce page with one word swapped is thin.
-
-The menu, footer and intake form should lead each reader to the one page that fits. That page plan is part of [lawyer web design](/lawyer-web-design-development/) when a firm rebuilds.
-
-### When are audience pages worth building?
-
-An audience page for fathers, military families or same-sex couples is worth building when the family firm handles that group's cases and has something specific to say.
-
-Skip disputed labels as page targets. The protective order page needs the most care of all.
-
-## Safety features every protective order page needs
-
-A protective order page needs a quick exit button, safer-browsing advice and a contact path that can't alert an abuser, because the reader may be watched. Those features decide whether a frightened reader contacts the family firm at all.
-
-The UK government's design system publishes an ["Exit a page quickly" pattern](https://design-system.service.gov.uk/patterns/exit-a-page-quickly/) for sensitive services, such as help to leave domestic abuse. Its "Exit this page" button takes the user to another website, and pressing Shift three times does the same.
-
-The pattern warns that the button doesn't erase browsing history. It tells services to add a safety page of basic steps, such as private browsing and clearing history and cookies.
-
-Each protective order and abuse page on a family firm's site should have:
-
-[checklist]
-- A quick exit button to a neutral website, plus the Shift shortcut.
-- A note on the exit button, linking to a safer-browsing page.
-- No pop-ups, chat windows that open on their own, or video that plays on load.
-- No tracking beyond counting calls and forms.
-- A first form question asking how and when it is safe to reply.
-- No request for the other party's name or address in that form.
-- Replies with a neutral sender name and subject line, naming no matter.
-
-The first reply should go where, and when, the person said it is safe. Nearby readers meet the firm first on the Map.
-
-## How far does a family firm's Map listing reach?
-
-A family firm's Business Profile ranks most easily near its office, because Google weighs distance alongside relevance and prominence. Google's guidelines say a service area shouldn't reach farther than about 2 hours' drive from the business's base.
-
-Google explains those three factors in its guide to [improving your local ranking](https://support.google.com/business/answer/7091). Prominence draws on the number of websites that link to a business and the number of reviews it has. Directory profiles on Avvo, Justia or FindLaw that link to the firm can be among those links.
-
-Each family lawyer can have a practitioner profile if clients can reach them at the verified office during stated hours. Google's [guidelines for representing your business](https://support.google.com/business/answer/3038177) keep a multi-lawyer firm's profile separate from each lawyer's, and allow no extra profile per specialty.
-
-The profile name must be the firm's real-world name, with no added keywords or towns, and a virtual office isn't eligible. Our [guide to law firm names](/law-firm-names/) shows how a name behaves on the profile.
-
-Counties beyond the office's Map reach are won with pages. A county page earns its place with real local detail: the court, its forms, its local rules and the firm's hearings there. City pages that only funnel readers to one page are what Google's spam policies call doorway abuse.
-
-A second profile for a PI firm in New Orleans started with no history and took about 1 call in July, then 9 in October 2026. A new family lawyer's profile starts from the same blank history, and reviews help it grow.
-
-## Which reviews, results and titles can a family law site publish?
-
-A family law site can publish genuine reviews, results that don't mislead, and a specialist title where local rules allow, usually after certification. Getting this right protects the reviews that lift the firm's Map ranking.
-
-In the US, each state sets these rules, and Texas, for one, writes them into Rules 7.01 and 7.02.
-
-Google's [review policy](https://support.google.com/contributionpolicy/answer/7400114) bars incentives, asking only happy clients, and asking for specific content. For a family firm, the ask goes to every client at the same stage, in neutral words, and is easy to decline.
-
-The FTC's consumer reviews rule took effect on 21 October 2024. Its [questions and answers](https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers) cover fake reviews, undisclosed insider reviews, and suppressing reviews through threats or false accusations.
-
-On results, Texas [Rule 7.01](https://legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/communications-concerning-a-lawyers-services/) treats a communication as misleading if it is substantially likely to create unjustified expectations about results. A line like "won full custody" needs care under that test.
-
-On titles, Texas [Rule 7.02(b)](https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/advertisements) bars certification claims except those it allows, such as its set wording for lawyers certified by the Texas Board of Legal Specialization.
-
-Outside the US, the angle shifts:
-
-- England and Wales: the [SRA Code of Conduct](https://www.sra.org.uk/solicitors/standards-regulations/code-conduct-solicitors/), paragraph 8.8, requires publicity to be accurate and not misleading, including about charges.
-- Canada: each law society sets its own code. The CBA's [advertising toolkit](https://cba.org/resources/practice-tools/the-ethics-of-advertising-a-toolkit-for-lawyers/the-rules-of-advertising/) quotes Model Code rule 4.3-1: no "specialist" claim without the law society's certification.
-- Australia: in New South Wales, for one, rule 36.2 of the [Australian Solicitors' Conduct Rules](https://www.lawsociety.com.au/practising-law-in-NSW/ethics-and-compliance/regulatory-compliance/advertising-legal-services) reserves "accredited specialist" for solicitors whom the relevant professional association has accredited.
-
-The word "expert" in our own name describes search work, not a legal certification. Your attorney or ethics counsel signs off on every family law page before it publishes.
-
-This is general information about marketing, not legal advice. Rules differ by state and country, so check yours with your bar, law society or ethics counsel.
-
-## What kind of family law page can Google's AI quote?
-
-Google's AI can quote a family law page that is indexed, eligible for a snippet and clear about one state's rule, such as how child support is worked out.
-
-Google's page on [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features) says, as of November 2026, that no special markup is needed and that meeting its terms doesn't guarantee a page is shown.
-
-State questions suit a family firm best: how support is calculated, residency before filing, and how long a divorce takes. Each of those pages should:
+Divorce, custody and support pages all lean on one state's family code. On our injury sites, one state's injury law sat under dozens of practice pages, and the method that kept them accurate carries straight over. For the first 90 days month by month, see [law firm SEO services](/law-firm-seo-services/).
 
 [steps]
-1. Answer in the first sentence, naming the state.
-2. Name and link the statute, guideline or court form behind the answer.
-3. Show the date, so a reader can see the page is current.
-4. Get rechecked when the legislature or the court changes the rule.
+1. **The matters you take, and the ones you refer out.**
+2. **The family code, read at the source.**
+3. **One page owns each shared rule.**
+4. **A page per matter, with the rule written through its case.**
+5. **The lawyer's corrections, kept as rules.**
 
-For a PI firm in New Orleans, the jackknife page in the hero ranked #1 and was still cited by Google's AI a week later. A family page that answers one state question cleanly can hold a citation the same way.
+[more "See how each step works for family law"]
 
-Our monthly AI answer checks search a family firm's main divorce and custody questions and note who is cited. That leaves the edge cases outside the core pages.
+1. Before we plan, the firm tells us once which matters it takes, which it refers out, how it words its fees and what must never appear. No page gets written for work the firm sends elsewhere.
+2. All the rules your pages rely on go into one file, each taken from the statute or the court's own guideline and checked against this year's changes. On one injury account, the firm's own FAQ still gave a deadline the legislature had since changed, so we fix the law already on a site before adding pages.
+3. One page explains each shared rule in full, such as how support is worked out, and the others give a short summary with a link. That is how a family cluster of twenty pages avoids saying the same thing twenty times.
+4. The custody page states the law through the best-interest factors, the support page through the guideline worksheet and the relocation page through the notice rules. It is the same code, with a different way into it on each page.
+5. The lawyer marks up each draft in a simple sheet, line by line. Every correction becomes a standing rule, so no mistake reaches the lawyer a second time.
+
+[/more]
+
+Pages for audiences such as fathers or military families earn a place only when the firm takes that group's cases and has something specific to say. Spanish pages pass the same test: they exist only where your people truly serve Spanish speakers.
+
+## Protective order pages that are safe to read
+
+Someone reading about a protective order may be watched, on a shared device or a monitored phone. That page has to be safe before it can rank, and the safety starts in the design:
+
+[checklist]
+- **A quick exit button** that opens a neutral site, with a note that it doesn't clear the browser history.
+- **A short safer-browsing page,** linked from that note.
+- **No pop-ups, chat that opens by itself or video that plays on load.**
+- **No ad or tracking tags** beyond counting calls and forms.
+- **A first form question** asking when and how it is safe to reply.
+- **No field** for the other party's name or address.
+- **Replies from a neutral sender,** with no matter named in the subject line.
+
+[more "See how our intake rules fit these pages"]
+
+We list every tracking tag on a site before adding one. On one injury account, two analytics accounts were counting the same visitors, and one of them was held by an agency that had already left. On a protective order page, that list decides which tags come off.
+
+The rest comes from the intake we built for injury firms: consent is asked before anyone calls or texts back, and nothing on the form rates the case. A broken question can't stop the name, number and safe-contact answer from reaching the firm.
+
+[/more]
+
+## What an injury firm's question pages show
+
+[slot proof]
+
+A page on what causes jackknife truck crashes, written for a PI firm in New Orleans, held the #1 spot a week after it went live, with Google's AI still citing it. Three more truck pages came next and were ranking inside 16 hours, which the groundwork made possible: about three months of it.
+
+The page for <q data-no-check>what to do after a truck accident in New Orleans</q> took #1, and Google's AI quoted it 3 times in a single answer. A family question such as how support is worked out in your state has the same shape: one state, one rule, one clear answer.
+
+[more "See what Google's AI picked, and why"]
+
+What the AI lifted from those pages was specific: Louisiana's filing deadline, a warning not to talk on record with the trucking company's insurer, and the roads where jackknife crashes happen. No sales line made it in.
+
+Every page it cited already ranked on page one. A family firm gets into AI answers the same way: by ranking first, with a page that answers one question correctly.
+
+[/more]
 
 [band mid]
 
-## Family law questions that sit outside the core pages
+## The Map, reviews and the results you may show
 
-Three situations change a family practice's plan: a divorce that reopens an estate plan, a firm outside the US, and the first months of the work.
+In the Map, a family firm ranks most easily near its office. Under [Google's guidelines](https://support.google.com/business/answer/3038177), each lawyer who meets clients there can have a profile of their own, but there is no extra profile for each matter.
 
-### Where divorce pages meet estate planning pages
+Family clients seldom want a divorce linked to their name online. So we ask every client at the same stage, in neutral words. [Google's review policy](https://support.google.com/contributionpolicy/answer/7400114) forbids asking only the happy ones.
 
-A divorce doesn't rewrite the documents a couple signed while married, so a will, beneficiary form or power of attorney may still name the former spouse. For a family firm, "after the divorce" is a search worth its own page.
+[more "See our rules for reviews, results and titles"]
 
-That page lists the records to review, in order, and says when to see an estate planning lawyer. The planning side of the same search, and how estate firms rank for it, is covered in [SEO for estate planning lawyers](/seo-for-estate-planning-lawyers/).
+Reviews quoted on the site carry a first name and last initial at most. On one injury site we took down a homepage review about a kind of case the firm didn't take, and on a family site the same check covers every matter.
 
-### Family law terms that changed outside the US
+A line like "won full custody" is a past result. The ABA's [comment 3 to Rule 7.1](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_1_communication_concerning_a_lawyer_s_services/comment_on_rule_7_1/) explains why that needs care: an accurate result can mislead when it leaves readers expecting the same outcome. So a result appears only after the lawyer signs off on it, with a disclaimer beside it.
 
-Family law changed in ways that affect page wording in Canada in 2021, England and Wales in 2022 and Australia in 2024. A family firm there that still uses the old terms has pages that no longer match what the courts say.
+"Specialist" and "board certified" appear only where the lawyer holds the certification and the state allows the words. We confirm each credential with the body that granted it, because on one injury account a site named an award level the lawyer didn't hold.
 
-- England and Wales: no-fault divorce came into force on 6 April 2022, as the [UK government announced](https://www.gov.uk/government/news/blame-game-ends-as-no-fault-divorce-comes-into-force). "Conditional order", "final order" and "applicant" replaced decree nisi, decree absolute and petitioner. At least 20 weeks must pass between application and conditional order, and couples can now apply jointly.
-- Canada: the Divorce Act changes took effect on 1 March 2021. In [Justice Canada's summary](https://www.justice.gc.ca/eng/fl-df/cfl-mdf/dace-clde/div18.html), "parenting order" replaces "custody order", alongside parenting time and decision-making responsibility.
-- Australia: the Family Law Amendment Act 2023 changes began on 6 May 2024. The [Legal Services Commission of South Australia](https://lsc.sa.gov.au/cb_pages/news/familylawchanges.php?lscsa_prod%5Bpage%5D=47) lists the removal of the presumption of equal shared responsibility.
+[/more]
 
-We work remotely with firms outside the US too. Fahim's own track record spans four countries, Idiya in New Zealand and Breakthrough Maths in Ireland among them.
+<p class="lse-small">We give marketing guidance, not legal advice. Your state's bar rules, and your counsel, decide what a family page may say.</p>
 
-### The first months of family law SEO
+## How long does family law SEO take, and what does it cost?
 
-The first months of family law SEO go into groundwork on the site, the matter pages and the Business Profile, before a new page can climb fast.
+The first three months or so go on groundwork: the matter pages, the profile and the law already on your site. Only then can new pages climb quickly, and any proposal that names a date for your county is guessing.
 
-The New Orleans PI firm spent about three months on groundwork, and then the jackknife page ranked within hours of going live. A family practice follows the same order. No one can promise a date for a given county, and promising one is a mistake in itself.
+We measure success in calls and qualified leads, set beside the same months of the previous year. For a family firm, a qualified lead is a matter you take, in a county where you file.
 
-## Family law SEO mistakes that cost consultations
+[more "See the price factors and what you keep"]
 
-The family law SEO mistakes that cost consultations are thin county pages, review requests that hint at a case, outdated legal terms and protective order pages built like sales pages. Each costs rankings, trust or a reader's safety.
+Four things set the monthly figure: your market, the matters in the plan, your number of offices and the shape your site is in. The factors are explained one by one on [law firm SEO pricing](/seo-pricing/).
 
-Watch for these in any family law SEO proposal:
+No contract holds you past the current month. Everything built in your firm's name, from the site to the accounts, stays with the firm.
 
-[slot mistakes]
-
-Good SEO for family lawyers does the opposite: one honest page per matter, safe by design, ranked where the firm files.
+[/more]
 
 [band price]

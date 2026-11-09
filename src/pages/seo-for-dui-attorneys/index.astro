@@ -1,16 +1,14 @@
 ---
-// /seo-for-dui-attorneys/ from content/v3/seo-for-dui-attorneys.md. The commercial top is the row hero: the H1
-// across the top, then the form card with the new-profile calls chart beside it on the fog panel. The v2
-// bands after it gave way to the depth zone (src/content/depth/), opened by a fog band (byline, summary, jump
-// list): the search timeline, the state deadline table and its callout, the sub-pages as inline rows, the
-// shortcuts as an "avoid" list, the marker price band, then the open FAQ on white, the author box and FinalCta.
-// No mid-page CTA (the deck leaves it out at this length).
+// /seo-for-dui-attorneys/. The commercial top is the row hero: the H1 across the top, then the form card with the
+// new-profile calls chart beside it on the fog panel. The depth zone (src/content/depth/, v4: written from our own
+// practice) opens on a fog band (byline, summary, jump list): the two clocks, the license page with the El Paso AI
+// source beside it, the build steps, the profile, the "won't do" list drawn with crosses, the marker price band,
+// then the accordion FAQ on white, the author box and FinalCta. No mid-page CTA.
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Rows from '../../components/kit/Rows.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -18,22 +16,8 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-dui-attorneys/';
 const title = 'SEO for DUI Attorneys | Win the Near Me Search';
 const description =
-  'SEO for DUI attorneys: a search timeline by case stage, state license deadline pages, DUI vs criminal pages, sub-pages, the profile, claims and the UK.';
+  'SEO for DUI attorneys: the license deadline page first, the DUI pages around it, the profile drivers find after release, what you may claim and the cost.';
 const depth = await getDepth('seo-for-dui-attorneys');
-
-// "Beyond the main DUI page, which sub-pages bring calls?": one template per row (the page, the fact that earns it).
-const subPages = [
-  { title: 'Refusal.', text: 'In California, refusing a test brings a 1-year suspension on a first offense, against 4 months for a failed test.' },
-  { title: 'First offense.', text: 'The search with the most reassurance in it, and the place for the first-offense license rules.' },
-  { title: 'Repeat and felony DUI.', text: 'Higher penalties and longer license actions, written for a driver with a record.' },
-  { title: 'Under 21.', text: 'Lower alcohol limits can apply to young drivers; California’s Admin Per Se threshold for drivers under 21 is 0.01%.' },
-  {
-    title: 'Commercial drivers.',
-    text: 'Under federal rules, a first DUI conviction disqualifies a CDL holder for 1 year, even in a personal car (<a href="https://www.law.cornell.edu/cfr/text/49/383.51">49 CFR 383.51</a>).',
-  },
-  { title: 'Ignition interlock.', text: 'California lets eligible drivers, first offenders included, drive on an interlock restriction instead of a plain suspension.' },
-  { title: 'Drivers from another state.', text: 'A visitor arrested here has questions about two states: the one with the case and the one that issued the license.' },
-];
 ---
 <InnerPage
   title={title}
@@ -60,18 +44,15 @@ const subPages = [
   <DepthZone depth={depth} faqTone="white">
     <figure slot="proof" class="lse-depth__proof">
       <Shot tag="First source" tagSide="right" images={[shot(proof.elpasoAiDeadline, { marks: ['citedLine', 'sourceCard'] })]} />
-      <figcaption>A PI firm in El Paso: its deadline page is the first source Google’s AI answer cites.</figcaption>
+      <figcaption>A Texas filing deadline: Google’s AI answer puts a PI firm in El Paso’s page at the top of its sources.</figcaption>
     </figure>
-    <div slot="subpages" class="dui-subpages">
-      <Rows variant="inline" items={subPages} />
-    </div>
     <PriceBand
       slot="price"
       heading="What a DUI firm pays: one monthly price, from $2,000."
       headingId="price-h"
-      lead="One price covers your DUI and license pages, profile care and reviews, links, upkeep of the site, call tracking and checks on Google’s AI answers. No setup fee."
+      lead="One price covers your DUI and license pages, profile care and reviews, links, upkeep of the site, call tracking and checks on Google’s AI answers, with nothing charged for setup."
     >
-      <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
+      <Fragment slot="link">What moves the figure: <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
     </PriceBand>
   </DepthZone>
 
@@ -90,8 +71,6 @@ const subPages = [
     background: var(--fog); box-shadow: 0 0 0 100vmax var(--fog); clip-path: inset(0 -100vmax);
   }
   .lse-depth[data-depth='seo-for-dui-attorneys'] .lse-depth__intro + .lse-depth__sec { border-top: 0; }
-
-  .dui-subpages { max-width: 40em; }
 
   /* The shortcuts are things to avoid: the same hairline rows as a checklist, with a drawn cross for the check. */
   .lse-depth[data-depth='seo-for-dui-attorneys'] .lse-prose > ul.lse-check > li::before {

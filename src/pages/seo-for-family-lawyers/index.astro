@@ -1,18 +1,16 @@
 ---
-// /seo-for-family-lawyers/. Copy: content/v3/seo-for-family-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1 and line across, the form card,
-// and the jackknife #1 crop on the fog panel. The v2 bands, FAQ
-// and Related block gave way to the depth zone (src/content/depth/seo-for-family-lawyers.md): the four searches in a
-// SearchBox, the matter table, the protective order checklist, the AI page steps, a full fog mid-page CTA, the
-// proposal mistakes as plain rows, the price as one large line on white (no PriceBand on this page), then the open
-// FAQ on fog, the author box and FinalCta.
+// /seo-for-family-lawyers/. Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1 and
+// line across, the form card, and the jackknife #1 crop on the fog panel. The depth zone
+// (src/content/depth/seo-for-family-lawyers.md, v4: written from our own practice): the four searches in a
+// SearchBox, the build steps, the protective order checklist, the "what to do after" AI capture beside the question
+// pages section, a full fog mid-page CTA, the price as one large line on white (no PriceBand on this page), then the
+// accordion FAQ on fog, the author box and FinalCta.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import Rows from '../../components/kit/Rows.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -21,22 +19,12 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-family-lawyers/';
 const title = 'SEO for Family Lawyers | The Answer They Keep Finding';
 const description =
-  "SEO for family lawyers: the searches to win, a page per matter, safe protective order pages, the Map, reviews and rules, and Google's AI answers.";
+  "SEO for family lawyers: a page per matter from your state's code, safe protective order pages, pages Google's AI quotes, reviews and results, and cost.";
 const depth = await getDepth('seo-for-family-lawyers');
 
 // The hero capture from the cited bullet down to "7 days ago" (the heading above and the snippet's last line cut),
 // so it keeps to the form card's height. % of the image's height.
 const famCrop = { top: 10.7, height: 81.6 };
-
-// "Family law SEO mistakes that cost consultations": plain rows, no glyph.
-const mistakes = [
-  { text: 'A national template that quotes no state’s rules, or the wrong state’s.' },
-  { text: 'Statistics with no primary source behind them.' },
-  { text: 'One page per town with only the town name changed.' },
-  { text: 'Review requests sent only to happy clients, or with suggested wording.' },
-  { text: '“Specialist” for a lawyer with no certification.' },
-  { text: 'Pop-ups and tracking scripts on safety pages.' },
-];
 ---
 <InnerPage
   title={title}
@@ -73,7 +61,10 @@ const mistakes = [
         ]}
       />
     </div>
-    <div slot="mistakes" class="fam-rows"><Rows items={mistakes} /></div>
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="Cited 3 times" tagSide="right" images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdAi, { marks: ['citations'] })]} />
+      <figcaption>One AI answer, three citations: a PI firm in New Orleans and its guide for the hours after a truck crash.</figcaption>
+    </figure>
 
     <Band slot="mid" tone="fog" class="fam-mid">
       <p class="fam-mid__line">See which family law pages Google’s AI quotes in your state.</p>
@@ -100,13 +91,6 @@ const mistakes = [
   /* The four searches at the text's measure, under their lead-in line. */
   .fam-searches { max-width: 35em; }
   .lse-depth__slot:has(> .fam-searches) { margin-top: 24px; }
-
-  /* The proposal mistakes: hairline rows at the text's size and measure, read as part of the copy. */
-  .fam-rows { max-width: 35em; font-size: clamp(17px, .25vw + 16px, 19px); line-height: 1.6; }
-  .fam-rows .lse-row { padding: 14px 0 15px; }
-  .fam-rows .lse-row p { max-width: none; color: var(--ink); font-weight: 500; }
-  .lse-depth__slot:has(> .fam-rows) { margin-top: 20px; }
-  .lse-depth__slot:has(> .fam-rows) + .lse-prose { margin-top: 28px; }
 
   /* Mid-page CTA: a full fog band, the one line set large, the button under it. */
   .fam-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }

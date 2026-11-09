@@ -1,10 +1,9 @@
 ---
-// /seo-for-criminal-defense-lawyers/ from content/v3/seo-for-criminal-defense-lawyers.md. The hero is the row hero
-// (PageHero layout="row"): the H1 across, then the form card and the El Paso 9 -> 23 pair on the fog panel;
-// the after chart sits beside the Map section below. The v2 bands gave way to the depth zone (src/content/depth/): the charge and county
-// matrix, family searches as patterns, the court windows as steps, the intake checklist, a white mid-page CTA
-// between ink rules, the marketing habits as inline rows, the price as plain lines (no PriceBand on this page),
-// then the open FAQ (fog), the author box and FinalCta.
+// /seo-for-criminal-defense-lawyers/. The hero is the row hero (PageHero layout="row"): the H1 across, then the
+// form card and the El Paso 9 -> 23 pair on the fog panel. The depth zone (src/content/depth/, v4: written from our
+// own practice) follows: family search patterns, the build steps, the after-hours checklist, the El Paso after chart
+// beside the first-call section, a white mid-page CTA between ink rules, the price as plain lines (no PriceBand on
+// this page), then the accordion FAQ (fog), the author box and FinalCta.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
@@ -12,7 +11,6 @@ import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import NumPair from '../../components/kit/NumPair.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import Rows from '../../components/kit/Rows.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -20,7 +18,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-criminal-defense-lawyers/';
 const title = 'SEO for Criminal Defense Lawyers | Be the First Call';
 const description =
-  'SEO for criminal defense lawyers: charge and county pages, reach across counties, family searches, court dates, after-hours calls and specialist rules.';
+  'SEO for criminal defense lawyers: the pages we build, after-hours calls and the Map, what an injury account shows about the first call, claims and cost.';
 const depth = await getDepth('seo-for-criminal-defense-lawyers');
 
 // "What do family members search": patterns, not real searches, so plain text (never Q, never data-no-check).
@@ -29,22 +27,6 @@ const familyPatterns = [
   '“how to find out if someone is in [county] jail”',
   '“how to pay bail in [county]”',
   '“can I hire a lawyer for my [relative]”',
-];
-
-// "Which defense marketing habits cost a firm calls?": one template per row (the habit, why it fails, what we do).
-const habits = [
-  {
-    title: 'Calling people from arrest lists.',
-    text: 'ABA Formal Opinion 501 (April 13, 2022) treats a lawyer’s phone calls to people on a list of recent arrestees as a breach of Model Rule 7.3(b) (<a href="https://www.americanbar.org/news/abanews/aba-news-archives/2022/04/aba-issues-guidance-on-live-person-lawyer-solicitation/">ABA summary</a>). Each state adopts that rule in its own form. We build pages people find, so the person makes the first contact.',
-  },
-  { title: '“Open 24 hours” with voicemail behind it.', text: 'Each hour on the profile has a person on the line.' },
-  { title: 'County pages with only the name swapped.', text: 'They fail the swap test and Google’s doorway policy. Each county page carries that county’s facts.' },
-  { title: '“Expert” and “specialist” in page titles.', text: 'Titles follow the table above, and the firm approves them.' },
-  {
-    title: 'Reviews written by the agency.',
-    text: 'The US FTC rule bans writing, buying or selling fake reviews (<a href="https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers">FTC questions and answers</a>). Every review comes from a real client.',
-  },
-  { title: 'Dismissals as headlines.', text: 'A dismissal is a past result, so your state’s past-results rule applies before it appears on a page.' },
 ];
 ---
 <InnerPage
@@ -72,7 +54,7 @@ const habits = [
   <DepthZone depth={depth}>
     <figure slot="proof" class="lse-depth__proof">
       <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['range'], phone: 'totalRange' })]} />
-      <figcaption>A PI firm in El Paso: 23 calls from its Business Profile, May to July 2026, after 9 in the six months before.</figcaption>
+      <figcaption>Profile calls by Google’s count for a PI firm in El Paso rose to 23 between May and July 2026, from 9 in the six months before.</figcaption>
     </figure>
     <div slot="family" class="cr-family">
       <h3 class="cr-family__h">How family members search</h3>
@@ -80,17 +62,14 @@ const habits = [
         {familyPatterns.map((p) => <li>{p}</li>)}
       </ul>
     </div>
-    <div slot="habits" class="cr-habits">
-      <Rows variant="inline" items={habits} />
-    </div>
     <Band slot="mid" class="cr-mid">
       <div class="cr-mid__in">
-        <p class="cr-mid__line">Fahim can check this page matrix against your own counties, live, on a free 30-minute call.</p>
+        <p class="cr-mid__line">See which of your charges and courts could bring calls first, and what winning them would cost.</p>
         <Button />
       </div>
     </Band>
     <Band slot="price" class="cr-price">
-      <p class="cr-price__line">Criminal defense SEO with us starts from $2,000 a month. That covers the defense pages, the profile and review routine, links, call tracking and monthly checks on AI answers, and there is no setup fee. The full breakdown is on our <a href="/seo-pricing/">law firm SEO pricing</a> page.</p>
+      <p class="cr-price__line">Criminal defense SEO with us starts from $2,000 a month. That covers the defense pages, the profile and review routine, links, call tracking and monthly checks on AI answers, and there is no setup fee. Our <a href="/seo-pricing/">law firm SEO pricing</a> page breaks it down.</p>
     </Band>
   </DepthZone>
 
@@ -109,8 +88,6 @@ const habits = [
   .cr-family__h { font-size: 22px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
   .cr-family__list { list-style: none; }
   .cr-family__list li { padding: 14px 0 15px; border-bottom: 1px solid var(--line-2); font-size: clamp(17px, .3vw + 15px, 19px); font-weight: 600; line-height: 1.35; color: var(--ink); }
-
-  .cr-habits { max-width: 40em; }
 
   /* Mid-page CTA on white, between two ink rules, so it reads as its own stop in the long white text. */
   .cr-mid { padding-block: clamp(24px, 3vw, 40px); }
