@@ -54,8 +54,9 @@ export const site = {
     // itself comes from Cloudflare's Google tag gateway (GTM-P95KL5K3 on the zone); this ID names the _ga_ cookie.
     ga4MeasurementId: 'G-YCNP1LPT5W',
     // Meta Pixel (dataset) ID. Public. Blank turns Meta off in the browser: fbevents.js isn't loaded.
-    // The Worker has its own copy in wrangler.jsonc (META_PIXEL_ID). Dataset "Lawyer SEO Expert".
-    metaPixelId: '1127372726702074',
+    // The Worker has its own copy in wrangler.jsonc (META_PIXEL_ID). Dataset "Lawyer SEO Expert", in the
+    // lawyerseo_expert portfolio (1200836201223572), which owns the Facebook Page.
+    metaPixelId: '1120676457364234',
     // Turnstile widget "lawyerseoexpert.com" (Managed), created 2026-11-09 for the apex, www and the workers.dev host.
     // Public. Previews and localhost use the test key below. The secret is TURNSTILE_SECRET on the Worker.
     turnstileSiteKey: '0x4AAAAAAF5oIvENgpApeb7f',

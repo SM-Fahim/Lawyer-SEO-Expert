@@ -9,8 +9,8 @@ What tracks lawyerseoexpert.com, where each account lives, and how to check it. 
 | GA4 | Google Analytics account "Lawyer SEO Expert" (`326832216`), property "Lawyer SEO Expert" (`456059903`), web stream `https://lawyerseoexpert.com` (`8608218757`). Signed in as fahim@wpseogeeks.com (`authuser=1`). | `G-YCNP1LPT5W` | `src/data/site.ts` `ga4MeasurementId`, `wrangler.jsonc` `vars.GA4_MEASUREMENT_ID` | `GA4_API_SECRET` |
 | Google tag gateway | Cloudflare zone `lawyerseoexpert.com`, Web tag management | GTM container `GTM-P95KL5K3`, path `/analytics` | The zone, not this repo | None |
 | Google Tag Manager | GTM account "Lawyer SEO Expert", container `lawyerseoexpert.com` | `GTM-P95KL5K3` (Google tag `G-YCNP1LPT5W`, `GT-M3LZFJCW`) | tagmanager.google.com | None |
-| Meta | Business portfolio "Legal CMO Expert" (`1904662397572570`), dataset "Lawyer SEO Expert" | `1127372726702074` | `src/data/site.ts` `metaPixelId`, `wrangler.jsonc` `vars.META_PIXEL_ID` | `META_CAPI_TOKEN` |
-| Meta domain | Same portfolio, Brand safety, Domains: `lawyerseoexpert.com` (domain ID `1500144445354951`) | Meta tag `facebook-domain-verification` | `src/layouts/Base.astro`, every page's `<head>` | None |
+| Meta | Business portfolio "lawyerseo_expert" (`1200836201223572`), dataset "Lawyer SEO Expert" | `1120676457364234` | `src/data/site.ts` `metaPixelId`, `wrangler.jsonc` `vars.META_PIXEL_ID` | `META_CAPI_TOKEN` |
+| Meta domain | Same portfolio, Brand safety, Domains: `lawyerseoexpert.com` (domain ID `2083541662365948`) | Meta tag `facebook-domain-verification` | `src/layouts/Base.astro`, every page's `<head>` | None |
 | Reddit | Old Reddit Ads account `hx7ja4uz0lm1` (not LCME's new one) | Pixel `a2_hx7ja4uz0lm1` | `src/data/site.ts` `redditPixelId`, `wrangler.jsonc` `vars.REDDIT_PIXEL_ID` | `REDDIT_CAPI_TOKEN` |
 | Search Console | fahim@wpseogeeks.com (`/u/1/`) | Domain property `sc-domain:lawyerseoexpert.com`, plus URL-prefix `https://lawyerseoexpert.com/` | DNS TXT at the apex (three `google-site-verification` records, keep them) | None |
 | Bing Webmaster Tools | Not set up yet (see below) | | | |
@@ -29,8 +29,11 @@ Previews never track: the `previews` block in `wrangler.jsonc` keeps every pixel
 
 ## Meta
 
-- **Created 2026-11-09:** dataset "Lawyer SEO Expert" in the "Legal CMO Expert" portfolio, the one LCME uses. No LSE pixel existed before: WordPress never loaded one.
-- **Settings, as LCME:** "Conversions API with Meta" is not connected (the box that connects every dataset in the portfolio was unticked at creation, so LCME's setting didn't change), automatic events off, automatic advanced matching off. Not connected to an ad account yet.
+- **Created 2026-11-09:** dataset "Lawyer SEO Expert" in the "lawyerseo_expert" portfolio (`1200836201223572`), which owns the Facebook Page "Lawyer SEO Expert" (`343618282176621`, facebook.com/LawyerSEOExpert). The owner's rule: the dataset lives with the brand's Page. No LSE pixel existed before: WordPress never loaded one.
+- **Unused:** an earlier dataset `1127372726702074`, also "Lawyer SEO Expert", sits in the "Legal CMO Expert" portfolio. It was made first, then replaced the same day. Nothing sends to it. It isn't deleted.
+- **Settings, as LCME:** "Conversions API with Meta" is not connected (the box that connects every dataset in the portfolio was unticked at creation, so the portfolio setting stayed as it was), automatic events off, automatic advanced matching off. Not connected to an ad account yet: the portfolio has one, "Lawyer SEO Expert" (`1061178799010392`), to connect when LSE runs Meta ads.
+- **Other assets in the portfolio:** the dataset "Ergonomc Website" (`456625177524240`) belongs to a client. Leave it alone.
+- **Domain:** `lawyerseoexpert.com` was first added to the Legal CMO Expert portfolio, then removed there and added to lawyerseo_expert (domain ID `2083541662365948`), because Meta allows a domain in one portfolio only.
 - **Events:** PageView, ViewContent (with `content_category`), Lead and Schedule, from the Pixel and the Worker with one event ID. BookingDialogOpened from the Worker only.
 - **Test:** open a page with `?meta_test=<code>`, the code from Events Manager, Test events. That visitor's server events go with `test_event_code`.
 
@@ -50,7 +53,7 @@ Previews never track: the `previews` block in `wrangler.jsonc` keeps every pixel
 - **Automated, all mocked:** `npm run test` and `npm run test:e2e`. The tracking e2e specs (forms, tracking, Meta) from LCME are not ported yet (HANDOFF step 6). Only the skeleton spec runs.
 - **GA4 payload:** a payload shaped like `buildPayload()`'s, with `generate_lead`, `schedule_call` and `campaign_details`, went to `https://www.google-analytics.com/debug/mp/collect` for `G-YCNP1LPT5W` on 2026-11-09 and came back with no validation messages. The validation endpoint records nothing. It was sent with a placeholder secret, so it proves the payload, not the secret.
 - **GA4 with the real secret:** set `GA4_DEBUG` to `true` on the Worker for a moment, send a test lead, and read `ga4_debug` in `wrangler tail`. Unset it after. Or look for `generate_lead` in Realtime after the launch agent's test lead.
-- **Live page, after launch:** open `https://lawyerseoexpert.com/?notrack=0` and look in the network requests for: `/analytics/` collect with `en=page_view` and `tid=G-YCNP1LPT5W`; `facebook.com/tr` with `ev=PageView` and `id=1127372726702074`; Reddit `PageVisit` for `a2_hx7ja4uz0lm1`; and `POST /api/activity`. On `lawyerseoexpert-site.fahim-afd.workers.dev` without `?pixeltest=1`, none of these may fire.
+- **Live page, after launch:** open `https://lawyerseoexpert.com/?notrack=0` and look in the network requests for: `/analytics/` collect with `en=page_view` and `tid=G-YCNP1LPT5W`; `facebook.com/tr` with `ev=PageView` and `id=1120676457364234`; Reddit `PageVisit` for `a2_hx7ja4uz0lm1`; and `POST /api/activity`. On `lawyerseoexpert-site.fahim-afd.workers.dev` without `?pixeltest=1`, none of these may fire.
 - **Secrets set:** `npx wrangler secret list` shows names only. Expect `GA4_API_SECRET`, `META_CAPI_TOKEN`, `REDDIT_CAPI_TOKEN`.
 
 ## Known gap
@@ -61,12 +64,12 @@ LSE and LCME share one Calendly event. Each site's own counts (D1 `bookings`, GA
 
 Owner, before or at launch:
 1. GA4: Admin, Data streams, Website, Measurement Protocol API secrets, Create, nickname "Cloudflare Worker". Then set it: `npx wrangler secret put GA4_API_SECRET` and paste at the prompt.
-2. Meta: Events Manager, dataset "Lawyer SEO Expert", Settings, Conversions API, Set up direct integration, "Set up without Dataset Quality API", Generate access token. Then `npx wrangler secret put META_CAPI_TOKEN`.
+2. Meta: Events Manager, switch the portfolio (top right) to **lawyerseo_expert**, Datasets, "Lawyer SEO Expert" (`1120676457364234`), Settings, Conversions API, Set up direct integration, "Set up without Dataset Quality API", Generate access token. Direct link: `https://business.facebook.com/events_manager2/list/dataset/1120676457364234/settings?business_id=1200836201223572`. Then `npx wrangler secret put META_CAPI_TOKEN`.
 3. Reddit: `npx wrangler secret put REDDIT_CAPI_TOKEN`, pasting the value of `reddit_access_token_law` from the plugin's `.env` without the quotes.
 4. Run `npx wrangler secret list` and check all three names are there.
 
 After launch:
-1. Meta: Business settings, Brand safety, Domains, `lawyerseoexpert.com`, Verify domain (the tag is live once the new site serves the apex).
+1. Meta: Business settings in the lawyerseo_expert portfolio, Brand safety, Domains, `lawyerseoexpert.com`, Verify domain (after the deploy that carries the new tag).
 2. Search Console: submit `https://lawyerseoexpert.com/sitemap-index.xml` for `sc-domain:lawyerseoexpert.com`.
 3. Bing Webmaster Tools: the owner picks the account, imports `lawyerseoexpert.com` from Search Console, then submits the same sitemap.
 4. GA4: once `generate_lead` and `schedule_call` show in Admin, Events, Recent events, star both as key events. They can't be added before Google has seen them.
