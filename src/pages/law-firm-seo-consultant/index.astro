@@ -1,7 +1,7 @@
 ---
 // /law-firm-seo-consultant/. Copy: content/v3/law-firm-seo-consultant.md (critic: content/v3/CRITIC-services.md).
-// Facts: research/FACTS.md. The commercial top is v2's as built: a client result leads (El Paso, 23 calls, the after
-// chart cut tight), and the real calendar follows straight after the hero. The depth zone comes next
+// Facts: research/FACTS.md. The commercial top is the row hero (PageHero layout="row"): the form card beside a client
+// result (El Paso, 23 calls, the after chart cut tight), and the real calendar follows straight after the hero. The depth zone comes next
 // (src/content/depth/law-firm-seo-consultant.md): our own #1 shows once, under the vetting tests, as the answer to
 // the first one (the only inner page allowed to show it, DEPTH-BRIEF R3). No mid-page CTA and no price band.
 import FinalCta from '../../components/FinalCta.astro';
@@ -81,9 +81,7 @@ const patterns = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="top"
-    panel={false}
-    visualFirst
+    layout="row"
     class="con-hero"
     h1="A law firm SEO consultant who gets you ranked, not just advised."
     lead="Find out what holds your firm back on Google, get the fixes in order, and have the same person lead the work that follows."
@@ -121,9 +119,8 @@ const patterns = [
 </InnerPage>
 
 <style is:global>
-  /* Hero: the chart with its tag, on white. */
+  /* Hero: the chart with its tag, on the fog panel. */
   .con-hero__fig { display: grid; gap: 14px; align-content: start; margin: 0; }
-  .con-hero .lse-hero__h { max-width: 17ch; }
 
   /* Our own result, under the first test's answer, wide enough that the result's lines read; caption under it. */
   .con-serp { display: grid; gap: 10px; max-width: 920px; }

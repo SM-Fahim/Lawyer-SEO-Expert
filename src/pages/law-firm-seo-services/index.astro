@@ -1,7 +1,7 @@
 ---
 // /law-firm-seo-services/. Copy: content/v3/law-firm-seo-services.md (critic: content/v3/CRITIC-services.md).
-// Facts: research/FACTS.md. The commercial top is v2's hero as built (form row, then the #1 frame: the page's only
-// capture). The depth zone follows straight after it: src/content/depth/law-firm-seo-services.md, with the Rows and
+// Facts: research/FACTS.md. The commercial top is the row hero (PageHero layout="row": the form card, and the #1
+// frame, the page's only capture, on the fog panel). The depth zone follows straight after it: src/content/depth/law-firm-seo-services.md, with the Rows and
 // the practice list passed in as slots, the mid-page CTA after the main zone, and the price band (struck total from
 // src/data/pricing.ts) above the open FAQ. Then the author box and the closing CTA.
 import Button from '../../components/Button.astro';
@@ -69,7 +69,7 @@ const refuse = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    visualFirst
+    layout="row"
     class="svc-hero"
     h1="Law firm SEO services that turn searches into calls."
     lead="Our lawyer SEO services put your firm where clients look first: the top of Google, the Map and Google’s AI answers."
@@ -125,7 +125,7 @@ const refuse = [
 </InnerPage>
 
 <style is:global>
-  /* Hero: the #1 frame on the fog block, full content width. */
+  /* Hero: the #1 frame on the fog panel, beside the form card. */
   .svc-hero__fig { display: grid; gap: 14px; }
   .svc-hero__fig figcaption { max-width: 46em; }
   .svc-hero__fig figcaption b { color: var(--ink); }

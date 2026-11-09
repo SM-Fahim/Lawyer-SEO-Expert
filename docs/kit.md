@@ -4,7 +4,7 @@ Shared pieces for every inner page, in `src/components/kit/`, plus the `InnerPag
 
 Rules that come with the kit:
 - One H1 per page (PageHero). One button label ("Book a ranking review"), never two buttons side by side. No price in a hero, except `/seo-pricing/` and `/lawyer-web-design-development/`. One PriceBand at most.
-- Each page builds its own section order from its deck. Pages in one group must not use the same hero layout and the same sequence of pieces.
+- Each page builds its own section order from its deck. Pages in one group must not use the same sequence of pieces. The hero is the exception: every service and practice page uses PageHero `layout="row"` (owner, 2026-11-09), and its variety comes from the proof.
 - Never retype a proof image's size, alt or marks: import it from `src/data/proof.ts`. Never retype a price row: `src/data/pricing.ts`.
 - A page that shows dollar amounts other than $2,000 needs them in its own `PRICES_BY_PAGE` entry in `scripts/check-dist.mjs` (the breakdown rows: `'1,200', '1,000', '750', '500', '125', '300', '150', '4,000'`).
 - Placeholders: use `Placeholder` (or `SearchPanel`'s `placeholder`) and never fake data.
@@ -41,26 +41,27 @@ Rendered by InnerPage: "Home / Page" in muted meta type above the hero. Props: `
 ## Sections
 
 ### `PageHero`
-H1, one line, the compact LeadForm (website first) with "Rather talk it through? Book a ranking review" under it, and the visual.
+H1, one line, the compact LeadForm (website first) with "Prefer a call? Get your plan and price" under it, the trust row (`HeroTrust`), and the visual.
+
+**`layout="row"` is the hero of every service and practice page** (the 16 pages; owner, 2026-11-09, "one balanced hero that ends in the first screen"). The H1 and line run across the page; under them one row: the form in the homepage's bordered card on the left (5), the proof on the fog panel on the right (7, running off the screen edge), with the trust row at the panel's foot. The panel stretches to the card's height and centres the proof in it, so both columns end together. Budget, checked by `node scripts/hero-budget.mjs` on a built `dist/`: at 1440x900 the button ends by y 760 and the hero by y 880; at 1366x768 the button ends by y 740; both columns end within 40px. Size a proof to the card: a tall capture gets a band crop (`shot(..., { crop })`), a short one is centred with fog round it. Never a larger file than `proof.ts` has, never fake data.
 
 | Prop | Type | Notes |
 |---|---|---|
-| `h1`, `lead` | string | |
-| `layout` | `'split' \| 'top' \| 'stack'` | `split`: H1, line, form left (5), visual right (7). `top`: H1 and line across, then visual (7) and form (5). `stack`: H1, line, form as one row, visual full width |
-| `flip` | boolean | `split`: visual left. `top`: form left, visual right |
-| `panel` | boolean | Visual on the fog panel (default true). Off for a white hero (med mal) |
-| `form` | `{ title, sub?, idPrefix, label, submitLabel?, format?, practiceArea?, titleTag? }` | Leave out when a booking band or form section follows straight after the hero |
-| `talk` | string or false | Words before the booking link. Default "Rather talk it through?" |
+| `h1`, `lead` | string | `row`: H1 at full width (2 lines at 1440, never more than 3), the line at most 2 lines |
+| `layout` | `'row' \| 'split' \| 'stack'` | `row`: above. `split`: H1, line (and form) left (5), visual right (7), for the bios, about and the CRM landers. `stack`: H1, line, form as one row, visual full width (kit only) |
+| `flip` | boolean | `split`: visual left |
+| `panel` | boolean | `split`, `stack`: visual on the fog panel (default true). `row` always has the panel |
+| `form` | `{ title?, who?, sub?, idPrefix, label, submitLabel?, format?, practiceArea?, titleTag? }` | Leave out when a booking band or form section follows straight after the hero |
+| `talk` | string or false | Words before the booking link. Default `site.ask.talk` ("Prefer a call?") |
 | `formRow` | boolean | The form as one row (default in `stack`) |
-| `visualFirst` | boolean | Visual before the form (`top`, `stack`; phones too) |
-| slots | `visual`, `text`, `after` | `text`: under the line (credentials, LinkedIn). `after`: under everything (TrustLine) |
+| `visualFirst` | boolean | Visual before the form on phones. Default on in `row`; PPC turns it off (its search panel is tall) |
+| slots | `visual`, `text`, `after` | `text`: under the line (credentials, LinkedIn). `after`: under everything |
 
-Phones: one column, H1, line, form, then the visual.
+Phones (`row`): one column, H1, line, the proof (a crop of 220px or less), the form card, the trust row.
 ```astro
-<PageHero h1="SEO for personal injury lawyers: own the searches after a crash." lead="We build ..."
-  form={{ title: 'Send your website for an injury ranking review.', sub: 'Fahim answers within an hour in business hours.', idPrefix: 'pi-hero', label: 'pi-hero' }}>
-  <figure slot="visual"><Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaTankerQuery), shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} /><figcaption class="lse-small">...</figcaption></figure>
-  <TrustLine slot="after" />
+<PageHero layout="row" h1="SEO for personal injury lawyers: own the searches after a crash." lead="We build ..."
+  form={{ who: 'your injury firm', idPrefix: 'pi-hero', label: 'pi-hero', practiceArea: 'Personal injury' }}>
+  <figure slot="visual"><Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaKeyFirm, { crop: 'keyFirms', marks: ['heading'] })]} /><figcaption>...</figcaption></figure>
 </PageHero>
 ```
 Give the hero image `priority` (it is the LCP). A bio hero puts a `Face` (with `priority`) in the visual slot and `panel={false}`.
@@ -347,6 +348,4 @@ Any of these fails `astro build` (and `npm run check`) with the file name: an H1
 
 ## Not in the kit (build it in your group folder)
 - The estate planning citation strip (three search boxes, each over a tight AI crop): compose `SearchBox`-style lines with `Shot` crops.
-- The web design hero's phone overlapping the desktop frame: a small grid around `BrowserShot` and `PhoneShot`.
 - Horizontal crops (the bankruptcy "August to October" chart crop): Shot crops bands of height only. Use `proof.nolaCalls` with `crop: 'chart'`, or port a cropped file and add it to `proof.ts`.
-- The employment hero's two overlapping frames.

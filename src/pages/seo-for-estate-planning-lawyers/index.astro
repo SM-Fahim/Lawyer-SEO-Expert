@@ -1,7 +1,7 @@
 ---
 // /seo-for-estate-planning-lawyers/. Copy: content/v3/seo-for-estate-planning-lawyers.md (critic:
-// content/v3/CRITIC-practice-2.md). Facts: research/FACTS.md. The hero is variant P4 (docs/DESIGN-CRITIQUE.md 2.3): on white,
-// the H1 and line with the AI answer under them, the form on the right. The v2 bands, FAQ and Related block gave way to the depth zone
+// content/v3/CRITIC-practice-2.md). Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"):
+// the H1 and line across, the form card, and the AI answer on the fog panel. The v2 bands, FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-estate-planning-lawyers.md), opened by a fog band (byline, summary, jump list): the
 // planning vs probate table, the fee page checklist, the four writing rules as large rows, a white mid-page CTA
 // under an ink rule, the price as two lines side by side (no PriceBand on this page), then the open FAQ on fog, the
@@ -41,8 +41,7 @@ const writingRules = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="under"
-    visualFirst
+    layout="row"
     h1="Estate planning SEO that makes you the answer families find first."
     lead="Planning clients read for a while before they pick a lawyer. We make your firm the page that ranks for their questions, and the source Google’s AI answer quotes."
     form={{ who: 'your estate planning firm', idPrefix: 'ep-hero', label: 'estate-hero', practiceArea: 'Estate planning' }}
@@ -78,7 +77,7 @@ const writingRules = [
 </InnerPage>
 
 <style>
-  /* Hero: the AI answer under the H1 on white, its one-line caption under it. */
+  /* Hero: the AI answer on the fog panel, its one-line caption under it. */
   .ep-hero__fig { display: grid; gap: 12px; margin: 0; }
   /* The capture has no blank top, so the frame gives the tag a white strip to sit on (design-3). */
   .ep-hero__fig :global(.lse-shot__frame) { padding-top: 30px; }

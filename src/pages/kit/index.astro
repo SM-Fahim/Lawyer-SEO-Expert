@@ -23,7 +23,6 @@ import Rows from '../../components/kit/Rows.astro';
 import SearchBox from '../../components/kit/SearchBox.astro';
 import SearchPanel from '../../components/kit/SearchPanel.astro';
 import Split from '../../components/kit/Split.astro';
-import TrustLine from '../../components/kit/TrustLine.astro';
 import { fahim, josh } from '../../data/people';
 import { proof, shot } from '../../data/proof';
 import { site } from '../../data/site';
@@ -57,8 +56,9 @@ const sample = await getDepth('kit-sample');
   schema={depthSchema(sample, { path: '/kit/', title, description })}
   noindex
 >
-  <p class="kit-label"><span class="lse-wrap"><b>Breadcrumbs</b> (above, from InnerPage) and <b>PageHero</b> layout="split" with form, panel and TrustLine</span></p>
+  <p class="kit-label"><span class="lse-wrap"><b>Breadcrumbs</b> (above, from InnerPage) and <b>PageHero</b> layout="row": the service and practice hero (H1 and line across, the form card, the proof and the trust row on the fog panel)</span></p>
   <PageHero
+    layout="row"
     h1="SEO for personal injury lawyers: own the searches after a crash."
     lead="We build the case-type pages, the Map profile and the links that put your firm at the top of Google and in its AI answers. Injury is where our results come from."
     form={{ who: 'your injury firm', idPrefix: 'kit-hero', label: 'Kit hero form' }}
@@ -67,7 +67,6 @@ const sample = await getDepth('kit-sample');
       <Shot tag="Key firm" tagSide="right" priority images={[shot(proof.nolaTankerQuery), shot(proof.nolaKeyFirm, { marks: ['heading', 'firmRow'] })]} />
       <figcaption class="lse-small">A PI firm in New Orleans. After about three months of groundwork, its new tanker truck page ranked #3 within 16 hours, and Google’s AI named the firm a key firm.</figcaption>
     </figure>
-    <TrustLine slot="after" />
   </PageHero>
 
   <p class="kit-label"><span class="lse-wrap"><b>BookingBand</b> layout="split", the calendar mounts as it nears the screen</span></p>
@@ -278,21 +277,6 @@ const sample = await getDepth('kit-sample');
     <figure slot="visual" class="kit-fig">
       <Shot tag="43 calls" tagSide="right" images={[shot(proof.nolaCalls, { marks: ['september'] })]} />
       <figcaption class="lse-small">Google counted 43 calls in September 2026 from the Business Profile of a PI firm in New Orleans.</figcaption>
-    </figure>
-  </PageHero>
-
-  <p class="kit-label"><span class="lse-wrap"><b>PageHero</b> layout="top" (shown as an H2 here): H1 across, the visual on the panel left, the form right</span></p>
-  <PageHero
-    headingTag="h2"
-    headingId="kit-hero3-h"
-    layout="top"
-    h1="SEO for DUI attorneys that wins the “near me” search after an arrest."
-    lead="A DUI search is local and it is urgent. We get your firm onto the Map when a driver searches, and onto Google for the license questions that come next."
-    form={{ who: 'your DUI practice', idPrefix: 'kit-top', label: 'Kit top form' }}
-  >
-    <figure slot="visual" class="kit-fig">
-      <Shot tag="9 calls" tagSide="right" images={[shot(proof.newProfileCalls, { marks: ['points'] })]} />
-      <figcaption class="lse-small">For a PI firm in New Orleans: a new Google profile went from 1 call in July to 9 in October. A DUI firm’s Map listing is built the same way.</figcaption>
     </figure>
   </PageHero>
 

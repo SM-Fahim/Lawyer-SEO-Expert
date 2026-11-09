@@ -1,7 +1,7 @@
 ---
 // /seo-for-family-lawyers/. Copy: content/v3/seo-for-family-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-// Facts: research/FACTS.md. The hero is variant P4 (docs/DESIGN-CRITIQUE.md 2.3): on white, the H1 and line with
-// the jackknife #1 crop under them, the form on the right. The v2 bands, FAQ
+// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1 and line across, the form card,
+// and the jackknife #1 crop on the fog panel. The v2 bands, FAQ
 // and Related block gave way to the depth zone (src/content/depth/seo-for-family-lawyers.md): the four searches in a
 // SearchBox, the matter table, the protective order checklist, the AI page steps, a full fog mid-page CTA, the
 // proposal mistakes as plain rows, the price as one large line on white (no PriceBand on this page), then the open
@@ -24,6 +24,10 @@ const description =
   "SEO for family lawyers: the searches to win, a page per matter, safe protective order pages, the Map, reviews and rules, and Google's AI answers.";
 const depth = await getDepth('seo-for-family-lawyers');
 
+// The hero capture from the cited bullet down to "7 days ago" (the heading above and the snippet's last line cut),
+// so it keeps to the form card's height. % of the image's height.
+const famCrop = { top: 10.7, height: 81.6 };
+
 // "Family law SEO mistakes that cost consultations": plain rows, no glyph.
 const mistakes = [
   { text: 'A national template that quotes no state’s rules, or the wrong state’s.' },
@@ -44,15 +48,14 @@ const mistakes = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="under"
-    visualFirst
+    layout="row"
     class="fam-hero"
     h1="SEO for family lawyers: be the answer they find again and again."
     lead="Divorce and custody clients research for a long time before they call. We write the pages Google ranks and its AI quotes, so your firm is the name they keep meeting."
     form={{ who: 'your family law firm', idPrefix: 'fam-hero', label: 'fam-hero', practiceArea: 'Family law' }}
   >
     <figure slot="visual" class="fam-fig">
-      <Shot tag="#1" tagSide="right" priority images={[shot(proof.nolaJackknifeAiResult, { marks: ['aiChip', 'result'] })]} />
+      <Shot tag="#1" tagSide="right" priority images={[shot(proof.nolaJackknifeAiResult, { crop: famCrop, marks: ['aiChip', 'result'] })]} />
       <figcaption>A PI firm in New Orleans: #1, and still cited by Google’s AI a week later.</figcaption>
     </figure>
   </PageHero>

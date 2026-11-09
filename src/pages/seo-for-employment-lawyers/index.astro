@@ -1,6 +1,6 @@
 ---
 // /seo-for-employment-lawyers/. Copy: content/v3/seo-for-employment-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-// Facts: research/FACTS.md. The hero is variant P1 (docs/DESIGN-CRITIQUE.md 2.3): H1, line and form on the left,
+// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): H1 and line across, the form card,
 // Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi) on the fog panel on the
 // right, with a one-line caption. The v2 bands, FAQ and Related block gave way to
 // the depth zone (src/content/depth/seo-for-employment-lawyers.md): an intro with the summary across and the jump
@@ -25,6 +25,10 @@ const description =
   'SEO for employment lawyers: worker and employer searches, issue pages, filing deadlines, settlements and reviews, state pages and the Map.';
 const depth = await getDepth('seo-for-employment-lawyers');
 
+// The hero capture from "AI Overview" down to the key firm's rating and practice line (the faded "Open" line and
+// "Show more" cut), so it keeps to the form card's height. % of the image's height.
+const empCrop = { top: 0, height: 77 };
+
 // "What do employer-side pages need that worker pages don't?": one template per row, the key noun first.
 const employerPages = [
   { title: 'Dismissal process:', text: 'the steps to take before a termination.' },
@@ -44,14 +48,14 @@ const employerPages = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    visualFirst
+    layout="row"
     class="emp-hero"
     h1="Employment lawyer SEO that answers the question before they call."
     lead="We write the pages Google ranks first and its AI quotes, for the side you represent."
     form={{ who: 'your employment practice', idPrefix: 'emp-hero', label: 'emp-hero', practiceArea: 'Employment' }}
   >
     <figure slot="visual" class="emp-fig">
-      <Shot tag="Named by AI" tagSide="right" priority images={[shot(proof.nolaTankerAi, { crop: 'firm', marks: ['name', 'rating'] })]} />
+      <Shot tag="Named by AI" tagSide="right" priority images={[shot(proof.nolaTankerAi, { crop: empCrop, marks: ['name', 'rating'] })]} />
       <figcaption>A PI firm in New Orleans, named in Google’s AI answer on tanker accidents.</figcaption>
     </figure>
   </PageHero>

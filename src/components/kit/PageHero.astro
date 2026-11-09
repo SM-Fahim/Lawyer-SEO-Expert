@@ -1,17 +1,23 @@
 ---
 // The inner-page hero: H1, one line, a way to act (the compact LeadForm, the "Prefer a call?" line and the trust
-// row under it: kit/HeroTrust.astro), and one proof. No price in a hero (except /seo-pricing/ and
-// /lawyer-web-design-development/). The budget and the variants: docs/DESIGN-CRITIQUE.md section 2.3.
-// Three blocks, placed by grid areas: the head (H1, line, "text" slot), the visual, and the act (form, talk, trust).
-// Layouts at 1000px and up (pages in a group must not all use the same one):
-//   'split'  head and act on the left (5), the visual on the right (7). `flip` puts the visual left (7/5).
-//   'top'    head across the top; under it the visual (7) and the act (5). `flip` puts the act left (5/7).
-//   'under'  head on the left (7) with the visual under it, the act on the right (5), on white.
+// row: kit/HeroTrust.astro), and one proof. No price in a hero (except /seo-pricing/ and
+// /lawyer-web-design-development/).
+// Layouts at 1000px and up:
+//   'row'    THE hero of every service and practice page (owner, 2026-11-09: one balanced hero that ends in the
+//            first screen). The H1 and line across the page, then one row: the form in a bordered card on the
+//            left (5), the proof on the fog panel on the right (7), with the trust row at the panel's foot. The
+//            panel stretches to the card's height and centres the proof in it, so both columns end together.
+//            Same side order as the homepage on every page: variety comes from the proof, not the layout.
+//            Budget: at 1440x900 the button ends by y 760 and the whole hero by y 880; at 1366x768 the button
+//            ends by y 740. scripts/hero-budget.mjs measures it.
+//   'split'  head (and act) on the left (5), the visual on the right (7). `flip` puts the visual left (7/5).
+//            For the bios, about and the CRM landers.
 //   'stack'  head, then the act as one wide row, then the visual full width (the kit page only).
-// `panel` sets the visual on the fog panel (running off the screen edge in 'split' and 'top'), and lifts the
-// frames on it. Leave `form` out when a booking band or a form section follows straight after the hero.
-// Phones: one column. `visualFirst` gives the order of the budget: H1, line, the proof (a compact crop of 220px or
-// less), then the form and the trust row. Without it: H1, line, form, then the visual.
+// `panel` sets the visual on the fog panel (running off the screen edge in 'split'), and lifts the frames on it.
+// Leave `form` out when a booking band or a form section follows straight after the hero.
+// Phones: one column. 'row' goes H1, line, the proof (a compact crop of 220px or less), the form, then the trust
+// row; `visualFirst={false}` keeps a tall proof last (PPC). Elsewhere `visualFirst` puts the visual before the
+// form; without it: H1, line, form, visual.
 // Slots: "visual" (the frames, a figure, a PriceCard, a Face), "text" (extra under the line, like a
 // credentials line or a LinkedIn link), "after" (under everything: a TrustLine).
 import { askTitle, site } from '../../data/site';
@@ -40,13 +46,13 @@ export interface HeroForm {
 interface Props {
   h1: string;
   lead?: string;
-  layout?: 'split' | 'top' | 'under' | 'stack';
+  layout?: 'row' | 'split' | 'stack';
   flip?: boolean;
   panel?: boolean;
   form?: HeroForm;
   /** The words before the booking link under the form. false hides the line. One string sitewide: site.ask.talk. */
   talk?: string | false;
-  /** The trust row under the form (face, reply line, logos). On whenever there is a form. */
+  /** The trust row (face, reply line, logos). On whenever there is a form. */
   trust?: boolean;
   /** Under the form in 'stack': the form as one row (website, name, email, button). On by default there. */
   formRow?: boolean;
@@ -61,16 +67,17 @@ const {
   lead,
   layout = 'split',
   flip = false,
-  panel = layout !== 'under',
+  panel = true,
   form,
   talk = site.ask.talk,
   trust = true,
   formRow = layout === 'stack',
-  visualFirst = false,
+  visualFirst = layout === 'row',
   headingTag: H = 'h1',
   headingId = 'hero-h',
   class: className,
 } = Astro.props;
+const row = layout === 'row';
 const hasVisual = Astro.slots.has('visual');
 const ask = form && {
   title: form.title ?? askTitle(form.who),
@@ -79,8 +86,8 @@ const ask = form && {
   done: form.done ?? site.ask.done,
   format: form.format ?? 'Plan and price by email',
 };
-// Which side the visual sits on at 1000px and up, so the fog panel runs off that edge.
-const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) || layout === 'under';
+// In 'row' the trust row is its own grid item: at the foot of the proof panel from 1000px, after the form on phones.
+const trustRow = Boolean(form && trust);
 ---
 <section
   class:list={[
@@ -88,8 +95,8 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
     `lse-hero--${layout}`,
     {
       'lse-hero--flip': flip,
-      'lse-hero--panel': panel && hasVisual && layout !== 'under',
-      'lse-hero--vleft': visualLeft,
+      'lse-hero--panel': panel && hasVisual && !row,
+      'lse-hero--vleft': layout === 'split' && flip,
       'lse-hero--vfirst': visualFirst,
       'lse-hero--noform': !form,
       'lse-hero--novisual': !hasVisual,
@@ -108,13 +115,14 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
       {hasVisual && <div class="lse-hero__visual"><slot name="visual" /></div>}
       {form && ask && (
         <div class:list={['lse-hero__act', { 'lse-hero__act--row': formRow }]}>
-          <LeadForm compact title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
+          <LeadForm compact boxed={row} title={ask.title} titleTag={form.titleTag ?? 'h2'} sub={ask.sub} idPrefix={form.idPrefix} label={form.label} format={ask.format} submitLabel={ask.submitLabel} done={ask.done} practiceArea={form.practiceArea ?? null}>
             <Fragment slot="privacy">We use your details to reply and to measure our ads. <a href="/privacy-policy/">Privacy policy</a>.</Fragment>
           </LeadForm>
           {talk && <p class="lse-hero__talk">{talk} <a href={site.cta.href} data-cal>{site.cta.label}</a></p>}
-          {trust && <HeroTrust />}
+          {trustRow && !row && <HeroTrust />}
         </div>
       )}
+      {trustRow && row && <div class="lse-hero__trust"><HeroTrust /></div>}
     </div>
     {Astro.slots.has('after') && <div class="lse-hero__after"><slot name="after" /></div>}
   </div>
@@ -123,11 +131,8 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
 <style is:global>
   .lse-hero { position: relative; overflow: hidden; padding: clamp(20px, 2.6vw, 40px) 0 clamp(72px, 8vw, 112px); }
   .lse-hero__h { font-size: clamp(40px, 3.4vw + 18px, 78px); max-width: 18ch; }
-  .lse-hero--split .lse-hero__h, .lse-hero--under .lse-hero__h { font-size: clamp(40px, 2.6vw + 20px, 66px); max-width: 15ch; }
-  .lse-hero--under .lse-hero__h { max-width: 17ch; }
+  .lse-hero--split .lse-hero__h { font-size: clamp(40px, 2.6vw + 20px, 66px); max-width: 15ch; }
   .lse-hero__lead { margin-top: clamp(18px, 2vw, 26px); max-width: 30em; }
-  /* Across the page, a lead of about 25 words keeps to 2 lines. */
-  .lse-hero--top .lse-hero__lead { max-width: 36em; }
   .lse-hero__head { display: grid; align-content: start; min-width: 0; }
   .lse-hero__head > :not(.lse-hero__h):not(.lse-hero__lead) { margin-top: 14px; }
   .lse-hero__act { display: grid; gap: 14px; align-content: start; min-width: 0; }
@@ -143,10 +148,16 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
   .lse-hero__head { order: 0; }
   .lse-hero__act { order: 1; }
   .lse-hero__visual { order: 2; }
+  .lse-hero__trust { order: 3; min-width: 0; }
   .lse-hero--vfirst .lse-hero__visual { order: 1; }
   .lse-hero--vfirst .lse-hero__act { order: 2; }
+  /* A row hero whose proof is tall on a phone (PPC's search panel) keeps the form first: form, trust, proof. */
+  .lse-hero--row:not(.lse-hero--vfirst) .lse-hero__trust { order: 2; }
+  .lse-hero--row:not(.lse-hero--vfirst) .lse-hero__visual { order: 3; }
   @media (max-width: 999px) {
     .lse-hero--vfirst .lse-hero__grid { gap: 28px; }
+    /* The trust row sits under the form as one block with it, as it did inside the act. */
+    .lse-hero__trust { margin-top: -14px; }
   }
 
   /* The stack's visual: a rounded fog block inside the page width. */
@@ -171,16 +182,6 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
     .lse-hero--split.lse-hero--noform .lse-hero__grid { grid-template-rows: auto; grid-template-areas: "head visual"; align-items: center; }
     .lse-hero--split.lse-hero--noform.lse-hero--flip .lse-hero__grid { grid-template-areas: "visual head"; }
 
-    /* Top: the head across, then the visual and the act side by side. */
-    .lse-hero--top .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "head head" "visual act"; }
-    .lse-hero--top.lse-hero--flip .lse-hero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "head head" "act visual"; }
-    .lse-hero--top .lse-hero__visual, .lse-hero--top .lse-hero__act { margin-top: clamp(28px, 3vw, 44px); }
-    .lse-hero--top.lse-hero--noform .lse-hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "visual"; }
-
-    /* Under: the head with the visual under it, the act on the right, on white. */
-    .lse-hero--under .lse-hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto 1fr; grid-template-areas: "head act" "visual act"; }
-    .lse-hero--under .lse-hero__visual { margin-top: clamp(28px, 3vw, 40px); }
-
     /* Stack: one column. */
     .lse-hero--stack .lse-hero__grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "act" "visual"; row-gap: 36px; }
     .lse-hero--stack.lse-hero--vfirst .lse-hero__grid { grid-template-areas: "head" "visual" "act"; }
@@ -190,6 +191,47 @@ const visualLeft = (layout === 'split' && flip) || (layout === 'top' && !flip) |
     .lse-hero--panel:not(.lse-hero--stack) .lse-hero__visual::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; right: -50vw; background: var(--fog); border-radius: 28px 0 0 28px; }
     .lse-hero--panel.lse-hero--vleft:not(.lse-hero--stack) .lse-hero__visual { padding: 44px 40px 36px 0; }
     .lse-hero--panel.lse-hero--vleft:not(.lse-hero--stack) .lse-hero__visual::before { left: -50vw; right: 0; border-radius: 0 28px 28px 0; }
+  }
+
+  /* ---------- Row: the service and practice hero ---------- */
+  .lse-hero--row { padding: clamp(16px, 1.7vw, 24px) 0 32px; }
+  .lse-hero--row .lse-hero__h { font-size: clamp(40px, 2.2vw + 24px, 58px); max-width: none; }
+  .lse-hero--row .lse-hero__lead { margin-top: clamp(14px, 1.3vw, 18px); max-width: 52em; text-wrap: balance; }
+  /* The card: the homepage's bordered form, a step tighter so the button stays in the first screen. */
+  .lse-hero--row .lse-form--boxed { max-width: none; }
+  @media (min-width: 421px) { .lse-hero--row .lse-form--boxed { padding: 18px 22px 16px; } }
+  .lse-hero--row .lse-form--compact .lse-form__title { max-width: none; }
+  .lse-hero--row .lse-form--compact .lse-form__sub { margin-top: 4px; font-size: 15px; line-height: 1.42; }
+  .lse-hero--row .lse-form--compact form { margin-top: 12px; gap: 10px 12px; }
+  .lse-hero--row .lse-form--compact .lse-field { gap: 4px; }
+  .lse-hero--row .lse-form--compact .lse-label { line-height: 1.3; }
+  .lse-hero--row .lse-form--compact .lse-input { padding-top: 9px; padding-bottom: 9px; }
+  .lse-hero--row .lse-form--boxed .lse-field--site .lse-input { padding-top: 10px; padding-bottom: 10px; }
+  .lse-hero--row .lse-form--compact button.lse-btn { padding-top: 15px; padding-bottom: 15px; }
+  .lse-hero--row .lse-hero__act { gap: 12px; }
+  .lse-hero--row .lse-hero__visual figcaption { max-width: 46em; }
+  /* The proof's own frames lift off the fog. */
+  .lse-hero--row .lse-hero__visual .lse-shot__frame { box-shadow: var(--shadow-lift); border-color: #cfd4cb; }
+
+  @media (min-width: 1000px) {
+    .lse-hero--row .lse-hero__grid {
+      isolation: isolate;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "head head" "act visual" "act trust";
+      column-gap: clamp(40px, 4.5vw, 72px);
+    }
+    .lse-hero--row .lse-hero__head { padding-bottom: clamp(22px, 2.2vw, 30px); }
+    .lse-hero--row .lse-hero__trust { grid-area: trust; }
+    /* One fog panel behind the proof and the trust row, running off the right edge of the screen. */
+    .lse-hero--row .lse-hero__grid::before {
+      content: ""; z-index: -1; grid-column: 2; grid-row: 2 / 4; align-self: stretch; margin-right: -50vw;
+      background: var(--fog); border-radius: 28px 0 0 28px;
+    }
+    /* The proof sits in the middle of the space the card leaves it, so a short capture never hangs at the top. */
+    .lse-hero--row .lse-hero__visual { align-self: stretch; align-content: center; padding: 32px 0 18px clamp(28px, 3vw, 40px); }
+    .lse-hero--row .lse-hero__trust { padding: 0 0 22px clamp(28px, 3vw, 40px); }
+    .lse-hero--row .lse-hero__trust .lse-htrust { max-width: none; }
   }
 
   /* The form as one row: website (set like a search box), name, email, then the button. */

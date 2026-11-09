@@ -1,6 +1,6 @@
 ---
-// /seo-for-dui-attorneys/ from content/v3/seo-for-dui-attorneys.md. The commercial top is the v2 build: the H1
-// across the top, then the new-profile calls chart on the fog panel (left) with the form beside it (right). The v2
+// /seo-for-dui-attorneys/ from content/v3/seo-for-dui-attorneys.md. The commercial top is the row hero: the H1
+// across the top, then the form card with the new-profile calls chart beside it on the fog panel. The v2
 // bands after it gave way to the depth zone (src/content/depth/), opened by a fog band (byline, summary, jump
 // list): the search timeline, the state deadline table and its callout, the sub-pages as inline rows, the
 // shortcuts as an "avoid" list, the marker price band, then the open FAQ on white, the author box and FinalCta.
@@ -45,8 +45,7 @@ const subPages = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="top"
-    visualFirst
+    layout="row"
     class="dui-hero"
     h1="SEO for DUI attorneys that wins the “near me” search after an arrest."
     lead="A DUI search is local and it is urgent. We get your firm onto the Map when a driver searches, and onto Google for the license questions that come next."
@@ -82,7 +81,6 @@ const subPages = [
 </InnerPage>
 
 <style is:global>
-  .dui-hero .lse-hero__h { max-width: 20ch; }
   .dui-fig { display: grid; gap: 12px; align-content: start; }
 
   /* The depth zone opens on a fog band (byline, summary, jump list), full bleed, then the sections on white. */
