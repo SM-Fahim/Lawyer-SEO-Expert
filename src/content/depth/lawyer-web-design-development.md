@@ -148,7 +148,7 @@ Hosting matters as much as speed. When one firm's web host went down for more th
 
 [more "See how we keep a site running"]
 
-The same firm had been paying for a page cache that had never been switched on properly. Now its pages and its lead form stay up even when the host doesn't.
+The same firm had been paying for a page cache that had never been switched on properly. Our fix: set the cache up properly, and keep the lead form on hosting of its own, so an outage at the host can't stop new leads.
 
 After launch, a site needs software updates, new pages and regular checks that its forms and numbers still work. Our monthly [law firm SEO services](/law-firm-seo-services/) include that upkeep, along with improvements to the site's design and content.
 
