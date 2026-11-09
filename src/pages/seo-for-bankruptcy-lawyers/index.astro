@@ -10,6 +10,7 @@ import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
+import NumPair from '../../components/kit/NumPair.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import QueryRows from '../../components/practice-b/QueryRows.astro';
 import { proof, shot } from '../../data/proof';
@@ -19,7 +20,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-bankruptcy-lawyers/';
 const title = 'SEO for Bankruptcy Lawyers | Get the Local Call';
 const description =
-  'SEO for bankruptcy lawyers: Chapter 7 and 13 pages, the debt relief agency statement, district pages, problem pages, AI answers and fee timing.';
+  'SEO for bankruptcy lawyers: a page for each debt problem, a Google profile that takes the urgent call, district pages, and claims your counsel has cleared.';
 const depth = await getDepth('seo-for-bankruptcy-lawyers');
 ---
 <InnerPage
@@ -61,9 +62,15 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
   </Band>
 
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
+    <figure slot="proof" class="lse-depth__proof">
+      <NumPair before={9} after={23} beforeLabel="profile calls, Aug 2025 to Jan 2026" afterLabel="profile calls, May to Jul 2026" />
+      <Shot images={[shot(proof.elpasoCallsAfter, { marks: ['total', 'range'], phone: 'totalRange' })]} />
+      <figcaption>A PI firm in El Paso, by Google’s count: 9 profile calls from August 2025 to January 2026, and 23 from May to July 2026.</figcaption>
+    </figure>
+
     <PriceBand slot="price" variant="plain" heading="The Map, the pages and the calls, in one price." headingId="bk-price-h" class="bk-price">
-      <p class="bk-price__lead"><a href="/seo-pricing/">From $2,000 a month</a> pays for the full job of ranking: your profile and reviews, the pages, site upkeep, links, call and form tracking, and AI answer checks.</p>
-      <p class="bk-price__terms">No setup fee, no lock-in, and Fahim gives you the number in writing first.</p>
+      <p class="bk-price__lead">One fee, <a href="/seo-pricing/">from $2,000 a month</a>, buys everything ranking takes: the profile and reviews, the pages, upkeep of the site, links, tracking for every call and form, and a monthly look at AI answers.</p>
+      <p class="bk-price__terms">There is no setup fee and no minimum term, and the number comes in writing before any work.</p>
     </PriceBand>
   </DepthZone>
 

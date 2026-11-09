@@ -20,10 +20,10 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-estate-planning-lawyers/';
 const title = 'SEO for Estate Planning Lawyers | Be the Answer They Read';
 const description =
-  'Estate planning SEO: planning vs probate searches, fee pages, referrals and seminars, county probate pages, reviews, and what 2026 changed for AI answers.';
+  'Estate planning SEO: a clear page for each will, trust and probate service, this year’s figures checked at the source, and referrals and reviews within the rules.';
 const depth = await getDepth('seo-for-estate-planning-lawyers');
 
-// "Reviews and sensitive topics in a planning practice": the four writing rules, plain rows.
+// "Writing for families facing illness or a death": the four writing rules, plain rows.
 const writingRules = [
   { text: 'Name incapacity and dementia plainly, then say what is still possible.' },
   { text: 'Use no pressure lines, countdowns or scare statistics.' },
@@ -54,11 +54,16 @@ const writingRules = [
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="Read S. M. Fahim’s profile">
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="#1" tagSide="right" images={[shot(proof.nolaJackknife, { marks: ['aiChip', 'result'] })]} />
+      <figcaption>A New Orleans PI firm’s jackknife crash page, seven days after it went live: the first result, with Google’s AI citing it.</figcaption>
+    </figure>
+
     <div slot="rules" class="ep-rules"><Rows items={writingRules} /></div>
 
     <Band slot="mid" class="ep-mid">
       <div class="ep-mid__in">
-        <p class="ep-mid__line">Find out which will, trust and probate questions name your firm.</p>
+        <p class="ep-mid__line">Find out which will, trust and probate searches show your firm, and which don’t.</p>
         <Button />
       </div>
     </Band>
