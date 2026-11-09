@@ -50,11 +50,12 @@ export const site = {
     // LSE's existing pixel from the old Reddit account. WordPress's plugin sends for it too until retired.
     redditPixelId: 'a2_hx7ja4uz0lm1',
     // Public. Blank turns GA4 off in the browser. The Worker has its own copy in wrangler.jsonc (GA4_MEASUREMENT_ID).
-    // TODO(owner): fill in LSE's own GA4 measurement ID in both places when the property exists.
-    ga4MeasurementId: '',
+    // LSE's existing property "Lawyer SEO Expert" (456059903), web stream https://lawyerseoexpert.com. The page tag
+    // itself comes from Cloudflare's Google tag gateway (GTM-P95KL5K3 on the zone); this ID names the _ga_ cookie.
+    ga4MeasurementId: 'G-YCNP1LPT5W',
     // Meta Pixel (dataset) ID. Public. Blank turns Meta off in the browser: fbevents.js isn't loaded.
-    // The Worker has its own copy in wrangler.jsonc (META_PIXEL_ID).
-    metaPixelId: '',
+    // The Worker has its own copy in wrangler.jsonc (META_PIXEL_ID). Dataset "Lawyer SEO Expert".
+    metaPixelId: '1127372726702074',
     // Turnstile widget "lawyerseoexpert.com" (Managed), created 2026-11-09 for the apex, www and the workers.dev host.
     // Public. Previews and localhost use the test key below. The secret is TURNSTILE_SECRET on the Worker.
     turnstileSiteKey: '0x4AAAAAAF5oIvENgpApeb7f',
