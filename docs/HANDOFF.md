@@ -1,25 +1,25 @@
 # Handoff
 
-Updated 2026-11-09, after launch. Branch `rebuild`; `main` was fast-forwarded to the launch commit `d5c602f` with the owner's OK.
+Updated 2026-11-09 evening. Branch `rebuild` = `main`. **A push to `main` deploys production** (Workers Builds); any other branch builds a preview.
 
 ## State
 
-**Live since 2026-11-09.** The Worker `lawyerseoexpert-site` owns the apex through the route `lawyerseoexpert.com/*` (version `792f3619`, from `d5c602f`). `LIVE` is `"true"`, `workers_dev` is `false` (the router's noindex depends only on `LIVE`, so the workers.dev host would have served indexable copies). WordPress no longer serves the apex. It still serves `www`, see below. DNS for the apex and `www` was not changed.
+**Live since 2026-11-09.** The Worker `lawyerseoexpert-site` owns the apex through the route `lawyerseoexpert.com/*` (version `792f3619`, from `d5c602f`). `LIVE` is `"true"`, `workers_dev` is `false` (the router's noindex depends only on `LIVE`, so the workers.dev host would have served indexable copies). WordPress no longer serves the apex or `www`: since `c5e3ee2` (version `03f1bf34`) the route `www.lawyerseoexpert.com/*` is this Worker's too, and the router sends every `www` request to the apex in one 301. DNS for the apex and `www` was not changed.
 
 Checked after launch:
 - `node scripts/verify-live.mjs lawyerseoexpert.com`: all OK, 75 checks, on 2026-11-09 after `0427c2d` (that commit fixed the script, not the site: `/kit/` and `/variants/` are 404 on production by design, and `/login/` is a redirect).
 - Old WordPress URLs from `src/data/redirects.ts` 301 in one hop to a 200 page, query string kept.
 - `/intake` and `/intake/*` still reach `rudin-intake-staging` (same answer as before launch).
-- `www` answers with WordPress's own 301 to the apex, path and query kept (`x-powered-by: PHP`). So `www` legacy URLs take two hops. This depends on WordPress staying up: see step 3 below.
+- `www` answers with the Worker's 301 to the apex, path and query kept. A legacy WordPress URL or shortlink on `www` goes straight to its new page. `www/intake` still reaches Rudin. `http://www` takes two hops, because the zone's Always Use HTTPS answers before the Worker.
 - `robots.txt`, `sitemap-index.xml` and the IndexNow key file are 200 with no noindex. IndexNow: all 34 sitemap URLs sent on 2026-11-09, answer 202.
 
 Cloudflare, as set up for launch:
-- D1 `lse-site` (production) has migrations 0001 to 0003 recorded as applied. `lse-site-preview` was not checked.
-- Secrets on the Worker: `IP_SALT`, `TURNSTILE_SECRET`, `GA4_API_SECRET`, `REDDIT_CAPI_TOKEN`. **`META_CAPI_TOKEN` is not set**, so Meta gets browser events only.
+- D1 `lse-site` (production) has migrations 0001 to 0003 recorded as applied. `lse-site-preview` had the same tables but no record; the three migrations were recorded on 2026-11-09 after its schema was checked against production.
+- Secrets on the Worker: `IP_SALT`, `TURNSTILE_SECRET`, `GA4_API_SECRET`, `REDDIT_CAPI_TOKEN`, `META_CAPI_TOKEN` (proven in Meta Test Events).
 - Turnstile widget "lawyerseoexpert.com", Managed (as LCME's), hostnames apex, `www` and the workers.dev host. Site key in `src/data/site.ts`.
 - Email Sending on `notify.lawyerseoexpert.com` only. Its 6 DNS records all sit under `notify.` (43 records before, 49 after). Sender `leads@notify.lawyerseoexpert.com`. One test lead arrived at fahim@legalcmoexpert.com with DKIM, SPF and DMARC passing, Turnstile ok, and the lead's address as Reply-To. Only `fahim@wpseogeeks.com` is a verified destination address; mail to `fahim@legalcmoexpert.com` works because `notify.` is onboarded, and counts toward the Workers Paid plan's 3,000 included sends a month.
 - Tracking (GA4, tag gateway, Meta, Reddit, Search Console): `docs/tracking.md`.
-- Workers Builds is **not connected**. Deploys are `npx wrangler deploy` from `site/` on `rebuild`.
+- Workers Builds is connected (2026-11-09), set the same as LCME's: production branch `main`, build `npm ci && npm run check && npm run build`, deploy `npx wrangler deploy`, preview builds on with `npx wrangler preview`, root `/`, build cache on, API token "legalcmoexpert-site build token". `npx wrangler deploy` from `site/` still works as a fallback.
 
 The site: 34 indexable pages in the sitemap, built from the design system (`docs/design-system.md`). `/privacy-policy/` and `/terms-and-conditions/` launched with marked placeholders (`data-placeholder`; 10 and 8), the owner's default. A strict build (`STRICT_REDIRECTS=1 npm run build`) fails only on those. Open TODOs are marked `TODO(`.
 
@@ -27,8 +27,8 @@ The site: 34 indexable pages in the sitemap, built from the design system (`docs
 
 1. Fill the privacy and terms placeholders (entity name, address, retention, governing law and the rest; tracking, Turnstile, Calendly and pixel disclosures). Then the strict build passes.
 2. After 48 hours: `node scripts/broken-report.mjs` and read Workers Logs for `_failed` events. Watch Search Console coverage and the redirects.
-3. Before WordPress is retired: add a Cloudflare Redirect Rule `www` to apex keeping path and query (free plan, as LCME's), so `www` stops depending on WordPress and legacy `www` URLs take one hop. Needs the owner's OK.
-4. Set `META_CAPI_TOKEN` (owner `!` command) if Meta server events are wanted.
+3. Done: `www` is on the Worker (see State).
+4. Done: `META_CAPI_TOKEN` is set.
 5. Workers Builds: now that `main` equals `rebuild`, it can be connected with `main` as the production branch (build `npm ci && npm run check && npm run build`, deploy `npx wrangler deploy`, preview `npx wrangler preview`). Until then, never let an old `main` build reach this Worker. Check a branch reaches its Preview, and prove rollback once.
 6. The consultant page's own-SERP capture still shows the old LCME-style title (`src/data/proof.ts`). Recapture once Google shows LSE's new title.
 7. Keep `check-unique` clean. Refresh the snapshot when LCME ships (`npm run refresh-lcme-snapshot`, commit).

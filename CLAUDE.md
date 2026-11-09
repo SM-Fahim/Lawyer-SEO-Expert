@@ -24,7 +24,7 @@ Undo: `npx wrangler rollback`, then revert the commit so the next deploy does no
 
 ## Rules that never bend
 
-1. Push to `main` changes the live site. The `lawyerseoexpert.com/*` route is commented out in `wrangler.jsonc` until launch day. DNS changes, the route, and retiring WordPress need the owner's OK on the exact change.
+1. Push to `main` changes the live site. Live since 2026-11-09: `wrangler.jsonc` routes `lawyerseoexpert.com/*` and `www.lawyerseoexpert.com/*` to this Worker. DNS changes, the route, and retiring WordPress need the owner's OK on the exact change.
 2. Never send requests straight to the origin IPs (216.183.246.221 and .223). Read live pages only through Cloudflare, at most 1 request per second.
 3. Leave everything else in the Cloudflare account alone (other Workers, `status.`, `alerts.`, the `/intake` routes). `account_id` stays pinned in `wrangler.jsonc`.
 4. `wrangler deploy` replaces a script's routes, so the config must list every route this Worker owns, and only those.
