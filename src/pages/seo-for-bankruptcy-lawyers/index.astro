@@ -1,7 +1,7 @@
 ---
 // /seo-for-bankruptcy-lawyers/ from content/v3/seo-for-bankruptcy-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-// Facts: research/FACTS.md. The hero is variant P2 (docs/DESIGN-CRITIQUE.md 2.3): the H1 across, then the form and
-// the calls chart cropped to the September point, on white; the urgent searches follow on fog. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
+// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1 across, then the form card and
+// the calls chart cropped to the September point on the fog panel; the urgent searches follow on fog. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-bankruptcy-lawyers.md). Its own look on this page: the jump list with big ink numerals,
 // the problem pages and agency habits as hairline rows with each bold lead on its own line, the built marker
 // PriceBand (moved, one line changed), and the open FAQ on fog with each question beside its answer.
@@ -32,10 +32,7 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="top"
-    flip
-    panel={false}
-    visualFirst
+    layout="row"
     h1="SEO for bankruptcy lawyers, built to win the local call."
     lead="Someone facing a garnishment searches for a lawyer nearby. We put your firm where that search lands: on the Map, in the results and in Google’s AI answers."
     form={{ who: 'your bankruptcy practice', idPrefix: 'bk-top', label: 'bankruptcy-top', practiceArea: 'Bankruptcy' }}
@@ -76,10 +73,8 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
 </InnerPage>
 
 <style>
-  /* Hero: the chart with its tag on white, beside the form; a one-line caption. */
+  /* Hero: the chart with its tag on the fog panel, beside the form; a one-line caption. */
   .bk-hero__fig { display: grid; gap: 12px; margin: 0; }
-  .bk-hero__fig :global(.lse-shot__frame) { box-shadow: var(--shadow-lift); }
-  @media (min-width: 1000px) { .bk-hero__fig { padding-top: 20px; } }
   /* The searches under the hero, at a readable width. */
   .bk-searches { max-width: 760px; }
 

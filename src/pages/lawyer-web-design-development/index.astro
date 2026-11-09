@@ -1,6 +1,6 @@
 ---
 // /lawyer-web-design-development/. Copy: content/v3/lawyer-web-design-development.md (critic: content/v3/CRITIC-mixed.md).
-// Facts: research/FACTS.md. The commercial top is v2's hero as built (the New Orleans site on a desktop and a phone,
+// Facts: research/FACTS.md. The commercial top is the row hero (the New Orleans site on a screen beside the form card,
 // the price allowed in this H1 by the judge's ruling), then one fog band with the El Paso site on a phone beside the
 // two results as text. The depth zone follows: src/content/depth/lawyer-web-design-development.md, with the six
 // parts beside the practice page capture as a slot, the mid-page CTA after the main zone, and the plain price band
@@ -17,7 +17,6 @@ import Q from '../../components/kit/Q.astro';
 import Rows from '../../components/kit/Rows.astro';
 import Split from '../../components/kit/Split.astro';
 import '../../components/mixed/mixed.css';
-import SiteDuo from '../../components/p-site/SiteDuo.astro';
 import { proof, shot } from '../../data/proof';
 import { site } from '../../data/site';
 import InnerPage from '../../layouts/InnerPage.astro';
@@ -28,6 +27,11 @@ const title = 'Lawyer Web Design Built to Rank | From $2,000';
 const description =
   'Lawyer web design that ranks: what a build covers, a move plan that keeps rankings, cost from $2,000, ownership, steps, disclosures, ADA and speed.';
 const depth = await getDepth('lawyer-web-design-development');
+
+// The hero's screen: the site's own hero, from "New Orleans personal injury lawyer" to "with Rudin Law." (a band of
+// the capture, % of its height), so it fills the panel's width and keeps to the form card's height. Phones keep
+// their crop from the top of the screen, at about 200px.
+const wdScreen = { top: 22, height: 56.6 };
 
 // Depth section 1: the six parts every build comes with (one template: the part, then one sentence).
 const parts = [
@@ -72,20 +76,14 @@ const pageSchema = [
   schema={pageSchema}
 >
   <PageHero
-    flip
-    visualFirst
+    layout="row"
     class="wd-hero"
     h1="Lawyer web design built to rank, from $2,000."
     lead="We plan your law firm’s website around what clients type into Google, so its pages can climb the results and show up in AI answers."
     form={{ title: 'What could a new website bring your firm, and what would it cost?', sub: 'Send your website. Fahim sends back what the new site should fix and your fixed price, in writing.', idPrefix: 'web-hero', label: 'web-hero', format: 'Website quote by email' }}
   >
     <figure slot="visual" class="wd-fig">
-      <SiteDuo
-        tag="Our build"
-        priority
-        desktop={{ ...shot(proof.nolaSiteHomeDesktop), phone: [{ l: 0, t: 0, w: 100, h: 95 }] }}
-        phone={shot(proof.nolaSiteHomePhone)}
-      />
+      <BrowserShot tag="Our build" tagSmall tagSide="left" priority images={[{ ...shot(proof.nolaSiteHomeDesktop, { crop: wdScreen }), phone: [{ l: 0, t: 0, w: 100, h: 80 }] }]} />
       <figcaption>The site we built for a PI firm in New Orleans.</figcaption>
     </figure>
   </PageHero>
@@ -144,8 +142,6 @@ const pageSchema = [
 
 <style is:global>
   .wd-fig { display: grid; gap: 14px; align-content: start; margin: 0; }
-  /* Phones: the hero shows the desktop screen only, a compact crop above the form. */
-  @media (max-width: 759px) { .wd-hero .ps-duo__phone { display: none; } }
   .wd-ranks__own { margin-top: clamp(28px, 3vw, 40px); font-size: var(--fs-lead); font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
 
   /* The two results beside the El Paso phone: hairline rows at lead size, each search in ink. */

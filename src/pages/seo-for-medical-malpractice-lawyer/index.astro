@@ -1,8 +1,8 @@
 ---
 // /seo-for-medical-malpractice-lawyer/ from content/v3/seo-for-medical-malpractice-lawyer.md (critic:
-// content/v3/CRITIC-practice-3.md). Facts: research/FACTS.md. Fewer, better inquiries. The hero is variant P4
-// (docs/DESIGN-CRITIQUE.md 2.3): on white, the H1 and line with the El Paso search and its first AI source card under
-// them, the form on the right. The v2 bands
+// content/v3/CRITIC-practice-3.md). Facts: research/FACTS.md. Fewer, better inquiries. The hero is the row hero
+// (PageHero layout="row"): the H1 and line across, the form card, and the El Paso search with its first AI source
+// card on the fog panel. The v2 bands
 // (keep or skip, harm pages, the name search), FAQ and Related block gave way to the depth zone
 // (src/content/depth/seo-for-medical-malpractice-lawyer.md). Its own look on this page: the jump list under a thick
 // rule on its left, the rule tables with the state set large, the harm pages and agency habits as two-column rows
@@ -33,8 +33,7 @@ const depth = await getDepth('seo-for-medical-malpractice-lawyer');
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="under"
-    visualFirst
+    layout="row"
     h1="Medical malpractice SEO for fewer, better inquiries."
     lead="You don’t need more calls. You need the right ones. We rank your firm for the harm you take and the questions those families ask."
     form={{ who: 'your malpractice firm', idPrefix: 'mm-hero', label: 'mm-hero', practiceArea: 'Medical malpractice' }}

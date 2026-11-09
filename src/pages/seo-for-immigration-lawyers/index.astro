@@ -1,7 +1,7 @@
 ---
 // /seo-for-immigration-lawyers/ from content/v3/seo-for-immigration-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
 // Facts: research/FACTS.md. This page owns multilingual pages and hreflang (DEPTH-BRIEF section 5). The hero is
-// variant P1 (docs/DESIGN-CRITIQUE.md 2.3): H1, line and form on the left, the AI answer cropped from one city's
+// the row hero (PageHero layout="row"): H1 and line across, the form card, the AI answer cropped from one city's
 // results page with the firm's source card under it, on the fog panel (the key-firms row is employment's; never mark it here). The v2 bands, FAQ and
 // Related block gave way to the depth zone (src/content/depth/seo-for-immigration-lawyers.md). Its own look on this
 // page: the jump list on the left and the summary on the right, the agency habits as run-in hairline rows, the
@@ -33,7 +33,7 @@ const depth = await getDepth('seo-for-immigration-lawyers');
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    visualFirst
+    layout="row"
     h1="SEO for immigration lawyers, found in every language you serve."
     lead="We make your firm the one they find, in your city and beyond it."
     class="im-hero"

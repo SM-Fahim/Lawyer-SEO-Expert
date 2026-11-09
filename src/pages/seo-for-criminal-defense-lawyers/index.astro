@@ -1,6 +1,6 @@
 ---
-// /seo-for-criminal-defense-lawyers/ from content/v3/seo-for-criminal-defense-lawyers.md. The hero is variant P2
-// (docs/DESIGN-CRITIQUE.md 2.3): the H1 across, then the form and the El Paso 9 -> 23 pair side by side, on white;
+// /seo-for-criminal-defense-lawyers/ from content/v3/seo-for-criminal-defense-lawyers.md. The hero is the row hero
+// (PageHero layout="row"): the H1 across, then the form card and the El Paso 9 -> 23 pair on the fog panel;
 // the after chart sits beside the Map section below. The v2 bands gave way to the depth zone (src/content/depth/): the charge and county
 // matrix, family searches as patterns, the court windows as steps, the intake checklist, a white mid-page CTA
 // between ink rules, the marketing habits as inline rows, the price as plain lines (no PriceBand on this page),
@@ -57,10 +57,7 @@ const habits = [
   schema={depthSchema(depth, { path, title, description })}
 >
   <PageHero
-    layout="top"
-    flip
-    panel={false}
-    visualFirst
+    layout="row"
     class="cr-hero"
     h1="Be the first call after a charge: SEO for criminal defense lawyers."
     lead="After a charge, someone searches the charge and the county, then calls one of the first names Google shows. We put your firm among them."
@@ -103,12 +100,9 @@ const habits = [
 </InnerPage>
 
 <style is:global>
-  .cr-hero .lse-hero__h { max-width: 17ch; }
-  .cr-hero .lse-hero__lead { max-width: 34em; }
-  /* Hero proof: the 9 to 23 pair alone, on white; the after chart sits beside the Map section below. */
+  /* Hero proof: the 9 to 23 pair alone, on the fog panel; the after chart sits beside the Map section below. */
   .cr-proof { display: grid; gap: clamp(20px, 2vw, 28px); align-content: start; margin: 0; }
   .cr-proof .lse-nums__l { max-width: 11em; }
-  @media (min-width: 1000px) { .cr-proof { padding-top: clamp(24px, 3vw, 48px); } }
 
   /* Family searches: one column of patterns at the text's width, set like a search list but in plain type. */
   .cr-family { max-width: 35em; }

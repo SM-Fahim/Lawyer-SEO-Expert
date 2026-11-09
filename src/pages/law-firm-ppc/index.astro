@@ -1,8 +1,8 @@
 ---
 // /law-firm-ppc/. Copy: content/v3/law-firm-ppc.md (critic: content/v3/CRITIC-mixed.md). Facts: research/FACTS.md
 // section 1 (Google Ads / PPC). The only page on the site about Google Ads. No PPC results are approved, so the page
-// shows none. The commercial top: the hero (S4: the H1 across, the example search terms and the 3-field form under
-// it; the "Running Google Ads now?" select left the hero, critique 2.2) and the owner-confirmed scope band. The depth
+// shows none. The commercial top: the row hero (the H1 across, the 3-field form card beside the example search terms;
+// on phones the form comes first, the terms after it; the "Running Google Ads now?" select left the hero, critique 2.2) and the owner-confirmed scope band. The depth
 // zone follows (src/content/depth/law-firm-ppc.md): the mid-page CTA after the main zone, the $500 price band above
 // the open FAQ.
 // Schema: the custom Service node carries only the $500 management fee; never the $2,000 SEO offer (R41).
@@ -75,8 +75,8 @@ const service = {
   schema={[service, ...depthSchema(depth, { path, title, description })]}
 >
   <PageHero
-    layout="top"
-    panel={false}
+    layout="row"
+    visualFirst={false}
     class="ppc-hero"
     h1="Law firm PPC, run for calls instead of clicks."
     lead="We manage Google Ads for law firms inside your own ad account. We track which searches turn into calls and put your budget behind those."
@@ -130,6 +130,15 @@ const service = {
 <style is:global>
   .ppc-fig { display: grid; gap: 14px; margin: 0; }
   .ppc-card { padding: clamp(20px, 2.4vw, 36px); background: var(--paper); border: 1px solid #cfd4cb; border-radius: var(--r-frame); box-shadow: var(--shadow-lift); }
+  /* Beside the form card the search terms step down a size, so the panel keeps to the card's height. */
+  @media (min-width: 1000px) {
+    .ppc-hero .ppc-card { padding: 22px 26px 18px; }
+    .ppc-hero .lse-panel__h { font-size: 19px; padding-bottom: 10px; }
+    .ppc-hero .lse-panel__list li { padding: 10px 0 11px; font-size: 16px; }
+    .ppc-hero .lse-panel__col { padding: 0 24px; }
+    .ppc-hero .lse-panel__col:first-child { padding-left: 0; }
+    .ppc-hero .lse-panel__col:last-child { padding-right: 0; }
+  }
   @media (min-width: 1000px) {
     .ppc-handle { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 5vw, 72px); }
   }

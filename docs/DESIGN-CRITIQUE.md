@@ -70,6 +70,8 @@ Pages that are clean and should stay as they are: Fahim's bio ([1440](critique-s
 
 ### 2.3 One hero standard, with variants
 
+**Superseded on 2026-11-09 (owner: "left column is full of texts, right is just an image ... the hero section does not end in the viewport").** The variants below are gone. All 16 service and practice pages use one hero, PageHero `layout="row"`: the H1 and line across, then the form in the homepage's bordered card (left) beside the proof on the fog panel with the trust row at its foot (right). See `docs/kit.md` (PageHero) and `scripts/hero-budget.mjs`. The budget items 1, 2, 3, 6 and 7 still hold; item 4's "no outline box" is replaced by the homepage's card.
+
 **The budget (every service and practice hero):**
 1. Crumbs (muted, one line).
 2. H1: 10 words or fewer, 3 lines or fewer at 1440. The keyword stays in it.
