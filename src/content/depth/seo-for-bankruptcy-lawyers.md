@@ -1,320 +1,150 @@
 ---
-# /seo-for-bankruptcy-lawyers/ depth zone. Copy: content/v3/seo-for-bankruptcy-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-# No slots: the lists are plain Markdown, set as rows by the page. Band: price (the built PriceBand).
+# /seo-for-bankruptcy-lawyers/ depth zone, v4 (content/V4-BRIEF.md): written from our own practice
+# (research/EXPERTISE.md, item ids per section in content/v4/LEDGER.md). Our accounts are PI firms, and the page says so.
+# Slots the page fills: proof; band price (the built PriceBand).
 summary: >-
-  SEO for bankruptcy lawyers is the work of ranking a bankruptcy practice for the searches people make once debt turns
-  into a garnishment, a lawsuit or a foreclosure date. The short answer has four parts. Give Chapter 7 and Chapter 13
-  their own pages. Carry the debt relief agency statement wherever your counsel says it belongs. Plan local pages by
-  federal district, and give each money problem its own page. The page covers the two chapters and the federal
-  statement first, then districts and the Map, problem pages, national sites and fee timing. It ends with divorce,
-  non-US work and agency mistakes.
-reviewed: 2026-11-08
+  We do SEO for bankruptcy lawyers by meeting people at the moment debt turns into a garnishment, a lawsuit or a sale
+  date, with a page for each problem and a Google profile ready for the urgent local call. What matters most is that
+  every page says only what your counsel has cleared, because bankruptcy ads carry a federal statement and federal
+  limits on what they may promise.
+reviewed: 2026-11-09
+modified: 2026-11-09
 faqHeading: Bankruptcy SEO, asked and answered.
+faqStyle: accordion
 faq:
-  - q: Where do your results come from, if not bankruptcy firms?
+  - q: Have you worked with bankruptcy firms?
     a: >-
-      Every result we publish comes from PI firms in New Orleans and El Paso. The work behind them, a Business Profile,
-      one-search pages and monthly AI checks, is what a bankruptcy practice needs too.
-  - q: Does a Chapter 7 fee page bring better calls?
+      Not yet. We work for two injury firms, and the results shown here are theirs: one firm is in New Orleans, the
+      other in El Paso. What transfers is the urgent local call: the profile, a page per problem, the form and
+      the way we count what arrives.
+  - q: Should we publish our Chapter 7 fee?
     a: >-
-      A fee page answers <q data-no-check>how much does a lawyer charge for chapter 7</q> before the call, so callers
-      already know the number. Say what the fee covers and link the court's schedule for filing costs. For Chapter 13,
-      explain that the court approves the fee.
-  - q: Can our site target people who were just sued by a debt collector?
+      If the lawyer agrees, a fee page answers a search that sits close to the call, so callers already know the
+      number. The fee goes up in the firm's approved wording, filing costs link to the court's own schedule, and the
+      page explains that a Chapter 13 fee goes through the court.
+  - q: Can our site reach people who were just sued by a debt collector?
     a: >-
-      A public page that answers <q data-no-check>do i need a lawyer for debt collection</q> is advertising. A letter,
-      email or text to a named person just sued is usually treated as solicitation. Texas, for one, treats public
-      communications as non-solicitation and requires written solicitations to be marked "ADVERTISEMENT"
-      ([Rule 7.03](https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/solicitation-and-other-prohibited-communications)).
-      Ask your ethics counsel first.
-  - q: How will we know which chapter a call came from?
+      A public page that answers their question is advertising, and it can rank for them. A letter or text to a
+      named person who was just sued is solicitation, which most states regulate separately. We give marketing
+      guidance here, not legal advice, so check with your ethics counsel before anything is sent.
+  - q: Can our pages say we are board certified?
     a: >-
-      Each chapter and problem page gets its own call and form tracking. The monthly count then splits qualified leads
-      by chapter.
-  - q: Should a bankruptcy firm chase debt settlement searches too?
+      Only when it's true, and in the form your state's rule allows, which usually means naming the certifying body.
+      We check every certification, membership and award with its issuer before it appears, because a badge that
+      claims too much is a risk to the lawyer.
+  - q: Do you work with insolvency firms outside the US?
     a: >-
-      Only with care. Under 528(b)(1)(B), wording like "Federal debt restructuring help" counts as a bankruptcy ad when
-      the help is really bankruptcy. A settlement page must say plainly that it is about bankruptcy, and your counsel
-      decides if it is worth building.
+      Rarely on consumer cases, because in England and Wales and in Canada that work runs through a government
+      official or a licensed trustee, not a law firm's filing. This plan is for US bankruptcy firms. Firms abroad
+      can still hire us remotely for their other practice areas.
 authorLine: >-
-  Over 6.5 years, Fahim has grown 67+ businesses online and ranked 50+ of them on Google. For a New Orleans PI firm,
-  Fahim built the SEO system behind the profile calls shown on this page.
+  Across 6.5 years and 67+ businesses grown online, Fahim has ranked 50+ on Google. For a New Orleans PI firm, Fahim
+  built the SEO system behind the September calls at the top of this page.
 sources:
-  - id: S1
-    url: "https://www.uscourts.gov/data-news/judiciary-news/2026/07/28/bankruptcies-rise-122-percent"
-    publisher: "United States Courts"
-    title: "Bankruptcy filings rise 12.2 percent (28 July 2026)"
-    checked: 2026-11-08
-    supports: "In the 12 months to June 30, 2026, US bankruptcy courts received 382,161 Chapter 7 and 215,490 Chapter 13 filings."
-  - id: S2
-    url: "https://www.uscourts.gov/court-programs/bankruptcy/bankruptcy-basics/chapter-7-bankruptcy-basics"
-    publisher: "United States Courts"
-    title: "Chapter 7: Bankruptcy Basics"
-    checked: 2026-11-08
-    supports: "Means test when income is above the state median. / Meeting of creditors 21 to 40 days after filing. / Debts not discharged include alimony, child support and certain taxes. / The page lists a $75 administrative fee, where the fee schedule (S14) lists $78: the two pages disagree."
-  - id: S3
-    url: "https://www.uscourts.gov/court-programs/bankruptcy/bankruptcy-basics/chapter-13-bankruptcy-basics"
-    publisher: "United States Courts"
-    title: "Chapter 13: Bankruptcy Basics"
-    checked: 2026-11-08
-    supports: "Chapter 13 lets individuals save homes from foreclosure and catch up missed payments; plan of 3 years below the state median income, generally 5 above, never over 5."
-  - id: S4
-    url: "https://www.law.cornell.edu/uscode/text/11/528"
-    publisher: "Legal Information Institute (US Code text)"
+  - url: https://support.google.com/business/answer/3038177
+    publisher: Google Business Profile Help
+    title: Guidelines for representing your business on Google
+  - url: https://www.law.cornell.edu/uscode/text/11/528
+    publisher: Legal Information Institute (US Code text)
     title: "11 U.S.C. 528: Requirements for debt relief agencies"
-    checked: 2026-11-08
-    supports: "528(a)(3) and (a)(4): ads for bankruptcy assistance directed to the general public, 'in general media, seminars or specific mailings, telephonic or electronic messages, or otherwise', must clearly and conspicuously disclose that the services are bankruptcy relief and use the set statement or a substantially similar one. 528(b)(1)(A): includes Chapter 13 help whether or not Chapter 13 is named. 528(b)(1)(B): statements like 'federally supervised repayment plan' or 'Federal debt restructuring help'. 528(b)(2): ads about credit defaults, mortgage foreclosures, eviction proceedings, excessive debt, debt collection pressure or inability to pay consumer debt."
-  - id: S5
-    url: "https://www.law.cornell.edu/supremecourt/text/08-1119"
-    publisher: "Legal Information Institute"
-    title: "Milavetz, Gallop & Milavetz, P.A. v. United States, 559 U.S. 229"
-    checked: 2026-11-08
-    supports: "Decided March 8, 2010. Attorneys who provide bankruptcy assistance to assisted persons are debt relief agencies; 528's disclosure requirements are valid as applied to Milavetz."
-  - id: S6
-    url: "https://www.law.cornell.edu/uscode/text/11/526"
-    publisher: "Legal Information Institute (US Code text)"
-    title: "11 U.S.C. 526: Restrictions on debt relief agencies"
-    checked: 2026-11-08
-    supports: "526(a)(3): a debt relief agency may not misrepresent, directly or indirectly, affirmatively or by material omission, its services or the benefits and risks of becoming a debtor."
-  - id: S7
-    url: "https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/advertisements"
-    publisher: "Texas Center for Legal Ethics"
-    title: "Texas Disciplinary Rules, Rule 7.02"
-    checked: 2026-11-08
-    supports: "7.02(b): no statement of certification or special competence except (1) a Texas Board of Legal Specialization certificate, in the wording the rule sets out, or (2) membership or certification from an organization that Board has accredited. Critic re-checked 2026-11-08: the deck sentence now names both."
-  - id: S8
-    url: "https://www.law.cornell.edu/uscode/text/28/1408"
-    publisher: "Legal Information Institute (US Code text)"
-    title: "28 U.S.C. 1408: Venue of cases under title 11"
-    checked: 2026-11-08
-    supports: "A case is filed in the district where the person's domicile, residence, principal place of business or principal assets were for the 180 days before filing, or for the longer part of that period."
-  - id: S9
-    url: "https://www.law.cornell.edu/uscode/text/11/522"
-    publisher: "Legal Information Institute (US Code text)"
-    title: "11 U.S.C. 522: Exemptions"
-    checked: 2026-11-08
-    supports: "522(b): exemptions follow the law of the state of domicile for the 730 days before filing, or, if the domicile was not in a single state for that period, the place of domicile for the 180 days before it (or the longer part of them); the federal list in (d) is the alternative unless that state's law specifically does not authorize it."
-  - id: S10
-    url: "https://support.google.com/business/answer/3038177"
-    publisher: "Google Business Profile Help"
-    title: "Guidelines for representing your business on Google"
-    checked: 2026-11-08
-    supports: "Do not create more than one profile per location; a rented mailing address where the business doesn't operate (virtual office) isn't eligible."
-  - id: S11
-    url: "https://support.google.com/business/answer/7091"
-    publisher: "Google Business Profile Help"
-    title: "Tips to improve your local ranking on Google"
-    checked: 2026-11-08
-    supports: "More reviews and positive ratings can help your business's local ranking."
-  - id: S12
-    url: "https://support.google.com/contributionpolicy/answer/7400114"
-    publisher: "Google Maps user contributed content policy"
-    title: "Fake engagement"
-    checked: 2026-11-08
-    supports: "Merchants may not selectively solicit positive reviews from customers, or offer incentives for reviews."
-  - id: S13
-    url: "https://www.americanbar.org/content/dam/aba/administrative/professional_responsibility/ethics-opinions/aba-formal-opinion-496.pdf"
-    publisher: "American Bar Association"
-    title: "Formal Opinion 496: Responding to Online Criticism (13 January 2021)"
-    checked: 2026-11-08
-    supports: "A negative online review alone is not a 'controversy' that permits a lawyer to reveal client information in a reply; jurisdictions' own rules control. WebFetch returns 403 on americanbar.org; wording confirmed through a web search limited to americanbar.org on 2026-11-08, and listed in _jurisdiction-rules.md. Critic, 2026-11-08: the americanbar.org site search returns this exact ethics-opinions/ path for Opinion 496 (confirmed by search)."
-  - id: S14
-    url: "https://www.uscourts.gov/court-programs/fees/bankruptcy-court-miscellaneous-fee-schedule"
-    publisher: "United States Courts"
-    title: "Bankruptcy Court Miscellaneous Fee Schedule (effective 1 December 2023)"
-    checked: 2026-11-08
-    supports: "The schedule lists an administrative fee for Chapter 7 and Chapter 13 petitions that differs from the figure on the Chapter 7 basics page (S2), so a fee page should link the schedule rather than copy a total (ruling 16)."
-  - id: S15
-    url: "https://www.justice.gov/ust/means-testing"
-    publisher: "US Trustee Program, Department of Justice"
-    title: "Means Testing"
-    checked: 2026-11-08
-    supports: "Census median income data apply to cases filed on or after April 1, 2026; IRS data to cases filed on or after July 15, 2026."
-  - id: S16
-    url: "https://developers.google.com/search/docs/appearance/ai-features"
-    publisher: "Google Search Central"
-    title: "AI features and your website"
-    checked: 2026-11-08
-    supports: "No additional requirements to appear in AI Overviews or AI Mode; a page must be indexed and eligible to show with a snippet; no new machine-readable files or markup needed; AI Overviews show only when additive."
-  - id: S17
-    url: "https://www.law.cornell.edu/uscode/text/11/330"
-    publisher: "Legal Information Institute (US Code text)"
-    title: "11 U.S.C. 330: Compensation of officers"
-    checked: 2026-11-08
-    supports: "330(a)(4)(B): in a Chapter 12 or 13 case where the debtor is an individual, the court may allow reasonable compensation to the debtor's attorney."
-  - id: S18
-    url: "https://www.wieb.uscourts.gov/local-rules"
-    publisher: "US Bankruptcy Court, Eastern District of Wisconsin"
-    title: "Local Rules (effective January 1, 2026)"
-    checked: 2026-11-08
-    supports: "The court's local rules, effective January 1, 2026, include an 'Appendix to LR 2016-2 Presumed Reasonable Fees in Chapter 13 Cases'."
-  - id: S19
-    url: "https://www.gov.uk/bankruptcy"
-    publisher: "GOV.UK"
-    title: "Applying to become bankrupt"
-    checked: 2026-11-08
-    supports: "A person applies for bankruptcy online; an adjudicator who works for the Insolvency Service decides whether they can be made bankrupt."
-  - id: S20
-    url: "https://ised-isde.canada.ca/site/office-superintendent-bankruptcy/en/protecting-public"
-    publisher: "Office of the Superintendent of Bankruptcy Canada"
-    title: "Protecting the public"
-    checked: 2026-11-08
-    supports: "A Licensed Insolvency Trustee is the only professional authorized to administer insolvency proceedings (consumer proposals, commercial proposals, bankruptcies)."
-  - id: S21
-    url: "https://developers.google.com/search/docs/essentials/spam-policies"
-    publisher: "Google Search Central"
-    title: "Spam policies for Google web search"
-    checked: 2026-11-08
-    supports: "Doorway abuse includes pages targeted at specific regions or cities that funnel users to one page."
-  - id: S22
-    url: "https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/solicitation-and-other-prohibited-communications"
-    publisher: "Texas Center for Legal Ethics"
-    title: "Texas Disciplinary Rules, Rule 7.03"
-    checked: 2026-11-08
-    supports: "Comment 2: communications directed to the general public are not solicitations. 7.03(d)(2): written solicitations must be plainly marked 'ADVERTISEMENT', with listed exceptions."
+  - url: https://www.uscourts.gov/court-programs/fees/bankruptcy-court-miscellaneous-fee-schedule
+    publisher: United States Courts
+    title: Bankruptcy Court Miscellaneous Fee Schedule
 ---
 
-## Chapter 7 or Chapter 13: which searches belong on which page?
+## SEO for bankruptcy lawyers begins with the problem people search
 
-A bankruptcy firm needs a separate page for each chapter, because Chapter 7 and Chapter 13 answer different problems for different households. In the 12 months to June 30, 2026, [US bankruptcy courts received](https://www.uscourts.gov/data-news/judiciary-news/2026/07/28/bankruptcies-rise-122-percent) 382,161 Chapter 7 and 215,490 Chapter 13 filings.
+People rarely search for a chapter. They search for the trouble in front of them: a garnished paycheck, papers from a collection lawsuit, a date for a foreclosure sale. Chapter 7 or Chapter 13 is the lawyer's answer, so a bankruptcy site meets people at the problem first.
 
-We plan each page from these signals, checked against the US Courts guides to both chapters. Bracketed text is a pattern, not a recorded search.
+Most search from a phone, in private and in a hurry. Some want a lawyer nearby today, and the Map answers them. Others want to know whether they need a lawyer at all.
 
-| Signal | Chapter 7 page | Chapter 13 page |
-|---|---|---|
-| What people type | "chapter 7 lawyer [city]" | "stop foreclosure lawyer [city]" |
-| The problem behind it | Unsecured debt, a garnishment or a collection lawsuit | A home in foreclosure, or missed payments to catch up |
-| The income question | The means test, for income above the state median | Plan length: 3 years below the median, generally 5 above |
-| What the page explains first | Which property the state lets them keep | How the plan catches up missed payments |
-| What the form asks | Household size and income range | The date of any foreclosure sale |
+[more "See how we decide which problems get pages"]
 
-Some searches bring readers, not callers. The search <q data-no-check>can i file chapter 7 without a lawyer</q> comes from someone still deciding. The search <q data-no-check>best bankruptcy attorney near me</q> comes from a caller, and belongs to the Map and the Chapter 7 page.
+For each search we list who ranks, what the top pages cover and what all of them leave out. On our injury accounts, those gaps turned into whole sections of new pages. For bankruptcy, the gaps worth filling are local: what your state lets a person keep, how your district runs a case and where the meeting with creditors is held.
 
-Each chapter page's form asks the one question that sorts the lead. On the Chapter 13 page, **that is the sale date**, since a close date changes how fast someone needs a callback.
+Some pairs of searches might need one page or two, such as a garnishment page and the Chapter 7 page. We test the pair in a handful of big cities. Where the results mostly differ, each search earns its own page; where they match, the problem becomes a section of the chapter page, so no page simply repeats another.
 
-Our [law firm SEO services](/law-firm-seo-services/) page lays out how these pages are written, linked and checked each month. Both chapter pages carry one duty that other practices don't: the debt relief agency statement.
+People sent by an accountant or a tax adviser look the firm up by name before calling, and our guide to [winning clients as a lawyer](/how-to-get-clients-as-lawyers/) weighs referrals against search.
 
-## Which bankruptcy pages must carry the debt relief agency statement?
+[/more]
 
-Under [11 U.S.C. 528](https://www.law.cornell.edu/uscode/text/11/528), a debt relief agency's ads for bankruptcy help must say clearly that the help is bankruptcy relief. They must carry the statement the law sets out, or one substantially similar, so every bankruptcy firm's page template raises the question.
+## The urgent call often comes from the Map
 
-In [Milavetz v. United States](https://www.law.cornell.edu/supremecourt/text/08-1119) (March 8, 2010), the Supreme Court held that attorneys who give bankruptcy assistance are debt relief agencies, and upheld the disclosures for that firm.
+[slot proof]
 
-The statute reaches ads in "general media, seminars or specific mailings, telephonic or electronic messages, or otherwise." Your counsel decides whether a given web page is one of them. We flag these page types for that review:
+Someone facing a garnishment often calls straight from the Map, so the Google profile matters as much as the pages. Take a PI firm in El Paso. In the six months before we began, its Business Profile brought 9 calls, by Google's own count. Over May, June and July 2026, it brought 23.
 
-[checklist]
-- **Chapter 7 and Chapter 13 pages,** which offer bankruptcy help directly (528(a)).
-- **Chapter 13 help without the name,** such as a page on catching up a mortgage (528(b)(1)(A)).
-- **Problem pages** on foreclosure, eviction, credit defaults, collection pressure or debts a person can't pay (528(b)(2)).
-- **Repayment-plan wording** like "federally supervised repayment plan" (528(b)(1)(B)).
-- **Seminar and mailer landing pages,** since 528(a)(3) names seminars and specific mailings.
+The groundwork behind that is what a bankruptcy firm needs too: one correct name, address and phone everywhere, a profile service for each kind of case the firm takes, and pages for the profile to point to.
 
-Once your counsel approves the wording, it goes into the page template, visible to every reader. The statute and your counsel set that wording, not us.
+Profiles follow real offices. Under [Google's guidelines](https://support.google.com/business/answer/3038177), each real location gets one profile and a virtual office gets none, so a second district needs a staffed office before it gets a profile.
 
-The same law limits promises. [Section 526(a)(3)](https://www.law.cornell.edu/uscode/text/11/526) bars misrepresenting the services, or the benefits and risks of bankruptcy, even by omission.
+[more "See how we clean up listings and numbers"]
 
-So "wipe out all your debt" is a risky headline: the [US Courts Chapter 7 guide](https://www.uscourts.gov/court-programs/bankruptcy/bankruptcy-basics/chapter-7-bankruptcy-basics) lists debts a discharge doesn't cover, such as child support and certain taxes.
+A new profile starts near zero. A newer profile for our New Orleans injury client shows what that looks like: about 1 call in July 2026, then 9 by October.
 
-Titles get the same check. Texas [Rule 7.02(b)](https://www.legalethicstexas.com/resources/rules/texas-disciplinary-rules-of-professional-conduct/advertisements), for one, allows a certification claim only from the Texas Board of Legal Specialization, in the rule's own wording, or from a group that Board accredits.
+We audit about 30 directories, then go back to the ones that turn automated tools away. Every duplicate is claimed and merged into one listing per office.
 
-Our own name uses "expert" for search skill, never as a legal title. You or your ethics counsel approve every page before it goes live.
+Phone numbers follow one rule. The office's own local number is the one in the page code, the schema and the directories, and a tracking number appears only as the profile's primary number, with the local one listed second. On one injury account, directory sites had copied a tracking number off the profile and spread it as the firm's phone.
 
-<p class="lse-small">This is general information about marketing, not legal advice. Rules differ by state and country, so check yours with your bar, law society or ethics counsel.</p>
+Each problem the firm handles is added to the profile under the same words as its page. Debt settlement or business cases stay off unless the firm really does that work.
 
-## Why does a bankruptcy firm's local map follow federal districts?
+[/more]
 
-A bankruptcy case is usually filed in the federal district where the person has lived for the longest part of the 180 days before filing ([28 U.S.C. 1408](https://www.law.cornell.edu/uscode/text/28/1408)). So a bankruptcy firm plans its local pages by district, not by suburb.
+## The bankruptcy site we build, in order
 
-Exemptions add a state layer. Under [11 U.S.C. 522(b)](https://www.law.cornell.edu/uscode/text/11/522), what a person keeps follows the law of the state they lived in for the 730 days before filing. Someone who moved between states in that time uses an earlier 180-day test, and the federal list is the other choice unless the state opts out.
+We have only ever had injury accounts, so read each example below as injury work carried over. For the first 90 days in full, see [law firm SEO services](/law-firm-seo-services/); the steps below are where bankruptcy work differs.
 
-That gives three page types: one per district or division the firm files in, one exemptions page per state, and one on where creditors' meetings are held. US Courts puts that meeting 21 to 40 days after filing.
+[steps]
+1. **The firm's lines, and its counsel's statement.**
+2. **Every figure checked against its effective date.**
+3. **A page per chapter and per problem the firm takes.**
+4. **Local pages that follow the districts.**
+5. **Claims read the way we read fee lines.**
 
-Google Business Profiles follow real offices, not districts. Google's [guidelines for representing your business](https://support.google.com/business/answer/3038177) allow one profile per location and exclude virtual offices where no one works.
+[more "See how each step works for bankruptcy"]
 
-A new profile starts with no history. For a PI firm in New Orleans, a second, new profile grew from about 1 call in July to 9 in October 2026. A bankruptcy firm opening an office in a second district starts from the same blank page.
+1. The firm answers our setup questions once: the chapters it files, the problems it takes, its fee wording and the work it sends elsewhere. Its counsel then decides where the debt relief agency statement under [11 U.S.C. 528](https://www.law.cornell.edu/uscode/text/11/528) belongs, and we build the approved wording into the page template, so each new problem page carries it from its first day.
+2. Bankruptcy runs on figures that change on set dates, from means test numbers to court fees. We read each one at its official source and note the date it took effect. Even official pages can disagree: when we checked in November 2026, the US Courts guide to Chapter 7 and the courts' [fee schedule](https://www.uscourts.gov/court-programs/fees/bankruptcy-court-miscellaneous-fee-schedule) gave different administrative fees. So a fee page links the schedule instead of copying a total.
+3. Chapter 7 and Chapter 13 each get a page, and so does each problem the firm wants calls for, such as garnishment, foreclosure or a collection lawsuit. One page owns each topic, and the others sum it up and link to it. Work the firm refers out is explained as a boundary, never offered. Debts tied to a divorce are a common case: who keeps which debt is a family lawyer's question, and [SEO for family lawyers](/seo-for-family-lawyers/) covers that side.
+4. Cases are filed by federal district, so local pages follow the districts and divisions the firm files in, not a list of suburbs. Courthouses and meeting locations are named in full, every one in the district, or not at all.
+5. Louisiana's bar rules make an injury firm's "no fee unless you win" line say whether the client still pays case costs, which we learned by reading the bar's own rules. A "free consultation" or flat-fee line gets the same reading under your state's rules. Federal law also bars misleading anyone about what filing can do, so "wipe out all your debt" never runs: some debts survive a discharge.
 
-### Reviews when a client's debts are private
+[/more]
 
-Google says [more reviews and positive ratings can help local ranking](https://support.google.com/business/answer/7091), but a bankruptcy review tells the world the reviewer filed. So the routine asks every client the same way and welcomes first names.
+## Answering the questions national guides hold
 
-Google's [review policy](https://support.google.com/contributionpolicy/answer/7400114) bars asking only the happy ones.
+Before calling anyone, many people ask whether they need a lawyer at all. When we checked <q data-no-check>can i file chapter 7 without a lawyer</q> in November 2026, national legal guides and a news site held the top results.
 
-Under [ABA Formal Opinion 496](https://www.americanbar.org/content/dam/aba/administrative/professional_responsibility/ethics-opinions/aba-formal-opinion-496.pdf) (January 13, 2021), a bad review alone doesn't let a lawyer reveal client information in a reply; each state's rules control. Reviews build trust in the firm's name, while problem pages win the searches made before anyone knows it.
+A local firm won't out-write them on the general answer. It wins the local version: the exemptions in its state, its district's own rules and the real steps of a case there.
 
-## Which debt problems should a bankruptcy site answer page by page?
+Those local lines are what Google's AI tends to quote. On our injury pages it picked out the deadline, the warning about the insurer and the named highways, never "call us today".
 
-A bankruptcy site needs one page for each money problem that sends people looking for a lawyer, such as a garnishment, a foreclosure date or a collection lawsuit.
+[more "See how we watch AI answers on debt"]
 
-Build only the ones for problems the firm takes on:
+Every month we note how Google's AI answers the firm's key debt questions and whose pages it cites. That record shows what Google displays, and it is never a source. Where an answer has the law wrong, the statute settles it, and a correct page is the opening.
 
-- **Wage garnishment.** What filing does to a garnishment, and how fast the firm acts. It serves <q data-no-check>can a lawyer stop a garnishment</q>.
-- **Foreclosure.** The sale date, and how Chapter 13 can let a homeowner catch up. It serves "stop foreclosure lawyer [city]".
-- **Collection lawsuit.** What to do with the court papers, and where bankruptcy fits. It serves <q data-no-check>do i need a lawyer for debt collection</q>.
-- **Fees.** What a Chapter 7 case costs with the firm, and how Chapter 13 fees are set. It serves <q data-no-check>how much does a lawyer charge for chapter 7</q>.
-- **Filing without a lawyer.** An honest answer, with court fees linked, not copied. It serves <q data-no-check>can i file chapter 7 without a lawyer</q>.
+In El Paso, Google's AI answer to a question about the deadline for car accident claims cited our injury client's page before any other. On a bankruptcy site, the page to build is a dated answer on your state's exemptions or the means test, with its source linked.
 
-As of November 2026, the US Courts Chapter 7 guide and its [fee schedule](https://www.uscourts.gov/court-programs/fees/bankruptcy-court-miscellaneous-fee-schedule) list different administrative fees. A fee page should link the schedule, not quote a total.
+[/more]
 
-A problem page that only repeats the chapter page under a new title is thin. It stays inside the chapter page until the firm has something local to add.
+## How soon do calls come, and how do we count them?
 
-A site with every bankruptcy topic on one long page may need a rebuild. Our [lawyer web design and development](/lawyer-web-design-development/) page covers the move without losing what already ranks. National sites answer the broad versions of these searches.
+New pages can't rank fast until roughly three months of groundwork are behind them. After that, the competition in your districts and the state of your site set the pace, and Fahim's view of it is an estimate, not a promise.
 
-## Can a local bankruptcy firm win searches that Nolo and Upsolve answer?
+We count answered calls and qualified leads chapter by chapter, compared with the same stretch a year earlier. A tap on the number only shows someone tried; an answered call is what goes in the count.
 
-A local bankruptcy firm wins by answering the local version of a national question. In our US search check on 8 November 2026, <q data-no-check>can i file chapter 7 without a lawyer</q> was led by Nolo's AllLaw, CBS News and FindLaw, with Upsolve further down.
+The chapter split matters because the money arrives differently. A Chapter 13 fee is approved by the court and often paid through the plan, so a Chapter 13 lead isn't worth what a Chapter 7 lead is in its first month.
 
-A firm's page can go where a national guide can't: its state's exemption list, its district's local rules and where creditors' meetings take place.
+[more "See how the form sorts an urgent lead"]
 
-The US Trustee Program's [means testing page](https://www.justice.gov/ust/means-testing) applies new median income figures to cases filed from April 1, 2026, and new IRS figures from July 15, 2026. A means test page should name both dates.
+Each chapter or problem page sends its case type with the form, so nobody is asked what they already chose. The Chapter 13 and foreclosure pages ask one thing more, the sale date, since a near date means a faster callback.
 
-For AI answers, Google states that [AI Overviews and AI Mode](https://developers.google.com/search/docs/appearance/ai-features) need nothing beyond normal Search eligibility: an indexed page that can show a snippet (checked November 2026). Each month we check which sources the AI answer cites for your main bankruptcy questions.
+The name and number are saved before any other question, so someone who stops halfway still reaches the firm. People with a real case go on to answer the rest, and bots stop at the first step, which tells the intake team whom to call first.
 
-A national guide cited for a local question means your page needs a clearer first answer, a cited rule or a date. What each resulting call is worth depends on the chapter and its fee.
+[/more]
 
-## How does fee timing change what a bankruptcy lead is worth?
+## What bankruptcy SEO costs
 
-A bankruptcy firm should judge its search leads chapter by chapter, because each chapter's fee is set a different way. In a Chapter 13 case, the court may allow the debtor's attorney a reasonable fee under [11 U.S.C. 330(a)(4)(B)](https://www.law.cornell.edu/uscode/text/11/330).
-
-The Eastern District of Wisconsin, for one, keeps a schedule of presumed reasonable Chapter 13 fees as an appendix to [its Local Rule 2016-2](https://www.wieb.uscourts.gov/local-rules), in rules effective January 1, 2026.
-
-A Chapter 13 plan runs three to five years, and the case stays open while it runs. So one cost-per-lead target for the whole practice hides the difference. Track qualified leads and fees collected for each chapter, from the firm's own records.
-
-Our [law firm SEO pricing](/seo-pricing/) page gives the cost-per-lead formula and what the monthly fee includes.
-
-### How long before a bankruptcy site brings more calls?
-
-For a PI firm in New Orleans, about three months of groundwork came before its new pages began ranking within hours of going live. A bankruptcy practice should plan in that order: profile, chapter and district pages first, then problem pages.
-
-Your districts' competition and your site's starting point set the pace, and Fahim gives that view as an estimate, not a promise. Some kinds of work change the plan itself.
-
-## Bankruptcy work that changes the plan
-
-The plan above fits a consumer bankruptcy practice that files in one state. Two kinds of work change it: debts tied to a divorce, and firms outside the US.
-
-### When divorce and debt arrive together
-
-Divorce and bankruptcy meet when a couple splits and the debts don't. A bankruptcy page on that overlap must be exact about support, because the [US Courts Chapter 7 guide](https://www.uscourts.gov/court-programs/bankruptcy/bankruptcy-basics/chapter-7-bankruptcy-basics) lists alimony and child support among debts a discharge doesn't cover.
-
-Who keeps which debt in the divorce is a family lawyer's question, so a bankruptcy firm answers the bankruptcy half and says where its answer stops. Our page on [SEO for family lawyers](/seo-for-family-lawyers/) covers the family side of the same searches.
-
-### Outside the US, the search is for insolvency help
-
-In England and Wales and in Canada, consumer bankruptcy runs through a government adjudicator or a licensed trustee rather than a law firm's filing. In England and Wales, people apply online and an Insolvency Service adjudicator decides ([GOV.UK](https://www.gov.uk/bankruptcy)).
-
-In Canada, a [Licensed Insolvency Trustee](https://ised-isde.canada.ca/site/office-superintendent-bankruptcy/en/protecting-public) is the only professional authorized to administer insolvency proceedings. So the consumer pages above don't carry over to firms in England and Wales or Canada.
-
-We work remotely with firms outside the US too. Fahim has grown businesses in 4 countries, from Idiya in New Zealand to Breakthrough Maths in Ireland. Agencies get these lanes wrong in the same ways.
-
-## What do agencies get wrong about bankruptcy clients?
-
-Agencies get bankruptcy clients wrong when they reuse a template built for injury or criminal defense firms. Five habits cost a bankruptcy firm qualified leads:
-
-- **Promising a clean slate.** "Erase all your debt" leaves out the debts a discharge doesn't touch. Our pages name them.
-- **Leaving the statement off new pages.** Each new problem page can raise the 528 question. Ours carry the wording your counsel approved.
-- **Suburb pages with swapped names.** Google's [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) call that pattern doorway abuse. We plan by district and by office.
-- **Asking only happy clients.** Google bars selective review requests. Our routine asks everyone the same way.
-- **Counting visits.** Traffic files no cases. We count calls and qualified leads, split by chapter.
-
-SEO for bankruptcy lawyers comes down to the right chapter page, in the right district, with the statement and the claims your counsel has cleared.
+The monthly figure comes from your market, the chapters and problems you want calls for, your offices and where your site stands now. How each one changes the figure is set out on [law firm SEO pricing](/seo-pricing/). Should you stop, the firm keeps the site and every page.
 
 [band price]

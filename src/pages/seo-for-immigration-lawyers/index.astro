@@ -20,7 +20,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-immigration-lawyers/';
 const title = 'SEO for Immigration Lawyers | Found in Every Language';
 const description =
-  'SEO for immigration lawyers: case pages in each language with hreflang, trust against notarios, national reach, EOIR rules, policy changes, non-US firms.';
+  'SEO for immigration lawyers: a page for each case type in every language you serve, proof a real lawyer stands behind it, and rule pages kept current.';
 const depth = await getDepth('seo-for-immigration-lawyers');
 ---
 <InnerPage
@@ -54,15 +54,20 @@ const depth = await getDepth('seo-for-immigration-lawyers');
   </PageHero>
 
   <DepthZone depth={depth} authorLinkLabel="Fahim’s profile and record">
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="#1" tagSide="right" images={[shot(proof.nolaWtdQuery), shot(proof.nolaWtdRank, { marks: ['age'] })]} />
+      <figcaption>New Orleans, a PI firm’s new page: first on Google, stamped 16 hours old.</figcaption>
+    </figure>
+
     <Band slot="mid" tone="marker" class="im-mid">
-      <p class="im-mid__line">Fahim can check this language plan against your own site in a free, <span class="im-nowrap">30-minute</span> call.</p>
+      <p class="im-mid__line">Fahim can test this language plan against your own site, free, in half an hour.</p>
       <Button />
     </Band>
 
     <Band slot="price" class="im-price">
       <div class="im-price__in">
         <p class="im-price__big">Immigration SEO runs from $2,000 a month with us, and we charge no setup fee. Fahim puts your number in writing before any work begins.</p>
-        <p class="im-price__line">It covers the case pages in each language, the profile and reviews, links, site upkeep, call and form tracking and AI answer checks. See <a href="/seo-pricing/">law firm SEO pricing</a> for how the number is set.</p>
+        <p class="im-price__line">It covers the case pages in each language, the profile and reviews, links, site upkeep, tracking of calls and forms, and checks on AI answers. See <a href="/seo-pricing/">law firm SEO pricing</a> for how the number is set.</p>
       </div>
     </Band>
   </DepthZone>
