@@ -123,8 +123,12 @@
     "schedule-call",
     "connect-with-fahim",
     "31e69f68d10f4e3bbf6d1b8c825844fa",
-    "929[\\s.\\-]*312[\\s.\\-]*6528",
+    "929[\\s.\\-)]*312[\\s.\\-]*6528",
     "19293126528"
   ],
-  "leakAllowedContexts": ["calendly.com/connect-with-fahim/schedule-call"]
+  "leakAllowedContexts": ["calendly.com/connect-with-fahim/schedule-call"],
+  "leakAllowedByFile": {
+    "privacy-policy/index.html": ["+1 (929) 312-6528"],
+    "terms-and-conditions/index.html": ["+1 (929) 312-6528"]
+  }
 }

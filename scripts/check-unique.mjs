@@ -320,14 +320,19 @@ export function compare(lsePages, lcmePages, rawConfig) {
 }
 
 // ---------- Leak scan ----------
-/** Files: [{ name, text }]. Returns [{ file, pattern }] for every hit. Case-insensitive. */
+/**
+ * Files: [{ name, text }]. Returns [{ file, pattern }] for every hit. Case-insensitive.
+ * leakAllowedContexts are stripped from every file. leakAllowedByFile strips its strings from the named dist files only.
+ */
 export function leakScan(files, rawConfig) {
   const patterns = rawConfig.leakPatterns.map((p) => ({ source: p, re: new RegExp(p, 'i') }));
-  const allowed = (rawConfig.leakAllowedContexts ?? []).map((s) => s.toLowerCase());
+  const lower = (list) => (list ?? []).map((s) => s.toLowerCase());
+  const allowed = lower(rawConfig.leakAllowedContexts);
+  const byFile = rawConfig.leakAllowedByFile ?? {};
   const hits = [];
   for (const { name, text } of files) {
-    let scan = text;
-    for (const ctx of allowed) scan = scan.toLowerCase().split(ctx).join(' ');
+    let scan = text.toLowerCase();
+    for (const ctx of [...allowed, ...lower(byFile[name])]) scan = scan.split(ctx).join(' ');
     for (const { source, re } of patterns) {
       const m = re.exec(scan);
       if (m) hits.push({ file: name, pattern: source, found: m[0] });

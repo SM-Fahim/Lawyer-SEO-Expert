@@ -112,3 +112,17 @@ test('leak scan: LCME IDs, colours and class prefixes fail; the shared Calendly 
   const ok = leakScan([{ name: 'd.html', text: '<a href="https://calendly.com/connect-with-fahim/schedule-call">Book</a>' }], config);
   assert.deepEqual(ok, []);
 });
+
+test('leak scan: the company phone passes on the two legal pages only', () => {
+  const phone = '<p>Phone: +1 (929) 312-6528</p>';
+  const ok = leakScan([
+    { name: 'privacy-policy/index.html', text: phone },
+    { name: 'terms-and-conditions/index.html', text: phone },
+  ], config);
+  assert.deepEqual(ok, []);
+  const bad = leakScan([
+    { name: 'contact/index.html', text: phone },
+    { name: 'privacy-policy/index.html', text: 'Call 929.312.6528' },
+  ], config);
+  assert.deepEqual(new Set(bad.map((h) => h.file)), new Set(['contact/index.html', 'privacy-policy/index.html']));
+});
