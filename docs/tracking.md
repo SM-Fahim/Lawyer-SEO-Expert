@@ -64,7 +64,7 @@ LSE and LCME share one Calendly event. Each site's own counts (D1 `bookings`, GA
 
 Owner, before or at launch:
 1. GA4: Admin, Data streams, Website, Measurement Protocol API secrets, Create, nickname "Cloudflare Worker". Then set it: `npx wrangler secret put GA4_API_SECRET` and paste at the prompt.
-2. Meta: Events Manager, switch the portfolio (top right) to **lawyerseo_expert**, Datasets, "Lawyer SEO Expert" (`1120676457364234`), Settings, Conversions API, Set up direct integration, "Set up without Dataset Quality API", Generate access token. Direct link: `https://business.facebook.com/events_manager2/list/dataset/1120676457364234/settings?business_id=1200836201223572`. Then `npx wrangler secret put META_CAPI_TOKEN`.
+2. Meta: Events Manager, switch the portfolio (top right) to **lawyerseo_expert**, Datasets, "Lawyer SEO Expert" (`1120676457364234`), Settings, Conversions API, Set up direct integration, "Set up with Dataset Quality API" (the owner's choice: the same events, plus match-quality scores readable by API), Generate access token. Direct link: `https://business.facebook.com/events_manager2/list/dataset/1120676457364234/settings?business_id=1200836201223572`. Then `npx wrangler secret put META_CAPI_TOKEN`.
 3. Reddit: `npx wrangler secret put REDDIT_CAPI_TOKEN`, pasting the value of `reddit_access_token_law` from the plugin's `.env` without the quotes.
 4. Run `npx wrangler secret list` and check all three names are there.
 
