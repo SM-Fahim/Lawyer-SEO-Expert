@@ -26,7 +26,8 @@ const TIMEOUT_MS = 30_000;
 const MAX_CONSECUTIVE_BLOCKS = 3;
 // Not pages, but their addresses are public. /feed/ is the built feed.xml, served by the router.
 const PLAIN_FILES = ['/feed/', '/favicon.ico', '/robots.txt', '/sitemap-index.xml', '/sitemap-0.xml'];
-const WORDPRESS_PATHS = ['/wp-admin/', '/wp-login.php', '/wp-json/', '/xmlrpc.php', '/login/'];
+// /login/ isn't here: redirects.ts sends it to / (301), and that entry is checked with the other redirects.
+const WORDPRESS_PATHS = ['/wp-admin/', '/wp-login.php', '/wp-json/', '/xmlrpc.php'];
 
 const stop = (message) => {
   console.error(`verify-live: ${message}`);
@@ -82,7 +83,14 @@ const builtPages = walk(DIST)
     return { path: rel === 'index.html' ? '/' : `/${rel.slice(0, -'index.html'.length)}`, file };
   });
 
-function pageExpectation({ file }) {
+// Builder pages: built, but the router gives the 404 page wherever LIVE is "true" (worker/router.ts PREVIEW_ONLY).
+const PREVIEW_ONLY = ['/kit/', '/variants/'];
+const isProduction = ['lawyerseoexpert.com', 'www.lawyerseoexpert.com'].includes(host);
+
+function pageExpectation({ path, file }) {
+  if (isProduction && PREVIEW_ONLY.some((prefix) => path.startsWith(prefix))) {
+    return { status: 404, why: 'preview-only page' };
+  }
   const html = readFileSync(file, 'utf8');
   return { status: 200, title: titleOf(html), canonical: canonicalOf(html), why: 'built page' };
 }
