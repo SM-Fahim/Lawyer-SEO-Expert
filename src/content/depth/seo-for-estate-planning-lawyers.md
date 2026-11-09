@@ -14,8 +14,8 @@ faqStyle: accordion
 faq:
   - q: Have you worked with estate planning firms?
     a: >-
-      No. Our two accounts are personal injury firms, based in New Orleans and El Paso, and every result shown here
-      is from them. One of them refers probate out, so we already write pages that mark plainly where a firm's work stops.
+      No. Our two accounts are injury firms, one based in New Orleans and one in El Paso, and all the results you see
+      here are theirs. One of them refers probate out, so we already write pages that mark plainly where a firm's work stops.
       Current law, checked credentials, one page per topic and the lawyer's review all carry over.
   - q: Should probate have its own section or its own site?
     a: >-
@@ -34,7 +34,7 @@ faq:
       counsel should confirm it.
   - q: Do you work with wills and probate firms outside the US?
     a: >-
-      Yes, remotely. The plan holds, but the words change: "wills and probate" and "solicitor" in England and Wales,
+      We do, working remotely. The method stays and the vocabulary moves: "wills and probate" and "solicitor" in England and Wales,
       "wills and estates" in Australia and Canada. A firm in England and Wales that handles uncontested probate must
       already publish its prices, so its fee page comes first.
 authorLine: >-
@@ -86,7 +86,7 @@ Our accounts are personal injury firms, so every example here comes from injury 
 [more "See how each step works for estate work"]
 
 1. The firm tells us once which work it takes and which it sends elsewhere: planning, probate, trust administration, elder law or estate disputes. One injury firm we write for refers probate out, so its pages mention probate only to say where the firm stops. An estate firm that sends contested estates to another firm gets the same treatment.
-2. We collect the law the pages rely on from its source, then check it is current this year, because an official code page can lag behind a new act. Estate figures move: the [IRS](https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax) puts the 2026 basic exclusion amount at $15,000,000, after a law signed in July 2025, so a page still warning about an older figure is wrong today.
+2. We collect the law the pages rely on from its source, then check it is current this year, because the code as published online isn't always updated the day a new act passes. Estate figures move: the [IRS](https://www.irs.gov/businesses/small-businesses-self-employed/whats-new-estate-and-gift-tax) puts the 2026 basic exclusion amount at $15,000,000, after a law signed in July 2025, so a page still warning about an older figure is wrong today.
 3. Wills, living trusts, powers of attorney, health care directives and guardianship for children each draw their own questions, so each gets a page. Every topic has one home page and the rest point to it, so the trust page and the probate page never chase the same search. Two wordings of one search, such as "probate lawyer" and "probate attorney", share a page.
 4. Probate runs through a local court, so a probate page earns its place with that court's steps, forms and timing. We write one for each court the firm's offices really use. If a page lists local courts, it lists every one, since a gap reads as a judgment; on one injury account, a court list we inherited had dropped a whole level of appeal.
 5. The lawyer marks up each page in a plain sheet, line by line, and every correction becomes a rule the next draft is checked against. Before that, each credential and membership is checked with its issuer. On one injury account, the site claimed a membership the lawyer had never held.
@@ -137,7 +137,7 @@ Referral deals carry rules of their own. Under [ABA Model Rule 7.2](https://www.
 
 Ask for a review when a plan is signed, not while a family is grieving. Google's [review policy](https://support.google.com/contributionpolicy/answer/7400114) bars rewards for reviews and bars asking only the happy clients, so every client gets the same request. It also treats reviews from staff as a conflict of interest.
 
-Testimonials on the site carry a first name and an initial, no more. On one injury account we removed a homepage testimonial about a type of case the firm doesn't handle, and a planning firm's site gets the same check.
+Testimonials quoted on the site use a first name and an initial only. We once pulled a homepage testimonial on an injury site because it praised a kind of case the firm doesn't take, and a planning firm's site gets the same check.
 
 The profile lists each kind of work the firm takes as a service, worded like the page it matches, and leaves out anything referred elsewhere. Seminars get event pages with the date, the place and a sign-up form. For referrals, talks and the other ways clients arrive besides search, see [how lawyers get clients](/how-to-get-clients-as-lawyers/).
 

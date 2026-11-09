@@ -78,7 +78,7 @@ Personal injury accounts are the only kind we have, so each example here is an i
 
 [more "See how each step works for immigration"]
 
-1. At setup the firm settles, once, the case types it takes and sends away, how its consultation fee is worded, the results we may publish and anything that must never appear. On one injury account, red lines like these arrived after pages were drafted, and some had to come down, so now they come before the plan. A client who also faces a criminal charge needs a defense lawyer too; the charge side of those searches is on [SEO for criminal defense lawyers](/seo-for-criminal-defense-lawyers/).
+1. At setup the firm settles, once, the case types it takes and sends away, how its consultation fee is worded, the results we may publish and anything that must never appear. On one injury account, red lines like these arrived after pages were drafted, and some had to come down; since then they come first. Clients with a pending charge need a defense lawyer as well, and the charge searches are covered on [SEO for criminal defense lawyers](/seo-for-criminal-defense-lawyers/).
 2. Immigration pages rest on statutes, regulations and agency pages, so we read each one where it is published, and every case we cite is checked for what it held and whether it still stands. AI tools have handed us case citations that don't exist, so nothing reaches a page unchecked.
 3. Each case type gets its English page first, then a version written in each other language, never run through a translation tool. Each version has its own address, and the versions name each other in tags Google reads. Under [Google's rules for localized pages](https://developers.google.com/search/docs/specialty/international/localized-versions), a tag the other page doesn't return is ignored. A site that can't hold language versions may need rebuilding, which our [lawyer web design](/lawyer-web-design-development/) page covers.
 4. A firm can take clients nationwide, but the Map follows real places. Local pages are built for the firm's offices, and an office page can name the immigration court and USCIS office its clients attend. A town with no office gets no page.
@@ -112,13 +112,13 @@ Results get the same care. One lawyer we work with wouldn't publish a career tot
 
 [slot proof]
 
-Immigration rules can change in a week, so how fast Google finds an updated page matters. A PI firm in New Orleans had about three months of groundwork behind it when we published a page on <q data-no-check>what to do after a truck accident in New Orleans</q>. Sixteen hours later it was the first result on Google, and Google's AI answer cited it 3 times.
+Immigration rules can change in a week, so how fast Google finds an updated page matters. We published a page on <q data-no-check>what to do after a truck accident in New Orleans</q> for a PI firm whose groundwork, about three months of it, was already done. Sixteen hours on, Google showed it first, and its AI answer cited the page 3 times.
 
 The speed came from that groundwork, not from the page alone. It is what we build toward for an immigration firm: a site where a page revised the week a rule changes gets picked up fast, though nobody can promise the timing.
 
-[more "See what Google's AI picked, and why"]
+[more "See which lines the AI quoted, and why"]
 
-On our truck pages, the AI lifted the concrete facts: the deadline, the warning against a recorded statement and the roads where crashes happen. Every page it chose already ranked on page one, so we work on ranking first and treat AI answers as following from it.
+On the truck pages we built, the AI lifted concrete facts, such as the deadline, the advice to refuse a recorded statement and the named roads. Every page it chose already ranked on page one, so we work on ranking first and treat AI answers as following from it.
 
 For an asylum or green card question, the concrete facts are the form, any deadline and the office that handles it, each stated with its date and its source.
 

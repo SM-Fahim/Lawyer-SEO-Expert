@@ -14,8 +14,8 @@ faqStyle: accordion
 faq:
   - q: Have you worked with bankruptcy firms?
     a: >-
-      Not yet. Both of our accounts are personal injury firms, one in New Orleans and one in El Paso, and the
-      results here are theirs. What transfers is the urgent local call: the profile, a page per problem, the form and
+      Not yet. We work for two injury firms, and the results shown here are theirs: one firm is in New Orleans, the
+      other in El Paso. What transfers is the urgent local call: the profile, a page per problem, the form and
       the way we count what arrives.
   - q: Should we publish our Chapter 7 fee?
     a: >-
@@ -62,7 +62,7 @@ Most search from a phone, in private and in a hurry. Some want a lawyer nearby t
 
 For each search we list who ranks, what the top pages cover and what all of them leave out. On our injury accounts, those gaps turned into whole sections of new pages. For bankruptcy, the gaps worth filling are local: what your state lets a person keep, how your district runs a case and where the meeting with creditors is held.
 
-Some pairs of searches might need one page or two, such as a garnishment page and the Chapter 7 page. We run the same pair in several large cities, and if the results differ in most of them, each search gets its own page. If not, the problem becomes a section of the chapter page, so no page simply repeats another.
+Some pairs of searches might need one page or two, such as a garnishment page and the Chapter 7 page. We test the pair in a handful of big cities. Where the results mostly differ, each search earns its own page; where they match, the problem becomes a section of the chapter page, so no page simply repeats another.
 
 People sent by an accountant or a tax adviser look the firm up by name before calling, and our guide to [winning clients as a lawyer](/how-to-get-clients-as-lawyers/) weighs referrals against search.
 
@@ -131,7 +131,7 @@ In El Paso, Google's AI answer to a question about the deadline for car accident
 
 New pages can't rank fast until roughly three months of groundwork are behind them. After that, the competition in your districts and the state of your site set the pace, and Fahim's view of it is an estimate, not a promise.
 
-We count answered calls and qualified leads, chapter by chapter, set against the same months of the previous year. Taps on the phone number are not calls, and they never get added to the count.
+We count answered calls and qualified leads chapter by chapter, compared with the same stretch a year earlier. A tap on the number only shows someone tried; an answered call is what goes in the count.
 
 The chapter split matters because the money arrives differently. A Chapter 13 fee is approved by the court and often paid through the plan, so a Chapter 13 lead isn't worth what a Chapter 7 lead is in its first month.
 
@@ -145,6 +145,6 @@ The name and number are saved before any other question, so someone who stops ha
 
 ## What bankruptcy SEO costs
 
-Four things set the monthly figure: your market, the chapters and problems you want calls for, your offices and where your site stands now. How each one changes the figure is set out on [law firm SEO pricing](/seo-pricing/). Should you stop, the firm keeps the site and every page.
+The monthly figure comes from your market, the chapters and problems you want calls for, your offices and where your site stands now. How each one changes the figure is set out on [law firm SEO pricing](/seo-pricing/). Should you stop, the firm keeps the site and every page.
 
 [band price]
