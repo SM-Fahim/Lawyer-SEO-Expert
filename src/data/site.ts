@@ -55,9 +55,9 @@ export const site = {
     // Meta Pixel (dataset) ID. Public. Blank turns Meta off in the browser: fbevents.js isn't loaded.
     // The Worker has its own copy in wrangler.jsonc (META_PIXEL_ID).
     metaPixelId: '',
-    // TODO(Cloudflare): create a Turnstile widget for lawyerseoexpert.com and the workers.dev host, paste its site key here.
-    // Blank: Previews and localhost still work (they use the test key). The pre-launch and production hosts need this set.
-    turnstileSiteKey: '',
+    // Turnstile widget "lawyerseoexpert.com" (Managed), created 2026-11-09 for the apex, www and the workers.dev host.
+    // Public. Previews and localhost use the test key below. The secret is TURNSTILE_SECRET on the Worker.
+    turnstileSiteKey: '0x4AAAAAAF5oIvENgpApeb7f',
     // Cloudflare's published test key: always passes, widget visible. Used off production.
     turnstileTestSiteKey: '1x00000000000000000000AA',
   },
