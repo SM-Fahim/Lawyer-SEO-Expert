@@ -1,38 +1,47 @@
 # Handoff
 
-Updated 2026-11-08. Branch `rebuild` (not pushed).
+Updated 2026-11-09, after launch. Branch `rebuild`; `main` was fast-forwarded to the launch commit `d5c602f` with the owner's OK.
 
 ## State
 
-The technical foundation is in place, forked from LCME's back end, with a bare placeholder front end. Green on: `npm run check`, `npm run build` (check-dist, then check-unique), `npm run test` (Worker, tracking, runtime, uniqueness), `npm run test:e2e` (6 skeleton tests, one worker).
+**Live since 2026-11-09.** The Worker `lawyerseoexpert-site` owns the apex through the route `lawyerseoexpert.com/*` (version `792f3619`, from `d5c602f`). `LIVE` is `"true"`, `workers_dev` is `false` (the router's noindex depends only on `LIVE`, so the workers.dev host would have served indexable copies). WordPress no longer serves the apex. It still serves `www`, see below. DNS for the apex and `www` was not changed.
 
-Nothing exists in Cloudflare yet for this site: no D1, no Worker, no secrets, no DNS or route change. Nothing was deployed or pushed.
+Checked after launch:
+- `node scripts/verify-live.mjs lawyerseoexpert.com`: all OK, 75 checks, on 2026-11-09 after `0427c2d` (that commit fixed the script, not the site: `/kit/` and `/variants/` are 404 on production by design, and `/login/` is a redirect).
+- Old WordPress URLs from `src/data/redirects.ts` 301 in one hop to a 200 page, query string kept.
+- `/intake` and `/intake/*` still reach `rudin-intake-staging` (same answer as before launch).
+- `www` answers with WordPress's own 301 to the apex, path and query kept (`x-powered-by: PHP`). So `www` legacy URLs take two hops. This depends on WordPress staying up: see step 3 below.
+- `robots.txt`, `sitemap-index.xml` and the IndexNow key file are 200 with no noindex. IndexNow: all 34 sitemap URLs sent on 2026-11-09, answer 202.
 
-Design system and homepage built (Tile A, logo concept 3): `docs/design-system.md`, screenshots in `docs/shots/`. The homepage `/` is real copy from `content/home.md` with designed placeholders where captures are missing. Still placeholder pages: `/contact-us/` (lead form and booking dialog wired), `/thank-you/`, `/404`, `/privacy-policy/` (noindex until written). Open TODOs are marked `TODO(design)`, `TODO(copy)`, `TODO(owner)`, `TODO(Cloudflare)`, `TODO(blog)`: search for `TODO(`.
+Cloudflare, as set up for launch:
+- D1 `lse-site` (production) has migrations 0001 to 0003 recorded as applied. `lse-site-preview` was not checked.
+- Secrets on the Worker: `IP_SALT`, `TURNSTILE_SECRET`, `GA4_API_SECRET`, `REDDIT_CAPI_TOKEN`. **`META_CAPI_TOKEN` is not set**, so Meta gets browser events only.
+- Turnstile widget "lawyerseoexpert.com", Managed (as LCME's), hostnames apex, `www` and the workers.dev host. Site key in `src/data/site.ts`.
+- Email Sending on `notify.lawyerseoexpert.com` only. Its 6 DNS records all sit under `notify.` (43 records before, 49 after). Sender `leads@notify.lawyerseoexpert.com`. One test lead arrived at fahim@legalcmoexpert.com with DKIM, SPF and DMARC passing, Turnstile ok, and the lead's address as Reply-To. Only `fahim@wpseogeeks.com` is a verified destination address; mail to `fahim@legalcmoexpert.com` works because `notify.` is onboarded, and counts toward the Workers Paid plan's 3,000 included sends a month.
+- Tracking (GA4, tag gateway, Meta, Reddit, Search Console): `docs/tracking.md`.
+- Workers Builds is **not connected**. Deploys are `npx wrangler deploy` from `site/` on `rebuild`.
+
+The site: 34 indexable pages in the sitemap, built from the design system (`docs/design-system.md`). `/privacy-policy/` and `/terms-and-conditions/` launched with marked placeholders (`data-placeholder`; 10 and 8), the owner's default. A strict build (`STRICT_REDIRECTS=1 npm run build`) fails only on those. Open TODOs are marked `TODO(`.
 
 ## Next steps
 
-1. Build the inner pages with the components in `docs/design-system.md`. Every planned page is in `src/data/pages.ts`; the build warns about links to unbuilt ones and placeholders, and a launch build fails on both.
-2. Before launch: recapture the search result at full size, the Search Console and result captures (placeholders list on the homepage), confirm Josh's photo, and have the judge check every row in `src/data/worklog.ts`.
-3. As each redirect target page ships, remove it from `pendingRedirectTargets` in `src/data/redirects.ts`. A launch build must pass with `STRICT_REDIRECTS=1 npm run build`.
-4. Write the privacy policy (tracking, Turnstile, Calendly and ad-pixel disclosures), then drop `noindex`. Add the Meta verification tag to `Base.astro` once the dataset exists.
-5. Keep `check-unique` clean as pages land. Refresh the snapshot when LCME ships (`npm run refresh-lcme-snapshot`, commit).
-6. Port the fuller e2e specs (forms, tracking, Meta) from LCME once markup is fixed.
+1. Fill the privacy and terms placeholders (entity name, address, retention, governing law and the rest; tracking, Turnstile, Calendly and pixel disclosures). Then the strict build passes.
+2. After 48 hours: `node scripts/broken-report.mjs` and read Workers Logs for `_failed` events. Watch Search Console coverage and the redirects.
+3. Before WordPress is retired: add a Cloudflare Redirect Rule `www` to apex keeping path and query (free plan, as LCME's), so `www` stops depending on WordPress and legacy `www` URLs take one hop. Needs the owner's OK.
+4. Set `META_CAPI_TOKEN` (owner `!` command) if Meta server events are wanted.
+5. Workers Builds: now that `main` equals `rebuild`, it can be connected with `main` as the production branch (build `npm ci && npm run check && npm run build`, deploy `npx wrangler deploy`, preview `npx wrangler preview`). Until then, never let an old `main` build reach this Worker. Check a branch reaches its Preview, and prove rollback once.
+6. The consultant page's own-SERP capture still shows the old LCME-style title (`src/data/proof.ts`). Recapture once Google shows LSE's new title.
+7. Keep `check-unique` clean. Refresh the snapshot when LCME ships (`npm run refresh-lcme-snapshot`, commit).
+8. One Calendly test booking then cancel, with the owner's OK, proves `bookings` and `schedule_call`.
 
-## Cloudflare and owner steps still to do, in order
+## Owner steps still open
 
-Account `afdd6dc89aef390d5327db09d0c00b8f`, zone `lawyerseoexpert.com`. Auto mode refuses some of these; give the owner the `!` command.
+Account `afdd6dc89aef390d5327db09d0c00b8f`, zone `lawyerseoexpert.com`. Auto mode refuses deploys, D1 writes, `wrangler secret put`, Email Sending setup and DNS changes: give the owner the `!` command.
 
-1. GitHub: confirm Cloudflare's GitHub app covers `SM-Fahim/Lawyer-SEO-Expert`. Push the `rebuild` branch only when the owner says.
-2. Create the D1 databases: `npx wrangler d1 create lse-site --location enam` and `lse-site-preview`. Paste both IDs into `wrangler.jsonc` (the empty `database_id` fields). Apply migrations to each: `npx wrangler d1 migrations apply lse-site --remote` and the preview one. Apply `0002_ga4_sent.sql` before GA4 is switched on.
-3. Create the Worker through Workers & Pages, GitHub, named exactly `lawyerseoexpert-site`. Build command `npm ci && npm run check && npm run build`, deploy `npx wrangler deploy`, preview `npx wrangler preview`, preview builds on. Check a branch really reaches its Preview. Prove rollback once.
-4. Turnstile: new widget for `lawyerseoexpert.com` and `lawyerseoexpert-site.fahim-afd.workers.dev`. Site key into `turnstileSiteKey` in `src/data/site.ts`. Secrets via `wrangler secret put` (the owner pastes at the prompt): `TURNSTILE_SECRET`, `IP_SALT`.
-5. Email Sending on `notify.lawyerseoexpert.com`: `npx wrangler email sending enable notify.lawyerseoexpert.com` (the CLI). Snapshot the apex and zone DNS before and diff after: every new record must sit under `notify.`. Not `mail.` (cPanel mail server, A record, DNS only), not the apex, never Email Routing. The owner clicks the verification link for each destination address (`fahim@wpseogeeks.com`, `fahim@legalcmoexpert.com`). `hello@lawyerseoexpert.com` must exist as a cPanel mailbox or forwarder.
-6. Secrets: `REDDIT_CAPI_TOKEN` (the old plugin's token, by key name only), `GA4_API_SECRET`, `META_CAPI_TOKEN` (optional). Trap: `wrangler secret put` uploads an empty value if a pipe before it fails and still says Success. Secrets on the production Worker do not reach Previews.
-7. GA4 property and measurement ID into `wrangler.jsonc` and `site.ts` (both places). Meta dataset ID likewise, plus the domain verification tag. Google tag gateway on the zone. GA4 admin: key events `generate_lead` and `schedule_call`, `calendly.com` unwanted referral, custom dimension `source_form`.
-8. Pre-launch checks on the workers.dev host (set `LIVE` stays false): test lead arrives, Reply-To works, row in D1, failure drills, one Calendly test booking then cancel. Each live side effect needs the owner's OK.
-9. Launch (Phase 5, owner OK on the exact change): uncomment the route in `wrangler.jsonc` (`lawyerseoexpert.com/*`, zone `lawyerseoexpert.com`), set `LIVE` to `"true"` and `workers_dev` to `false`, DNS per the owner, `www` redirect rule. Then `node scripts/verify-live.mjs lawyerseoexpert.com`, `scripts/indexnow.mjs --send --all` (needs `INDEXNOW_KEY`, the file name in `public/*.txt`), submit the sitemap, `scripts/broken-report.mjs` after 48 hours.
-10. Uptime: `/api/health` returns 503 with `outboxStuck: true` after 15 minutes of an unsent lead. `status.lawyerseoexpert.com` is the existing `uptime-monitor` Worker.
+1. Retire WordPress (owner's call, after step 3 above): LCME's order was the `www` rule, then `AAAA @ 100::` proxied and remove the apex A record, then remove the install. Keep `mail.`, the cPanel records, `status.`, `alerts.`, `admin.`, `recordings.`, the verification TXT records and the `/intake` routes.
+2. `hello@lawyerseoexpert.com` must exist as a cPanel mailbox or forwarder.
+3. Bing Webmaster Tools (see `docs/tracking.md`).
+4. Uptime: `/api/health` returns 503 with `outboxStuck: true` after 15 minutes of an unsent lead. `status.lawyerseoexpert.com` is the existing `uptime-monitor` Worker; point a check at `/api/health` if it doesn't already.
 
 ## Traps
 
