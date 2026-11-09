@@ -18,7 +18,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 
 const title = 'Law Firm SEO Consultant | A Second Opinion, Then the Work';
 const description =
-  'Law firm SEO consultant, agency or in-house? Vet any of them in an hour, spot the red flags, keep your accounts and know when a second opinion pays.';
+  'A law firm SEO consultant who checks your live site, not the reports, then leads the fixes. How to vet one, the red flags, who owns what, and the cost.';
 const path = '/law-firm-seo-consultant/';
 const depth = await getDepth('law-firm-seo-consultant');
 
@@ -32,43 +32,30 @@ const epRange = [
   { l: 92, t: 89.6, w: 4.3, h: 2.4 },
 ];
 
-// Depth section 3: promises that should end a pitch.
+// Depth section 4 (v4): promises that should end the meeting. The first three are Google's own warnings.
 const promises = [
   { title: 'A guaranteed #1 spot.', text: 'Google states that no one can guarantee a #1 ranking on Google.' },
-  { title: 'A special relationship with Google, or “priority submit”.', text: 'Google names both as claims to be wary of.' },
-  { title: 'Methods kept secret.', text: 'Google warns against an SEO that is secretive or won’t clearly explain what it intends to do.' },
-  { title: 'A link back to the SEO as a condition.', text: 'Google says a site should never have to link to its SEO.' },
-  {
-    title: 'A secret trick for AI answers.',
-    text: '<a href="https://developers.google.com/search/docs/appearance/ai-features">Google says AI Overviews and AI Mode need</a> no special schema, AI text file or extra markup.',
-  },
-  { title: 'Results with no dates or starting point.', text: 'A percentage with no period and no baseline can’t be checked by anyone.' },
+  { title: 'A special relationship with Google.', text: 'Google names it as a claim to be wary of.' },
+  { title: 'Methods kept secret.', text: 'Google warns against an SEO who won’t clearly explain what it intends to do.' },
+  { title: 'A page for every keyword.', text: 'A page that only repeats another one splits the firm’s strength.' },
+  { title: 'Stories in your lawyers’ voice that never happened.', text: 'Made-up experience puts readers, and the firm, at risk.' },
+  { title: 'A separate fee for AI answers.', text: 'Google’s AI mostly quotes pages that rank already. Paying for “AI” work before the site ranks buys the wrong thing.' },
 ];
-// Depth section 4: the access each job needs.
+// Depth section 5 (v4): the access each job needs.
 const access = [
   { title: 'For a review.', text: 'Read access to Search Console at most. A second opinion should never need the keys.' },
   { title: 'For hands-on work.', text: 'Manager access on the Business Profile and full-user access in Search Console, with the firm as owner.' },
   { title: 'For the website.', text: 'A named login for each person, removed when the work ends.' },
 ];
-// Depth section 5: when a second opinion pays.
+// Depth section 6 (v4): when a second opinion pays.
 const moments = [
-  { title: 'Calls are down, but the report says traffic is up.', text: 'The new traffic may come from searches that never bring a client.' },
-  { title: 'Rankings fell after a site change.', text: 'Pages that moved or vanished without redirects lose what they had earned.' },
+  { title: 'Calls are down, but the report says traffic is up.', text: 'The visits may come from searches that never bring a client, or the tracking may have stopped.' },
   {
     title: 'A redesign is planned.',
-    text: 'A review before launch lists the pages and rankings to protect. Our <a href="/lawyer-web-design-development/">law firm web design</a> page covers that move.',
+    text: 'A review first lists every page that brings in searchers, so none loses its address. See <a href="/lawyer-web-design-development/">law firm web design</a>.',
   },
-  { title: 'A renewal is on the table.', text: 'Check the next proposal against what the current work has produced.' },
-  { title: 'Nobody can say who does the work.', text: 'A firm should know the names behind its account.' },
-  { title: 'The firm has added a practice area or an office.', text: 'New pages and a new profile change what the plan should be.' },
-];
-// Supplementary H3 3: what goes wrong when a firm hires on the pitch alone.
-const patterns = [
-  { title: 'A long contract with no way out.', text: 'The firm pays through months of poor results because leaving costs more.' },
-  { title: 'Accounts set up in the vendor’s name.', text: 'The Business Profile or analytics leave with the vendor, and the firm starts again.' },
-  { title: 'A site built on a platform the firm can’t take with it.', text: 'The pages, and the rankings they earned, stay behind.' },
-  { title: 'Reports in traffic, not calls.', text: 'Months pass before anyone notices that the phone isn’t ringing more.' },
-  { title: 'A new person on the account that nobody mentioned.', text: 'The senior name from the pitch is gone by month two.' },
+  { title: 'An office has moved.', text: 'The order matters: the firm’s own website first, then every directory, and only then the Google profile.' },
+  { title: 'A renewal is on the table.', text: 'Check the next proposal against the calls the current work has produced.' },
 ];
 ---
 <InnerPage
@@ -110,7 +97,6 @@ const patterns = [
     <div slot="promises" class="bsv-rows"><Rows variant="inline" items={promises} /></div>
     <div slot="access" class="bsv-rows"><Rows variant="inline" items={access} /></div>
     <div slot="moments" class="bsv-rows"><Rows variant="inline" items={moments} /></div>
-    <div slot="patterns" class="bsv-rows"><Rows variant="inline" items={patterns} /></div>
   </DepthZone>
 
   <FinalCta heading="Ask a law firm SEO consultant how many more calls you could get, and for how much." writeHref="#con-hero-form">

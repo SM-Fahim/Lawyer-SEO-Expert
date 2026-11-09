@@ -1,204 +1,169 @@
 ---
-# /law-firm-seo-consultant/ depth zone. Copy: content/v3/law-firm-seo-consultant.md (critic pass: content/v3/CRITIC-services.md).
-# Slots the page fills: serp (our own ranking, the only inner page that shows it), promises, access, moments, patterns (Rows).
+# /law-firm-seo-consultant/ depth zone, v4 (content/V4-BRIEF.md): written from our own practice
+# (research/EXPERTISE.md, item ids per section in content/v4/LEDGER.md).
+# Slots the page fills: serp (our own ranking, the only inner page that shows it), promises, access, moments (Rows).
 summary: >-
-  A law firm SEO consultant is a specialist who works out what holds a firm back in Google search and sets the order
-  of fixes. With us, the same person then leads the work that follows. This page compares a consultant with an agency,
-  a freelancer and an in-house hire, then gives an hour of tests to vet any of them, us included. It lists the
-  promises that should end a pitch, the access a consultant needs, who should own each account, and the moments when
-  a second opinion pays off. It closes with the rules on words like "specialist" and "expert", two beliefs that cost
-  firms money, and what goes wrong when a firm hires on the pitch alone.
-reviewed: 2026-11-08
-faqHeading: Questions about hiring a law firm SEO advisor.
+  As a law firm SEO consultant, we start with a review of what Google really receives from your site and what your
+  tracking really counts. Then Fahim sets the order of fixes and leads the work that follows. What matters most is
+  that the review checks the live site, not the reports about it, because the two often disagree.
+reviewed: 2026-11-09
+modified: 2026-11-09
+faqHeading: What firms ask before hiring an SEO consultant.
+faqStyle: accordion
 faq:
-  - q: What should we have ready for the call with Fahim?
+  - q: What do we need to bring to the free call?
     a: >-
-      Your website, your main practice areas and the cities you serve. Search Console access helps, but the call
-      works without it.
+      Your website, your main practice areas and the cities you serve. Fahim looks at your real rankings live on
+      the call, so it needs no access to your accounts. If you hire us, Search Console access comes later, at the
+      level the work needs.
+  - q: Do you sell a one-off audit or hourly advice?
+    a: >-
+      No. The free call is the second opinion, and the monthly work is where its advice gets done. A written plan
+      that nobody at the firm has time to carry out buys nothing, while the firms around it keep publishing. So we
+      sell the advice and the work together, from $2,000 a month.
   - q: Does a law firm SEO consultant need to be a lawyer?
     a: >-
-      Law firm SEO is marketing work, so what matters is knowing the advertising rules well enough to flag a risky
-      line. Josh Henderson, our Sales Director, is a Texas-licensed attorney who joins calls with firms and gives
-      business input, never legal advice.
+      No, but they need to know the advertising rules well enough to stop a risky line before it's published. We
+      read the state bar's own rules before we write for a firm. Josh Henderson, our Sales Director, has been
+      licensed in Texas since 2008 and joins calls with firms, offering business input only and never legal advice.
+  - q: Can we leave our current agency without losing rankings?
+    a: >-
+      Yes, as long as the firm keeps its site, its pages and its accounts. Before you switch, get owner access to
+      every account and a list of the work done so far. We then check that list against what the live site serves,
+      and every page that already draws searchers keeps its address.
+  - q: Can a consultant call our lawyers "specialists" or "experts"?
+    a: >-
+      Be careful with both. Under [ABA Model Rule 7.2(c)](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_2_advertising/),
+      a lawyer may be called a certified specialist only when an approved body did the certifying and is named, and
+      each state writes its own version. We check every badge and credential at its source before it goes on a page.
+      Our own name uses "expert" about SEO work only and claims nothing about anyone's legal standing. Treat this as
+      marketing guidance rather than legal advice, and let your ethics counsel decide.
   - q: How long before a consultant's changes show up in calls?
     a: >-
-      That turns on the market, the practice and how the site stands today. Fahim gives a frank view on the call
-      rather than a date, and the El Paso result above shows the kind of change Google counts.
-  - q: Can we switch from our current agency without losing rankings?
-    a: >-
-      A firm keeps its rankings when it keeps its site, its pages and its accounts. Before a switch, get owner access to
-      everything in the firm's own name, and a list of the work done so far.
-  - q: Is the consulting priced separately from the hands-on work?
-    a: >-
-      The consulting and the work come in one monthly price, from $2,000 a month. Market prices and pricing models are
-      compared in our [law firm SEO cost guide](/seo-pricing/).
+      The first three months or so go on groundwork, and new pages start to move after that. How fast calls follow turns
+      on how crowded your market is, how many practice areas you want and the state of the site today. The chart at
+      the top is one example: an El Paso injury firm's profile, which Google counted at 23 calls from May to July
+      2026. In the six months before we started, it had 9.
 authorLine: >-
-  Over 6.5 years, Fahim has ranked or tracked more than 150,000 keywords for 67+ businesses. In 2018, Fahim's own
-  Python blog outranked W3Schools within three months.
+  In 6.5 years, Fahim has ranked or tracked more than 150,000 keywords across 67+ businesses. Fahim runs the first
+  review on every account we take on.
 sources:
   - url: https://developers.google.com/search/docs/fundamentals/do-i-need-seo
     publisher: Google Search Central
     title: Do you need an SEO?
-  - url: https://developers.google.com/search/docs/appearance/ai-features
-    publisher: Google Search Central
-    title: AI features and your website
   - url: https://support.google.com/webmasters/answer/7687615
     publisher: Search Console Help
     title: Managing owners, users, and permissions
-  - url: https://support.google.com/business/answer/3403100
-    publisher: Google Business Profile Help
-    title: Manage your Business Profile owners and managers
   - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_2_advertising/
     publisher: American Bar Association
     title: "Rule 7.2: Communications Concerning a Lawyer's Services: Specific Rules"
-  - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_3_responsibilities_regarding_nonlawyer_assistant/comment_on_rule_5_3/
-    publisher: American Bar Association
-    title: "Rule 5.3 Responsibilities Regarding Nonlawyer Assistance: Comment"
-  - url: https://www.lawsociety.bc.ca/for-lawyers/act-rules-and-code/code-of-professional-conduct/chapter-4-%E2%80%93-marketing-of-legal-services/
-    publisher: Law Society of British Columbia
-    title: "Code of Professional Conduct for BC, Chapter 4: Marketing of legal services"
-  - url: https://cba.org/resources/practice-tools/the-ethics-of-advertising-a-toolkit-for-lawyers/the-rules-of-advertising/
-    publisher: Canadian Bar Association
-    title: "The ethics of advertising: the rules of advertising"
-  - url: https://www.lawsociety.com.au/practising-law-in-NSW/ethics-and-compliance/regulatory-compliance/advertising-legal-services
-    publisher: Law Society of NSW
-    title: Advertising legal services
 ---
 
-## Consultant, agency or in-house: who should run a law firm's SEO?
+## What a law firm SEO consultant checks first
 
-A law firm SEO consultant is one specialist who judges what holds a firm back in search and sets the order of fixes. An agency adds a production team, and an in-house hire works for the firm alone.
+A consultant's first review decides what every later month is spent on. Ours looks at three things on the live site: the code each page sends to Google, what the tracking really records, and what every directory says about each office. Then we hold each one up against what the firm has been told.
 
-Each model can work. What separates them is who does the hands-on work once the problems are found, and who answers for the result.
+We look at the site itself because a report can't show what it misses. A quiet month can mean fewer visitors or a broken tag, and only a check of what the browser sends tells the two apart.
 
-| Model | Who does the work | What the firm must supply | Where it goes wrong |
-|---|---|---|---|
-| Independent consultant | One specialist who diagnoses and plans | Someone with time to carry out the fixes | Good advice stalls when nobody acts on it |
-| SEO agency | A team, with the work split by task | Approvals, access and one point of contact | The person who pitched may never touch the account |
-| Freelancer | One person doing set tasks | The plan, plus checks on quality | Tasks get done while nobody owns the result |
-| In-house marketer | A staff member who knows the firm | Salary, tools and training | SEO competes with every other job on their desk |
+[more "See what our first reviews have turned up"]
 
-We sit between the first two rows. Fahim acts as the consultant on every account and leads the work, and a small team handles production.
+These came from injury firms' sites, and each one would have worked against any new page or link:
 
-The monthly work itself is set out on our [law firm SEO services](/law-firm-seo-services/) page.
+- **A tracking number built into a template.** On one site, an SEO title template carried a call tracking number, and an office page had an old number typed in by hand. Neither changed when the firm's numbers did.
+- **Duplicate listings that kept multiplying.** On one review platform, a firm's duplicate listings went from three to five in under a month, because nobody owned them.
+- **A guide coded as a service.** A "what to do after a crash" guide had been marked up as a service page. Google reads that code as a statement of what the page is, so we corrected it.
+- **A page nothing linked to.** A page explaining how truck crashes are investigated had no internal links pointing to it. Moving it under the main truck page fixed that.
+- **A credential the lawyer didn't hold.** One site listed a lawyer in an association he didn't belong to, and another named an award level the lawyer didn't hold.
 
-A firm with a capable marketer can act on a diagnosis alone. A firm with nobody free to act needs the hands as well. Whichever model a firm picks, the same vetting applies, and most of it fits into an hour.
+[/more]
 
-## How do you vet a law firm SEO consultant in an hour?
+A ranking report misses problems like these. So the fixes come first, and the new pages after.
 
-Vet a law firm SEO consultant by testing claims you can check yourself, starting with [Google's own list of questions](https://developers.google.com/search/docs/fundamentals/do-i-need-seo). In an hour, a firm can search the consultant's own terms, read a sample report and confirm who owns its accounts.
+## Consultant, agency or in-house: who does the work after the review
 
-Google suggests asking for past work, whether the SEO follows Google Search Essentials, what results to expect and when, and what experience they have in your industry and city. The tests below turn those questions into checks. Run each one on every consultant on your list, us included.
+Firms usually choose between four set-ups. The difference is who does the hands-on work once the problems are found.
+
+| Set-up | Who does the work | Where it tends to go wrong |
+|---|---|---|
+| Independent consultant | One specialist who diagnoses and plans | The plan stalls when nobody at the firm has time to act on it |
+| SEO agency | A team, with tasks split between people | The person who pitched may never touch the account |
+| Freelancer | One person doing set tasks | Tasks get done while nobody owns the result |
+| In-house marketer | A staff member who knows the firm | SEO competes with every other job on their desk |
+
+We sit between the first two rows. Fahim is the consultant on every account, joins the calls and reviews all of it, while a small team handles production. So whoever found the problems also answers for the fixes.
+
+[more "See how we split the work and checks"]
+
+Nobody here signs off their own work. Each page is checked for accuracy, for how it reads and for repeats across the site, by someone who didn't write it.
+
+The lawyer's share stays small. From the lawyer we need only the calls a lawyer must make: which results may be published, how the fee is worded, case strategy and the firm's history.
+
+We change our own process when it fails, too. When we traced a batch of awkward sentences on one account, most of them came from our own writing rules. We cut the rules back and added a pass that reads each page aloud.
+
+[/more]
+
+## How to vet any SEO consultant, us included
+
+Judge a consultant by what you can check yourself. [Google's advice on hiring an SEO](https://developers.google.com/search/docs/fundamentals/do-i-need-seo) suggests asking for past work and what to expect, and when. Run these tests on everyone on your list.
 
 [checklist]
-- **Search for what they sell.** Type the consultant's own service terms into Google. A consultant who can't rank their own site should be able to say why.
+- **Search for what they sell.** See where their own site lands for their own service words.
+- **Ask them to open your site's code with you.** A real review reads what each page sends to Google.
+- **Ask how they count a call.** Answered calls from call tracking, set against the same months a year earlier.
+- **Ask where their numbers come from.** Official data first, then news, and never another firm's blog.
+- **Ask who checks the work.** The writer should never approve it.
+- **Give read access only.** For an audit, Google advises read access to Search Console.
 
-  Our answer: our site is the first organic result for <q data-no-check>lawyer seo expert</q> in US Google results, with only ads above it (captured 8 November 2026).
-- **Ask who does the work.** Get names for who plans, who writes, who earns links and who joins your calls.
-
-  Our answer: Fahim leads every account and is on every call, and a small team handles production.
-- **Ask for a sample report.** It should show calls and qualified leads by source, not only traffic and rankings.
-
-  Our answer: a monthly log of the work, rankings and AI answers, with calls and forms by source.
-- **Ask about a ranking they lost.** A straight account of one drop and its cause tells you more than a page of wins.
-
-  Our answer: ask us on the call.
-- **Give read access first.** For an audit, Google advises read access to Search Console, not write access.
-
-  Our answer: the free call with Fahim runs without any access to your accounts.
-- **Ask who will own each account.** The firm should own the site, the domain, the Business Profile, Search Console and analytics.
-
-  Our answer: the firm owns the site, the content and the accounts we create.
-- **Ask how they check Google's AI answers.** A real method names the searches, the dates and the pages cited, and sells no secret file.
-
-  Our answer: we check Google's AI answers for your key searches every month and log what they show.
-
-The first test is the quickest. Search Console puts our site's average position for that same search at 1.2 over the 16 months from July 2025 to November 2026. The result is our own [lawyer SEO expert](/) homepage, on a small site with a Semrush Authority Score of 10 (Semrush data, 6 November 2026).
+The first test is the quickest to run on us. Our site is the first organic result for <q data-no-check>lawyer seo expert</q> in US Google results, with only ads above it.
 
 [slot serp]
 
-The tests show what a consultant can prove. The pitch shows what they promise, and some promises are reasons to walk away.
+[more "See how we answer each test ourselves"]
 
-## Which promises should make you walk away from an SEO pitch?
+On search, Search Console puts our average position for that same search at 1.2 over the 16 months from July 2025 to November 2026. The result is our own [lawyer SEO expert](/) homepage, on a small site with a Semrush Authority Score of 10.
 
-Walk away from a law firm SEO pitch that guarantees a #1 ranking, claims a special relationship with Google, or won't explain its methods. Google's advice on hiring an SEO lists all three as warning signs.
+On the code, we view the page source, run Google's rich results test and reload the page with scripts switched off. A phone number or a block of schema that only appears with scripts on is one Google may never see.
 
-These are the promises to treat as a reason to end the meeting.
+On calls, the profile's figure is Google's own, and the website's comes from call tracking, which logs whether each call was answered. A tap on the number, on its own, doesn't count.
+
+On numbers, our rule is short. If we can't point to the source of a number, it doesn't go on the page. Even a figure the lawyer remembers gets checked before it's published.
+
+On access, the free call needs none at all.
+
+[/more]
+
+## Promises that should end the meeting
+
+Some promises tell you to stop listening. Google's own advice names the first three, and the other three are rules we hold for our own work.
 
 [slot promises]
 
-**A guarantee is the clearest test of the lot.** Rankings move with Google's systems and with every competing firm, so a consultant who promises a position is promising something nobody controls.
+We also write no "best" or "#1" claims for a firm, and promise no ranking for our own work.
 
-A pitch can sound right and still leave the firm exposed, if the consultant ends up holding the firm's accounts.
+## Who should own the accounts, and what access does a review need?
 
-## Which accounts should the firm own, and what access does a consultant need?
-
-The law firm should own every account a consultant touches: the website, the domain, the Google Business Profile, Search Console and analytics. The consultant gets user access, and only as much as the work needs.
-
-Search Console has three levels of user. [Google's guide to Search Console permissions](https://support.google.com/webmasters/answer/7687615) gives owners full control, and only owners can add or remove users. Full users see all the data and can take some actions, while restricted users get view rights on most data.
-
-A Business Profile works the same way. A profile can have more than one owner but only one primary owner, and [managers can do almost everything](https://support.google.com/business/answer/3403100) except add or remove users or remove the profile.
-
-So the access a consultant needs depends on the job.
+The firm should own every account a consultant touches: the website, the domain, the Google Business Profile, Search Console, analytics and the call tracking. The consultant gets a named login at the level the job needs, and it goes when the job ends.
 
 [slot access]
 
-The same rule holds when a consultant works next to a firm's own marketer or current agency. Each person gets their own login at the level their role needs, and shared passwords go, because nobody can then tell who changed what.
+[more "See how we set up the firm's accounts"]
 
-When a firm stops working with us, it keeps the site, the content and the accounts we created, since they were in its name from the start. The month-to-month terms are set out on our [law firm SEO pricing](/seo-pricing/) page.
+Search Console sets those levels itself. [Google's guide to its permissions](https://support.google.com/webmasters/answer/7687615) gives owners full control, and only an owner can add or remove users. So the firm stays the owner, and everyone else is a user.
 
-Clear ownership makes a second opinion easy, because a reviewer can be given read access in minutes.
+The firm owns its lead data: where each lead came from, which page it came from and where visitors stopped. Its vendors, us included, work for that data, not the other way round.
 
-## When is a second opinion on your SEO worth getting?
+Phone numbers follow one rule. The firm's real local number goes in the site's code, its schema and every directory. A tracking number may sit only as the main number on the Google profile, with the real number added as the second one, and that second number is the step most often skipped.
 
-A second opinion on law firm SEO is worth getting when calls fall while the reports look fine, before a redesign, or before agreeing to a long contract. It needs no change of provider, only a look at the firm's real results.
+Shared passwords go. With one login per person, anyone can see who changed what.
 
-These are the moments when an outside look pays for the time it takes.
+[/more]
+
+When a firm stops working with us, it keeps everything, because it was in the firm's name from the start.
+
+## When a second opinion pays, and what ours costs
+
+A second opinion needs no change of provider. These are the moments when it pays:
 
 [slot moments]
 
-Our version is a free 30-minute call, where Fahim looks at the firm's real rankings live.
-
-A good review checks what the current provider has published about the firm's lawyers, including words like "specialist".
-
-## Can your SEO consultant call your lawyers "specialists" or "experts"?
-
-An SEO consultant can describe what your lawyers do, but words like "specialist" and "certified" are limited by bar and law society rules, and the firm answers for them. In the US, each state sets its own version of those rules.
-
-Most states build on the ABA Model Rules. [ABA Model Rule 7.2(c)](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_2_advertising/) bars stating or implying that a lawyer is a certified specialist unless an approved or ABA-accredited body certified them, and the body is named.
-
-The duty stays with the lawyers when a vendor writes the words. Comment 3 to [ABA Model Rule 5.3](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_3_responsibilities_regarding_nonlawyer_assistant/comment_on_rule_5_3/) asks a lawyer who uses an outside service to make reasonable efforts to keep that work in line with the lawyer's own obligations.
-
-British Columbia spells the vendor point out. [Rule 4.3-1 of the BC Code](https://www.lawsociety.bc.ca/for-lawyers/act-rules-and-code/code-of-professional-conduct/chapter-4-%E2%80%93-marketing-of-legal-services/) bars "specialist" or any similar title suggesting recognized special status. The same rule asks lawyers to take all reasonable steps to discourage anyone else from using such a title about them.
-
-Across the rest of Canada, each provincial or territorial law society writes its own code. The national Model Code, as the [CBA's advertising toolkit](https://cba.org/resources/practice-tools/the-ethics-of-advertising-a-toolkit-for-lawyers/the-rules-of-advertising/) quotes it, bars advertising a lawyer as a specialist in a field unless the lawyer has been certified.
-
-In Australia, rule 36.2 of the Australian Solicitors' Conduct Rules keeps "accredited specialist" for solicitors accredited by the relevant professional association, as the [Law Society of NSW sets out](https://www.lawsociety.com.au/practising-law-in-NSW/ethics-and-compliance/regulatory-compliance/advertising-legal-services).
-
-When a firm searches for a law firm SEO specialist, the specialist is the SEO person. The "expert" in Lawyer SEO Expert refers to our SEO work and makes no claim about anyone's legal standing.
-
-This is general information about marketing, not legal advice. Rules differ by state and country, so check yours with your bar, law society or ethics counsel.
-
-## Beliefs about SEO consultants that cost firms money
-
-Two beliefs about hiring an SEO consultant sound sensible in a sales meeting and still cost law firms money. After them comes the opposing view: what goes wrong when a firm hires on the pitch alone.
-
-### Is a law-only SEO provider always the safer pick?
-
-A law-only SEO provider knows the vocabulary, but the safer pick is the one that can show checkable results on legal searches and knows the advertising rules. Those two tests matter more than the client list.
-
-A provider that serves other industries too can still be strong, if it passes both tests. A law-only provider with no dated results is no safer for the label. Fahim's own record spans other fields, and every law firm result we publish comes from personal injury firms.
-
-### Is advice alone cheaper than hands-on SEO?
-
-Advice alone costs less up front, but its value depends on someone at the firm doing the work it describes. A plan that sits unread for a quarter buys nothing, while the firms above it keep publishing.
-
-The cheaper route is the one that gets done. With us, the free call is the advice, and the monthly work is where it gets carried out.
-
-### What goes wrong when a firm hires on the pitch alone
-
-A firm that hires on the pitch alone usually finds the gaps once the contract has started, when they are hardest to fix. These are the patterns to check for before then.
-
-[slot patterns]
-
-A law firm SEO consultant worth hiring passes every test on this page in writing, and is glad to be asked.
+Ours starts with a free 30-minute call, where Fahim looks at your firm's real rankings live. If you hire us, the review and the work come in one price, from $2,000 a month, with no setup fee and the number in writing first. What moves the number is on our [law firm SEO pricing](/seo-pricing/) page, and the monthly work itself is set out under [law firm SEO services](/law-firm-seo-services/).

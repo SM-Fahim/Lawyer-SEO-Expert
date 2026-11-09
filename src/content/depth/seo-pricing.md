@@ -1,59 +1,45 @@
 ---
-# /seo-pricing/ depth zone. Copy: content/v3/seo-pricing.md (critic pass: content/v3/CRITIC-services.md).
-# Market figures sit only in "What other agencies publish as law firm SEO prices" (DEPTH-BRIEF 18, rulings 1 and 23);
-# each amount is in PRICES_BY_PAGE['/seo-pricing/'] (scripts/check-dist.mjs) and each agency domain in
-# src/data/nofollow.ts. Slots the page fills: drivers, traps (Rows), calls (the 139 capture), bands mid and price.
+# /seo-pricing/ depth zone, v4 (content/V4-BRIEF.md): written from our own practice
+# (research/EXPERTISE.md, item ids per section in content/v4/LEDGER.md).
+# Market figures sit only in "What other agencies publish as law firm SEO prices", one table (V4 task: R2's limit of
+# 3 outside links is waived for its price sources only); each amount is in PRICES_BY_PAGE['/seo-pricing/']
+# (scripts/check-dist.mjs) and each agency domain in src/data/nofollow.ts.
+# Slots the page fills: drivers (Rows), proof (the new profile's calls), calls (the 139 capture); bands mid and price.
 summary: >-
-  Law firm SEO pricing is what a firm pays each month for the work that gets it found, and called, from Google search,
-  the Map pack and AI answers. With us it starts at $2,000 a month for the whole job, with no setup fee. This guide
-  explains what that price covers, then compares the pricing models law firms meet and the bar rules that make two of
-  them risky. It shows what moves the monthly number and which costs sit outside a quote. It lists what other
-  agencies publish, with sources and dates, and shows how to work out the cost of each qualified lead. A checklist
-  then compares quotes term by term. It ends with prices for firms outside the US, cheap quotes and where SEO pricing
-  goes wrong.
-reviewed: 2026-11-08
+  Law firm SEO pricing with us is one monthly number, from $2,000 a month, for everything it takes to rank, with no
+  setup fee and no tiers to choose between. What matters most is how that number is set: Fahim works it out from
+  four things about your firm and puts it in writing before any work starts.
+reviewed: 2026-11-09
+modified: 2026-11-09
 faqHeading: What firms still ask about SEO cost.
+faqStyle: accordion
 faq:
-  - q: Do you charge by the hour or sell a one-off audit?
-    a: >-
-      We charge one monthly price for hands-on work. The 30-minute call that comes first is free, and Fahim
-      looks at your real rankings live in it.
-  - q: Why does law firm SEO cost more than SEO for other local businesses?
-    a: >-
-      Two things add work. Legal pages need care under advertising rules, and each practice and office needs its own
-      pages and profile. The price reflects that work, not the word "law".
   - q: Is the price the same for a personal injury firm and a family law firm?
     a: >-
-      The starting point is the same, from $2,000 a month. What differs is the work: a busy injury market can need
+      The starting point is the same, from $2,000 a month. The work differs: a crowded injury market usually needs
       more pages and links each month than a quieter practice, and the written number reflects that.
-  - q: What happens to the price if we add an office or a practice area?
+  - q: Can we start with one practice area and add more later?
     a: >-
-      Each new office needs its own page and Business Profile, and each new practice needs its own pages. Fahim gives
-      the new number in writing before the extra work starts.
-  - q: How long until SEO pays for itself?
+      Yes. The number reflects the practice areas you want to grow now. When you add one, it gets its own plan of
+      pages, and Fahim gives you the new number in writing before that work starts.
+  - q: Is a cheap SEO quote worth taking?
     a: >-
-      It pays for itself once the clients it brings cover the fee, which the break-even formula above works out from
-      your own numbers. The timing turns on your market and your site's starting point, so Fahim gives a view on the
-      call rather than a date.
+      Only if you know what it leaves out. A low figure buys less of something: pages, links, review work or
+      tracking. Without tracking, a firm can't tell whether the cheap work brings any calls at all, so the fair test
+      is the cost of each qualified lead, never the cost per month.
+  - q: We're outside the US. What currency do you quote in?
+    a: >-
+      US dollars, as for every firm we work with, and the number still comes in writing before work starts. Fahim
+      has worked in four countries, and two of the businesses there are Breakthrough Maths, based
+      in Ireland, and Idiya, based in New Zealand. When you set a local quote beside ours, ask whether it includes sales tax.
+  - q: What do we keep if we stop?
+    a: >-
+      All of it. The website, its pages and every account we opened for the firm stay with the firm, analytics and
+      the call tracking numbers too. The firm can leave at the end of any month.
 authorLine: >-
-  Fahim has grown 67+ businesses online across four countries and built more than 200 websites. Every firm's monthly
-  number comes from Fahim, in writing.
+  Fahim has built more than 200 websites and grown 67+ businesses online, in four countries. Fahim sets every law
+  firm's monthly number and sends it in writing.
 sources:
-  - url: https://ahrefs.com/blog/seo-pricing/
-    publisher: Ahrefs (updated August 15, 2024)
-    title: "SEO Pricing: How Much Does SEO Cost? (survey of 439 SEO providers)"
-  - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_4_professional_independence_of_a_lawyer/
-    publisher: American Bar Association
-    title: "Rule 5.4: Professional Independence of a Lawyer"
-  - url: https://nysba.org/ethics-opinion-1271-sharing-of-legal-fees-with-non-lawyer/
-    publisher: New York State Bar Association
-    title: Ethics Opinion 1271 (August 20, 2024)
-  - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_2_advertising/comment_on_rule_7_2/
-    publisher: American Bar Association
-    title: Comment on Rule 7.2
-  - url: https://www.azcourts.gov/accesstolegalservices/Questions-and-Answers/abs
-    publisher: Arizona Supreme Court
-    title: "Alternative Business Structures: Questions and Answers"
   - url: https://jurisdigital.com/services/law-firm-seo/
     publisher: Juris Digital (updated November 2026)
     title: Law Firm SEO Services (cost table)
@@ -66,230 +52,156 @@ sources:
   - url: https://seoprofy.com/blog/law-firm-seo-cost/
     publisher: SeoProfy (updated October 26, 2026)
     title: Law Firm SEO Cost
-  - url: https://webkeydigital.com/law-firm-seo-pricing/
-    publisher: Webkey Digital (updated June 13, 2026)
-    title: Law Firm SEO Pricing
   - url: https://fwd-lawyermarketing.com/pricing/
     publisher: Forward Lawyer Marketing (no date shown)
     title: Pricing
   - url: https://dagmarmarketing.com/seo-pricing/law-firm/
     publisher: Dagmar Marketing (no date; footer 2026)
     title: Law Firm SEO Pricing
-  - url: https://whitehat-seo.co.uk/seo-for-solicitors
-    publisher: Whitehat SEO (no date; footer 2026)
-    title: SEO for solicitors
-  - url: https://firstpage.com.au/industry/seo-for-lawyers-and-law-firms/
-    publisher: First Page (no date; footer 2026)
-    title: SEO for lawyers and law firms
-  - url: https://lawonline.ca/law-firm-seo/how-much-does-law-firm-seo-cost-canada/
-    publisher: LawOnline.ca (April 1, 2026)
-    title: How much does law firm SEO cost in Canada
-  - url: https://www.sra.org.uk/solicitors/standards-regulations/transparency-rules/
-    publisher: Solicitors Regulation Authority
-    title: SRA Transparency Rules (version in force from 11 April 2025)
+  - url: https://ahrefs.com/blog/seo-pricing/
+    publisher: Ahrefs (updated August 15, 2024)
+    title: "SEO Pricing: How Much Does SEO Cost? (survey of 439 SEO providers)"
+  - url: https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_4_professional_independence_of_a_lawyer/
+    publisher: American Bar Association
+    title: "Rule 5.4: Professional Independence of a Lawyer"
+  - url: https://developers.google.com/search/docs/fundamentals/do-i-need-seo
+    publisher: Google Search Central
+    title: Do you need an SEO?
 ---
 
-## What will law firm SEO cost your firm in 2026?
+## What our law firm SEO pricing pays for
 
-Law firm SEO costs from $2,000 a month with us, and that one price covers the whole job. Other agencies publish wider ranges, listed with their sources further down, and four things move any firm's number.
+Our law firm SEO pricing starts at $2,000 a month and covers all of the work. It pays for the pages and the links, the website's design, content and upkeep, the Google profile with its reviews, the tracking of calls and forms, and regular checks on where the firm ranks and what AI answers say.
 
-All prices on this page are in US dollars, except the three non-US rows, which use each publisher's own currency.
+The card at the top of this page shows what each of those parts costs a month when a firm hires it separately. Bought that way, they add up to the struck total.
 
-The one price covers everything a firm needs to rank. That means practice and location pages, links from relevant sites, Business Profile care and a review routine, and website design, content and upkeep. Call and form tracking, rank tracking and AI answer checks sit inside it too.
+We price it as one job because the parts lean on each other. A new practice page brings fewer calls while directories still show an old phone number. And a ranking is worth little when nobody can tell which calls it brought.
 
-The card at the top of this page lists what each of those parts typically costs a month when a firm hires it separately. Bought that way, the parts add up to the struck total on the card.
+[more "See what each month of the fee buys"]
 
-There are no tiers to pick between. Fahim puts each firm's number in writing before work begins, and no setup fee is charged.
+The first month goes mostly on groundwork: the firm's data, its real competitors, the law its pages will cover, a plan for every page and the major fixes. Our [law firm SEO services](/law-firm-seo-services/) page walks through the first 90 days.
 
-Our [law firm SEO services](/law-firm-seo-services/) page explains each part of the monthly work.
+After that, the fee pays for the steady work:
 
-How the price is billed matters as much as the amount, and law firms meet seven common pricing models.
+- new pages under each main practice page, published at a steady weekly pace, so no group of pages is left half built
+- a Google profile post for each new page, each with its own tagged link, so we can see which post sent the visit
+- the listing clean-up, which starts with about 30 directories and a second pass for the sites that block automated checks
+- link work built on material local reporters can use, such as data stories made from public crash records
+- a monthly record of the AI answers Google gives on the firm's main searches, with the pages they cite
+- how many calls came in, by Google's count and the call tracking system's, next to the same month last year
 
-## Which pricing model suits a law firm: retainer, project, hourly or per lead?
+[/more]
 
-A monthly retainer suits most law firm SEO, because the work runs every month and each month builds on the last. In [Ahrefs' survey of 439 SEO providers](https://ahrefs.com/blog/seo-pricing/), updated August 15, 2024, 78.2% charged a monthly retainer.
+## The four things that set your monthly number
 
-The other models have their uses, and two of them carry rule risks for lawyers. The table sets out all seven.
-
-| Model | How it bills | Who it suits | What to watch |
-|---|---|---|---|
-| Monthly retainer | A set fee each month for ongoing work | Firms that want calls to keep growing | What the fee includes, and the notice period |
-| Package or tier | Monthly counts of pages and links | Firms comparing quotes quickly | Counts stand in for outcomes |
-| Hourly | Time billed as it is used | One-off reviews and second opinions | Open-ended totals with no outcome attached |
-| Per project | One fee for a defined job | An audit, a site move or a page build | Nothing continues once the project ends |
-| Rankings-based | Fees tied to positions reached | Rarely a good fit for a law firm | Easy, low-value terms and risky shortcuts |
-| Pay per lead | A fee for each lead delivered | Firms buying volume quickly | Rules on paying for a recommendation |
-| Share of fees or per new client | A cut of what the firm earns | Risky for US firms | State fee-sharing rules |
-
-### Why is a cut of your legal fees a risky way to pay for SEO?
-
-[ABA Model Rule 5.4(a)](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_4_professional_independence_of_a_lawyer/) bars a lawyer from sharing legal fees with a nonlawyer, and each state applies its own version. An SEO deal paid as a share of fees, or per new client, can fall inside that ban.
-
-The New York State Bar Association has applied the rule to an online service. In [NYSBA Ethics Opinion 1271](https://nysba.org/ethics-opinion-1271-sharing-of-legal-fees-with-non-lawyer/), dated August 20, 2024, a nonlawyer-owned service kept a share of each legal fee, and that breached Rule 5.4(a). Because the service claimed to vet lawyers, the payment broke the rule against paying for a recommendation too.
-
-Paying per lead is a different case. Comment 5 to [ABA Model Rule 7.2](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_7_2_advertising/comment_on_rule_7_2/) lets a lawyer pay for leads, including online leads, on three conditions. The lead generator must not recommend the lawyer, the payment must fit Rules 1.5(e) and 5.4, and the generator's messages must meet Rule 7.1.
-
-State versions differ. Arizona, for one, [dropped its fee-sharing ban](https://www.azcourts.gov/accesstolegalservices/Questions-and-Answers/abs) from January 1, 2021, under its program for alternative business structures. You or your ethics counsel decide whether a pricing model fits your state's rules.
-
-This is general information about marketing, not legal advice. Rules differ by state and country, so check yours with your bar, law society or ethics counsel.
-
-## What moves the monthly number up or down?
-
-Four things move a law firm's monthly SEO number: market competition, the practice areas to grow, the number of offices, and the site's state today. Each one changes the amount of work a month needs.
-
-The drivers below are the ones to raise on any pricing call.
+Fahim sets each firm's number from four things. Each one changes how much work a month needs.
 
 [slot drivers]
 
 [slot proof]
 
-A brand-new Business Profile starts with no history at all. For a PI firm in New Orleans, a new profile got about 1 call in July 2026 and 9 in October, as it built a history.
+An extra office starts with no history at all. The newer of a New Orleans PI firm's two profiles shows how long the climb takes: Google counted about 1 call from it in July 2026 and 9 in October. That climb is part of the work an office adds.
 
-Reach is part of the market factor. A firm that wants statewide or national searches, not only local ones, takes on a wider field of competitors.
+[more "See how each played out on real accounts"]
 
-**Our price has no tiers, so no firm has to guess which level it needs.** Fahim checks these drivers against the firm's real competitors before giving a number.
+**The market.** For each main search, we list who holds the top five and how big their sites are. In a crowded city the firm has more ground to make up, so each month needs more pages and links.
 
-Two quotes with the same monthly number can still differ, because some leave out work that costs extra later.
+**The practice areas.** On one injury account, the plan came to about 60 pages across six practice areas. On another, the topic plan runs to 141 practice pages under 16 main ones. Each page is written, checked and linked, so every practice area adds work.
 
-## Which costs sit outside the monthly fee?
+**The offices.** Each office gets its own Google profile and its own posts, naming its own street. Two profiles that read as copies help neither office.
 
-The costs that agencies can quote on top of a monthly SEO fee include setup, content per page, links, site fixes, upkeep, call tracking and tools. With us, all of these sit inside the one price, and there is no setup fee.
+**The starting point.** On one injury account, our first homepage review found dollar results the firm hadn't approved, phone numbers it hadn't approved and a floating video box covering much of the screen. A site with more fixes like these needs more groundwork before new pages can move.
 
-Ask each agency the questions in the middle column before comparing monthly numbers.
-
-| Item | What to check in a quote | With us |
-|---|---|---|
-| Setup | Is there a one-time fee before work starts? | No setup fee |
-| Content | Are pages capped, and is each extra page billed? | Practice and location pages included |
-| Links | Are links part of the fee, or a separate line? | Links from relevant sites included |
-| Website fixes | Are design and content changes a separate project? | Design and content improvements included |
-| Upkeep and security | Is maintenance in the fee, or a separate care plan? | Maintenance and security included |
-| Call and form tracking | Who pays for tracking numbers and software? | Included |
-| Business Profile | Is each office's profile priced on its own? | Profile care and a review routine included |
-| Reporting and tools | Are rank and AI tools billed on top? | Rank tracking and AI checks included |
-
-Published price pages show why the questions matter. Dagmar, for one, gives separate monthly figures for links and for each extra office, and SeoProfy gives a per-article cost for legal writing. Dagmar's figures are in the table of published prices below.
-
-A new website is the one thing we price apart. Builds start from $2,000 and are quoted in writing, as part of our [law firm web design](/lawyer-web-design-development/) work.
-
-Knowing what sits inside a fee makes the published prices of other agencies easier to read.
+[/more]
 
 ## What other agencies publish as law firm SEO prices
 
-The agencies below publish monthly law firm SEO figures on their own sites. As of November 2026, the lowest starting figure in this set is SeoProfy's $1,000 for a solo practice, and the highest is Juris Digital's $100,000+ for a multi-office firm.
-
-Every figure is the publisher's own, about its own market, and dated as we found it on 8 November 2026. Only the Ahrefs row comes from a survey.
+Several agencies publish monthly law firm SEO figures, from SeoProfy's $1,000 for a solo practice to Juris Digital's $100,000+ for a multi-office firm. Each figure below is the publisher's own, dated as we found it on 8 November 2026.
 
 | Publisher | Published monthly figure | What it covers | Date shown |
 |---|---|---|---|
 | [Juris Digital](https://jurisdigital.com/services/law-firm-seo/) | $2,000 to $3,500 up to $25,000 to $100,000+ | Solo firms up to multi-office firms; "planning estimates" | Updated November 2026 |
 | [Hennessey Digital](https://hennessey.com/law-firm-seo/) | $2,000 to $6,000 up to $12,000 to $60,000 | One practice in one market, up to more practices and markets | Modified July 20, 2026 (page metadata only) |
-| [Grow Law](https://growlaw.co/seo-for-lawyers/law-firm-seo-cost) | From $2,500, $3,500 or $5,000 | Its own three plans, boutique firm up to competitive market | Updated October 23, 2026 |
-| [SeoProfy](https://seoprofy.com/blog/law-firm-seo-cost/) | $1,000 to $3,500 up to $20,000 to $50,000+ | Solo practice up to national firms; hourly $75 to $200 | Updated October 26, 2026 |
-| [Webkey Digital](https://webkeydigital.com/law-firm-seo-pricing/) | $2,500 to $15,000 | Its market range; Starter package $2,500 to $3,800 | Updated June 13, 2026 |
+| [Grow Law](https://growlaw.co/seo-for-lawyers/law-firm-seo-cost) | From $2,500, $3,500 or $5,000 | Its own three plans | Updated October 23, 2026 |
+| [SeoProfy](https://seoprofy.com/blog/law-firm-seo-cost/) | $1,000 to $3,500 up to $20,000 to $50,000+ | Solo practice up to national firms | Updated October 26, 2026 |
 | [Forward Lawyer Marketing](https://fwd-lawyermarketing.com/pricing/) | From $1,995, $3,295 or $4,795 | Its three SEO plans | No date shown |
 | [Dagmar Marketing](https://dagmarmarketing.com/seo-pricing/law-firm/) | $1,500 to $2,300 for one office | Local SEO; $750 to $1,500 per extra office | No date; footer 2026 |
-| [Ahrefs survey of 439 providers](https://ahrefs.com/blog/seo-pricing/) | Agencies $3,209; consultancies $3,250; freelancers about $1,349 | Average retainers, all industries, counted at the top of each tier | Updated August 15, 2024 |
+| [Ahrefs survey of 439 providers](https://ahrefs.com/blog/seo-pricing/) | Agencies $3,209; consultancies $3,250; freelancers about $1,349 | Average retainers, all industries | Updated August 15, 2024 |
 
-### Published figures outside the US
+Read every row with care. Ranges for the same size of firm disagree from one publisher to the next, and no row shows what the work brought in.
 
-Agencies in the UK, Australia and Canada publish law firm SEO prices too, each in its own currency, and the cautions below apply to them in the same way. The Australian and Canadian pages print a plain "$", which we show as A$ and C$.
+[more "See what published plans leave out"]
 
-| Publisher | Published monthly figure | What it covers | Date shown |
-|---|---|---|---|
-| [Whitehat SEO](https://whitehat-seo.co.uk/seo-for-solicitors) (UK) | £2,000 to £8,000 | Retainers for solicitors' firms, in three tiers | No date; footer 2026 |
-| [First Page](https://firstpage.com.au/industry/seo-for-lawyers-and-law-firms/) (Australia) | A$2,000 to A$10,000 | What "most law firms invest", by scope; GST not stated | No date; footer 2026 |
-| [LawOnline](https://lawonline.ca/law-firm-seo/how-much-does-law-firm-seo-cost-canada/) (Canada) | C$1,500 to C$10,000 | Canada overall; Toronto injury or criminal C$5,000 to C$15,000 | April 1, 2026 |
+A starting price also says nothing about what it leaves out. Dagmar, for one, lists each extra office as a separate monthly figure.
 
-Three cautions apply to every row. Ranges for the same size of firm disagree from one publisher to the next. A starting price says nothing about what it leaves out. And no row shows what the work brought in, which is the number a firm cares about most.
+Many published plans are counts: so many articles and so many links a month. We don't sell work that way, because a count rewards the wrong pages.
 
-A price only means something next to what it brings in, and that comes down to the cost of each qualified lead.
+Search volume alone doesn't justify a page. When a new page would only repeat one the firm already has, we leave it unbuilt, since two pages chasing one search split the firm's strength.
 
-## What does each qualified lead cost you?
+The count also runs the other way. A topic that looks tiny in one tool can have thousands of monthly searches in another, so before we drop one, we look at the actual results. If Google ranks dedicated pages for it, it gets a page. The plan decides how many pages a firm needs, not a package.
 
-A firm's cost per qualified lead is its monthly SEO fee divided by the qualified leads that search brought in that month. Track it over at least a quarter, since one month is too short to judge.
+[/more]
 
-Two formulas do most of the work.
+## Pricing models we don't use, and why
 
-> **Cost per qualified lead** = monthly SEO fee ÷ qualified leads from search that month
+We charge one monthly number and nothing on top. These are the models we turn down:
+
+- **Tiers.** A tier fixes the work before anyone has looked at the firm's market. Our number comes after Fahim has.
+- **Hourly billing.** Hours measure our time, not the firm's calls.
+- **A fee tied to rankings.** Positions are Google's to give, and [Google's own advice](https://developers.google.com/search/docs/fundamentals/do-i-need-seo) warns that nobody can guarantee the top spot. Paying for positions rewards easy search terms and risky shortcuts.
+- **A share of fees, or a fee per new client.** [ABA Model Rule 5.4(a)](https://www.americanbar.org/groups/professional_responsibility/publications/model_rules_of_professional_conduct/rule_5_4_professional_independence_of_a_lawyer/) bars a lawyer from sharing legal fees with a nonlawyer, and each state applies its own version. A cut of the fee, or a payment for each new client, can fall inside that ban.
+
+We promise no result, no "best" and no "#1", for a firm's pages or for our own work. So we don't bill as if we could.
+
+## What a qualified lead costs, and when SEO pays for itself
+
+Two sums tell a firm whether its SEO pays. Work them out from your own numbers over at least a quarter, because one month is too short to judge.
+
+> **Cost per qualified lead:** the monthly SEO fee divided by the qualified leads that search brought in that month.
 >
-> **Clients needed to cover the fee** = monthly SEO fee ÷ average fee the firm earns per new client
+> **Clients to cover the fee:** the monthly fee divided by the average fee a new client brings the firm.
 
-At $2,000 a month, a firm whose average new client brings in more than $2,000 in fees covers the cost with one new client a month. A firm whose average matter brings in less needs more clients: the fee divided by that average.
+At $2,000 a month, a firm whose average new client brings in more than $2,000 covers the fee with one new client a month. Count only qualified leads: callers whose matter the firm takes, from a place it serves.
 
-Count only qualified leads: callers whose matter the firm handles, from an area it covers. Spam calls, job seekers and wrong numbers inflate the count and flatter the cost.
-
-Google's own count is a fair place to start the lead side. Take a PI firm in New Orleans: by Google's count, its Business Profile logged 139 calls from June to October 2026, up 39% on the same months of 2025. Calls are not all qualified leads, so the firm's own records decide which of those count.
+Google's own count is a fair place to start. It logged 139 calls to a New Orleans PI firm's Business Profile between June and October 2026, 39% higher than over those months in 2025.
 
 [slot calls]
 
-For injury firms, our [PI settlement and attorney fee calculator](/pi-settlement-and-attorney-fee-calculator/) helps estimate the fee side of the second formula.
+[more "See how we keep the lead count honest"]
 
-A low cost per lead only holds if the contract lets the firm keep what it paid for, so compare quotes term by term.
+Not every one of those 139 calls is a qualified lead. Spam, job seekers and wrong numbers come in too, so the firm's intake records decide which calls count.
 
-## How do you compare two SEO quotes, term by term?
+We set each month beside the same month a year before, so a busy season doesn't flatter the numbers. Calls come from two sources, Google's count for the profile and our call tracking on the site, and no call is counted in both.
 
-Compare two law firm SEO quotes on scope, contract terms and ownership, not on the monthly number alone. A cheaper quote that leaves out links, or keeps the firm's accounts, can cost more in the end.
+Timing matters as well. The first three months go mostly on groundwork, and new pages move fast only once it's done. So judge the cost per lead from the fourth month on, not from the first. For injury firms, our [PI settlement and attorney fee calculator](/pi-settlement-and-attorney-fee-calculator/) helps with the fee side of the second sum.
 
-Put each quote through the same nine checks before deciding.
-
-[checklist]
-- **Scope.** Does the fee cover pages, links, the Business Profile, site fixes and tracking, or only some of them?
-- **Setup.** Is there a fee before work starts?
-- **Minimum term.** How long must the firm pay before it can leave?
-- **Notice.** How much notice does leaving take, and in what form?
-- **Ownership.** Who owns the site, the content, the Business Profile, Search Console, analytics and the tracking numbers?
-- **Exit.** What can the firm take with it, and in what format?
-- **Platform.** Is the site built on software the firm can move elsewhere?
-- **The team.** Is the person in the pitch the person on the account?
-- **Reporting.** Does the report count calls and qualified leads, or only traffic and rankings?
-
-### Our terms, line by line
-
-Our terms answer those checks in a line each: month to month, no setup fee, the number in writing before work starts, and the firm owns what we build.
-
-| Term | Our answer |
-|---|---|
-| Contract | Month to month; stop in any month |
-| Setup fee | None |
-| Your price | In writing before any work starts |
-| Scope | One price for the whole job, with no tiers |
-| Ownership | The firm owns the site, content and accounts we create |
-| Team | Fahim leads every account, with a small team |
-| Rankings | Never guaranteed; we sell the work |
-
-The questions that aren't about money are in our [checklist for vetting an SEO consultant](/law-firm-seo-consultant/).
-
-The last few pricing questions depend on where the firm is and what it has been sold before.
+[/more]
 
 [band mid]
 
-## Pricing situations that change the answer
+## How do you compare two SEO quotes?
 
-Three situations change how a firm should read SEO prices: a base outside the US, a quote that looks too cheap to refuse, and pricing traps.
+Compare quotes on what they include and what the firm keeps, not on the monthly number alone. Put each one through the same checks:
 
-### What changes for a firm outside the US?
+[checklist]
+- **Scope.** Does the fee cover pages, links, the profile, site fixes and tracking, or only some of them?
+- **Setup.** Is there a fee before work starts?
+- **Term and notice.** How long must the firm pay before it can leave, and how much notice does leaving take?
+- **Ownership.** Who owns the site, the content, the Google profile, Search Console, analytics and the tracking numbers?
+- **The team.** Is the person in the pitch the person on the account?
+- **Reporting.** Does the report count calls and qualified leads, or only traffic and rankings?
 
-Firms outside the US are quoted in US dollars, like every firm we work with, and the number still comes in writing before work starts. Firms in other countries work with us remotely.
+[more "See our answer to each check"]
 
-Fahim has helped businesses grow in four countries, two of them Idiya in New Zealand and Breakthrough Maths in Ireland.
+- **Scope:** one price for the whole job, with a new website the only thing quoted apart, from $2,000 as part of our [law firm web design](/lawyer-web-design-development/) work.
+- **Setup:** none.
+- **Term and notice:** the firm can leave at the end of any month, with no minimum term.
+- **Ownership:** everything we build belongs to the firm, and each account we open is in the firm's name from day one.
+- **The team:** Fahim leads the account and is on your calls, and a small team does the production.
+- **Reporting:** calls first, by Google's own count and the call tracking system's, then rankings.
 
-Local quotes need one extra check: whether sales tax is in the figure. First Page's published Australian range, for one, does not say whether GST is included.
+[/more]
 
-In England and Wales, the [SRA Transparency Rules](https://www.sra.org.uk/solicitors/standards-regulations/transparency-rules/) require firms to publish prices for listed services, such as residential conveyancing and uncontested probate, in a prominent place on their site. Those price pages become part of what the SEO work must keep accurate, so check the current list with the SRA.
-
-### Is the cheapest SEO quote the cheapest SEO?
-
-The cheapest SEO quote can end up the dearest for a law firm, when the work it leaves out arrives later as extras, a rebuild or lost rankings.
-
-A low figure buys less of something: pages, links, review work or tracking. Without tracking, a firm can't tell whether the cheap work brings any calls at all. The fair test is the cost per qualified lead, never the cost per month.
-
-### Where law firm SEO pricing goes wrong
-
-Law firm SEO pricing goes wrong when the model pays the agency for something other than leads the firm can use. These five patterns are the ones to refuse.
-
-[slot traps]
-
-Good law firm SEO pricing does the opposite: one clear number for the whole job, terms a firm can leave on, and a lead cost it can check.
+The questions that aren't about money are on our [law firm SEO consultant](/law-firm-seo-consultant/) page.
 
 [band price]
