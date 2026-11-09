@@ -1,11 +1,10 @@
 ---
 // A legal page (privacy policy, terms): crumbs, H1, last-updated line, a contents list, then plain text at the
-// reading measure. BreadcrumbList JSON-LD only. Placeholders stay visible (Placeholder) until the owner and
-// counsel fill them; a launch build fails while any is left.
+// reading measure. BreadcrumbList JSON-LD only. Each page passes its own last-updated day.
 import Breadcrumbs from '../kit/Breadcrumbs.astro';
-import Placeholder from '../Placeholder.astro';
 import Base from '../../layouts/Base.astro';
 import { site } from '../../data/site';
+import { dayMonthYear, isoDay } from '../../lib/dates';
 import { breadcrumbSchema, type Crumb } from '../../lib/schema';
 import './prose.css';
 
@@ -14,10 +13,12 @@ interface Props {
   description: string;
   path: string;
   h1: string;
+  /** The day the page last changed, "YYYY-MM-DD". Shown as "9 November 2026". */
+  updated: string;
   /** The H2s, in order, for the contents list. */
   sections: { id: string; label: string }[];
 }
-const { title, description, path, h1, sections } = Astro.props;
+const { title, description, path, h1, updated, sections } = Astro.props;
 const url = new URL(path, site.url).href;
 const crumbs: Crumb[] = [{ label: h1 }];
 const schema = [breadcrumbSchema(crumbs, url, site.url)];
@@ -27,7 +28,7 @@ const schema = [breadcrumbSchema(crumbs, url, site.url)];
   <article class="lse-legal" aria-labelledby="legal-h1">
     <header class="lse-wrap lse-read__head">
       <h1 id="legal-h1">{h1}</h1>
-      <p class="lse-read__meta">Last updated: <Placeholder collect="Last updated date (the launch date)" label="date of launch" /></p>
+      <p class="lse-read__meta">Last updated: <time datetime={isoDay(updated)}>{dayMonthYear(updated)}</time></p>
     </header>
     <div class="lse-wrap lse-legal__grid">
       <nav class="lse-legal__toc" aria-labelledby="legal-toc-h">

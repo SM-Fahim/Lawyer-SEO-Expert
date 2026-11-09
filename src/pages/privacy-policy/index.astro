@@ -1,9 +1,11 @@
 ---
-// Privacy policy, from ../content/privacy-policy.md (draft 1, written from the code; for the owner's counsel).
-// The deck's [IF ENABLED: GA4] and [IF ENABLED: META] blocks follow src/data/site.ts: they show only once that
-// platform's ID is set, so the page always describes what the site really loads. Placeholders stay marked.
+// Privacy policy, from ../content/privacy-policy.md (draft 1, written from the code). The deck's
+// [IF ENABLED: GA4] and [IF ENABLED: META] blocks follow src/data/site.ts: they show only once that platform's ID
+// is set, so the page always describes what the site really loads. The gaps were filled 2026-11-09 from the
+// owner's facts (the operating company, Wyoming) and Ergonomc LLC's own policy, checked against the code here:
+// retention from worker/addons/events.ts and worker/ga4.ts, and no Global Privacy Control or Do Not Track
+// handling anywhere in src/features/tracking/ or worker/. Ergonomc LLC is named on the legal pages only.
 import LegalLayout from '../../components/blog/LegalLayout.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import { site } from '../../data/site';
 
 const ga4 = site.tracking.ga4MeasurementId !== '';
@@ -35,6 +37,7 @@ const sections = [
   description="What lawyerseoexpert.com collects, why, who processes it, how long it is kept, and how to switch tracking off."
   path="/privacy-policy/"
   h1="Privacy policy"
+  updated="2026-11-09"
   sections={sections}
 >
   <h2 id="in-brief">In brief</h2>
@@ -47,7 +50,7 @@ const sections = [
   </ul>
 
   <h2 id="who-we-are">Who we are</h2>
-  <p>This site is run by <Placeholder collect="Legal entity name" label="legal entity name" />, trading as Lawyer SEO Expert, <Placeholder collect="Registered address" label="registered address" />. In this policy "we" means that business. Contact: <a href={`mailto:${email}`}>{email}</a>.</p>
+  <p>Lawyer SEO Expert is a brand of Ergonomc LLC, a Wyoming limited liability company, and this is its site. In this policy "we" means that business. Our postal address is under <a href="#contact">Contact</a>. Email: <a href={`mailto:${email}`}>{email}</a>.</p>
 
   <h2 id="what-you-send">What you send us</h2>
   <p><strong>Through the contact form.</strong> Your name and email (required), your firm's website, and optionally your phone number and a message. Some pages also send which page or practice area the form was on.</p>
@@ -70,7 +73,12 @@ const sections = [
     <li>To keep the site and the form safe from spam and abuse.</li>
     <li>To find and fix broken pages.</li>
   </ul>
-  <p><Placeholder collect="Owner's counsel: legal bases for processing, if EU or UK visitors are in scope" label="Owner's counsel: add the legal bases for processing if EU or UK visitors are in scope" /></p>
+  <p>Our services are for law firms in the United States. If you visit from the EU or the UK, data protection law asks us to name the legal basis for each use:</p>
+  <ul>
+    <li><strong>Answering your enquiry:</strong> steps you asked us to take before we might work together.</li>
+    <li><strong>Measuring pages and ads, reporting conversions, stopping spam and fixing broken pages:</strong> our legitimate interest in running and growing the business. You can object at any time, and you can switch the site's tracking off yourself (see <a href="#switch-off">how to switch tracking off</a>).</li>
+    <li><strong>Keeping or handing over data when the law says we must:</strong> a legal duty.</li>
+  </ul>
 
   <h2 id="processors">Who processes your data for us</h2>
   <p><strong>Cloudflare.</strong> Hosts the site, runs the form and database, sends lead emails, and runs Turnstile. Leads and events are stored in a Cloudflare D1 database located in eastern North America. <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">How Cloudflare handles data</a>.</p>
@@ -105,13 +113,15 @@ const sections = [
 
   <h2 id="retention">How long we hold your data</h2>
   <ul>
-    <li><strong>Form enquiries:</strong> kept until we delete them. <Placeholder collect="Owner: retention period for form enquiries" label="Owner to set a retention period, for example 24 months after last contact" /></li>
+    <li><strong>Form enquiries that don't lead to work:</strong> kept for 24 months after our last contact with you, then deleted.</li>
+    <li><strong>If you become a client:</strong> your enquiry is kept while we work together, then for as long as our agreement or tax and accounting law requires.</li>
     <li><strong>Visit events and booking records:</strong> deleted automatically after 180 days.</li>
     {ga4 && <li><strong>Google Analytics send records:</strong> a short record that stops the same event being counted twice, deleted after 30 days.</li>}
-    <li><strong>Broken-page records:</strong> kept until cleared. <Placeholder collect="Owner: retention period for broken-page records" label="Owner to set a period" /></li>
+    <li><strong>Broken-page records:</strong> these hold no contact details and no IP address, only the address asked for, the error, the referring page and a count. Nothing deletes them on a timer. We keep them while they help us fix links.</li>
     <li><strong>Browser storage set by this site:</strong> expires after 90 days, or when you clear it.</li>
     <li><strong>Data held by Reddit, Calendly{others.length > 0 ? `, ${others.join(', ')}` : ''} and Cloudflare:</strong> kept under each company's own policy.</li>
   </ul>
+  <p>If you ask us to delete your data sooner, we will, unless the law says we must keep it.</p>
 
   <h2 id="switch-off">How to switch tracking off</h2>
   <ul>
@@ -119,17 +129,29 @@ const sections = [
     <li><strong>In your browser:</strong> block third-party cookies, clear site data or use a content blocker.</li>
     <li><strong>With the platforms:</strong> Reddit{others.length > 0 && <>, {others.join(' and ')}</>} each offer ad settings in your account.</li>
   </ul>
-  <p><Placeholder collect="Owner's counsel: whether the site must honour Global Privacy Control or Do Not Track" label="Owner's counsel: the site does not currently read Global Privacy Control or Do Not Track signals. Decide whether it must, for the states in scope" /></p>
+  <p><strong>Global Privacy Control and Do Not Track.</strong> The site does not read either signal. Pages and the tracking described above run the same whether or not your browser sends one. To switch the site's tracking off, use the link above.</p>
 
   <h2 id="rights">Your rights</h2>
   <p>You can ask us what we hold about you, ask us to correct it or delete it, or object to how we use it. Email <a href={`mailto:${email}`}>{email}</a>. We may need to confirm it is you before acting. Depending on where you live, you may have further rights, including to opt out of the sharing of personal information for targeted advertising.</p>
-  <p><Placeholder collect="Owner's counsel: state-specific sections (for example California) and EU or UK rights, if needed" label="Owner's counsel: add state-specific sections (for example California) and EU or UK rights if needed" /></p>
+  <p><strong>US state privacy laws.</strong> California and several other states give their residents set rights: to know what we collect and why, to get a copy, to correct it, to delete it, and to opt out of its sale or of its sharing for targeted advertising. These laws may treat what the site sends to Reddit{others.length > 0 && <> and {others.join(' and ')}</>} for advertising as a sale or as sharing, even though nobody pays us for it. To opt out of that, switch the site's tracking off with the link above, on each browser you use. We answer these requests from anyone, wherever you live.</p>
+  <p><strong>How to ask.</strong> Email <a href={`mailto:${email}`}>{email}</a> and say what you'd like us to do. We reply within 45 days. If we need longer, we'll tell you why and how much longer, within the time the law allows. We usually confirm it is you by writing back to the email address we already hold. An agent you appoint can ask for you, and we'll ask them for proof that you appointed them.</p>
+  <p><strong>No penalty, and a right to appeal.</strong> Using these rights doesn't change how we treat you. If we turn a request down, we'll say why. You can appeal by replying to that answer, and we'll respond within 45 days. If we turn the appeal down too, you can contact your state attorney general.</p>
+  <p><strong>If you are in the EU or the UK.</strong> You also have the right to limit how we use your data and to get it in a format you can take elsewhere. You can complain to your local data protection authority, though we'd like the chance to put things right first. Our providers handle your data in the United States and other countries.</p>
+  <h3 id="california">If you live in California</h3>
+  <p>The site collects these kinds of personal information, from you and from your browser:</p>
+  <ul>
+    <li><strong>Identifiers:</strong> your name, email, phone number and IP address, ad click IDs, and the browser IDs in the cookies and storage listed above.</li>
+    <li><strong>Professional details:</strong> your firm's website, and the practice area when a page sends it.</li>
+    <li><strong>Internet activity:</strong> pages viewed, forms sent, booking-window opens, campaign tags, the referring site and your screen size.</li>
+    <li><strong>Rough location:</strong> your country, as Cloudflare reports it.</li>
+  </ul>
+  <p>We use them for the reasons under <a href="#why">why we use it</a> and keep them as <a href="#retention">how long we hold your data</a> sets out. They go to the services under <a href="#processors">who processes your data</a>. Identifiers and internet activity go to Reddit{others.length > 0 && <> and {others.join(' and ')}</>} for advertising, which California law may call sharing. We don't sell personal information for money, and we don't collect sensitive personal information to infer things about you.</p>
 
   <h2 id="security">Security</h2>
   <p>Data travels over encrypted connections. The database and email run on Cloudflare's infrastructure. IP addresses are stored only in scrambled form. No system is perfectly secure, and we will tell you if the law requires it after a breach.</p>
 
   <h2 id="children">Children</h2>
-  <p>This site is for businesses. It is not meant for anyone under 16, and we do not knowingly collect their data. <Placeholder collect="Owner's counsel: confirm the age in the children line" label="Owner's counsel to confirm the age" /></p>
+  <p>This site is for businesses. It is not meant for anyone under 16, and we do not knowingly collect their data. If you think a child has sent us their details, email us and we will delete them.</p>
 
   <h2 id="links">Sites we link to</h2>
   <p>Pages link to other sites, such as Google results or our booking page. Their own privacy policies apply there.</p>
@@ -138,5 +160,6 @@ const sections = [
   <p>When the site changes how it handles data, we update this page and the date at the top.</p>
 
   <h2 id="contact">Contact</h2>
-  <p><a href={`mailto:${email}`}>{email}</a><br><Placeholder collect="Legal entity name and registered address" label="legal entity name, registered address" /></p>
+  <p>Email us about your data: <a href={`mailto:${email}`}>{email}</a></p>
+  <p>Lawyer SEO Expert, a brand of Ergonomc LLC<br>30 N Gould St Ste R, Sheridan, WY 82801</p>
 </LegalLayout>

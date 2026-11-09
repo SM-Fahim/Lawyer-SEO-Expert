@@ -1,8 +1,9 @@
 ---
-// Terms, from ../content/terms-and-conditions.md (draft 1, for the owner's counsel). Placeholders stay marked
-// until the owner and counsel supply them.
+// Terms, from ../content/terms-and-conditions.md (draft 1). The gaps were filled 2026-11-09 from the owner's facts
+// (the operating company, Wyoming law and courts) and Ergonomc LLC's own terms (the disclaimer, the liability
+// limits, the 30-day informal step). Ergonomc LLC is named on the legal pages only. The liability cap sits in
+// data-legal: it is a legal figure, not a price (scripts/check-dist.mjs).
 import LegalLayout from '../../components/blog/LegalLayout.astro';
-import Placeholder from '../../components/Placeholder.astro';
 import { site } from '../../data/site';
 
 const sections = [
@@ -28,10 +29,11 @@ const email = site.contact.email;
   description="The terms for using lawyerseoexpert.com: what the site is, what it isn't, and the limits that apply."
   path="/terms-and-conditions/"
   h1="Terms and conditions"
+  updated="2026-11-09"
   sections={sections}
 >
   <h2 id="about">About these terms</h2>
-  <p>These terms cover your use of lawyerseoexpert.com. The site is run by <Placeholder collect="Legal entity name" label="legal entity name" />, trading as Lawyer SEO Expert, <Placeholder collect="Registered address" label="registered address" />. By using the site you agree to them. If you don't agree, please don't use the site.</p>
+  <p>These terms cover your use of lawyerseoexpert.com. Lawyer SEO Expert is a brand of Ergonomc LLC, a Wyoming limited liability company, and "we" in these terms means that business. Our postal address is under <a href="#contact">Contact</a>. By using the site you agree to these terms. If you don't agree, please don't use the site.</p>
 
   <h2 id="what-this-site-is">What you will find here</h2>
   <p>This is a marketing site for our SEO and website services for law firms. It explains what we do and lets you book a call or write to us. Information on the site is general and may change.</p>
@@ -58,7 +60,7 @@ const email = site.contact.email;
 
   <h2 id="content">Who owns the content</h2>
   <p>The words, design, images and code on this site belong to us or the people who licensed them to us. You can read, share links to and print pages for your own use. Please ask before reusing anything else.</p>
-  <p>Work we build for a client belongs to that client, as set out in their agreement with us. Screenshots of client results are shown with permission and with identifying details removed. <Placeholder collect="Owner to confirm permission is held for every client result shown" label="Owner to confirm permission for every result shown" /></p>
+  <p>Work we build for a client belongs to that client, as set out in their agreement with us. Results shown on this site come from past client work. They don't promise the same result for your firm.</p>
 
   <h2 id="what-you-send">What you send us</h2>
   <p>When you send a form or email, you confirm the details are yours to share and accurate. We handle them as described in our <a href="/privacy-policy/">privacy policy</a>.</p>
@@ -67,17 +69,26 @@ const email = site.contact.email;
   <p>The site links to other sites and uses third-party tools, such as Calendly for booking. We don't control those sites or tools, and their own terms apply when you use them.</p>
 
   <h2 id="as-is">The site as it is</h2>
-  <p>We work to keep the site accurate and available, but we provide it as it is, without warranties of any kind. <Placeholder collect="Owner's counsel: confirm or replace the warranty disclaimer" label="Owner's counsel: confirm or replace this disclaimer" /></p>
+  <p>We work to keep the site accurate and available. Even so, <strong>we provide the site and everything on it "as is" and "as available". As far as the law allows, we make no warranties about the site, stated or implied. That includes any warranty that it is accurate, free of errors or always available, of merchantable quality, fit for a particular purpose, or that it infringes no one's rights.</strong></p>
+  <p>This covers the website only. Any warranties for our services are in the written agreement for that work.</p>
 
   <h2 id="liability">Limits on our liability</h2>
-  <p><Placeholder collect="Owner's counsel: limitation of liability clause, with any cap and the exclusions the law requires" label="Owner's counsel to draft the limitation of liability clause, including any cap and the exclusions the law requires" /></p>
+  <p>As far as the law allows:</p>
+  <ul>
+    <li>we are not liable for indirect, incidental, special, consequential or punitive damages arising from your use of the site or your reliance on its content;</li>
+    <li>we are not liable for lost profits, revenue, data or goodwill arising from the site;</li>
+    <li data-legal>our total liability for any claim arising from the site is limited to US $100.</li>
+  </ul>
+  <p>If the law doesn't allow one of these limits in full, it applies as far as the law allows. Nothing in these terms limits a liability that the law says can't be limited. This section doesn't change any limit in the agreement for our services.</p>
 
   <h2 id="law">Governing law</h2>
-  <p><Placeholder collect="Owner's counsel: governing law and where disputes are heard" label="Owner's counsel to supply the governing law and where disputes are heard" /></p>
+  <p>Wyoming law governs these terms and any dispute about the site, without regard to its conflict-of-laws rules. Any dispute we can't settle informally goes to the state or federal courts located in Wyoming, and you and we agree to their jurisdiction.</p>
+  <p>Before you start a formal claim, please email <a href={`mailto:${email}`}>{email}</a> and give us 30 days to put it right.</p>
 
   <h2 id="changes">When these terms change</h2>
   <p>We may update these terms. The date at the top shows the latest version. Using the site after a change means you accept the new terms.</p>
 
   <h2 id="contact">Contact</h2>
-  <p><a href={`mailto:${email}`}>{email}</a><br><Placeholder collect="Legal entity name and registered address" label="legal entity name, registered address" /></p>
+  <p>Questions about these terms: <a href={`mailto:${email}`}>{email}</a></p>
+  <p>Lawyer SEO Expert, a brand of Ergonomc LLC<br>30 N Gould St Ste R, Sheridan, WY 82801</p>
 </LegalLayout>
