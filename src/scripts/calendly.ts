@@ -2,7 +2,7 @@
 // Use widget.js embeds only: plain iframes never send booking events (plan section 8).
 // The tracker counts the booking itself. This only tells other features, such as exit intent.
 
-import { currentTouch } from '../features/tracking/track';
+import { bookingSource, widgetUtm } from './booking-source';
 
 declare global {
   interface Window {
@@ -10,8 +10,6 @@ declare global {
   }
 }
 
-// Calendly ignores a value of 255 characters or more.
-const MAX_UTM = 254;
 // On a slow phone the message came first. On desktop the frame's load came up to 2.4 s before it.
 const READY_FALLBACK_MS = 4000;
 // Calendly says it's showing before it has fetched the free days. That fetch finished 0.6 to 1 s later on desktop,
@@ -20,34 +18,6 @@ const FREE_DAYS_MS = 1000;
 // Counted from the mount, not from page load: the slowest phone measured took about 4 s, so 8 s is a real delay.
 // Then the placeholder offers Calendly's own page.
 const SLOW_MS = 8000;
-const UTM_NAMES: Record<string, string> = {
-  utm_source: 'utmSource',
-  utm_medium: 'utmMedium',
-  utm_campaign: 'utmCampaign',
-  utm_content: 'utmContent',
-  utm_term: 'utmTerm',
-};
-
-/** So each meeting in Calendly shows where it came from. A link with no tags shows the site that sent the visitor. */
-function bookingSource(): Record<string, string> {
-  const touch = currentTouch();
-  const utm: Record<string, string> = {};
-  for (const from of Object.keys(UTM_NAMES)) {
-    const value = touch[from] || (from === 'utm_source' ? touch.referrer : '');
-    if (value) utm[from] = value.slice(0, MAX_UTM);
-  }
-  return utm;
-}
-
-/** The widget's option names for the same values. */
-function widgetUtm(source: Record<string, string>): Record<string, string> {
-  const utm: Record<string, string> = {};
-  for (const [from, value] of Object.entries(source)) {
-    const to = UTM_NAMES[from];
-    if (to) utm[to] = value;
-  }
-  return utm;
-}
 
 /** The placeholder's new-tab link books on Calendly, out of this page's sight, so at least Calendly gets the source. */
 export function tagFallbackLink(box: HTMLElement): void {

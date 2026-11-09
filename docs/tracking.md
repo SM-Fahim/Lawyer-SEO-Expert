@@ -58,7 +58,7 @@ Previews never track: the `previews` block in `wrangler.jsonc` keeps every pixel
 
 ## Known gap
 
-LSE and LCME share one Calendly event. Each site's own counts (D1 `bookings`, GA4, Reddit, Meta) split cleanly, because each booking is counted by the site it happened on. Calendly itself does not say which site a booking came from: an untagged visit shows only the referring site, or nothing. A separate LSE event type fixes this (`docs/MANUAL-REVIEW.md`).
+LSE and LCME share one Calendly event. Each site's own counts (D1 `bookings`, GA4, Reddit, Meta) split cleanly, because each booking is counted by the site it happened on. In Calendly itself, since 2026-11-09 an LSE booking carries `utm_content=lawyerseoexpert.com` (`src/scripts/booking-source.ts`), unless the visitor brought a `utm_content` of their own, and then their `utm_source` and `utm_campaign` say where they came from. A separate LSE event type would split them fully (`docs/MANUAL-REVIEW.md`).
 
 ## Left to do
 

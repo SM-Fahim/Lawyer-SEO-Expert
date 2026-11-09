@@ -63,15 +63,11 @@ const PRICES_BY_PAGE = {
     // "What other agencies publish as law firm SEO prices" (and its intro line): each named publisher's own figure,
     // dated, approved by the judge (content/DEPTH-BRIEF.md section 18, rulings 1 and 23; the deck's NEEDS PRICE OK
     // markers). US rows in $; the three non-US rows in £, A$ and C$, checked through this same list.
-    '1,000', '100,000', '3,500', '25,000', '6,000', '12,000', '60,000', '2,500', '5,000', '20,000', '50,000', '75', '200',
-    '15,000', '3,800', '1,995', '3,295', '4,795', '1,500', '2,300', '750', '3,209', '3,250', '1,349',
-    '8,000', '10,000',
+    '1,000', '100,000', '3,500', '25,000', '6,000', '12,000', '60,000', '2,500', '5,000', '20,000', '50,000',
+    '1,995', '3,295', '4,795', '1,500', '2,300', '750', '3,209', '3,250', '1,349',
   ],
   // /law-firm-seo-services/: the price band shows only the struck "hired one by one" total.
   '/law-firm-seo-services/': ['4,000'],
-  // /seo-for-personal-injury-lawyers/: "£5,000" is the UK legal threshold for road claims through Official Injury
-  // Claim (GOV.UK), not a price (content/DEPTH-BRIEF.md section 18, ruling 22).
-  '/seo-for-personal-injury-lawyers/': ['5,000'],
   // The settlement calculator post: its worked example and the calculator's default figures (an injured person's
   // settlement maths, not our prices).
   '/pi-settlement-and-attorney-fee-calculator/': ['90,000', '84,000', '28,000', '30,000', '6,000', '56,000', '54,000', '27,972', '56,028', '1,998', '0'],
@@ -86,6 +82,8 @@ const PRICES_BY_PAGE = {
 // An amount in $ (A$ and C$ included, since they end in "$") or £: every one must be in the page's list above.
 const PRICE = /[$£]\s?(\d[\d,]*(?:\.\d+)?)\s?([KkMm]\b)?(\s?[–-]\s?[$£]?(\d[\d,]*(?:\.\d+)?)([KkMm]\b)?)?/g;
 const COPY_EXCEPTIONS = {};
+// "<path> <amount>" for every amount a built page shows, so PRICES_BY_PAGE can't keep amounts nothing shows.
+const pricesShown = new Set();
 
 // A small tree of the built HTML. Astro's output is well formed, so this doesn't need a full parser,
 // and the build stays free of an extra dependency.
@@ -154,6 +152,7 @@ function checkCopy(rel, path, html) {
   for (const hit of priceText.matchAll(PRICE)) {
     const amounts = [priceOf(hit[1], hit[2]), ...(hit[4] ? [priceOf(hit[4], hit[5])] : [])];
     for (const amount of amounts) {
+      pricesShown.add(`${path} ${amount}`);
       if (!allowed.has(amount)) fail(rel, `price ${amount} isn't allowed on this page (see PRICES_BY_PAGE): ...${excerpt(priceText, hit.index, hit[0].length)}...`);
     }
   }
@@ -480,6 +479,13 @@ if (plannedLinks.size) {
 }
 if (placeholderPages.size) {
   console.warn(`check-dist: warning, placeholders still showing: ${[...placeholderPages].map(([page, n]) => `${page} (${n})`).join(', ')}. Launch needs none.`);
+}
+// An allowed amount no page shows any more is a hole in the price check. Remove it from PRICES_BY_PAGE.
+const unshownPrices = Object.entries(PRICES_BY_PAGE).flatMap(([page, amounts]) =>
+  [...new Set(amounts)].filter((amount) => !pricesShown.has(`${page} ${amount}`)).map((amount) => `${page} ${amount}`),
+);
+if (unshownPrices.length) {
+  console.warn(`check-dist: warning, PRICES_BY_PAGE allows ${unshownPrices.length} amount(s) the page no longer shows: ${unshownPrices.join(', ')}`);
 }
 
 if (errors.length) {
