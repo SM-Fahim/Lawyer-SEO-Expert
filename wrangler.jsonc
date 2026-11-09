@@ -28,10 +28,10 @@
     "REDDIT_PIXEL_ID": "a2_hx7ja4uz0lm1",
     "REDDIT_TEST_ID": "", // ignored while LIVE is true
     // GA4 Measurement Protocol (worker/ga4.ts). Also needs the GA4_API_SECRET secret, or nothing is sent.
-    "GA4_MEASUREMENT_ID": "",
+    "GA4_MEASUREMENT_ID": "G-YCNP1LPT5W",
     // Meta Pixel (dataset) ID, for the Conversions API (worker/meta.ts). Also needs the META_CAPI_TOKEN
     // secret, or nothing is sent. The browser's copy is in src/data/site.ts.
-    "META_PIXEL_ID": "",
+    "META_PIXEL_ID": "1127372726702074",
     "EMAIL_FROM": "leads@notify.lawyerseoexpert.com",
     "EMAIL_TO": "fahim@wpseogeeks.com,fahim@legalcmoexpert.com"
   },
