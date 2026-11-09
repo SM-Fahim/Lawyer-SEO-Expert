@@ -7,9 +7,9 @@
   "main": "worker/index.ts",
   "compatibility_date": "2026-11-08",
   "upload_source_maps": true,
-  // TODO(launch): set workers_dev to false after the route goes live (Phase 5). Until then the
-  // pre-launch host lawyerseoexpert-site.fahim-afd.workers.dev is how the owner checks the site.
-  "workers_dev": true,
+  // Off since launch (2026-11-09): the router's noindex depends only on LIVE, so with LIVE true the workers.dev
+  // host would serve indexable copies. Check changes on a version preview URL (`npx wrangler versions upload`).
+  "workers_dev": false,
   "preview_urls": true,
   "observability": { "enabled": true },
   "assets": {
@@ -22,8 +22,8 @@
     "run_worker_first": ["/*", "!/img/*", "!/fonts/*", "!/_astro/*"]
   },
   "vars": {
-    // LIVE stays "false" until launch day. While it is not "true" the Worker adds X-Robots-Tag: noindex everywhere.
-    "LIVE": "false",
+    // Live since 2026-11-09. While it is not "true" the Worker adds X-Robots-Tag: noindex everywhere.
+    "LIVE": "true",
     "SITE_HOST": "lawyerseoexpert.com",
     "REDDIT_PIXEL_ID": "a2_hx7ja4uz0lm1",
     "REDDIT_TEST_ID": "", // ignored while LIVE is true
@@ -75,8 +75,8 @@
       }
     ]
   }
-  // A deploy replaces this Worker's routes, so keep this complete.
-  // TODO(Phase 5, needs the owner's OK on the exact change): uncomment on launch day. It is off now on purpose,
-  // because a push to main deploys, and with the route on, the Worker would take over the live WordPress site.
-  // ,"routes": [{ "pattern": "lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" }]
+  // A deploy replaces this Worker's routes, so keep this complete. Live since 2026-11-09 (owner OK).
+  // The /intake routes belong to another Worker (rudin-intake-staging) and must never be listed here.
+  // Fast way back to WordPress: comment this out and deploy.
+  ,"routes": [{ "pattern": "lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" }]
 }
