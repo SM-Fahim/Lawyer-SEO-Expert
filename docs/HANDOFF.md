@@ -25,7 +25,7 @@ The site: 34 indexable pages in the sitemap, built from the design system (`docs
 
 ## Next steps
 
-1. Fill the privacy and terms placeholders (entity name, address, retention, governing law and the rest; tracking, Turnstile, Calendly and pixel disclosures). Then the strict build passes.
+1. Done 2026-11-09: privacy and terms name Ergonomc LLC (Wyoming) with its Sheridan address, Wyoming law; the strict build passes. A cron deletes leads after 730 days to match the policy. The company phone is left out because check-unique flags it as LCME's number (owner to decide).
 2. After 48 hours: `node scripts/broken-report.mjs` and read Workers Logs for `_failed` events. Watch Search Console coverage and the redirects.
 3. Done: `www` is on the Worker (see State).
 4. Done: `META_CAPI_TOKEN` is set.

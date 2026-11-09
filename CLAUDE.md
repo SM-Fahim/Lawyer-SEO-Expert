@@ -29,7 +29,7 @@ Undo: `npx wrangler rollback`, then revert the commit so the next deploy does no
 3. Leave everything else in the Cloudflare account alone (other Workers, `status.`, `alerts.`, the `/intake` routes). `account_id` stays pinned in `wrangler.jsonc`.
 4. `wrangler deploy` replaces a script's routes, so the config must list every route this Worker owns, and only those.
 5. Never print or commit a secret. Use `wrangler secret put`. Read `.env` files by key name only.
-6. Never enable Email Routing. Email Sending is onboarded on `notify.lawyerseoexpert.com` only, never `mail.` (the cPanel mail server) and never the apex.
+6. Email Routing runs on the apex since 2026-11-09 (owner OK, after the cPanel host was cancelled): `hello@lawyerseoexpert.com` forwards to `fahim@wpseogeeks.com`, catch-all off. Email Sending stays on `notify.lawyerseoexpert.com` only. Never route to `dev@legalcmoexpert.com`.
 7. Ask the owner before any live side effect: real leads, real Calendly bookings, cutover, deleting anything, anything that costs money.
 8. Do not build, link or redirect anything under `/intake`. It belongs to another Worker (`rudin-intake-staging`). `check-dist` fails the build if you do.
 9. Do not copy LCME. No LCME text, headings, buttons, IDs, colours or fonts. `check-unique` blocks it. Never weaken its thresholds to make a build pass: rewrite the copy.
