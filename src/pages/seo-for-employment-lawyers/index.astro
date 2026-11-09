@@ -1,12 +1,11 @@
 ---
-// /seo-for-employment-lawyers/. Copy: content/v3/seo-for-employment-lawyers.md (critic: content/v3/CRITIC-practice-2.md).
-// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): H1 and line across, the form card,
-// Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi) on the fog panel on the
-// right, with a one-line caption. The v2 bands, FAQ and Related block gave way to
-// the depth zone (src/content/depth/seo-for-employment-lawyers.md): an intro with the summary across and the jump
-// list in two columns, the worker searches on a fog panel, the issue and deadline tables, the employer pages as
-// rows, a mid-page CTA in a fog block, the price as a fog band (no PriceBand on this page), then the open FAQ on
-// white, the author box and FinalCta.
+// /seo-for-employment-lawyers/. Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): H1 and
+// line across, the form card, Google's AI answer naming a New Orleans PI firm as a key firm (proof.nolaTankerAi) on
+// the fog panel on the right, with a one-line caption. The depth zone (src/content/depth/seo-for-employment-lawyers.md,
+// v4: written from our own practice): an intro with the summary across and the jump list in two columns, the worker
+// searches on a fog panel, the employer pages as rows, the issue page steps, the New Orleans calls summary beside the
+// counting section, a mid-page CTA in a fog block, the price as a fog band (no PriceBand on this page), then the
+// accordion FAQ on white, the author box and FinalCta.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
@@ -22,7 +21,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-employment-lawyers/';
 const title = 'SEO for Employment Lawyers | Rank for What Workers Ask';
 const description =
-  'SEO for employment lawyers: worker and employer searches, issue pages, filing deadlines, settlements and reviews, state pages and the Map.';
+  'SEO for employment lawyers: pages for the side you represent, issue pages that screen, deadline pages, how we count leads, reviews and the price.';
 const depth = await getDepth('seo-for-employment-lawyers');
 
 // The hero capture from "AI Overview" down to the key firm's rating and practice line (the faded "Open" line and
@@ -73,6 +72,10 @@ const employerPages = [
       />
     </div>
     <div slot="employers" class="emp-rows"><Rows variant="inline" items={employerPages} /></div>
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="139 calls" tagSide="left" tagSmall images={[shot(proof.nolaCallsSummary, { marks: ['range', 'growth'] })]} />
+      <figcaption>139 profile calls in five months for a PI firm in New Orleans, 39% more than a year earlier, as Google counts them.</figcaption>
+    </figure>
 
     <Band slot="mid" class="emp-mid">
       <div class="emp-mid__block">
