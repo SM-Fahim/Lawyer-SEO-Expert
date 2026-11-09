@@ -77,6 +77,10 @@
   }
   // A deploy replaces this Worker's routes, so keep this complete. Live since 2026-11-09 (owner OK).
   // The /intake routes belong to another Worker (rudin-intake-staging) and must never be listed here.
-  // Fast way back to WordPress: comment this out and deploy.
-  ,"routes": [{ "pattern": "lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" }]
+  // www (since 2026-11-09): the router sends every www request to the apex in one 301. Rudin's www /intake
+  // routes are more specific, so Cloudflare still sends those to rudin-intake-staging first.
+  ,"routes": [
+    { "pattern": "lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" },
+    { "pattern": "www.lawyerseoexpert.com/*", "zone_name": "lawyerseoexpert.com" }
+  ]
 }

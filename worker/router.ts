@@ -1,4 +1,5 @@
 // The order of every request (docs/MIGRATION-PLAN.md §4):
+//   0. www to the apex, in one hop
 //   1. http to https
 //   2. add-ons, including /api/*
 //   3. src/data/redirects.ts
@@ -29,6 +30,16 @@ export async function route(request: Request, env: Env, ctx: ExecutionContext): 
 }
 
 async function respond(request: Request, url: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+  // www has no copy of the site. One 301 to the apex, from http too, keeping the path and query. An old
+  // WordPress address goes straight to its new page. The /intake routes on www belong to another Worker,
+  // and Cloudflare sends them there first because they are more specific than www.lawyerseoexpert.com/*.
+  if (url.hostname === `www.${env.SITE_HOST}`) {
+    const apex = new URL(url);
+    apex.protocol = 'https:';
+    apex.hostname = env.SITE_HOST;
+    return legacyRedirect(apex) ?? redirectTo(apex.href, 301);
+  }
+
   if (url.protocol === 'http:' && !LOCAL_HOSTS.has(url.hostname)) {
     return redirectTo(`https://${url.host}${url.pathname}${url.search}`, 301);
   }
@@ -40,12 +51,8 @@ async function respond(request: Request, url: URL, env: Env, ctx: ExecutionConte
     return Response.json({ error: 'not_found' }, { status: 404, headers: { 'cache-control': 'no-store' } });
   }
 
-  const redirect = redirectsByPath.get(withoutSlash(url.pathname)) ?? archiveRedirect(url.pathname);
-  if (redirect) {
-    return redirectTo(`${new URL(redirect.to, url).href}${url.search}`, redirect.status);
-  }
-  const shortlink = shortlinkTarget(url);
-  if (shortlink) return redirectTo(shortlink, 301);
+  const legacy = legacyRedirect(url);
+  if (legacy) return legacy;
 
   if (NOT_FOUND_PATHS.has(withoutSlash(url.pathname))) return notFoundPage(request, env);
   if (env.LIVE === 'true' && PREVIEW_ONLY.some((p) => url.pathname === p || url.pathname.startsWith(`${p}/`))) {
@@ -99,6 +106,14 @@ async function notFoundPage(request: Request, env: Env): Promise<Response> {
   const headers = new Headers(page.headers);
   headers.delete('etag');
   return new Response(page.body, { status: 404, headers });
+}
+
+/** src/data/redirects.ts, the WordPress archives and the shortlinks, or null when none fits. */
+function legacyRedirect(url: URL): Response | null {
+  const redirect = redirectsByPath.get(withoutSlash(url.pathname)) ?? archiveRedirect(url.pathname);
+  if (redirect) return redirectTo(`${new URL(redirect.to, url).href}${url.search}`, redirect.status);
+  const shortlink = shortlinkTarget(url);
+  return shortlink ? redirectTo(shortlink, 301) : null;
 }
 
 /** /category/tips/feed/, /tag/x/, /author/admin/, /blog/page/2/: WordPress archives, by prefix. */

@@ -437,3 +437,52 @@ describe('noindex', () => {
     expect(response.headers.get('x-robots-tag')).toBe('noindex');
   });
 });
+
+describe('www', () => {
+  const WWW = 'https://www.lawyerseoexpert.com';
+
+  it('sends a www page to the apex in one 301, keeping the path and query', async () => {
+    const origin = originMustNotBeCalled();
+    const response = await send(`${WWW}/seo-pricing/?gclid=x&utm_source=google`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}/seo-pricing/?gclid=x&utm_source=google`);
+    expect(origin.requests).toHaveLength(0);
+  });
+
+  it('sends http://www straight to https on the apex', async () => {
+    originMustNotBeCalled();
+    const response = await send('http://www.lawyerseoexpert.com/');
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}/`);
+  });
+
+  it('sends an old WordPress address on www to its new page in one hop', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${WWW}/seo-pricing-page/?fbclid=y`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}/seo-pricing/?fbclid=y`);
+  });
+
+  it('sends a WordPress shortlink on www to its new page in one hop', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${WWW}/?p=155&utm_source=x`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}/about/sm-fahim/?utm_source=x`);
+  });
+
+  it('sends a WordPress archive on www to the blog in one hop', async () => {
+    originMustNotBeCalled();
+    const response = await send(`${WWW}/category/tips/`);
+    expect(response.status).toBe(301);
+    expect(response.headers.get('location')).toBe(`${SITE}/blog/`);
+  });
+
+  it('never serves a page or the API on www', async () => {
+    originMustNotBeCalled();
+    for (const path of ['/', '/api/lead', '/sitemap-index.xml', '/robots.txt']) {
+      const response = await send(`${WWW}${path}`);
+      expect(response.status, path).toBe(301);
+      expect(response.headers.get('location'), path).toBe(`${SITE}${path}`);
+    }
+  });
+});
