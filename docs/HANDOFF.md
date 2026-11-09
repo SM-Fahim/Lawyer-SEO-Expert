@@ -25,7 +25,7 @@ The site: 34 indexable pages in the sitemap, built from the design system (`docs
 
 ## Next steps
 
-1. Done 2026-11-09: privacy and terms name Ergonomc LLC (Wyoming) with its Sheridan address, Wyoming law; the strict build passes. A cron deletes leads after 730 days to match the policy. The company phone is left out because check-unique flags it as LCME's number (owner to decide).
+1. Done 2026-11-09: privacy and terms name Ergonomc LLC (Wyoming) with its Sheridan address, Wyoming law; the strict build passes. A cron deletes leads after 730 days to match the policy. The company phone (+1 (929) 312-6528, shared with LCME) is on these two pages only, with the owner's OK: `leakAllowedByFile` in `scripts/unique-config.json` allows it in those two dist files and nowhere else. It is plain text, not a link, because a link label would match LCME's.
 2. After 48 hours: `node scripts/broken-report.mjs` and read Workers Logs for `_failed` events. Watch Search Console coverage and the redirects.
 3. Done: `www` is on the Worker (see State).
 4. Done: `META_CAPI_TOKEN` is set.
