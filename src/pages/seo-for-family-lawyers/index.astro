@@ -84,8 +84,7 @@ const famCrop = { top: 10.7, height: 81.6 };
 
 <style is:global>
   .fam-fig { display: grid; gap: 12px; margin: 0; }
-  .fam-book { border-top: 1px solid var(--line); }
-  /* The calendar band and the depth zone are both white: one section's space between them, not two. */
+  /* The depth zone's first part takes no top space of its own. */
   .lse-depth[data-depth='seo-for-family-lawyers'] > .lse-depth__part--first { padding-top: 0; }
 
   /* The four searches at the text's measure, under their lead-in line. */

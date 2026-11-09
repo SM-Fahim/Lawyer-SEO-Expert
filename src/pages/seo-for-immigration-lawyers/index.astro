@@ -1,12 +1,12 @@
 ---
-// /seo-for-immigration-lawyers/ from content/v3/seo-for-immigration-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-// Facts: research/FACTS.md. This page owns multilingual pages and hreflang (DEPTH-BRIEF section 5). The hero is
-// the row hero (PageHero layout="row"): H1 and line across, the form card, the AI answer cropped from one city's
-// results page with the firm's source card under it, on the fog panel (the key-firms row is employment's; never mark it here). The v2 bands, FAQ and
-// Related block gave way to the depth zone (src/content/depth/seo-for-immigration-lawyers.md). Its own look on this
-// page: the jump list on the left and the summary on the right, the agency habits as run-in hairline rows, the
-// mid-page CTA as the page's one marker band (no PriceBand here), the price as two plain lines side by side on white
-// under a black rule (no button), and the open FAQ on fog.
+// /seo-for-immigration-lawyers/. Facts: research/FACTS.md. This page owns multilingual pages and hreflang
+// (DEPTH-BRIEF section 5). The hero is the row hero (PageHero layout="row"): H1 and line across, the form card, the
+// AI answer cropped from one city's results page with the firm's source card under it, on the fog panel (the
+// key-firms row is employment's; never mark it here). The depth zone (src/content/depth/seo-for-immigration-lawyers.md,
+// v4: written from our own practice) follows. Its own look on this page: the jump list on the left and the summary on
+// the right, the trust checklist, the "16 hours" #1 beside the new-page section, the mid-page CTA as the page's one
+// marker band (no PriceBand here), the price as two plain lines side by side on white under a black rule (no
+// button), and the accordion FAQ (fog).
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
@@ -82,8 +82,8 @@ const depth = await getDepth('seo-for-immigration-lawyers');
 </style>
 
 <style is:global>
-  /* The booking band and the depth zone: fog, then white, with the usual section space. From 1000px the jump list
-     sits on the left and the byline and summary on the right (the copy's order stays the same for readers). */
+  /* The depth zone's intro: from 1000px the jump list sits on the left and the byline and summary on the right (the
+     copy's order stays the same for readers). */
   @media (min-width: 1000px) {
     .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__intro { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
     .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__lede { grid-column: 2; grid-row: 1; }
@@ -91,7 +91,8 @@ const depth = await getDepth('seo-for-immigration-lawyers');
     .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-depth__summary { font-size: clamp(19px, .5vw + 16px, 24px); line-height: 1.45; color: var(--ink); }
   }
 
-  /* The agency habits: run-in hairline rows at the text's size, the bold lead in ink. */
+  /* A plain bullet list in the copy: run-in hairline rows at the text's size, the bold lead in ink. The v4 copy's
+     one list is the trust checklist (.lse-check), so these match nothing today. */
   .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
   .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) > li { margin: 0; padding: 14px 0 15px; border-bottom: 1px solid var(--line-2); }
   .lse-depth[data-depth='seo-for-immigration-lawyers'] .lse-prose > ul:not(.lse-check) > li > strong:first-child { color: var(--ink); font-weight: 750; }
@@ -100,7 +101,6 @@ const depth = await getDepth('seo-for-immigration-lawyers');
   .im-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }
   .im-mid__line { max-width: 24ch; font-size: clamp(30px, 2.2vw + 18px, 52px); font-weight: 800; line-height: 1.04; letter-spacing: -.032em; color: var(--ink); }
   .im-mid .lse-btn:hover { background: var(--paper); }
-  .im-nowrap { white-space: nowrap; }
 
   /* The price: two plain lines under a black rule, side by side from 1000px, the link in the second. No button. */
   .im-price { padding-top: 0; }

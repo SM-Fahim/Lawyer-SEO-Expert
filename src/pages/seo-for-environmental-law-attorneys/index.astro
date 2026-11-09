@@ -3,8 +3,9 @@
 // then the form card and the New Orleans calls summary led by "Up 39%" on the fog panel. The depth zone
 // (src/content/depth/, v4: written from our own practice) follows. Its own look on this page: the jump list first and
 // narrow, the summary beside it; the pages section (notices, deadlines and rule stages, the page's unique asset) as a
-// fog band in the middle of the white text; the tanker AI answer as the proof; the price as two lines on fog (no
-// PriceBand); then the accordion FAQ on white. No mid-page CTA.
+// fog band in the middle of the white text; the tanker results page as the proof (the search box, then the AI answer
+// with its regulatory line marked, and the source list: a wider view than the immigration hero's two crops of the
+// same answer); the price as two lines on fog (no PriceBand); then the accordion FAQ on white. No mid-page CTA.
 import FinalCta from '../../components/FinalCta.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
@@ -45,7 +46,14 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
 
   <DepthZone depth={depth} faqTone="white" authorLinkLabel="About S. M. Fahim">
     <figure slot="proof" class="lse-depth__proof">
-      <Shot tag="Cited" tagSide="right" images={[shot(proof.nolaTankerSerpAnswer, { crop: 'answer', marks: ['aiChip'] }), shot(proof.nolaTankerSerpSource, { crop: 'firm', marks: ['sourceCard'] })]} />
+      <Shot
+        tag="Cited"
+        tagSide="right"
+        images={[
+          shot(proof.nolaTankerSerpTop, { crop: 'search', alt: '', phone: 'search' }),
+          shot(proof.nolaTankerSerpTop, { crop: 'answer', marks: ['rules', 'aiChip', 'sourceCard'], phone: 'answerSource' }),
+        ]}
+      />
       <figcaption>A New Orleans tanker crash search: the AI answer cites a PI firm, and the firm’s page sits among its sources.</figcaption>
     </figure>
     <Band slot="price" tone="fog" class="env-price">

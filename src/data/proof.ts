@@ -456,8 +456,18 @@ export const proof = {
     marks: {
       aiChip: [{ l: 16.3, t: 64.6, w: 7.5, h: 2.2 }],
       sourceCard: [{ l: 70.8, t: 78.6, w: 18.6, h: 4.9 }],
+      // The answer's line on hazmat regulations, federal insurance minimums and fault-based liability.
+      rules: [{ l: 12.9, t: 61, w: 46.8, h: 3 }],
     },
-    note: 'Sponsored results stay collapsed in the capture: no ad text shows. On phones use nolaTankerSerpAnswer and nolaTankerSerpSource.',
+    // Two bands in one Shot leave out the filter chips and the folded sponsored block without editing a pixel: the
+    // search box, then the AI answer down to the key firm and the source cards (the environmental proof).
+    crops: { search: { top: 0, height: 13 }, answer: { top: 47.5, height: 42.3 } },
+    // Pass `phone: 'search'` with the search band and `phone: 'answerSource'` with the answer band.
+    phone: {
+      search: [{ x: 120, y: 18, w: 440, h: 52, fade: true }],
+      answerSource: [{ x: 130, y: 294, w: 570, h: 122 }, { x: 752, y: 330, w: 322, h: 216 }],
+    },
+    note: 'Sponsored results stay collapsed in the capture: no ad text shows. The immigration hero shows the same answer as two small crops (nolaTankerSerpAnswer, nolaTankerSerpSource); this whole-page view is the environmental proof.',
   },
   nolaTankerSerpAnswer: {
     src: `${P}nola-tanker-serp-ai-answer.webp`,

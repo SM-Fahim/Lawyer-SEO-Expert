@@ -1,9 +1,9 @@
 ---
-// /seo-for-personal-injury-lawyers/ from content/v3/seo-for-personal-injury-lawyers.md. The commercial top is the
-// row hero (the form card, the key-firm capture on the fog panel, the trust row at its foot). The v2 proof run, the "three
-// places" band, the price band and the FAQ gave way to the depth zone (src/content/depth/): the page map and
-// the truck-page worked example, a fog mid-page CTA after the main zone, the agency habits as inline rows, the
-// marker price band, then the open FAQ (fog), the author box and FinalCta.
+// /seo-for-personal-injury-lawyers/. The commercial top is the row hero (the form card, the key-firm capture on the
+// fog panel, the trust row at its foot). The depth zone (src/content/depth/seo-for-personal-injury-lawyers.md, v4:
+// written from our own practice) follows: the build steps, the tanker #3 capture beside the truck-page worked
+// example, a fog mid-page CTA after the Map section, the marker price band, then the accordion FAQ (fog), the author
+// box and FinalCta.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
@@ -11,7 +11,6 @@ import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
-import Rows from '../../components/kit/Rows.astro';
 import { proof, shot } from '../../data/proof';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -21,15 +20,6 @@ const title = 'SEO for Personal Injury Lawyers | Own the Accident Search';
 const description =
   'SEO for personal injury lawyers: what we build for an injury firm, the truck pages Google’s AI cited, the Map profile and when calls come.';
 const depth = await getDepth('seo-for-personal-injury-lawyers');
-
-// "Where agencies go wrong with injury pages": one template per row (the habit, what goes wrong, what we do).
-const habits = [
-  { title: 'A page for every town.', text: 'City pages with only the name changed are the doorway pattern Google names. We build a city page only when it has local facts.' },
-  { title: 'Gains with no baseline.', text: 'A growth figure without a date or a market behind it proves nothing. Ask for calls and qualified leads, with dates and a starting point.' },
-  { title: 'Review tools that filter.', text: 'Software that sends only happy clients to Google is review gating. Our review routine asks every client, not only the happy ones.' },
-  { title: 'Settlement figures as headlines.', text: 'A big number on every page invites the past-results problem. Results go only where your counsel approves them, with context.' },
-  { title: 'Traffic as the report.', text: 'Visits are not cases. We count calls, forms and qualified leads.' },
-];
 ---
 <InnerPage
   title={title}
@@ -57,9 +47,6 @@ const habits = [
       <Shot tag="#3" tagSide="right" images={[shot(proof.nolaTankerQuery), shot(proof.nolaTankerRankTitle, { marks: ['age'] })]} />
       <figcaption>A PI firm in New Orleans: #3 on Google 16 hours after the page went live, after about three months of groundwork.</figcaption>
     </figure>
-    <div slot="habits" class="pi-habits">
-      <Rows variant="inline" items={habits} />
-    </div>
     <Band slot="mid" tone="fog" class="pi-mid">
       <p class="pi-mid__line">Fahim will show you which case types could bring calls first, and the price.</p>
       <Button />
@@ -81,9 +68,6 @@ const habits = [
 
 <style is:global>
   .pi-fig { display: grid; gap: 12px; align-content: start; }
-
-  /* The agency habits sit at the text's width, so the rows read as part of the section. */
-  .pi-habits { max-width: 40em; }
 
   /* Mid-page CTA: the one line set large, the button under it, nothing beside either. */
   .pi-mid .lse-band__body { display: grid; gap: var(--s4); justify-items: start; }

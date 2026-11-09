@@ -1,10 +1,11 @@
 ---
-// /lawyer-web-design-development/. Copy: content/v3/lawyer-web-design-development.md (critic: content/v3/CRITIC-mixed.md).
-// Facts: research/FACTS.md. The commercial top is the row hero (the New Orleans site on a screen beside the form card,
-// the price allowed in this H1 by the judge's ruling), then one fog band with the El Paso site on a phone beside the
-// two results as text. The depth zone follows: src/content/depth/lawyer-web-design-development.md, with the six
-// parts beside the practice page capture as a slot, the mid-page CTA after the main zone, and the plain price band
-// above the open FAQ. The [OWNER Q4] items (build time, hosting, staff edits) stay off the page until answered.
+// /lawyer-web-design-development/. Facts: research/FACTS.md. The commercial top is the row hero (the New Orleans site
+// on a screen beside the form card, the price allowed in this H1 by the judge's ruling), then one fog band with the
+// El Paso site on a phone beside the two results as text. The depth zone
+// (src/content/depth/lawyer-web-design-development.md, v4: written from our own practice) follows: the six parts
+// beside the practice page capture as a slot, the mid-page CTA after the launch-day section, the plain price band,
+// then the accordion FAQ (fog). The [OWNER Q4] items (build time, hosting terms, staff edits, the accessibility
+// standard) stay off the page until answered.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
@@ -161,7 +162,7 @@ const pageSchema = [
   /* Depth section 1: the six parts beside the practice page, under the section's lead-in line. */
   .lse-depth__slot:has(> .wd-parts) { margin-top: 24px; }
 
-  /* The two tables' first column keeps its row labels on one or two lines. */
+  /* The repair or rebuild table's first column keeps its row labels on one or two lines. */
   @media (min-width: 641px) {
     .lse-depth[data-depth='lawyer-web-design-development'] .lse-prose tbody td:first-child { min-width: 10.5em; }
   }

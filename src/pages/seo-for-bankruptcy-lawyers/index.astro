@@ -1,10 +1,9 @@
 ---
-// /seo-for-bankruptcy-lawyers/ from content/v3/seo-for-bankruptcy-lawyers.md (critic: content/v3/CRITIC-practice-3.md).
-// Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1 across, then the form card and
-// the calls chart cropped to the September point on the fog panel; the urgent searches follow on fog. The v2 "Map or page" band, FAQ and Related block gave way to the depth zone
-// (src/content/depth/seo-for-bankruptcy-lawyers.md). Its own look on this page: the jump list with big ink numerals,
-// the problem pages and agency habits as hairline rows with each bold lead on its own line, the built marker
-// PriceBand (moved, one line changed), and the open FAQ on fog with each question beside its answer.
+// /seo-for-bankruptcy-lawyers/. Facts: research/FACTS.md. The hero is the row hero (PageHero layout="row"): the H1
+// across, then the form card and the calls chart cropped to the September point on the fog panel; the urgent
+// searches follow on fog. The depth zone (src/content/depth/seo-for-bankruptcy-lawyers.md, v4: written from our own
+// practice) follows. Its own look on this page: the jump list with big ink numerals, the El Paso 9 to 23 pair and
+// after chart beside the Map section, the built marker PriceBand, then the accordion FAQ (fog).
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
@@ -41,7 +40,7 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
   >
     <figure slot="visual" class="bk-hero__fig">
       <Shot tag="43 calls" tagSide="left" priority images={[shot(proof.nolaCallsMaySepChart, { phone: 'augSep' })]} />
-      <figcaption>A PI firm in New Orleans: 43 calls from its Business Profile in September 2026.</figcaption>
+      <figcaption>September 2026: 43 calls from one New Orleans PI firm’s Business Profile.</figcaption>
     </figure>
   </PageHero>
 
@@ -98,14 +97,16 @@ const depth = await getDepth('seo-for-bankruptcy-lawyers');
     padding-top: 9px; font-size: 26px; font-weight: 900; line-height: 1; letter-spacing: -.04em; color: var(--ink);
   }
 
-  /* The problem pages and the agency habits: hairline rows, each bold lead on its own line at a small heading size. */
+  /* A plain bullet list in the copy: hairline rows, each bold lead on its own line at a small heading size. The v4
+     copy has no bullet list, so these match nothing today. */
   .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) { list-style: none; padding: 0; border-top: 2px solid var(--ink); }
   .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) > li { margin: 0; padding: 16px 0 18px; border-bottom: 1px solid var(--line-2); }
   .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-prose > ul:not(.lse-check) > li > strong:first-child {
     display: block; margin-bottom: 4px; font-size: clamp(19px, .4vw + 16px, 22px); font-weight: 750; line-height: 1.25; letter-spacing: -.012em; color: var(--ink);
   }
 
-  /* The open FAQ: each question beside its answer from 1000px, under one black rule. */
+  /* An open FAQ (front matter faqStyle: open) sets each question beside its answer from 1000px. The v4 copy uses
+     the accordion, so these match nothing today. */
   @media (min-width: 1000px) {
     .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-depth__faq .lse-faq--open { max-width: none; }
     .lse-depth[data-depth='seo-for-bankruptcy-lawyers'] .lse-depth__faq .lse-faq__item {

@@ -1,9 +1,9 @@
 ---
-// /law-firm-seo-services/. Copy: content/v3/law-firm-seo-services.md (critic: content/v3/CRITIC-services.md).
-// Facts: research/FACTS.md. The commercial top is the row hero (PageHero layout="row": the form card, and the #1
-// frame, the page's only capture, on the fog panel). The depth zone follows straight after it: src/content/depth/law-firm-seo-services.md, with the Rows and
-// the practice list passed in as slots, the mid-page CTA after the main zone, and the price band (struck total from
-// src/data/pricing.ts) above the open FAQ. Then the author box and the closing CTA.
+// /law-firm-seo-services/. Facts: research/FACTS.md. The commercial top is the row hero (PageHero layout="row": the
+// form card, and the #1 frame on the fog panel). The depth zone (src/content/depth/law-firm-seo-services.md, v4:
+// written from our own practice) follows straight after it: the practice list at the end of the first 90 days, the
+// New Orleans calls summary beside the two-firm results, the mid-page CTA after the counting section, and the price
+// band (struck total from src/data/pricing.ts), then the accordion FAQ (fog), the author box and the closing CTA.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import PracticeLinks from '../../components/PracticeLinks.astro';
@@ -12,7 +12,6 @@ import Band from '../../components/kit/Band.astro';
 import PageHero from '../../components/kit/PageHero.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import Q from '../../components/kit/Q.astro';
-import Rows from '../../components/kit/Rows.astro';
 import ShotSwap from '../../components/money/ShotSwap.astro';
 import '../../components/services/services.css';
 import { fadeRight, proof, shot } from '../../data/proof';
@@ -27,37 +26,6 @@ const path = '/law-firm-seo-services/';
 const depth = await getDepth('law-firm-seo-services');
 
 const wtdTitle = [{ l: 2, t: 40, w: 49, h: 19 }];
-
-// Depth section 4: the five layers of a firm site.
-const layers = [
-  { title: 'Home page.', text: 'The firm, its offices and its main practices, with the phone number in easy reach.' },
-  { title: 'Practice pages.', text: 'One for each practice area, such as personal injury or family law.' },
-  { title: 'Case-type pages.', text: 'One for each case type that clients search on its own, such as truck accidents.' },
-  { title: 'Answer pages.', text: 'Questions clients have before they pick up the phone, such as what to do after a crash.' },
-  { title: 'Office pages.', text: 'One for each real office, with the lawyers there, directions and the areas it serves.' },
-];
-// Depth section 5: four reasons to link.
-const reasons = [
-  { title: 'Local presence.', text: 'The firm’s real community work, written up where local sites can cite it.' },
-  { title: 'Useful pages.', text: 'Deadline guides and checklists that other sites want to send their readers to.' },
-  { title: 'Accurate listings.', text: 'Bar association, court and legal directory profiles that name the firm correctly.' },
-  { title: 'Lawyers as sources.', text: 'Comment on local cases and law changes that journalists can quote.' },
-];
-// Supplementary H3 4: what we won't do, and why.
-const refuse = [
-  { title: 'A page for every town in reach.', text: 'Pages that swap one town’s name for another fit Google’s description of doorway abuse.' },
-  { title: 'Bought or swapped links.', text: 'Google’s spam policies treat both as link spam, and the firm’s rankings carry the risk.' },
-  {
-    title: 'A guaranteed position.',
-    text: 'Google decides rankings, so no agency can promise one. Our <a href="/law-firm-seo-consultant/">guide to vetting an SEO consultant</a> covers the other promises to walk away from.',
-  },
-  { title: 'Reports that hide a drop.', text: 'A higher average position number means a lower ranking, so a move from 29 to 34 is a fall.' },
-  {
-    title: 'Technical busywork.',
-    text: 'Google’s <a href="https://developers.google.com/crawling/docs/crawl-budget">crawl budget guide</a> is aimed at sites with about a million pages or more, so most law firm sites can skip it.',
-  },
-  { title: 'Pages made in bulk.', text: 'Google’s scaled content policy covers pages made mainly to rank, whoever or whatever wrote them.' },
-];
 ---
 <InnerPage
   title={title}
@@ -96,10 +64,7 @@ const refuse = [
       />
       <figcaption><b>139 calls in five months, up 39%</b><span>A PI firm in New Orleans: calls from its Google Business Profile, June to October 2026, by Google’s own count.</span></figcaption>
     </figure>
-    <div slot="layers" class="bsv-rows"><Rows variant="inline" items={layers} /></div>
     <div slot="practices" class="bsv-practice"><PracticeLinks /></div>
-    <div slot="reasons" class="bsv-rows"><Rows variant="inline" items={reasons} /></div>
-    <div slot="refuse" class="bsv-rows"><Rows variant="inline" items={refuse} /></div>
 
     <Band slot="mid" tone="fog" class="bsv-mid">
       <p class="bsv-mid__line">Fahim will map your first 90 days and put the price in writing.</p>
