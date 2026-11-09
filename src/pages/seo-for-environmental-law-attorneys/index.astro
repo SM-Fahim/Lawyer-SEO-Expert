@@ -1,10 +1,10 @@
 ---
-// /seo-for-environmental-law-attorneys/ from content/v3/seo-for-environmental-law-attorneys.md (critic:
-// content/v3/CRITIC-mixed.md). The hero is the row hero (PageHero layout="row"): the H1 and line across, then
-// the form card and the New Orleans calls summary led by "Up 39%" on the fog panel. The v2 bands after it gave way to the depth zone
-// (src/content/depth/). Its own look on this page: the jump list first and narrow, the summary beside it; the
-// notices and deadlines section (the unique asset) as a fog band in the middle of the white text; the price as two
-// lines on fog (no PriceBand); the open FAQ on white with each question beside its answer. No mid-page CTA (R8).
+// /seo-for-environmental-law-attorneys/. The hero is the row hero (PageHero layout="row"): the H1 and line across,
+// then the form card and the New Orleans calls summary led by "Up 39%" on the fog panel. The depth zone
+// (src/content/depth/, v4: written from our own practice) follows. Its own look on this page: the jump list first and
+// narrow, the summary beside it; the pages section (notices, deadlines and rule stages, the page's unique asset) as a
+// fog band in the middle of the white text; the tanker AI answer as the proof; the price as two lines on fog (no
+// PriceBand); then the accordion FAQ on white. No mid-page CTA.
 import FinalCta from '../../components/FinalCta.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import Band from '../../components/kit/Band.astro';
@@ -18,7 +18,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-environmental-law-attorneys/';
 const title = 'SEO for Environmental Law Attorneys | Niche B2B Search';
 const description =
-  'SEO for environmental law attorneys: a demand check, pages for EPA notices and deadlines, dated rule-change pages, name search, AI answers and reach.';
+  'SEO for environmental law attorneys from our own practice: a demand check, pages for EPA notices and rule stages, AI answers, the name search and cost.';
 const depth = await getDepth('seo-for-environmental-law-attorneys');
 ---
 <InnerPage
@@ -44,6 +44,10 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
   </PageHero>
 
   <DepthZone depth={depth} faqTone="white" authorLinkLabel="About S. M. Fahim">
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="Cited" tagSide="right" images={[shot(proof.nolaTankerSerpAnswer, { crop: 'answer', marks: ['aiChip'] }), shot(proof.nolaTankerSerpSource, { crop: 'firm', marks: ['sourceCard'] })]} />
+      <figcaption>A New Orleans tanker crash search: the AI answer cites a PI firm, and the firm’s page sits among its sources.</figcaption>
+    </figure>
     <Band slot="price" tone="fog" class="env-price">
       <p class="env-price__big">Environmental law SEO is priced from $2,000 a month, and there’s no fee to set it up.</p>
       <p class="env-price__line">Fahim sets out the monthly fee in writing first, before any work. See <a href="/seo-pricing/">law firm SEO pricing</a>.</p>
@@ -65,12 +69,12 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
     .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__toc { order: -1; }
   }
 
-  /* The notices and deadlines section, the page's unique asset, as a fog band across the page. */
-  .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__sec:has(> .lse-prose > h2#which-notices-and-deadlines-start-an-environmental-clients-search) {
+  /* The pages section (notices, deadlines and rule stages), the page's unique asset, as a fog band across the page. */
+  .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__sec:has(> .lse-prose > h2#pages-built-around-notices-deadlines-and-rule-changes) {
     padding-block: clamp(56px, 6vw, 96px); border-top: 0;
     background: var(--fog); box-shadow: 0 0 0 100vmax var(--fog); clip-path: inset(0 -100vmax);
   }
-  .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__sec:has(> .lse-prose > h2#which-notices-and-deadlines-start-an-environmental-clients-search) + .lse-depth__sec { border-top: 0; }
+  .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__sec:has(> .lse-prose > h2#pages-built-around-notices-deadlines-and-rule-changes) + .lse-depth__sec { border-top: 0; }
 
   /* The price: two lines on fog, the first set large. No button, no H2 (no PriceBand on this page). */
   .env-price .lse-band__body { display: grid; gap: var(--s3); }
@@ -80,13 +84,4 @@ const depth = await getDepth('seo-for-environmental-law-attorneys');
   }
   .env-price__line { max-width: 36em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
   .env-price__line a { font-weight: 700; color: var(--ink); }
-
-  /* The open FAQ on white: each question beside its answer from 1000px, on hairline rows. */
-  @media (min-width: 1000px) {
-    .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__faq .lse-faq--open { max-width: none; }
-    .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__faq .lse-faq__item {
-      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(48px, 5vw, 80px); align-items: baseline;
-    }
-    .lse-depth[data-depth='seo-for-environmental-law-attorneys'] .lse-depth__faq .lse-faq--open .lse-faq__a { padding-top: 0; max-width: 36em; }
-  }
 </style>

@@ -1,264 +1,160 @@
 ---
-# /seo-for-intellectual-property-lawyers/ depth zone. Copy: content/v3/seo-for-intellectual-property-lawyers.md
-# (critic pass: content/v3/CRITIC-mixed.md). Slots the page fills: searches (the six keyword-research searches in a
-# SearchBox), bands mid and price (the two-line price line, no PriceBand).
+# /seo-for-intellectual-property-lawyers/ depth zone, v4 (content/V4-BRIEF.md): written from our own practice
+# (research/EXPERTISE.md, item ids per section in content/v4/LEDGER.md). Our accounts are injury firms, and each
+# example says so. Slots the page fills: searches (the six keyword-research searches in a SearchBox), proof; bands
+# mid and price (the two-line price line, no PriceBand).
 summary: >-
-  SEO for intellectual property lawyers is the work of ranking a patent, trademark or copyright practice for the
-  searches founders, inventors and in-house counsel make before they pick a firm. The short answer: rank matter pages
-  nationally, because USPTO work doesn't depend on the client's state, and keep the Business Profile for the firm's
-  name and offices. Below, we cover reach, the titles an IP site may use, the searches behind each kind of matter,
-  foreign applicants and fit. Then come ranking speed and AI answers, three situations the core plan leaves out, and
-  why technical buyers leave a site unconvinced.
-reviewed: 2026-11-08
+  With SEO for intellectual property lawyers, we rank your patent, trademark and copyright pages across the whole
+  country, for the questions founders, inventors and in-house counsel ask before they choose a firm. What
+  matters most is that every title, credential and rule on the site can be checked, because technical buyers check.
+reviewed: 2026-11-09
+modified: 2026-11-09
 faqHeading: IP firms want to know.
+faqStyle: accordion
 faq:
   - q: Do your results include any patent or trademark firms?
     a: >-
-      Our results so far are from PI firms, and this page labels them that way. The groundwork and page writing behind
-      them carry over to patent and trademark pages.
-  - q: >-
-      Should we target "what does a patent lawyer do"?
-    a: >-
-      Rarely as a page of its own. In our keyword research, that search comes mostly from students weighing the career,
-      so a short answer on a process page is enough.
-  - q: Should copyright work share a page with trademarks?
-    a: >-
-      Give copyright its own page. The readers differ, and so does the office: copyright registration runs through the
-      [U.S. Copyright Office](https://www.copyright.gov/), not the USPTO.
+      No. Every result we show comes from an injury firm, and we label it that way. What carries over to IP is the
+      part that never depended on a city: the topic plan, rivals picked by data, credentials checked at the source
+      and pages written to be quoted.
   - q: How do we write about a client's work without revealing an unfiled invention?
     a: >-
-      Write about the field and the kind of problem, never the client's matter. Name a client or a granted patent only
-      with written consent, and keep anything unfiled off the site.
-  - q: Can your writers keep up with our technology fields?
+      Write about the field and the kind of problem, never the client's own matter. A client or a granted patent is
+      named only with written consent, and nothing unfiled goes on the site.
+  - q: Can your team keep up with our technology fields?
     a: >-
-      Fahim plans and reviews each page, and a small team helps with drafts. Your practitioners check every technical
-      and legal point before anything is published.
+      Fahim trained as an engineer and plans and reviews every page, with a small team on drafts. Your
+      practitioners still check every technical and legal point before anything is published.
+  - q: Does an IP firm need a Google Business Profile at all?
+    a: >-
+      Yes, though it matters less than for a local firm. It carries the firm's name search and each staffed office,
+      and Google rules out virtual offices. A practitioner who meets clients at an office may have one in their own
+      name, but never an extra profile for each specialty.
+  - q: Should copyright share a page with trademarks?
+    a: >-
+      No. The readers differ, and so does the office: copyright registration runs through the U.S. Copyright Office,
+      not the USPTO. Each gets its own page, linked to the other.
+  - q: Do you work with IP firms outside the US?
+    a: >-
+      Yes. We work remotely, and Fahim's track record covers four countries, Ireland and New Zealand among them.
+      What changes is the titles. In the UK, "patent attorney" and "registered trade mark attorney" are kept for
+      people IPReg regulates, and in Canada "patent agent" and "trademark agent" are licensed titles.
 authorLine: >-
   Fahim trained as a mechatronics engineer. Over 6.5 years, Fahim has grown more than 67 businesses online and got
   more than 50 of them ranked on Google. The New Orleans PI firm in the hero runs on the SEO system Fahim built, and
   Fahim leads each account, with a small team on production.
 sources:
-  - url: https://www.ecfr.gov/current/title-37/section-11.704
-    publisher: eCFR, 37 CFR 11.704
-    title: Communication of fields of practice and specialization
-  - url: https://www.ecfr.gov/current/title-37/section-11.14
-    publisher: eCFR, 37 CFR 11.14
-    title: Individuals who may practice before the Office in trademark and other non-patent matters
-  - url: https://www.ecfr.gov/current/title-37/section-2.11
-    publisher: eCFR, 37 CFR 2.11
-    title: Requirement for representation
-  - url: https://www.ecfr.gov/current/title-37/section-11.5
-    publisher: eCFR, 37 CFR 11.5
-    title: Register of attorneys and agents in patent matters; practice before the Office
-  - url: https://support.google.com/business/answer/3038177
-    publisher: Google Business Profile Help
-    title: Guidelines for representing your business on Google
-  - url: https://oedci.uspto.gov/OEDCI/
-    publisher: USPTO, Office of Enrollment and Discipline
-    title: Patent Practitioner Home Page
-  - url: https://www.gov.uk/guidance/get-legal-advice-from-an-intellectual-property-professional
-    publisher: GOV.UK (Intellectual Property Office guidance)
-    title: Get legal advice from an intellectual property professional
-  - url: https://laws-lois.justice.gc.ca/eng/acts/c-33.7/FullText.html
-    publisher: Justice Laws Website (Government of Canada)
-    title: College of Patent Agents and Trademark Agents Act
-  - url: https://ipreg.org.uk/what-is-an-attorney
-    publisher: IPReg (Intellectual Property Regulation Board)
-    title: What is an attorney
-  - url: https://www.uspto.gov/trademarks/maintain/keeping-your-registration-alive
-    publisher: USPTO
-    title: Keeping your registration alive
-  - url: https://www.uspto.gov/patents/maintain
-    publisher: USPTO
-    title: Maintain your patent
-  - url: https://developers.google.com/search/docs/appearance/ai-features
-    publisher: Google Search Central
-    title: AI features and your website
-  - url: https://www.uspto.gov/about-us/news-updates/uspto-has-terminated-more-52000-fraudulently-filed-trademark-applications-and
-    publisher: USPTO news
-    title: USPTO has terminated more than 52,000 fraudulently filed trademark applications and registrations
-  - url: https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule
-    publisher: USPTO
-    title: USPTO fee schedule
-  - url: https://www.copyright.gov/
-    publisher: U.S. Copyright Office
-    title: U.S. Copyright Office
   - url: https://www.ecfr.gov/current/title-37/section-1.31
     publisher: eCFR, 37 CFR 1.31 (amended at 91 FR 13519, March 20, 2026)
     title: Applicant and patent owner may be represented by one or more patent practitioners or joint inventors
+  - url: https://www.ecfr.gov/current/title-37/section-11.704
+    publisher: eCFR, 37 CFR 11.704
+    title: Communication of fields of practice and specialization
+  - url: https://oedci.uspto.gov/OEDCI/
+    publisher: USPTO, Office of Enrollment and Discipline
+    title: Patent Practitioner Home Page
 ---
 
-## Should an IP firm rank nationally or city by city?
+## SEO for intellectual property lawyers is national, not local
 
-An IP firm should rank its patent, trademark and copyright pages nationally and use local search only for its name and real offices. Work before the USPTO doesn't depend on the client's state, so a founder in Ohio can hire a firm in Oregon.
+A founder in Ohio can hire a patent firm in Oregon, because work before the USPTO doesn't depend on the client's state. So most IP searches carry no city, and your matter pages compete across the country.
 
-Under [37 CFR 11.14](https://www.ecfr.gov/current/title-37/section-11.14), any attorney may represent others in trademark matters without registering. Patent work is open to any practitioner on the USPTO's register.
-
-Each page type on an IP site has its own reach:
-
-- Matter pages: national, wherever the question is typed.
-- Field pages: national, one per field the firm really works in.
-- Office pages: local, one per staffed office, matched to its Business Profile.
-- Bios: both, ranking for the person's name and linked from their practitioner profile.
-
-On the Map, Google's [Business Profile guidelines](https://support.google.com/business/answer/3038177) rule out a virtual office the firm doesn't work from. Each lawyer who meets clients can hold a practitioner profile in their own name, but not extra profiles for each specialty.
-
-Rivals change with reach. National pages compete with every IP firm in the field and with low-cost filing sites, while the Map compares only firms nearby.
-
-In review requests, ask company clients about the service, never the patent or mark behind it.
-
-How we build national pages and keep each profile in order, month by month, is part of our [law firm SEO services](/law-firm-seo-services/).
-
-Whatever reach a page has, its titles must match each person's registration.
-
-## Patent attorney, patent agent or specialist: which titles may an IP site use?
-
-An IP site may call a registered lawyer a "patent attorney" and a registered non-lawyer a "patent agent". The USPTO sets those designations in [37 CFR 11.704](https://www.ecfr.gov/current/title-37/section-11.704), and every bio, page title and profile should follow them.
-
-Each title, who may use it, and who sets the rule:
-
-| Title or claim | Who may use it | Rule and who sets it |
-|---|---|---|
-| "Patent Attorney", "Patent Lawyer", "Registered Patent Attorney" | A lawyer registered with the USPTO for patent work | USPTO, 37 CFR 11.704(b) |
-| "Patent Agent", "Registered Patent Agent" | A registered patent practitioner who is not a lawyer | USPTO, 37 CFR 11.704(b) |
-| Trademark work before the USPTO | Attorneys; patent registration alone doesn't qualify anyone | USPTO, [37 CFR 11.14](https://www.ecfr.gov/current/title-37/section-11.14) (a) and (b) |
-| "Specialist" or "certified" | Only with certification from an approved body, named on the page | USPTO, 37 CFR 11.704(d), and each state bar |
-| "Patent attorney", "registered trade mark attorney" (UK) | Only people regulated by IPReg | UK, per [GOV.UK guidance](https://www.gov.uk/guidance/get-legal-advice-from-an-intellectual-property-professional) |
-| "Patent agent", "trademark agent" (Canada) | Only licensees whose license isn't suspended | Federal [College of Patent Agents and Trademark Agents Act](https://laws-lois.justice.gc.ca/eng/acts/c-33.7/FullText.html), ss 67, 68 |
-
-The same USPTO rule says a registered patent agent must not appear qualified for trademark matters or for court, so an agent's bio belongs with the patent pages. The title in a bio should match the page title, schema markup, Business Profile, LinkedIn and every directory.
-
-Buyers can check. The USPTO's [patent practitioner search](https://oedci.uspto.gov/OEDCI/) lists the attorneys and agents authorized in patent matters and leaves out anyone inactive or suspended.
-
-US lawyer advertising rules come from each state's bar or high court, most modeled on the ABA Model Rules. The firm's attorneys or ethics counsel approve each IP page before it goes live, and "expert" in our own name refers to SEO work, not a legal credential.
-
-This is general information about marketing, not legal advice. Rules differ by state and country, so check yours with your bar, law society or ethics counsel.
-
-## How do patent, trademark and copyright buyers search, and which page answers each?
-
-Patent, trademark and copyright buyers type different questions, so an IP firm needs a page for each kind of matter. In our keyword research, patent searches ask about cost and the safety of an idea, while trademark searches ask whether a lawyer is needed.
-
-Six searches from that research:
+Three readers arrive at those pages: the founder wants cost and steps, the engineer wants to see their field, and in-house counsel wants matter types and forums. Here are six real searches our keyword research turned up:
 
 [slot searches]
 
-The cost and "do I need a lawyer" searches come from people close to hiring.
+Searches about cost, or about whether a lawyer is needed at all, come from people close to hiring.
 
-Each matter, its reader and the page that answers it:
+[more "See how we choose searches and rivals"]
 
-| Matter | Who is reading | Page that answers it |
-|---|---|---|
-| Patent filing | Founders and inventors with an idea or prototype | Cost, process and idea-safety pages, by technology field |
-| Patent disputes | In-house counsel and executives | Litigation and Patent Trial and Appeal Board pages, naming the forums |
-| Patent upkeep | Owners of a granted utility patent | A dated page on the USPTO's fee windows |
-| Trademark filing | Founders naming a company or product | Clearance, filing and fee pages, with the attorney named |
-| Trademark upkeep | Owners of a registered mark | Renewal pages tied to the USPTO's deadlines |
-| Copyright | Authors, software companies and publishers | Registration and infringement pages, apart from trademarks |
+Not every IP search is a buyer. In our keyword research, "what does a patent lawyer do" comes mostly from students weighing the career, so it gets a short answer on a process page, not a page of its own.
 
-Upkeep pages bring past clients back. The USPTO requires a trademark declaration of use between the fifth and sixth years after registration, then a renewal filing every ten years ([keeping a registration alive](https://www.uspto.gov/trademarks/maintain/keeping-your-registration-alive)).
+We pick rivals by data, too. Our sheet for each main search records the five sites on top and their type, and in IP that list holds cheap filing services as well as firms. The rival a firm names is often not the one ranking. For one injury firm, the name we were handed never appeared in the searches we followed.
 
-Utility patent maintenance fees fall due in windows ending 3.5, 7.5 and 11.5 years after issue, per the USPTO's [maintenance page](https://www.uspto.gov/patents/maintain).
+[/more]
 
-A technology field page earns its place only when a practitioner at the firm works in that field; otherwise it is thin. Our [lawyer web design](/lawyer-web-design-development/) work plans the menu for matter, field and upkeep pages when an IP firm rebuilds.
+## The IP site we build, one job per page
 
-Each patent page can serve three readers: the founder wants cost and steps, the engineer wants the field, and in-house counsel wants matter types and forums. One reader rarely appears in an IP firm's plans: the foreign applicant.
-
-## Which pages bring foreign applicants to a US trademark practice?
-
-Foreign applicants need a US attorney by rule, so a US trademark practice can win their searches with pages built for readers abroad. Since 2019, [37 CFR 2.11](https://www.ecfr.gov/current/title-37/section-2.11) has required a US attorney for applicants and registrants domiciled outside the US.
-
-Foreign firms belong in the same plan. Under 37 CFR 11.14(c), even a recognized foreign trademark practitioner needs a US attorney appointed to file documents and receive the USPTO's letters.
-
-This Example plan lists the pages, with no rankings or results in it:
+Every practice follows the same order of work, and [law firm SEO services](/law-firm-seo-services/) sets out its first 90 days. An IP firm changes the page set and the rules behind it.
 
 [steps]
-1. A hub for applicants outside the US: the rule in plain words and what the firm files.
-2. A process page with the filing steps in order, written for readers whose first language may differ.
-3. A fee page that links the USPTO's fee schedule beside the firm's own fees.
-4. A page for foreign law firms: how instructions arrive and how fast the firm reports back.
-5. Country pages only where the firm has clients and something specific to say; a swapped country name makes a doorway page.
-6. A contact page built for other time zones: email first, asking for the country and the mark.
+1. **The matters you want, and what never goes online.**
+2. **A topic plan where each page has one job.**
+3. **The rules each page states, checked for this year's changes.**
+4. **Google's AI answers, captured before we write.**
+5. **Fresh eyes first, then your practitioners.**
 
-Patent work from abroad now follows a similar path. Under [37 CFR 1.31](https://www.ecfr.gov/current/title-37/section-1.31), as amended in March 2026, a patent applicant domiciled outside the US must be represented by a registered patent practitioner.
+[more "See what goes into an IP topic plan"]
 
-Keep these pages in English unless a fluent lawyer reviews each translation. Every inquiry then needs the same fit screen.
+1. A single questionnaire, answered once, covers the matters and technology fields you take, the clients you serve and what must stay off the site, such as a client's unfiled work.
+2. The plan lists every page before any is written: matter pages for filing, disputes and upkeep, a field page only where one of your practitioners works in that field, and a bio for each. Each row names the page's single job and its search, so no two pages compete. Upkeep pages, on renewals and maintenance fees, bring past clients back.
+3. We read each rule from its source and check whether it changed this year. One example: since a March 2026 amendment to [37 CFR 1.31](https://www.ecfr.gov/current/title-37/section-1.31), a patent applicant based outside the US must be represented by a registered patent practitioner. A change like that opens a set of pages for applicants abroad.
+4. For each target question, we save Google's current AI answer and the sites it cites, then write a page that answers more exactly.
+5. A reviewer who didn't write the page checks it for accuracy and for how it reads. Your practitioners then see only the points they must decide, so their check is short.
 
-## What keeps poor-fit patent inquiries off an IP firm's calendar?
+[/more]
 
-Clear statements of who the IP firm serves, plus a form that asks about stage and field, keep poor-fit patent inquiries off the calendar. Without them, a ranking cost page can fill consultation slots with ideas the firm can't take on.
+## Titles and credentials a technical buyer will check
 
-Cost and "is my idea safe" pages reach people at the very start, who may fit later but not today.
+An IP buyer can check a practitioner in minutes, so every title on the site must match the register. Under [37 CFR 11.704](https://www.ecfr.gov/current/title-37/section-11.704), a registered lawyer may be called a "patent attorney" and a registered non-lawyer a "patent agent", and a "specialist" claim must name the body that certified it.
 
-These signals on the page and in the form screen inquiries before anyone books a call:
+Before a bio goes up, we look the practitioner up in the USPTO's [patent practitioner search](https://oedci.uspto.gov/OEDCI/). The same title then appears on the page, in the markup, on LinkedIn and in every directory.
 
-[checklist]
-- A line near the top naming who the firm serves: companies, startups, universities or inventors.
-- Each technology field the firm works in, linked to its field page.
-- How the first consultation works, and whether it is charged.
-- Form fields for stage (idea, prototype, filed or granted) and for technology field.
-- A form field asking whether the inquirer is a company or an individual.
-- A form field for any date already running, such as a USPTO response date.
+[more "See what credential checks have caught"]
 
-Call and form tracking, part of our monthly work, ties each inquiry to the page that sent it. When one page keeps sending poor fits, rewrite its opening lines, and reply to good fits the same working day.
+Checking at the source has paid off on our injury accounts. One site listed a lawyer in a group he had never joined, and a trust badge claimed an award level the lawyer had never reached. We correct a badge like that even when the true version looks smaller.
 
-Fit decides which inquiries count; speed decides how soon they arrive.
+In the markup, we describe the firm once and each lawyer as a person with checked credentials. That code is written into the page itself, since AI crawlers skip the JavaScript a tag manager needs.
 
-## How quickly can new patent and trademark pages rank and reach AI answers?
+A referred client searches your name before calling. That search should return your site, each bio, the USPTO listing, LinkedIn and any IP directories, all telling the same story.
 
-New patent and trademark pages can rank within hours once an IP site's groundwork is in place, and that groundwork takes months. For one PI firm in New Orleans, the groundwork ran about three months before any new page moved that fast.
+[/more]
 
-After that, its new tanker accident page reached #3 on Google within 16 hours, and Google's AI answer listed the firm among its key firms. A patent or trademark page on the same base can move the same way, though no one can promise when.
+The "expert" in our own name describes search work, not a legal credential. Each page goes live only after your firm or its ethics counsel approves it.
 
-Google states in [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features) that no special markup or AI text file is needed. Its two conditions: the page is indexed, and it can show with a snippet.
+<p class="lse-small">A note on scope: this is marketing guidance. Your bar's rules, applied by your ethics counsel, decide whether a title or claim is allowed.</p>
 
-On an IP site, give each page one question to answer in its opening lines, with its USPTO source. The trademark upkeep deadlines, or what a provisional patent application covers, fit that shape.
+## What our injury pages show about speed and AI answers
 
-We check Google's AI answers for the firm's main IP questions every month. Our services page explains [how Google's AI picks pages to cite](/law-firm-seo-services/).
+[slot proof]
 
-Speed and citations play out differently in three situations.
+The hero search above is a New Orleans PI firm's tanker truck page. Sixteen hours after it was published, it sat at #3 on Google, on a site with about three months of groundwork behind it.
+
+The capture here is the same firm's jackknife truck page, which went up a week before the tanker page. A week after going live, it was still the first result and still cited by Google's AI. An IP question page on a site with that groundwork can move the same way, though no one can promise when.
+
+[more "See what Google's AI chose to quote"]
+
+The lines Google's AI quoted were specific: a filing deadline, a warning about recorded statements, the highways where crashes happen. On an IP site, the equivalent is the USPTO's own deadlines and steps, stated plainly beside their source.
+
+All of the pages it cited were on page one already. That is why "AI optimization" is not a separate line on our bill: bought before the site ranks, it pays for the wrong thing.
+
+[/more]
 
 [band mid]
 
-## Three IP situations the core plan leaves out
+## Which inquiries count, and which should the pages turn away?
 
-Three IP practices need the plan adjusted for their market: UK and Canadian firms, trademark practices facing low-cost filing sites, and patent boutiques that live on referrals.
+A ranking cost page can fill your consultation calendar with ideas nobody can take on yet. A clear line on who you serve, and a form that asks the right things, sort inquiries before anyone books a call:
 
-### IP firms in the UK and Canada
+[checklist]
+- **Who you serve,** near the top of each page: companies, startups, universities or individual inventors.
+- **The stage of the idea:** idea, prototype, filed or granted.
+- **The technology field,** linked to its field page.
+- **Company or individual.**
+- **Any date already running,** such as a USPTO response deadline.
 
-UK and Canadian IP firms follow the same plan with different titles and registers. GOV.UK tells the public they can check IPReg's register, and it sends them to the CIPA and CITMA directories, so a UK firm's listings there matter.
+[more "See how we count IP inquiries"]
 
-IPReg notes that "lawyer" is [not a protected title](https://ipreg.org.uk/what-is-an-attorney) in England, Wales and Northern Ireland, unlike "patent attorney", which GOV.UK reserves for regulated people. Canadian pages use "patent agent" and "trademark agent" for the licensed titles.
+Calls count only if answered, each form counts once, and phone taps are never added on top; every lead is tied to the page that produced it. For an IP firm, a <dfn>qualified lead</dfn> comes from a client at a stage you serve, about a matter you handle, in a field your practitioners know.
 
-Our remote setup takes in firms outside the US. Fahim's track record covers 4 countries, with New Zealand's Idiya and Ireland's Breakthrough Maths among the businesses Fahim grew.
+When one page keeps sending poor fits, we rewrite its opening lines. The form itself never tells an inventor whether an idea can be patented. A practitioner does that.
 
-### Trademark practices up against low-cost filing sites
+[/more]
 
-A trademark practice competes with low-cost filing sites on accountability it can show: the attorney's name, bar admission and a fee page that separates official fees from its own.
+## How soon, and what it costs
 
-In August 2025, the USPTO [terminated more than 52,000 applications and registrations](https://www.uspto.gov/about-us/news-updates/uspto-has-terminated-more-52000-fraudulently-filed-trademark-applications-and) tied to one foreign filing firm. That firm had misused US attorneys' credentials and faked their signatures.
+The groundwork comes first and takes roughly three months; only then do new pages move quickly, and even then no date is promised. Our monthly report compares calls and qualified leads with the matching months a year back.
 
-Link the USPTO's [fee schedule](https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule), last revised on 1 November 2026, instead of copying amounts, and put a "checked on" date beside it.
-
-### Patent boutiques that live on referrals
-
-A referral-led patent boutique still needs search, because the person referred looks the firm up by name. That search should return the site, each bio, the USPTO listing, LinkedIn and any IP directories, all with matching titles.
-
-Branded searches in Search Console show whether talks, articles and referrals are working. Referrals and the channels outside search get their own guide: [how to get clients as a lawyer](/how-to-get-clients-as-lawyers/).
-
-Each situation fails the same way: pages that misjudge their buyers.
-
-## Why do technical buyers leave an IP firm's site unconvinced?
-
-Technical buyers leave an IP firm's site when its pages read like generic legal marketing: vague fields, no named practitioner, loose titles and claims no one can check.
-
-The habits to refuse in any IP SEO proposal:
-
-- City pages with no staffed office behind them, each a copy with the place name swapped.
-- A "patent attorney" label on an agent's bio, or a "specialist" claim with no named certifier.
-- Field pages for technologies no one at the firm works in.
-- Ranking promises with a date attached.
-- Special AI files sold as the way into AI answers.
-
-SEO for intellectual property lawyers works when every page names a real practitioner, a real field and a rule the buyer can check.
+What we charge each month follows from your market, the matters and fields you want covered, your office count and the work your site needs. Stop when any month closes; the firm keeps the site, every page and each account we opened.
 
 [band price]

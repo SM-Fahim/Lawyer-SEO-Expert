@@ -1,10 +1,10 @@
 ---
-// /seo-for-intellectual-property-lawyers/ from content/v3/seo-for-intellectual-property-lawyers.md (critic:
-// content/v3/CRITIC-mixed.md). The hero is the row hero (PageHero layout="row"): the H1
-// across, then the form card and the tanker search over its #3 result ("16 hours ago" marked) on the fog panel. The v2 bands gave way to
-// the depth zone (src/content/depth/): its own look on this page is a standfirst summary with the jump list under it
-// in two columns, the six keyword-research searches in one search box, the mid-page CTA after the main zone, the
-// price as one large statement on white (no PriceBand), and the open FAQ as a two-column grid on fog.
+// /seo-for-intellectual-property-lawyers/. The hero is the row hero (PageHero layout="row"): the H1 across, then the
+// form card and the tanker search over its #3 result ("16 hours ago" marked) on the fog panel. The depth zone
+// (src/content/depth/, v4: written from our own practice) follows: its own look on this page is a standfirst summary
+// with the jump list under it in two columns, the six keyword-research searches in one search box, the jackknife
+// capture as the proof, the mid-page CTA after it, the price as one large statement on white (no PriceBand), and
+// the accordion FAQ on fog.
 import Button from '../../components/Button.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
@@ -20,10 +20,10 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-intellectual-property-lawyers/';
 const title = 'SEO for IP Lawyers | Patents, Trademarks, Copyright';
 const description =
-  'SEO for IP lawyers: national vs local reach, USPTO titles, patent, trademark and copyright pages, foreign applicants, fit and AI answers.';
+  'SEO for IP lawyers from our own practice: national patent and trademark pages, titles that match the USPTO register, AI answers, fit and cost.';
 const depth = await getDepth('seo-for-intellectual-property-lawyers');
 
-// "How do patent, trademark and copyright buyers search": the six searches from our keyword research.
+// The first depth section: the six searches from our keyword research.
 const searches = [
   { text: 'how much does it cost to hire a patent lawyer', mark: 'cost' },
   { text: 'do i need a lawyer to file a provisional patent' },
@@ -59,6 +59,11 @@ const searches = [
     <div slot="searches" class="ip-searches">
       <SearchBox label="Six searches from our keyword research" queries={searches} caption="From our keyword research." />
     </div>
+
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="#1" tagSide="right" images={[shot(proof.nolaJackknife, { marks: ['aiChip', 'result'] })]} />
+      <figcaption>Seven days after it went live, a New Orleans PI firm’s jackknife truck page held the top result, and Google’s AI still cited it.</figcaption>
+    </figure>
 
     <Band slot="mid" tone="fog" class="mx-mid ip-mid">
       <p class="mx-mid__line">See which patent and trademark searches send founders to other firms today.</p>
@@ -113,13 +118,4 @@ const searches = [
   }
   .ip-price__line { max-width: 36em; font-size: var(--fs-lead); line-height: 1.5; color: var(--ink-2); }
   .ip-price__line a { font-weight: 700; color: var(--ink); }
-
-  /* The open FAQ as a two-column grid of questions on fog, each under its own black rule. */
-  @media (min-width: 1000px) {
-    .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__faq .lse-faq--open {
-      max-width: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(48px, 5vw, 80px);
-      border-top: 0;
-    }
-    .lse-depth[data-depth='seo-for-intellectual-property-lawyers'] .lse-depth__faq .lse-faq__item { border-top: 2px solid var(--ink); border-bottom: 0; padding-bottom: 36px; }
-  }
 </style>

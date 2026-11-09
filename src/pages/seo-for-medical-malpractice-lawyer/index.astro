@@ -1,18 +1,15 @@
 ---
-// /seo-for-medical-malpractice-lawyer/ from content/v3/seo-for-medical-malpractice-lawyer.md (critic:
-// content/v3/CRITIC-practice-3.md). Facts: research/FACTS.md. Fewer, better inquiries. The hero is the row hero
+// /seo-for-medical-malpractice-lawyer/. Facts: research/FACTS.md. Fewer, better inquiries. The hero is the row hero
 // (PageHero layout="row"): the H1 and line across, the form card, and the El Paso search with its first AI source
-// card on the fog panel. The v2 bands
-// (keep or skip, harm pages, the name search), FAQ and Related block gave way to the depth zone
-// (src/content/depth/seo-for-medical-malpractice-lawyer.md). Its own look on this page: the jump list under a thick
-// rule on its left, the rule tables with the state set large, the harm pages and agency habits as two-column rows
-// (the lead left, the rest right), the built marker PriceBand (moved, new heading), and the open FAQ on white.
+// card on the fog panel. The depth zone (src/content/depth/, v4: written from our own practice) follows: the build
+// steps, the screening checklist, the same El Paso firm's calls beside the deadline section, the built marker
+// PriceBand, and the accordion FAQ on white. Its own look on this page: the jump list under a thick rule on its left.
 import FinalCta from '../../components/FinalCta.astro';
 import Shot from '../../components/Shot.astro';
 import DepthZone from '../../components/depth/DepthZone.astro';
 import PriceBand from '../../components/kit/PriceBand.astro';
 import PageHero from '../../components/kit/PageHero.astro';
-import { shot } from '../../data/proof';
+import { proof, shot } from '../../data/proof';
 import { phoneProof } from '../../data/proof-money';
 import InnerPage from '../../layouts/InnerPage.astro';
 import { depthSchema, getDepth } from '../../lib/depth';
@@ -20,7 +17,7 @@ import { depthSchema, getDepth } from '../../lib/depth';
 const path = '/seo-for-medical-malpractice-lawyer/';
 const title = 'Medical Malpractice SEO | Fewer, Better Inquiries';
 const description =
-  'Medical malpractice SEO: screening forms, state pre-suit rules, fee caps by state, harm pages, referrals and verdicts, AI deadline answers, UK firms.';
+  'Medical malpractice SEO from our own practice: harm and state pages, a form that screens, the name search referring lawyers run, timing and cost.';
 const depth = await getDepth('seo-for-medical-malpractice-lawyer');
 ---
 <InnerPage
@@ -45,11 +42,15 @@ const depth = await getDepth('seo-for-medical-malpractice-lawyer');
   </PageHero>
 
   <DepthZone depth={depth} faqTone="white" authorLinkLabel="Background on S. M. Fahim">
+    <figure slot="proof" class="lse-depth__proof">
+      <Shot tag="23 calls" tagSide="right" images={[shot(proof.elpasoCallsAfter, { marks: ['total', 'range'], phone: 'totalRange' })]} />
+      <figcaption>The El Paso PI firm behind the deadline page above: 23 calls from its Business Profile, May to July 2026, by Google’s count.</figcaption>
+    </figure>
     <PriceBand
       slot="price"
       heading="The whole malpractice job, one monthly price."
       headingId="price-h"
-      lead="From $2,000 a month for pages, site upkeep, your Google profile, links, call tracking and AI answer checks. No setup fee. Month to month."
+      lead="Pages for each harm and state, site upkeep, your Google profile, links, call tracking and AI answer checks, from $2,000 a month, with nothing charged for setup. Each month is your choice, and what we built stays yours."
     >
       <Fragment slot="link">See <a href="/seo-pricing/">law firm SEO pricing</a></Fragment>
     </PriceBand>
@@ -66,30 +67,4 @@ const depth = await getDepth('seo-for-medical-malpractice-lawyer');
   /* The depth zone on this page. The jump list hangs from a thick black rule on its left, not a rule on top. */
   .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-depth__toc { border-top: 0; padding-left: 22px; border-left: 4px solid var(--ink); }
   .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-depth__toc .lse-jump__h { padding-top: 0; }
-
-  /* A hyphenated word in a heading stays on one line. */
-  .mm-nowrap { white-space: nowrap; }
-
-  /* The rule tables: the state set large in the first column, on one line. */
-  @media (min-width: 641px) {
-    .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose tbody td:first-child {
-      font-size: clamp(19px, .4vw + 16px, 22px); font-weight: 800; letter-spacing: -.015em; line-height: 1.2; white-space: nowrap;
-    }
-  }
-
-  /* The harm pages and the agency habits: hairline rows; from 900px the bold lead sits in a left column. */
-  .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose > ul:not(.lse-check) { list-style: none; padding: 0; border-top: 2px solid var(--ink); max-width: 46em; }
-  .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose > ul:not(.lse-check) > li { position: relative; margin: 0; padding: 15px 0 16px; border-bottom: 1px solid var(--line-2); }
-  .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose > ul:not(.lse-check) > li > strong:first-child { display: block; margin-bottom: 4px; color: var(--ink); font-weight: 750; }
-  @media (min-width: 900px) {
-    .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose > ul:not(.lse-check) > li { padding-left: 36%; min-height: 3.6em; }
-    .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-prose > ul:not(.lse-check) > li > strong:first-child {
-      position: absolute; left: 0; top: 15px; width: 32%; margin: 0;
-      font-size: clamp(18px, .3vw + 16px, 20px); line-height: 1.3; letter-spacing: -.01em;
-    }
-  }
-
-  /* The open FAQ on white: each question under a black rule. */
-  .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-depth__faq .lse-faq--open { border-top: 0; }
-  .lse-depth[data-depth='seo-for-medical-malpractice-lawyer'] .lse-depth__faq .lse-faq__item { border-top: 2px solid var(--ink); border-bottom: 0; }
 </style>
