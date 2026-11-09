@@ -25,24 +25,16 @@ import { depthSchema, getDepth } from '../../lib/depth';
 
 const title = 'Law Firm SEO Pricing 2026 | From $2,000 a Month, All In';
 const description =
-  'Law firm SEO pricing for 2026: our price, the pricing models and their rules, what moves the number, extras, published prices, cost per lead and terms.';
+  'Law firm SEO pricing for 2026: one price from $2,000 a month, the four things that set it, what other agencies publish, cost per lead and comparing quotes.';
 const path = '/seo-pricing/';
 const depth = await getDepth('seo-pricing');
 
-// Depth section 3: what moves the monthly number.
+// Depth section 2 (v4): the four things that set the monthly number.
 const drivers = [
-  { title: 'The market.', text: 'A busy city, where more firms chase the same searches, needs more pages and links each month than a quiet town.' },
-  { title: 'The practice areas.', text: 'Each practice a firm wants to grow needs its own pages and its own links. Practices with more firms competing for them need more of both.' },
+  { title: 'The market.', text: 'A city where more firms chase the same searches needs more pages and links each month than a quiet town.' },
+  { title: 'The practice areas.', text: 'Each practice a firm wants to grow needs its own pages, and the busier ones need more links.' },
   { title: 'The offices.', text: 'Each real office needs its own page and its own Business Profile, with reviews to match.' },
-  { title: 'The site’s starting point.', text: 'A new site, a neglected one and a penalized one each need different groundwork before new pages can rank.' },
-];
-// Supplementary H3 3: pricing patterns to refuse.
-const traps = [
-  { title: 'Counts in place of outcomes.', text: 'A tier that promises a set number of articles or links says nothing about calls.' },
-  { title: 'A share of fees, or a fee per new client.', text: 'These tie the agency’s pay to the firm’s fees, which can run into state fee-sharing rules.' },
-  { title: 'Long minimum terms.', text: 'The firm keeps paying for work that isn’t working, because leaving costs more.' },
-  { title: 'Accounts in the agency’s name.', text: 'The firm pays to build assets it can’t take with it.' },
-  { title: 'Return claims with no method.', text: 'A return figure with no inputs can’t be checked, so it proves nothing.' },
+  { title: 'The site’s starting point.', text: 'A neglected site needs more fixes before new pages can rank than a sound one.' },
 ];
 ---
 <InnerPage
@@ -74,7 +66,7 @@ const traps = [
   <DepthZone depth={depth} authorLinkLabel="About S. M. Fahim">
     <figure slot="proof" class="lse-depth__proof">
       <Shot tag="1 to 9 calls" tagSide="right" images={[shot(proof.newProfileCalls, { marks: ['points'], phone: 'axis' })]} />
-      <figcaption>A new Google profile for a PI firm in New Orleans: about 1 call in July 2026, then 9 in October.</figcaption>
+      <figcaption>Calls from a New Orleans PI firm’s newer Google profile, by Google’s count, July to October 2026.</figcaption>
     </figure>
     <div slot="drivers" class="bsv-rows"><Rows variant="inline" items={drivers} /></div>
     <figure slot="calls" class="cost-calls">
@@ -84,7 +76,6 @@ const traps = [
         narrow={[shot(phoneProof.nolaCallsTotal, { marks: ['total', 'growth'] })]}
       />
     </figure>
-    <div slot="traps" class="bsv-rows"><Rows variant="inline" items={traps} /></div>
 
     <Band slot="mid" tone="fog" class="bsv-mid">
       <p class="bsv-mid__line">Get your firm’s own number from Fahim, in writing, before any work starts.</p>
